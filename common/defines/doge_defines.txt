@@ -1,0 +1,66 @@
+	# Slider/Menu Changes:
+#	NGameplay = {
+#		LOGISTIC_CEILING_DEFAULT = 5000
+#		LOGISTIC_CEILING_MIN = 1.0
+#		LOGISTIC_CEILING_MAX = 5000.0
+#		LOGISTIC_CEILING_SLIDER_INTERVAL = 0.05
+#
+#		GROWTH_SCALE_DEFAULT = 0
+#		GROWTH_SCALE_MIN = 0.00
+#		GROWTH_SCALE_MAX = 1.00
+#		GROWTH_SCALE_SLIDER_INTERVAL = 0.05
+#	}
+	# Stellaris Default Values:
+#	NPop = {
+#		BASE_POP_GROWTH                      = 3      # Base growth rate of pops
+#       LOGISTIC_POP_GROWTH_R                = 0.125  # Logistic Pop Growth Constant r
+#       LOGISTIC_POP_GROWTH_FLOOR            = 0.01   # Logistic Pop Growth won't lower growth to less than this percent.
+#       LOGISTIC_POP_GROWTH_CEILING          = 2.00   # Logistic Pop Growth won't raise growth beyond this percent.
+#       LOGISTIC_POP_GROWTH_MIN_POPS         = 5      # Treat small colonies as having this many pops to avoid the very bottom of the curve
+#       LOGISTIC_POP_GROWTH_LOWER_THRESHOLD  = 0.5    # Ignore penalties to Pop Growth if the current number of pops are below this percent of the carrying capacity
+#       MAX_CARRYING_CAPACITY                = 500    # Logistic Carrying Capacity Cap (so modders have access to this value in case they make a planet with infinite districts or something like that)
+#       MAX_NEW_COLONIES_SCALE               = 2      # At this ratio of new to old colonies, no further scaling of migration
+#       REQUIRED_POP_GROWTH                  = 100    # Required growth to make a new pop
+#       REQUIRED_POP_GROWTH_SCALE            = 0.5    # Required pop growth increased by this much for every pop in the empire
+#
+#       OVERCROWDING_NO_GROWTH_THRESHOLD     = 1.15   # At this amount of overcrowding (required housing / actual housing), growth stops entirely
+#       OVERCROWDING_DECLINE_THRESHOLD       = 1.25   # At this amount of overcrowding (required housing / actual housing), pops start declining
+#       OVERCROWDING_ABSOLUTE_THRESHOLD_FOR_NO_GROWTH = 5    # Planet needs this amount of overcrowding (required housing - actual housing) for OVERCROWDING_NO_GROWTH_THRESHOLD to kick in
+#       MAX_NUM_GROWTH_OR_DECLINE_PER_MONTH  = 10     # No more than this amount of pops can grow, assemble or decline in the same month
+#   }
+	# Logistic Growth Values:
+#	NPop = {
+#		BASE_POP_GROWTH						= 0.1	# Base growth rate of pops
+#		LOGISTIC_POP_GROWTH_R				= 2.6 	# Logistic Pop Growth Constant r
+#		LOGISTIC_POP_GROWTH_FLOOR			= 1		# Logistic Pop Growth won't lower growth to less than this percent.
+#		LOGISTIC_POP_GROWTH_MIN_POPS		= 2		# Treat small colonies as having this many pops to avoid the very bottom of the curve
+#		LOGISTIC_POP_GROWTH_LOWER_THRESHOLD	= 0.6	# Ignore penalties to Pop Growth if the current number of pops are below this percent of the carrying capacity
+#		MAX_CARRYING_CAPACITY				= 10000	# Logistic Carrying Capacity Cap (so modders have access to this value in case they make a planet with infinite districts or something like that)
+#		MAX_NEW_COLONIES_SCALE				= 5 	# At this ratio of new to old colonies, no further scaling of migration
+#		NEW_COLONY_GROWTH					= 0		# New colonies have a penalty to their growth
+#				
+#		MAX_EMIGRATION_PUSH					= 1000000
+#		MAX_GROWTH_FROM_IMMIGRATION			= 10000
+#		MAX_GROWTH_PENALTY_FROM_EMIGRATION	= 1000	# Fraction of base monthly growth
+#		
+#		MAX_NUM_GROWTH_OR_DECLINE_PER_MONTH = 100	# No more than this amount of pops can grow, assemble or decline in the same month
+#	}
+	# Doge Values:
+	NPop = {
+		# Same as Logistic Pop Growth
+		BASE_POP_GROWTH						= 0.1	# Base growth rate of pops
+		# Logistic Pop Growth was 2.6. New value of 2.0 means roughly 30% less pop growth, keeping pops in check for a longer duration.
+		LOGISTIC_POP_GROWTH_R				= 2.0 	# Logistic Pop Growth Constant r
+		# Logistic Pop Growth was 2. New value of 5 means new colonies will build up faster. Balanced by the fact that having a pop on a 25 colony would be more ideal.
+		LOGISTIC_POP_GROWTH_MIN_POPS		= 5		# Treat small colonies as having this many pops to avoid the very bottom of the curve
+	}
+	NGameplay = {
+		# Planetary Ascension cost formula: ( Empire Sprawl * PLANET_ASCENSION_SPRAWL_SCALE) * ( 1 + ( Empire Wide Sum of Ascension Tiers * PLANET_ASCENSION_SUM_SCALE )
+		PLANET_ASCENSION_SPRAWL_SCALE		= 20.0  # Scaling factor for Planetary Ascension cost based on the empire Sprawl
+		PLANET_ASCENSION_SUM_SCALE			= 0.2   # Scaling factor for Planetary Ascension cost based on the empire-wide sum of Ascension Tiers
+		PLANET_ASCENSION_SPRAWL_MODIFIER   = -0.025 # Reduction of planet sprawl per level of ascension
+
+		# Default value is 50, meaning 5% chance for a prescripted empire to spawn.
+		# Dogepack offers high quality prescripted countries that the AI will use more efficiently. So we set this value to 500 for a 50% chance.
+		CUSTOM_EMPIRE_SPAWN_CHANCE			= 500	# Chance that an empire will be created from an existing template instead of randomly generated (10 = 1% chance)
+	}

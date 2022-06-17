@@ -1,0 +1,816 @@
+##################
+# Species Traits 
+##################	
+	
+#species_empire_size_mult = -0.10 # 2, -10 empire sprawl 
+	
+#Tradiciju:
+#planet_jobs_upkeep_mult
+#planet_jobs_simple_drone_produces_mult
+
+
+	
+############################
+##### Sci-Fi traits
+
+trait_cyborg = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+
+}
+
+trait_robot = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_genius = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_advancedengineer = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_advancedsociologist = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_advancedphysicist = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_swarm = {
+	cost = 3
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	
+	opposites = {"trait_immortal"}
+	modifier = {
+			pop_growth_speed  = 0.2 #grows 20% faster,+4
+		    pop_housing_usage_mult = -0.2 #+2
+			species_leader_exp_gain = -0.25 #-1
+			planet_jobs_engineering_research_produces_mult = -0.15 #0.3 researchu yra worth 2; cia w. -2
+			planet_jobs_physics_research_produces_mult = -0.15
+			
+	}
+	slave_cost = {
+		energy = 100
+	}
+}
+
+trait_replicator = {
+	cost = 5
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	opposites = {"trait_immortal" "trait_swarm" "trait_mutant" "trait_ghoul"}
+	modifier = {
+			pop_growth_speed  = 0.3 #grows 30% faster worth +6
+		    pop_housing_usage_mult = -0.3 #+3
+			planet_jobs_energy_produces_mult = -0.15  # worth -2
+			pop_amenities_usage_mult = 0.2 # 0.1=1, +20 proc., w. -2
+	}
+		slave_cost = {
+		energy = 100
+	}
+}
+
+trait_mutant = {
+	cost = -3	
+	potential_crossbreeding_chance = 0.3
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	opposites = {"trait_ghoul" "trait_abomination" "trait_immortal" "trait_replicator" "trait_hive_mind"}	
+	modifier = {
+			pop_growth_speed  = -0.1 #grows slower, -2
+			planet_researchers_produces_mult = -0.05 #w -1
+	}	
+	
+}
+
+trait_ghoul = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }		
+}
+
+trait_parasite_host = {
+	cost = -5	
+	potential_crossbreeding_chance = 0.5
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	modifier = {
+			leader_age = -5 # maziau nei -1 
+			planet_jobs_food_produces_mult = -0.1 #-1
+			species_leader_exp_gain = -0.25 #-1
+			pop_amenities_usage_mult = 0.2 # 0.1=1, +20 proc., w. -2
+	}	
+}
+
+trait_abomination = {
+	cost = -7	
+	potential_crossbreeding_chance = 0.15
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	opposites = {"trait_mutant" "trait_ghoul" "trait_immortal"}	
+	modifier = {
+			pop_growth_speed  = -0.2 #grows slower, -4
+			leader_age = -10
+            pop_amenities_usage_mult = 0.2 # 0.1=1, +20 proc., w. -2			
+	}
+}
+
+trait_immortal = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_ancient = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_pirate = {
+	cost = -3	
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	
+	modifier = {
+		pop_growth_from_immigration = -0.07 #-1
+		planet_jobs_minerals_produces_mult = -0.15 #-2
+		planet_jobs_energy_produces_mult = 0.15 #+2
+		pop_amenities_usage_mult = 0.2 # 0.1=1, +20 proc., w. -2
+		}
+}
+
+trait_criminal = {
+	cost = -2	
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	opposites = {"trait_hive_mind"}
+
+	modifier = {
+		pop_growth_from_immigration = -0.3 #-1
+		pop_happiness = -0.10 #-2
+		planet_jobs_energy_produces_mult = 0.2 #+1.5
+	    pop_amenities_usage_mult = 0.4 # 0.1=1, +10 proc., w. -4
+	}
+}
+
+trait_lawful = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_mercenary = {
+	cost = 3	
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL MACHINE ROBOT LITHOID PLANTOID}
+	opposites = {"trait_hive_mind"}
+	modifier = {
+		army_damage_mult = 0.25 #+1
+		planet_jobs_energy_produces_mult = 0.15 #+2
+	}
+}
+
+
+##################################
+######## Characteristics traits 
+###################################
+
+trait_naturalist = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_sloth = {
+	cost = -5
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	opposites = {"trait_hive_mind"}
+	modifier = {
+		pop_happiness = 0.1 #0.5=+2 worth
+	    pop_growth_speed  = -0.1 #0.5=1 pt, grows slower #-2
+		planet_jobs_minerals_produces_mult = -0.2 #-2.3
+		planet_jobs_energy_produces_mult = -0.2 #-2.3
+
+	}
+}
+
+
+trait_psycho = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_obnoxious = {
+	cost = -4
+	potential_crossbreeding_chance = 0.3
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	modifier = {
+		pop_amenities_usage_mult = 0.2 # 0.1=1, +20 proc., w. -2
+		planet_jobs_unity_produces_mult = -0.20 #-2
+	}
+}
+
+trait_brutal = {
+	cost = 2	
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	modifier = {
+		pop_growth_from_immigration = -0.25
+		army_damage_mult = 0.60 #3 kartu su apacioje
+		planet_jobs_minerals_produces_mult = 0.05
+	}
+}
+
+trait_unreliable = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	modifier = {
+		army_defense_damage_mult = -0.25 #-0.5
+		planet_jobs_minerals_produces_mult = -0.03  #-0.5
+	}
+	
+}
+
+trait_attractive = {
+	cost = 5
+	potential_crossbreeding_chance = 2.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	opposites = { "trait_abomination" "trait_repugnant" "trait_repulsive" "trait_hive_mind" }
+	modifier = {
+		pop_happiness = 0.05 #+1
+		pop_growth_speed  = 0.1 #rapid breeding, +2
+		pop_amenities_usage_mult = -0.2 # 0.1=1, -20 proc., w. +2
+	}
+}
+
+trait_repulsive = {
+	cost = -2
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	opposites = { "trait_charismatic" "trait_attractive" }
+	modifier = {
+		pop_growth_from_immigration = -0.4 # // 0.2=1 pt, worth -2
+	}
+}
+
+trait_scavenger = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	modifier = {
+				planet_jobs_energy_produces_mult = 0.08 #1
+				planet_jobs_minerals_produces_mult = 0.08 #1
+				}
+}
+
+trait_small_creature = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_big_creature = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+
+trait_hedonist = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+###################################
+#Migration traits
+###################################
+
+trait_opportunist = {
+	cost = 1
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	opposites = { "trait_sedentary"}
+	modifier = {
+		pop_growth_from_immigration = 0.1 # // 0.5 pt
+		planet_jobs_minerals_produces_mult = 0.05
+		planet_jobs_energy_produces_mult = 0.05
+	}
+
+}
+
+trait_wanderer = {
+	cost = 1
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	icon = "gfx/interface/icons/traits/trait_nomadic.dds"	
+	opposites = { "trait_sedentary" "trait_invasive"}
+	
+	modifier = {
+		pop_growth_from_immigration = 0.2
+	}
+}
+
+trait_invasive = {
+	cost = -1	
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	opposites = { "trait_sedentary" "trait_wanderer"}
+	modifier = {
+		pop_growth_speed  = 0.05 #worth 1
+		pop_housing_usage_mult = 0.1 #w -1 #su balansuotas, labiau neigiamas nei teigiamas
+	}
+}
+
+
+trait_isolationist = {
+	cost = -3
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	opposites = { "trait_communal" "trait_solitary" "trait_hive_mind"}
+	
+	modifier = {
+		pop_happiness = -0.1 #-1 pt
+		pop_housing_usage_mult = 0.15 #-1.5
+		planet_jobs_minerals_produces_mult = 0.05
+	}
+}
+
+trait_hunter = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_survivalist = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+######## Resursu traits
+
+trait_collector = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_golddigger = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_mineral_consumer = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_harvester= {
+	cost = 3	
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_extreme_harvester" "trait_food_consumer"}
+	allowed_archetypes = {BIOLOGICAL PLANTOID}
+
+	modifier = {
+		planet_jobs_food_produces_mult = 0.3 
+	}
+}
+
+trait_extreme_harvester= {
+	cost = 5
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_harvester" "trait_food_consumer"}
+	allowed_archetypes = {BIOLOGICAL PLANTOID}
+
+	modifier = {
+		planet_jobs_food_produces_mult = 0.5 #worth 5
+	}
+}
+
+trait_self_sufficient {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_food_consumer = {
+	opposites = { "trait_harvester"  "trait_extreme_harvester"}
+	cost = -2	
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL PLANTOID}
+
+	modifier = {
+		planet_jobs_food_produces_mult = -0.15 
+	}
+}
+
+trait_efficient = {
+	opposites = { "trait_super_efficient" "trait_energy_consumer"}
+	cost = 4	
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL MACHINE ROBOT LITHOID PLANTOID}
+
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.3 #worth 4
+	}
+}	
+
+trait_super_efficient = {
+	opposites = { "trait_efficient" "trait_energy_consumer"}
+	cost = 6	
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL MACHINE ROBOT LITHOID PLANTOID}
+
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.5 #worth 6
+	}
+}
+
+trait_energy_consumer = {
+	opposites = { "trait_super_efficient"}
+	cost = -2	
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL MACHINE ROBOT LITHOID PLANTOID}
+
+	modifier = {
+		planet_jobs_energy_produces_mult = -0.15
+	}
+}
+#################Slavery traits #######################
+
+trait_slaver ={
+    cost = 2
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	opposites = {"trait_hive_mind"} 
+	icon = "gfx/interface/icons/traits/trait_very_strong.dds"
+	modifier = {
+		pop_cat_worker_happiness = -0.2 #-1
+		pop_cat_slave_happiness = -0.2 #-1
+		army_damage_mult = 0.40 #w. +1 
+		planet_jobs_energy_produces_mult = 0.07 #w +1
+		planet_jobs_minerals_produces_mult = 0.07 #w. +1
+	}
+	ai_weight = {
+		weight = 0
+	}
+}	
+
+#for Krogan
+trait_grunt ={
+    cost = 3
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL MACHINE ROBOT LITHOID PLANTOID}
+
+	icon = "gfx/interface/icons/traits/trait_very_strong.dds"
+	modifier = {
+	    species_leader_exp_gain = -0.25 #-1
+		army_damage_mult = 0.5 #2.5
+		planet_jobs_minerals_produces_mult = 0.15 #1
+		planet_jobs_worker_produces_mult = 0.05 #1
+		}
+	slave_cost = {
+		energy = 150
+	}
+}	
+
+trait_servant ={
+    cost = 2
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL MACHINE ROBOT LITHOID PLANTOID}
+	modifier = {	
+		planet_pops_consumer_goods_upkeep_mult = -0.2 #2
+		pop_cat_worker_happiness = 0.1 #w. -1 kartu su zemiau esanciu
+		pop_cat_slave_happiness = 0.1
+		}
+		#nedaug yra geresnis 0.5
+	slave_cost = {
+		energy = -50
+	}
+}
+### Individualistas vs Kolektivista
+
+trait_individualist = {
+	cost = 1
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+	opposites =  {"trait_unpredictable" "trait_loyalist" "trait_clone" "trait_hive" "trait_conformists" "trait_deviants" "trait_collectivist" "trait_hive_mind"} 
+	modifier = { 
+		planet_jobs_energy_produces_mult = 0.24 #3
+		planet_pops_consumer_goods_upkeep_mult = 0.1 #-1
+		pop_housing_usage_mult = 0.1 #w. -1
+	} 
+}
+
+trait_collectivist = {
+	cost = 1
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	opposites = {"trait_unpredictable" "trait_loyalist" "trait_clone" "trait_hive" "trait_conformists" "trait_deviants" "trait_individualist" "trait_hive_mind"}
+	modifier = { 
+		planet_pops_consumer_goods_upkeep_mult = -0.1 #1
+		planet_jobs_energy_produces_mult = -0.08 #-1
+		pop_housing_usage_mult = -0.1 #w. 1
+		
+	} 
+}
+
+#################Ethic change traits ###########
+trait_unpredictable = {
+	cost = -2
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	opposites = { "trait_conformists" "trait_deviants" "trait_individualist" "trait_collectivist" "trait_hive_mind"}
+	modifier = { 
+				pop_government_ethic_attraction = -0.25 #-2
+	} 
+}
+
+trait_rebel = {
+	cost = -2
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	opposites = {"trait_deviants" "trait_unpredictable" "trait_loyalist" "trait_clone" "trait_hive" "trait_collectivist" "trait_individualist" "trait_collectivist" "trait_hive_mind"} 
+	modifier = {
+				pop_government_ethic_attraction = -0.30 #worth  -2
+				species_empire_size_mult = 0.05 #worth  -1
+				planet_jobs_engineering_research_produces_mult = 0.07 #+0.5 
+				planet_jobs_physics_research_produces_mult = 0.07 #+0.5 
+				planet_jobs_society_research_produces_mult = 0.07 #+0.5 
+				# sitas trait'as turi bonusa
+				}
+}
+
+trait_loyalist = {
+	cost = 3
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = {BIOLOGICAL LITHOID PLANTOID}
+
+	opposites = { "trait_deviants" "trait_unpredictable" "trait_rebel" "trait_individualist" "trait_collectivist" "trait_individualist" "trait_collectivist" "trait_hive_mind"}
+	modifier = {
+				pop_government_ethic_attraction = 0.30 #worth 2 (0.15 = w 1)
+				species_empire_size_mult = -0.05 #worth  1
+				}
+   
+}
+
+trait_clone  = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_hive  = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+########### Extra, psionics ####################
+trait_psi_gifted = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+######################### Unity traits ############
+
+trait_united = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_extremely_united = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+
+trait_divided = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+trait_extremely_divided = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	modification = no
+	randomized = no
+	initial = no
+	allowed_archetypes = { }
+}
+
+##############################
+# Robot specific additional traits #
+##############################
+## Modifiers (unique for machines/robots), examples:
+## Changed for 2.2:
+# pop_robot_upkeep_mult --> planet_pops_robotics_upkeep_mult = 0.10 #w. -1
+# pop_robot_build_speed_mult --> pop_assembly_speed = 0.15 # w1
+# pop_robot_build_cost_mult --> planet_pop_assemblers_upkeep_mult = -0.10 #w. 1
+
+
+
+trait_robot_super_efficient_processors = {
+	cost = 2
+	#icon = "gfx/interface/icons/traits/trait_robot_efficient_processors.dds" -- cia pvz
+	allowed_archetypes = { MACHINE ROBOT }
+
+	opposites = { "trait_robot_efficient_processors" "trait_robot_inefficient_processors" "trait_robot_super_inefficient_processors"}
+	modifier = {
+		planet_pops_robotics_upkeep_mult= -0.20 #cost 2 positive
+		}
+}
+
+trait_robot_inefficient_processors = {
+	cost = -1
+	allowed_archetypes = { MACHINE ROBOT }
+
+	opposites = { "trait_robot_efficient_processors" "trait_robot_super_efficient_processors" "trait_robot_super_inefficient_processors"}
+	modifier = {
+		planet_pops_robotics_upkeep_mult= 0.05 #w -1 negative, #kadangi masinos yra silpnesnes sitas traitas sumazintas, per 0.05 modifier 
+		}
+}
+
+trait_robot_super_inefficient_processors = {
+	cost = -2
+	allowed_archetypes = { MACHINE ROBOT }
+
+	opposites = { "trait_robot_efficient_processors" "trait_robot_super_efficient_processors" "trait_robot_inefficient_processors"}
+	modifier = {
+		planet_pops_robotics_upkeep_mult= 0.15 #w -2 negative, #kadangi masinos yra silpnesnes sitas traitas sumazintas, per 0.05 modifier 
+		}
+}
+
+trait_robot_extreme_mass_produced = {
+	cost = 2
+	opposites = { "trait_robot_custom_made" "trait_robot_extreme_custom_made" "trait_robot_mass_produced"}
+
+	allowed_archetypes = { ROBOT MACHINE }
+
+
+	modifier = {
+		pop_assembly_speed = 0.3 #w. 2
+	}
+}
+
+trait_robot_extreme_custom_made = {
+	cost = -2	
+	opposites = { "trait_robot_mass_produced" "trait_robot_extreme_mass_produced" "trait_robot_custom_made"}
+
+	allowed_archetypes = { ROBOT MACHINE }
+
+
+	modifier = {
+		pop_assembly_speed = -0.25 #w. 2, #kadangi masinos yra silpnesnes sitas traitas sumazintas, per 0.05 modifier 
+	}
+}
+
+trait_robot_completely_recycled = {
+	cost = 3
+	opposites = {"trait_robot_recycled" "trait_robot_luxurious" "trait_robot_super_luxurious"}
+
+	allowed_archetypes = { ROBOT MACHINE }
+
+	modifier = {
+		planet_pop_assemblers_upkeep_mult = -0.30
+	}
+}
+
+
+trait_robot_super_luxurious = {
+	cost = -3
+	opposites = {"trait_robot_luxurious" "trait_robot_recycled" "trait_robot_completely_recycled"}
+
+	allowed_archetypes = { ROBOT MACHINE }
+
+	modifier = {
+		planet_pop_assemblers_upkeep_mult = 0.25 #kadangi masinos yra silpnesnes sitas traitas sumazintas, per 0.05 modifier 
+	}
+}
+
+##############################
+# Non-Primary Species Traits 
+##############################
+
+
+
+###############################
+# Pre-Sentient Species Traits 
+###############################
+

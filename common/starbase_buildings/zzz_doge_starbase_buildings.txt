@@ -1,0 +1,81 @@
+##########################################################################
+# Doge Starbase Buildings
+##########################################################################
+
+# Resource Silo - Merged between 
+resource_silo = {
+    icon = "GFX_spaceport_module_resource_silo"
+    construction_days = 180
+    resources = {
+        category = starbase_buildings
+        cost = {
+            alloys = 50
+        }
+    }
+    # Provides 4000 normally.
+    triggered_country_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                NOT = {
+                    has_technology = tech_global_production_strategy
+                }
+            }
+        }
+        country_resource_max_add = 4000
+    }
+    # Provides 8,000 with global production strategy technology.
+    triggered_country_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_technology = tech_global_production_strategy
+            }
+        }
+        country_resource_max_add = 8000
+    }
+    ai_build_at_chokepoint = yes
+    ai_build_outside_chokepoint = yes
+    ai_weight = {
+        weight = 10
+        modifier = {
+            factor = 0
+            owner = {
+                not = {
+                    has_technology = tech_interstellar_fleet_traditions
+                }
+            }
+        }
+        modifier = {
+            factor = 0
+            years_passed < 40
+        }
+        modifier = {
+            factor = 5
+            owner = {
+                resource_stockpile_compare = {
+                    resource = minerals
+                    value > 12000
+                }
+            }
+        }
+        modifier = {
+            factor = 10
+            owner = {
+                resource_stockpile_compare = {
+                    resource = minerals
+                    value > 14000
+                }
+            }
+        }
+        modifier = {
+            factor = 2
+            owner = {
+                resource_stockpile_compare = {
+                    resource = minerals
+                    value > 10000
+                }
+            }
+        }
+    }
+}

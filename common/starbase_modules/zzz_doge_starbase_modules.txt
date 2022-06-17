@@ -1,0 +1,127 @@
+##########################################################################
+# Doge Starbase Modules
+##########################################################################
+
+# Orbital Lab (Expanded Starbases) - Disabled, replaced by Research Lab from Starbase Buildings and Modules.
+orbital_lab = {
+	icon = "GFX_orbital_lab"
+	section = "SCIENCE_STARBASE_SECTION"
+	construction_days = 180
+	
+	potential = {
+		always = no
+	}
+
+	possible = {
+		always = no
+	}
+	
+	show_in_tech = "tech_basic_science_lab_1"
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 50
+		}
+
+		produces = {
+			physics_research = 2
+			society_research = 2
+			engineering_research = 2
+		}
+		
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_astral_studies_network"
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			physics_research = 2
+			society_research = 2
+			engineering_research = 2
+		}
+		
+		produces = {
+			trigger = {
+				has_starbase_building = orbital_institute
+			}
+			physics_research = 2
+			society_research = 2
+			engineering_research = 2
+		}
+		
+		produces = {
+			trigger = {
+				has_starbase_building = curator_think_tank
+			}
+			physics_research = 1
+			society_research = 1
+			engineering_research = 1
+		}
+		
+		produces = {
+			trigger = {
+				has_starbase_building = black_hole_observatory
+			}
+			physics_research = 2
+		}
+		
+		produces = {
+			trigger = {
+				has_starbase_building = protostar_observatory
+			}
+			physics_research = 2
+		}
+		
+		produces = {
+			trigger = {
+				has_starbase_building = dathnak_embassy
+			}
+			society_research = 2
+		}
+		
+		produces = {
+			trigger = {
+				has_starbase_building = pulsar_hole_observatory
+			}
+			engineering_research = 2
+		}
+		
+		upkeep = {
+			energy = 3
+		}
+	}
+	
+	ai_build_at_chokepoint = no
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 1.25
+			exists = owner
+			owner = {
+				OR = {
+					is_materialist = yes
+					is_robot_empire = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 0.75
+			exists = owner
+			owner = {
+				OR = {
+					is_spiritualist = yes
+					is_militarist = yes
+				}
+			}
+		}
+	}
+}

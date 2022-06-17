@@ -1,0 +1,92 @@
+##########################################################################
+# Doge Ascension Changes
+##########################################################################
+
+## Themlaran Council
+# A leader-focused psionic/unity oriented empire. Every leader gains traits on level up and priority is put on improving their leaders as much as possible.
+"Themlaran Council"={
+	name = "Themlaran Council"
+	adjective = "Themlaran"
+	spawn_enabled = yes
+	ignore_portrait_duplication = no
+
+	species={
+		class="ART"
+		portrait="art18"
+		name = "Themlaran"
+		plural = "Themlaran"
+		adjective = "Themlaran"
+		name_list = "ART2"
+		gender = not_set
+		trait = "trait_td_genius"
+		trait = "trait_td_heroism"
+		trait = "trait_td_gatherers"
+		trait = "trait_food_consumer"
+		trait = "trait_td_rooted"
+		trait = "trait_td_aura_absorption"
+		trait = "xte_trait_gluttonous"
+	}
+
+	room="shroudwalkers_room"
+
+	authority="auth_oligarchic"
+	civics={
+		"lrsk_adv_civ_civic_shapers"
+		"civic_bugged_life_cult"
+		"civic_AP_ancestor_worship"
+	}
+	government="gov_theocratic_oligarchy"
+
+	origin="origin_enlightenment"
+
+	ethic="ethic_fanatic_spiritualist"
+	ethic="ethic_cooperative"
+	ethic="ethic_fanatic_elitist"
+
+	planet_name={
+		key="SPEC_Pithok_planet"
+	}
+	planet_class="pc_tropical"
+	initializer=""
+	system_name={
+		key="SPEC_Pithok_system"
+	}
+
+	graphical_culture="arthropoid_01"
+	city_graphical_culture="spectrals_01"
+
+	empire_flag={
+		icon={
+			category="ornate"
+			file="flag_ornate_6.dds"
+		}
+		background={
+			category="backgrounds"
+			file="twins_star_and_round.dds"
+		}
+		colors={
+			"purple"
+			"dark_blue"
+			"black"
+			"null"
+		}
+	}
+
+	ruler={
+		gender=female
+		name={
+			first_name={
+				key="ART2_CHR_Obr-Kuld"
+			}
+		}
+		portrait="art18"
+		texture=5
+		hair=0
+		clothes=0
+		leader_class="ruler"
+	}
+	ship_prefix={
+		key="ISS"
+	}
+	spawn_as_fallen=no
+}

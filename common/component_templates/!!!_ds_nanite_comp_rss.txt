@@ -1,0 +1,81 @@
+# Quantum Emitter
+weapon_component_template = {
+	key = "QUANTUM_EMITTER"
+	size = extra_large
+	type = instant
+	icon = "GFX_ship_part_quantum_emitter"
+	icon_frame = 1
+	firing_arc = 25.0
+	min_range = 0 #	10.0
+	use_ship_kill_target = no
+	prerequisites = { "tech_quantum_emitter" }
+	component_set = "QUANTUM_EMITTER"
+	projectile_gfx = "quantum_emitter"
+	tags = { weapon_type_energy }
+	ai_tags = { weapon_role_artillery }
+	ai_tag_weight = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 155
+			nanites = 15
+		}
+		upkeep = {
+			energy = 1
+			nanites = 1
+		}
+	}
+	ai_weight = { weight = 99 }
+	power = -250
+    damage = { min = 1200 max = 1500 }
+	hull_damage = 1.25	
+    shield_damage = 1
+    shield_penetration = 1	
+    armor_damage = 1
+    armor_penetration = 1	
+    windup = { min = 1 max = 19 }	
+	total_fire_time  = 70.00
+	range = 25
+    accuracy = 1	#0.85
+    tracking = 0.00
+}
+
+weapon_component_template = {
+	key = "NANITE_TITAN_LASER"
+	size = titanic
+	type = instant
+	prio_projectile = yes
+	icon = "GFX_ship_part_perdition_beam"
+	icon_frame = 1
+	firing_arc = 10.0
+	min_range = 5.0
+	use_ship_kill_target = no
+	tags = { weapon_type_energy }
+	prerequisites = { "tech_quantum_emitter" }
+	component_set = "PERDITION_BEAM"
+	projectile_gfx = "perdition_beam"
+	size_restriction = { gray_tempest_titan ds_nanite_base }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 450
+			nanites = 20
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	ai_weight = { weight = 99 }
+	power = -250
+    damage = { min = 5250 max = 10000 }
+	hull_damage = 1.50	
+    shield_damage = 0.5
+    shield_penetration = 0	
+    armor_damage = 1
+    armor_penetration =0	
+    windup = { min = 1 max = 19 }	
+	total_fire_time = 200	#70.00
+	range = 41.66
+    accuracy = 0.9
+    tracking = 0.00
+}

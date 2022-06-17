@@ -1,0 +1,34 @@
+decision_mzilli_remove_site = {
+	enactment_time = 0
+	resources = {
+		category = decisions
+		cost = {
+		}
+	}
+
+	potential = {
+		exists = archaeological_site
+		space_owner = { NOT = { is_ai = yes } }
+	}
+	allow = { archaeological_site = { is_site_completed = yes } }
+
+	effect = {
+		custom_tooltip = decision_mzilli_remove_site_tooltip
+		hidden_effect = {
+			archaeological_site = { save_event_target_as = destroy_site }
+			destroy_archaeological_site = event_target:destroy_site
+		}
+		if = {
+			limit = { has_deposit = d_archaeological_site }
+			remove_deposit = d_archaeological_site
+		}
+		if = {
+			limit = { has_modifier = lithoids_arc_site_minerals }
+			remove_modifier = lithoids_arc_site_minerals
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}

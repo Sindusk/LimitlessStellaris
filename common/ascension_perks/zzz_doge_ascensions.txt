@@ -1,0 +1,165 @@
+##########################################################################
+# Doge Ascension Changes
+##########################################################################
+
+## Great Navigator (Advanced Ascension Rework) gave 500% sublight speed.
+# Disabled.
+AAR_AP_navigator = {
+	potential = {
+		always = no
+	}
+	possible = {
+		always = no
+	}
+
+	on_enabled = {
+		custom_tooltip = "AAR_tips_AP_navigator"
+		hidden_effect = {
+			add_modifier = { modifier = AAR_MOD_cntr_navigator days = -1 }
+		}
+	}
+
+	modifier = {
+		pc_habitat_habitability = 0.05	#иор╩╫вн╙0.2
+
+		ship_windup_mult = -0.35
+		ship_winddown_mult = -0.35
+	#	ship_ftl_jumpdrive_range_mult = 0.15
+		ship_jumpdrive_cooldown_mult = -0.05
+		
+		ship_disengage_chance_mult = 0.25
+		ship_emergency_ftl_min_days_mult = -0.50
+		ship_emergency_ftl_mult = -0.25
+	}
+
+	ai_weight = {
+		factor = 35
+		modifier = {
+			factor = 1.2
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_origin = origin_void_dwellers
+			}
+		}
+		modifier = {
+			factor = 1.2
+			count_owned_planet = {
+				count > 2
+				limit = {
+					is_planet_class = pc_habitat
+				}
+			}
+		}
+	}
+}
+
+## Avicennian Motion (Plentiful Traditions) is incredibly underwhelming.
+# Change Empire Size Effect from -5% to -10%
+# Change Tradition Cost from Empire Size from -5% to -25%
+# Change unity output from 5% to 15%.
+# Add One Vision as a requirement.
+ap_plentiful_traditions_avicennian_motion = {
+#	possible = {
+#		fail_text = "requires_plentiful_traditions_motion"
+#		has_tradition = tr_plentiful_cybernetics_finish
+#	}
+	potential = { # Fixed by uberwaffe
+		has_ascension_perk = ap_one_vision
+		NOT = {
+			has_ascension_perk = ap_plentiful_traditions_avicennian_motion
+		}
+	}
+	modifier = {
+		empire_size_penalty_mult = -0.1
+		tradition_cost_empire_size_mult = -0.25
+		country_unity_produces_mult = 0.15
+		#ship_colonizer_cost_mult = -0.25 ==> XXX
+	}
+	ai_weight = {
+		factor = 0
+	}
+}
+
+## One With Nature (Empires Expanded) was very underwhelming.
+# Change habitability from 10% to 20%
+# Change terraforming speed from 25% to 50%
+# Add World Shaper as a requirement
+ap_one_with_nature = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_not_ap_arcology_project"
+			NOT = { has_ascension_perk = ap_arcology_project }
+		}
+	}
+	potential = {
+		has_ascension_perk = ap_world_shaper
+		NOR = {
+			has_ascension_perk = ap_one_with_nature
+			has_origin = origin_arcology
+		}
+		NOR = {
+			has_valid_civic = civic_hive_devouring_swarm
+			has_valid_civic = civic_machine_terminator
+			has_authority = auth_corporate
+		}
+	}
+	modifier = {	
+		deposit_blockers_cost_mult = -0.25
+		terraform_speed_mult = 0.50
+		pop_environment_tolerance = 0.20
+	}
+	ai_weight = {
+		factor = 1
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3.5
+			has_ethic = ethic_fanatic_pacifist
+		}
+	}
+}
+
+## Darkmatter Ripper (DarkSpace) - Disable
+ap_darkmatter_ripper = {
+	potential = {
+		always = no
+	}
+	possible = {
+		always = no
+	}
+	on_enabled = { 
+		add_research_option = tech_darkmatter_ripper
+		country_event = { id = dsDMR.1 }
+	}
+	ai_weight = { factor = 0 }
+}
+
+## Imperial Prerogative (Vanilla) was underwhelming due to many other mods setting planet multiplier lower.
+# Reduce empire size from planets from -50% to -20%
+# Add empire size from systems -15%
+# Add empire size from districts -10%
+# Add empire size from pops -10%
+ap_imperial_prerogative = {
+    modifier = {
+        empire_size_colonies_mult = -0.20
+		empire_size_systems_mult = -0.15
+		empire_size_districts_mult = -0.10
+		empire_size_pops_mult = -0.10
+    }
+    potential = {
+        NOT = {
+            has_ascension_perk = ap_imperial_prerogative
+        }
+        NOT = {
+            has_authority = auth_corporate
+        }
+    }
+    ai_weight = {
+        factor = 5
+    }
+    on_enabled = {
+        run_ai_strategic_data = yes
+    }
+}

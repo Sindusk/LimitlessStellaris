@@ -1,0 +1,676 @@
+##########################################################################
+# Doge Technology Changes
+##########################################################################
+
+# Technology Ascendant variables
+@EarlyRepeatableTechCost = 12000
+@EarlyRepeatableTechLevelCost = 6000
+@EarlyRepatableTechFactor = 0.65
+@RepeatableCategoryFactor = 0.25
+@RepeatableDifferntFactor = 0.5
+@EarlyRepeatableWeight = 13
+@EarlyRepeatableTier = 3
+
+# Energy Output: Max level 10
+tech_repeatable_improved_tile_energy_output = {
+	area = physics
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { field_manipulation }
+	levels = 10
+	prerequisites = {"tech_antimatter_power"}
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_output value > 9 }
+		}
+	} 
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		production_repeatable
+	}
+	mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableCategoryFactor
+    }
+    mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableDifferntFactor
+	}
+
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.05
+	}
+}
+
+#Food Output: Max level 10
+tech_repeatable_improved_tile_food_output = {
+	area = society
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { biology }
+	levels = 10
+	prerequisites = { "tech_colonization_4" }
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_food_output value > 9 }
+		}
+	} 
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		production_repeatable
+	}
+	mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableCategoryFactor
+    }
+    mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableDifferntFactor
+	}
+
+	modifier = {
+		planet_jobs_food_produces_mult = 0.05
+	}
+}
+
+# Mineral Output: Max level 10
+tech_repeatable_improved_tile_mineral_output = {
+	area = engineering
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { industry }
+	levels = 10
+	prerequisites = { "tech_ship_armor_4" }
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_mineral_output value > 9 }
+		}
+	} 
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	#When a tech is added to the list of tech alternatives it will register each entry in weight_groups to a list. such as economy, or repeatable, or whatever
+	#Then all remaining potential techs will multiply their weight with the corresponding mod_weight_if_group_picked.
+	#So if the first tech picked has the weight group 'repeatable', all other techs with a mod_weight_if_group_picked 'repeatable = 0.4', for example, will multiply their weight with 0.4
+	weight_groups = {
+		production_repeatable
+	}
+	mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableCategoryFactor
+    }
+    mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableDifferntFactor
+	}	
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.05
+	}
+}
+
+#Edict Fund: Max level 10
+tech_repeatable_improved_edict_length = {
+	area = society
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { statecraft }
+	levels = 10
+	prerequisites = { "tech_galactic_administration" }
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_editct_length value > 9 }
+		}
+	} 
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		production_repeatable
+	}
+	mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableCategoryFactor
+    }
+    mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableDifferntFactor
+	}
+
+	modifier = {
+		country_edict_fund_add = 20
+	}
+}
+
+#Leader Lifespan: Max level 20
+tech_repeatable_improved_leader_life_span = {
+	area = society
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { biology }
+	levels = 20
+	prerequisites = { "tech_gene_tailoring" }
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_life_span value > 9 }
+		}
+	} 
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		production_repeatable
+	}
+	mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableCategoryFactor
+    }
+    mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableDifferntFactor
+	}
+
+	modifier = {
+		leader_age = 5
+	}
+}
+
+#Energy Fire Rate: Max level 20
+tech_repeatable_weapon_type_energy_fire_rate = {
+	area = physics
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { particles }
+	ai_update_type = military
+	levels = 20
+	prerequisites = {"tech_plasma_2"}
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_energy_rate value > 9 }
+		}
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		ship_repeatable
+	}
+	mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableCategoryFactor
+    }	
+    mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableDifferntFactor
+	}
+	
+	modifier = {
+		weapon_type_energy_weapon_fire_rate_mult = 0.05
+	}
+}
+
+
+# Explosive Fire Rate: Max level 20
+tech_repeatable_weapon_type_explosive_fire_rate = {
+	area = engineering
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { propulsion }
+	ai_update_type = military
+	levels = 20
+	prerequisites = { "tech_missiles_4" }
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_explosive_rate value > 9 }
+		}
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		ship_repeatable
+	}
+	mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableCategoryFactor
+    }	
+    mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableDifferntFactor
+	}
+	
+	modifier = {
+		weapon_type_explosive_weapon_fire_rate_mult = 0.05
+	}
+}
+
+#Kinetic Fire Rate: Max level 20
+tech_repeatable_weapon_type_kinetic_fire_rate = {
+	area = engineering
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { propulsion }
+	ai_update_type = military
+	levels = 20
+	prerequisites = { "tech_autocannons_2" }
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_kinetic_rate value > 9 }
+		}
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		ship_repeatable
+	}
+	mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableCategoryFactor
+    }	
+    mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableDifferntFactor
+	}
+	
+	modifier = {
+		weapon_type_kinetic_weapon_fire_rate_mult = 0.05
+	}
+}
+
+#Strike Craft Fire Rate: Max level 20
+tech_repeatable_weapon_type_strike_craft_fire_rate = {
+	area = engineering
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { voidcraft }
+	ai_update_type = military
+	levels = 20
+	prerequisites = { "tech_strike_craft_3" }
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_strike_craft_rate value > 9 }
+		}
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		ship_repeatable
+	}
+	mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableCategoryFactor
+    }	
+    mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableDifferntFactor
+	}
+	
+	modifier = {
+		weapon_type_strike_craft_weapon_fire_rate_mult = 0.10
+	}
+}
