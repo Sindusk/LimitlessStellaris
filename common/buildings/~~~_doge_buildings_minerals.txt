@@ -314,7 +314,7 @@ upgradebuildings_building_strip_mine = {
 		upkeep = {
 			energy = @db1_upkeep #@b1_upkeep
 		}
-	}	
+	}
 
 	# Normal Empire Jobs
 	triggered_planet_modifier = {
@@ -427,7 +427,7 @@ upgradebuildings_building_strip_mine = {
 	}
 	
 	upgrades = {
-		building_mineralmines_2
+		"eb_mineral2"
 	}
 	
 	# AI Weighting
@@ -455,7 +455,7 @@ upgradebuildings_building_strip_mine = {
 }
 
 ##################################################
-## Mining Facilities III (Tier 0, Basic Branch) [Extra Buildings]
+## Mining Facilities III (Tier 2, Basic Branch) [Extra Buildings]
 ##################################################
 eb_mineral2 = {
 	base_buildtime = @b2_time
@@ -475,25 +475,32 @@ eb_mineral2 = {
 			has_planet_flag = mining_habitat
 		}
 	}
+	# Tech Requirement
+	prerequisites = {
+		"tech_mining_3"
+	}
+	# Building allowance requirements
+	allow = {
+		buildings_simple_allow = yes
+		has_upgraded_capital = yes
+		buildings_has_motes = yes
+	}
+	# Building destroy trigger
 	destroy_trigger = {
 		has_modifier = resort_colony
 	}
-
-	potential = {
-		NOT = { has_modifier = resort_colony }
-
-		NOR = { # Ringworlds don't have mines
-			is_planet_class = pc_ringworld_habitable
-			is_planet_class = pc_cybrex
-		}
-		OR = { # Habitats only have mines if they're built on an appropriate deposit
-			NOT = { is_planet_class = pc_habitat }
-			has_planet_flag = mining_habitat
-		}
-	}
 	
-	allow = {
-		has_upgraded_capital = yes
+	# Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals #@b2_minerals
+			volatile_motes = @db2_rare_cost #@b2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep #@b2_upkeep
+			volatile_motes = @db2_rare_upkeep #@b2_rare_upkeep
+		}
 	}
 
 	# Normal Empire Jobs
@@ -555,7 +562,7 @@ eb_mineral2 = {
 		}
 	}
     triggered_desc = {
-        text = upgradebuildings_building_strip_mine_tt
+        text = eb_mineral2_tt
     }
     # Mining Drone (Gestalt, Non-Shattered Ringworld)
 	triggered_desc = {
@@ -605,27 +612,160 @@ eb_mineral2 = {
 		}
 		text = job_scrap_miner_effect_desc
 	}
+
+	upgrades = {
+		"building_mineralmines_2"
+	}
+
+	# AI Weighting
+	ai_weight = {
+		weight = 8
+		modifier = 
+		{
+			factor = 5
+			owner = { 
+				has_monthly_income = {
+					resource = minerals
+					value < 5
+				}
+			}
+		}
+	}
+
+	# AI Resource Production
+	ai_resource_production = {
+		minerals = 4
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+##################################################
+## Mining Facilities IV (Tier 3, Basic Branch) [Upgrade Buildings]
+##################################################
+building_mineralmines_2 = {
+	base_buildtime = @db3_time #@b2_time
+	can_build = no
+	category = resource
 	
+	# Building Potential
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		NOR = { # Ringworlds and Arcologies don't have mines
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_cybrex
+			is_planet_class = pc_city
+		}
+		OR = { # Habitats only have mines if they're built on an appropriate deposit
+			NOT = { is_planet_class = pc_habitat }
+			has_planet_flag = mining_habitat
+		}
+	}
+	# Tech Requirements
+	prerequisites = {
+		"tech_mining_3"
+	}
+	# Building allowance requirements
+	allow = {
+		buildings_simple_allow = yes
+		has_upgraded_capital = yes
+		buildings_has_motes = yes
+	}
+	# Building destroy trigger
+	destroy_trigger = {
+		has_modifier = resort_colony
+	}
+
+	# Resources
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = @b2_minerals
-			volatile_motes = @b2_rare_cost
+			minerals = @db3_minerals #@b2_minerals
+			volatile_motes = @db3_rare_cost #@b2_rare_cost
 		}
 		upkeep = {
-			energy = @b2_upkeep
-			volatile_motes = @b2_rare_upkeep
+			energy = @db3_upkeep #@b2_upkeep
+			volatile_motes = @db3_rare_upkeep #@b2_rare_upkeep
 		}
 	}
 
-	prerequisites = {
-		"tech_mining_2"
+	# Normal Empire Jobs
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_doge_master_miner_add = @db3_adv_jobs
+			job_miner_add = @db3_jobs
+		}
 	}
-	
-	upgrades = {
-		"eb_mineral3"
+	# Fallen Empire Spiritualist Jobs
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_doge_master_miner_add = @db3_adv_jobs
+			job_fe_acolyte_mine_add = @db3_jobs
+		}
 	}
-
+	# Gestalt Jobs
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_doge_master_mining_drone_add = @db3_adv_jobs
+			job_mining_drone_add = @db3_jobs
+		}
+	}
+	# Shattered Ring jobs (Normal Empire)
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_doge_master_scrap_miner_add = @db3_adv_jobs
+			job_scrap_miner_add = @db3_jobs
+		}
+	}
+	# Shattered Ring Jobs (Gestalt Empire)
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_doge_master_scrap_miner_drone_add = @db3_adv_jobs
+			job_scrap_miner_drone_add = @db3_jobs
+		}
+	}
+    triggered_desc = {
+        text = eb_mineral2_tt
+    }
+    # Master Mining Drone (Gestalt, Non-Shattered Ringworld)
+	triggered_desc = {
+		trigger = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_doge_master_mining_drone_effect_desc
+	}
+    # Mining Drone (Gestalt, Non-Shattered Ringworld)
 	triggered_desc = {
 		trigger = {
 			NOT = { is_planet_class = pc_shattered_ring_habitable }
@@ -634,6 +774,18 @@ eb_mineral2 = {
 		}
 		text = job_mining_drone_effect_desc
 	}
+	# Master Miner (Normal, Non-Shattered Ringworld)
+	triggered_desc = {
+		trigger = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		text = job_doge_master_miner_effect_desc
+	}
+	# Miner (Normal, Non-Shattered Ringworld)
 	triggered_desc = {
 		trigger = {
 			NOT = { is_planet_class = pc_shattered_ring_habitable }
@@ -645,6 +797,7 @@ eb_mineral2 = {
 		}
 		text = job_miner_effect_desc
 	}
+	# Acolyte (FE Spiritualist, Non-Shattered Ringworld)
 	triggered_desc = {
 		trigger = {
 			NOT = { is_planet_class = pc_shattered_ring_habitable }
@@ -653,7 +806,16 @@ eb_mineral2 = {
 		}
 		text = job_fe_acolyte_mine_effect_desc
 	}
-
+	# Master Scrap Miner Drone (Gestalt, Shattered Ring)
+	triggered_desc = {
+		trigger = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_doge_master_scrap_miner_drone_effect_desc
+	}
+	# Scrap Miner Drone (Gestalt, Shattered Ring)
 	triggered_desc = {
 		trigger = {
 			is_planet_class = pc_shattered_ring_habitable
@@ -662,6 +824,16 @@ eb_mineral2 = {
 		}
 		text = job_scrap_miner_drone_effect_desc
 	}
+	# Master Scrap Miner (Normal, Shattered Ring)
+	triggered_desc = {
+		trigger = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_doge_master_scrap_miner_effect_desc
+	}
+	# Scrap Miner (Normal, Shattered Ring)
 	triggered_desc = {
 		trigger = {
 			is_planet_class = pc_shattered_ring_habitable
@@ -671,10 +843,29 @@ eb_mineral2 = {
 		text = job_scrap_miner_effect_desc
 	}
 
+	upgrades = {
+		building_mineralmines_3
+	}
+	
+	ai_weight = {
+		weight = 2
+		modifier = 
+		{
+			factor = 5
+			owner = { 
+				has_monthly_income = {
+					resource = minerals
+					value < 5
+				}
+			}
+		}
+	}
+
 	ai_resource_production = {
-		minerals = 3
+		minerals = 1
 		trigger = {
 			always = yes
 		}
 	}
 }
+

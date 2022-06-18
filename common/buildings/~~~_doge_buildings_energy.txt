@@ -368,7 +368,7 @@ eb_energy2 = {
         }
     }
     prerequisites = {
-        tech_power_plant_3 # Power Plant III
+        "tech_power_plant_3" # Power Plant III
     }
     # Ensure that AI needs it before allowing them to build it.
     allow = {
@@ -495,7 +495,7 @@ building_powerplant_2 = {
         }
     }
     prerequisites = {
-        tech_power_plant_4 # Power Plant IV
+        "tech_power_plant_4" # Power Plant IV
     }
     # Ensure that AI needs it before allowing them to build it.
     allow = {
