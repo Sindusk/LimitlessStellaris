@@ -1,7 +1,10 @@
-##################################################
-# Doge Scripts
-##################################################
+####################################################################################################
+# Doge Scripted Triggers
+####################################################################################################
 
+##################################################
+## Building Checks
+##################################################
 ## doge_has_energy_grid: Checks if the planet has an energy grid building.
 # Context: Planet
 doge_can_build_energy_grid = {
@@ -40,5 +43,15 @@ doge_can_build_food_processing = {
 doge_can_build_stock_exchange = {
         NOR = {
                 num_buildings = { type = building_galactic_stock_exchange value > 1 in_construction = any }
+        }
+}
+
+## doge_can_build_alloy_foundry: Checks if the planet has a alloy foundry upgrade building.
+# Context: Planet
+doge_can_build_alloy_foundry = {
+        NOR = {
+                num_buildings = { type = building_foundry_1 value > 1 in_construction = any }
+                num_buildings = { type = building_foundry_2 value > 1 in_construction = any }
+                num_buildings = { type = building_foundry_3 value > 1 in_construction = any }
         }
 }

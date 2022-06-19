@@ -1,6 +1,6 @@
-##########################################################################
+####################################################################################################
 # Doge Buildings (Energy)
-##########################################################################
+####################################################################################################
 
 ### Vanilla Building Variables ###
 # Specifically here as a reference, not going to modify them in case it ruins everything.
@@ -1537,6 +1537,7 @@ building_fe_power_hub = {
     prerequisites = {
         "tech_fe_power_hub"
     }
+    # Allow Conditions
     allow = {
         # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
         doge_can_build_energy_grid = yes

@@ -10,6 +10,49 @@
   mod_country_resource_max_energy_add: "Maximum £energy£ §Y$energy$§! Capacity"
   mod_country_resource_max_minerals_add: "Maximum £minerals£ §Y$minerals$§! Capacity"
   mod_country_resource_max_food_add: "Maximum £food£ §Y$food$§! Capacity"
+  mod_country_resource_max_alloys_add: "Max £alloys£ §Y$alloy$§! Capacity"
+
+  # Planetary Wonders - Building Name Colors Update
+  pw_building_space_elevator: "$pw_space_elevator$"
+  pw_building_galactic_model: "$pw_galactic_model$"
+  pw_building_aligned_galactic_model: "$pw_aligned_galactic_model$"
+  pw_building_polyhedron: "§MPolyhedron§!"
+  pw_building_panopticon: "$pw_panopticon$"
+  pw_building_guardian_angel: "$pw_guardian_angel$"
+  pw_building_stellar_sentinel: "$pw_stellar_sentinel$"
+  pw_building_transplanetary_logistics_network: "$pw_transplanetary_logistics_network$"
+  pw_building_transhabitat_logistics_network: "§MTranshabitat Logistics Network§!"
+  pw_building_forbidden_city: "$pw_forbidden_city$"
+  pw_building_festival_plaza: "$pw_festival_plaza$"
+  pw_building_martial_avenue: "$pw_martial_avenue$"
+  pw_building_particle_supercollider: "$pw_particle_supercollider$"
+  pw_building_interdimensional_collider: "$pw_interdimensional_collider$"
+  pw_building_domed_city: "$pw_domed_city$"
+  pw_building_secluded_sector: "$pw_secluded_sector$"
+  pw_building_psionic_observatory: "$pw_psionic_observatory$"
+  pw_building_abyssal_crater_test_site: "$pw_abyssal_crater_test_site$"
+  pw_building_abyssal_crater_test_site_habitat: "$pw_abyssal_crater_test_site_habitat$"
+  pw_building_metal_vivarium: "$pw_metal_vivarium$"
+  pw_building_erebus_project: "$pw_erebus_project$"
+  pw_building_erebus_fracking_plant: "$pw_erebus_fracking_plant$"
+  pw_building_helios_tower: "$pw_helios_tower$"
+  pw_building_helios_translucent_obelisk: "$pw_helios_translucent_obelisk$"
+  pw_building_demetrius_fields: "$pw_demetrius_fields$"
+  pw_building_demetrius_chemical_garden: "$pw_demetrius_chemical_garden$"
+  pw_building_mantle_crucible: "$pw_mantle_crucible$"
+  pw_building_titan_forge: "$pw_titan_forge$"
+  pw_building_industrial_hearth: "$pw_industrial_hearth$"
+  pw_building_pavilion_of_wonders: "$pw_pavilion_of_wonders$"
+  pw_building_fair_of_worlds: "$pw_fair_of_worlds$"
+  pw_building_museum_of_the_grotesque: "$pw_museum_of_the_grotesque$"
+  pw_building_holy_reliquary: "$pw_holy_reliquary$"
+  pw_building_grand_archive: "$pw_grand_archive$"
+  pw_building_nostalgia_paradise: "$pw_nostalgia_paradise$"
+  pw_building_unhallowed_necropolis: "$pw_unhallowed_necropolis$"
+  pw_building_blossoming_preserve: "$pw_blossoming_preserve$"
+  pw_building_department_of_xenoeconomics: "$pw_department_of_xenoeconomics$"
+  pw_building_enigma_engine: "$pw_enigma_engine$"
+  pw_building_solipsist_debate_hall: "$pw_solipsist_debate_hall$"
 
   # Simple Traditions - Industry
   tr_industry_finish_desc:1 "§HUnlocks Planetary Decision:§! Designate as Mining World\n§HUnlocks Planetary Decision:§! Designate as Energy World\n§HUnlocks Planetary Decision:§! Designate as Food World\n§HUnlocks Planetary Decision:§! Designate as Production World\n§HUnlocks Planetary Decision:§! Designate as Foundry World\n§HUnlocks Planetary Decision:§! Designate as Unity World\n§HUnlocks Planetary Decision:§! Designate as Trade World\nAscension Perks Unlocked: §G+1§!"
@@ -68,9 +111,6 @@
   building_fe_power_hub_tt: "§MEnergy§! - §BTier 5 & 6§! - §EProductivity§! (Limit 1)"
   building_fe_power_hub_desc: "Using synthesized dark energy, the new-generation power grid boasts much higher energy production than conventional generators."
   # ACOT Stuff
-  # 
-#mod_country_resource_max_energy_add: "Max Energy Capacity Add"
-#
 #building_ae_power_hub: "Alpha Master Power Nexus"
 #building_ae_power_hub_desc: "Exploiting the advanced network systems of the enigmatic constructs on the planet's capitol building allows the Nexus to create a planet-wide energy network that massively increases energy production."
 # 
@@ -143,9 +183,41 @@
   building_fe_food_processing_complex: "Agri Super-Complex"
   building_fe_food_processing_complex_tt: "§MFood§! - §BTier 5 & 6§! - §EProductivity§!"
   building_fe_food_processing_complex_desc: "Multiple agricultural bio-domes powered by a central dark matter facility that will ensure the planet always has fresh green apples, or whatever it is our government uses for food."
-
   #building_ae_food_processing_complex: "Agri Mega-Complex"
   #building_ae_food_processing_complex_desc: "It matters not whether the planet has no green, for the green is everywhere, and that green is good."
+
+  ## Alloys
+  # Alloys - Tier 0
+  building_alloys_1: "Alloy Forge"
+  building_alloys_1_tt: "§MAlloys§! - §BTier 1§! - §EFoundation§!"
+  building_alloys_1_desc: "The Metallurgists working in these foundries produce many different alloys for a variety of high-end applications such as weaponry and starship production."
+  # Alloys - Basic
+  building_alloys_2: "Alloy Forge II"
+  building_alloys_2_tt: "§MAlloys§! - §BTier 2 & 3§! - §EBasic§!"
+  building_alloys_2_desc: "These massive forges are used for the alloying of basic minerals into large amounts of highly durable alloys for specialized industrial and military uses."
+  building_alloys_3: "Alloy Forge III"
+  building_alloys_3_tt: "§MAlloys§! - §BTier 4 & 5§! - §EBasic§!"
+  building_alloys_3_desc: "Large nanite-assisted fabricators geared towards admixing bulk quantities of metals to create heavy-duty spaceworthy materials on an industrial scale."
+  # Alloys - Productivity
+  building_foundry_1: "Alloy Foundries"
+  building_foundry_1_tt: "§MAlloys§! - §BTier 2§! - §EProductivity§!"
+  building_foundry_1_desc: "The [Owner.GetAlloyProducerPlural] working in these foundries produce high-quality alloys."
+  building_foundry_2: "Alloy Mega-Forges"
+  building_foundry_2_tt: "§MAlloys§! - §BTier 3§! - §EProductivity§!"
+  building_foundry_2_desc: "These massive forges can assist the end-stage production of alloys in our industries across the planet."
+  building_foundry_3: "Alloy Nano-Plants"
+  building_foundry_3_tt: "§MAlloys§! - §BTier 4§! - §EProductivity§!"
+  building_foundry_3_desc: "Large industrial fabricators geared towards increasing the production of alloys on the planet."
+  building_roci_nano_forge_mod: "Auto-Forge"
+  building_roci_nano_forge_mod_tt: "§MAlloys§! - §BTier 5§! - §EProductivity§!"
+  building_roci_nano_forge_mod_desc: "The colossal nano-replicator bays convert raw materials into advanced alloys with miraculous speed."
+  building_fe_alloy_forge: "Dark Foundry"
+  building_fe_alloy_forge_tt: "§MAlloys§! - §BTier 6§! - §EProductivity§!"
+  building_fe_alloy_forge_desc: "Through process of eliminations, we have removed all the redundant spaces within the old foundries to make room for more fabricator machines using advanced hard-light technologies."
+# 
+#building_ae_alloy_forge: "Mega-Alloy Foundry"
+#building_ae_alloy_forge_desc: "Efficiency is key to victory. Alloys today, Weapons of Victory Tomorrow!"
+# 
  
   ## Trade
   # Trade - Tier 0
@@ -353,8 +425,6 @@
    #Buildings
 #  building_roci_affluence_center_mod:0 "Affluence Center"
 #  building_roci_affluence_center_mod_desc:0 "Any material desire can be met here, no matter how outlandish."
-#  building_roci_nano_forge_mod:0 "Auto-Forge"
-#  building_roci_nano_forge_mod_desc:0 "The colossal nano-replicator bays convert raw materials into advanced alloys with miraculous speed."
 #  building_roci_dimensional_fabricator_mod:0 "Dimensional Fabricator"
 #  building_roci_dimensional_fabricator_mod_desc:0 "This building uses dimensional technology to tunnel into other realities and siphon off their valuable resources."
 #  building_roci_master_archive_mod:0 "Master Archive"
@@ -670,14 +740,6 @@
 #tech_ae_transmutor_desc: "Transmuting is a tiresome task, especially given the declining use of these soon-to-be obsolete resources. To keep space in check, a building that is capable of handling all of these boring tasks alone will be most useful."
 # 
 ##############################
-# 
-#mod_country_resource_max_alloys_add: "Max Alloys Capacity Add"
-#
-#building_fe_alloy_forge: "Dark Foundry"
-#building_fe_alloy_forge_desc: "Through process of eliminations, we have removed all the redundant spaces within the old foundries to make room for more fabricator machines using advanced hard-light technologies."
-# 
-#building_ae_alloy_forge: "Mega-Alloy Foundry"
-#building_ae_alloy_forge_desc: "Efficiency is key to victory. Alloys today, Weapons of Victory Tomorrow!"
 # 
 #tech_fe_alloy_foundry: "Dark Foundry"
 #tech_fe_alloy_foundry_desc: "The space on our planet surfaces are limited, but our need for alloys are not. We must develop further in space management for maximum efficiency."
