@@ -12,6 +12,7 @@ doge_can_build_energy_grid = {
                 num_buildings = { type = building_fe_power_hub value > 1 in_construction = any }
 	}
 }
+
 ## doge_can_build_mineral_purification: Checks if the planet has a mineral purification building.
 # Context: Planet
 doge_can_build_mineral_purification = {
@@ -21,4 +22,23 @@ doge_can_build_mineral_purification = {
                 num_buildings = { type = building_roci_dimensional_fabricator_mod value > 1 in_construction = any }
                 num_buildings = { type = building_fe_mineral_processing_plant value > 1 in_construction = any }
 	}
+}
+
+## doge_can_build_food_processing: Checks if the planet has a food processing building.
+# Context: Planet
+doge_can_build_food_processing = {
+        NOR = {
+                num_buildings = { type = building_food_processing_facility value > 1 in_construction = any }
+                num_buildings = { type = building_food_processing_center value > 1 in_construction = any }
+                num_buildings = { type = building_roci_nourishment_center_mod value > 1 in_construction = any }
+                num_buildings = { type = building_fe_food_processing_complex value > 1 in_construction = any }
+        }
+}
+
+## doge_can_build_stock_exchange: Checks if the planet has a stock exchange upgrade building.
+# Context: Planet
+doge_can_build_stock_exchange = {
+        NOR = {
+                num_buildings = { type = building_galactic_stock_exchange value > 1 in_construction = any }
+        }
 }

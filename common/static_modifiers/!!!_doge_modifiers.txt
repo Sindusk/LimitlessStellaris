@@ -2,6 +2,18 @@
 # Doge Modifiers
 ##########################################################################
 
+### Doge Overwrites ###
+# Changes the empire base influence
+empire_base = {
+	max_rivalries = 3
+	country_occupation_armies_add = 3
+	local_trade_protection_add = 2
+	country_influence_produces_add = 0.5 # Added - provides 0.5 additional influence gain to all empires.
+	country_power_projection_influence_produces_add = 2
+	country_edict_fund_add = 10
+	COUNTRY_NAVAL_COVERAGE_MULT = 1
+}
+
 ## Frameworld Origin (Gigastructural Engineering) was quite insane with their pop growth and assembly buffs from outposts.
 # Organic pop growth of 10% removed.
 # Assembly speed reduced from 10% to 8%.

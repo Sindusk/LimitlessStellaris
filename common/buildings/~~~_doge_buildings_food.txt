@@ -288,6 +288,7 @@ building_hydroponics_farm = {
 	# Building Upgrades
     upgrades = {
         "building_hydroponics_farm_2" # Tier 1 - Basic
+		"building_food_processing_facility" # Tier 1 - Productivity
         building_eutab_hydroponics_tower
     }
 	
@@ -1234,6 +1235,8 @@ building_food_processing_facility = {
     }
 	# Allow Conditions
     allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+		doge_can_build_food_processing = yes
         str_food_processing_allow = yes
     }
 	# Destroy Trigger
@@ -1445,6 +1448,8 @@ building_food_processing_center = {
     }
 	# Allow Conditions
     allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+		doge_can_build_food_processing = yes
         buildings_has_motes = yes
         has_upgraded_capital = yes
     }
@@ -1662,6 +1667,8 @@ building_roci_nourishment_center_mod = {
     }
 	# Allow Conditions
     allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+		doge_can_build_food_processing = yes
         buildings_has_motes = yes
         has_major_upgraded_capital = yes
     }
@@ -1837,7 +1844,7 @@ building_roci_nourishment_center_mod = {
 ## Nourishment Center (Tier 6, Productivity) [ROCI]
 ##################################################
 building_fe_food_processing_complex = {
-	base_buildtime = 520
+	base_buildtime = @db6_time #520
 	can_build = no
 	category = resource
 	
@@ -1855,6 +1862,8 @@ building_fe_food_processing_complex = {
 	}
 	# Allow Conditions
     allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+		doge_can_build_food_processing = yes
         buildings_has_motes = yes
         has_enigmatic_capital = yes
     }

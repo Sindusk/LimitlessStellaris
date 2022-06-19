@@ -1,10 +1,10 @@
 ﻿l_english:
   # StarTech Generic
-  gal_com_startech_generic:0 "StarTech"
-  gal_com_startech_economic_state:0 "Economic Power"
-  gal_com_startech_fleet_state:0 "Fleet Power"
-  gal_com_startech_technology_state:0 "Technology Power"
-  gal_com_startech_personality:0 "Leader Personality"
+  gal_com_startech_generic: "StarTech"
+  gal_com_startech_economic_state: "Economic Power"
+  gal_com_startech_fleet_state: "Fleet Power"
+  gal_com_startech_technology_state: "Technology Power"
+  gal_com_startech_personality: "Leader Personality"
 
   # General Mod Description Improvements
   mod_country_resource_max_energy_add: "Maximum £energy£ §Y$energy$§! Capacity"
@@ -13,22 +13,22 @@
 
   # Simple Traditions - Industry
   tr_industry_finish_desc:1 "§HUnlocks Planetary Decision:§! Designate as Mining World\n§HUnlocks Planetary Decision:§! Designate as Energy World\n§HUnlocks Planetary Decision:§! Designate as Food World\n§HUnlocks Planetary Decision:§! Designate as Production World\n§HUnlocks Planetary Decision:§! Designate as Foundry World\n§HUnlocks Planetary Decision:§! Designate as Unity World\n§HUnlocks Planetary Decision:§! Designate as Trade World\nAscension Perks Unlocked: §G+1§!"
-  decision_simple_planet_unity:0 "Designate as Unity World"
-  decision_simple_planet_unity_desc:0 ""
-  decision_simple_planet_unity_gestalt:0 "Designate as Unity World"
-  decision_simple_planet_unity_gestalt_desc:0 ""
-  simple_planet_unity:0 "Unity Specialization"
-  simple_planet_unity_desc:0 "We have designated this world as a unity world."
-  simple_planet_unity_gestalt:0 "Unity Specialization"
-  simple_planet_unity_gestalt_desc:0 "We have designated this world as a unity world."
-  decision_simple_planet_trade:0 "Designate as Trade World"
-  decision_simple_planet_trade_desc:0 ""
-  decision_simple_planet_trade_gestalt:0 "Designate as Trade World"
-  decision_simple_planet_trade_gestalt_desc:0 ""
-  simple_planet_trade:0 "Trade Specialization"
-  simple_planet_trade_desc:0 "We have designated this world as a trade world."
-  simple_planet_trade_gestalt:0 "Trade Specialization"
-  simple_planet_trade_gestalt_desc:0 "We have designated this world as a trade world."
+  decision_simple_planet_unity: "Designate as Unity World"
+  decision_simple_planet_unity_desc: ""
+  decision_simple_planet_unity_gestalt: "Designate as Unity World"
+  decision_simple_planet_unity_gestalt_desc: ""
+  simple_planet_unity: "Unity Specialization"
+  simple_planet_unity_desc: "We have designated this world as a unity world."
+  simple_planet_unity_gestalt: "Unity Specialization"
+  simple_planet_unity_gestalt_desc: "We have designated this world as a unity world."
+  decision_simple_planet_trade: "Designate as Trade World"
+  decision_simple_planet_trade_desc: ""
+  decision_simple_planet_trade_gestalt: "Designate as Trade World"
+  decision_simple_planet_trade_gestalt_desc: ""
+  simple_planet_trade: "Trade Specialization"
+  simple_planet_trade_desc: "We have designated this world as a trade world."
+  simple_planet_trade_gestalt: "Trade Specialization"
+  simple_planet_trade_gestalt_desc: "We have designated this world as a trade world."
 
   ### Buildings ###
   ## Energy
@@ -147,7 +147,22 @@
   #building_ae_food_processing_complex: "Agri Mega-Complex"
   #building_ae_food_processing_complex_desc: "It matters not whether the planet has no green, for the green is everywhere, and that green is good."
  
-
+  ## Trade
+  # Trade - Tier 0
+  building_commercial_zone: "Commercial Zones"
+  building_commercial_zone_tt: "§MTrade§! - §BTier 1§! - §EFoundation§!"
+  building_commercial_zone_desc: "These commercial zones are home to towering office buildings and business complexes."
+  # Trade - Basic
+  building_commercial_megaplex: "Commerce Megaplexes"
+  building_commercial_megaplex_tt: "§MTrade§! - §BTier 2 & 3§! - §EBasic§!"
+  building_commercial_megaplex_desc: "Great commercial spires and towers rising up towards the sky, blotting out the light."
+  building_dm_commercial_megaplex: "Dark Shopping Mall"
+  building_dm_commercial_megaplex_tt: "§MTrade§! - §BTier 4 - 6§! - §EBasic§!"
+  building_dm_commercial_megaplex_desc: "$tech_dm_commercial_megaplex_desc$"
+  # Trade - Productivity
+  building_galactic_stock_exchange: "Galactic Stock Exchange"
+  building_galactic_stock_exchange_tt: "§MTrade§! - §BTier 2 & 3§! - §EProductivity§!"
+  building_galactic_stock_exchange_desc: "By engaging in free trade of goods and services we allow for a more specialized economy, where an individual can excel in a narrow field and trade for their needs."
 
 
   ### Pop Jobs ###
@@ -338,8 +353,6 @@
    #Buildings
 #  building_roci_affluence_center_mod:0 "Affluence Center"
 #  building_roci_affluence_center_mod_desc:0 "Any material desire can be met here, no matter how outlandish."
-#  building_roci_nourishment_center_mod:0 "Nourishment Center"
-#  building_roci_nourishment_center_mod_desc:0 "If it exists as a flavor, it can be replicated here."
 #  building_roci_nano_forge_mod:0 "Auto-Forge"
 #  building_roci_nano_forge_mod_desc:0 "The colossal nano-replicator bays convert raw materials into advanced alloys with miraculous speed."
 #  building_roci_dimensional_fabricator_mod:0 "Dimensional Fabricator"
