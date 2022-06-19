@@ -1,5 +1,5 @@
 ##########################################################################
-# Doge Ascension Changes
+# Doge Prescripted Countries
 ##########################################################################
 
 ## Themlaran Council
@@ -89,4 +89,111 @@
 		key="ISS"
 	}
 	spawn_as_fallen=no
+}
+
+## Hesuk Tunnelers
+# A lithoid tunneling empire focused around maximizing alloy and mineral production. They have an extremely strong economy and become a powerhouse war machine in the late game.
+"Hesuk Tunnelers"={
+	key="Hesuk Tunnelers"
+	ship_prefix={
+		key="ISS"
+	}
+	species={
+		class="LITHOID"
+		portrait="lith11"
+		species_name={
+			key="SPEC_Akkano"
+		}
+		species_plural={
+			key="SPEC_Akkano_pl"
+		}
+		species_adjective={
+			key="%ADJECTIVE%"
+			variables={
+				{
+					key="adjective"
+					value={
+						key="SPEC_Akkano"
+					}
+				}
+ 
+			}
+		}
+		name_list="HUMAN1"
+		gender=not_set
+		trait="trait_lithoid"
+		trait="trait_AP_tunneler"
+		trait="trait_td_photosensitive"
+		trait="trait_td_arrested_learning"
+		trait="trait_td_ignis_fatuus"
+		trait="trait_td_lith_sitomaniac"
+		trait="trait_td_lith_gaia"
+		trait="xte_trait_crafty"
+	}
+	name={
+		key="Hesuk Tunnelers"
+		literal=yes
+	}
+	adjective={
+		key="Hesuk Tunnelers"
+		literal=yes
+	}
+	authority="auth_democratic"
+	government="gov_rational_consensus"
+	planet_name={
+		key="SPEC_Hesukar_planet"
+	}
+	planet_class="pc_sandsea"
+	system_name={
+		key="SPEC_Hesukar_system"
+	}
+	initializer=""
+	graphical_culture="lithoid_01"
+	city_graphical_culture="mammalian_01"
+	empire_flag={
+		icon={
+			category="lithoid"
+			file="lithoid_12.dds"
+		}
+		background={
+			category="backgrounds"
+			file="circle.dds"
+		}
+		colors={
+			"dark_brown"
+			"black"
+			"black"
+			"null"
+		}
+	}
+	ruler={
+		gender=male
+		name={
+			first_name={
+				key="HUMAN1_CHR_Kentaro"
+			}
+			second_name={
+				key="HUMAN1_CHR_Okamoto"
+			}
+			use_full_regnal_name=yes
+		}
+		portrait="lith11"
+		texture=0
+		hair=0
+		clothes=0
+		leader_class="ruler"
+	}
+	spawn_as_fallen=no
+	ignore_portrait_duplication=no
+	room="outdoor23_room"
+	spawn_enabled=yes
+	ethic="ethic_fanatic_materialist"
+	ethic="ethic_competitive"
+	ethic="ethic_fanatic_anthropocentric"
+	civics={
+		"lrsk_adv_civ_civic_artificers"
+		"civic_certus"
+		"civic_hoi"
+	}
+	origin="AP_children_of_the_darkness"
 }

@@ -29,34 +29,38 @@
   ## Energy
   # Energy - Tier 0
   eb_energy: "Power Plant"
-  eb_energy_tt: "§MEnergy - Tier 1§!\n§EBasic§!"
+  eb_energy_tt: "§MEnergy§! - §BTier 1§! - §EBasic§!"
   eb_energy_desc: "A generic power generation plant."
   # Energy - Basic
   upgradebuildings_building_power_plant: "Power Plant II"
-  upgradebuildings_building_power_plant_tt: "§MEnergy - Tier 2§!\n§EBasic§!"
+  upgradebuildings_building_power_plant_tt: "§MEnergy§! - §BTier 2§! - §EBasic§!"
   upgradebuildings_building_power_plant_desc: "A generic power generation plant."
   eb_energy2: "Power Plant III"
-  eb_energy2_desc: "§MEnergy - Tier 3§!\n§EBasic§!\n\nA generic power generation plant."
+  eb_energy2_tt: "§MEnergy§! - §BTier 3§! - §EBasic§!"
+  eb_energy2_desc: "A generic power generation plant."
   building_powerplant_2: "Power Plant IV"
-  building_powerplant_2_desc: "§MEnergy - Tier 4§!\n§EBasic§!\n\nA generic power generation plant."
+  building_powerplant_2_tt: "§MEnergy§! - §BTier 4§! - §EBasic§!"
+  building_powerplant_2_desc: "A generic power generation plant."
   eb_energy3: "Power Plant V"
-  eb_energy3_desc: "§MEnergy - Tier 5§!\n§EBasic§!\n\nA generic power generation plant."
+  eb_energy3_tt: "§MEnergy§! - §BTier 5§! - §EBasic§!"
+  eb_energy3_desc: "A generic power generation plant."
   building_powerplant_3: "Quantum Power Plant"
-  building_powerplant_3_desc: "§MEnergy - Tier 6§!\n§EBasic§!\n\nUtilizing our most cutting edge Field Manipulation technologies these facilities can efficiently harness vast amounts of power in even the most energy deprived environments but require a constant supply of reactive materials." 
+  building_powerplant_3_tt: "§MEnergy§! - §BTier 6§! - §EBasic§!"
+  building_powerplant_3_desc: "Utilizing our most cutting edge Field Manipulation technologies these facilities can efficiently harness vast amounts of power in even the most energy deprived environments but require a constant supply of reactive materials." 
 
   # Energy - Productivity
   building_energy_grid: "Energy Grid"
-  building_energy_grid_tt: "§MEnergy - Tier 2§!\n§EProductivity§! (Limit 1)"
+  building_energy_grid_tt: "§MEnergy§! - §BTier 2§! - §EProductivity§! (Limit 1)"
   building_energy_grid_desc: "A carefully calibrated grid network maximizes the output of power generators."
   building_energy_grid_effect_desc: "Increases the base production of £energy£ §YEnergy§! producing jobs by §G1§!."
   building_energy_nexus: "Energy Nexus"
-  building_energy_nexus_tt: "§MEnergy - Tier 2§!\n§EProductivity§! (Limit 1)"
+  building_energy_nexus_tt: "§MEnergy§! - §BTier 3§! - §EProductivity§! (Limit 1)"
   building_energy_nexus_desc: "This colossal facility centralizes all energy grids on the planet, improving their efficiency."
   building_roci_class_4_singularity_mod: "Class-4 Singularity"
-  building_roci_class_4_singularity_mod_tt: "§MEnergy - Tier 3 & 4§!\n§EProductivity§! (Limit 1)"
+  building_roci_class_4_singularity_mod_tt: "§MEnergy§! - §BTier 4§! - §EProductivity§! (Limit 1)"
   building_roci_class_4_singularity_mod_desc: "A contained Singularity can be a great source of power, if you know how to make it."
   building_fe_power_hub: "Dark Energy Power Grid"
-  building_fe_power_hub_tt: "§MEnergy - Tier 5 & 6§!\n§EProductivity§! (Limit 1)"
+  building_fe_power_hub_tt: "§MEnergy§! - §BTier 5 & 6§! - §EProductivity§! (Limit 1)"
   building_fe_power_hub_desc: "Using synthesized dark energy, the new-generation power grid boasts much higher energy production than conventional generators."
   # ACOT Stuff
   # 
@@ -75,18 +79,37 @@
   ## Minerals
   # Minerals - Tier 0
   eb_mineral: "Mining Facilties"
-  eb_mineral_tt: "§MMinerals - Tier 1§!\n§EBasic§!"
+  eb_mineral_tt: "§MMinerals§! - §BTier 1§! - §EBasic§!"
   eb_mineral_desc: "Its a mine, not alot to it."
   # Minerals - Basic
   upgradebuildings_building_strip_mine: "Mining Facilities II"
-  upgradebuildings_building_strip_mine_tt: "§MMinerals - Tier 2§!\n§EBasic§!"
+  upgradebuildings_building_strip_mine_tt: "§MMinerals§! - §BTier 2§! - §EBasic§!"
   upgradebuildings_building_strip_mine_desc: "These bases host the basic mining infrastructure required to mine surface mineral deposits located far away from our primary mining sites."
   eb_mineral2: "Mining Facilties III"
-  eb_mineral2_tt: "§MMinerals - Tier 3§!\n§EBasic§!"
+  eb_mineral2_tt: "§MMinerals§! - §BTier 3§! - §EBasic§!"
   eb_mineral2_desc: "Its an upgraded mine, not alot to it."
   building_mineralmines_2: "Mineral Mining Facilities IV"
-  building_mineralmines_2_tt: "§MMinerals - Tier 4§!\n§EBasic§!"
+  building_mineralmines_2_tt: "§MMinerals§! - §BTier 4§! - §EBasic§!"
   building_mineralmines_2_desc: "By expending additional mining equipment the miners at these facilities dig deeper into areas where mineral deposits are sparse."
+  eb_mineral3: "Mining Facilties V"
+  eb_mineral3_tt: "§MMinerals§! - §BTier 5§! - §EBasic§!"
+  eb_mineral3_desc: "Its an upgraded mine, not alot to it."
+  building_mineralmines_3: "Mineral Mining Complex"
+  building_mineralmines_3_tt: "§MMinerals§! - §BTier 6§! - §EBasic§!"
+  building_mineralmines_3_desc: "By spending large amounts of inustrial explosives the miners at this complex blast expansive networks of mining tunnels deep into the planet's crust."
+  # Minerals - Productivity
+  building_mineral_purification_plant: "Mineral Purification Plants"
+  building_mineral_purification_plant_tt: "§MMinerals§! - §BTier 2§! - §EProductivity§!"
+  building_mineral_purification_plant_desc: "Minerals that have passed through these purifiers are of the highest quality."
+  building_mineral_purification_hub: "Mineral Purification Hubs"
+  building_mineral_purification_hub_tt: "§MMinerals§! - §BTier 3§! - §EProductivity§!"
+  building_mineral_purification_hub_desc: "Massive hubs where minerals are received and then shuttled to arrays of purifiers."
+  building_roci_dimensional_fabricator_mod: "Dimensional Fabricator"
+  building_roci_dimensional_fabricator_mod_tt: "§MMinerals§! - §BTier 4§! - §EProductivity§!"
+  building_roci_dimensional_fabricator_mod_desc: "This building uses dimensional technology to tunnel into other realities and siphon off their valuable resources."
+  building_fe_mineral_processing_plant: "Crystal Synthesizer"
+  building_fe_mineral_processing_plant_tt: "§MMinerals§! - §BTier 5 & 6§! - §EProductivity§!"
+  building_fe_mineral_processing_plant_desc: "Powerful facility that provides Crytalists necessary tools to synthesize high-yield minerals."
 
 
   ### Pop Jobs ###
@@ -148,6 +171,19 @@
   job_doge_master_scrap_miner_drone_desc: "$job_doge_master_scrap_miner_drone_plural$ explore the depths of the shattered ring world for materials suitable for construction."
   job_doge_master_scrap_miner_drone_effect_desc: "£job_doge_master_scrap_miner£ $job_doge_master_scrap_miner_drone_plural$ produce £minerals£ §Y$minerals$§! and £alloys£ §Y$alloys$§!."
   mod_job_doge_master_scrap_miner_drone_add: "$job_doge_master_scrap_miner_drone$ Jobs"
+
+  # ACOT Crystalist (Normal)
+  job_acot_mineralman: "Crystalist"
+  job_acot_mineralman_plural: "Crystalists"
+  job_acot_mineralman_desc: "Well-trained specialists who are trained to materialize dark matter into high-yielding minerals."
+  job_acot_mineralman_effect_desc: "£job_acot_mineralman£ $job_acot_mineralman_plural$ produce £minerals£ §Y$minerals$§!."
+  mod_job_acot_mineralman_add: "$job_acot_mineralman$"
+  # ACOT Crystalist (Gestalt)
+  job_acot_mineraldrone: "Crystalist"
+  job_acot_mineraldrone_plural: "Crystalists"
+  job_acot_mineraldrone_desc: "Dedicated drones trained to materialize dark matter into high-yielding minerals."
+  job_acot_mineraldrone_effect_desc: "£job_acot_mineraldrone£ $job_acot_mineraldrone_plural$ produce £minerals£ §Y$minerals$§!."
+  mod_job_acot_mineraldrone_add: "$job_acot_mineraldrone$"
 
 
   # Extra stuff that comes later
@@ -225,9 +261,6 @@
  # eb_hydrofarm3_desc:0 "An upgraded Hydroponics Farm 2."
 #
  # #Mines
- # eb_mineral3:0 "Mining Facilties 3"
- # eb_mineral3_desc:0 "Its an upgraded mine, not alot to it."
-#
  # eb_mineral_hab2:0 "Asteroid Towing Bay 2"
  # eb_mineral_hab2_desc:0 "An upgraded Asteroid Towing Bay"
 #
@@ -522,9 +555,6 @@
 # 
 #mod_country_resource_max_minerals_add: "Max Minerals Capacity Add"
 #
-#building_fe_mineral_processing_plant: "Crystal Synthesizer"
-#building_fe_mineral_processing_plant_desc: "Powerful facility that provides Crytalists necessary tools to synthesize high-yield minerals."
-# 
 #building_ae_mineral_processing_plant: "Crystal Diviner"
 #building_ae_mineral_processing_plant_desc: "This district-sized mega-complex is able to transform even the crudest and dumbest minerals into high-quality, high yield minerals."
 # 

@@ -1,0 +1,3374 @@
+namespace = giga_preset
+
+##This file has a sorting system. You can use ctrl-f to search for specific Megastructures, or one of these categories:
+##Vanilla Megastructures, Mod Ringworld, Gigastructures, Ships, Mod Megastructures, Terraforming Megastructures, Other settings, Habitats
+
+country_event = {
+	id = giga_preset.1
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		#scripted variables can't serve as triggers, so i need to turn all one hundred of them into dynamic variables
+		event_target:global_event_country = {
+			set_variable = {
+				which = giga_preset_achievements
+				value = @giga_preset_achievements
+			}
+			set_variable = {
+				which = giga_preset_dyson_scaling
+				value = @giga_preset_dyson_scaling
+			}
+			set_variable = {
+				which = giga_preset_lifter_scaling
+				value = @giga_preset_lifter_scaling
+			}
+			set_variable = {
+				which = giga_preset_brain_scaling
+				value = @giga_preset_brain_scaling
+			}
+			set_variable = {
+				which = giga_preset_o_scaling
+				value = @giga_preset_o_scaling
+			}
+			set_variable = {
+				which = giga_preset_build_cap
+				value = @giga_preset_build_cap
+			}
+			set_variable = {
+				which = giga_preset_influence_upkeep
+				value = @giga_preset_influence_upkeep
+			}
+			set_variable = {
+				which = giga_preset_moon_printer
+				value = @giga_preset_moon_printer
+			}
+			set_variable = {
+				which = giga_preset_planet_printer
+				value = @giga_preset_planet_printer
+			}
+			set_variable = {
+				which = giga_preset_wrecked_warships
+				value = @giga_preset_wrecked_warships
+			}
+			set_variable = {
+				which = giga_preset_player_mega_output
+				value = @giga_preset_player_mega_output
+			}
+			set_variable = {
+				which = giga_preset_player_mega_cost
+				value = @giga_preset_player_mega_cost
+			}
+			set_variable = {
+				which = giga_preset_player_mega_upkeep
+				value = @giga_preset_player_mega_upkeep
+			}
+			set_variable = {
+				which = giga_preset_ai_mega_output
+				value = @giga_preset_ai_mega_output
+			}
+			set_variable = {
+				which = giga_preset_ai_mega_cost
+				value = @giga_preset_ai_mega_cost
+			}
+			set_variable = {
+				which = giga_preset_ai_mega_upkeep
+				value = @giga_preset_ai_mega_upkeep
+			}
+			set_variable = {
+				which = giga_preset_ehof_enabled
+				value = @giga_preset_ehof_enabled
+			}
+			set_variable = {
+				which = giga_preset_ehof_ai
+				value = @giga_preset_ehof_ai
+			}
+			set_variable = {
+				which = giga_preset_galaxy_core
+				value = @giga_preset_galaxy_core
+			}
+			set_variable = {
+				which = giga_preset_aeternum
+				value = @giga_preset_aeternum
+			}
+			set_variable = {
+				which = giga_preset_fe_megastructures
+				value = @giga_preset_fe_megastructures
+			}
+			set_variable = {
+				which = giga_preset_gamers
+				value = @giga_preset_gamers
+			}
+			set_variable = {
+				which = giga_preset_pouchkinn
+				value = @giga_preset_pouchkinn
+			}
+			set_variable = {
+				which = giga_preset_fe_warships
+				value = @giga_preset_fe_warships
+			}
+			set_variable = {
+				which = giga_preset_federation
+				value = @giga_preset_federation
+			}
+			set_variable = {
+				which = giga_preset_gatzo
+				value = @giga_preset_gatzo
+			}
+			set_variable = {
+				which = giga_preset_jublio
+				value = @giga_preset_jublio
+			}
+			set_variable = {
+				which = giga_preset_jupitwo
+				value = @giga_preset_jupitwo
+			}
+			set_variable = {
+				which = giga_preset_faust
+				value = @giga_preset_faust
+			}
+			set_variable = {
+				which = giga_preset_elysium
+				value = @giga_preset_elysium
+			}
+			set_variable = {
+				which = giga_preset_squareworld
+				value = @giga_preset_squareworld
+			}
+			set_variable = {
+				which = giga_preset_kerbol
+				value = @giga_preset_kerbol
+			}
+			set_variable = {
+				which = giga_preset_kaiser
+				value = @giga_preset_kaiser
+			}
+			set_variable = {
+				which = giga_preset_katzen_portraits
+				value = @giga_preset_katzen_portraits
+			}
+			set_variable = {
+				which = giga_preset_blokkats
+				value = @giga_preset_blokkats
+			}
+			set_variable = {
+				which = giga_preset_blokkat_portrait
+				value = @giga_preset_blokkat_portrait
+			}
+			set_variable = {
+				which = giga_preset_blokkat_date
+				value = @giga_preset_blokkat_date
+			}
+			set_variable = {
+				which = giga_preset_blokkat_difficulty
+				value = @giga_preset_blokkat_difficulty
+			}
+			#first screen
+			set_variable = {
+				which = giga_preset_dyson_cap
+				value = @giga_preset_dyson_cap
+			}
+			set_variable = {
+				which = giga_preset_decompressor_cap
+				value = @giga_preset_decompressor_cap
+			}
+			set_variable = {
+				which = giga_preset_assembly_cap
+				value = @giga_preset_assembly_cap
+			}
+			set_variable = {
+				which = giga_preset_coordination_cap
+				value = @giga_preset_coordination_cap
+			}
+			set_variable = {
+				which = giga_preset_mega_art_cap
+				value = @giga_preset_mega_art_cap
+			}
+			set_variable = {
+				which = giga_preset_shipyard_cap
+				value = @giga_preset_shipyard_cap
+			}
+			set_variable = {
+				which = giga_preset_nexus_cap
+				value = @giga_preset_nexus_cap
+			}
+			set_variable = {
+				which = giga_preset_ringworld_cap
+				value = @giga_preset_ringworld_cap
+			}
+			set_variable = {
+				which = giga_preset_sentry_cap
+				value = @giga_preset_sentry_cap
+			}
+			#vanilla
+			set_variable = {
+				which = giga_preset_ringworld_size
+				value = @giga_preset_ringworld_size
+			}
+			set_variable = {
+				which = giga_preset_ecumenopolis_ringworld
+				value = @giga_preset_ecumenopolis_ringworld
+			}
+			set_variable = {
+				which = giga_preset_hive_ringworld
+				value = @giga_preset_hive_ringworld
+			}
+			set_variable = {
+				which = giga_preset_machine_ringworld
+				value = @giga_preset_machine_ringworld
+			}
+			set_variable = {
+				which = giga_preset_ringworld_upgrade
+				value = @giga_preset_ringworld_upgrade
+			}
+			set_variable = {
+				which = giga_preset_alderson
+				value = @giga_preset_alderson
+			}
+			set_variable = {
+				which = giga_preset_equatorial
+				value = @giga_preset_equatorial
+			}
+			set_variable = {
+				which = giga_preset_interstellar
+				value = @giga_preset_interstellar
+			}
+			set_variable = {
+				which = giga_preset_computer
+				value = @giga_preset_computer
+			}
+			set_variable = {
+				which = giga_preset_elysium
+				value = @giga_preset_elysium
+			}
+			set_variable = {
+				which = giga_preset_birch
+				value = @giga_preset_birch
+			}
+			set_variable = {
+				which = giga_preset_vr
+				value = @giga_preset_vr
+			}
+			#habitables
+			set_variable = {
+				which = giga_preset_asteroid_artillery
+				value = @giga_preset_asteroid_artillery
+			}
+			set_variable = {
+				which = giga_preset_manufactory
+				value = @giga_preset_manufactory
+			}
+			set_variable = {
+				which = giga_preset_macroengineering
+				value = @giga_preset_macroengineering
+			}
+			set_variable = {
+				which = giga_preset_ecosystem
+				value = @giga_preset_ecosystem
+			}
+			set_variable = {
+				which = giga_preset_accelerator
+				value = @giga_preset_accelerator
+			}
+			set_variable = {
+				which = giga_preset_dockyard
+				value = @giga_preset_dockyard
+			}
+			#kilos
+			set_variable = {
+				which = giga_preset_stripmine
+				value = @giga_preset_stripmine
+			}
+			set_variable = {
+				which = giga_preset_big_vat
+				value = @giga_preset_big_vat
+			}
+			set_variable = {
+				which = giga_preset_megabore
+				value = @giga_preset_megabore
+			}
+			set_variable = {
+				which = giga_preset_fusion_suppressor
+				value = @giga_preset_fusion_suppressor
+			}
+			set_variable = {
+				which = giga_preset_kugelblitz
+				value = @giga_preset_kugelblitz
+			}
+			set_variable = {
+				which = giga_preset_disco_moon
+				value = @giga_preset_disco_moon
+			}
+			set_variable = {
+				which = giga_preset_maginot
+				value = @giga_preset_maginot
+			}
+			set_variable = {
+				which = giga_preset_gigaforge
+				value = @giga_preset_gigaforge
+			}
+			set_variable = {
+				which = giga_preset_orbital_arcology
+				value = @giga_preset_orbital_arcology
+			}
+			set_variable = {
+				which = giga_preset_orbital_bastion
+				value = @giga_preset_orbital_bastion
+			}
+			set_variable = {
+				which = giga_preset_lifter
+				value = @giga_preset_lifter
+			}
+			set_variable = {
+				which = giga_preset_succ
+				value = @giga_preset_succ
+			}
+			set_variable = {
+				which = giga_preset_yggdrasil
+				value = @giga_preset_yggdrasil
+			}
+			set_variable = {
+				which = giga_preset_psionic_beacon
+				value = @giga_preset_psionic_beacon
+			}
+			set_variable = {
+				which = giga_preset_hypersiphon
+				value = @giga_preset_hypersiphon
+			}
+			#megas
+			set_variable = {
+				which = giga_preset_hraemc
+				value = @giga_preset_hraemc
+			}
+			set_variable = {
+				which = giga_preset_hyper_assembly
+				value = @giga_preset_hyper_assembly
+			}
+			set_variable = {
+				which = giga_preset_matrioshka_brain
+				value = @giga_preset_matrioshka_brain
+			}
+			set_variable = {
+				which = giga_preset_hyperforge
+				value = @giga_preset_hyperforge
+			}
+			set_variable = {
+				which = giga_preset_penrose
+				value = @giga_preset_penrose
+			}
+			set_variable = {
+				which = giga_preset_ndb
+				value = @giga_preset_ndb
+			}
+			set_variable = {
+				which = giga_preset_qso
+				value = @giga_preset_qso
+			}
+			#gigas
+			set_variable = {
+				which = giga_preset_attack_moon
+				value = @giga_preset_attack_moon
+			}
+			set_variable = {
+				which = giga_preset_planetcraft
+				value = @giga_preset_planetcraft
+			}
+			set_variable = {
+				which = giga_preset_systemcraft
+				value = @giga_preset_systemcraft
+			}
+			#ships
+			set_variable = {
+				which = giga_preset_purifier
+				value = @giga_preset_purifier
+			}
+			set_variable = {
+				which = giga_preset_ignitor
+				value = @giga_preset_ignitor
+			}
+			set_variable = {
+				which = giga_preset_stabilizer
+				value = @giga_preset_stabilizer
+			}
+			set_variable = {
+				which = giga_preset_glue
+				value = @giga_preset_glue
+			}
+			set_variable = {
+				which = giga_preset_macroatmospheric
+				value = @giga_preset_macroatmospheric
+			}
+			set_variable = {
+				which = giga_preset_compressor
+				value = @giga_preset_compressor
+			}
+		}
+		country_event = { id = giga_preset.2 }
+	}
+}
+
+country_event = {
+	id = giga_preset.2
+	title = "giga_preset.2.name"
+	desc = "giga_preset.2.desc"
+	is_triggered_only = yes
+	immediate = {
+		#clear everything
+		remove_all_menu_flags = yes
+		remove_flags_buildcap = yes
+		remove_flags_ehof_ai = yes
+		remove_flags_compound = yes
+		remove_flags_aeternum_difficulty = yes
+		remove_flags_blokkat = yes
+		remove_flags_fe_planetcrafts = yes
+		remove_flags_maginot = yes
+		remove_global_flag = giga_dyson_scaling
+		remove_global_flag = giga_lifter_scaling
+		remove_global_flag = giga_matroishka_scaling
+		#sets the preset
+		event_target:global_event_country = {
+	#FEATURES
+		#achievements
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_achievements
+						value = 0
+					}
+				}
+				set_global_flag = giga_achievements_disabled
+			}
+		#dyson scaling
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dyson_scaling
+						value = 1
+					}
+				}
+				set_global_flag = giga_dyson_scaling
+			}
+		#lifter scaling
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_lifter_scaling
+						value = 1
+					}
+				}
+				set_global_flag = giga_lifter_scaling
+			}
+		#brain scaling
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_brain_scaling
+						value = 1
+					}
+				}
+				set_global_flag = giga_matroishka_scaling
+			}
+		#o class
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_o_scaling
+						value = 0
+					}
+				}
+				set_global_flag = giga_o_stars_disabled
+			}
+		#mega cap
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_build_cap
+						value = 1
+					}
+				}
+				set_global_flag = giga_buildcap_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_build_cap
+						value = 2
+					}
+				}
+				set_global_flag = giga_buildcap_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_build_cap
+						value = 3
+					}
+				}
+				set_global_flag = giga_buildcap_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_build_cap
+						value = 4
+					}
+				}
+				set_global_flag = giga_buildcap_j #supertensiles
+			} else = {
+				set_global_flag = giga_buildcap_u #if any other value sets to unlimited 
+			}
+		#influence upkeep
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_influence_upkeep
+						value = 0
+					}
+				}
+				set_global_flag = giga_disable_influence_upkeep
+			}
+		#moon printer
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_moon_printer
+						value = 0
+					}
+				}
+				set_global_flag = giga_disable_celestial_printing
+			}
+		#planet printer
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_planet_printer
+						value = 0
+					}
+				}
+				set_global_flag = giga_disable_celestial_printing_planet
+			}
+		#wrecked warships
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_wrecked_warships
+						value = 0
+					}
+				}
+				set_global_flag = giga_wrecked_ships_disabled
+			}
+		#wrecked warships number
+			set_variable = {
+				which = giga_ruined_warships_perc
+				value = @giga_preset_wrecked_warships_number
+			}
+		#player mega output
+			set_variable = {
+				which = giga_mega_output
+				value = @giga_preset_player_mega_output
+			}
+		#player mega cost
+			set_variable = {
+				which = giga_mega_cost
+				value = @giga_preset_player_mega_cost
+			}
+		#player mega upkeep
+			set_variable = {
+				which = giga_mega_upkeep
+				value = @giga_preset_player_mega_upkeep
+			}
+		#ai mega output
+			set_variable = {
+				which = giga_mega_output_ai
+				value = @giga_preset_ai_mega_output
+			}
+		#ai mega cost
+			set_variable = {
+				which = giga_mega_cost_ai
+				value = @giga_preset_ai_mega_cost
+			}
+		#ai mega upkeep
+			set_variable = {
+				which = giga_mega_upkeep_ai
+				value = @giga_preset_ai_mega_upkeep
+			}
+		#EHOF
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ehof_enabled
+						value = 0
+					}
+				}
+				set_global_flag = ehof_disabled
+			}
+		#EHOF AI
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ehof_ai
+						value = 1
+					}
+				}
+				set_global_flag = ehof_ai_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ehof_ai
+						value = 2
+					}
+				}
+				set_global_flag = ehof_ai_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ehof_ai
+						value = 3
+					}
+				}
+				set_global_flag = ehof_ai_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ehof_ai
+						value = 4
+					}
+				}
+				set_global_flag = ehof_ai_capped_s #shuffle
+			} else = {
+				set_global_flag = ehof_ai_disabled #if any other value sets to disabled 
+			}
+		#GALACTIC CORE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_galaxy_core
+						value = 1
+					}
+				}
+				set_global_flag = giga_core_shuffle
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_galaxy_core
+						value = 2
+					}
+				}
+				set_global_flag = giga_core_active
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_galaxy_core
+						value = 3
+					}
+				}
+				set_global_flag = giga_core_inactive_empty
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_galaxy_core
+						value = 4
+					}
+				}
+				set_global_flag = giga_core_always_empty
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_galaxy_core
+						value = 5
+					}
+				}
+				set_global_flag = giga_core_inactive
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_galaxy_core
+						value = 6
+					}
+				}
+				set_global_flag = giga_core_inactive_aeternum
+			} else = {
+				set_global_flag = giga_core_disabled
+			}
+		#AETERNUM
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_aeternum
+						value = 1
+					}
+				}
+				set_global_flag = giga_core_aeternum_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_aeternum
+						value = 2
+					}
+				}
+				set_global_flag = giga_core_aeternum_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_aeternum
+						value = 3
+					}
+				}
+				set_global_flag = giga_core_aeternum_4
+			} else = {
+				set_global_flag = giga_core_aeternum_1
+			}
+		#FALLEN EMPIRE MEGASTRUCTURES
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fe_megastructures
+						value = 0
+					}
+				}
+				set_global_flag = giga_fe_megas_disabled
+			}
+		#GAMERS
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_gamers
+						value = 0
+					}
+				}
+				set_global_flag = giga_fe_gamers_disabled
+			}
+		#POUCHKIIN
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_pouchkinn
+						value = 0
+					}
+				}
+				set_global_flag = giga_fe_pouchkinn_disabled
+			}
+		#FALLEN EMPIRE CELESTIAL WARSHIPS
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fe_warships
+						value = 1
+					}
+				}
+				set_global_flag = giga_fe_planetcrafts_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fe_warships
+						value = 2
+					}
+				}
+				set_global_flag = giga_fe_planetcrafts_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fe_warships
+						value = 3
+					}
+				}
+				set_global_flag = giga_fe_planetcrafts_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fe_warships
+						value = 4
+					}
+				}
+				set_global_flag = giga_fe_planetcrafts_4
+			} else = {
+				set_global_flag = giga_fe_planetcrafts_0
+			}
+		#GALACTIC FEDERATION
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_federation
+						value = 1
+					}
+				}
+				set_global_flag = giga_galactic_fed_shuffle
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_federation
+						value = 2
+					}
+				}
+				set_global_flag = giga_galactic_fed_always
+			} else = {
+				set_global_flag = giga_galactic_fed_disabled
+			}
+		#GATZO
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_gatzo
+						value = 0
+					}
+				}
+				set_global_flag = giga_gatzo_disabled
+			}
+		#JUBLIO
+				if = {
+					limit = {
+						check_variable = {
+							which = giga_preset_jublio
+							value = 0
+						}
+					}
+					set_global_flag = giga_jublio_disabled
+				}
+		#JUPITWO
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_jupitwo
+						value = 0
+					}
+				}
+				set_global_flag = giga_jupitwo_disabled
+			}
+		#FAUST (EAW)
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_faust
+						value = 0
+					}
+				}
+				set_global_flag = giga_eaw_disabled
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_faust
+						value = 2
+					}
+				}
+				set_global_flag = giga_eaw_guaranteed
+			}
+		#ELYSIUM (TYAUR)
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysium
+						value = 0
+					}
+				}
+				set_global_flag = giga_tyaur_disabled
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysium
+						value = 2
+					}
+				}
+				set_global_flag = giga_tyaur_guaranteed
+			}
+		#SQUAREWORLD
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_squareworld
+						value = 0
+					}
+				}
+				set_global_flag = giga_square_disabled
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_squareworld
+						value = 2
+					}
+				}
+				set_global_flag = giga_square_guaranteed
+			}
+		#KERBOL
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kerbol
+						value = 0
+					}
+				}
+				set_global_flag = giga_kerbol_disabled
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kerbol
+						value = 2
+					}
+				}
+				set_global_flag = giga_kerbol_guaranteed
+			}
+		#KAISER
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kaiser
+						value = 1
+					}
+				}
+				set_global_flag = katzenartig_never
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kaiser
+						value = 3
+					}
+				}
+				set_global_flag = katzenartig_always
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kaiser
+						value = 4
+					}
+				}
+				set_global_flag = katzenartig_easy
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kaiser
+						value = 5
+					}
+				}
+				set_global_flag = katzenartig_deathwish
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kaiser
+						value = 6
+					}
+				}
+				set_global_flag = katzenartig_stellarite
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kaiser
+						value = 7
+					}
+				}
+				set_global_flag = katzenartig_improbable
+			} else = {
+				set_global_flag = katzenartig_disabled
+			}
+		#KATZEN PORTRAITS
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_katzen_portraits
+						value = 1
+					}
+				}
+				set_global_flag = silly_flusionian_portraits_enabled
+			}
+		#BLOKKATS
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkats
+						value = 1
+					}
+				}
+				log = "i need to have a command here but the block does nothing other than exist"
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkats
+						value = 2
+					}
+				}
+				set_global_flag = giga_blokkats_guaranteed
+			} else = {
+				set_global_flag = giga_blokkats_disabled
+			}
+		#BLOKKATS PORTRAIT
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkats
+						value = 1
+					}
+				}
+				set_global_flag = vintage_blokkats
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkats
+						value = 2
+					}
+				}
+				set_global_flag = regular_blokkats
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkats
+						value = 3
+					}
+				}
+				set_global_flag = anime_blokkats
+			}
+		#BLOKKATS DATE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_date
+						value = 1
+					}
+				}
+				set_variable = {
+					which = blokkat_spawn_date
+					value = 2450
+				}
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_date
+						value = 2
+					}
+				}
+				set_variable = {
+					which = blokkat_spawn_date
+					value = 2400
+				}
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_date
+						value = 3
+					}
+				}
+				set_variable = {
+					which = blokkat_spawn_date
+					value = 2350
+				}
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_date
+						value = 4
+					}
+				}
+				set_variable = {
+					which = blokkat_spawn_date
+					value = 2300
+				}
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_date
+						value = 5
+					}
+				}
+				set_variable = {
+					which = blokkat_spawn_date
+					value = 2225
+				}
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_date
+						value = 6
+					}
+				}
+				set_variable = {
+					which = blokkat_spawn_date
+					value = 2200
+				}
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_date
+						value = 7
+					}
+				}
+				set_variable = {
+					which = blokkat_spawn_date
+					value = 2550
+				}
+			}
+		#BLOKKATS DIFFICULTY
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_difficulty
+						value = 1
+					}
+				}
+				set_global_flag = giga_blokkats_normal
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_difficulty
+						value = 2
+					}
+				}
+				set_global_flag = giga_blokkats_bismuth
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_difficulty
+						value = 3
+					}
+				}
+				set_global_flag = giga_blokkats_endtech
+			} else = {
+				set_global_flag = giga_blokkats_easy
+			}
+	#MEGASTRUCTURES
+		#DYSON
+			if = {
+			limit = {
+					check_variable = {
+						which = giga_preset_dyson_cap
+						value = 1
+					}
+				}
+				set_global_flag = vanilla_dyson_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dyson_cap
+						value = 2
+					}
+				}
+				set_global_flag = vanilla_dyson_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dyson_cap
+						value = 3
+					}
+				}
+				set_global_flag = vanilla_dyson_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dyson_cap
+						value = 4
+					}
+				}
+				set_global_flag = vanilla_dyson_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dyson_cap
+						value = 5
+					}
+				}
+				set_global_flag = vanilla_dyson_capped_r
+			} else = {
+				set_global_flag = vanilla_dyson_disabled
+			}
+		#DECOMPRESSOR
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_decompressor_cap
+						value = 1
+					}
+				}
+				set_global_flag = vanilla_matter_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_decompressor_cap
+						value = 2
+					}
+				}
+				set_global_flag = vanilla_matter_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_decompressor_cap
+						value = 3
+					}
+				}
+				set_global_flag = vanilla_matter_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_decompressor_cap
+						value = 4
+					}
+				}
+				set_global_flag = vanilla_matter_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_decompressor_cap
+						value = 5
+					}
+				}
+				set_global_flag = vanilla_matter_capped_r
+			} else = {
+				set_global_flag = vanilla_matter_disabled
+			}
+		#ASSEMBLY
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_assembly_cap
+						value = 1
+					}
+				}
+				set_global_flag = vanilla_interstellar_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_assembly_cap
+						value = 2
+					}
+				}
+				set_global_flag = vanilla_interstellar_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_assembly_cap
+						value = 3
+					}
+				}
+				set_global_flag = vanilla_interstellar_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_assembly_cap
+						value = 4
+					}
+				}
+				set_global_flag = vanilla_interstellar_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_assembly_cap
+						value = 5
+					}
+				}
+				set_global_flag = vanilla_interstellar_capped_r
+			} else = {
+				set_global_flag = vanilla_interstellar_disabled
+			}
+		#STRATEGIC
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_coordination_cap
+						value = 1
+					}
+				}
+				set_global_flag = vanilla_strategic_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_coordination_cap
+						value = 2
+					}
+				}
+				set_global_flag = vanilla_strategic_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_coordination_cap
+						value = 3
+					}
+				}
+				set_global_flag = vanilla_strategic_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_coordination_cap
+						value = 4
+					}
+				}
+				set_global_flag = vanilla_strategic_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_coordination_cap
+						value = 5
+					}
+				}
+				set_global_flag = vanilla_strategic_capped_r
+			} else = {
+				set_global_flag = vanilla_strategic_disabled
+			}
+		#MEGA ART
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_mega_art_cap
+						value = 1
+					}
+				}
+				set_global_flag = vanilla_art_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_mega_art_cap
+						value = 2
+					}
+				}
+				set_global_flag = vanilla_art_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_mega_art_cap
+						value = 3
+					}
+				}
+				set_global_flag = vanilla_art_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_mega_art_cap
+						value = 4
+					}
+				}
+				set_global_flag = vanilla_art_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_mega_art_cap
+						value = 5
+					}
+				}
+				set_global_flag = vanilla_dyson_capped_r
+			} else = {
+				set_global_flag = vanilla_art_disabled
+			}
+		#ShIPYARD
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_shipyard_cap
+						value = 1
+					}
+				}
+				set_global_flag = vanilla_shipyard_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_shipyard_cap
+						value = 2
+					}
+				}
+				set_global_flag = vanilla_shipyard_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_shipyard_cap
+						value = 3
+					}
+				}
+				set_global_flag = vanilla_shipyard_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_shipyard_cap
+						value = 4
+					}
+				}
+				set_global_flag = vanilla_shipyard_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_shipyard_cap
+						value = 5
+					}
+				}
+				set_global_flag = vanilla_shipyard_capped_r
+			} else = {
+				set_global_flag = vanilla_shipyard_disabled
+			}
+		#NEXUS
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_nexus_cap
+						value = 1
+					}
+				}
+				set_global_flag = vanilla_nexus_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_nexus_cap
+						value = 2
+					}
+				}
+				set_global_flag = vanilla_nexus_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_nexus_cap
+						value = 3
+					}
+				}
+				set_global_flag = vanilla_nexus_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_nexus_cap
+						value = 4
+					}
+				}
+				set_global_flag = vanilla_nexus_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_nexus_cap
+						value = 5
+					}
+				}
+				set_global_flag = vanilla_nexus_capped_r
+			} else = {
+				set_global_flag = vanilla_nexus_disabled
+			}
+		#RINGWORLD
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_cap
+						value = 1
+					}
+				}
+				set_global_flag = vanilla_ringworld_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_cap
+						value = 2
+					}
+				}
+				set_global_flag = vanilla_ringworld_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_cap
+						value = 3
+					}
+				}
+				set_global_flag = vanilla_ringworld_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_cap
+						value = 4
+					}
+				}
+				set_global_flag = vanilla_ringworld_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_cap
+						value = 5
+					}
+				}
+				set_global_flag = vanilla_ringworld_capped_r
+			} else = {
+				set_global_flag = vanilla_ringworld_disabled
+			}		
+		#SENTRY
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_sentry_cap
+						value = 0
+					}
+				}
+				set_global_flag = vanilla_array_disabled
+			} else = {
+				set_global_flag = vanilla_array_capped_1
+			}
+		#MAX RING SIZE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_size
+						value = 1
+					}
+				}
+				set_global_flag = giga_rings_tit
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_size
+						value = 2
+					}
+				}
+				set_global_flag = giga_rings_beh
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_size
+						value = 3
+					}
+				}
+				set_global_flag = giga_rings_gar
+			} else = {
+				set_global_flag = giga_rings_van
+			}
+		#ECUMENOPOLIS RINGWORLD
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecumenopolis_ringworld
+						value = 1
+					}
+				}
+				set_global_flag = cityring_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecumenopolis_ringworld
+						value = 2
+					}
+				}
+				set_global_flag = cityring_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecumenopolis_ringworld
+						value = 3
+					}
+				}
+				set_global_flag = cityring_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecumenopolis_ringworld
+						value = 4
+					}
+				}
+				set_global_flag = cityring_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecumenopolis_ringworld
+						value = 5
+					}
+				}
+				set_global_flag = cityring_capped_r
+			} else = {
+				set_global_flag = cityring_disabled
+			}	
+		#HIVE RINGWORLD
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hive_ringworld
+						value = 1
+					}
+				}
+				set_global_flag = hivering_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hive_ringworld
+						value = 2
+					}
+				}
+				set_global_flag = hivering_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hive_ringworld
+						value = 3
+					}
+				}
+				set_global_flag = hivering_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hive_ringworld
+						value = 4
+					}
+				}
+				set_global_flag = hivering_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hive_ringworld
+						value = 5
+					}
+				}
+				set_global_flag = hivering_capped_r
+			} else = {
+				set_global_flag = hivering_disabled
+			}	
+		#MACHINE RINGWORLD
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_machine_ringworld
+						value = 1
+					}
+				}
+				set_global_flag = machinering_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_machine_ringworld
+						value = 2
+					}
+				}
+				set_global_flag = machinering_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_machine_ringworld
+						value = 3
+					}
+				}
+				set_global_flag = machinering_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_machine_ringworld
+						value = 4
+					}
+				}
+				set_global_flag = machinering_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_machine_ringworld
+						value = 5
+					}
+				}
+				set_global_flag = machinering_capped_r
+			} else = {
+				set_global_flag = machinering_disabled
+			}
+		#RINGWORLD UPGRADE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_upgrade
+						value = 1
+					}
+				}
+				set_global_flag = upgrade_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_upgrade
+						value = 2
+					}
+				}
+				set_global_flag = upgrade_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_upgrade
+						value = 3
+					}
+				}
+				set_global_flag = upgrade_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_upgrade
+						value = 4
+					}
+				}
+				set_global_flag = upgrade_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ringworld_upgrade
+						value = 5
+					}
+				}
+				set_global_flag = upgrade_capped_r
+			} else = {
+				set_global_flag = upgrade_disabled
+			}
+		#ALDERSON
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_alderson
+						value = 1
+					}
+				}
+				set_global_flag = alderson_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_alderson
+						value = 2
+					}
+				}
+				set_global_flag = alderson_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_alderson
+						value = 3
+					}
+				}
+				set_global_flag = alderson_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_alderson
+						value = 4
+					}
+				}
+				set_global_flag = alderson_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_alderson
+						value = 5
+					}
+				}
+				set_global_flag = alderson_capped_r
+			} else = {
+				set_global_flag = alderson_disabled
+			}
+		#EQUATORIAL
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_equatorial
+						value = 1
+					}
+				}
+				set_global_flag = shipyard_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_equatorial
+						value = 2
+					}
+				}
+				set_global_flag = shipyard_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_equatorial
+						value = 3
+					}
+				}
+				set_global_flag = shipyard_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_equatorial
+						value = 4
+					}
+				}
+				set_global_flag = shipyard_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_equatorial
+						value = 5
+					}
+				}
+				set_global_flag = shipyard_capped_r
+			} else = {
+				set_global_flag = shipyard_disabled
+			}
+		#INTERSTELLAR
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_interstellar
+						value = 1
+					}
+				}
+				set_global_flag = stellarhabitat_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_interstellar
+						value = 2
+					}
+				}
+				set_global_flag = stellarhabitat_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_interstellar
+						value = 3
+					}
+				}
+				set_global_flag = stellarhabitat_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_interstellar
+						value = 4
+					}
+				}
+				set_global_flag = stellarhabitat_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_interstellar
+						value = 5
+					}
+				}
+				set_global_flag = stellarhabitat_capped_r
+			} else = {
+				set_global_flag = stellarhabitat_disabled
+			}
+		#COMPUTER
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_computer
+						value = 1
+					}
+				}
+				set_global_flag = planetary_computer_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_computer
+						value = 2
+					}
+				}
+				set_global_flag = planetary_computer_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_computer
+						value = 3
+					}
+				}
+				set_global_flag = planetary_computer_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_computer
+						value = 4
+					}
+				}
+				set_global_flag = planetary_computer_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_computer
+						value = 5
+					}
+				}
+				set_global_flag = planetary_computer_capped_r
+			} else = {
+				set_global_flag = planetary_computer_disabled
+			}
+		#ELYSIUM
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysium
+						value = 0
+					}
+				}
+				set_global_flag = giga_habitats_disabled
+			} else = {
+				set_global_flag = giga_habitats_unlimited
+			}
+		#BIRCH
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_birch
+						value = 0
+					}
+				}
+				set_global_flag = birch_disabled
+			} else = {
+				set_global_flag = birch_capped_1
+			}
+		#VR
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_vr
+						value = 1
+					}
+				}
+				log = "."
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_vr
+						value = 2
+					}
+				}
+				set_global_flag = giga_virtual_industry
+			} else = {
+				set_global_flag = virtual_reality_disabled
+			}
+		#ASTEROID ARTILLERY
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_asteroid_artillery
+						value = 0
+					}
+				}
+				set_global_flag = asteroid_artillery_disabled
+			}
+		#MANUFACTORY
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_manufactory
+						value = 1
+					}
+				}
+				set_global_flag = asteroid_manufactory_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_manufactory
+						value = 2
+					}
+				}
+				set_global_flag = asteroid_manufactory_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_manufactory
+						value = 3
+					}
+				}
+				set_global_flag = asteroid_manufactory_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_manufactory
+						value = 4
+					}
+				}
+				set_global_flag = asteroid_manufactory_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_manufactory
+						value = 5
+					}
+				}
+				set_global_flag = asteroid_manufactory_capped_r
+			} else = {
+				set_global_flag = asteroid_manufactory_disabled
+			}
+		#ENGINEERING
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroengineering
+						value = 1
+					}
+				}
+				set_global_flag = megabase_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroengineering
+						value = 2
+					}
+				}
+				set_global_flag = megabase_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroengineering
+						value = 3
+					}
+				}
+				set_global_flag = megabase_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroengineering
+						value = 4
+					}
+				}
+				set_global_flag = megabase_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroengineering
+						value = 5
+					}
+				}
+				set_global_flag = megabase_capped_r
+			} else = {
+				set_global_flag = megabase_disabled
+			}
+		#SOCIETY
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecosystem
+						value = 1
+					}
+				}
+				set_global_flag = orbital_artificial_eco_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecosystem
+						value = 2
+					}
+				}
+				set_global_flag = orbital_artificial_eco_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecosystem
+						value = 3
+					}
+				}
+				set_global_flag = orbital_artificial_eco_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecosystem
+						value = 4
+					}
+				}
+				set_global_flag = orbital_artificial_eco_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ecosystem
+						value = 5
+					}
+				}
+				set_global_flag = orbital_artificial_eco_capped_r
+			} else = {
+				set_global_flag = orbital_artificial_eco_disabled
+			}
+		#PHYSICS
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_accelerator
+						value = 1
+					}
+				}
+				set_global_flag = accelerator_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_accelerator
+						value = 2
+					}
+				}
+				set_global_flag = accelerator_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_accelerator
+						value = 3
+					}
+				}
+				set_global_flag = accelerator_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_accelerator
+						value = 4
+					}
+				}
+				set_global_flag = accelerator_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_accelerator
+						value = 5
+					}
+				}
+				set_global_flag = accelerator_capped_r
+			} else = {
+				set_global_flag = accelerator_disabled
+			}
+		#DOCKYARD
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dockyard
+						value = 1
+					}
+				}
+				set_global_flag = planetshipyard_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dockyard
+						value = 2
+					}
+				}
+				set_global_flag = planetshipyard_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dockyard
+						value = 3
+					}
+				}
+				set_global_flag = planetshipyard_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dockyard
+						value = 4
+					}
+				}
+				set_global_flag = planetshipyard_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_dockyard
+						value = 5
+					}
+				}
+				set_global_flag = planetshipyard_capped_r
+			} else = {
+				set_global_flag = planetshipyard_disabled
+			}
+		#STRIPMINE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stripmine
+						value = 1
+					}
+				}
+				set_global_flag = drill_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stripmine
+						value = 2
+					}
+				}
+				set_global_flag = drill_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stripmine
+						value = 3
+					}
+				}
+				set_global_flag = drill_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stripmine
+						value = 4
+					}
+				}
+				set_global_flag = drill_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stripmine
+						value = 5
+					}
+				}
+				set_global_flag = drill_capped_r
+			} else = {
+				set_global_flag = drill_disabled
+			}
+		#BIG VAT
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_big_vat
+						value = 1
+					}
+				}
+				set_global_flag = the_vat_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_big_vat
+						value = 2
+					}
+				}
+				set_global_flag = the_vat_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_big_vat
+						value = 3
+					}
+				}
+				set_global_flag = the_vat_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_big_vat
+						value = 4
+					}
+				}
+				set_global_flag = the_vat_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_big_vat
+						value = 5
+					}
+				}
+				set_global_flag = the_vat_capped_r
+			} else = {
+				set_global_flag = the_vat_disabled
+			}
+		#MEGABORE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_megabore
+						value = 1
+					}
+				}
+				set_global_flag = crystal_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_megabore
+						value = 2
+					}
+				}
+				set_global_flag = crystal_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_megabore
+						value = 3
+					}
+				}
+				set_global_flag = crystal_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_megabore
+						value = 4
+					}
+				}
+				set_global_flag = crystal_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_megabore
+						value = 5
+					}
+				}
+				set_global_flag = crystal_capped_r
+			} else = {
+				set_global_flag = crystal_disabled
+			}
+		#SUpPRESSOR
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fusion_suppressor
+						value = 1
+					}
+				}
+				set_global_flag = suppressor_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fusion_suppressor
+						value = 2
+					}
+				}
+				set_global_flag = suppressor_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fusion_suppressor
+						value = 3
+					}
+				}
+				set_global_flag = suppressor_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fusion_suppressor
+						value = 4
+					}
+				}
+				set_global_flag = suppressor_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_fusion_suppressor
+						value = 5
+					}
+				}
+				set_global_flag = suppressor_capped_r
+			} else = {
+				set_global_flag = suppressor_disabled
+			}
+		#KUGELBLITZ
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kugelblitz
+						value = 1
+					}
+				}
+				set_global_flag = kugel_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kugelblitz
+						value = 2
+					}
+				}
+				set_global_flag = kugel_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kugelblitz
+						value = 3
+					}
+				}
+				set_global_flag = kugel_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kugelblitz
+						value = 4
+					}
+				}
+				set_global_flag = kugel_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kugelblitz
+						value = 5
+					}
+				}
+				set_global_flag = kugel_capped_r
+			} else = {
+				set_global_flag = kugel_disabled
+			}
+		#DISCO
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_disco_moon
+						value = 1
+					}
+				}
+				set_global_flag = disco_moon_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_disco_moon
+						value = 2
+					}
+				}
+				set_global_flag = disco_moon_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_disco_moon
+						value = 3
+					}
+				}
+				set_global_flag = disco_moon_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_disco_moon
+						value = 4
+					}
+				}
+				set_global_flag = disco_moon_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_disco_moon
+						value = 5
+					}
+				}
+				set_global_flag = disco_moon_capped_r
+			} else = {
+				set_global_flag = disco_moon_disabled
+			}
+		#MAGINOT
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_maginot
+						value = 1
+					}
+				}
+				set_global_flag = maginot_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_maginot
+						value = 2
+					}
+				}
+				set_global_flag = maginot_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_maginot
+						value = 3
+					}
+				}
+				set_global_flag = maginot_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_maginot
+						value = 4
+					}
+				}
+				set_global_flag = maginot_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_maginot
+						value = 5
+					}
+				}
+				set_global_flag = maginot_capped_r
+			} else = {
+				set_global_flag = maginot_disabled
+			}
+		#GIGAFORGE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_gigaforge
+						value = 1
+					}
+				}
+				set_global_flag = gigaforge_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_gigaforge
+						value = 2
+					}
+				}
+				set_global_flag = gigaforge_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_gigaforge
+						value = 3
+					}
+				}
+				set_global_flag = gigaforge_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_gigaforge
+						value = 4
+					}
+				}
+				set_global_flag = gigaforge_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_gigaforge
+						value = 5
+					}
+				}
+				set_global_flag = gigaforge_capped_r
+			} else = {
+				set_global_flag = gigaforge_disabled
+			}
+		#ORBITAL ARCOLOGY
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_arcology
+						value = 1
+					}
+				}
+				set_global_flag = orbital_arcologies_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_arcology
+						value = 2
+					}
+				}
+				set_global_flag = orbital_arcologies_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_arcology
+						value = 3
+					}
+				}
+				set_global_flag = orbital_arcologies_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_arcology
+						value = 4
+					}
+				}
+				set_global_flag = orbital_arcologies_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_arcology
+						value = 5
+					}
+				}
+				set_global_flag = orbital_arcologies_capped_r
+			} else = {
+				set_global_flag = orbital_arcologies_disabled
+			}
+		#ORBITAL BASTION
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_bastion
+						value = 1
+					}
+				}
+				set_global_flag = academy_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_bastion
+						value = 2
+					}
+				}
+				set_global_flag = academy_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_bastion
+						value = 3
+					}
+				}
+				set_global_flag = academy_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_bastion
+						value = 4
+					}
+				}
+				set_global_flag = academy_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_orbital_bastion
+						value = 5
+					}
+				}
+				set_global_flag = academy_capped_r
+			} else = {
+				set_global_flag = academy_disabled
+			}
+		#LIFTER
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_lifter
+						value = 1
+					}
+				}
+				set_global_flag = lifters_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_lifter
+						value = 2
+					}
+				}
+				set_global_flag = lifters_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_lifter
+						value = 3
+					}
+				}
+				set_global_flag = lifters_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_lifter
+						value = 4
+					}
+				}
+				set_global_flag = lifters_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_lifter
+						value = 5
+					}
+				}
+				set_global_flag = lifters_capped_r
+			} else = {
+				set_global_flag = lifters_disabled
+			}
+		#SUCC
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_succ
+						value = 1
+					}
+				}
+				set_global_flag = succ_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_succ
+						value = 2
+					}
+				}
+				set_global_flag = succ_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_succ
+						value = 3
+					}
+				}
+				set_global_flag = succ_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_succ
+						value = 4
+					}
+				}
+				set_global_flag = succ_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_succ
+						value = 5
+					}
+				}
+				set_global_flag = succ_capped_r
+			} else = {
+				set_global_flag = succ_disabled
+			}
+		#YGGDRASIL
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_yggdrasil
+						value = 1
+					}
+				}
+				set_global_flag = orchid_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_yggdrasil
+						value = 2
+					}
+				}
+				set_global_flag = orchid_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_yggdrasil
+						value = 3
+					}
+				}
+				set_global_flag = orchid_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_yggdrasil
+						value = 4
+					}
+				}
+				set_global_flag = orchid_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_yggdrasil
+						value = 5
+					}
+				}
+				set_global_flag = orchid_capped_r
+			} else = {
+				set_global_flag = orchid_disabled
+			}
+		#BEACON
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_psionic_beacon
+						value = 0
+					}
+				}
+				set_global_flag = psychic_beacon_disabled
+			}
+		#SIPHON
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hypersiphon
+						value = 0
+					}
+				}
+				set_global_flag = siphon_disabled
+			}
+		#HRAEMC
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hraemc
+						value = 1
+					}
+				}
+				set_global_flag = hraemc_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hraemc
+						value = 2
+					}
+				}
+				set_global_flag = hraemc_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hraemc
+						value = 3
+					}
+				}
+				set_global_flag = hraemc_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hraemc
+						value = 4
+					}
+				}
+				set_global_flag = hraemc_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hraemc
+						value = 5
+					}
+				}
+				set_global_flag = hraemc_capped_r
+			} else = {
+				set_global_flag = hraemc_disabled
+			}
+		#HYPER ASS
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyper_assembly
+						value = 1
+					}
+				}
+				set_global_flag = hyperstructural_ass_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyper_assembly
+						value = 2
+					}
+				}
+				set_global_flag = hyperstructural_ass_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyper_assembly
+						value = 3
+					}
+				}
+				set_global_flag = hyperstructural_ass_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyper_assembly
+						value = 4
+					}
+				}
+				set_global_flag = hyperstructural_ass_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyper_assembly
+						value = 5
+					}
+				}
+				set_global_flag = hyperstructural_ass_capped_r
+			} else = {
+				set_global_flag = hyperstructural_ass_disabled
+			}
+		#M BRAIN
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_matrioshka_brain
+						value = 1
+					}
+				}
+				set_global_flag = matrioshka_brain_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_matrioshka_brain
+						value = 2
+					}
+				}
+				set_global_flag = matrioshka_brain_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_matrioshka_brain
+						value = 3
+					}
+				}
+				set_global_flag = matrioshka_brain_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_matrioshka_brain
+						value = 4
+					}
+				}
+				set_global_flag = matrioshka_brain_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_matrioshka_brain
+						value = 5
+					}
+				}
+				set_global_flag = matrioshka_brain_capped_r
+			} else = {
+				set_global_flag = matrioshka_brain_disabled
+			}
+		#HYPERFORGE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyperforge
+						value = 1
+					}
+				}
+				set_global_flag = nidavellir_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyperforge
+						value = 2
+					}
+				}
+				set_global_flag = nidavellir_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyperforge
+						value = 3
+					}
+				}
+				set_global_flag = nidavellir_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyperforge
+						value = 4
+					}
+				}
+				set_global_flag = nidavellir_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_hyperforge
+						value = 5
+					}
+				}
+				set_global_flag = nidavellir_capped_r
+			} else = {
+				set_global_flag = nidavellir_disabled
+			}
+		#PENROSE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_penrose
+						value = 1
+					}
+				}
+				set_global_flag = penrose_sphere_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_penrose
+						value = 2
+					}
+				}
+				set_global_flag = penrose_sphere_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_penrose
+						value = 3
+					}
+				}
+				set_global_flag = penrose_sphere_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_penrose
+						value = 4
+					}
+				}
+				set_global_flag = penrose_sphere_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_penrose
+						value = 5
+					}
+				}
+				set_global_flag = penrose_sphere_capped_r
+			} else = {
+				set_global_flag = penrose_sphere_disabled
+			}
+		#NDB
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ndb
+						value = 0
+					}
+				}
+				set_global_flag = ndb_disabled
+			}
+		#SIPHON
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_qso
+						value = 0
+					}
+				}
+				set_global_flag = quasistellar_disabled
+			}
+		#ATTACK MOON
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_attack_moon
+						value = 1
+					}
+				}
+				set_global_flag = warmoon_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_attack_moon
+						value = 2
+					}
+				}
+				set_global_flag = warmoon_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_attack_moon
+						value = 3
+					}
+				}
+				set_global_flag = warmoon_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_attack_moon
+						value = 4
+					}
+				}
+				set_global_flag = warmoon_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_attack_moon
+						value = 5
+					}
+				}
+				set_global_flag = warmoon_capped_r
+			} else = {
+				set_global_flag = warmoon_disabled
+			}
+		#PLANETCRAFT
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_planetcraft
+						value = 1
+					}
+				}
+				set_global_flag = warplanet_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_planetcraft
+						value = 2
+					}
+				}
+				set_global_flag = warplanet_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_planetcraft
+						value = 3
+					}
+				}
+				set_global_flag = warplanet_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_planetcraft
+						value = 4
+					}
+				}
+				set_global_flag = warplanet_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_planetcraft
+						value = 5
+					}
+				}
+				set_global_flag = warplanet_capped_r
+			} else = {
+				set_global_flag = warplanet_disabled
+			}
+		#SYSTEMCRAFT
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_systemcraft
+						value = 1
+					}
+				}
+				set_global_flag = systemcraft_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_systemcraft
+						value = 2
+					}
+				}
+				set_global_flag = systemcraft_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_systemcraft
+						value = 3
+					}
+				}
+				set_global_flag = systemcraft_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_systemcraft
+						value = 4
+					}
+				}
+				set_global_flag = systemcraft_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_systemcraft
+						value = 5
+					}
+				}
+				set_global_flag = systemcraft_capped_r
+			} else = {
+				set_global_flag = systemcraft_disabled
+			}
+		#PURIFIER
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_purifier
+						value = 1
+					}
+				}
+				set_global_flag = terraform_toxic_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_purifier
+						value = 2
+					}
+				}
+				set_global_flag = terraform_toxic_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_purifier
+						value = 3
+					}
+				}
+				set_global_flag = terraform_toxic_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_purifier
+						value = 4
+					}
+				}
+				set_global_flag = terraform_toxic_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_purifier
+						value = 5
+					}
+				}
+				set_global_flag = terraform_toxic_capped_r
+			} else = {
+				set_global_flag = terraform_toxic_disabled
+			}
+		#IGNITOR
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ignitor
+						value = 1
+					}
+				}
+				set_global_flag = terraform_barren_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ignitor
+						value = 2
+					}
+				}
+				set_global_flag = terraform_barren_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ignitor
+						value = 3
+					}
+				}
+				set_global_flag = terraform_barren_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ignitor
+						value = 4
+					}
+				}
+				set_global_flag = terraform_barren_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_ignitor
+						value = 5
+					}
+				}
+				set_global_flag = terraform_barren_capped_r
+			} else = {
+				set_global_flag = terraform_barren_disabled
+			}
+		#STABILIZER
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stabilizer
+						value = 1
+					}
+				}
+				set_global_flag = geothermal_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stabilizer
+						value = 2
+					}
+				}
+				set_global_flag = geothermal_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stabilizer
+						value = 3
+					}
+				}
+				set_global_flag = geothermal_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stabilizer
+						value = 4
+					}
+				}
+				set_global_flag = geothermal_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_stabilizer
+						value = 5
+					}
+				}
+				set_global_flag = geothermal_capped_r
+			} else = {
+				set_global_flag = geothermal_disabled
+			}
+		#GLUE
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_glue
+						value = 1
+					}
+				}
+				set_global_flag = glue_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_glue
+						value = 2
+					}
+				}
+				set_global_flag = glue_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_glue
+						value = 3
+					}
+				}
+				set_global_flag = glue_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_glue
+						value = 4
+					}
+				}
+				set_global_flag = glue_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_glue
+						value = 5
+					}
+				}
+				set_global_flag = glue_capped_r
+			} else = {
+				set_global_flag = glue_disabled
+			}
+		#MACROATMOSPHERIC
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroatmospheric
+						value = 1
+					}
+				}
+				set_global_flag = terraform_gasgiant_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroatmospheric
+						value = 2
+					}
+				}
+				set_global_flag = terraform_gasgiant_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroatmospheric
+						value = 3
+					}
+				}
+				set_global_flag = terraform_gasgiant_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroatmospheric
+						value = 4
+					}
+				}
+				set_global_flag = terraform_gasgiant_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_macroatmospheric
+						value = 5
+					}
+				}
+				set_global_flag = terraform_gasgiant_capped_r
+			} else = {
+				set_global_flag = terraform_gasgiant_disabled
+			}
+		#COMPRESSOR
+			if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_compressor
+						value = 1
+					}
+				}
+				set_global_flag = compressor_capped_1
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_compressor
+						value = 2
+					}
+				}
+				set_global_flag = compressor_capped_2
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_compressor
+						value = 3
+					}
+				}
+				set_global_flag = compressor_capped_3
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_compressor
+						value = 4
+					}
+				}
+				set_global_flag = compressor_capped_u
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_compressor
+						value = 5
+					}
+				}
+				set_global_flag = compressor_capped_r
+			} else = {
+				set_global_flag = compressor_disabled
+			}
+		#END
+		}
+	}
+}
+
+
+

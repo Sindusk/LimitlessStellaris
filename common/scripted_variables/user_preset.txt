@@ -1,0 +1,534 @@
+#██   ██  ██████  ██     ██     ████████  ██████      ██    ██ ███████ ███████    
+#██   ██ ██    ██ ██     ██        ██    ██    ██     ██    ██ ██      ██      ██ 
+#███████ ██    ██ ██  █  ██        ██    ██    ██     ██    ██ ███████ █████      
+#██   ██ ██    ██ ██ ███ ██        ██    ██    ██     ██    ██      ██ ██      ██ 
+#██   ██  ██████   ███ ███         ██     ██████       ██████  ███████ ███████    
+
+
+
+#██████  ██      ███████  █████  ███████ ███████     ██████  ███████  █████  ██████  
+#██   ██ ██      ██      ██   ██ ██      ██          ██   ██ ██      ██   ██ ██   ██ 
+#██████  ██      █████   ███████ ███████ █████       ██████  █████   ███████ ██   ██ 
+#██      ██      ██      ██   ██      ██ ██          ██   ██ ██      ██   ██ ██   ██ 
+#██      ███████ ███████ ██   ██ ███████ ███████     ██   ██ ███████ ██   ██ ██████  
+#                                                                                    
+#                                                                                    
+#███████ ██    ██ ███████ ██████  ██    ██ ████████ ██   ██ ██ ███    ██  ██████     
+#██      ██    ██ ██      ██   ██  ██  ██     ██    ██   ██ ██ ████   ██ ██          
+#█████   ██    ██ █████   ██████    ████      ██    ███████ ██ ██ ██  ██ ██   ███    
+#██       ██  ██  ██      ██   ██    ██       ██    ██   ██ ██ ██  ██ ██ ██    ██    
+#███████   ████   ███████ ██   ██    ██       ██    ██   ██ ██ ██   ████  ██████     
+
+
+### HOW TO USE
+### PLEASE READ EVERYTHING:
+
+##	EACH LINE STARTING WITH @ IS A VARIABLE THAT HAS TO BE SET
+##	THE NAME IS WHAT IS BEING SET AND THE NUMBER IS THE VALUE
+##	THEY ARE GROUPED IN (ROUGHLY) THE SAME PATTERN AND ORDER AS THE IN GAME GIGAS MENU
+##	THERE ARE TWO SECTIONS FEATURES AND MEGASTRUCTURES	
+##	FEATURES ARE THE MODS FEATURES SUCH AS THE KAISER, AETERNUM, ACHIEVEMENTS, GALACTIC CORE AND ETC
+##	MEGASTRUCTURES ARE SPLIT INTO 7 GROUPS: VANILLA / HABITABLES / KILOSTRUCTURES / MEGASTRUCTURES / CELESTAIL CRAFTS / TERRAFORMING
+##	YOU CAN USE CTRL F TO SEARCH FOR A SPECIFIC GROUP
+##	SOME FEATURES REQUIRE OTHERS TO WORK, IF AETERNUM IS NOT ENABLED IN GALACTIC CORE THE AETERNUM DIFFICULTY SETTING WON'T DO ANYTHING
+##	SAME IS TRUE FOR WRECKED WARSHIPS, IF THEY ARE DISABLED THE COUNT WILL NOT DO ANYTHING
+##	THE VALUE NEEDS TO BE ONE OF THE SPECIFIED VALUES
+##	INVALID VALUES WILL BE CONSIDERED ZERO FOR SETTINGS WITH MULTIPLE OPTIONS AND ONE FOR SETTINGS WITH ONLY TWO
+##	EXAMPLE:
+##	IF I WANT TO SET THE DYSON SPHERE CAP TO 3 AND GIGAFORGE TO REPEATABLE BASED
+##	I WILL FIND THE DYSON SPHERE VARIABLE IN THE MEGASTRUCTURES SECTION IN THE VANILLA GROUP AND SET 
+##	'@giga_preset_dyson_cap = 3'
+##	AND FIND THE GIGAFORGE IN THE MEGASTRUCTURES GROUP AND SET
+##	'@giga_preset_gigaforge = 4'
+##	THE DEFAULT SETTINGS ON THIS FILE HAVE ALL MOD FEATURES INCLUDING VANILLA MEGASTRUCTURES DISABLED SO BE SURE TO EDIT SOMETHING
+##	THIS MOD WILL NOT DO ANYTHING UNLESS YOU LOAD IT'S PRESET IN THE GIGAS MENU
+##	IT'S CALLED USER PRESET AND IT'S ON THE FIRST PAGE OF PRESETS
+##	THAT MEANS YOU CAN LEAVE IT ENABLED EVEN WHEN NOT USING FOR WHEN YOU WANT AS NONE OF IT'S EVENTS RUN UNLESS THE PRESET IS CALLED
+##	BUT THE MOD IS STILL NOT CHECKSUM COMPATIBLE AND ANY CHANGES TO THIS FILE WILL AFFECT CHECKSUM
+##	SO IF YOU WANT TO USE THE PRESET IN HERE ON MULTIPLAYER YOU NEED TO SEND THE OTHER PERSON A COPY OF THIS FILE
+##	
+##	LINES THAT START WITH # ARE COMMENTS FOR EXPLANATION AND EASE OF NAVIGATION AND CAN BE IGNORED
+##	IT'S RECOMMENDED TO EDIT THIS FILE WITH NOTEPAD++ OR VSCODE OR A SIMILAR PROGRAM AS IT MAY NOT DISPLAY PROPERLY ON NOTEPAD
+##	DO NOT REMOVE OR EDIT LINES STARTING WITH @ OTHER THAN THE VALUE THEY ARE SET TO
+##	THE VALUES CANNOT BE NEGATIVE, THIS WILL BE COUNTED AS ZERO
+##
+##	THERE ARE 3 MORE COMPLICATED ONES
+##	THE WRECKED WARSHIPS AND MEGASTRUCTURE SETTINGS FOR PLAYER AND AI
+##	THESE ARE THE OUTPUT COST AND UPKEEP BARS IN THE MENU AND THE NUMBER OF WRECKED WARSHIPS
+##	THE NUMBER THE VARIABLE IS SET IS THE NUMBER USED IN THE GAME
+##	100% IS BASE AND GOES FROM THERE
+##	THEY TECHINICALLY DO NOT HAVE A HARD CAP BUT SETTING THEM TOO LOW OR TO HIGH CAN LEAD TO PROBLEMS
+##	THESE CANNOT BE DECIMALS AND CANNOT BE NEGATIVE
+##	DOING SO CAN LEAD TO UNEXPECTED BEHAVIOR OR A CRASH
+##
+##	AND YES I KNOW THIS FILE HAS TYPOS, I DIDN'T NOTICE AT FIRST AT DON'T CARE ENOUGH TO FIX
+
+#███████ ███████  █████  ████████ ██    ██ ██████  ███████ ███████ 
+#██      ██      ██   ██    ██    ██    ██ ██   ██ ██      ██      
+#█████   █████   ███████    ██    ██    ██ ██████  █████   ███████ 
+#██      ██      ██   ██    ██    ██    ██ ██   ██ ██           ██ 
+#██      ███████ ██   ██    ██     ██████  ██   ██ ███████ ███████ 
+
+### FEATURES
+
+#ACHIEVEMENTS
+# 0 = DISABLED
+# 1 = ENABLED
+@giga_preset_achievements = 1
+
+# MEGASTRUCTuRE SCALING
+# 0 = DISABLED
+# 1 = ENABLED
+@giga_preset_dyson_scaling = 1
+@giga_preset_lifter_scaling = 1
+@giga_preset_brain_scaling = 1
+# O CLASS SCALING
+@giga_preset_o_scaling = 1
+
+# MEGASTRUCTURE BUILD CAP
+# 0 = INFINITE
+# 1 / 2 / 3 = RESPECTIVE NUMBER
+# 4 = SUPERTENSILES
+@giga_preset_build_cap = 3
+
+# MEGASTRUCTuRE INFLUENCE UPKEEP
+# 0 = DISABLED
+# 1 = ENABLED
+@giga_preset_influence_upkeep = 0
+
+# CELESTIAL WARSHIP FABRICATION
+# 0 = DISABLED
+# 1 = ENABLED
+@giga_preset_moon_printer = 1
+@giga_preset_planet_printer = 1
+
+# WRECKED WARSHIPS
+# 0 = DISABLED
+# 1 = ENABLED
+@giga_preset_wrecked_warships = 1
+
+# WRECKED WARSHIPS COUNT
+# SET THE NUMBER TO THE EXACT AMOUNT YOU WANT
+# IT CANNOT BE NEGATIVE OR DECIMAL
+# NUMBERS TOO BIG WILL CAUSE PROBLEMS
+@giga_preset_wrecked_warships_number = 225
+
+# PLAYER MEGA SETTINGS
+# SET THE NUMBER TO THE EXACT AMOUNT YOU WANT
+# IT CANNOT BE NEGATIVE OR DECIMAL
+@giga_preset_player_mega_output = 100
+@giga_preset_player_mega_cost = 50
+@giga_preset_player_mega_upkeep = 50
+
+# AI MEGA SETTINGS
+# SET THE NUMBER TO THE EXACT AMOUNT YOU WANT
+# IT CANNOT BE NEGATIVE OR DECIMAL
+@giga_preset_ai_mega_output = 95
+@giga_preset_ai_mega_cost = 100
+@giga_preset_ai_mega_upkeep = 100
+
+# EHOF
+# 0 = DISABLED
+# 1 = ENABLED
+@giga_preset_ehof_enabled = 1
+
+# EHOF AI                                       
+# 0 = DISABLED
+# 1 / 2 / 3 = RESPECTIVE NUMBER
+# 4 = RANDOM
+@giga_preset_ehof_ai = 0
+
+# GALACTIC CORE
+# 0 = DISABLED
+# 1 = RANDOM
+# 2 = QUASAR
+# 3 = BLACK HOLE
+# 4 = RANDOM UNINHABITED
+# 5 = RANDOM BLACK HOLE
+# 6 = AETERNUM
+@giga_preset_galaxy_core = 6
+
+# AETERNUM DIFFICULTY
+# 0 = NORMAL
+# 1 = AZURE
+# 2 = OMEGA
+# 3 = LUX (WILL NOT WORK IF ACOT SBTG IS MISSING)
+# THESE OPTIONS DOES NOT ENABLE AETERNUM, THEY NEED TO BE ENABLED ABOVE BY SETTING IT TO EITHER AETERNUM, RANDOM BLACK HOLE OR RANDOM
+@giga_preset_aeternum = 1
+
+# FALLEN EMPIRES
+# 0 = DISABLED
+# 1 = ENABLED
+@giga_preset_fe_megastructures = 1
+@giga_preset_gamers = 0
+@giga_preset_pouchkinn = 1
+
+# FALLEN EMPIRES CELESTIAL WARSHIPS
+# 0 = DISABLED
+# 1 = REGULAR
+# 2 = HIGH
+# 3 = EXTREME
+# 4 = HELL
+@giga_preset_fe_warships = 1
+
+# GALACTIC FEDERATION
+# 0 = DISABLED
+# 1 = RANDOM
+# 2 = ALWAYS
+@giga_preset_federation = 1
+
+# KATZEN SYSTEMS
+# 0 = DISABLED
+# 1 = ENABLED
+@giga_preset_gatzo = 1
+@giga_preset_jublio = 1
+@giga_preset_jupitwo = 1
+# SPECIAL SYSTEMS
+# 0 = DISABLED
+# 1 = ENABLED
+# 2 = GUARANTEED
+@giga_preset_faust = 2
+@giga_preset_elysium = 2
+@giga_preset_squareworld = 2
+@giga_preset_kerbol = 2
+
+# KAISER
+# 0 = DISABLED (UFS SPAWNS INSTEAD)
+# 1 = NEVER (FLUSION IS UNHINHABITED)
+# 2 = NORMAL (40% SPAWN CHANCE)
+# 3 = NORMAL (GUARANTEED)
+# 4 = RELAXED
+# 5 = WILD RIDE
+# 6 = STELLARITE
+# 7 = IMPROBABLE
+@giga_preset_kaiser = 3
+
+# KATZEN PORTRAITS
+# 0 = VANILLA
+# 1 = LORE ACCURATE
+@giga_preset_katzen_portraits = 2
+
+# BLOKKATS
+# 0 = DISABLED
+# 1 = 50% CHANCE OF SPAWNING
+# 2 = GUARANTEED
+@giga_preset_blokkats = 2
+
+# BLOKKAT PORTRAITS
+# 0 = STELLARIS
+# 1 = VINTAGE
+# 2 = REGULAR
+# 3 = ANIME
+@giga_preset_blokkat_portrait = 2
+
+# BLOKKATS SPAWN DATE
+# 0 = LATE ENDGAME (DEFAULT)
+# 1 = MID ENDGAME
+# 2 = ENDGAME
+# 3 = LATE MIDGAME
+# 4 = MIDGAME
+# 5 = LATE ENDGAME
+# 6 = GAME START
+# 7 = RANDOM
+@giga_preset_blokkat_date = 7
+
+# BLOKKATS DIFFICULTY
+# 0 = BLOKITTENS
+# 1 = NORMAL
+# 2 = BISMUTH
+# 3 = ENDTEKK
+@giga_preset_blokkat_difficulty = 2
+
+
+#███    ███ ███████  ██████   █████  ███████ ████████ ██████  ██    ██  ██████ ████████ ██    ██ ██████  ███████ ███████ 
+#████  ████ ██      ██       ██   ██ ██         ██    ██   ██ ██    ██ ██         ██    ██    ██ ██   ██ ██      ██      
+#██ ████ ██ █████   ██   ███ ███████ ███████    ██    ██████  ██    ██ ██         ██    ██    ██ ██████  █████   ███████ 
+#██  ██  ██ ██      ██    ██ ██   ██      ██    ██    ██   ██ ██    ██ ██         ██    ██    ██ ██   ██ ██           ██ 
+#██      ██ ███████  ██████  ██   ██ ███████    ██    ██   ██  ██████   ██████    ██     ██████  ██   ██ ███████ ███████ 
+
+### MEGASTRUCTURES
+
+## 0 = DISABLED
+## 1 / 2 / 3 = RESPECTIVE NUMBER
+## 4 = INFINITE
+## 5 = REPEATABLE
+
+#+-+-+-+-+-+-+-+
+#|V|A|N|I|L|L|A|
+#+-+-+-+-+-+-+-+
+#vanilla
+
+@giga_preset_dyson_cap = 4
+@giga_preset_decompressor_cap = 4
+@giga_preset_assembly_cap = 4
+@giga_preset_coordination_cap = 4
+@giga_preset_mega_art_cap = 4
+@giga_preset_shipyard_cap = 4
+@giga_preset_nexus_cap = 4
+@giga_preset_ringworld_cap = 4
+# ANY VALUE OTHER THAN 0 ON THE SENTRY WILL COUNT AS 1
+@giga_preset_sentry_cap = 1
+
+#+-+-+-+-+-+-+-+-+-+-+
+#|H|A|B|I|T|A|B|L|E|S|
+#+-+-+-+-+-+-+-+-+-+-+
+#habitables
+
+# MAX RINGWORLD SIZE
+# 0 = VANILLA
+# 1 = TITANIC
+# 2 = BEHEMOTH
+# 3 = GARGANTUAN
+@giga_preset_ringworld_size = 3
+
+## 0 = DISABLED
+## 1 / 2 / 3 = RESPECTIVE NUMBER
+## 4 = INFINITE
+## 5 = REPEATABLE
+## THE RINGWORLD OPTIONS WILL NOT DO ANYTHING IF RINGWORLDS ARE DISABLED
+@giga_preset_ecumenopolis_ringworld = 5
+@giga_preset_hive_ringworld = 5
+@giga_preset_machine_ringworld = 5
+@giga_preset_ringworld_upgrade = 5
+
+####
+@giga_preset_alderson = 5
+@giga_preset_equatorial = 5
+@giga_preset_interstellar = 5
+@giga_preset_computer = 5
+# ANY VALUE OTHER THAN 0 ON BIRCH WILL COUNT AS 1
+@giga_preset_elysium = 1
+# ANY VALUE OTHER THAN 0 ON ELYSIUM WILL COUNT AS INFINITE
+@giga_preset_birch = 1
+
+# VIRTUAL REALITY
+# 0 = DISABLED
+# 1 = NO INDUSTRY
+# 2 = ALL ALLOWED
+@giga_preset_vr = 2
+
+#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#|K|I|L|O|S|T|R|U|C|T|U|R|E|S|
+#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#kilostructures
+
+# ANY VALUE OTHER THAN 0 ON ARTILLERY WILL COUNT AS INFINITE
+@giga_preset_asteroid_artillery = 1
+@giga_preset_manufactory = 1
+@giga_preset_macroengineering = 1 #engineering
+@giga_preset_ecosystem = 1 #society
+@giga_preset_accelerator = 1 #physics
+@giga_preset_dockyard = 1
+
+#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#|M|E|G|A|S|T|R|U|C|T|U|R|E|S|
+#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#megastructures
+
+@giga_preset_stripmine = 5
+@giga_preset_big_vat = 5
+@giga_preset_megabore = 5
+@giga_preset_fusion_suppressor = 5
+@giga_preset_kugelblitz = 5
+@giga_preset_disco_moon = 5
+@giga_preset_maginot = 3
+@giga_preset_gigaforge = 4
+@giga_preset_orbital_arcology = 5
+@giga_preset_orbital_bastion = 5
+@giga_preset_lifter = 5
+@giga_preset_succ = 5
+@giga_preset_yggdrasil = 5
+# ANY VALUE OTHER THAN 0 FOR BEACON AND SIPHON WILL BE CONSIDERED 1
+@giga_preset_psionic_beacon = 1
+@giga_preset_hypersiphon = 1
+
+#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#|G|I|G|A|S|T|R|U|C|T|U|R|E|S|
+#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#gigastructures
+
+@giga_preset_hraemc = 5
+@giga_preset_hyper_assembly = 5
+@giga_preset_matrioshka_brain = 5
+@giga_preset_hyperforge = 4
+@giga_preset_penrose = 5
+# ANY VALUE OTHER THAN 0 FOR NDB AND QSO WILL BE CONSIDERED 1
+@giga_preset_ndb = 1
+@giga_preset_qso = 1
+
+#+-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+
+#|C|E|L|E|S|T|I|A|L| |C|R|A|F|T|S|
+#+-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+
+#celestial crafts
+
+@giga_preset_attack_moon = 5
+@giga_preset_planetcraft = 3
+@giga_preset_systemcraft = 1
+
+#+-+-+-+-+-+-+-+-+-+-+-+-+
+#|T|E|R|R|A|F|O|R|M|I|N|G|
+#+-+-+-+-+-+-+-+-+-+-+-+-+
+#terraforming
+
+@giga_preset_purifier = 1 #toxic
+@giga_preset_ignitor = 1 #barren
+@giga_preset_stabilizer = 1 #molten
+@giga_preset_glue = 1 #cracked
+@giga_preset_macroatmospheric = 1 #gas giant
+@giga_preset_compressor = 1 #ignite brown dwarf
+
+
+### YOU REACHED THE END 
+### ENJOY YOUR GAME
+
+#
+#██    ██  ██████  ██    ██     ██████  ███████  █████   ██████ ██   ██ ███████ ██████      ████████ ██   ██ ███████     ███████ ███    ██ ██████  
+# ██  ██  ██    ██ ██    ██     ██   ██ ██      ██   ██ ██      ██   ██ ██      ██   ██        ██    ██   ██ ██          ██      ████   ██ ██   ██ 
+#  ████   ██    ██ ██    ██     ██████  █████   ███████ ██      ███████ █████   ██   ██        ██    ███████ █████       █████   ██ ██  ██ ██   ██ 
+#   ██    ██    ██ ██    ██     ██   ██ ██      ██   ██ ██      ██   ██ ██      ██   ██        ██    ██   ██ ██          ██      ██  ██ ██ ██   ██ 
+#   ██     ██████   ██████      ██   ██ ███████ ██   ██  ██████ ██   ██ ███████ ██████         ██    ██   ██ ███████     ███████ ██   ████ ██████  
+#                                                                                                                                                  
+#                                                                                                                                                  
+#███████ ███    ██      ██  ██████  ██    ██     ██    ██  ██████  ██    ██ ██████       ██████   █████  ███    ███ ███████                        
+#██      ████   ██      ██ ██    ██  ██  ██       ██  ██  ██    ██ ██    ██ ██   ██     ██       ██   ██ ████  ████ ██                             
+#█████   ██ ██  ██      ██ ██    ██   ████         ████   ██    ██ ██    ██ ██████      ██   ███ ███████ ██ ████ ██ █████                          
+#██      ██  ██ ██ ██   ██ ██    ██    ██           ██    ██    ██ ██    ██ ██   ██     ██    ██ ██   ██ ██  ██  ██ ██                             
+#███████ ██   ████  █████   ██████     ██           ██     ██████   ██████  ██   ██      ██████  ██   ██ ██      ██ ███████                        
+#                                                                                                                                                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#██    ██  ██████  ██    ██     ███████  ██████  ██    ██ ███    ██ ██████      ████████ ██   ██ ███████     
+# ██  ██  ██    ██ ██    ██     ██      ██    ██ ██    ██ ████   ██ ██   ██        ██    ██   ██ ██          
+#  ████   ██    ██ ██    ██     █████   ██    ██ ██    ██ ██ ██  ██ ██   ██        ██    ███████ █████       
+#   ██    ██    ██ ██    ██     ██      ██    ██ ██    ██ ██  ██ ██ ██   ██        ██    ██   ██ ██          
+#   ██     ██████   ██████      ██       ██████   ██████  ██   ████ ██████         ██    ██   ██ ███████     
+#                                                                                                            
+#                                                                                                            
+#███████ ███████  ██████ ██████  ███████ ████████     ██   ██  █████  ██ ███████ ███████ ██████              
+#██      ██      ██      ██   ██ ██         ██        ██  ██  ██   ██ ██ ██      ██      ██   ██             
+#███████ █████   ██      ██████  █████      ██        █████   ███████ ██ ███████ █████   ██████              
+#     ██ ██      ██      ██   ██ ██         ██        ██  ██  ██   ██ ██      ██ ██      ██   ██             
+#███████ ███████  ██████ ██   ██ ███████    ██        ██   ██ ██   ██ ██ ███████ ███████ ██   ██             
+#                                                                                                            
+#                                                                                                            
+#
+#
+#
+#
+#........................................................................WNK0OxxK......................................................................
+#..................................................................WNKOxdoc;,''lK......................................................................
+#...............................................WNKOxddddx0XW.WX0xol:;,,,,'..;xX.......................................................................
+#...........................................WN0xl;'........,clc:,,,;::::,',okKW........................................................................
+#........................................WXko;'......''.....',:::cc::;,''c0W...........................................................................
+#.....................................WXkl,......  ..'...,:ccccc::;,,'':kN.............................................................................
+#...................................NOl,.......    ..'...;ccc::;;,,'';xX.................WWW...........................................................
+#................................WXx:.......,c;.   ...'...;:;;,,,'';xX..................WXKN..........WW...............................................
+#..............................WKo,......,cdkOo.    ..''....',,'..'kW.....WNWW.........WN0xONW.......NKXW..............................................
+#............................W0l'.....'cdkkkkkx;.    ...'..........lN....WXKKXWW.......N0xodkXWWWWWNKdxX...............................................
+#..........................WKo'.....;oxOOkkkkxxo,      ...''''..'..:K....WX0000KXNW..WX0kxxooxKX00KklcxX...............................................
+#.........................Xd,.....:dkOOOkkxxxdddl,.      ...,cl;'..:X...WNX0OOkkk0N..WXOxdxoox0OxkOo:cxXW..............................................
+#.....................W.NO:....'cxkOkkkOKKOkdoodxo:'.       .cOOdc:xN...NXK0OOkkk0N...WN0doodO0kxO0xcoON...............................................
+#................NOolcll:'...'cxkOkkkkxOXX000OOkdlc:;'...   .:OK0OOKNW..WNX0OOkkkOKN....NOdoxK0xk0klldkO0XW............................................
+#...............Xl..........cxkkOkkkxxxkKKxodxxlc::::::,.  ..c0KOOO0XW...WKOkOOOOkOXW...W0doxOxoOOoloO0Okxx0N..........................................
+#..............Wd. .'''...;dkOkkkkxxxO0KNNOllcc:::::::,. ...,d000000KN...WX00000O0NW...WNOddddllkxccd0KKKKOxx0N........................................
+#..............Xc...''..'okOOkkO00kdxKWNXN0oc:cloollll:,''':ok00K00KKXW....WWNXK00KNWWNX0xddoolloc;cx0KKKKKKOdxXW......................................
+#..............Nl...'..:xkkOOkkONWNKKNNOodoc::ckXXKK0Okxoc:ldddk0K00KKXWW..WWNXKKK0000OOkxxdollcc::ok0KKKK0KK0xxKW.....................................
+#..............No. .',lkOkO0XK00XXOOKNNOl:::::l0NXX000OxdoloxOkxddxkKKXXNNNXXXXXXK00Okkxxxxxxxxxxxxxk0KKKKK00K0kd0W....................................
+#.............Wx'. ..:dkkk0KOkO0XKxlloddc:::;;oKNXK0OOkkxxdodxOOkoldOKKXNNXXXXK0OOkkkkOOO00000OkddxddxxkkO0000K0xxKW...................................
+#............Wx'.,. .'cdxOOkdoooddoccc:::;,..'dKNXK0OOOOOkkxdooddoldkO0000OOOOOOOOOOOOOOOOO000OkxxxxkkxxxxxxkO0K0xxX...................................
+#...........Wk'.cc'. .':oxxooolllcc::::,'....'oKNXKK000OOOOkxddolccodxxkO00K000OOkxxxkOO00KKKK000OkkO0000OOkxxO0K0dkN..................................
+#...........Wk'.;'.'....,:cllllccc::;'.....;ooo0NXXKK00000OOOkxddoodxkO00KK0000OOOO00KKKKKKKKK0000OOkkO0K000000KXKkdK..................................
+#............Xc...:l;......,;::::;,......;kNW0dOXXXXKKKK0000OOOkxdxxxxxkO0KKKKKXXXXXXXXXXXXXXXXK00000OkkO0000000KKOdkN.................................
+#.............O,.,:,...''......'''..'''..cX..XxxKNXXXKKKKK0000OOOkdodxk0KXXXXXXNNNNNNNNNXXXXXXXXKK00000Oxk0K0000000OxkXW...............................
+#.............WO:....,cl;...............,kW..W0dOXXXXXXKKKKK0000OOkO00KXXXNNNNNNNNNNNNNNXXXXXXXXXKK00000Oxk0K00000000kxON..............................
+#...............Xd,..,,...;cc,...';cllokXW....Nkd0XXXXXXXXKKKK00000KXXXNNNNNNNNNNNNNNNXXXXXXXXXXXKKK00000Oxk0K00000000OxkX.............................
+#................WXOl'....,,',:dOKW............Nkd0XXXXXXXXXKKKKKKXXXNNNNNNNNNNNNNNNNXXXXXXXXXXXXKKK000000Oxk00000000000xkX............................
+#...................Nxlddc,cOXW.................NOdOKXXXXXXXXXXXXXXNNNNNNNNNNNNNNNNNXXXXXXXXXXXXKKKK0000000kx0000000000K0xkX...........................
+#...................WOdOX0do0W...................W0dx0KXXXXXXXXXXNNNNNNNNNNNNNNXXNNXXXXXXXXXXKKKKKK00000000OxOK00000OO00K0xkN..........................
+#....................XdxKKkodX....................Kdddx0XXXXXXXXNNNNNNNNNNNNNNNXXXK000000KKKKKKKK00000000000kkK0OO00OOOkxxdxK..........................
+#....................WkoOXKxoxN..................WOd0KOkO0KXXXXNNNNNNNNNNNXNNXKkxxkkkkOOOOOOOOO0000000000000kkKK00OOkxxxdoONW..........................
+#.....................Xdd0X0xoxX.................WOd0NXXKKXXXXNNNNNNNNXXXXX0OkxkOKXNNNNNNNXKOkddddxxkO000000kk0KOkdoodkOOdxX...........................
+#.....................WKdxKX0xod0W...............WOd0XNXXXXNNNXXXXXXXXXXXKkddkKXNNNNNNNNN0xololc:cdkxxdxxkO0kxkxl;;::;,;okdkN..........................
+#......................W0dxKXKkdokXW.............WOd0XXXXXXXXXXXXXXXXXXXKkdOXXNNNNNNNNN0o:coxxxdl::dKK0Okxxddodo;;lc:;:ok0kd0W.........................
+#.......................WKdxKXK0xookXW...........W0dOXXXXXXXXXXXXXXXXXXKkd0XNNNNNNNNNNXklcc::clloo:;xXNNNXK0OO0k:,;'';lOKK0xxX.........................
+#.........................XxdOXXKOxookKNW.........KdkXXXXXXXXXXXXXXXXXXOdOXNNNNNNNNNNNNNXK0xc'.';:c,cKWWWWWNXXXKxlcox:.:kKKkdK.........................
+#..........................NkdkKXXKOxdodk0XW......NxxKXXXXXXXXXXXXXXXX0xxKNNNNNNNNNNNNNNNNXOxo,.,ll;cKWWWWWWWNXXKKx::,..o0KOokN........................
+#...........................WKxdOKXXK0kxdodxk0XNW.W0dOXXKKKXKKKKKKKKKKOdOXNNNNNNNNNNNNNNNN0ooo,.'xK00XWWWWWWWWNXKKk,....o0K0kdkN.......................
+#.............................N0xxOKXXK00kxxdoddxkOkoxKXKKKKKKKKKKKKK0xxKNNNWWWWWWWWWNNNNN0:.....dXXXNWWWWWWWWWNXK0o'..;x00KKkdOW......................
+#...............................N0xxk0XXXK0OOkkxxddollkXXKKKKKKK000000dxXNWWWWWWWWWWWNNNNNXd'...,xXXNNWWWX0kxxxxddOKOocokO0KK0xdK......................
+#.................................WKOxxO0XXXK00OkkkkxodOXK000000000000xxXWWWWWWWWWWWWWNNNNX0o'.'o0XNNWWWXxcoxkkkdcl0NKKNWWNXKKOdOW.....................
+#....................................NKkxxkOKXXXK0OOkxod0XK00000000000xxXWWWWWWWWWWWWWWNXKOOkxxxkO0XNWWWN0dldkkxolkNWWWWWWNXKKOdOW.....................
+#.......................................NKOxxxkO0KXKK0OddOXKK00000000KOdONWWWWWWWWWWWWWWNNNWWWWWWNNNWWWWWWN0xocokKNNNKKNWWNXKKOd0W.....................
+#..........................................WNKOkkxxxxxkxllkKXK0000000KKkd0NWWWWWWWWWWWWWNXXNWWWWWWWWWWWWWWWWNkoONWWWWKxkNNXK00xloxkOKNW................
+#...........................................WNKOxoc:;;;;,;cd0KK0000000KKkdOXWWWWWWWWWWWNOkXNWWWWWWWWWWWWWWN0xdddkKXK0xdOXKKKOdclddolllox0N.............
+#........................................N0xollllodxxdol:;,;cdOKK000000KK0kxkOKNWWWWWWWXxd0XNWWWWWWWWWWNKOxxOXNKxodxxx0KK0kdollllodxxdocclxKW..........
+#......................................Nkl:codxxxxddollcccccccldOKKK00000KK0OxdONWWWWWWWX0kxkkkOOO0OOOkkxk0NWWWNxd0K00Oxdc:coddddddddddddl;c0W.........
+#.....................................WO;:oddddddddxxxxxxxxxxdolclxO0KK000OkxdkXNWWWWWWWNWWNXK0OOOOOO0KXNWWWWWNOooxxddol:;,,;:coooooooooc::oK..........
+#.......................................Nx;,coooooooooooodddddo:,:odooccc:::::lodxkO000K0kdx0KXXXNNXXXXXXXK0koc::;,,:okOOOOOkoc,..';coOXW..............
+#......................................Xd;:loddddddddddddddddxxo:,,:ldxkxdllox0KXXNNNNNNX0KXNNNNWWWWWWWNNNNNX0xl:;;cdkOOkxdl:,,,;ccc:::coxKW...........
+
+
+

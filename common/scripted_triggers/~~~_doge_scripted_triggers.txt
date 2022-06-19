@@ -5,10 +5,20 @@
 ## doge_has_energy_grid: Checks if the planet has an energy grid building.
 # Context: Planet
 doge_can_build_energy_grid = {
-	NOR = {
-        num_buildings = { type = building_energy_grid value > 1 in_construction = any }
-        num_buildings = { type = building_energy_nexus value > 1 in_construction = any }
-        num_buildings = { type = building_roci_class_4_singularity_mod value > 1 in_construction = any }
-        num_buildings = { type = building_fe_power_hub value > 1 in_construction = any }
+        NOR = {
+                num_buildings = { type = building_energy_grid value > 1 in_construction = any }
+                num_buildings = { type = building_energy_nexus value > 1 in_construction = any }
+                num_buildings = { type = building_roci_class_4_singularity_mod value > 1 in_construction = any }
+                num_buildings = { type = building_fe_power_hub value > 1 in_construction = any }
+	}
+}
+## doge_can_build_mineral_purification: Checks if the planet has a mineral purification building.
+# Context: Planet
+doge_can_build_mineral_purification = {
+        NOR = {
+                num_buildings = { type = building_mineral_purification_plant value > 1 in_construction = any }
+                num_buildings = { type = building_mineral_purification_hub value > 1 in_construction = any }
+                num_buildings = { type = building_roci_dimensional_fabricator_mod value > 1 in_construction = any }
+                num_buildings = { type = building_fe_mineral_processing_plant value > 1 in_construction = any }
 	}
 }
