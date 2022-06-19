@@ -1,10 +1,17 @@
-##########################################################################
+####################################################################################################
 # Doge Jobs
-##########################################################################
+####################################################################################################
 
-### Technician Jobs ###
+### Doge Variables ###
+@djob_sr_upkeep = 0.02
 
+####################################################################################################
+# Energy Jobs
+####################################################################################################
+
+##################################################
 ## Master Technicians (Doge) are new technicians for upper tier buildings which fill the role of specialist technicians.
+##################################################
 doge_master_technician = {
     category = specialist
     condition_string = SPECIALIST_JOB_TRIGGER
@@ -32,7 +39,7 @@ doge_master_technician = {
             energy = 10
         }
         upkeep = {
-            exotic_gases = 0.02
+            exotic_gases = @djob_sr_upkeep
         }
         produces = {
             trigger = {
@@ -83,7 +90,9 @@ doge_master_technician = {
     }
 }
 
+##################################################
 ## Master Technican Drones (Doge) are the gestalt iteration of the Master Technician. They remain simple drones.
+##################################################
 doge_master_technician_drone = {
     category = simple_drone
     condition_string = DRONE_JOB_TRIGGER
@@ -103,7 +112,7 @@ doge_master_technician_drone = {
             energy = 10
         }
         upkeep = {
-            exotic_gases = 0.02
+            exotic_gases = @djob_sr_upkeep
         }
         produces = {
             trigger = {
@@ -165,9 +174,13 @@ doge_master_technician_drone = {
     }
 }
 
-### Minerals Jobs ###
+####################################################################################################
+# Minerals Jobs
+####################################################################################################
 
+##################################################
 ## Master Miners (Doge) are new miners for mid tier buildings. They remain as workers.
+##################################################
 doge_master_miner = {
     category = worker
     condition_string = WORKER_JOB_TRIGGER
@@ -195,7 +208,7 @@ doge_master_miner = {
             minerals = 7
         }
         upkeep = {
-            volatile_motes = 0.02
+            volatile_motes = @djob_sr_upkeep
         }
         produces = {
             trigger = {
@@ -319,7 +332,9 @@ doge_master_miner = {
     }
 }
 
+##################################################
 ## Master Miner Drones (Doge) are the gestalt iteration of the Master Miner. They remain simple drones.
+##################################################
 doge_master_mining_drone = {
     category = simple_drone
     condition_string = DRONE_JOB_TRIGGER
@@ -339,7 +354,7 @@ doge_master_mining_drone = {
             minerals = 7
         }
         upkeep = {
-            volatile_motes = 0.02
+            volatile_motes = @djob_sr_upkeep
         }
         produces = {
             trigger = {
@@ -399,7 +414,9 @@ doge_master_mining_drone = {
     }
 }
 
+##################################################
 ## Master Scrap Miners (Doge) are miners for the Shattered Ring World. They remain workers.
+##################################################
 doge_master_scrap_miner = {
     category = worker
     condition_string = WORKER_JOB_TRIGGER
@@ -419,7 +436,7 @@ doge_master_scrap_miner = {
             alloys = 2
         }
         upkeep = {
-            volatile_motes = 0.02
+            volatile_motes = @djob_sr_upkeep
         }
         produces = {
             trigger = {
@@ -526,12 +543,15 @@ doge_master_scrap_miner = {
     }
 }
 
+##################################################
 ## Master Scrap Miner Drones (Doge) are the Gestalt version of Master Scrap Miners. They remain simple drones.
+##################################################
 doge_master_scrap_miner_drone = {
     category = simple_drone
     condition_string = DRONE_JOB_TRIGGER
     building_icon = building_mineral_purification_plant
     icon = miner
+
     possible_pre_triggers = {
         has_owner = yes
         is_enslaved = no
@@ -547,7 +567,7 @@ doge_master_scrap_miner_drone = {
             alloys = 2
         }
         upkeep = {
-            volatile_motes = 0.02
+            volatile_motes = @djob_sr_upkeep
         }
     }
     weight = {
@@ -581,9 +601,406 @@ doge_master_scrap_miner_drone = {
     }
 }
 
+####################################################################################################
+# Food Jobs
+####################################################################################################
 
-### Unity Jobs ###
+##################################################
+## Master Farmer (Doge) are improved versions of farmers. They remain workers.
+##################################################
+doge_master_farmer = {
+    category = worker
+    condition_string = WORKER_JOB_TRIGGER
+    building_icon = building_food_processing_facility
+    clothes_texture_index = 2
+    icon = farmer
 
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+    possible_precalc = can_fill_worker_job
+    possible = {
+        hidden_trigger = {
+            exists = owner
+        }
+        owner = { is_gestalt = no }
+    }
+    resources = {
+        category = planet_farmers
+        produces = {
+            food = 10
+        }
+        upkeep = {
+            volatile_motes = @djob_sr_upkeep
+        }
+        produces = {
+            trigger = {
+                exists = owner
+                owner = { is_robot_empire = yes }
+            }
+            food = -1
+        }
+        produces = {
+            trigger = {
+                planet = {
+                    has_planet_flag = has_produce_requisitorium
+                }
+            }
+            food = @requisitorium_food_reduction
+        }
+        produces = {
+            trigger = {
+                owner = {
+                    is_anthropocentric = yes
+                    is_lithoid_empire = no
+                }
+            }
+            food = 1
+        }
+    }
+    overlord_resources = {
+        category = planet_requisitioned_food
+        produces = {
+            trigger = {
+                planet = {
+                    has_planet_flag = has_produce_requisitorium
+                }
+            }
+            food = @requisitorium_food_overlord
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        planet_amenities_add = 2
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_bugged_agrarian_idyll_corpo
+            }
+        }
+        trade_value_add = 1
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_bugged_agrarian_idyll_corpo
+            }
+            planet = {
+                has_active_building = building_bugged_planetary_stock_exchange
+            }
+        }
+        trade_value_add = 1
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_valid_civic = civic_bugged_agrarian_idyll_corpo
+            }
+            planet = {
+                has_active_building = building_galactic_stock_exchange
+            }
+        }
+        trade_value_add = 2
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+    }
+    weight = {
+        weight = @worker_job_weight
+        mult = value:job_weights_modifier|JOB|farmer|RESOURCE|food|
+        modifier = {
+            factor = 1.1
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            factor = 10
+            is_enslaved = yes
+            can_take_servant_job = no
+            NOT = {
+                has_slavery_type = {
+                    type = slavery_indentured
+                }
+            }
+        }
+        modifier = {
+            factor = 3
+            OR = {
+                is_non_sapient_robot = yes
+                is_shackled_robot = yes
+            }
+            can_take_servant_job = no
+            owner = {
+                has_technology = tech_droid_workers
+            }
+        }
+        modifier = {
+            factor = 200
+            OR = {
+                is_non_sapient_robot = yes
+                is_shackled_robot = yes
+            }
+            can_take_servant_job = no
+            owner = {
+                NOT = {
+                    has_technology = tech_droid_workers
+                }
+            }
+        }
+        modifier = {
+            factor = 0.25
+            can_take_servant_job = yes
+        }
+        modifier = {
+            factor = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+            owner = {
+                has_valid_civic = civic_agrarian_idyll
+            }
+        }
+        modifier = {
+            factor = 1.2
+            exists = planet
+            planet = {
+                has_available_jobs = farmer
+            }
+            exists = owner
+            owner = {
+                is_ai = yes
+                has_monthly_income = {
+                    resource = food
+                    value < 10
+                }
+            }
+        }
+        modifier = {
+            factor = 0.5
+            has_trait = trait_lithoid
+            owner = {
+                is_lithoid_empire = yes
+                has_monthly_income = {
+                    resource = food
+                    value >= 0
+                }
+            }
+        }
+    }
+}
+
+##################################################
+## Master Agri-Drones (Doge) are improved versions of Agri-Drones. They remain simple drones.
+##################################################
+agri_drone = {
+    category = simple_drone
+    condition_string = DRONE_JOB_TRIGGER
+    building_icon = building_food_processing_facility
+    icon = agri_drone
+
+    possible_pre_triggers = {
+        has_owner = yes
+        is_enslaved = no
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+    possible_precalc = can_fill_drone_job
+    resources = {
+        category = planet_farmers
+        produces = {
+            food = 10
+        }
+        upkeep = {
+            volatile_motes = @djob_sr_upkeep
+        }
+        produces = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_robot_empire = yes
+                }
+            }
+            food = -1
+        }
+        produces = {
+            trigger = {
+                planet = {
+                    has_planet_flag = has_produce_requisitorium
+                }
+            }
+            food = @requisitorium_food_reduction
+        }
+    }
+    overlord_resources = {
+        category = planet_requisitioned_food
+        produces = {
+            trigger = {
+                planet = {
+                    has_planet_flag = has_produce_requisitorium
+                }
+            }
+            food = @requisitorium_food_overlord
+        }
+    }
+    weight = {
+        weight = @simple_drone_job_weight
+        mult = value:job_weights_modifier|JOB|agri_drone|RESOURCE|food|
+        modifier = {
+            factor = 0.9
+            NOT = {
+                has_job = agri_drone
+            }
+            owner = {
+                has_monthly_income = {
+                    resource = food
+                    value > 50
+                }
+            }
+        }
+        modifier = {
+            factor = 1.2
+            has_job = agri_drone
+        }
+        modifier = {
+            factor = 0.9
+            owner = {
+                is_robot_empire = yes
+            }
+        }
+        modifier = {
+            factor = 1.1
+            exists = owner
+            years_passed < 1
+            owner = {
+                has_valid_civic = civic_machine_assimilator
+            }
+            has_trait = trait_cybernetic
+        }
+        modifier = {
+            factor = 0.5
+            has_trait = trait_lithoid
+            owner = {
+                is_lithoid_empire = yes
+                has_monthly_income = {
+                    resource = food
+                    value >= 0
+                }
+            }
+        }
+    }
+}
+
+##################################################
+## Master Anglers (Doge) are improved versions of Anglers (for Angler civic). They remain workers.
+##################################################
+doge_master_angler = {
+    category = worker
+    condition_string = WORKER_JOB_TRIGGER
+    building_icon = building_food_processing_facility
+    clothes_texture_index = 2
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+    possible_precalc = can_fill_worker_job
+    possible = {
+        hidden_trigger = {
+            exists = owner
+        }
+        owner = {
+            is_gestalt = no
+            is_anglers_empire = yes
+        }
+    }
+    resources = {
+        category = planet_farmers
+        produces = {
+            food = 12
+        }
+        upkeep = {
+            volatile_motes = @djob_sr_upkeep
+        }
+        produces = {
+            trigger = {
+                planet = {
+                    has_planet_flag = has_produce_requisitorium
+                }
+            }
+            food = @requisitorium_food_reduction
+        }
+        produces = {
+            trigger = {
+                owner = {
+                    is_anthropocentric = yes
+                    is_lithoid_empire = no
+                }
+            }
+            food = 1
+        }
+    }
+    overlord_resources = {
+        category = planet_requisitioned_food
+        produces = {
+            trigger = {
+                planet = {
+                    has_planet_flag = has_produce_requisitorium
+                }
+            }
+            food = @requisitorium_food_overlord
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        trade_value_add = 3
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+    }
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        trade_value_add = 1
+        mult = value:bugged_stock_exchange_tv
+    }
+    weight = {
+        weight = @worker_job_weight
+        mult = value:job_weights_modifier|JOB|angler|RESOURCE|food|
+        mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
+        modifier = {
+            factor = 10
+            is_enslaved = yes
+            can_take_servant_job = no
+            NOT = {
+                has_slavery_type = {
+                    type = slavery_indentured
+                }
+            }
+        }
+        modifier = {
+            factor = 0.25
+            can_take_servant_job = yes
+        }
+    }
+}
+
+####################################################################################################
+# Unity Jobs
+####################################################################################################
 ## Entertainers (Vanilla) updated to provide more unity and some worker production.
 entertainer = {
     category = specialist

@@ -83,18 +83,18 @@
 @giga_preset_lifter_scaling = 1
 @giga_preset_brain_scaling = 1
 # O CLASS SCALING
-@giga_preset_o_scaling = 1
+@giga_preset_o_scaling = 0
 
 # MEGASTRUCTURE BUILD CAP
 # 0 = INFINITE
 # 1 / 2 / 3 = RESPECTIVE NUMBER
 # 4 = SUPERTENSILES
-@giga_preset_build_cap = 3
+@giga_preset_build_cap = 1
 
 # MEGASTRUCTuRE INFLUENCE UPKEEP
 # 0 = DISABLED
 # 1 = ENABLED
-@giga_preset_influence_upkeep = 0
+@giga_preset_influence_upkeep = 1
 
 # CELESTIAL WARSHIP FABRICATION
 # 0 = DISABLED
@@ -117,14 +117,14 @@
 # SET THE NUMBER TO THE EXACT AMOUNT YOU WANT
 # IT CANNOT BE NEGATIVE OR DECIMAL
 @giga_preset_player_mega_output = 100
-@giga_preset_player_mega_cost = 50
-@giga_preset_player_mega_upkeep = 50
+@giga_preset_player_mega_cost = 100
+@giga_preset_player_mega_upkeep = 100
 
 # AI MEGA SETTINGS
 # SET THE NUMBER TO THE EXACT AMOUNT YOU WANT
 # IT CANNOT BE NEGATIVE OR DECIMAL
-@giga_preset_ai_mega_output = 95
-@giga_preset_ai_mega_cost = 100
+@giga_preset_ai_mega_output = 100
+@giga_preset_ai_mega_cost = 60
 @giga_preset_ai_mega_upkeep = 100
 
 # EHOF
@@ -160,7 +160,7 @@
 # 0 = DISABLED
 # 1 = ENABLED
 @giga_preset_fe_megastructures = 1
-@giga_preset_gamers = 0
+@giga_preset_gamers = 1
 @giga_preset_pouchkinn = 1
 
 # FALLEN EMPIRES CELESTIAL WARSHIPS
@@ -206,7 +206,7 @@
 # KATZEN PORTRAITS
 # 0 = VANILLA
 # 1 = LORE ACCURATE
-@giga_preset_katzen_portraits = 2
+@giga_preset_katzen_portraits = 0
 
 # BLOKKATS
 # 0 = DISABLED
@@ -230,7 +230,7 @@
 # 5 = LATE ENDGAME
 # 6 = GAME START
 # 7 = RANDOM
-@giga_preset_blokkat_date = 7
+@giga_preset_blokkat_date = 1
 
 # BLOKKATS DIFFICULTY
 # 0 = BLOKITTENS
@@ -260,11 +260,11 @@
 
 @giga_preset_dyson_cap = 4
 @giga_preset_decompressor_cap = 4
-@giga_preset_assembly_cap = 4
-@giga_preset_coordination_cap = 4
-@giga_preset_mega_art_cap = 4
+@giga_preset_assembly_cap = 1
+@giga_preset_coordination_cap = 1
+@giga_preset_mega_art_cap = 1
 @giga_preset_shipyard_cap = 4
-@giga_preset_nexus_cap = 4
+@giga_preset_nexus_cap = 1
 @giga_preset_ringworld_cap = 4
 # ANY VALUE OTHER THAN 0 ON THE SENTRY WILL COUNT AS 1
 @giga_preset_sentry_cap = 1
@@ -286,16 +286,16 @@
 ## 4 = INFINITE
 ## 5 = REPEATABLE
 ## THE RINGWORLD OPTIONS WILL NOT DO ANYTHING IF RINGWORLDS ARE DISABLED
-@giga_preset_ecumenopolis_ringworld = 5
-@giga_preset_hive_ringworld = 5
-@giga_preset_machine_ringworld = 5
-@giga_preset_ringworld_upgrade = 5
+@giga_preset_ecumenopolis_ringworld = 4
+@giga_preset_hive_ringworld = 4
+@giga_preset_machine_ringworld = 4
+@giga_preset_ringworld_upgrade = 4
 
 ####
-@giga_preset_alderson = 5
-@giga_preset_equatorial = 5
-@giga_preset_interstellar = 5
-@giga_preset_computer = 5
+@giga_preset_alderson = 1
+@giga_preset_equatorial = 4
+@giga_preset_interstellar = 4
+@giga_preset_computer = 4
 # ANY VALUE OTHER THAN 0 ON BIRCH WILL COUNT AS 1
 @giga_preset_elysium = 1
 # ANY VALUE OTHER THAN 0 ON ELYSIUM WILL COUNT AS INFINITE
@@ -325,19 +325,19 @@
 #+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #megastructures
 
-@giga_preset_stripmine = 5
-@giga_preset_big_vat = 5
-@giga_preset_megabore = 5
-@giga_preset_fusion_suppressor = 5
-@giga_preset_kugelblitz = 5
-@giga_preset_disco_moon = 5
+@giga_preset_stripmine = 4
+@giga_preset_big_vat = 1
+@giga_preset_megabore = 4
+@giga_preset_fusion_suppressor = 4
+@giga_preset_kugelblitz = 1
+@giga_preset_disco_moon = 4
 @giga_preset_maginot = 3
 @giga_preset_gigaforge = 4
 @giga_preset_orbital_arcology = 5
 @giga_preset_orbital_bastion = 5
-@giga_preset_lifter = 5
-@giga_preset_succ = 5
-@giga_preset_yggdrasil = 5
+@giga_preset_lifter = 4
+@giga_preset_succ = 1
+@giga_preset_yggdrasil = 1
 # ANY VALUE OTHER THAN 0 FOR BEACON AND SIPHON WILL BE CONSIDERED 1
 @giga_preset_psionic_beacon = 1
 @giga_preset_hypersiphon = 1
@@ -347,11 +347,11 @@
 #+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #gigastructures
 
-@giga_preset_hraemc = 5
-@giga_preset_hyper_assembly = 5
-@giga_preset_matrioshka_brain = 5
+@giga_preset_hraemc = 4
+@giga_preset_hyper_assembly = 4
+@giga_preset_matrioshka_brain = 1
 @giga_preset_hyperforge = 4
-@giga_preset_penrose = 5
+@giga_preset_penrose = 4
 # ANY VALUE OTHER THAN 0 FOR NDB AND QSO WILL BE CONSIDERED 1
 @giga_preset_ndb = 1
 @giga_preset_qso = 1
@@ -361,7 +361,7 @@
 #+-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+
 #celestial crafts
 
-@giga_preset_attack_moon = 5
+@giga_preset_attack_moon = 4
 @giga_preset_planetcraft = 3
 @giga_preset_systemcraft = 1
 

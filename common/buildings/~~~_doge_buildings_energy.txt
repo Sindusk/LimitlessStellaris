@@ -1535,7 +1535,7 @@ building_fe_power_hub = {
     }
     # Tech Requirements
     prerequisites = {
-        tech_fe_power_hub
+        "tech_fe_power_hub"
     }
     allow = {
         # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
@@ -1597,6 +1597,7 @@ building_fe_power_hub = {
         planet_technician_energy_produces_add = 8
         planet_jobs_energy_produces_mult = 0.05
     }
+    
     # Normal Jobs
     triggered_planet_modifier = {
         potential = {
@@ -1605,6 +1606,7 @@ building_fe_power_hub = {
         }
         modifier = {
             job_acot_energyman_add = 3
+        }
     }
     # Gestalt Jobs
     triggered_planet_modifier = {

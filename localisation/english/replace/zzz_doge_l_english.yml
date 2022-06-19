@@ -6,6 +6,11 @@
   gal_com_startech_technology_state:0 "Technology Power"
   gal_com_startech_personality:0 "Leader Personality"
 
+  # General Mod Description Improvements
+  mod_country_resource_max_energy_add: "Maximum £energy£ §Y$energy$§! Capacity"
+  mod_country_resource_max_minerals_add: "Maximum £minerals£ §Y$minerals$§! Capacity"
+  mod_country_resource_max_food_add: "Maximum £food£ §Y$food$§! Capacity"
+
   # Simple Traditions - Industry
   tr_industry_finish_desc:1 "§HUnlocks Planetary Decision:§! Designate as Mining World\n§HUnlocks Planetary Decision:§! Designate as Energy World\n§HUnlocks Planetary Decision:§! Designate as Food World\n§HUnlocks Planetary Decision:§! Designate as Production World\n§HUnlocks Planetary Decision:§! Designate as Foundry World\n§HUnlocks Planetary Decision:§! Designate as Unity World\n§HUnlocks Planetary Decision:§! Designate as Trade World\nAscension Perks Unlocked: §G+1§!"
   decision_simple_planet_unity:0 "Designate as Unity World"
@@ -29,7 +34,7 @@
   ## Energy
   # Energy - Tier 0
   eb_energy: "Power Plant"
-  eb_energy_tt: "§MEnergy§! - §BTier 1§! - §EBasic§!"
+  eb_energy_tt: "§MEnergy§! - §BTier 1§! - §EFoundation§!"
   eb_energy_desc: "A generic power generation plant."
   # Energy - Basic
   upgradebuildings_building_power_plant: "Power Plant II"
@@ -69,17 +74,11 @@
 #building_ae_power_hub: "Alpha Master Power Nexus"
 #building_ae_power_hub_desc: "Exploiting the advanced network systems of the enigmatic constructs on the planet's capitol building allows the Nexus to create a planet-wide energy network that massively increases energy production."
 # 
-#tech_fe_power_hub: "Dark Matter Energy Grid"
-#tech_fe_power_hub_desc: "Our scientists believe we can apply the same method used to construct and operate dark matter power plants to improve our current energy nexus template."
-# 
-#tech_ae_power_hub: "Additional Pylon Augmentation"
-#tech_ae_power_hub_desc: "Constructing an additional pylon on the Energy Grid should now be possible with new advancements without breaking safety protocols."
-# 
 
   ## Minerals
   # Minerals - Tier 0
   eb_mineral: "Mining Facilties"
-  eb_mineral_tt: "§MMinerals§! - §BTier 1§! - §EBasic§!"
+  eb_mineral_tt: "§MMinerals§! - §BTier 1§! - §EFoundation§!"
   eb_mineral_desc: "Its a mine, not alot to it."
   # Minerals - Basic
   upgradebuildings_building_strip_mine: "Mining Facilities II"
@@ -110,6 +109,45 @@
   building_fe_mineral_processing_plant: "Crystal Synthesizer"
   building_fe_mineral_processing_plant_tt: "§MMinerals§! - §BTier 5 & 6§! - §EProductivity§!"
   building_fe_mineral_processing_plant_desc: "Powerful facility that provides Crytalists necessary tools to synthesize high-yield minerals."
+
+  ## Food
+  # Minerals - Tier 0
+  building_hydroponics_farm: "Hydroponics Farms"
+  building_hydroponics_farm_tt: "§MFood§! - §BTier 1§! - §EFoundation§!"
+  building_hydroponics_farm_desc: "Hydroponics Farms produce nutrient-rich vegetable matter tailored for consumption by local Pops."
+  # Food - Basic
+  building_hydroponics_farm_2: "Hydroponic Farms II"
+  building_hydroponics_farm_2_tt: "§MFood§! - §BTier 2§! - §EBasic§!"
+  building_hydroponics_farm_2_desc: "These centralized hydroponic farms use fertilizers and pesticides to increase their output, allowing them to farm large amounts of food regardless of the planetary environment."
+  eb_hydrofarm2: "Hydroponics Farm III"
+  eb_hydrofarm2_tt: "§MFood§! - §BTier 3§! - §EBasic§!"
+  eb_hydrofarm2_desc: "An upgraded Hydroponics Farm."
+  building_hydroponics_farm_3: "Hydroponics Farm IV"
+  building_hydroponics_farm_3_tt: "§MFood§! - §BTier 4§! - §EBasic§!"
+  building_hydroponics_farm_3_desc: "By using vertical layered agriculture techniques and by expending large amounts of agricultural supplies these towering arcologies grow vast and varied amounts of food in any conceivable environment with maximum efficiency."
+  eb_hydrofarm3: "Hydroponics Farm V"
+  eb_hydrofarm3_tt: "§MFood§! - §BTier 5§! - §EBasic§!"
+  eb_hydrofarm3_desc: "An upgraded Hydroponics Farm."
+  # Food - Productivity
+  building_food_processing_facility: "Food Processing Facilities"
+  building_food_processing_facility_tt: "§MFood§! - §BTier 2§! - §EProductivity§!"
+  building_food_processing_facility_desc: "Food that is processed at these facilities has its nutritional value greatly increased."
+  building_food_processing_facility_effect_desc: "Increases the base production of £food£ §YFood§! producing jobs by §G1§!."
+  building_food_processing_center: "Food Processing Centers"
+  building_food_processing_center_tt: "§MFood§! - §BTier 3§! - §EProductivity§!"
+  building_food_processing_center_desc: "Streamlined facilities where large amounts of food can be processed."
+  building_food_processing_center_effect_desc: "Increases the base production of £food£ §YFood§! producing jobs by §G2§!."
+  building_roci_nourishment_center_mod: "Nourishment Center"
+  building_roci_nourishment_center_mod_tt: "§MFood§! - §BTier 4§! - §EProductivity§!"
+  building_roci_nourishment_center_mod_desc: "If it exists as a flavor, it can be replicated here."
+  building_fe_food_processing_complex: "Agri Super-Complex"
+  building_fe_food_processing_complex_tt: "§MFood§! - §BTier 5 & 6§! - §EProductivity§!"
+  building_fe_food_processing_complex_desc: "Multiple agricultural bio-domes powered by a central dark matter facility that will ensure the planet always has fresh green apples, or whatever it is our government uses for food."
+
+  #building_ae_food_processing_complex: "Agri Mega-Complex"
+  #building_ae_food_processing_complex_desc: "It matters not whether the planet has no green, for the green is everywhere, and that green is good."
+ 
+
 
 
   ### Pop Jobs ###
@@ -177,13 +215,50 @@
   job_acot_mineralman_plural: "Crystalists"
   job_acot_mineralman_desc: "Well-trained specialists who are trained to materialize dark matter into high-yielding minerals."
   job_acot_mineralman_effect_desc: "£job_acot_mineralman£ $job_acot_mineralman_plural$ produce £minerals£ §Y$minerals$§!."
-  mod_job_acot_mineralman_add: "$job_acot_mineralman$"
+  mod_job_acot_mineralman_add: "$job_acot_mineralman$ Jobs"
   # ACOT Crystalist (Gestalt)
   job_acot_mineraldrone: "Crystalist"
   job_acot_mineraldrone_plural: "Crystalists"
   job_acot_mineraldrone_desc: "Dedicated drones trained to materialize dark matter into high-yielding minerals."
   job_acot_mineraldrone_effect_desc: "£job_acot_mineraldrone£ $job_acot_mineraldrone_plural$ produce £minerals£ §Y$minerals$§!."
-  mod_job_acot_mineraldrone_add: "$job_acot_mineraldrone$"
+  mod_job_acot_mineraldrone_add: "$job_acot_mineraldrone$ Jobs"
+
+  ## Food
+  # Master Farmer
+  job_doge_master_farmer: "Master Farmer"
+  job_doge_master_farmer_plural: "Master Farmers"
+  job_doge_master_farmer_desc: "Farming looks mighty easy when your plow is a pencil and you're a thousand miles from the corn field."
+  job_doge_master_farmer_effect_desc: "£job_doge_master_farmer£ $job_doge_master_farmer_plural$ produce £food£ §Y$food$§!"
+  mod_job_doge_master_farmer_add: "$job_doge_master_farmer$ Jobs"
+  mod_job_doge_master_farmer_per_pop: "§G+1§! $job_doge_master_farmer$ Job per $VALUE$ Pops"
+  mod_job_doge_master_farmer_per_pop_short: "\n§G+1§! £mod_job_doge_master_farmer_add£ per $VALUE$ £pop£"
+  # Master Agri-Drone
+  job_doge_master_agri_drone: "Master Agri-Drone"
+  job_doge_master_agri_drone_plural: "Master Agri-Drones"
+  job_doge_master_agri_drone_desc: "Food production requires a variety of workers, from operators of planting and harvesting machinery, to watering, fertilizer and pesticide systems managers, to livestock handlers."
+  job_doge_master_agri_drone_effect_desc: "£job_doge_master_agri_drone£ $job_doge_master_agri_drone_plural$ produce £food£ §Y$food$§!"
+  mod_job_doge_master_agri_drone_add: "$job_doge_master_agri_drone$ Jobs"
+  mod_job_doge_master_agri_drone_per_pop: "§G+1§! $job_doge_master_agri_drone$ Job per $VALUE$ Pops"
+  mod_job_doge_master_agri_drone_per_pop_short: "\n§G+1§! £mod_job_doge_master_agri_drone_add£ per $VALUE$ £pop£"
+  # Master Angler
+  job_doge_master_angler: "Master Angler"
+  job_doge_master_angler_plural: "Master Anglers"
+  job_doge_master_angler_desc: "Hook and line are things of the past, but sustainably growing and hauling food out of nature takes equal patience, much planning, and great care."
+  job_doge_master_angler_effect_desc: "£job_doge_master_angler£ $job_doge_master_angler_plural$ produce £food£ §Y$food$§! and £trade_value£ §Y$TRADE_VALUE$§!"
+  mod_job_doge_master_angler_add: "$job_doge_master_angler$ Jobs"
+
+  # ACOT Gourmet Master (Normal)
+  job_acot_foodman: "Gourmet Master"
+  job_acot_foodman_plural: "Gourmet Masters"
+  job_acot_foodman_desc: "Food for Thought. Delicious!"
+  job_acot_foodman_effect_desc: "£job_acot_foodman£ $job_acot_foodman_plural$ produce £food£ §Y$food$§!"
+  mod_job_acot_foodman_add: "$job_acot_foodman$ Jobs"
+  # ACOT Gourmet Drone (Gestalt)
+  job_acot_fooddrone: "Gourmet Drone"
+  job_acot_fooddrone_plural: "Gourmet Drones"
+  job_acot_fooddrone_desc: "There is no spoon."
+  job_acot_fooddrone_effect_desc: "£job_acot_fooddrone£ $job_acot_fooddrone_plural$ produce £food£ §Y$food$§!"
+  mod_job_acot_fooddrone_add: "$job_acot_fooddrone$ Jobs"
 
 
   # Extra stuff that comes later
@@ -204,12 +279,6 @@
 #
  # upgradebuildings_building_habitat_mine_3:0 "Mining Decks"
  # upgradebuildings_building_habitat_mine_3_desc:0 "These consolidated decks are packed with ore refineries and mining drone bays as well as a streamlined supply network which expends a vast amount of mining supplies."
-#
- # building_hydroponics_farm_2:0 "Hydroponic Centers"
- # building_hydroponics_farm_2_desc:0 "These centralized hydroponic farms use fertilizers and pesticides to increase their output, allowing them to farm large amounts of food regardless of the planetary environment." 
-#
- # building_hydroponics_farm_3:0 "Hydroponic Arcologies"
- # building_hydroponics_farm_3_desc:0 "By using vertical layered agriculture techniques and by expending large amounts of agricultural supplies these towering arcologies grow vast and varied amounts of food in any conceivable environment with maximum efficiency." 
 #
  # tech_hydroponics_2:0 "Artificial Biospheres"
  # tech_hydroponics_2_desc:0 "The maintenance of artificial ecosystems is an expensive and involved process which will allow our farmers to grow large amounts of food in environments unfavorable to regular agriculture."
@@ -252,13 +321,6 @@
 #
  # tech_rare_crystals_mines_3:0 "Nano Separators"
  # tech_rare_crystals_mines_3_desc:0 "While far too expensive for use in common mineral mining nano separators will greatly increase the production of our rare crystal mining operations by separating valuable fragments of any size from vast quantities of unwanted particles."
-#
- # #Farms
- # eb_hydrofarm2:0 "Hydroponics Farm 2"
- # eb_hydrofarm2_desc:0 "An upgraded Hydroponics Farm."
-#
- # eb_hydrofarm3:0 "Hydroponics Farm 3"
- # eb_hydrofarm3_desc:0 "An upgraded Hydroponics Farm 2."
 #
  # #Mines
  # eb_mineral_hab2:0 "Asteroid Towing Bay 2"

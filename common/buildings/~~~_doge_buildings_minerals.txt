@@ -1,6 +1,6 @@
-##########################################################################
+####################################################################################################
 # Doge Buildings (Minerals)
-##########################################################################
+####################################################################################################
 
 ### Vanilla Building Variables ###
 # Specifically here as a reference, not going to modify them in case it ruins everything.
@@ -92,6 +92,7 @@
 ####################################################################################################
 # Minerals Buildings
 ####################################################################################################
+
 ##################################################
 ## Mining Facilities (Tier 0) [Extra Buildings]
 ##################################################
@@ -244,9 +245,10 @@ eb_mineral = {
 		text = job_scrap_miner_effect_desc
 	}
 
+	# Building Upgrades
 	upgrades = {
-		"upgradebuildings_building_strip_mine"
-		"building_mineral_purification_plant"
+		"upgradebuildings_building_strip_mine" # Tier 1, Basic Branch
+		"building_mineral_purification_plant" # Tier 1, Productivity Branch
 	}
 
 	# AI Weighting
