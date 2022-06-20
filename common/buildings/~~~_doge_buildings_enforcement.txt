@@ -90,7 +90,7 @@
 @db6_dark_jobs = 2      # Tier 6 dark matter jobs
 
 ####################################################################################################
-# Alloy Buildings
+# Enforcement Buildings - Foundation
 ####################################################################################################
 ##################################################
 ## Enforcement Center (Tier 0, Foundation) [Vanilla] - Normal Empires
@@ -302,8 +302,11 @@ building_sentinel_posts = {
     }
 }
 
+####################################################################################################
+# Enforcement Buildings - Stability
+####################################################################################################
 ##################################################
-## Enforcement Stronghold (Tier 3, Stability) [Vanilla]
+## Hall of Judgement (Tier 3, Stability) [Vanilla]
 ##################################################
 building_hall_judgment = {
     base_buildtime = @db3_time #@b2_time
@@ -327,17 +330,16 @@ building_hall_judgment = {
         category = planet_buildings
         cost = {
             minerals = @db3_minerals #@b2_minerals
-            exotic_gases = @b2_rare_cost
+            exotic_gases = @db3_rare_cost #@b2_rare_cost
         }
         upkeep = {
-            energy = @b1_upkeep
-            exotic_gases = @b2_rare_upkeep
+            energy = @db3_upkeep #@b1_upkeep
+            exotic_gases = @db3_rare_upkeep #@b2_rare_upkeep
         }
         upkeep = {
             trigger = {
-                owner = {
-                    has_civic = civic_police_state
-                }
+                exists = owner
+                owner = { has_civic = civic_police_state }
             }
             energy = 2
         }
@@ -401,13 +403,11 @@ building_hall_judgment = {
         }
         text = job_soldier_effect_desc
     }
-	
-	# AI Weight
-    ai_weight = {
-        weight = 1
-    }
 }
 
+####################################################################################################
+# Enforcement Buildings - Defense
+####################################################################################################
 ##################################################
 ## Enforcement Stronghold (Tier 2, Defense) [Vanilla]
 ##################################################
@@ -698,14 +698,6 @@ building_fortress = {
         "building_plentiful_traditions_zitadom"
     }
 
-	# AI Weight
-    ai_weight = {
-        weight = 1
-        modifier = {
-            factor = 0
-            owner = { has_country_flag = buildings_new_mote_building }
-        }
-    }
 	# Scripted trigger for AI flag
     on_built = {
         planet = {
@@ -859,9 +851,4 @@ building_plentiful_traditions_zitadom = {
         }
         text = job_bugged_mercenary_effect_desc
     }
-	
-	# AI Weight
-	ai_weight = {
-		weight = 0.5
-	}
 }

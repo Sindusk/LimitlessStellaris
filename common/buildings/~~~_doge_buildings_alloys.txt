@@ -2493,49 +2493,6 @@ building_fe_alloy_forge = {
 		building_ae_alloy_forge
 	}
 	
-	# AI Weight
-	ai_weight = {
-		weight = 100000
-		modifier = {
-			factor = 0
-			OR = {
-				num_buildings = {
-					type = building_fe_alloy_forge
-					value >= 3
-				}
-				num_buildings = {
-					type = building_ae_alloy_forge
-					value >= 3
-				}				
-			}
-		}
-		modifier = {
-			factor = 50
-			owner = { 
-				has_monthly_income = {
-					resource = alloys
-					value < 5
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			owner = { 
-				has_monthly_income = {
-					resource = sr_dark_matter
-					value <= 2
-				}
-			}
-		}
-		# There are already unworked jobs
-		# Blocks buildings unworkable by remaining pops (slaves/robots etc)
-		# Will be improved... at some point
-		modifier = {
-			factor = 0
-			free_jobs > 0
-		}
-	}
-
 	# AI Resource Production
     ai_resource_production = {
         alloys = 48
