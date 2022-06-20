@@ -619,7 +619,7 @@ building_fortress = {
 ##################################################
 # TODO: Maybe make these give more advanced soldiers? Ones with more naval capacity?
 building_plentiful_traditions_zitadom = {
-	base_buildtime = 360
+	base_buildtime = @db4_time #360
 	can_build = no
 	planetary_ftl_inhibitor = yes
 	position_priority = 100
@@ -628,6 +628,13 @@ building_plentiful_traditions_zitadom = {
 	# Building Potential
 	potential = {
 		owner = { has_tradition = tr_plentiful_defence_5 } # Requires Bunker Mentality perk from Defense tradition
+	}
+	# Tech Prereqs
+	prerequisites = {
+		"tech_global_defense_grid"
+	}
+	show_tech_unlock_if = { 
+		owner = { has_tradition = tr_plentiful_defence_5 }
 	}
 	# Allow Conditions
 	allow = {
@@ -639,6 +646,29 @@ building_plentiful_traditions_zitadom = {
 		exists = owner
 		owner = { is_ai = yes }
 		NOT = {	owner = { has_tradition = tr_plentiful_defence_5 } } # Must have the perk to obtain the building
+	}
+	
+	# Resources
+	resources = {
+		category = planet_buildings
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 3
+		}
+		cost = {
+			minerals = @db4_minerals #600
+			volatile_motes = @db4_rare_cost #75
+		}			
+		upkeep = {
+			energy = @db4_upkeep #2
+			volatile_motes = @db4_rare_upkeep #2
+			alloys = 5
+		}
 	}
 	
 	# Permanent Planet Modifier
@@ -724,54 +754,8 @@ building_plentiful_traditions_zitadom = {
         }
         text = job_bugged_mercenary_effect_desc
     }
-
-	resources = {
-		category = planet_buildings
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_unyielding_resistance_is_frugal
-				}
-			}
-			unity = 3
-		}
-		cost = {
-			minerals = 600
-			volatile_motes = 75
-		}			
-		upkeep = {
-			energy = 2
-			volatile_motes = 2
-			alloys = 5
-		}
-	}
 	
-	prerequisites = {
-		"tech_global_defense_grid"
-	}
-	
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_warrior_drone_effect_desc
-	}
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-		text = job_soldier_effect_desc
-	}
-	
-	show_tech_unlock_if = { 
-		owner = {
-			has_tradition = tr_plentiful_defence_5
-		}
-	}
-	
+	# AI Weight
 	ai_weight = {
 		weight = 0.5
 	}
