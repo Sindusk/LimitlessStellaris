@@ -270,6 +270,10 @@
   building_sentinel_posts: "Sentinel Posts" # Gestalt Version
   building_sentinel_posts_tt: "§MEnforcement§! - §BTier 1§! - §EFoundation§!"
   building_sentinel_posts_desc: "These are the outposts from which Patrol Drones scan the Consciousness for signs of deviancy and malfunction."
+  # Enforcement - Security
+  building_hall_judgment: "Hall of Judgment"
+  building_hall_judgment_tt: "§MEnforcement§! - §BTier 2 & 3§! - §ESecurity§!"
+  building_hall_judgment_desc: "A massive complex dedicated to law enforcement."
   # Enforcement - Defense
   building_stronghold: "Enforcement Stronghold"
   building_stronghold_tt: "§MEnforcement§! - §BTier 2§! - §EDefense§!"

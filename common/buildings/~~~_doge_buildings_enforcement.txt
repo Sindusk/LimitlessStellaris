@@ -102,7 +102,6 @@ building_precinct_house = {
 
 	# Building Potential
     potential = {
-        NOT = { has_modifier = slave_colony } # Cannot build on a slave colony
 		exists = owner
         owner = { is_regular_empire = yes } # Owner must be a regular empire
     }
@@ -300,6 +299,112 @@ building_sentinel_posts = {
     upgrades = {
         "building_hall_judgment"
 		"building_stronghold"
+    }
+}
+
+##################################################
+## Enforcement Stronghold (Tier 3, Stability) [Vanilla]
+##################################################
+building_hall_judgment = {
+    base_buildtime = @db3_time #@b2_time
+    category = government
+    can_build = no
+	
+	# Tech Prereqs
+    prerequisites = {
+        "tech_colonial_centralization"
+    }
+	# Allow Conditions
+	allow = {
+        NOT = { has_modifier = slave_colony } # Cannot build on a slave colony
+	}
+	# Destroy Trigger
+    destroy_trigger = {
+		buildings_no_exotic_gases = yes
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db3_minerals #@b2_minerals
+            exotic_gases = @b2_rare_cost
+        }
+        upkeep = {
+            energy = @b1_upkeep
+            exotic_gases = @b2_rare_upkeep
+        }
+        upkeep = {
+            trigger = {
+                owner = {
+                    has_civic = civic_police_state
+                }
+            }
+            energy = 2
+        }
+    }
+
+	# Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        modifier = {
+			job_enforcer_add = 5
+			job_soldier_add = 1
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+			job_patrol_drone_add = 5
+			job_warrior_drone_add = 1
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_hall_judgment_tt
+    }
+	# Patrol Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_patrol_drone_effect_desc
+    }
+	# Warrior Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_warrior_drone_effect_desc
+    }
+	# Enforcer (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_enforcer_effect_desc
+    }
+	# Soldier (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_soldier_effect_desc
+    }
+	
+	# AI Weight
+    ai_weight = {
+        weight = 1
     }
 }
 
