@@ -138,16 +138,16 @@
   building_mineralmines_3_desc: "By spending large amounts of inustrial explosives the miners at this complex blast expansive networks of mining tunnels deep into the planet's crust."
   # Minerals - Productivity
   building_mineral_purification_plant: "Mineral Purification Plants"
-  building_mineral_purification_plant_tt: "§MMinerals§! - §BTier 2§! - §EProductivity§!"
+  building_mineral_purification_plant_tt: "§MMinerals§! - §BTier 2§! - §EProductivity§! (Limit 1)"
   building_mineral_purification_plant_desc: "Minerals that have passed through these purifiers are of the highest quality."
   building_mineral_purification_hub: "Mineral Purification Hubs"
-  building_mineral_purification_hub_tt: "§MMinerals§! - §BTier 3§! - §EProductivity§!"
+  building_mineral_purification_hub_tt: "§MMinerals§! - §BTier 3§! - §EProductivity§! (Limit 1)"
   building_mineral_purification_hub_desc: "Massive hubs where minerals are received and then shuttled to arrays of purifiers."
   building_roci_dimensional_fabricator_mod: "Dimensional Fabricator"
-  building_roci_dimensional_fabricator_mod_tt: "§MMinerals§! - §BTier 4§! - §EProductivity§!"
+  building_roci_dimensional_fabricator_mod_tt: "§MMinerals§! - §BTier 4§! - §EProductivity§! (Limit 1)"
   building_roci_dimensional_fabricator_mod_desc: "This building uses dimensional technology to tunnel into other realities and siphon off their valuable resources."
   building_fe_mineral_processing_plant: "Crystal Synthesizer"
-  building_fe_mineral_processing_plant_tt: "§MMinerals§! - §BTier 5 & 6§! - §EProductivity§!"
+  building_fe_mineral_processing_plant_tt: "§MMinerals§! - §BTier 5 & 6§! - §EProductivity§! (Limit 1)"
   building_fe_mineral_processing_plant_desc: "Powerful facility that provides Crytalists necessary tools to synthesize high-yield minerals."
 
   ## Food
@@ -170,18 +170,18 @@
   eb_hydrofarm3_desc: "An upgraded Hydroponics Farm."
   # Food - Productivity
   building_food_processing_facility: "Food Processing Facilities"
-  building_food_processing_facility_tt: "§MFood§! - §BTier 2§! - §EProductivity§!"
+  building_food_processing_facility_tt: "§MFood§! - §BTier 2§! - §EProductivity§! (Limit 1)"
   building_food_processing_facility_desc: "Food that is processed at these facilities has its nutritional value greatly increased."
   building_food_processing_facility_effect_desc: "Increases the base production of £food£ §YFood§! producing jobs by §G1§!."
   building_food_processing_center: "Food Processing Centers"
-  building_food_processing_center_tt: "§MFood§! - §BTier 3§! - §EProductivity§!"
+  building_food_processing_center_tt: "§MFood§! - §BTier 3§! - §EProductivity§! (Limit 1)"
   building_food_processing_center_desc: "Streamlined facilities where large amounts of food can be processed."
   building_food_processing_center_effect_desc: "Increases the base production of £food£ §YFood§! producing jobs by §G2§!."
   building_roci_nourishment_center_mod: "Nourishment Center"
-  building_roci_nourishment_center_mod_tt: "§MFood§! - §BTier 4§! - §EProductivity§!"
+  building_roci_nourishment_center_mod_tt: "§MFood§! - §BTier 4§! - §EProductivity§! (Limit 1)"
   building_roci_nourishment_center_mod_desc: "If it exists as a flavor, it can be replicated here."
   building_fe_food_processing_complex: "Agri Super-Complex"
-  building_fe_food_processing_complex_tt: "§MFood§! - §BTier 5 & 6§! - §EProductivity§!"
+  building_fe_food_processing_complex_tt: "§MFood§! - §BTier 5 & 6§! - §EProductivity§! (Limit 1)"
   building_fe_food_processing_complex_desc: "Multiple agricultural bio-domes powered by a central dark matter facility that will ensure the planet always has fresh green apples, or whatever it is our government uses for food."
   #building_ae_food_processing_complex: "Agri Mega-Complex"
   #building_ae_food_processing_complex_desc: "It matters not whether the planet has no green, for the green is everywhere, and that green is good."
@@ -200,19 +200,19 @@
   building_alloys_3_desc: "Large nanite-assisted fabricators geared towards admixing bulk quantities of metals to create heavy-duty spaceworthy materials on an industrial scale."
   # Alloys - Productivity
   building_foundry_1: "Alloy Foundries"
-  building_foundry_1_tt: "§MAlloys§! - §BTier 2§! - §EProductivity§!"
+  building_foundry_1_tt: "§MAlloys§! - §BTier 2§! - §EProductivity§! (Limit 1)"
   building_foundry_1_desc: "The [Owner.GetAlloyProducerPlural] working in these foundries produce high-quality alloys."
   building_foundry_2: "Alloy Mega-Forges"
-  building_foundry_2_tt: "§MAlloys§! - §BTier 3§! - §EProductivity§!"
+  building_foundry_2_tt: "§MAlloys§! - §BTier 3§! - §EProductivity§! (Limit 1)"
   building_foundry_2_desc: "These massive forges can assist the end-stage production of alloys in our industries across the planet."
   building_foundry_3: "Alloy Nano-Plants"
-  building_foundry_3_tt: "§MAlloys§! - §BTier 4§! - §EProductivity§!"
+  building_foundry_3_tt: "§MAlloys§! - §BTier 4§! - §EProductivity§! (Limit 1)"
   building_foundry_3_desc: "Large industrial fabricators geared towards increasing the production of alloys on the planet."
   building_roci_nano_forge_mod: "Auto-Forge"
-  building_roci_nano_forge_mod_tt: "§MAlloys§! - §BTier 5§! - §EProductivity§!"
+  building_roci_nano_forge_mod_tt: "§MAlloys§! - §BTier 5§! - §EProductivity§! (Limit 1)"
   building_roci_nano_forge_mod_desc: "The colossal nano-replicator bays convert raw materials into advanced alloys with miraculous speed."
   building_fe_alloy_forge: "Dark Foundry"
-  building_fe_alloy_forge_tt: "§MAlloys§! - §BTier 6§! - §EProductivity§!"
+  building_fe_alloy_forge_tt: "§MAlloys§! - §BTier 6§! - §EProductivity§! (Limit 1)"
   building_fe_alloy_forge_desc: "Through process of eliminations, we have removed all the redundant spaces within the old foundries to make room for more fabricator machines using advanced hard-light technologies."
 # 
 #building_ae_alloy_forge: "Mega-Alloy Foundry"
@@ -232,16 +232,16 @@
   building_consumer_3_desc: "Nearly anything can be replicated at the kiosks in these complexes."
   # Consumer Goods - Productivity
   building_factory_1: "Civilian Industries"
-  building_factory_1_tt: "§MConsumer Goods§! - §BTier 2§! - §EProductivity§!"
+  building_factory_1_tt: "§MConsumer Goods§! - §BTier 2§! - §EProductivity§! (Limit 1)"
   building_factory_1_desc: "A wide collection of civilian industries and manufactories where a variety of consumer goods are produced."
   building_factory_2: "Civilian Fabricators"
-  building_factory_2_tt: "§MConsumer Goods§! - §BTier 3§! - §EProductivity§!"
+  building_factory_2_tt: "§MConsumer Goods§! - §BTier 3§! - §EProductivity§! (Limit 1)"
   building_factory_2_desc: "Large industrial fabricators geared towards increasing the production of consumer goods on the planet."
   building_factory_3: "Civilian Repli-Complexes"
-  building_factory_3_tt: "§MConsumer Goods§! - §BTier 4§! - §EProductivity§!"
+  building_factory_3_tt: "§MConsumer Goods§! - §BTier 4§! - §EProductivity§! (Limit 1)"
   building_factory_3_desc: "Nearly anything can be replicated at the kiosks in these complexes."
   building_roci_affluence_center_mod: "Affluence Center"
-  building_roci_affluence_center_mod_tt: "§MConsumer Goods§! - §BTier 5§! - §EProductivity§!"
+  building_roci_affluence_center_mod_tt: "§MConsumer Goods§! - §BTier 5§! - §EProductivity§! (Limit 1)"
   building_roci_affluence_center_mod_desc: "Any material desire can be met here, no matter how outlandish."
 
 
@@ -259,9 +259,28 @@
   building_dm_commercial_megaplex_desc: "$tech_dm_commercial_megaplex_desc$"
   # Trade - Productivity
   building_galactic_stock_exchange: "Galactic Stock Exchange"
-  building_galactic_stock_exchange_tt: "§MTrade§! - §BTier 2 & 3§! - §EProductivity§!"
+  building_galactic_stock_exchange_tt: "§MTrade§! - §BTier 2 & 3§! - §EProductivity§! (Limit 1)"
   building_galactic_stock_exchange_desc: "By engaging in free trade of goods and services we allow for a more specialized economy, where an individual can excel in a narrow field and trade for their needs."
 
+  ## Enforcement (Soldier + Enforcer)
+  # Enforcement - Foundation
+  building_precinct_house: "Enforcement Center" # Normal Empire Version
+  building_precinct_house_tt: "§MEnforcement§! - §BTier 1§! - §EFoundation§!"
+  building_precinct_house_desc: "Monuments to law and order. Enforcers and soldiers are based here."
+  building_sentinel_posts: "Sentinel Posts" # Gestalt Version
+  building_sentinel_posts_tt: "§MEnforcement§! - §BTier 1§! - §EFoundation§!"
+  building_sentinel_posts_desc: "These are the outposts from which Patrol Drones scan the Consciousness for signs of deviancy and malfunction."
+  # Enforcement - Defense
+  building_stronghold: "Enforcement Stronghold"
+  building_stronghold_tt: "§MEnforcement§! - §BTier 2§! - §EDefense§!"
+  building_stronghold_desc: "A planetary stronghold housing a substantial garrison force to protect the world from invasion and rebellion."
+  building_fortress: "Enforcement Fortress"
+  building_fortress_tt: "§MEnforcement§! - §BTier 3 & 4§! - §EDefense§!"
+  building_fortress_desc: "A massive fortress complex with an expanded garrison and training facilities for soldiers."
+  tr_plentiful_defence_5: "Bunker Mentality" # Quick localization fix for the for the tradition that unlocks the Zitadom
+  building_plentiful_traditions_zitadom: "Zitadom"
+  building_plentiful_traditions_zitadom_tt: "§MEnforcement§! - §BTier 5§! - §ETraditional Defense§! (Limit 1)"
+  building_plentiful_traditions_zitadom_desc: "The Zitadom is the largest fortress that can imagined."
 
   ### Pop Jobs ###
   ## Energy

@@ -314,11 +314,11 @@
 
 # ANY VALUE OTHER THAN 0 ON ARTILLERY WILL COUNT AS INFINITE
 @giga_preset_asteroid_artillery = 1
-@giga_preset_manufactory = 1
+@giga_preset_manufactory = 4
 @giga_preset_macroengineering = 1 #engineering
 @giga_preset_ecosystem = 1 #society
 @giga_preset_accelerator = 1 #physics
-@giga_preset_dockyard = 1
+@giga_preset_dockyard = 4
 
 #+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #|M|E|G|A|S|T|R|U|C|T|U|R|E|S|

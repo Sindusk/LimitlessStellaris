@@ -1,0 +1,778 @@
+####################################################################################################
+# Doge Buildings (Alloys)
+####################################################################################################
+
+### Vanilla Building Variables ###
+# Specifically here as a reference, not going to modify them in case it ruins everything.
+#@b1_time = 360
+#@b1_minerals = 400
+#@b1_upkeep = 2
+#@b1_jobs = 2
+
+#@b2_time = 480
+#@b2_minerals = 600
+#@b2_upkeep = 5
+#@b2_rare_cost = 50
+#@b2_rare_upkeep = 1
+#@b2_jobs = 4
+
+#@b3_time = 600
+#@b3_minerals = 800
+#@b3_upkeep = 8
+#@b3_rare_cost = 100
+#@b3_rare_upkeep = 2
+#@b3_jobs = 6
+
+#@b4_time = 900
+#@b4_minerals = 2000
+#@b4_upkeep = 10
+#@b4_rare_cost = 200
+#@b4_rare_upkeep = 4
+
+### Doge Building Variables ###
+# Tier 0 (First building)
+@db0_time = 360 	    # Tier 0 build time
+@db0_minerals = 400     # Tier 0 minerals
+@db0_upkeep = 2 	    # Tier 0 upkeep
+@db0_jobs = 2 		    # Tier 0 jobs
+
+# Tier 1 [Vanilla]
+@db1_time = 440		    # Tier 1 build time
+@db1_minerals = 500     # Tier 1 minerals
+@db1_upkeep = 3 	    # Tier 1 upkeep
+@db1_jobs = 3 		    # Tier 1 jobs
+
+# Tier 2 [Vanilla]
+@db2_time = 560		    # Tier 2 build time
+@db2_minerals = 650     # Tier 2 minerals
+@db2_rare_cost = 50     # Tier 2 rare cost
+@db2_upkeep = 5 	    # Tier 2 upkeep
+@db2_rare_upkeep = 1    # Tier 2 rare upkeep
+@db2_jobs = 4 		    # Tier 2 jobs
+
+# Tier 3 [Vanilla]
+@db3_time = 700 	    # Tier 3 build time
+@db3_minerals = 900     # Tier 3 minerals
+@db3_rare_cost = 100    # Tier 3 rare cost
+@db3_upkeep = 8 	    # Tier 3 upkeep
+@db3_rare_upkeep = 2    # Tier 3 rare upkeep
+@db3_jobs = 4 		    # Tier 3 jobs
+@db3_adv_jobs = 1 	    # Tier 3 adv jobs
+
+# Tier 4 [Extra Buildings]
+@db4_time = 900		    # Tier 4 build time
+@db4_minerals = 1200    # Tier 4 minerals
+@db4_rare_cost = 200    # Tier 4 rare cost
+@db4_upkeep = 14	    # Tier 4 upkeep
+@db4_rare_upkeep = 4    # Tier 4 rare upkeep
+@db4_jobs = 2 		    # Tier 4 jobs
+@db4_adv_jobs = 4 	    # Tier 4 adv jobs
+
+# Tier 5 [Extra Buildings]
+@db5_time = 1200        # Tier 5 build time
+@db5_minerals = 2000    # Tier 5 minerals
+@db5_rare_cost = 400    # Tier 5 rare cost
+@db5_upkeep = 25	    # Tier 5 upkeep
+@db5_rare_upkeep = 6    # Tier 5 rare upkeep
+@db5_jobs = 0 		    # Tier 5 jobs [phased out]
+@db5_adv_jobs = 6 	    # Tier 5 adv jobs
+
+# Tier 6 [ACOT]
+@db6_time = 1600        # Tier 6 build time
+@db6_minerals = 4000    # Tier 6 minerals
+@db6_rare_cost = 800    # Tier 6 rare cost
+@db6_dark_cost = 150    # Tier 6 dark energy cost
+@db6_upkeep = 0         # Tier 6 upkeep [phased out in favor of strategic resources]
+@db6_rare_upkeep = 10   # Tier 6 rare upkeep
+@db6_dark_upkeep = 1    # Tier 6 dark energy upkeep
+@db6_jobs = 0           # Tier 6 jobs [phased out]
+@db6_adv_jobs = 5       # Tier 6 adv jobs
+@db6_dark_jobs = 2      # Tier 6 dark matter jobs
+
+####################################################################################################
+# Alloy Buildings
+####################################################################################################
+##################################################
+## Enforcement Center (Tier 0, Foundation) [Vanilla] - Normal Empires
+##################################################
+building_precinct_house = {
+    base_buildtime = @db0_time #@b1_time
+	can_build = yes
+    category = government
+
+	# Building Potential
+    potential = {
+        NOT = { has_modifier = slave_colony } # Cannot build on a slave colony
+		exists = owner
+        owner = { is_regular_empire = yes } # Owner must be a regular empire
+    }
+	# Tech Prereqs
+    prerequisites = {
+        "tech_planetary_government"
+    }
+    show_tech_unlock_if = {
+        is_regular_empire = yes
+    }
+	# Allow Conditions
+    allow = {
+        buildings_simple_allow = yes
+        hidden_trigger = {
+			exists = owner
+            OR = {
+                owner = { is_ai = no } # Only use conditions below if it's an AI
+                AND = { # StarTech AI conditionals for allowing build
+                    planet_crime > 40
+                    owner = { str_raw_ecocrisis_level_1 = no }
+                    num_pops > 20
+                    NOR = {
+                        has_modifier = crime_lord_deal
+                        has_planet_flag = str_just_removed_precinct
+                    }
+                    num_buildings = {
+                        type = building_precinct_house
+                        value < 2
+                    }
+                }
+            }
+        }
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            NOT = { owner = { is_regular_empire = yes } } # Owner is not a regular empire
+            AND = { # Owner is an AI with a crime lord deal
+                owner = { is_ai = yes }
+                has_modifier = crime_lord_deal
+            }
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db0_minerals #@b1_minerals
+        }
+        upkeep = {
+            energy = @db0_upkeep #2
+        }
+        upkeep = { # Police State precincts cost an additional energy of upkeep
+            trigger = {
+                owner = { has_civic = civic_police_state }
+            }
+            energy = 1
+        }
+    }
+
+	# Permanent Planet Modifier
+    planet_modifier = { # One enforcer and one soldier guaranteed
+        job_enforcer_add = 1
+		job_soldier_add = 1
+    }
+	# Private Military Civic adds a mercenary
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_private_militaries = yes }
+        }
+        modifier = {
+            job_bugged_mercenary_add = 1
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_precinct_house_tt
+    }
+	# Enforcer
+    triggered_desc = {
+        text = job_enforcer_effect_desc
+    }
+	# Soldier
+    triggered_desc = {
+        text = job_soldier_effect_desc
+    }
+	# Mercenary (Private Military Civic)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_bugged_private_militaries = yes }
+        }
+        text = job_bugged_mercenary_effect_desc
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_hall_judgment"
+		"building_stronghold"
+    }
+	
+	# AI Weight
+    ai_weight = {
+        weight = 0
+        modifier = {
+            weight = 100
+            planet_crime > 15
+            NOR = {
+                AND = {
+                    has_building = building_precinct_house
+                    owner = { has_technology = tech_colonial_centralization }
+                }
+                has_building = building_hall_judgment
+                num_buildings = {
+                    type = building_precinct_house
+                    value = 3
+                }
+            }
+        }
+    }
+}
+
+##################################################
+## Sentinel Post (Tier 0, Foundation) [Vanilla] - Gestalt
+##################################################
+building_sentinel_posts = {
+    base_buildtime = @db0_time #@b1_time
+	can_build = yes
+    category = government
+
+	# Building Potential
+    potential = {
+        exists = owner
+        owner = { is_gestalt = yes }
+    }
+	# Tech Prereqs
+    prerequisites = {
+        "tech_planetary_government"
+    }
+    show_tech_unlock_if = {
+        is_gestalt = yes
+    }
+	# Allow Conditions
+    allow = {
+        buildings_simple_allow = yes
+        hidden_trigger = {
+            OR = {
+                owner = { is_ai = no }
+                AND = { # StarTech Allow Conditions
+                    buildings_simple_allow = yes
+                    NOT = { has_building = building_sentinel_posts }
+                    planet_crime > 30
+                }
+            }
+        }
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        NOT = { owner = { is_gestalt = yes } } # Owner cannot be gestalt
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db0_minerals #@b1_minerals
+        }
+        upkeep = {
+            energy = @db0_upkeep #2
+        }
+    }
+	
+    planet_modifier = {
+        job_patrol_drone_add = 1
+		job_warrior_drone_add = 1
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_sentinel_posts_tt
+    }
+	# Patrol Drone
+    triggered_desc = {
+        text = job_patrol_drone_effect_desc
+    }
+	# Warrior Drone
+    triggered_desc = {
+        text = job_warrior_drone_effect_desc
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_hall_judgment"
+		"building_stronghold"
+    }
+}
+
+##################################################
+## Enforcement Stronghold (Tier 2, Defense) [Vanilla]
+##################################################
+building_stronghold = {
+    base_buildtime = @db2_time #240
+	can_build = no
+    position_priority = 100
+    category = army
+
+	# Tech Prereqs
+    prerequisites = {
+        "tech_planetary_defenses"
+    }
+	# Allow Conditions
+    allow = {
+        buildings_simple_allow = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        owner = { is_ai = yes }
+        AND = { # StarTech Destroy Trigger
+            OR = {
+                num_buildings = {
+                    type = building_stronghold
+                    value > 1
+                }
+                has_building = building_fortress
+            }
+            free_building_slots = 0
+            owner = {
+                used_naval_capacity_percent < 0.6
+                is_at_war = no
+            }
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings_strongholds
+        produces = { # Unyielding tradition perk adds 3 unity to stronghold buildings.
+            trigger = {
+                exists = owner
+                owner = { has_active_tradition = tr_unyielding_resistance_is_frugal }
+            }
+            unity = 3
+        }
+        cost = {
+            minerals = @db2_minerals #@b1_minerals
+        }
+        upkeep = {
+            energy = @db2_upkeep #1
+        }
+    }
+
+	# Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        modifier = {
+			job_enforcer_add = 1
+			job_soldier_add = 3
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+			job_patrol_drone_add = 1
+			job_warrior_drone_add = 3
+        }
+    }
+	# Private Military Civic adds a mercenary
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_private_militaries = yes }
+        }
+        modifier = {
+            job_bugged_mercenary_add = 1
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_stronghold_tt
+    }
+	# Patrol Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_patrol_drone_effect_desc
+    }
+	# Warrior Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_warrior_drone_effect_desc
+    }
+	# Enforcer (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_enforcer_effect_desc
+    }
+	# Soldier (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_soldier_effect_desc
+    }
+	# Mercenary (Private Militaries Civic)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_bugged_private_militaries = yes }
+        }
+        text = job_bugged_mercenary_effect_desc
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_fortress"
+    }
+}
+
+##################################################
+## Enforcement Fortress (Tier 3, Defense) [Vanilla]
+##################################################
+building_fortress = {
+    base_buildtime = @db3_time #@b1_time
+    can_build = no
+    planetary_ftl_inhibitor = yes
+    position_priority = 100
+    category = army
+	
+	# Tech Prereqs
+    prerequisites = {
+        "tech_global_defense_grid"
+    }
+	# Allow Conditions
+    allow = {
+        buildings_simple_allow = yes
+        has_upgraded_capital = yes
+        exists = owner
+        OR = {
+            owner = { is_ai = no }
+            buildings_has_motes = yes
+        }
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        owner = { is_ai = yes }
+        num_buildings = {
+            type = building_fortress
+            value > 1
+        }
+        OR = {
+            AND = {
+                num_buildings = {
+                    type = building_fortress
+                    value > 1
+                }
+                free_building_slots = 0
+                owner = { used_naval_capacity_percent < 0.4 }
+            }
+            buildings_no_motes = yes
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings_strongholds
+        produces = { # Unyielding Tradition perk provides +3 unity
+            trigger = {
+                exists = owner
+                owner = { has_active_tradition = tr_unyielding_resistance_is_frugal }
+            }
+            unity = 3
+        }
+        cost = {
+            minerals = @db3_minerals #@b2_minerals
+            volatile_motes = @db3_rare_cost #@b2_rare_cost
+        }
+        upkeep = {
+            energy = @db3_upkeep #1
+            volatile_motes = @db3_rare_upkeep #@b2_rare_upkeep
+        }
+    }
+
+	# Permanent Planet Modifier
+    planet_modifier = {
+        planet_housing_add = 3
+    }
+
+	# Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        modifier = {
+			job_enforcer_add = 1
+			job_soldier_add = 5
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+			job_patrol_drone_add = 1
+			job_warrior_drone_add = 5
+        }
+    }
+	# Private Military Civic adds a mercenary
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_private_militaries = yes }
+        }
+        modifier = {
+            job_bugged_mercenary_add = 2
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_fortress_tt
+    }
+	# Patrol Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_patrol_drone_effect_desc
+    }
+	# Warrior Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_warrior_drone_effect_desc
+    }
+	# Enforcer (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_enforcer_effect_desc
+    }
+	# Soldier (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_soldier_effect_desc
+    }
+	# Mercenary (Private Militaries Civic)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_bugged_private_militaries = yes }
+        }
+        text = job_bugged_mercenary_effect_desc
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_plentiful_traditions_zitadom"
+    }
+
+	# AI Weight
+    ai_weight = {
+        weight = 1
+        modifier = {
+            factor = 0
+            owner = { has_country_flag = buildings_new_mote_building }
+        }
+    }
+	# Scripted trigger for AI flag
+    on_built = {
+        planet = {
+            owner = {
+                set_timed_country_flag = {
+                    flag = buildings_new_mote_building
+                    days = 480
+                }
+            }
+        }
+    }
+}
+
+##################################################
+## Zitadom (Tier 4, Defense) [Plentiful Traditions] - Requires Defense Tradition perk "Bunker Mentality"
+##################################################
+# TODO: Maybe make these give more advanced soldiers? Ones with more naval capacity?
+building_plentiful_traditions_zitadom = {
+	base_buildtime = 360
+	can_build = no
+	planetary_ftl_inhibitor = yes
+	position_priority = 100
+	category = army
+
+	# Building Potential
+	potential = {
+		owner = { has_tradition = tr_plentiful_defence_5 } # Requires Bunker Mentality perk from Defense tradition
+	}
+	# Allow Conditions
+	allow = {
+		doge_can_build_zitadom = yes # Must be able to build the Zitadom (limited to 1)
+		has_major_upgraded_capital = yes
+	}
+	# Destroy Trigger
+	destroy_trigger = {
+		exists = owner
+		owner = { is_ai = yes }
+		NOT = {	owner = { has_tradition = tr_plentiful_defence_5 } } # Must have the perk to obtain the building
+	}
+	
+	# Permanent Planet Modifier
+	planet_modifier = {
+		planet_housing_add = 6
+		planet_stability_add = 5 # Added special 5 stability to the building because it's now limited to 1
+		planet_orbital_bombardment_damage = -0.1 # Added some orbital bombardment damage reduction because it's now limited to 1.
+	}
+	
+	# Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        modifier = {
+			job_enforcer_add = 2
+			job_soldier_add = 7
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+			job_patrol_drone_add = 2
+			job_warrior_drone_add = 7
+        }
+    }
+	# Private Military Civic adds mercenary
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_private_militaries = yes }
+        }
+        modifier = {
+            job_bugged_mercenary_add = 3
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_plentiful_traditions_zitadom_tt
+    }
+	# Patrol Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_patrol_drone_effect_desc
+    }
+	# Warrior Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_warrior_drone_effect_desc
+    }
+	# Enforcer (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_enforcer_effect_desc
+    }
+	# Soldier (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_soldier_effect_desc
+    }
+	# Mercenary (Private Militaries Civic)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_bugged_private_militaries = yes }
+        }
+        text = job_bugged_mercenary_effect_desc
+    }
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 3
+		}
+		cost = {
+			minerals = 600
+			volatile_motes = 75
+		}			
+		upkeep = {
+			energy = 2
+			volatile_motes = 2
+			alloys = 5
+		}
+	}
+	
+	prerequisites = {
+		"tech_global_defense_grid"
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_warrior_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_soldier_effect_desc
+	}
+	
+	show_tech_unlock_if = { 
+		owner = {
+			has_tradition = tr_plentiful_defence_5
+		}
+	}
+	
+	ai_weight = {
+		weight = 0.5
+	}
+}
