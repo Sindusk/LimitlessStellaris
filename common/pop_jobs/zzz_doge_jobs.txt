@@ -803,7 +803,7 @@ doge_master_farmer = {
 ##################################################
 ## Master Agri-Drones (Doge) are improved versions of Agri-Drones. They remain simple drones.
 ##################################################
-agri_drone = {
+doge_master_agri_drone = {
     category = simple_drone
     condition_string = DRONE_JOB_TRIGGER
     building_icon = building_food_processing_facility

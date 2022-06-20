@@ -349,7 +349,7 @@ building_commercial_megaplex = {
 }
 
 ##################################################
-## Commercial Megaplex (Tier 6, Basic) [Vanilla]
+## Dark Shopping Mall (Tier 6, Basic) [Vanilla]
 ##################################################
 building_dm_commercial_megaplex = {
 	base_buildtime = @db6_time #900

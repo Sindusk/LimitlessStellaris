@@ -151,7 +151,7 @@
   building_fe_mineral_processing_plant_desc: "Powerful facility that provides Crytalists necessary tools to synthesize high-yield minerals."
 
   ## Food
-  # Minerals - Tier 0
+  # Food - Foundation
   building_hydroponics_farm: "Hydroponics Farms"
   building_hydroponics_farm_tt: "§MFood§! - §BTier 1§! - §EFoundation§!"
   building_hydroponics_farm_desc: "Hydroponics Farms produce nutrient-rich vegetable matter tailored for consumption by local Pops."
@@ -187,7 +187,7 @@
   #building_ae_food_processing_complex_desc: "It matters not whether the planet has no green, for the green is everywhere, and that green is good."
 
   ## Alloys
-  # Alloys - Tier 0
+  # Alloys - Foundation
   building_alloys_1: "Alloy Forge"
   building_alloys_1_tt: "§MAlloys§! - §BTier 1§! - §EFoundation§!"
   building_alloys_1_desc: "The Metallurgists working in these foundries produce many different alloys for a variety of high-end applications such as weaponry and starship production."
@@ -218,9 +218,35 @@
 #building_ae_alloy_forge: "Mega-Alloy Foundry"
 #building_ae_alloy_forge_desc: "Efficiency is key to victory. Alloys today, Weapons of Victory Tomorrow!"
 # 
- 
+  ## Consumer Goods
+  # Consumer Goods - Foundation
+  building_consumer_1: "Civilian Factory"
+  building_consumer_1_tt: "§MConsumer Goods§! - §BTier 1§! - §EFoundation§!"
+  building_consumer_1_desc: "A wide collection of industries and manufacturies where a variety of consumer products are produced."
+  # Consumer Goods - Basic
+  building_consumer_2: "Civilian Factory II"
+  building_consumer_2_tt: "§MConsumer Goods§! - §BTier 2 & 3§! - §EBasic§!"
+  building_consumer_2_desc: "Large industrial fabricators geared towards increasing the production of consumer goods on the planet."
+  building_consumer_3: "Civilian Factory III"
+  building_consumer_3_tt: "§MConsumer Goods§! - §BTier 4 & 5§! - §EBasic§!"
+  building_consumer_3_desc: "Nearly anything can be replicated at the kiosks in these complexes."
+  # Consumer Goods - Productivity
+  building_factory_1: "Civilian Industries"
+  building_factory_1_tt: "§MConsumer Goods§! - §BTier 2§! - §EProductivity§!"
+  building_factory_1_desc: "A wide collection of civilian industries and manufactories where a variety of consumer goods are produced."
+  building_factory_2: "Civilian Fabricators"
+  building_factory_2_tt: "§MConsumer Goods§! - §BTier 3§! - §EProductivity§!"
+  building_factory_2_desc: "Large industrial fabricators geared towards increasing the production of consumer goods on the planet."
+  building_factory_3: "Civilian Repli-Complexes"
+  building_factory_3_tt: "§MConsumer Goods§! - §BTier 4§! - §EProductivity§!"
+  building_factory_3_desc: "Nearly anything can be replicated at the kiosks in these complexes."
+  building_roci_affluence_center_mod: "Affluence Center"
+  building_roci_affluence_center_mod_tt: "§MConsumer Goods§! - §BTier 5§! - §EProductivity§!"
+  building_roci_affluence_center_mod_desc: "Any material desire can be met here, no matter how outlandish."
+
+
   ## Trade
-  # Trade - Tier 0
+  # Trade - Foundation
   building_commercial_zone: "Commercial Zones"
   building_commercial_zone_tt: "§MTrade§! - §BTier 1§! - §EFoundation§!"
   building_commercial_zone_desc: "These commercial zones are home to towering office buildings and business complexes."
@@ -347,6 +373,20 @@
   job_acot_fooddrone_effect_desc: "£job_acot_fooddrone£ $job_acot_fooddrone_plural$ produce £food£ §Y$food$§!"
   mod_job_acot_fooddrone_add: "$job_acot_fooddrone$ Jobs"
 
+  ## Alloys
+  # ACOT Alloy Transmutator (Normal)
+  job_acot_alloyman: "Alloy Transmutator"
+  job_acot_alloyman_plural: "Alloy Transmutators"
+  job_acot_alloyman_desc: "Alloy Transmutations are able to create alloys through matter generation process utilizing dark matter."
+  job_acot_alloyman_effect_desc: "£job_acot_alloyman£ $job_acot_alloyman_plural$ turn £sr_dark_matter£ §Y$sr_dark_matter$§! into £alloys£ §Y$alloys$§!"
+  mod_job_acot_alloyman_add: "$job_acot_alloyman$"
+  # ACOT Alloy Transmutator (Gestalt)
+  job_acot_alloydrone: "Alloy Transmutator"
+  job_acot_alloydrone_plural: "Alloy Transmutators"
+  job_acot_alloydrone_desc: "Alloy Transmutations are able to create alloys through matter generation process utilizing dark matter."
+  job_acot_alloydrone_effect_desc: "£job_acot_alloyman£ $job_acot_alloyman_plural$ turn £sr_dark_matter£ §Y$sr_dark_matter$§! into £alloys£ §Y$alloys$§!"
+  mod_job_acot_alloydrone_add: "$job_acot_alloydrone$"
+
 
   # Extra stuff that comes later
 
@@ -423,10 +463,6 @@
  # eb_energy_tech:0 "Advanced Energy Generation Techniques"
  # eb_energy_tech_desc:0 "Unlocks Power Plant 3."#
    #Buildings
-#  building_roci_affluence_center_mod:0 "Affluence Center"
-#  building_roci_affluence_center_mod_desc:0 "Any material desire can be met here, no matter how outlandish."
-#  building_roci_dimensional_fabricator_mod:0 "Dimensional Fabricator"
-#  building_roci_dimensional_fabricator_mod_desc:0 "This building uses dimensional technology to tunnel into other realities and siphon off their valuable resources."
 #  building_roci_master_archive_mod:0 "Master Archive"
 #  building_roci_master_archive_mod_desc:0 "The Archives are an invaluable asset to research, containing the sum of our knowledge, and caretakers that know how to find it."
 #  building_roci_fe_dome_mod:0 "REPLACE_ME"

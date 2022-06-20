@@ -46,12 +46,25 @@ doge_can_build_stock_exchange = {
         }
 }
 
-## doge_can_build_alloy_foundry: Checks if the planet has a alloy foundry upgrade building.
+## doge_can_build_alloy_foundry: Checks if the planet has an alloy foundry upgrade building.
 # Context: Planet
 doge_can_build_alloy_foundry = {
         NOR = {
                 num_buildings = { type = building_foundry_1 value > 1 in_construction = any }
                 num_buildings = { type = building_foundry_2 value > 1 in_construction = any }
                 num_buildings = { type = building_foundry_3 value > 1 in_construction = any }
+                num_buildings = { type = building_roci_nano_forge_mod value > 1 in_construction = any }
+                num_buildings = { type = building_fe_alloy_forge value > 1 in_construction = any }
+        }
+}
+
+## doge_can_build_civilian_industry: Checks if the planet has a civilian industry upgrade building.
+# Context: Planet
+doge_can_build_civilian_industry ={
+        NOR = {
+                num_buildings = { type = building_factory_1 value > 1 in_construction = any }
+                num_buildings = { type = building_factory_2 value > 1 in_construction = any }
+                num_buildings = { type = building_factory_3 value > 1 in_construction = any }
+                num_buildings = { type = building_roci_affluence_center_mod value > 1 in_construction = any }
         }
 }
