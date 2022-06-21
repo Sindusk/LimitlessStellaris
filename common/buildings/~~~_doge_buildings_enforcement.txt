@@ -1417,6 +1417,7 @@ building_giga_fortress = {
     # Normal Jobs
 	triggered_planet_modifier = {
 		potential = { 
+            exists = owner
 			owner = { is_gestalt = no }
 		}
         job_enforcer_add = 2
@@ -1426,6 +1427,7 @@ building_giga_fortress = {
     # Gestalt Jobs
 	triggered_planet_modifier = {
 		potential = { 
+            exists = owner
 			owner = { is_gestalt = yes }
 		}
         job_patrol_drone_add = 2
@@ -1435,9 +1437,10 @@ building_giga_fortress = {
     # Fallen Empire Jobs
 	triggered_planet_modifier = {
 		potential = {
+            exists = owner
 			owner = { is_fallen_empire = yes }
-		 }
-		 job_acot_giga_fortress_operator_ancient_add = 3
+		}
+		job_acot_giga_fortress_operator_ancient_add = 3
 	}
 	# Private Military Civic adds mercenary
     triggered_planet_modifier = {
@@ -1461,6 +1464,14 @@ building_giga_fortress = {
         }
         text = job_patrol_drone_effect_desc
     }
+	# Giga Fortress Cannon Operator (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_acot_giga_fortress_operator_drone_effect_desc
+    }
 	# Warrior Drone (Gestalt)
     triggered_desc = {
         trigger = {
@@ -1483,7 +1494,7 @@ building_giga_fortress = {
             exists = owner
             owner = { is_gestalt = no }
         }
-        text = job_enforcer_effect_desc
+        text = job_acot_giga_fortress_operator_effect_desc
     }
 	# Soldier (Normal)
     triggered_desc = {
@@ -1492,6 +1503,14 @@ building_giga_fortress = {
             owner = { is_gestalt = no }
         }
         text = job_soldier_effect_desc
+    }
+	# Giga Fortress Cannon Operator (Fallen Empire)
+    triggered_desc = {
+		potential = {
+            exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+        text = job_acot_giga_fortress_operator_ancient_effect_desc
     }
 	# Mercenary (Private Militaries Civic)
     triggered_desc = {
