@@ -1,0 +1,77 @@
+####################################################################################################
+# Doge Technology Changes
+####################################################################################################
+
+##################################################
+## Gaia District [EUTAB]
+##################################################
+tech_eutab_gaia_district = {
+	cost = @tier5cost1 #@tier4cost1
+	area = society
+	tier = 5 #4
+	category = { statecraft }
+	is_rare = yes
+	prerequisites = { "tech_planetary_infrastructure_2" } #{ "tech_paradise_dome" }
+	weight = @tier5weight1 #@tier4cost1
+	
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = {
+				AND = {
+					has_tradition = tr_harmony_utopian_dream
+					OR = {
+						has_ascension_perk = ap_world_shaper
+						has_ascension_perk = ap_mastery_of_nature
+					}
+				}
+			}
+		}
+		# Gestalts can now research
+		#modifier = {
+		#	factor = 0
+		#	has_ethic = ethic_gestalt_consciousness
+		#}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_spiritualist
+				has_ethic = ethic_pacifist
+			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_fanatic_pacifist
+			}
+		}
+		modifier = {
+			factor = 5
+			has_surveyed_class = pc_gaia
+		}
+	}	
+	
+	ai_weight = {
+		modifier = {
+			factor = 3
+			OR = {
+				has_ethic = ethic_spiritualist
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_fanatic_pacifist
+			}
+		}
+		modifier = {
+			factor = 5
+			has_surveyed_class = pc_gaia
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}	
+	}
+}

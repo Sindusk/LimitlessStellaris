@@ -374,6 +374,12 @@
   tech_eutab_gaia_district: "Gaia District"
   tech_eutab_gaia_district_tt: "§MHousing§! - §BTier 3 & 4§! - §ECapacity§!"
   tech_eutab_gaia_district_desc: "Our domes can be expanded to planetary districts, enhancing the habitability of the world and its natural beauty."
+  building_fe_sky_dome: "Sky-Dome"
+  building_fe_sky_dome_tt: "§MHousing§! - §BTier 5 & 6§! - §ECapacity§!"
+  building_fe_sky_dome_desc: "A floating utopia maintained with extremely advanced anti-gravity technology."
+  building_ae_sky_dome: "Star Dome"
+  building_ae_sky_dome_tt: "§MHousing§! - §BTier 7§! - §ECapacity§!"
+  building_ae_sky_dome_desc: "Beyond the skies lie the stars. Stars with no beginning, stars with no end."
 
 
   ### Pop Jobs ###
@@ -1133,14 +1139,6 @@
 # 
 #tech_ae_dimensional_fabricator: "Dimensional Inception"
 #tech_ae_dimensional_fabricator_desc: "In various sub-dimensions, there are others who often employ the same behaviors in stealing from the other, oblivious one. We will in turn, take away from them what is ours. We will save the galaxy by taking things from the ones we hate, and then from the ones we love."
-# 
-##############################
-# 
-#building_ae_sky_dome: "Star Dome"
-#building_ae_sky_dome_desc: "Beyond the skies lie the stars. Stars with no beginning, stars with no end."
-# 
-#tech_ae_sky_dome: "Star Domes"
-#tech_ae_sky_dome_desc: "Beyond the skies lie the stars. Stars with no beginning, stars with no end."
 # 
 ##############################
 # 

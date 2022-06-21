@@ -989,4 +989,168 @@ building_eutab_gaia_district = {
     triggered_desc = {
         text = tech_eutab_gaia_district_tt
     }
+	
+	# Building Upgrades
+    upgrades = {
+        "building_fe_sky_dome"
+    }
+}
+
+##################################################
+## Sky Dome (Tier 6, Shelter) [AOT]
+##################################################
+building_fe_sky_dome = {
+    base_buildtime = @db6_time #360
+    can_build = no
+    icon = building_fe_dome
+    category = amenity
+	
+	# Tech Prereqs
+    prerequisites = {
+        "tech_fe_sky_dome"
+    }
+	# Allow Conditions
+    allow = {
+        has_enigmatic_capital = yes
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db6_minerals #750
+            rare_crystals = @db6_rare_cost #100
+			acot_sr_dark_energy = @db6_dark_cost
+        }
+        upkeep = {
+            rare_crystals = @db6_rare_upkeep
+			acot_sr_dark_energy = @db6_dark_upkeep
+        }
+    }
+
+	# Permanent Planet Modifier
+    planet_modifier = {
+        planet_housing_add = 40 #50
+        planet_amenities_add = 40 #50
+    }
+	# Additional housing and unity output from Keepers of Harmony civic [Civics & Ethics: Bug Branch]
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_keepers_of_harmony = yes }
+        }
+        modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_housing_add = 2
+        }
+    }
+	# Additional housing from Domination tradition's Imperious Architecture perk.
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_domination_imperious_architecture }
+        }
+        modifier = {
+            planet_housing_add = 1
+        }
+    }
+	# Additional housing from Habitation Studies technology [EUTAB].
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_eutab_habitation_studies }
+        }
+        modifier = {
+            planet_housing_add = 3
+        }
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = building_fe_sky_dome_tt
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_ae_sky_dome"
+    }
+}
+
+##################################################
+## Star Dome (Tier 7, Shelter) [ACOT]
+##################################################
+building_ae_sky_dome = {
+    base_buildtime = @db7_time #600
+    can_build = no
+    category = amenity
+
+	# Tech Prereqs
+    prerequisites = {
+        "tech_aot_ae_sky_dome"
+    }
+	# Allow Conditions
+    allow = {
+        has_ascended_capital = yes
+    }
+
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db7_minerals #150
+            rare_crystals = @db7_rare_cost
+            sr_dark_matter = @db6_dark_cost #750
+            acot_sr_dark_energy = @db6_dark_cost #750
+        }
+        upkeep = {
+            rare_crystals = @db7_rare_upkeep
+            sr_dark_matter = @db6_dark_upkeep
+            acot_sr_dark_energy = @db6_dark_upkeep
+        }
+    }
+	
+	# Permanent Planet Modifier
+    planet_modifier = {
+        planet_housing_add = 80 #100
+        planet_amenities_add = 80 #100
+    }
+	# Additional housing and unity output from Keepers of Harmony civic [Civics & Ethics: Bug Branch]
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_keepers_of_harmony = yes }
+        }
+        modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_housing_add = 2
+        }
+    }
+	# Additional housing from Domination tradition's Imperious Architecture perk.
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_domination_imperious_architecture }
+        }
+        modifier = {
+            planet_housing_add = 1
+        }
+    }
+	# Additional housing from Habitation Studies technology [EUTAB].
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_eutab_habitation_studies }
+        }
+        modifier = {
+            planet_housing_add = 3
+        }
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ae_sky_dome_tt
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_stellarite_sky_dome"
+    }
 }
