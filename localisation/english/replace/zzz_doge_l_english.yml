@@ -274,6 +274,22 @@
   building_hall_judgment: "Hall of Judgment"
   building_hall_judgment_tt: "§MEnforcement§! - §BTier 2 & 3§! - §ESecurity§!"
   building_hall_judgment_desc: "A massive complex dedicated to law enforcement."
+  # Enforcement - Mechanical
+  building_aerofighter_base: "Aero Base"
+  building_aerofighter_base_tt: "§MEnforcement§! - §BTier 2§! - §EMechanical§! (Limit 1)"
+  building_aerofighter_base_desc: "Constructs and maintains aircraft."
+  building_lightmechbay: "Light Mechbay"
+  building_lightmechbay_tt: "§MEnforcement§! - §BTier 3§! - §EMechanical§! (Limit 1)"
+  building_lightmechbay_desc: "Constructs and maintains piloted giant war-machines."
+  building_mediummechbay: "Medium Mechbay"
+  building_mediummechbay_tt: "§MEnforcement§! - §BTier 4§! - §EMechanical§! (Limit 1)"
+  building_mediummechbay_desc: "Constructs and maintains piloted giant war-machines."
+  building_heavymechbay: "Heavy Mechbay"
+  building_heavymechbay_tt: "§MEnforcement§! - §BTier 5§! - §EMechanical§! (Limit 1)"
+  building_heavymechbay_desc: "Constructs and maintains piloted giant war-machines."
+  building_assaultmechbay: "Assault Mechbay"
+  building_assaultmechbay_tt: "§MEnforcement§! - §BTier 6§! - §EMechanical§! (Limit 1)"
+  building_assaultmechbay_desc: "Constructs and maintains piloted giant war-machines."
   # Enforcement - Defense
   building_stronghold: "Enforcement Stronghold"
   building_stronghold_tt: "§MEnforcement§! - §BTier 2§! - §EDefense§!"
@@ -281,7 +297,7 @@
   building_fortress: "Enforcement Fortress"
   building_fortress_tt: "§MEnforcement§! - §BTier 3 & 4§! - §EDefense§!"
   building_fortress_desc: "A massive fortress complex with an expanded garrison and training facilities for soldiers."
-  tr_plentiful_defence_5: "Bunker Mentality" # Quick localization fix for the for the tradition that unlocks the Zitadom
+  tr_plentiful_defence_5: "Bunker Mentality" # Quick localization fix for the for the tradition perk that unlocks the Zitadom
   building_plentiful_traditions_zitadom: "Zitadom"
   building_plentiful_traditions_zitadom_tt: "§MEnforcement§! - §BTier 5§! - §ETraditional Defense§! (Limit 1)"
   building_plentiful_traditions_zitadom_desc: "The Zitadom is the largest fortress that can imagined."
@@ -409,7 +425,6 @@
   job_acot_alloydrone_desc: "Alloy Transmutations are able to create alloys through matter generation process utilizing dark matter."
   job_acot_alloydrone_effect_desc: "£job_acot_alloyman£ $job_acot_alloyman_plural$ turn £sr_dark_matter£ §Y$sr_dark_matter$§! into £alloys£ §Y$alloys$§!"
   mod_job_acot_alloydrone_add: "$job_acot_alloydrone$"
-
 
   # Extra stuff that comes later
 

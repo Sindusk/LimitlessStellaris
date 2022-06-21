@@ -60,7 +60,7 @@ doge_can_build_alloy_foundry = {
 
 ## doge_can_build_civilian_industry: Checks if the planet has a civilian industry upgrade building.
 # Context: Planet
-doge_can_build_civilian_industry ={
+doge_can_build_civilian_industry = {
         NOR = {
                 num_buildings = { type = building_factory_1 value > 1 in_construction = any }
                 num_buildings = { type = building_factory_2 value > 1 in_construction = any }
@@ -69,10 +69,22 @@ doge_can_build_civilian_industry ={
         }
 }
 
+## doge_can_build_mech_building: Checks if the planet has a mech building already created.
+# Context: Planet
+doge_can_build_mech_building = {
+        NOR = {
+                num_buildings = { type = building_aerofighter_base value > 1 in_construction = any } # Aero Base
+                num_buildings = { type = building_lightmechbay value > 1 in_construction = any } # Light Mechbay
+                num_buildings = { type = building_mediummechbay value > 1 in_construction = any } # Medium Mechbay
+                num_buildings = { type = building_heavymechbay value > 1 in_construction = any } # Heavy Mechbay
+                num_buildings = { type = building_assaultmechbay value > 1 in_construction = any } # Assault Mechbay
+        }
+}
+
 ## doge_can_build_zitadom: Checks if the planet already has a Zitadom built.
 # Context: Planet
 doge_can_build_zitadom = {
         NOR = {
-                num_buildings = { type = building_plentiful_traditions_zitadom value > 1 in_construction = any }
+                num_buildings = { type = building_factory_1 value > 1 in_construction = any } # Zitadom
         }
 }

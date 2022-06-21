@@ -110,7 +110,8 @@ building_precinct_house = {
         "tech_planetary_government"
     }
     show_tech_unlock_if = {
-        is_regular_empire = yes
+        exists = owner
+        owner = { is_regular_empire = yes }
     }
 	# Allow Conditions
     allow = {
@@ -245,7 +246,8 @@ building_sentinel_posts = {
         "tech_planetary_government"
     }
     show_tech_unlock_if = {
-        is_gestalt = yes
+        exists = owner
+        owner = { is_gestalt = yes }
     }
 	# Allow Conditions
     allow = {
@@ -298,6 +300,7 @@ building_sentinel_posts = {
 	# Building Upgrades
     upgrades = {
         "building_hall_judgment"
+        "building_aerofighter_base"
 		"building_stronghold"
     }
 }
@@ -402,6 +405,495 @@ building_hall_judgment = {
             owner = { is_gestalt = no }
         }
         text = job_soldier_effect_desc
+    }
+}
+
+####################################################################################################
+# Enforcement Buildings - Mechanical
+####################################################################################################
+##################################################
+## Aero Base (Tier 1, Mechanical) [Invasion!]
+##################################################
+building_aerofighter_base = {
+	base_buildtime = @db1_time #360
+    can_build = no
+	category = army
+	
+    # Tech Prereqs
+	prerequisites = {
+		"tech_strike_craft_1"
+	}
+    # Allow Conditions
+	allow = {
+        doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
+		buildings_simple_allow = yes
+	}
+
+    # Resources
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @db1_minerals #250
+		}			
+		upkeep = {
+			energy = @db1_upkeep #2
+		}
+		produces = {
+			engineering_research = 2
+		}
+	}
+	
+    # Permanent Planet Modifier
+	planet_modifier = {
+		planet_amenities_add = 5
+	}
+	
+    # Normal Jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			trade_value_add = 5
+			job_pilot_add = 2
+		}
+	}
+    # Gestalt Jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_pilot_drone_add = 2
+		}
+	}
+	# Building Tooltip
+    triggered_desc = {
+        text = building_aerofighter_base_tt
+    }
+	# Pilot Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_pilot_drone_effect_desc
+    }
+	# Pilot (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_pilot_effect_desc
+    }
+    
+    # Building Upgrades
+	upgrades = {
+		"building_lightmechbay"
+	}
+}
+
+##################################################
+## Light Mechbay (Tier 2, Mechanical) [Invasion!]
+##################################################
+building_lightmechbay = {
+	base_buildtime = @db2_time #360
+    can_build = no
+	category = army
+	
+    # Building Potential
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+    # Tech Prereqs
+	prerequisites = {
+		"tech_powered_exoskeletons"
+	}
+    show_tech_unlock_if = {
+        exists = owner
+        owner = { is_gestalt = no }
+    }
+    # Allow Conditions
+    allow = {
+        doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
+		buildings_simple_allow = yes
+    }
+    # Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        owner = { is_gestalt = yes } # Gestalts should not have this building
+    }
+
+    # Resources
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @db2_minerals #500
+		}			
+		upkeep = {
+			energy = @db2_upkeep
+			alloys = 1
+		}
+		produces = {
+			engineering_research = 5
+		}
+	}
+    
+    # Permanent Planet Modifier
+	planet_modifier = {
+		planet_amenities_add = 8
+        trade_value_add = 8
+	}
+	
+    # Normal Jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_pilot_add = 2
+			job_mechwarrior_add = 1
+			job_mechtech_add = 1
+		}
+	}
+	# Building Tooltip
+    triggered_desc = {
+        text = building_lightmechbay_tt
+    }
+	# Pilot (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_pilot_effect_desc
+    }
+	# Mech Warrior (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_mechwarrior_effect_desc
+    }
+	# Mech Tech (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_mechtech_effect_desc
+    }
+	
+    # Building Upgrades
+	upgrades = {
+		building_mediummechbay
+	}
+}
+
+##################################################
+## Medium Mechbay (Tier 3, Mechanical) [Invasion!]
+##################################################
+building_mediummechbay = {
+	base_buildtime = @db3_time #360
+	can_build = no
+	category = army
+	
+    # Building Potential
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+    # Tech Prereqs
+	prerequisites = {
+		"tech_robotic_workers"
+	}
+    show_tech_unlock_if = {
+        exists = owner
+        owner = { is_gestalt = no }
+    }
+    # Allow Conditions
+    allow = {
+        doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
+        has_upgraded_capital = yes
+		buildings_simple_allow = yes
+    }
+    # Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        owner = { is_gestalt = yes } # Gestalts should not have these buildings
+    }
+	
+    # Resources
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @db3_minerals #750
+		}			
+		upkeep = {
+			energy = @db3_upkeep
+			alloys = 2
+		}
+		produces = {
+			engineering_research = 8
+		}
+	}
+    
+    # Permanent Planet Modifier
+	planet_modifier = {
+		planet_amenities_add = 10
+        trade_value_add = 10
+	}
+	
+    # Normal Jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_pilot_add = 2
+			job_mechwarrior_add = 2
+			job_mechtech_add = 1
+		}
+	}
+	# Building Tooltip
+    triggered_desc = {
+        text = building_mediummechbay_tt
+    }
+	# Pilot (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_pilot_effect_desc
+    }
+	# Mech Warrior (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_mechwarrior_effect_desc
+    }
+	# Mech Tech (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_mechtech_effect_desc
+    }
+	
+    # Building Upgrades
+	upgrades = {
+		building_heavymechbay
+	}
+}
+
+##################################################
+## Heavy Mechbay (Tier 4, Mechanical) [Invasion!]
+##################################################
+building_heavymechbay = {
+	base_buildtime = @db4_time #540
+	can_build = no
+	category = army
+	
+    # Building Potential
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+    # Tech Prereqs
+	prerequisites = {
+		"tech_droid_workers"
+	}
+    show_tech_unlock_if = {
+        exists = owner
+        owner = { is_gestalt = no }
+    }
+    # Allow Conditions
+    allow = {
+        doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
+        has_major_upgraded_capital = yes
+		buildings_simple_allow = yes
+    }
+    # Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        owner = { is_gestalt = yes } # Gestalts should not have these buildings
+    }
+
+    # Resources
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @db4_minerals #750
+		}
+		upkeep = {
+			energy = @db4_upkeep
+			alloys = 3
+		}
+		produces = {
+			engineering_research = 10
+		}
+	}
+    
+    # Permanent Planet Modifier
+	planet_modifier = {
+		planet_amenities_add = 15
+        trade_value_add = 15
+	}
+	
+    # Normal Jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_pilot_add = 2
+			job_mechwarrior_add = 2
+			job_mechtech_add = 2
+		}
+	}
+	# Building Tooltip
+    triggered_desc = {
+        text = building_heavymechbay_tt
+    }
+	# Pilot (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_pilot_effect_desc
+    }
+	# Mech Warrior (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_mechwarrior_effect_desc
+    }
+	# Mech Tech (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_mechtech_effect_desc
+    }
+	
+    # Building Upgrades
+	upgrades = {
+		building_assaultmechbay
+	}
+}
+
+##################################################
+## Assault Mechbay (Tier 5, Mechanical) [Invasion!]
+##################################################
+building_assaultmechbay = {
+	base_buildtime = @db5_time #540
+	can_build = no
+	category = army
+	
+    # Building Potential
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+    # Allow Conditions
+	allow = {
+        doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
+        has_major_upgraded_capital = yes
+		buildings_simple_allow = yes
+		exists = owner
+		owner = { has_ascension_perk = ap_mech_lords } # Requires Ascension Perk to upgrade
+	}
+    # Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        owner = { is_gestalt = yes } # Gestalts should not have these buildings
+    }
+
+    # Resources
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @db5_minerals #1000
+		}			
+		upkeep = {
+			energy = @db5_upkeep
+			alloys = 4
+		}
+		produces = {
+			engineering_research = 15
+		}
+	}
+    
+    # Permanent Planet Modifier
+	planet_modifier = {
+		planet_amenities_add = 20
+        trade_value_add = 20
+	}
+	
+    # Normal Jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_pilot_add = 2
+			job_mechwarrior_l_add = 1
+			job_mechwarrior_add = 2
+			job_mechtech_add = 2
+		}
+	}
+	# Building Tooltip
+    triggered_desc = {
+        text = building_assaultmechbay_tt
+    }
+	# Pilot (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_pilot_effect_desc
+    }
+	# Mech Lord (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_mechwarrior_l_effect_desc
+    }
+	# Mech Warrior (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_mechwarrior_effect_desc
+    }
+	# Mech Tech (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_mechtech_effect_desc
     }
 }
 
