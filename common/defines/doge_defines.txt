@@ -223,8 +223,8 @@
 		PLANET_ASCENSION_SPRAWL_MODIFIER   = -0.025 # Reduction of planet sprawl per level of ascension
 
 		# Default value is 50, meaning 5% chance for a prescripted empire to spawn.
-		# Dogepack offers high quality prescripted countries that the AI will use more efficiently. So we set this value to 500 for a 50% chance.
-		CUSTOM_EMPIRE_SPAWN_CHANCE			= 500	# Chance that an empire will be created from an existing template instead of randomly generated (10 = 1% chance)
+		# Dogepack offers high quality prescripted countries that the AI will use more efficiently. So we set this value to 200 for a 20% chance.
+		CUSTOM_EMPIRE_SPAWN_CHANCE			= 200	# Chance that an empire will be created from an existing template instead of randomly generated (10 = 1% chance)
 
 		# Default value is 1.0
 		REINFORCE_MIA_TIME_MULT = 0.17 		# Used to customize the duration of reinforcement times. Expected to be > 0; Default: 1.0

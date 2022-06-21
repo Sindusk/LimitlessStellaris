@@ -302,6 +302,14 @@
   building_plentiful_traditions_zitadom_tt: "§MEnforcement§! - §BTier 5§! - §ETraditional Defense§! (Limit 1)"
   building_plentiful_traditions_zitadom_desc: "The Zitadom is the largest fortress that can imagined."
 
+  # Pop Assembly - Cloning
+  building_clone_vats: "Clone Vats"
+  building_clone_vats_tt: "§MPop Assembly§! - §BTier 1§! - §ECloning§! (Limit 1)"
+  building_clone_vats_desc: "Clone Vats break down simple materials to generate Organic Pop Assembly."
+  building_eutab_adv_clone_vats: "Cloning Complex"
+  building_eutab_adv_clone_vats_tt: "§MPop Assembly§! - §BTier 2 & 3§! - §ECloning§! (Limit 1)"
+  building_eutab_adv_clone_vats_desc: "A State of the Art cloning facility, capable of aggressive limb regeneration, memory and experience implants, custom cloning and a host of other services."
+
   ### Pop Jobs ###
   ## Energy
   # Master Technician

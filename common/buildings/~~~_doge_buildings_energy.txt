@@ -458,7 +458,7 @@ eb_energy2 = {
     }
 
     upgrades = {
-        eb_energy3
+        building_powerplant_2
     }
 
     ai_weight = {
@@ -634,7 +634,7 @@ building_powerplant_2 = {
 }
 
 ##################################################
-# Power Plant 5 (Tier 4, Basic Branch) [Extra Buildings]
+# Power Plant V (Tier 4, Basic Branch) [Extra Buildings]
 ##################################################
 eb_energy3 = {
 	base_buildtime = @db4_time #@b3_time
@@ -1669,7 +1669,7 @@ building_fe_power_hub = {
     }
     # Tooltip
     triggered_desc = {
-        text = building_fe_power_hub_mod_tt
+        text = building_fe_power_hub_tt
     }
     # Grid Synchronizer (Gestalt)
     triggered_desc = {
