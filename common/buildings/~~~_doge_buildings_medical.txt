@@ -20,9 +20,10 @@ building_clinic = {
     prerequisites = {
         "tech_frontier_health"
     }
-    show_tech_unlock_if = {
-        is_regular_empire = yes
-    }
+	show_tech_unlock_if = {
+        exists = owner
+		owner = { is_regular_empire = yes }
+	}
     # Destroy Trigger
     destroy_trigger = {
         exists = owner
@@ -84,9 +85,10 @@ building_hospital = {
     prerequisites = {
         "tech_frontier_hospital"
     }
-    show_tech_unlock_if = {
-        is_regular_empire = yes
-    }
+	show_tech_unlock_if = {
+        exists = owner
+		owner = { is_regular_empire = yes }
+	}
     # Allow Conditions
     allow = {
         has_upgraded_capital = yes
@@ -157,7 +159,8 @@ building_fe_hospital = {
 		"tech_fe_hospital"
 	}
 	show_tech_unlock_if = {
-		is_regular_empire = yes
+        exists = owner
+		owner = { is_regular_empire = yes }
 	}
     # Allow Conditions
 	allow = {
@@ -237,7 +240,8 @@ building_ae_hospital = {
 		"tech_ae_hospital"
 	}
 	show_tech_unlock_if = {
-		is_regular_empire = yes
+        exists = owner
+		owner = { is_regular_empire = yes }
 	}
     # Allow Conditions
 	allow = {

@@ -318,17 +318,17 @@
 #building_giga_fortress_fe_desc: "An old, but still immensely powerful titanic-sized self-sustain planetary fortress armed to the teeth with anti-invasion mechanisms. Blowing up primitives or wildlifes are amongst one of the only things these hedonists still enjoy as what still passes for "jobs""
 # 
 
-  ## Pop Assembly
-  # Pop Assembly - Cloning
+  ## Assembly Buildings
+  # Assembly - Cloning
   building_clone_vats: "Clone Vats"
-  building_clone_vats_tt: "§MPop Assembly§! - §BTier 1§! - §ECloning§! (Limit 1)"
+  building_clone_vats_tt: "§MAssembly§! - §BTier 1§! - §ECloning§! (Limit 1)"
   building_clone_vats_desc: "Clone Vats break down simple materials to generate Organic Pop Assembly."
   building_eutab_adv_clone_vats: "Cloning Complex"
-  building_eutab_adv_clone_vats_tt: "§MPop Assembly§! - §BTier 2 & 3§! - §ECloning§! (Limit 1)"
+  building_eutab_adv_clone_vats_tt: "§MAssembly§! - §BTier 2 & 3§! - §ECloning§! (Limit 1)"
   building_eutab_adv_clone_vats_desc: "A State of the Art cloning facility, capable of aggressive limb regeneration, memory and experience implants, custom cloning and a host of other services."
 
 
-  ## Medical
+  ## Medical Buildings
   # Medical - Health
   building_clinic: "Gene Clinics"
   building_clinic_tt: "§MMedical§! - §BTier 1§! - §EHealth§! (Limit 1)"
@@ -342,6 +342,38 @@
   building_ae_hospital: "Nano-Hypervitalization Complex"
   building_ae_hospital_tt: "§MMedical§! - §BTier 7§! - §EHealth§! (Limit 1)"
   building_ae_hospital_desc: "The improvements in our new equipment, allow us to make sixteen times better quality of lives. We have all sorts of help from all of our shareholders. Again, all of this just works."
+
+
+  ## Housing Buildings
+  # Housing - Foundation
+  building_luxury_residence: "Luxury Residences"
+  building_luxury_residence_tt: "§MHousing§! - §BTier 1§! - §EFoundation§!"
+  building_luxury_residence_desc: "Intricately designed residential towers with luxurious apartments. Advanced zero-g technology is the only thing keeping the more outlandish terrace designs from collapsing."
+  building_communal_housing: "Communal Housing"
+  building_communal_housing_tt: "§MHousing§! - §BTier 1§! - §EFoundation§!"
+  building_communal_housing_desc: "A block of uniform housing, equal in every way."
+  building_drone_storage: "Drone Storage"
+  building_drone_storage_tt: "§MHousing§! - §BTier 1§! - §EFoundation§!"
+  building_drone_storage_desc: "A storage area for Drones to undergo maintenance."
+  building_hive_warren: "Hive Warren"
+  building_hive_warren_tt: "§MHousing§! - §BTier 1§! - §EFoundation§!"
+  building_hive_warren_desc: "A vast warren offers shelter for many Drones to rest."
+  # Housing - Capacity
+  building_paradise_dome: "Paradise Dome"
+  building_paradise_dome_tt: "§MHousing§! - §BTier 2§! - §ECapacity§!"
+  building_paradise_dome_desc: "A fully enclosed habitation dome with a self-contained ecosystem, a veritable private paradise for those rich or fortunate enough to live there."
+  building_communal_housing_large: "Utopian Communal Housing"
+  building_communal_housing_large_tt: "§MHousing§! - §BTier 2§! - §ECapacity§!"
+  building_communal_housing_large_desc: "An incredible feat of engineering that combines efficient, practical residences with carefully maintained idyllic landscapes."
+  building_drone_megastorage: "Upgraded Drone Storage"
+  building_drone_megastorage_tt: "§MHousing§! - §BTier 2§! - §ECapacity§!"
+  building_drone_megastorage_desc: "With the latest upgrades, while undergoing maintenance a portion of Drones' power-generation can be re-directed to the grid."
+  building_expanded_warren: "Expanded Warren"
+  building_expanded_warren_tt: "§MHousing§! - §BTier 2§! - §ECapacity§!"
+  building_expanded_warren_desc: "By expanding the warrens, still more Drone can shelter within."
+  tech_eutab_gaia_district: "Gaia District"
+  tech_eutab_gaia_district_tt: "§MHousing§! - §BTier 3 & 4§! - §ECapacity§!"
+  tech_eutab_gaia_district_desc: "Our domes can be expanded to planetary districts, enhancing the habitability of the world and its natural beauty."
 
 
   ### Pop Jobs ###
