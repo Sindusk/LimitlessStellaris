@@ -94,7 +94,7 @@
 ####################################################################################################
 
 ##################################################
-## Hydroponic Farm (Tier 0) [Vanilla]
+## Hydroponic Farm (Tier 0, Foundation) [Vanilla]
 ##################################################
 building_hydroponics_farm = {
     base_buildtime = @db0_time #@b1_time

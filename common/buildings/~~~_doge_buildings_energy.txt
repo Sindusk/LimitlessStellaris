@@ -373,9 +373,12 @@ eb_energy2 = {
         has_upgraded_capital = yes
         buildings_has_exotic_gases = yes
     }
+    # Destroy Trigger
     destroy_trigger = {
         has_modifier = resort_colony
     }
+
+    # Resources
     resources = {
         category = planet_buildings
         cost = {

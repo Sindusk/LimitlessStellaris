@@ -1,0 +1,106 @@
+####################################################################################################
+# Doge Variables
+####################################################################################################
+
+##################################################
+## Building Variables
+##################################################
+
+### Vanilla Building Variables ###
+# Specifically here as a reference, not going to modify them in case it ruins everything.
+#@b1_time = 360
+#@b1_minerals = 400
+#@b1_upkeep = 2
+#@b1_jobs = 2
+
+#@b2_time = 480
+#@b2_minerals = 600
+#@b2_upkeep = 5
+#@b2_rare_cost = 50
+#@b2_rare_upkeep = 1
+#@b2_jobs = 4
+
+#@b3_time = 600
+#@b3_minerals = 800
+#@b3_upkeep = 8
+#@b3_rare_cost = 100
+#@b3_rare_upkeep = 2
+#@b3_jobs = 6
+
+#@b4_time = 900
+#@b4_minerals = 2000
+#@b4_upkeep = 10
+#@b4_rare_cost = 200
+#@b4_rare_upkeep = 4
+
+### Doge Building Variables ###
+# Tier 0 (First building)
+@db0_time = 360 	    # Tier 0 build time
+@db0_minerals = 400     # Tier 0 minerals
+@db0_upkeep = 2 	    # Tier 0 upkeep
+@db0_jobs = 2 		    # Tier 0 jobs
+
+# Tier 1 [Vanilla]
+@db1_time = 440		    # Tier 1 build time
+@db1_minerals = 500     # Tier 1 minerals
+@db1_upkeep = 3 	    # Tier 1 upkeep
+@db1_jobs = 3 		    # Tier 1 jobs
+
+# Tier 2 [Vanilla]
+@db2_time = 560		    # Tier 2 build time
+@db2_minerals = 650     # Tier 2 minerals
+@db2_rare_cost = 50     # Tier 2 rare cost
+@db2_upkeep = 5 	    # Tier 2 upkeep
+@db2_rare_upkeep = 1    # Tier 2 rare upkeep
+@db2_jobs = 4 		    # Tier 2 jobs
+
+# Tier 3 [Vanilla]
+@db3_time = 700 	    # Tier 3 build time
+@db3_minerals = 900     # Tier 3 minerals
+@db3_rare_cost = 100    # Tier 3 rare cost
+@db3_upkeep = 8 	    # Tier 3 upkeep
+@db3_rare_upkeep = 2    # Tier 3 rare upkeep
+@db3_jobs = 4 		    # Tier 3 jobs
+@db3_adv_jobs = 1 	    # Tier 3 adv jobs
+
+# Tier 4 [Extra Buildings]
+@db4_time = 900		    # Tier 4 build time
+@db4_minerals = 1200    # Tier 4 minerals
+@db4_rare_cost = 200    # Tier 4 rare cost
+@db4_upkeep = 14	    # Tier 4 upkeep
+@db4_rare_upkeep = 4    # Tier 4 rare upkeep
+@db4_jobs = 2 		    # Tier 4 jobs
+@db4_adv_jobs = 4 	    # Tier 4 adv jobs
+
+# Tier 5 [Extra Buildings]
+@db5_time = 1200        # Tier 5 build time
+@db5_minerals = 2000    # Tier 5 minerals
+@db5_rare_cost = 400    # Tier 5 rare cost
+@db5_upkeep = 25	    # Tier 5 upkeep
+@db5_rare_upkeep = 6    # Tier 5 rare upkeep
+@db5_jobs = 0 		    # Tier 5 jobs [phased out]
+@db5_adv_jobs = 6 	    # Tier 5 adv jobs
+
+# Tier 6 [ACOT Delta]
+@db6_time = 1600        # Tier 6 build time
+@db6_minerals = 3000    # Tier 6 minerals
+@db6_rare_cost = 800    # Tier 6 rare cost
+@db6_dark_cost = 150    # Tier 6 dark energy cost
+@db6_upkeep = 0         # Tier 6 upkeep [phased out in favor of strategic resources]
+@db6_rare_upkeep = 10   # Tier 6 rare upkeep
+@db6_dark_upkeep = 1    # Tier 6 dark energy upkeep
+@db6_jobs = 0           # Tier 6 jobs [phased out]
+@db6_adv_jobs = 4       # Tier 6 adv jobs
+@db6_dark_jobs = 2      # Tier 6 dark matter jobs
+
+# Tier 7 [ACOT Alpha]
+@db7_time = 2000		# Tier 7 build time
+@db7_minerals = 4000	# Tier 7 minerals
+@db7_rare_cost = 1400	# Tier 7 rare cost
+@db7_dark_cost = 300	# Tier 7 dark cost
+@db7_upkeep = 0			# Tier 7 upkeep [phased out]
+@db7_rare_upkeep = 15	# Tier 7 rare upkeep
+@db7_dark_upkeep = 3	# Tier 7 dark upkeep
+@db7_jobs = 0			# Tier 7 jobs [phased out]
+@db7_adv_jobs = 2		# Tier 7 adv jobs
+@db7_dark_jobs = 4		# Tier 7 dark jobs

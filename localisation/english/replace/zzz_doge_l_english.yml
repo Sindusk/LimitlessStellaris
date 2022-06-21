@@ -318,6 +318,7 @@
 #building_giga_fortress_fe_desc: "An old, but still immensely powerful titanic-sized self-sustain planetary fortress armed to the teeth with anti-invasion mechanisms. Blowing up primitives or wildlifes are amongst one of the only things these hedonists still enjoy as what still passes for "jobs""
 # 
 
+  ## Pop Assembly
   # Pop Assembly - Cloning
   building_clone_vats: "Clone Vats"
   building_clone_vats_tt: "§MPop Assembly§! - §BTier 1§! - §ECloning§! (Limit 1)"
@@ -325,6 +326,23 @@
   building_eutab_adv_clone_vats: "Cloning Complex"
   building_eutab_adv_clone_vats_tt: "§MPop Assembly§! - §BTier 2 & 3§! - §ECloning§! (Limit 1)"
   building_eutab_adv_clone_vats_desc: "A State of the Art cloning facility, capable of aggressive limb regeneration, memory and experience implants, custom cloning and a host of other services."
+
+
+  ## Medical
+  # Medical - Health
+  building_clinic: "Gene Clinics"
+  building_clinic_tt: "§MMedical§! - §BTier 1§! - §EHealth§! (Limit 1)"
+  building_clinic_desc: "Gene Clinics can offer advanced medical treatments, which statistically lead to a significantly healthier and longer-living population."
+  building_hospital: "Cyto-Revitalization Centers"
+  building_hospital_tt: "§MMedical§! - §BTier 2 & 3§! - §EHealth§! (Limit 1)"
+  building_hospital_desc: "Cyto-Revitalization Centers can offer advanced medical treatments to a large population. Treatments on a cellular level lead to a significantly healthier and longer-living population."
+  building_fe_hospital: "Revitalization Center"
+  building_fe_hospital_tt: "§MMedical§! - §BTier 4 - 6§! - §EHealth§! (Limit 1)"
+  building_fe_hospital_desc: "Although the overall construct is similar to the old gene clinics, the OZMA-1 Revitalization Chamber is managed by the Apothecaries, who are trained to not only provide health care, but also remove all inefficiencies and weaknesses from the hearts of the people."
+  building_ae_hospital: "Nano-Hypervitalization Complex"
+  building_ae_hospital_tt: "§MMedical§! - §BTier 7§! - §EHealth§! (Limit 1)"
+  building_ae_hospital_desc: "The improvements in our new equipment, allow us to make sixteen times better quality of lives. We have all sorts of help from all of our shareholders. Again, all of this just works."
+
 
   ### Pop Jobs ###
   ## Energy
@@ -399,7 +417,7 @@
   job_acot_mineraldrone_effect_desc: "£job_acot_mineraldrone£ $job_acot_mineraldrone_plural$ produce £minerals£ §Y$minerals$§!."
   mod_job_acot_mineraldrone_add: "$job_acot_mineraldrone$ Jobs"
 
-  ## Food
+  ## Food Jobs
   # Master Farmer
   job_doge_master_farmer: "Master Farmer"
   job_doge_master_farmer_plural: "Master Farmers"
@@ -422,7 +440,6 @@
   job_doge_master_angler_desc: "Hook and line are things of the past, but sustainably growing and hauling food out of nature takes equal patience, much planning, and great care."
   job_doge_master_angler_effect_desc: "£job_doge_master_angler£ $job_doge_master_angler_plural$ produce £food£ §Y$food$§! and £trade_value£ §Y$TRADE_VALUE$§!"
   mod_job_doge_master_angler_add: "$job_doge_master_angler$ Jobs"
-
   # ACOT Gourmet Master (Normal)
   job_acot_foodman: "Gourmet Master"
   job_acot_foodman_plural: "Gourmet Masters"
@@ -436,7 +453,7 @@
   job_acot_fooddrone_effect_desc: "£job_acot_fooddrone£ $job_acot_fooddrone_plural$ produce £food£ §Y$food$§!"
   mod_job_acot_fooddrone_add: "$job_acot_fooddrone$ Jobs"
 
-  ## Alloys
+  ## Alloys Jobs
   # ACOT Alloy Transmutator (Normal)
   job_acot_alloyman: "Alloy Transmutator"
   job_acot_alloyman_plural: "Alloy Transmutators"
@@ -450,7 +467,7 @@
   job_acot_alloydrone_effect_desc: "£job_acot_alloyman£ $job_acot_alloyman_plural$ turn £sr_dark_matter£ §Y$sr_dark_matter$§! into £alloys£ §Y$alloys$§!"
   mod_job_acot_alloydrone_add: "$job_acot_alloydrone$"
 
-  ## Enforcement
+  ## Enforcement Jobs
   # Giga Fortress Cannon Operator [ACOT] (Normal)
   job_acot_giga_fortress_operator: "Giga Fortress Cannon Operator"
   job_acot_giga_fortress_operator_plural: "Giga Fortress Cannon Operators"
@@ -474,6 +491,14 @@
   job_acot_giga_fortress_operator_mentat_plural: "Mentats"
   job_acot_giga_fortress_operator_mentat_desc: "Mentat is a unique military strategist that works inside the Giga Fortress's Strategy Center to coordinate the empire's fleet maneuvers."
   mod_job_acot_giga_fortress_operator_mentat_add: "$job_acot_giga_fortress_operator_mentat$"
+
+  ## Medical Jobs
+  # Dark Apothecary [ACOT] (Normal)
+  job_acot_apothecary: "Dark Apothecary"
+  job_acot_apothecary_plural: "Dark Apothecaries"
+  job_acot_apothecary_desc: "Dark Apothecaries are trained doctors suitable for increasing productivity and birth rates with their plasma chainsaws and rocket launchers."
+  job_acot_apothecary_effect_desc: "£job_acot_apothecary£ $job_acot_apothecary_plural$ turn £consumer_goods£ §Y$consumer_goods$§! and £sr_dark_matter£ §Y$sr_dark_matter$§! into £mod_planet_amenities_add£ §Y$PLANET_AMENITIES_TITLE$§!, £mod_pop_growth_speed£ §Y$MOD_POP_GROWTH_SPEED$§!, and £mod_planet_pop_assembly_organic_mult£ §Y$MOD_PLANET_POP_ASSEMBLY_ORGANIC_MULT$§!."
+  mod_job_acot_apothecary_add: "$job_acot_apothecary$"
 
   # Extra stuff that comes later
 
@@ -708,12 +733,6 @@
 ######################### POPULATION ########################
 # 
 #### HOSPITAL ##
-# 
-#building_fe_hospital: "Revitalization Center"
-#building_fe_hospital_desc: "Although the overall construct is similar to the old gene clinics, the OZMA-1 Revitalization Chamber is managed by the Apothecaries, who are trained to not only provide health care, but also remove all inefficiencies and weaknesses from the hearts of the people."
-# 
-#building_ae_hospital: "Nano-Hypervitalization Complex"
-#building_ae_hospital_desc: "The improvements in our new equipment, allow us to make sixteen times better quality of lives. We have all sorts of help from all of our shareholders. Again, all of this just works."
 # 
 #tech_fe_hospital: "Bioform Revitalization"
 #tech_fe_hospital_desc: "With the new enigmatic technologies, come new inventions across all scientific approaches. Quality of life for our people will gradually only get better and better as a result. Further improvements in these fields will allow us to provide necessary equipment and workshops for the newly established Apothecary Order. The building will serve as the beacon of hope for those who seek to witness a dawn of a new era."
