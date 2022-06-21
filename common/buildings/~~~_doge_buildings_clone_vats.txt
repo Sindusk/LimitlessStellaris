@@ -551,7 +551,7 @@ building_clone_vats = {
 }
 
 ##################################################
-## Clone Vats (Tier 4, Cloning) [Vanilla] - StarTech AI, Plentiful Traditions, Expanded Megastructures and Technology, Ethics & Civics: Bug Branch, and EUTAB
+## Cloning Complex (Tier 4, Cloning) [EUTAB]
 ##################################################
 building_eutab_adv_clone_vats = {
 	base_buildtime = @db4_time #@b2_time
@@ -560,7 +560,6 @@ building_eutab_adv_clone_vats = {
 	
 	# Building Potential
 	potential = {
-		exists = owner
 		NOT = { has_modifier = resort_colony }
 	}
 	# Tech Prereqs

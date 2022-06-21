@@ -299,8 +299,24 @@
   building_fortress_desc: "A massive fortress complex with an expanded garrison and training facilities for soldiers."
   tr_plentiful_defence_5: "Bunker Mentality" # Quick localization fix for the for the tradition perk that unlocks the Zitadom
   building_plentiful_traditions_zitadom: "Zitadom"
-  building_plentiful_traditions_zitadom_tt: "§MEnforcement§! - §BTier 5§! - §ETraditional Defense§! (Limit 1)"
+  building_plentiful_traditions_zitadom_tt: "§MEnforcement§! - §BTier 5§! - §EDefense§! - §EBunker§! (Empire Limit 1)"
   building_plentiful_traditions_zitadom_desc: "The Zitadom is the largest fortress that can imagined."
+  building_giga_fortress: "Giga Fortress"
+  building_giga_fortress_tt: "§MEnforcement§! - §BTier 6§! - §EDefense§! - §EBunker§! (Empire Limit 1)"
+  building_giga_fortress_desc: "Giga Fortress is a titanic-sized, self-sustain planetary fortress armed with three battleship-sized hypervelocity batteries and various other defense systems as well as a legion of garrison forces. The mere presence of it inspires confidence in all citizens and removes any chances of unrest, for any who'd dare rebel would be swiftly annihilated."
+# 
+#building_giga_fortress_array: "Giga Fortress - Strategy Center"
+#building_giga_fortress_array_desc: "The Strategy Center module connects the fortress super computers with the empire's fleets for greater coordinations. A Mentat will also be stationed to function as tactical strategic analysis."
+# 
+#building_giga_fortress_lab: "Giga Fortress - Seat of Power"
+#building_giga_fortress_lab_desc: "The Seat of Power module moves some of our political leaders aboard the fortress, increasing our empire's unity and upper management as well as greater influence."
+# 
+#building_giga_fortress_obelisk: "Giga Fortress - Obelisk of Light"
+#building_giga_fortress_obelisk_desc: "The installed Obelisk of Light module greatly enhances the fortress's defenses as well as providing extra training grounds for our armies. Additional generators will also be installed to provide Dark Energy and Dark Matter."
+# 
+#building_giga_fortress_fe: "Ancient Giga Fortress"
+#building_giga_fortress_fe_desc: "An old, but still immensely powerful titanic-sized self-sustain planetary fortress armed to the teeth with anti-invasion mechanisms. Blowing up primitives or wildlifes are amongst one of the only things these hedonists still enjoy as what still passes for "jobs""
+# 
 
   # Pop Assembly - Cloning
   building_clone_vats: "Clone Vats"
@@ -433,6 +449,31 @@
   job_acot_alloydrone_desc: "Alloy Transmutations are able to create alloys through matter generation process utilizing dark matter."
   job_acot_alloydrone_effect_desc: "£job_acot_alloyman£ $job_acot_alloyman_plural$ turn £sr_dark_matter£ §Y$sr_dark_matter$§! into £alloys£ §Y$alloys$§!"
   mod_job_acot_alloydrone_add: "$job_acot_alloydrone$"
+
+  ## Enforcement
+  # Giga Fortress Cannon Operator [ACOT] (Normal)
+  job_acot_giga_fortress_operator: "Giga Fortress Cannon Operator"
+  job_acot_giga_fortress_operator_plural: "Giga Fortress Cannon Operators"
+  job_acot_giga_fortress_operator_desc: "These gunners are trained to operate and calibrate Giga Fortress massive cannons. Let our enemies beware for they shall know no fear. Each cannon provides an equivalent of 20 defense forces."
+  job_acot_giga_fortress_operator_effect_desc: "£job_acot_giga_fortress_operator£ $job_acot_giga_fortress_operator_plural$ use £sr_dark_matter£ §Y$sr_dark_matter$§! to decrease £crime£ §Y$PLANET_CRIME_TITLE$§!, spawn £defense_army£ §YDefense Armies§!, and increase £mod_planet_stability_add£ §Y$PLANET_STABILITY_TITLE$§! and £mod_country_naval_cap_add£ §Y$MOD_COUNTRY_NAVAL_CAP_ADD$§!"
+  mod_job_acot_giga_fortress_operator_add: "$job_acot_giga_fortress_operator$"
+  # Giga Fortress Cannon Operator [ACOT] (Gestalt)
+  job_acot_giga_fortress_operator_drone: "Giga Fortress Cannon Operator"
+  job_acot_giga_fortress_operator_drone_plural: "Giga Fortress Cannon Operators"
+  job_acot_giga_fortress_operator_drone_desc: "These gunners are programmed to operate and calibrate Giga Fortress massive cannons. Let our enemies beware for they shall know no fear. Each cannon provides an equivalent of 20 defense forces."
+  job_acot_giga_fortress_operator_drone_effect_desc: "£job_acot_giga_fortress_operator_drone£ $job_acot_giga_fortress_operator_drone_plural$ use £sr_dark_matter£ §Y$sr_dark_matter$§! to decrease £crime£ §Y$PLANET_CRIME_TITLE$§!, spawn £defense_army£ §YDefense Armies§!, and increase £mod_planet_stability_add£ §Y$PLANET_STABILITY_TITLE$§! and £mod_country_naval_cap_add£ §Y$MOD_COUNTRY_NAVAL_CAP_ADD$§!"
+  mod_job_acot_giga_fortress_operator_drone_add: "$job_acot_giga_fortress_operator_drone$"
+  # Giga Fortress Cannon Operator [ACOT] (Fallen Empire)
+  job_acot_giga_fortress_operator_ancient: "Giga Fortress Cannon Operator"
+  job_acot_giga_fortress_operator_ancient_plural: "Giga Fortress Cannon Operators"
+  job_acot_giga_fortress_operator_ancient_desc: "These gunners are trained to operate and calibrate Giga Fortress massive cannons. Let our enemies beware for they shall know no fear. Each cannon provides an equivalent of 20 defense forces."
+  job_acot_giga_fortress_operator_ancient_effect_desc: "£job_acot_giga_fortress_operator_ancient£ $job_acot_giga_fortress_operator_ancient_plural$ use £sr_dark_matter£ §Y$sr_dark_matter$§! to decrease £crime£ §Y$PLANET_CRIME_TITLE$§!, spawn £defense_army£ §YDefense Armies§!, and increase £mod_planet_stability_add£ §Y$PLANET_STABILITY_TITLE$§! and £mod_country_naval_cap_add£ §Y$MOD_COUNTRY_NAVAL_CAP_ADD$§!"
+  mod_job_acot_giga_fortress_operator_ancient_add: "$job_acot_giga_fortress_operator$"
+  
+  job_acot_giga_fortress_operator_mentat: "Mentat"
+  job_acot_giga_fortress_operator_mentat_plural: "Mentats"
+  job_acot_giga_fortress_operator_mentat_desc: "Mentat is a unique military strategist that works inside the Giga Fortress's Strategy Center to coordinate the empire's fleet maneuvers."
+  mod_job_acot_giga_fortress_operator_mentat_add: "$job_acot_giga_fortress_operator_mentat$"
 
   # Extra stuff that comes later
 
@@ -952,21 +993,6 @@
 #tech_ae_dark_energy_psg_desc: "While the Dark Energy PSG provides acceptable protection against bombardments, many of our tacticians point out that the building itself is generally useless beyond that. They suggest that we create a larger installation that not only provides even better protections, but also features science lab addons for our researchers."
 # 
 ##############################
-# 
-#building_giga_fortress: "Giga Fortress"
-#building_giga_fortress_desc: "Giga Fortress is a titanic-sized, self-sustain planetary fortress armed with three battleship-sized hypervelocity batteries and various other defense systems as well as a legion of garrison forces. The mere presence of it inspires confidence in all citizens and removes any chances of unrest, for any who'd dare rebel would be swiftly annihilated."
-# 
-#building_giga_fortress_array: "Giga Fortress - Strategy Center"
-#building_giga_fortress_array_desc: "The Strategy Center module connects the fortress super computers with the empire's fleets for greater coordinations. A Mentat will also be stationed to function as tactical strategic analysis."
-# 
-#building_giga_fortress_lab: "Giga Fortress - Seat of Power"
-#building_giga_fortress_lab_desc: "The Seat of Power module moves some of our political leaders aboard the fortress, increasing our empire's unity and upper management as well as greater influence."
-# 
-#building_giga_fortress_obelisk: "Giga Fortress - Obelisk of Light"
-#building_giga_fortress_obelisk_desc: "The installed Obelisk of Light module greatly enhances the fortress's defenses as well as providing extra training grounds for our armies. Additional generators will also be installed to provide Dark Energy and Dark Matter."
-# 
-#building_giga_fortress_fe: "Ancient Giga Fortress"
-#building_giga_fortress_fe_desc: "An old, but still immensely powerful titanic-sized self-sustain planetary fortress armed to the teeth with anti-invasion mechanisms. Blowing up primitives or wildlifes are amongst one of the only things these hedonists still enjoy as what still passes for "jobs""
 # 
 #tech_giga_fortress: "Giga Fortress Visualization"
 #tech_giga_fortress_desc: "Powered by the enigmatic dark energy reactor, Giga Fortress is the deadliest, self-sustaining planetary fortress that can sweep away but the deadliest invasion forces."
