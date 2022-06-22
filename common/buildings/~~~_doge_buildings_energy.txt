@@ -916,12 +916,7 @@ building_energy_grid = {
     # Allow conditions
     allow = {
     	# Check for any buildings that are within the upgrade chain and prevent construction if they exist.
-        NOR = {
-            num_buildings = { type = building_energy_grid value > 1 in_construction = any }
-            num_buildings = { type = building_energy_nexus value > 1 in_construction = any }
-            num_buildings = { type = building_roci_class_4_singularity_mod value > 1 in_construction = any }
-            num_buildings = { type = building_fe_power_hub value > 1 in_construction = any }
-        }
+        doge_can_build_energy_grid = yes
         # StarTech allow conditions.
         buildings_simple_allow = yes
         str_energy_grid_allow = yes
@@ -1130,7 +1125,7 @@ building_energy_nexus = {
     }
     allow = {
         # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
-        doge_can_build_energy_grid = yes
+        #doge_can_build_energy_grid = yes
         has_upgraded_capital = yes
         buildings_has_exotic_gases = yes
     }
@@ -1342,12 +1337,7 @@ building_roci_class_4_singularity_mod = {
     }
     allow = {
         # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
-        NOR = {
-            num_buildings = { type = building_energy_grid value > 1 in_construction = any }
-            num_buildings = { type = building_energy_nexus value > 1 in_construction = any }
-            num_buildings = { type = building_roci_class_4_singularity_mod value > 1 in_construction = any }
-            num_buildings = { type = building_fe_power_hub value > 1 in_construction = any }
-        }
+        #doge_can_build_energy_grid = yes
         has_major_upgraded_capital = yes
         buildings_has_exotic_gases = yes
     }
@@ -1543,7 +1533,7 @@ building_fe_power_hub = {
     # Allow Conditions
     allow = {
         # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
-        doge_can_build_energy_grid = yes
+        #doge_can_build_energy_grid = yes
         has_enigmatic_capital = yes
         buildings_has_exotic_gases = yes
     }

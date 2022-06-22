@@ -1449,7 +1449,7 @@ building_food_processing_center = {
 	# Allow Conditions
     allow = {
         # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
-		doge_can_build_food_processing = yes
+		#doge_can_build_food_processing = yes
         buildings_has_motes = yes
         has_upgraded_capital = yes
     }
@@ -1668,7 +1668,7 @@ building_roci_nourishment_center_mod = {
 	# Allow Conditions
     allow = {
         # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
-		doge_can_build_food_processing = yes
+		#doge_can_build_food_processing = yes
         buildings_has_motes = yes
         has_major_upgraded_capital = yes
     }
@@ -1863,7 +1863,7 @@ building_fe_food_processing_complex = {
 	# Allow Conditions
     allow = {
         # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
-		doge_can_build_food_processing = yes
+		#doge_can_build_food_processing = yes
         buildings_has_motes = yes
         has_enigmatic_capital = yes
     }

@@ -1127,7 +1127,7 @@ building_foundry_2 = {
     }
 	# Allow Conditions
     allow = {
-		doge_can_build_alloy_foundry = yes # Ensure there is no foundry already on the planet
+		#doge_can_build_alloy_foundry = yes # Ensure there is no foundry already on the planet
         has_upgraded_capital = yes
         buildings_upgrade_allow = yes
         buildings_has_motes = yes
@@ -1554,7 +1554,7 @@ building_foundry_3 = {
     }
 	# Allow Conditions
     allow = {
-		doge_can_build_alloy_foundry = yes # Ensure there is no foundry already on the planet
+		#doge_can_build_alloy_foundry = yes # Ensure there is no foundry already on the planet
         has_major_upgraded_capital = yes
         buildings_upgrade_allow = yes
         buildings_has_motes = yes
@@ -1981,7 +1981,7 @@ building_roci_nano_forge_mod = {
 	}
 	# Allow Conditions
     allow = {
-		doge_can_build_alloy_foundry = yes # Ensure there is no foundry already on the planet
+		#doge_can_build_alloy_foundry = yes # Ensure there is no foundry already on the planet
         has_fully_upgraded_capital = yes
         buildings_upgrade_allow = yes
         buildings_has_motes = yes
@@ -2408,7 +2408,7 @@ building_fe_alloy_forge = {
 	}
 	# Allow Conditions
     allow = {
-		doge_can_build_alloy_foundry = yes # Ensure there is no foundry already on the planet
+		#doge_can_build_alloy_foundry = yes # Ensure there is no foundry already on the planet
         has_enigmatic_capital = yes
         buildings_upgrade_allow = yes
         buildings_has_motes = yes

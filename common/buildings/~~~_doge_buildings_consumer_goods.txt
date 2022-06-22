@@ -771,7 +771,7 @@ building_factory_2 = {
     }
     # Allow Conditions
     allow = {
-		doge_can_build_civilian_industry = yes # Ensure there is no civilian industry already on the planet
+		#doge_can_build_civilian_industry = yes # Ensure there is no civilian industry already on the planet
         has_upgraded_capital = yes
         buildings_upgrade_allow = yes
         buildings_has_crystals = yes
@@ -981,7 +981,7 @@ building_factory_3 = {
     }
     # Allow Conditions
     allow = {
-		doge_can_build_civilian_industry = yes # Ensure there is no civilian industry already on the planet
+		#doge_can_build_civilian_industry = yes # Ensure there is no civilian industry already on the planet
         has_major_upgraded_capital = yes
         buildings_upgrade_allow = yes
         buildings_has_crystals = yes
@@ -1191,7 +1191,7 @@ building_roci_affluence_center_mod = {
 	}
     # Allow Conditions
     allow = {
-		doge_can_build_civilian_industry = yes # Ensure there is no civilian industry already on the planet
+		#doge_can_build_civilian_industry = yes # Ensure there is no civilian industry already on the planet
         has_fully_upgraded_capital = yes
         buildings_upgrade_allow = yes
         buildings_has_crystals = yes

@@ -1556,7 +1556,7 @@ building_mineral_purification_hub = {
     }
 	# Allow conditions
     allow = {
-		doge_can_build_mineral_purification = yes
+		#doge_can_build_mineral_purification = yes
         has_upgraded_capital = yes
         buildings_has_motes = yes
 		str_mineral_purification_allow = yes
@@ -1818,7 +1818,7 @@ building_roci_dimensional_fabricator_mod = {
 	}
 	# Allow conditions
     allow = {
-		doge_can_build_mineral_purification = yes
+		#doge_can_build_mineral_purification = yes
         has_major_upgraded_capital = yes
         buildings_has_motes = yes
     }
@@ -2057,7 +2057,7 @@ building_fe_mineral_processing_plant = {
 	}
 	# Allow conditions
     allow = {
-		doge_can_build_mineral_purification = yes
+		#doge_can_build_mineral_purification = yes
         has_enigmatic_capital = yes
         buildings_has_motes = yes
     }

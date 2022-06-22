@@ -519,7 +519,7 @@ building_lightmechbay = {
     }
     # Allow Conditions
     allow = {
-        doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
+        #doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
 		buildings_simple_allow = yes
     }
     # Destroy Trigger
@@ -619,7 +619,7 @@ building_mediummechbay = {
     }
     # Allow Conditions
     allow = {
-        doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
+        #doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
         has_upgraded_capital = yes
 		buildings_simple_allow = yes
     }
@@ -720,7 +720,7 @@ building_heavymechbay = {
     }
     # Allow Conditions
     allow = {
-        doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
+        #doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
         has_major_upgraded_capital = yes
 		buildings_simple_allow = yes
     }
@@ -813,7 +813,7 @@ building_assaultmechbay = {
 	}
     # Allow Conditions
 	allow = {
-        doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
+        #doge_can_build_mech_building = yes # Ensure there's not already a mech building on the planet
         has_major_upgraded_capital = yes
 		buildings_simple_allow = yes
 		exists = owner
@@ -1372,7 +1372,7 @@ building_giga_fortress = {
 	}
     # Allow Conditions
 	allow = {
-        doge_can_build_bunker = yes # Must be able to build a bunker (limited to 1 per empire)
+        #doge_can_build_bunker = yes # Must be able to build a bunker (limited to 1 per empire)
         buildings_simple_allow = yes
 		has_enigmatic_capital = yes
 	}

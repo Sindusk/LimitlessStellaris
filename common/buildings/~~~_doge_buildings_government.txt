@@ -530,7 +530,7 @@ building_grand_embassy = {
     }
 	# Allow Conditions
     allow = {
-        doge_can_build_embassy = yes # Check if there is already an Embassy in the empire.
+        #doge_can_build_embassy = yes # Check if there is already an Embassy in the empire.
         has_major_upgraded_capital = yes
         buildings_simple_allow = yes
     }
@@ -604,7 +604,7 @@ building_dm_embassy = {
     }
     # Allow Conditions
     allow = {
-        doge_can_build_embassy = yes # Check if there's already another Embassy built in the empire
+        #doge_can_build_embassy = yes # Check if there's already another Embassy built in the empire
         has_enigmatic_capital = yes
         buildings_simple_allow = yes
     }

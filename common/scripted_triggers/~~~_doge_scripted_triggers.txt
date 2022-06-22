@@ -9,10 +9,10 @@
 # Context: Planet
 doge_can_build_energy_grid = {
         NOR = {
-                num_buildings = { type = building_energy_grid value > 1 in_construction = any }
-                num_buildings = { type = building_energy_nexus value > 1 in_construction = any }
-                num_buildings = { type = building_roci_class_4_singularity_mod value > 1 in_construction = any }
-                num_buildings = { type = building_fe_power_hub value > 1 in_construction = any }
+                num_buildings = { type = building_energy_grid value > 0 in_construction = no }
+                num_buildings = { type = building_energy_nexus value > 0 in_construction = no }
+                num_buildings = { type = building_roci_class_4_singularity_mod value > 0 in_construction = no }
+                num_buildings = { type = building_fe_power_hub value > 0 in_construction = no }
 	}
 }
 
@@ -20,10 +20,10 @@ doge_can_build_energy_grid = {
 # Context: Planet
 doge_can_build_mineral_purification = {
         NOR = {
-                num_buildings = { type = building_mineral_purification_plant value > 1 in_construction = any }
-                num_buildings = { type = building_mineral_purification_hub value > 1 in_construction = any }
-                num_buildings = { type = building_roci_dimensional_fabricator_mod value > 1 in_construction = any }
-                num_buildings = { type = building_fe_mineral_processing_plant value > 1 in_construction = any }
+                num_buildings = { type = building_mineral_purification_plant value > 0 in_construction = no }
+                num_buildings = { type = building_mineral_purification_hub value > 0 in_construction = no }
+                num_buildings = { type = building_roci_dimensional_fabricator_mod value > 0 in_construction = no }
+                num_buildings = { type = building_fe_mineral_processing_plant value > 0 in_construction = no }
 	}
 }
 
@@ -31,10 +31,10 @@ doge_can_build_mineral_purification = {
 # Context: Planet
 doge_can_build_food_processing = {
         NOR = {
-                num_buildings = { type = building_food_processing_facility value > 1 in_construction = any }
-                num_buildings = { type = building_food_processing_center value > 1 in_construction = any }
-                num_buildings = { type = building_roci_nourishment_center_mod value > 1 in_construction = any }
-                num_buildings = { type = building_fe_food_processing_complex value > 1 in_construction = any }
+                num_buildings = { type = building_food_processing_facility value > 0 in_construction = no }
+                num_buildings = { type = building_food_processing_center value > 0 in_construction = no }
+                num_buildings = { type = building_roci_nourishment_center_mod value > 0 in_construction = no }
+                num_buildings = { type = building_fe_food_processing_complex value > 0 in_construction = no }
         }
 }
 
@@ -42,7 +42,7 @@ doge_can_build_food_processing = {
 # Context: Planet
 doge_can_build_stock_exchange = {
         NOR = {
-                num_buildings = { type = building_galactic_stock_exchange value > 1 in_construction = any }
+                num_buildings = { type = building_galactic_stock_exchange value > 0 in_construction = no }
         }
 }
 
@@ -50,11 +50,11 @@ doge_can_build_stock_exchange = {
 # Context: Planet
 doge_can_build_alloy_foundry = {
         NOR = {
-                num_buildings = { type = building_foundry_1 value > 1 in_construction = any }
-                num_buildings = { type = building_foundry_2 value > 1 in_construction = any }
-                num_buildings = { type = building_foundry_3 value > 1 in_construction = any }
-                num_buildings = { type = building_roci_nano_forge_mod value > 1 in_construction = any }
-                num_buildings = { type = building_fe_alloy_forge value > 1 in_construction = any }
+                num_buildings = { type = building_foundry_1 value > 0 in_construction = no }
+                num_buildings = { type = building_foundry_2 value > 0 in_construction = no }
+                num_buildings = { type = building_foundry_3 value > 0 in_construction = no }
+                num_buildings = { type = building_roci_nano_forge_mod value > 0 in_construction = no }
+                num_buildings = { type = building_fe_alloy_forge value > 0 in_construction = no }
         }
 }
 
@@ -62,10 +62,10 @@ doge_can_build_alloy_foundry = {
 # Context: Planet
 doge_can_build_civilian_industry = {
         NOR = {
-                num_buildings = { type = building_factory_1 value > 1 in_construction = any }
-                num_buildings = { type = building_factory_2 value > 1 in_construction = any }
-                num_buildings = { type = building_factory_3 value > 1 in_construction = any }
-                num_buildings = { type = building_roci_affluence_center_mod value > 1 in_construction = any }
+                num_buildings = { type = building_factory_1 value > 0 in_construction = no }
+                num_buildings = { type = building_factory_2 value > 0 in_construction = no }
+                num_buildings = { type = building_factory_3 value > 0 in_construction = no }
+                num_buildings = { type = building_roci_affluence_center_mod value > 0 in_construction = no }
         }
 }
 
@@ -73,11 +73,11 @@ doge_can_build_civilian_industry = {
 # Context: Planet
 doge_can_build_mech_building = {
         NOR = {
-                num_buildings = { type = building_aerofighter_base value > 1 in_construction = any } # Aero Base
-                num_buildings = { type = building_lightmechbay value > 1 in_construction = any } # Light Mechbay
-                num_buildings = { type = building_mediummechbay value > 1 in_construction = any } # Medium Mechbay
-                num_buildings = { type = building_heavymechbay value > 1 in_construction = any } # Heavy Mechbay
-                num_buildings = { type = building_assaultmechbay value > 1 in_construction = any } # Assault Mechbay
+                num_buildings = { type = building_aerofighter_base value > 0 in_construction = no } # Aero Base
+                num_buildings = { type = building_lightmechbay value > 0 in_construction = no } # Light Mechbay
+                num_buildings = { type = building_mediummechbay value > 0 in_construction = no } # Medium Mechbay
+                num_buildings = { type = building_heavymechbay value > 0 in_construction = no } # Heavy Mechbay
+                num_buildings = { type = building_assaultmechbay value > 0 in_construction = no } # Assault Mechbay
         }
 }
 
@@ -87,8 +87,8 @@ doge_can_build_bunker = {
         exists = owner
         owner = { # Scope out to owner so it checks if they have one built on any planet, not just the one it's checking from.
                 NOR = {
-                        num_buildings = { type = building_factory_1 value > 1 in_construction = any } # Zitadom
-                        num_buildings = { type = building_giga_fortress value > 1 in_construction = any } # Delta Giga Fortress
+                        num_buildings = { type = building_factory_1 value > 0 in_construction = no } # Zitadom
+                        num_buildings = { type = building_giga_fortress value > 0 in_construction = no } # Delta Giga Fortress
                 }
         }
 }
@@ -97,11 +97,11 @@ doge_can_build_bunker = {
 # Context: Planet
 doge_can_build_government_foundation = {
         NOR = {
-                num_buildings = { type = building_autochthon_monument value > 1 in_construction = any } # Autochthon Monument
-                num_buildings = { type = building_galactic_memorial_1 value > 1 in_construction = any } # Sanctuary of Repose
-                num_buildings = { type = building_corporate_monument value > 1 in_construction = any } # Corporate Culture Site
-                num_buildings = { type = building_sensorium_1 value > 1 in_construction = any } # Sensorium Site
-                num_buildings = { type = building_simulation_1 value > 1 in_construction = any } # Simulation Site
+                num_buildings = { type = building_autochthon_monument value > 0 in_construction = no } # Autochthon Monument
+                num_buildings = { type = building_galactic_memorial_1 value > 0 in_construction = no } # Sanctuary of Repose
+                num_buildings = { type = building_corporate_monument value > 0 in_construction = no } # Corporate Culture Site
+                num_buildings = { type = building_sensorium_1 value > 0 in_construction = no } # Sensorium Site
+                num_buildings = { type = building_simulation_1 value > 0 in_construction = no } # Simulation Site
         }
 }
 
@@ -111,10 +111,10 @@ doge_can_build_embassy = {
         exists = owner
         owner = { # Scope out to owner so it checks if they have one built on any planet, not just the one it's checking from.
                 NOR = {
-                        num_buildings = { type = building_embassy value > 1 in_construction = any } # Embassy
-                        num_buildings = { type = building_grand_embassy value > 1 in_construction = any } # Grand Embassy
-                        num_buildings = { type = building_dm_embassy value > 1 in_construction = any } # Dark Embassy
-                        num_buildings = { type = building_ae_embassy value > 1 in_construction = any } # Dark Embassy
+                        num_buildings = { type = building_embassy value > 0 in_construction = no } # Embassy
+                        num_buildings = { type = building_grand_embassy value > 0 in_construction = no } # Grand Embassy
+                        num_buildings = { type = building_dm_embassy value > 0 in_construction = no } # Dark Embassy
+                        num_buildings = { type = building_ae_embassy value > 0 in_construction = no } # Dark Embassy
                 }
         }
 }
