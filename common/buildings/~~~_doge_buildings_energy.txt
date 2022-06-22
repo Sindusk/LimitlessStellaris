@@ -1333,7 +1333,7 @@ building_roci_class_4_singularity_mod = {
     }
     # Tech Requirements
     prerequisites = {
-        tech_roci_singularity_power
+        "tech_roci_singularity_power"
     }
     allow = {
         # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
@@ -1449,27 +1449,27 @@ building_roci_class_4_singularity_mod = {
     triggered_desc = {
         text = building_roci_class_4_singularity_mod_tt
     }
+    # Master Technician Drone (Gestalt)
     triggered_desc = {
         trigger = {
             exists = owner
-            owner = {
-                is_gestalt = yes
-            }
+            owner = { is_gestalt = yes }
         }
         text = job_doge_master_technician_drone_effect_desc
     }
+    # Master Technician (Normal)
     triggered_desc = {
         trigger = {
             exists = owner
-            owner = {
-                is_gestalt = no
-            }
+            owner = { is_gestalt = no }
         }
         text = job_doge_master_technician_effect_desc
     }
 
+    # Building Upgrades
     upgrades = {
-        building_fe_power_hub
+        "building_giga_energy_nexus_1"
+        #"building_fe_power_hub"
     }
 
     # StarNet Fake Jobs
@@ -1515,6 +1515,183 @@ building_roci_class_4_singularity_mod = {
 }
 
 ##################################################
+# Laser Conduction Energy Distributor (Tier 5, Productivity Branch) [Gigastructural Engineering]
+##################################################
+building_giga_energy_nexus_1 = {
+	base_buildtime = @db5_time #@b3_time
+    can_build = no
+	category = resource
+	
+    # Can build on anything that isn't a resort colony.
+    potential = {
+        NOT = { has_modifier = resort_colony }
+    }
+    # Tech Prereqs
+	prerequisites = {
+		tech_l_conductor
+	}
+    # Allow Conditions
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+    # Destroy Trigger
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			buildings_no_exotic_gases = yes
+		}
+	}
+
+    # Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db5_minerals #@b3_minerals
+			exotic_gases = @db5_rare_cost #@b3_rare_cost
+			#rare_crystals = 20
+		}
+		upkeep = {
+			energy = @db5_upkeep #6
+			exotic_gases = @db5_rare_upkeep #@b3_rare_upkeep
+		}
+	}
+	
+    planet_modifier = {
+        planet_technician_energy_produces_add = 6
+        planet_jobs_energy_produces_mult = 0.02
+    }
+    # Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_doge_master_technician_add = 3
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_doge_master_technician_drone_add = 3
+        }
+    }
+    # Planet modifier for increased districts on robotic empires
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_robot_empire = yes }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 6
+        }
+    }
+    # Districts for functional architecture civic normal empires
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_functional_architecture = yes }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 3
+        }
+    }
+    # Trade value for free market modifier
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_policy_flag = economic_stance_bugged_free_market
+            }
+        }
+        modifier = {
+            trade_value_add = 30
+        }
+    }
+    # Tooltip
+    triggered_desc = {
+        text = building_giga_energy_nexus_1_tt
+    }
+    # Master Technician Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_doge_master_technician_drone_effect_desc
+    }
+    # Master Technician (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_doge_master_technician_effect_desc
+    }
+
+    # StarNet Fake Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_ai = yes }
+            str_force_energy_grid = yes
+        }
+        modifier = {
+            job_starnet_spice_melange_farmer_add = 1
+            job_starnet_spice_melange_antifarmer_add = -1
+        }
+    }
+    
+    # Building Upgrades
+	upgrades = {
+		"building_giga_energy_nexus_2"
+        "building_fe_power_hub"
+	}
+
+    # AI Resource Production
+    ai_resource_production = {
+        energy = 18
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 90
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 2
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 180
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 4
+            }
+        }
+    }
+}
+
+##################################################
 # Dark Energy Power Grid (Tier 6, Productivity Branch) [Ancient Cache of Technology]
 ##################################################
 building_fe_power_hub = {
@@ -1546,14 +1723,13 @@ building_fe_power_hub = {
             }
             AND = {
                 exists = owner
-                owner = {
-                    is_ai = yes
-                }
+                owner = { is_ai = yes }
                 has_any_generator_district_or_building = no
             }
         }
     }
 
+    # Resources
     resources = {
         category = planet_buildings
         cost = {

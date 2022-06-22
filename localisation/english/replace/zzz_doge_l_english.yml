@@ -107,8 +107,11 @@
   building_roci_class_4_singularity_mod: "Class-4 Singularity"
   building_roci_class_4_singularity_mod_tt: "§MEnergy§! - §BTier 4§! - §EProductivity§! (Limit 1)"
   building_roci_class_4_singularity_mod_desc: "A contained Singularity can be a great source of power, if you know how to make it."
+  building_giga_energy_nexus_1: "Laser Conduction Energy Distributor"
+  building_giga_energy_nexus_1_tt: "§MEnergy§! - §BTier 5§! - §EProductivity§! (Limit 1)"
+  building_giga_energy_nexus_1_desc: "The huge complex uses powerful high-energy light conductors to transport energy between the planet it is located at and other planets in its solar system."
   building_fe_power_hub: "Dark Energy Power Grid"
-  building_fe_power_hub_tt: "§MEnergy§! - §BTier 5 & 6§! - §EProductivity§! (Limit 1)"
+  building_fe_power_hub_tt: "§MEnergy§! - §BTier 6§! - §EProductivity§! (Limit 1)"
   building_fe_power_hub_desc: "Using synthesized dark energy, the new-generation power grid boasts much higher energy production than conventional generators."
   # ACOT Stuff
 #building_ae_power_hub: "Alpha Master Power Nexus"

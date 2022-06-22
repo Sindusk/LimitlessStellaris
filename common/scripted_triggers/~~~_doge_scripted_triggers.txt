@@ -12,6 +12,7 @@ doge_can_build_energy_grid = {
                 num_buildings = { type = building_energy_grid value > 0 in_construction = no }
                 num_buildings = { type = building_energy_nexus value > 0 in_construction = no }
                 num_buildings = { type = building_roci_class_4_singularity_mod value > 0 in_construction = no }
+                num_buildings = { type = building_giga_energy_nexus_1 value > 0 in_construction = no }
                 num_buildings = { type = building_fe_power_hub value > 0 in_construction = no }
 	}
 }
