@@ -1228,8 +1228,8 @@ building_plentiful_traditions_zitadom = {
 	}
 	# Allow Conditions
 	allow = {
+		doge_can_build_bunker = yes # Must be able to build a bunker (limited to 1 per empire)
         buildings_simple_allow = yes
-		doge_can_build_bunker = yes # Must be able to build a bunker (limited to 1)
 		has_major_upgraded_capital = yes
 	}
 	# Destroy Trigger
@@ -1372,6 +1372,7 @@ building_giga_fortress = {
 	}
     # Allow Conditions
 	allow = {
+        doge_can_build_bunker = yes # Must be able to build a bunker (limited to 1 per empire)
         buildings_simple_allow = yes
 		has_enigmatic_capital = yes
 	}

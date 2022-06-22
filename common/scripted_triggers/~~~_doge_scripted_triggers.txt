@@ -81,7 +81,7 @@ doge_can_build_mech_building = {
         }
 }
 
-## doge_can_build_bunker: Checks if the planet already has an upgraded bunker building.
+## doge_can_build_bunker: Checks if the empire already has an upgraded bunker building.
 # Context: Planet
 doge_can_build_bunker = {
         exists = owner
@@ -89,6 +89,32 @@ doge_can_build_bunker = {
                 NOR = {
                         num_buildings = { type = building_factory_1 value > 1 in_construction = any } # Zitadom
                         num_buildings = { type = building_giga_fortress value > 1 in_construction = any } # Delta Giga Fortress
+                }
+        }
+}
+
+## doge_can_build_government_foundation: Checks if the planet already has a government foundation.
+# Context: Planet
+doge_can_build_government_foundation = {
+        NOR = {
+                num_buildings = { type = building_autochthon_monument value > 1 in_construction = any } # Autochthon Monument
+                num_buildings = { type = building_galactic_memorial_1 value > 1 in_construction = any } # Sanctuary of Repose
+                num_buildings = { type = building_corporate_monument value > 1 in_construction = any } # Corporate Culture Site
+                num_buildings = { type = building_sensorium_1 value > 1 in_construction = any } # Sensorium Site
+                num_buildings = { type = building_simulation_1 value > 1 in_construction = any } # Simulation Site
+        }
+}
+
+## doge_can_build_embassy: Checks if the empire already has an embassy.
+# Context: Planet
+doge_can_build_embassy = {
+        exists = owner
+        owner = { # Scope out to owner so it checks if they have one built on any planet, not just the one it's checking from.
+                NOR = {
+                        num_buildings = { type = building_embassy value > 1 in_construction = any } # Embassy
+                        num_buildings = { type = building_grand_embassy value > 1 in_construction = any } # Grand Embassy
+                        num_buildings = { type = building_dm_embassy value > 1 in_construction = any } # Dark Embassy
+                        num_buildings = { type = building_ae_embassy value > 1 in_construction = any } # Dark Embassy
                 }
         }
 }

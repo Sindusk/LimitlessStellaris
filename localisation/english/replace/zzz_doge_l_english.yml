@@ -382,6 +382,42 @@
   building_ae_sky_dome_desc: "Beyond the skies lie the stars. Stars with no beginning, stars with no end."
 
 
+  ## Empire Unique Buildings
+  building_government_1_effect: "Produces £unity£§G1§! for each §YAscension Perk§! our Empire has taken."
+  building_government_2_effect: "Produces £unity£§G2§! for each §YAscension Perk§! our Empire has taken."
+  building_government_3_effect: "Produces £unity£§G3§! for each §YAscension Perk§! our Empire has taken."
+  # Government - Foundation
+  building_autochthon_monument: "Autochthon Monument"
+  building_autochthon_monument_tt: "§MGovernment§! - §BTier 1§! - §EFoundation§! (Limit 1)"
+  building_autochthon_monument_desc: "A monument to the first pioneers to venture into space."
+  building_galactic_memorial_1: "Sanctuary of Repose"
+  building_galactic_memorial_1_tt: "§MGovernment§! - §BTier 1§! - §EFoundation§! (Limit 1)"
+  building_galactic_memorial_1_desc: "This humble memorial focuses thoughts and study upon the multi-faceted nature of death and endings."
+  building_corporate_monument: "Corporate Culture Site"
+  building_corporate_monument_tt: "§MGovernment§! - §BTier 1§! - §EFoundation§! (Limit 1)"
+  building_corporate_monument_desc: "A site dedicated to glorifying the unique corporate culture that permeates every business transaction conducted on the planet."
+  building_sensorium_1: "Sensorium Site"
+  building_sensorium_1_tt: "§MGovernment§! - §BTier 1§! - §EFoundation§! (Limit 1)"
+  building_sensorium_1_desc: "To further understand the galaxy, our specialized sensory drones need to experience everything it has to offer."
+  building_simulation_1: "Simulation Site"
+  building_simulation_1_tt: "§MGovernment§! - §BTier 1§! - §EFoundation§! (Limit 1)"
+  building_simulation_1_desc: "To advance our civilization we must run and evaluate complex simulations."
+  # Embassy
+  building_embassy: "Embassy Complex"
+  building_embassy_tt: "§MGovernment§! - §BTier 2 & 3§! - §EEmbassy§! (Empire Limit 1)"
+  building_embassy_desc: "This building forms the heart of the Empire's diplomatic efforts.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
+  building_grand_embassy: "Grand Embassy Complex"
+  building_grand_embassy_tt: "§MGovernment§! - §BTier 4 & 5§! - §EEmbassy§! (Empire Limit 1)"
+  building_grand_embassy_desc: "The complex is intended to awe the viewer, rendering them more compliant in negotiations.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
+  building_dm_embassy: "Dark Embassy"
+  building_dm_embassy_tt: "§MGovernment§! - §BTier 6§! - §EEmbassy§! (Empire Limit 1)"
+  building_dm_embassy_desc: "$tech_dm_embassy_desc$"
+  building_ae_embassy: "Embassy Megaplex"
+  building_ae_embassy_tt: "§MGovernment§! - §BTier 7§! - §EEmbassy§! (Empire Limit 1)"
+  building_ae_embassy_desc: "$tech_ae_embassy_desc$"
+#building_stellarite_embassy: "Quasi-Temporal Embassy Ultraplex"
+#building_stellarite_embassy_desc: "$tech_stellarite_embassy_desc$"
+
   ### Pop Jobs ###
   ## Energy
   # Master Technician
