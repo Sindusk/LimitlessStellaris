@@ -94,6 +94,16 @@ doge_can_build_planetary_shield = {
         }
 }
 
+## doge_can_build_resource_silo: Checks if there's a resource silo already built.
+# Context: Planet
+doge_can_build_resource_silo = {
+        NOR = {
+                num_buildings = { type = building_planetary_shield_generator value > 0 in_construction = no } # Resource Silo
+                num_buildings = { type = eb_silo value > 0 in_construction = no } # Resource Silo II
+                num_buildings = { type = eb_silo2 value > 0 in_construction = no } # Resource Silo III
+        }
+}
+
 ## doge_can_build_bunker: Checks if the empire already has an upgraded bunker building.
 # Context: Planet
 doge_can_build_bunker = {

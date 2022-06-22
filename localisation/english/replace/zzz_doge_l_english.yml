@@ -410,9 +410,18 @@
   building_ae_dark_energy_psg_tt: "§MHousing§! - §BTier 7§! - §EShield§! (Limit 1)"
   building_ae_dark_energy_psg_desc: "Sky Shield is not just a planetary defense against orbital bombardments, it also houses various science bunkers where additional researchers can be stationed."
 
-building_giga_planetary_shield_generator_2:0 "Negative Mass Protector"
-building_giga_planetary_shield_generator_2_desc:0 "By creating a mass-energy repulsive layer around a planets atmosphere, through the utilization of Negative Mass, the Negative Mass Projector shields a Planet from even the most intense orbital bombardment and asteroids. Only permanent long-time bombardment and focused extreme high energy beams can penetrate the repulsive layer in time."
-
+#building_giga_planetary_shield_generator_2:0 "Negative Mass Protector"
+#building_giga_planetary_shield_generator_2_desc:0 "By creating a mass-energy repulsive layer around a planets atmosphere, through the utilization of Negative Mass, the Negative Mass Projector shields a Planet from even the most intense orbital bombardment and asteroids. Only permanent long-time bombardment and focused extreme high energy beams can penetrate the repulsive layer in time."
+  # Housing - Silo
+  building_resource_silo: "Resource Silo"
+  building_resource_silo_tt: "§MHousing§! - §BTier 2§! - §ESilo§! (Limit 1)"
+  building_resource_silo_desc: "Massive resource silos and storage facilities where large quantities of resources can be safely kept."
+  eb_silo: "Resource Silo II"
+  eb_silo_tt: "§MHousing§! - §BTier 3§! - §ESilo§! (Limit 1)"
+  eb_silo_desc: "Massive resource silos and storage facilities where large quantities of resources can be safely kept."
+  eb_silo2: "Resource Silo III"
+  eb_silo2_tt: "§MHousing§! - §BTier 4§! - §ESilo§! (Limit 1)"
+  eb_silo2_desc: "Massive resource silos and storage facilities where large quantities of resources can be safely kept."
 
 
   ## Empire Unique Buildings

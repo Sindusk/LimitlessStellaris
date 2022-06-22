@@ -172,6 +172,7 @@ building_luxury_residence = {
 	# Building Upgrades
     upgrades = {
         "building_planetary_shield_generator"
+        "building_resource_silo"
         "building_paradise_dome"
     }
 }
@@ -273,6 +274,7 @@ building_communal_housing = {
 	# Building Upgrades
     upgrades = {
         "building_planetary_shield_generator"
+        "building_resource_silo"
         "building_communal_housing_large"
     }
 }
@@ -356,6 +358,7 @@ building_drone_storage = {
 	# Building Upgrades
     upgrades = {
         "building_planetary_shield_generator"
+        "building_resource_silo"
         "building_drone_megastorage"
     }
 }
@@ -438,6 +441,7 @@ building_hive_warren = {
 	# Building Upgrades
     upgrades = {
         "building_planetary_shield_generator"
+        "building_resource_silo"
         "building_expanded_warren"
     }
 }
@@ -1423,7 +1427,9 @@ building_ae_dark_energy_psg = {
 ##################################################
 building_giga_planetary_shield_generator_2 = {
 	base_buildtime = 1200
+    position_priority = 100
 	can_build = no
+    category = army
 	
 	allow = {
 		has_upgraded_capital = yes
@@ -1450,4 +1456,195 @@ building_giga_planetary_shield_generator_2 = {
 	prerequisites = {
 		"tech_giga_planetary_shield_generator_2"
 	}
+}
+
+##################################################
+## Resource Silo (Tier 2, Silo) [Vanilla]
+##################################################
+building_resource_silo = {
+    base_buildtime = @db2_time #180
+    can_build = no
+    category = resource
+
+    # Building Potential
+    potential = {
+        NOR = {
+            has_modifier = resort_colony
+            has_modifier = slave_colony
+        }
+    }
+    # Tech Prereqs
+    prerequisites = {
+        "tech_basic_industry"
+    }
+    # Allow Conditions
+    allow = {
+        hidden_trigger = {
+            exists = owner
+            owner = { is_ai = no } # AI Really should not build a resource silo.
+        }
+    }
+    
+    # Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db2_minerals #200
+        }
+        upkeep = {
+            energy = @db2_upkeep #1
+        }
+    }
+    
+    # Permanent Country Modifier
+    country_modifier = {
+        country_resource_max_add = 5000
+    }
+	# Permanent Planet Modifiers
+    planet_modifier = {
+        planet_housing_add = 5
+    }
+
+    # Doubles capacity after obtaining Global Production Strategy technology.
+    triggered_country_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_global_production_strategy }
+        }
+        country_resource_max_add = 5000
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = building_resource_silo_tt
+    }
+    
+    # Building Upgrades
+    upgrades = {
+        "eb_silo"
+    }
+}
+
+##################################################
+## Resource Silo II (Tier 3, Silo) [Extra Buildings]
+##################################################
+eb_silo = {
+    base_buildtime = @db3_time #180
+    can_build = no
+    category = resource
+
+    # Building Potential
+    potential = {
+        NOR = {
+            has_modifier = resort_colony
+            has_modifier = slave_colony
+        }
+    }
+    # Tech Prereqs
+    prerequisites = {
+        "tech_basic_industry"
+    }
+    # Allow Conditions
+    allow = {
+        hidden_trigger = {
+            exists = owner
+            owner = { is_ai = no } # AI Really should not build a resource silo.
+        }
+    }
+    
+    # Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db3_minerals #200
+        }
+        upkeep = {
+            energy = @db3_upkeep #2
+        }
+    }
+
+    # Permanent Country Modifier
+    country_modifier = {
+        country_resource_max_add = 10000
+    }
+	# Permanent Planet Modifiers
+    planet_modifier = {
+        planet_housing_add = 8
+    }
+    # Doubles capacity after obtaining Global Production Strategy technology.
+    triggered_country_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_global_production_strategy }
+        }
+        country_resource_max_add = 10000
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = eb_silo_tt
+    }
+    
+    # Building Upgrades
+    upgrades = {
+        "eb_silo2"
+    }
+}
+
+##################################################
+## Resource Silo III (Tier 4, Silo) [Extra Buildings]
+##################################################
+eb_silo2 = {
+    base_buildtime = @db4_time #180
+    can_build = no
+    category = resource
+
+    # Building Potential
+    potential = {
+        NOR = {
+            has_modifier = resort_colony
+            has_modifier = slave_colony
+        }
+    }
+    # Tech Prereqs
+    prerequisites = {
+        "tech_basic_industry"
+    }
+    # Allow Conditions
+    allow = {
+        hidden_trigger = {
+            exists = owner
+            owner = { is_ai = no } # AI Really should not build a resource silo.
+        }
+    }
+
+    # Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db4_minerals #200
+        }
+        upkeep = {
+            energy = @db4_upkeep #3
+        }
+    }
+    
+    # Permanent Country Modifier
+    country_modifier = {
+        country_resource_max_add = 15000
+    }
+	# Permanent Planet Modifiers
+    planet_modifier = {
+        planet_housing_add = 12
+    }
+    # Doubles capacity after obtaining Global Production Strategy technology.
+    triggered_country_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_technology = tech_global_production_strategy }
+        }
+        country_resource_max_add = 15000
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = eb_silo2_tt
+    }
 }
