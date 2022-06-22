@@ -949,7 +949,7 @@ building_techno_synth_workshop = {
 		}
 	}
 
-	prerequisites = {
-		"tech_techno_synth_workshop"
-	}
+	#prerequisites = {
+	#	"tech_techno_synth_workshop"
+	#}
 }

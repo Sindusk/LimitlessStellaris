@@ -82,6 +82,18 @@ doge_can_build_mech_building = {
         }
 }
 
+## doge_can_build_planetary_shield: Checks if there's a planetary shield already built.
+# Context: Planet
+doge_can_build_planetary_shield = {
+        NOR = {
+                num_buildings = { type = building_planetary_shield_generator value > 0 in_construction = no } # Planetary Shield Generator
+                num_buildings = { type = building_giga_planetary_shield_generator_1 value > 0 in_construction = no } # Hypershield Defensive Screen
+                num_buildings = { type = building_dark_energy_psg value > 0 in_construction = no } # Dark Energy Planetary Shield Generator
+                num_buildings = { type = building_ae_dark_energy_psg value > 0 in_construction = no } # Sky Shield
+                num_buildings = { type = building_giga_planetary_shield_generator_2 value > 0 in_construction = no } # Negative Mass Protector
+        }
+}
+
 ## doge_can_build_bunker: Checks if the empire already has an upgraded bunker building.
 # Context: Planet
 doge_can_build_bunker = {

@@ -396,6 +396,23 @@
   building_ae_sky_dome: "Star Dome"
   building_ae_sky_dome_tt: "§MHousing§! - §BTier 7§! - §ECapacity§!"
   building_ae_sky_dome_desc: "Beyond the skies lie the stars. Stars with no beginning, stars with no end."
+  # Housing - Shield
+  building_planetary_shield_generator: "Planetary Shield Generator"
+  building_planetary_shield_generator_tt: "§MHousing§! - §BTier 2§! - §EShield§! (Limit 1)"
+  building_planetary_shield_generator_desc: "$tech_planetary_shield_generator_desc$"
+  building_giga_planetary_shield_generator_1: "Hypershield Defensive Screen"
+  building_giga_planetary_shield_generator_1_tt: "§MHousing§! - §BTier 3 & 4§! - §EShield§! (Limit 1)"
+  building_giga_planetary_shield_generator_1_desc: "The Hypershield Defensive Screen is an enhanced version of the classical Planetary Shield Generator, which utilizes hypershield technology to vastly improve the capabilities and efficency of the generator."
+  building_dark_energy_psg: "Dark Energy Planetary Shield Generator"
+  building_dark_energy_psg_tt: "§MHousing§! - §BTier 5 & 6§! - §EShield§! (Limit 1)"
+  building_dark_energy_psg_desc: "Utilizing enigmatic reactor allows us to create a shield generator that is not only stronger, but also much more energy-efficient than before."
+  building_ae_dark_energy_psg: "Sky Shield"
+  building_ae_dark_energy_psg_tt: "§MHousing§! - §BTier 7§! - §EShield§! (Limit 1)"
+  building_ae_dark_energy_psg_desc: "Sky Shield is not just a planetary defense against orbital bombardments, it also houses various science bunkers where additional researchers can be stationed."
+
+building_giga_planetary_shield_generator_2:0 "Negative Mass Protector"
+building_giga_planetary_shield_generator_2_desc:0 "By creating a mass-energy repulsive layer around a planets atmosphere, through the utilization of Negative Mass, the Negative Mass Projector shields a Planet from even the most intense orbital bombardment and asteroids. Only permanent long-time bombardment and focused extreme high energy beams can penetrate the repulsive layer in time."
+
 
 
   ## Empire Unique Buildings

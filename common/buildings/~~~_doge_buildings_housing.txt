@@ -171,6 +171,7 @@ building_luxury_residence = {
 
 	# Building Upgrades
     upgrades = {
+        "building_planetary_shield_generator"
         "building_paradise_dome"
     }
 }
@@ -271,6 +272,7 @@ building_communal_housing = {
 
 	# Building Upgrades
     upgrades = {
+        "building_planetary_shield_generator"
         "building_communal_housing_large"
     }
 }
@@ -353,6 +355,7 @@ building_drone_storage = {
 	
 	# Building Upgrades
     upgrades = {
+        "building_planetary_shield_generator"
         "building_drone_megastorage"
     }
 }
@@ -434,6 +437,7 @@ building_hive_warren = {
 
 	# Building Upgrades
     upgrades = {
+        "building_planetary_shield_generator"
         "building_expanded_warren"
     }
 }
@@ -477,6 +481,7 @@ building_paradise_dome = {
     allow = {
         has_upgraded_capital = yes
     }
+    # Destroy Trigger
     destroy_trigger = {
         exists = owner
         OR = {
@@ -1153,4 +1158,296 @@ building_ae_sky_dome = {
     upgrades = {
         "building_stellarite_sky_dome"
     }
+}
+
+##################################################
+## Planetary Shield Generator (Tier 2, Shielding) [Vanilla]
+##################################################
+building_planetary_shield_generator = {
+    base_buildtime = @db1_time #600
+    position_priority = 100
+    can_build = no
+    category = army
+
+    # Tech Prereqs
+    prerequisites = {
+        "tech_planetary_shield_generator"
+    }
+    # Allow Conditions
+    allow = {
+        doge_can_build_planetary_shield = yes # Ensure there's not already a planetary shield.
+        has_upgraded_capital = yes
+    }
+    # Destroy Trigger
+    # Not needed for now
+    #destroy_trigger = {
+    #    exists = owner
+    #    owner = {
+    #        is_ai = yes
+    #    }
+    #    num_buildings = {
+    #        type = building_stronghold
+    #        value < 1
+    #    }
+    #    num_buildings = {
+    #        type = building_fortress
+    #        value < 1
+    #    }
+    #}
+    
+    # Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db2_minerals #500
+        }
+        upkeep = {
+            energy = @db2_upkeep #5
+        }
+    }
+
+    # Permanent Planet Modifier
+    planet_modifier = {
+        planet_orbital_bombardment_damage = -0.4
+        planet_housing_add = 5
+        planet_amenities_add = 5
+    }
+
+    # Inward Perfection civic gives 20% increased unity from jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_civic = civic_inwards_perfection }
+        }
+        modifier = {
+            planet_jobs_unity_produces_mult = 0.2
+        }
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = building_planetary_shield_generator_tt
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_giga_planetary_shield_generator_1"
+    }
+}
+
+##################################################
+## Hypershield Defensive Screen (Tier 4, Shielding) [Gigastructural Engineering]
+##################################################
+building_giga_planetary_shield_generator_1 = {
+	base_buildtime = @db4_time #@b4_time
+    position_priority = 100
+    can_build = no
+    category = army
+	
+	prerequisites = {
+		"tech_giga_planetary_shield_generator_1"
+	}
+    # Allow Conditions
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+	
+    # Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db4_minerals #@b3_minerals
+			exotic_gases = @db4_rare_cost #20
+		}
+		upkeep = {
+			energy = @db4_upkeep #@b3_upkeep
+			exotic_gases = @db4_rare_upkeep #1
+		}
+	}
+	
+    # Permanent Planet Modifier
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.5
+        planet_housing_add = 7
+        planet_amenities_add = 7
+	}
+    # Inward Perfection civic gives 20% increased unity from jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_civic = civic_inwards_perfection }
+        }
+        modifier = {
+            planet_jobs_unity_produces_mult = 0.2
+        }
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = building_giga_planetary_shield_generator_1_tt
+    }
+
+	upgrades = {
+		#"building_giga_planetary_shield_generator_2"
+        "building_dark_energy_psg"
+	}
+}
+
+##################################################
+## Dark Energy Planetary Shield Generator (Tier 6, Shielding) [ACOT]
+##################################################
+building_dark_energy_psg = {
+	base_buildtime = @db6_time #600
+	position_priority = 100
+    can_build = no
+	category = army
+	
+    # Tech Prereqs
+	prerequisites = {
+		"tech_dark_energy_psg"
+	}
+    # Allow Conditions
+	allow = {
+		has_enigmatic_capital = yes
+	}
+    
+    # Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db6_minerals #150
+			exotic_gases = @db6_rare_cost
+			acot_sr_dark_energy = @db6_dark_cost #50
+		}			
+		upkeep = {
+			trigger = { owner = { NOT = { has_technology = tech_acot_fractured_autoharvesting } } }
+			exotic_gases = @db6_rare_upkeep
+			acot_sr_dark_energy = @db6_dark_upkeep #1
+		}
+	}
+	
+    # Permanent Planet Modifier
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.6
+        planet_housing_add = 10
+        planet_amenities_add = 10
+	}
+    # Inward Perfection civic gives 20% increased unity from jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_civic = civic_inwards_perfection }
+        }
+        modifier = {
+            planet_jobs_unity_produces_mult = 0.2
+        }
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = building_dark_energy_psg_tt
+    }
+
+    # Building Upgrades
+	upgrades = {
+		building_ae_dark_energy_psg
+	}
+}
+
+##################################################
+## Sky Shield (Tier 7, Shielding) [ACOT]
+##################################################
+building_ae_dark_energy_psg = {
+    base_buildtime = @db7_time #500
+    position_priority = 100
+    can_build = no
+    category = army
+
+    # Tech Prereqs
+    prerequisites = {
+        "tech_ae_dark_energy_psg"
+    }
+    # Allow Conditions
+    allow = {
+        has_ascended_capital = yes
+    }
+
+    # Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            energy = @db7_minerals #1000
+            minerals = @db7_minerals #500
+            alloys = 500
+			exotic_gases = @db7_rare_cost
+            acot_sr_dark_energy = @db7_dark_cost #150
+        }
+        upkeep = {
+            trigger = {
+                owner = { is_ai = no }
+            }
+			exotic_gases = @db7_rare_upkeep
+            acot_sr_dark_energy = @db7_dark_upkeep #10
+        }
+    }
+    
+    # Permanent Planet Modifier
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.7
+        planet_housing_add = 15
+        planet_amenities_add = 10
+	}
+    # Inward Perfection civic gives 20% increased unity from jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_civic = civic_inwards_perfection }
+        }
+        modifier = {
+            planet_jobs_unity_produces_mult = 0.2
+        }
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ae_dark_energy_psg_tt
+    }
+
+    # Building Upgrades
+    upgrades = {
+        "building_giga_planetary_shield_generator_2"
+        "building_stellarite_psg"
+    }
+}
+
+
+##################################################
+## Negative Mass Protector (Tier 8, Shielding) [Gigastructural Engineering]
+## TODO: Implement properly. Might not be tier 8.
+##################################################
+building_giga_planetary_shield_generator_2 = {
+	base_buildtime = 1200
+	can_build = no
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+			exotic_gases = @b2_minerals
+			ehof_sr_negative_mass = 20
+		}
+		upkeep = {
+			energy = @b4_upkeep
+			exotic_gases = @b2_upkeep
+			ehof_sr_negative_mass = 2
+		}
+	}
+	
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.8 #-0.7
+	}
+	
+	prerequisites = {
+		"tech_giga_planetary_shield_generator_2"
+	}
 }
