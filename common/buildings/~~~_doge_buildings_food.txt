@@ -1811,6 +1811,7 @@ building_roci_nourishment_center_mod = {
 	
 	# Building Upgrades
     upgrades = {
+        "building_fe_food_processing_complex"
     }
 
 	# AI Resource Production

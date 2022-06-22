@@ -262,6 +262,19 @@
   building_galactic_stock_exchange_tt: "§MTrade§! - §BTier 2 & 3§! - §EProductivity§! (Limit 1)"
   building_galactic_stock_exchange_desc: "By engaging in free trade of goods and services we allow for a more specialized economy, where an individual can excel in a narrow field and trade for their needs."
 
+  ## Research
+  # Research - Foundation
+  building_research_lab_1: "Research Labs"
+  building_research_lab_1_tt: "§MResearch§! - §BTier 1§! - §EFoundation§!"
+  building_research_lab_1_desc: "Research Labs provide the basic facilities for general research."
+  # Research - Basic
+  building_research_lab_2: "Research Complexes"
+  building_research_lab_2_tt: "§MResearch§! - §BTier 2§! - §EBasic§!"
+  building_research_lab_2_desc: "Upgraded research facilities with a very large staff capacity."
+  building_research_lab_3: "Advanced Research Complexes"
+  building_research_lab_3_tt: "§MResearch§! - §BTier 3§! - §EBasic§!"
+  building_research_lab_3_desc: "These advanced research facilities have the very latest science equipment along with an extremely large staff capacity."
+
   ## Enforcement (Soldier + Enforcer)
   # Enforcement - Foundation
   building_precinct_house: "Enforcement Center" # Normal Empire Version
@@ -540,6 +553,24 @@
   job_acot_alloydrone_desc: "Alloy Transmutations are able to create alloys through matter generation process utilizing dark matter."
   job_acot_alloydrone_effect_desc: "£job_acot_alloyman£ $job_acot_alloyman_plural$ turn £sr_dark_matter£ §Y$sr_dark_matter$§! into £alloys£ §Y$alloys$§!"
   mod_job_acot_alloydrone_add: "$job_acot_alloydrone$"
+
+  ## Research
+  # Dimensional Portal Researcher [Vanilla]
+  job_dimensional_portal_researcher: "Dimensional Portal Researcher"
+  job_dimensional_portal_researcher_plural: "Dimensional Portal Researchers"
+  job_dimensional_portal_researcher_desc: "Researchers who risk their very existence and sanity to study the mysteries of the Dimensional Portal."
+  job_dimensional_portal_researcher_effect_desc: "£job_dimensional_portal_researcher£ $job_dimensional_portal_researcher_plural$ turn £consumer_goods£ §Y$consumer_goods$§! into £physics£ §YResearch Points§! for new technologies"
+  mod_job_dimensional_portal_researcher_add: "$job_dimensional_portal_researcher$ Jobs"
+  mod_job_dimensional_portal_researcher_per_pop: "§G+1§! $job_dimensional_portal_researcher$ Job per $VALUE$ Pops"
+  mod_job_dimensional_portal_researcher_per_pop_short: "\n§G+1§! £job_researcher£ per $VALUE$ £pop£"
+  # Dimensional Portal Drone [Vanilla]
+  job_dimensional_portal_researcher_gestalt: "Dimensional Portal Drone"
+  job_dimensional_portal_researcher_gestalt_plural: "Dimensional Portal Drones"
+  job_dimensional_portal_researcher_gestalt_desc: "Drones at risk of destruction or subversion which study the mysteries of the Dimensional Portal."
+  job_dimensional_portal_researcher_gestalt_effect_desc: "£job_dimensional_portal_researcher_gestalt£ $job_dimensional_portal_researcher_gestalt_plural$ produce £physics£ §YResearch Points§! for new technologies"
+  mod_job_dimensional_portal_researcher_gestalt_add: "$job_dimensional_portal_researcher_gestalt$ Jobs"
+  mod_job_dimensional_portal_researcher_gestalt_per_pop: "§G+1§! $job_dimensional_portal_researcher_gestalt$ Job per $VALUE$ Pops"
+  mod_job_dimensional_portal_researcher_gestalt_per_pop_short: "\n§G+1§! £job_researcher£ per $VALUE$ £pop£"
 
   ## Enforcement Jobs
   # Giga Fortress Cannon Operator [ACOT] (Normal)

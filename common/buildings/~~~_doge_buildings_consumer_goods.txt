@@ -216,6 +216,7 @@ building_consumer_1 = {
     # Building Upgrades
     upgrades = {
         "building_consumer_2"
+        "building_factory_1"
     }
 
     # AI Resource Production
