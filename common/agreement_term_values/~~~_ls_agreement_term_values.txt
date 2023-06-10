@@ -1,0 +1,854 @@
+##########################################################################
+# Limitless Stellaris Agreement Term Values Changes
+##########################################################################
+
+# Variables (from MECRGU)
+@subsidy_multiplier_basic = 0.5
+@subsidy_multiplier_advanced = 0.5
+@subsidy_multiplier_research = 1
+@subsidy_multiplier_strategic = 1.5
+
+@subsidy_monthly_multiplier_basic = 5
+@subsidy_monthly_multiplier_advanced = 5
+@subsidy_monthly_multiplier_research = 5
+@subsidy_monthly_multiplier_strategic = 5
+
+### Key:
+### EMEX = Empires Expanded
+### MECRGU = More Emperor & Custodian Resolutions, and Galactic Unification
+### EED - Expanded Espionage and Diplomacy
+### VER - Vassals Expanded and Reworked
+
+# resource_subsidies_advanced
+# Merge between EMEX, MECRU, and EED
+# EED doesn't appear to change anything
+# VER disables this term, so there may be a conflict.
+resource_subsidies_advanced = {
+	term = resource_subsidies
+
+	resources = {
+		alloys
+		consumer_goods
+	}
+	
+	# VERU
+	potential = {
+		NOT = { has_global_flag = gf_veru_activated }
+	}
+
+	subsidy_multiplier = @subsidy_multiplier_advanced
+	subsidy_monthly_multiplier = @subsidy_monthly_multiplier_advanced
+
+	resource_min = {
+		base = @subsidy_minimum
+		
+		# EMEX start
+		modifier = {
+			set = @set_factor_1_neg
+			agreement_preset = preset_comvas
+		}
+		modifier = {
+			set = @set_factor_0_neg
+			agreement_preset = preset_comvas
+			has_active_specialization = specialist_community_vassal
+			specialist_tier = 3
+		}
+		# EMEX end
+		
+		modifier = {
+			set = @set_factor_0
+			agreement_preset = preset_prospectorium
+		}
+
+		modifier = {
+			set = 0.0
+			OR = {
+				agreement_preset = preset_subsidiary
+				agreement_preset = preset_tributary
+				agreement_preset = preset_relic_satrapy
+			}
+		}
+
+		modifier = {
+			set = @set_factor_2_neg
+			OR = {
+				agreement_preset = preset_vassal
+				agreement_preset = preset_scholarium
+			}
+		}
+
+		modifier = { # MECRGU
+			set = 0
+			is_imperial_province_agreement = yes
+			owner = {
+				has_federation = yes
+				federation = { has_federation_law = imperial_bank_control }
+			}
+		}
+	}
+
+	resource_max = {
+		base = @subsidy_maximum
+		
+		# EMEX start
+		modifier = {
+			set = @set_factor_1
+			agreement_preset = preset_comvas
+		}
+		modifier = {
+			set = @set_factor_0
+			agreement_preset = preset_comvas
+			has_active_specialization = specialist_community_vassal
+			specialist_tier = 3
+		}
+		# EMEX end
+		
+		modifier = {
+			set = 0.0
+			OR = {
+				agreement_preset = preset_protectorate
+				agreement_preset = preset_bulwark
+			}
+		}
+
+		modifier = {
+			set = @set_factor_2
+			OR = {
+				agreement_preset = preset_vassal
+				agreement_preset = preset_scholarium
+				agreement_preset = preset_relic_satrapy
+			}
+		}
+
+		modifier = { #MECRU
+			set = 0
+			is_imperial_province_agreement = yes
+			owner = {
+				has_federation = yes
+				federation = { has_federation_law = imperial_bank_control }
+			}
+		}
+	}
+}
+
+# resource_subsidies_basic
+# Merge between EMEX, MECRU, and EED
+# EED doesn't appear to change anything
+# VER disables this term, so there may be a conflict.
+resource_subsidies_basic = {
+	term = resource_subsidies
+	resources = {
+		energy
+		minerals
+		food
+	}
+	
+	# VERU
+	potential = {
+		NOT = { has_global_flag = gf_veru_activated }
+	}
+
+	subsidy_multiplier = @subsidy_multiplier_basic
+	subsidy_monthly_multiplier = @subsidy_monthly_multiplier_basic
+
+	resource_min = {
+		base = @subsidy_minimum
+		
+		# EMEX start
+		modifier = {
+			set = @set_factor_1_neg
+			agreement_preset = preset_comvas
+		}
+		modifier = {
+			set = @set_factor_0_neg
+			agreement_preset = preset_comvas
+			has_active_specialization = specialist_community_vassal
+			specialist_tier = 3
+		}
+		# EMEX end
+
+		modifier = {
+			set = @set_factor_1
+			OR = {
+				agreement_preset = preset_prospectorium
+				agreement_preset = preset_tributary
+				agreement_preset = preset_subsidiary
+				agreement_preset = preset_relic_satrapy
+			}
+		}
+
+		modifier = {
+			set = @set_factor_2_neg
+			OR = {
+				agreement_preset = preset_vassal
+				agreement_preset = preset_scholarium
+			}
+		}
+		
+		modifier = { #MECRGU
+			set = 0
+			is_imperial_province_agreement = yes
+			owner = {
+				has_federation = yes
+				federation = { has_federation_law = imperial_bank_control }
+			}
+		}
+	}
+
+	resource_max = {
+		base = @subsidy_maximum
+		
+		# EMEX start
+		modifier = {
+			set = @set_factor_1
+			agreement_preset = preset_comvas
+		}
+		modifier = {
+			set = @set_factor_0
+			agreement_preset = preset_comvas
+			has_active_specialization = specialist_community_vassal
+			specialist_tier = 3
+		}
+		# EMEX end
+		
+		modifier = {
+			set = @set_factor_1_neg
+			agreement_preset = preset_bulwark
+		}
+		
+		modifier = {
+			set = @set_factor_2_neg
+			agreement_preset = preset_bulwark
+			has_active_specialization = specialist_bulwark
+			specialist_tier = 2
+		}
+
+		modifier = {
+			set = @set_factor_3_neg
+			agreement_preset = preset_bulwark
+			has_active_specialization = specialist_bulwark
+			specialist_tier = 3
+		}
+
+		modifier = {
+			set = @set_factor_2
+			OR = {
+				agreement_preset = preset_vassal
+				agreement_preset = preset_scholarium
+				agreement_preset = preset_protectorate
+			}
+		}
+
+		modifier = { #MECRGU
+			set = 0
+			is_imperial_province_agreement = yes
+			owner = {
+				has_federation = yes
+				federation = { has_federation_law = imperial_bank_control }
+			}
+		}
+	}
+}
+
+# resource_subsidies_research
+# Merge between EMEX, MECRU, and EED
+# EED doesn't appear to change anything
+# VER disables this term, so there may be a conflict.
+resource_subsidies_research = {
+	term = resource_subsidies
+
+	resources = {
+		physics_research
+		society_research
+		engineering_research
+	}
+	
+	# VERU
+	potential = {
+		NOT = { has_global_flag = gf_veru_activated }
+	}
+
+	subsidy_multiplier = @subsidy_multiplier_research
+	subsidy_monthly_multiplier = @subsidy_monthly_multiplier_research
+
+	resource_min = {
+		base = @subsidy_minimum
+		
+		# EMEX start
+		modifier = {
+			set = @set_factor_0_neg
+			agreement_preset = preset_comvas
+		}
+		# EMEX end
+
+		modifier = {
+			set = 0.0
+			OR = {
+				agreement_preset = preset_subsidiary
+				agreement_preset = preset_tributary
+				agreement_preset = preset_relic_satrapy
+			}
+		}
+
+		modifier = {
+			set = @set_factor_1
+			agreement_preset = preset_scholarium
+		}
+
+		modifier = {
+			set = @set_factor_2_neg
+			OR = {
+				agreement_preset = preset_vassal
+				agreement_preset = preset_bulwark
+			}
+		}
+
+		modifier = { # MECRGU
+			set = 0.9
+			is_imperial_province_agreement = yes
+			owner = {
+				has_federation = yes
+				federation = { has_federation_law = imperial_academy_of_sciences_technical_unification }
+			}
+		}
+	}
+
+	resource_max = {
+		base = @subsidy_maximum
+		
+		# EMEX start
+		modifier = {
+			set = @set_factor_0
+			agreement_preset = preset_comvas
+		}
+		# EMEX end
+		
+		modifier = {
+			set = 0.0
+			OR = {
+				agreement_preset = preset_protectorate
+				agreement_preset = preset_relic_satrapy
+			}
+		}
+
+		modifier = {
+			set = @set_factor_1_neg
+			agreement_preset = preset_prospectorium
+		}
+
+		modifier = {
+			set = @set_factor_2_neg
+			agreement_preset = preset_prospectorium
+			has_active_specialization = specialist_prospectorium
+			specialist_tier = 2
+		}
+
+		modifier = {
+			set = @set_factor_3_neg
+			agreement_preset = preset_prospectorium
+			has_active_specialization = specialist_prospectorium
+			specialist_tier = 3
+		}
+
+		modifier = {
+			set = @set_factor_2
+			OR = {
+				agreement_preset = preset_vassal
+				agreement_preset = preset_bulwark
+			}
+		}
+
+		modifier = { # MECRGU
+			set = 0.9
+			is_imperial_province_agreement = yes
+			owner = {
+				has_federation = yes
+				federation = { has_federation_law = imperial_academy_of_sciences_technical_unification }
+			}
+		}
+	}
+}
+
+# resource_subsidies_strategic
+# Merge between EMEX, MECRU, and EED
+# EED doesn't appear to change anything
+# VER disables this term, so there may be a conflict.
+resource_subsidies_strategic = {
+	term = resource_subsidies
+	resources = {
+		volatile_motes
+		exotic_gases
+		rare_crystals
+	}
+	
+	# VERU
+	potential = {
+		NOT = { has_global_flag = gf_veru_activated }
+	}
+	
+	subsidy_multiplier = @subsidy_multiplier_strategic
+	subsidy_monthly_multiplier = @subsidy_monthly_multiplier_strategic
+
+	resource_min = {
+		base = @subsidy_minimum
+		
+		# EMEX start
+		modifier = {
+			set = @set_factor_0_neg
+			agreement_preset = preset_comvas
+		}
+		# EMEX end
+
+		modifier = {
+			set = 0.0
+			OR = {
+				agreement_preset = preset_subsidiary
+				agreement_preset = preset_tributary
+				agreement_preset = preset_prospectorium
+				agreement_preset = preset_relic_satrapy
+			}
+		}
+
+		modifier = {
+			set = @set_factor_1
+			agreement_preset = preset_prospectorium
+			has_active_specialization = specialist_prospectorium
+			OR = {
+				specialist_tier = 2
+				specialist_tier = 3
+			}
+
+		}
+
+		modifier = {
+			set = @set_factor_2_neg
+			OR = {
+				agreement_preset = preset_vassal
+				agreement_preset = preset_scholarium
+				agreement_preset = preset_bulwark
+			}
+		}
+		
+		modifier = { # MECRGU
+			set = 0
+			is_imperial_province_agreement = yes
+			owner = {
+				has_federation = yes
+				federation = { has_federation_law = imperial_bank_control }
+			}
+		}
+	}
+	resource_max = {
+		base = @subsidy_maximum
+		
+		# EMEX start
+		modifier = {
+			set = @set_factor_0
+			agreement_preset = preset_comvas
+		}
+		# EMEX end
+
+		modifier = {
+			set = 0.0
+			agreement_preset = preset_protectorate
+		}
+
+		modifier = {
+			set = @set_factor_1
+			agreement_preset = preset_relic_satrapy
+		}
+
+		modifier = {
+			set = @set_factor_2
+			OR = {
+				agreement_preset = preset_vassal
+				agreement_preset = preset_scholarium
+				agreement_preset = preset_bulwark
+			}
+		}
+		
+		modifier = { # MECRGU
+			set = 0
+			is_imperial_province_agreement = yes
+			owner = {
+				has_federation = yes
+				federation = { has_federation_law = imperial_bank_control }
+			}
+		}
+	}
+}
+
+### resource_subsidies_strategic
+# Merge between EMEX, MECRU, EED, and VER
+# EMEX and MECRU are the only ones making significant changes.
+subject_can_be_integrated = {
+	term = subject_integration
+	loyalty_change = -50
+	ai_acceptance = {
+		overlord = 300
+		subject = -250
+	}
+	activate_effect = {
+		set_rule_can_subject_be_integrated = yes
+	}
+	target_modifier = {
+		monthly_loyalty = -4
+	}
+
+	possible = {
+		# EMEX start
+		custom_tooltip = {
+			fail_text = not_allowed_for_comvas
+			NOT = {
+				agreement_preset = preset_comvas
+			}
+		}
+		# EMEX end
+		custom_tooltip = {
+			fail_text = not_allowed_for_bulwark
+			NOT = {
+				agreement_preset = preset_bulwark
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_scholarium
+			NOT = {
+				agreement_preset = preset_scholarium
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_prospectorium
+			NOT = {
+				agreement_preset = preset_prospectorium
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			NOT = {
+				agreement_preset = preset_tributary
+			}
+		}
+		# VERU
+		if = {
+			limit = { NOT = { has_global_flag = gf_veru_activated } }
+			custom_tooltip = {
+				fail_text = not_allowed_for_subsidiary
+				NOT = {
+					agreement_preset = preset_subsidiary
+				}
+			}
+			custom_tooltip = {
+				fail_text = not_allowed_for_satrapy
+				NOT = {
+					agreement_preset = preset_relic_satrapy
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_galcom_resolution
+			not_allowed_for_galcom_resolution_trigger = { RESOLUTION = resolution_intergalacticdirective_ensured_sovereignty }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_galcom_resolution
+			not_allowed_for_galcom_resolution_trigger = { RESOLUTION = resolution_intergalacticdirective_a_voice_for_all }
+		}
+		# VERU
+		if = {
+			limit = { has_global_flag = gf_veru_activated }
+			custom_tooltip = {
+				fail_text = not_allowed_for_megacorp
+				owner = { is_megacorp = no }
+			}
+			custom_tooltip = {
+				fail_text = not_allowed_for_auto_state
+				NOT = { agreement_preset = preset_auto_state }
+			}
+			custom_tooltip = {
+				fail_text = not_allowed_for_ver_devolved
+				NOT = { agreement_preset = preset_ver_devolved }
+			}
+			custom_tooltip = {
+				fail_text = not_allowed_for_ver_organic
+				NOT = { agreement_preset = preset_ver_organic }
+			}
+			custom_tooltip = {
+				fail_text = not_allowed_for_ver_foederatus
+				NOT = { agreement_preset = preset_ver_foederatus }
+			}
+			custom_tooltip = {
+				fail_text = not_allowed_for_ver_condo
+				NOT = { agreement_preset = preset_ver_condo }
+			}
+		}
+	}
+	potential = { is_imperial_province_agreement = no }
+}
+
+### subject_can_do_diplomacy
+# Merge between MECRU, EED, and VER
+# VER takes priority, MECRU makes some changes, EED does not change anything
+subject_can_do_diplomacy = {
+	term = subject_diplomacy
+	loyalty_change = 5
+	ai_acceptance = {
+		overlord = -30
+		subject = 0
+	}
+	activate_effect = {
+		set_rule_can_subject_vote = yes
+		set_rule_can_subject_do_diplomacy = yes
+	}
+	target_modifier = {
+		monthly_loyalty = 0.5
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = not_allowed_for_galcom_resolution
+			not_allowed_for_galcom_resolution_trigger = { RESOLUTION = resolution_bureaucraticsurveillance_personal_oversight }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_ver_organic
+			NOT = { agreement_preset = preset_ver_organic }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_ver_parallel
+			NOT = { agreement_preset = preset_ver_parallel }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_ver_satellite
+			NOT = { agreement_preset = preset_ver_satellite }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_ver_puppet
+			NOT = { agreement_preset = preset_ver_puppet }
+		}
+	}
+	potential = { is_imperial_province_agreement = no }
+}
+
+### subject_can_do_diplomacy_but_not_vote
+# Merge between Civic Organic Zealots, MECRU, EED, and VER
+# VER takes priority, MECRU makes some changes, EED does not change anything, Civic Zealots adds some logic which is rewritten and merged.
+subject_can_do_diplomacy_but_not_vote = {
+	term = subject_diplomacy
+	loyalty_change = -5
+	ai_acceptance = {
+		overlord = 30
+		subject = -25
+	}
+	activate_effect = {
+		set_rule_can_subject_vote = no
+		set_rule_can_subject_do_diplomacy = yes
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			if = {
+				limit = {
+					NOR = {
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_bureaucraticsurveillance_personal_oversight
+						}
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_intergalacticdirective_a_voice_for_all
+						}
+					}
+				}
+				NOT = { agreement_preset = preset_tributary }
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_fanatic_purifiers
+			if = {
+				limit = {
+					NOR = {
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_bureaucraticsurveillance_personal_oversight
+						}
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_intergalacticdirective_a_voice_for_all
+						}
+					}
+				}
+				NOT = { target = { has_civic = civic_fanatic_purifiers } }
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_devouring_swarm
+			if = {
+				limit = {
+					NOR = {
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_bureaucraticsurveillance_personal_oversight
+						}
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_intergalacticdirective_a_voice_for_all
+						}
+					}
+				}
+				NOT = { target = { has_civic = civic_hive_devouring_swarm } }
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_machine_terminator
+			if = {
+				limit = {
+					NOR = {
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_bureaucraticsurveillance_personal_oversight
+						}
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_intergalacticdirective_a_voice_for_all
+						}
+					}
+				}
+				NOT = { target = { has_civic = civic_machine_terminator } }
+			}
+		}
+		custom_tooltip = { # Rewritten Civic Organic Zealots block
+			fail_text = not_allowed_for_organic_zealots
+			if = {
+				limit = {
+					NOR = {
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_bureaucraticsurveillance_personal_oversight
+						}
+						AND = {
+							owner = { is_galactic_community_member = yes }
+							target = { is_galactic_community_member = yes }
+							is_active_resolution = resolution_intergalacticdirective_a_voice_for_all
+						}
+					}
+				}
+				target = { is_organic_zealots = no }
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_ver_organic
+			NOT = { agreement_preset = preset_ver_organic }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_ver_parallel
+			NOT = { agreement_preset = preset_ver_parallel }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_auto_state
+			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_ver_satellite
+			NOT = { agreement_preset = preset_ver_satellite }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_ver_condo
+			NOT = { agreement_preset = preset_ver_condo }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_ver_puppet
+			NOT = { agreement_preset = preset_ver_puppet }
+		}
+	}
+	potential = { is_imperial_province_agreement = no }
+}
+
+### subject_cannot_expand
+# Merge between EED and VER
+# EED takes priority, VER adds some blocks
+subject_cannot_expand = {
+	term = subject_expand
+	loyalty_change = -15
+	ai_acceptance = {
+		overlord = 90
+		subject = -75
+	}
+	activate_effect = {
+		set_rule_can_subject_expand = cannot_expand
+	}
+	target_modifier = {
+		monthly_loyalty = -1
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = not_allowed_for_bulwark
+			NOT = {
+				agreement_preset = preset_bulwark
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_scholarium
+			NOT = {
+				agreement_preset = preset_scholarium
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_prospectorium
+			NOT = {
+				agreement_preset = preset_prospectorium
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			NOT = {
+				agreement_preset = preset_tributary
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_subsidiary
+			NOT = {
+				agreement_preset = preset_subsidiary
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_satrapy
+			NOT = {
+				agreement_preset = preset_relic_satrapy
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_feudal_society
+			NOT = {
+				owner = { is_feudal_empire = { allow_invalid = yes } }
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_franchising
+			NOT = {
+				owner = { is_franchise = { allow_invalid = yes } }
+			}
+		}
+		custom_tooltip = { # VER Block
+			fail_text = not_allowed_for_ver_devolved
+			NOT = { agreement_preset = preset_ver_devolved }
+		}
+		custom_tooltip = { # VER Block
+			fail_text = not_allowed_for_auto_state
+			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_galcom_resolution
+			not_allowed_for_galcom_resolution_trigger = { RESOLUTION = resolution_intergalacticdirective_ensured_sovereignty }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_galcom_resolution
+			not_allowed_for_galcom_resolution_trigger = { RESOLUTION = resolution_intergalacticdirective_a_voice_for_all }
+		}
+	}
+}

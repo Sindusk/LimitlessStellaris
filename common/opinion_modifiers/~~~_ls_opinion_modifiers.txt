@@ -1,0 +1,31 @@
+####################################################################################################
+# Limitless Stellaris - Opinion Modifiers
+####################################################################################################
+
+# They voted down our proposal
+opinion_voted_down_proposal = {
+	opinion = {
+		base = -50
+	}
+
+	accumulative = no
+
+	unique = yes
+
+	decay = {
+		base = 2
+	}
+}
+
+# Ally voted against our proposed war
+opinion_decline_war = {
+	opinion = {
+		base = -50
+	}
+
+	decay = {
+		base = 1
+	}
+	unique = yes
+	accumulative = no
+}

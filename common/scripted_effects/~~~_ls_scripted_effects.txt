@@ -1,0 +1,47 @@
+####################################################################################################
+# Limitless Stellaris - Scripted Effects
+####################################################################################################
+
+### increment_titanic_life_soldier_maximum
+# Merge between Subtle Polish and Extra Origins. Allows Monster Tamers to get 5 titanics per world instead.
+
+# invoke this effect when a country gains a planet with Titanic Life
+# this = country
+increment_titanic_life_soldier_maximum = {
+    optimize_memory
+    if = {
+        limit = { NOT = { has_origin = origin_monster_tamers } }
+        change_variable = {
+            which = titanic_life_soldier_maximum
+            value = @titanic_life_soldier_per_planet_maximum
+        }
+    }
+    else = {
+         check_variable = {
+            which = titanic_life_soldier_maximum
+            value = 5
+        }
+    }
+}
+
+### decrement_titanic_life_soldier_maximum
+# Merge between Subtle Polish and Extra Origins. Allows Monster Tamers to get 5 titanics per world instead.
+
+# invoke this effect when a country loses a planet with Titanic Life
+# this = country
+decrement_titanic_life_soldier_maximum = {
+    optimize_memory
+    if = {
+        limit = { NOT = { has_origin = origin_monster_tamers } }
+        subtract_variable = {
+            which = titanic_life_soldier_maximum
+            value = @titanic_life_soldier_per_planet_maximum
+        }
+    }
+    else = {
+        subtract_variable = {
+            which = titanic_life_soldier_maximum
+            value = 5
+        }
+    }
+}

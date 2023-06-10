@@ -111,7 +111,7 @@
 # SET THE NUMBER TO THE EXACT AMOUNT YOU WANT
 # IT CANNOT BE NEGATIVE OR DECIMAL
 # NUMBERS TOO BIG WILL CAUSE PROBLEMS
-@giga_preset_wrecked_warships_number = 225
+@giga_preset_wrecked_warships_number = 100
 
 # PLAYER MEGA SETTINGS
 # SET THE NUMBER TO THE EXACT AMOUNT YOU WANT
@@ -137,6 +137,14 @@
 # 1 / 2 / 3 = RESPECTIVE NUMBER
 # 4 = RANDOM
 @giga_preset_ehof_ai = 0
+
+# COMPOUND DIFFICULTY
+# 0 = DISABLED
+# 1 = EASY
+# 2 = NORMAL
+# 3 = HARD
+# 4 = BRUTAL
+@giga_preset_compound = 2
 
 # GALACTIC CORE
 # 0 = DISABLED
@@ -180,9 +188,9 @@
 # KATZEN SYSTEMS
 # 0 = DISABLED
 # 1 = ENABLED
-@giga_preset_gatzo = 1
 @giga_preset_jublio = 1
 @giga_preset_jupitwo = 1
+
 # SPECIAL SYSTEMS
 # 0 = DISABLED
 # 1 = ENABLED
@@ -191,6 +199,12 @@
 @giga_preset_elysium = 2
 @giga_preset_squareworld = 2
 @giga_preset_kerbol = 2
+
+# GATZO 
+# 0 = DISABLED
+# 1 = ENABLED
+# 2 = ENABLED WITHOUT PALUUSHIA (THIS WILL MAKE BLOKKATS HARDER)
+@giga_preset_gatzo = 1
 
 # KAISER
 # 0 = DISABLED (UFS SPAWNS INSTEAD)
@@ -201,14 +215,15 @@
 # 5 = WILD RIDE
 # 6 = STELLARITE
 # 7 = IMPROBABLE
-@giga_preset_kaiser = 3
+@giga_preset_kaiser = 5
 
 # KATZEN PORTRAITS
 # 0 = VANILLA
 # 1 = LORE ACCURATE
+# 2 = LORE ACCURATE + CATTAIL KAISER
 @giga_preset_katzen_portraits = 0
 
-# BLOKKATS
+# BLOKKATS SPAWN CHANCE
 # 0 = DISABLED
 # 1 = 50% CHANCE OF SPAWNING
 # 2 = GUARANTEED
@@ -219,7 +234,7 @@
 # 1 = VINTAGE
 # 2 = REGULAR
 # 3 = ANIME
-@giga_preset_blokkat_portrait = 2
+@giga_preset_blokkat_portrait = 0
 
 # BLOKKATS SPAWN DATE
 # 0 = LATE ENDGAME (DEFAULT)
@@ -233,10 +248,12 @@
 @giga_preset_blokkat_date = 1
 
 # BLOKKATS DIFFICULTY
-# 0 = BLOKITTENS
-# 1 = NORMAL
-# 2 = BISMUTH
-# 3 = ENDTEKK
+# 0 = BLOKKLETS
+# 1 = BLOKITTENS
+# 2 = NORMAL
+# 3 = BISMUTH
+# 4 = ENDTEKK
+# 5 = OBLITERATOR
 @giga_preset_blokkat_difficulty = 2
 
 
@@ -296,9 +313,20 @@
 @giga_preset_equatorial = 4
 @giga_preset_interstellar = 4
 @giga_preset_computer = 4
+##### #confirm
+# HABITATS AND ORBITAL ELYSIUMS
+# 0 = DISABLED
+# 1 = INFINITE
+# 2 = POP LIMITED: 1 EVERY 25 POPS
+# 3 = POP LIMITED: 1 EVERY 50 POPS
+# 4 = POP LIMITED: 1 EVERY 100 POPS
+# 5 = SYSTEM LIMITED: 1 EVERY 3 SYSTEMS
+# 6 = SYSTEM LIMITED: 1 EVERY 10 SYSTEMS
+# 7 = SYSTEM LIMITED: 1 EVERY 25 SYSTEMS
+@giga_preset_elysiums_habs = 6
+
+
 # ANY VALUE OTHER THAN 0 ON BIRCH WILL COUNT AS 1
-@giga_preset_elysium = 1
-# ANY VALUE OTHER THAN 0 ON ELYSIUM WILL COUNT AS INFINITE
 @giga_preset_birch = 1
 
 # VIRTUAL REALITY

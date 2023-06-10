@@ -1,0 +1,29 @@
+####################################################################################################
+# Limitless Stellaris Origins
+####################################################################################################
+
+##################################################
+## DarkSpace Origins - Overwrite of all DarkSpace Civics to hide them properly for invalid authorities.
+##################################################
+
+# Requieum [or Certus] (DarkSpace)
+# Disabled.
+origin_certus = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
+	picture = GFX_origin_certus
+	starting_colony = pc_halo
+	initializers = { certus_start }
+	max_once_global = yes
+	non_colonizable_planet_class_neighbor = yes
+	potential = {
+		always = no
+	}
+	possible = {
+		always = no
+	}
+	description = "origin_tooltip_certus_effects"
+	flags = { certus_system }
+	advanced_start = yes
+	random_weight = { base = 0 }
+}

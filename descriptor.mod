@@ -1,6 +1,6 @@
-version="v0.1"
+version="3.2.6.0"
 tags={
-	"Fixes"
+	"Utilities"
 }
-name="Limitless Stellaris Compatch"
-supported_version="3.8.3"
+name="Gigas User Preset"
+supported_version="3.6.*"

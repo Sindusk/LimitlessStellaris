@@ -1,5 +1,5 @@
 namespace = giga_preset
-
+#Last updated as of 8/2/2023 for version 3.26.2 of Gigas - Bread
 ##This file has a sorting system. You can use ctrl-f to search for specific Megastructures, or one of these categories:
 ##Vanilla Megastructures, Mod Ringworld, Gigastructures, Ships, Mod Megastructures, Terraforming Megastructures, Other settings, Habitats
 
@@ -82,6 +82,10 @@ country_event = {
 			set_variable = {
 				which = giga_preset_ehof_ai
 				value = @giga_preset_ehof_ai
+			}
+			set_variable = {
+				which = giga_preset_compound
+				value = @giga_preset_compound
 			}
 			set_variable = {
 				which = giga_preset_galaxy_core
@@ -238,8 +242,8 @@ country_event = {
 				value = @giga_preset_computer
 			}
 			set_variable = {
-				which = giga_preset_elysium
-				value = @giga_preset_elysium
+				which = giga_preset_elysiums_habs
+				value = @giga_preset_elysiums_habs
 			}
 			set_variable = {
 				which = giga_preset_birch
@@ -415,16 +419,6 @@ country_event = {
 	immediate = {
 		#clear everything
 		remove_all_menu_flags = yes
-		remove_flags_buildcap = yes
-		remove_flags_ehof_ai = yes
-		remove_flags_compound = yes
-		remove_flags_aeternum_difficulty = yes
-		remove_flags_blokkat = yes
-		remove_flags_fe_planetcrafts = yes
-		remove_flags_maginot = yes
-		remove_global_flag = giga_dyson_scaling
-		remove_global_flag = giga_lifter_scaling
-		remove_global_flag = giga_matroishka_scaling
 		#sets the preset
 		event_target:global_event_country = {
 	#FEATURES
@@ -447,6 +441,8 @@ country_event = {
 					}
 				}
 				set_global_flag = giga_dyson_scaling
+			}else = {
+				remove_global_flag = giga_dyson_scaling
 			}
 		#lifter scaling
 			if = {
@@ -457,6 +453,8 @@ country_event = {
 					}
 				}
 				set_global_flag = giga_lifter_scaling
+			}else = {
+				remove_global_flag = giga_lifter_scaling
 			}
 		#brain scaling
 			if = {
@@ -467,6 +465,8 @@ country_event = {
 					}
 				}
 				set_global_flag = giga_matroishka_scaling
+			}else = {
+				remove_global_flag = giga_matroishka_scaling
 			}
 		#o class
 			if = {
@@ -532,7 +532,7 @@ country_event = {
 						value = 0
 					}
 				}
-				set_global_flag = giga_disable_celestial_printing
+				set_global_flag = giga_celestial_printing_moon_disabled
 			}
 		#planet printer
 			if = {
@@ -542,7 +542,7 @@ country_event = {
 						value = 0
 					}
 				}
-				set_global_flag = giga_disable_celestial_printing_planet
+				set_global_flag = giga_celestial_printing_planet_disabled
 			}
 		#wrecked warships
 			if = {
@@ -635,6 +635,43 @@ country_event = {
 			} else = {
 				set_global_flag = ehof_ai_disabled #if any other value sets to disabled 
 			}
+		#COMPOUND
+		if = {
+			limit = {
+				check_variable = {
+					which = giga_preset_compound
+					value = 1
+				}
+			}
+			set_global_flag = compound_capped_1
+		} else_if = {
+			limit = {
+				check_variable = {
+					which = giga_preset_compound
+					value = 2
+				}
+			}
+			set_global_flag = compound_capped_2
+		} else_if = {
+			limit = {
+				check_variable = {
+					which = giga_preset_compound
+					value = 3
+				}
+			}
+			set_global_flag = compound_capped_3
+		} else_if = {
+			limit = {
+				check_variable = {
+					which = giga_preset_compound
+					value = 4
+				}
+			}
+			set_global_flag = compound_capped_3
+		} else = {
+			set_global_flag = compound_disabled
+		}
+
 		#GALACTIC CORE
 			if = {
 				limit = {
@@ -810,6 +847,14 @@ country_event = {
 					}
 				}
 				set_global_flag = giga_gatzo_disabled
+			} else_if = {
+				limit = { 	
+					check_variable = {
+						which = giga_preset_gatzo
+						value = 2
+					} 
+				}
+				set_global_flag = giga_gatzo_nopaluushia
 			}
 		#JUBLIO
 				if = {
@@ -912,6 +957,14 @@ country_event = {
 					}
 				}
 				set_global_flag = katzenartig_never
+			}else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_kaiser
+						value = 2
+					}
+				}
+				log = "we set kaiser normal enjoy!"
 			} else_if = {
 				limit = {
 					check_variable = {
@@ -964,6 +1017,14 @@ country_event = {
 					}
 				}
 				set_global_flag = silly_flusionian_portraits_enabled
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_katzen_portraits
+						value = 2
+					}
+				}
+				set_global_flag = silly_flusionian_portraits_enabled_cattail
 			}
 		#BLOKKATS
 			if = {
@@ -989,7 +1050,7 @@ country_event = {
 			if = {
 				limit = {
 					check_variable = {
-						which = giga_preset_blokkats
+						which = giga_preset_blokkat_portrait
 						value = 1
 					}
 				}
@@ -997,7 +1058,7 @@ country_event = {
 			} else_if = {
 				limit = {
 					check_variable = {
-						which = giga_preset_blokkats
+						which = giga_preset_blokkat_portrait
 						value = 2
 					}
 				}
@@ -1005,7 +1066,7 @@ country_event = {
 			} else_if = {
 				limit = {
 					check_variable = {
-						which = giga_preset_blokkats
+						which = giga_preset_blokkat_portrait
 						value = 3
 					}
 				}
@@ -1091,14 +1152,22 @@ country_event = {
 				}
 			}
 		#BLOKKATS DIFFICULTY
-			if = {
+			if = { 
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_difficulty
+						value = 0
+					}
+				}
+				set_global_flag = giga_blokkats_very_easy
+			} else_if = {
 				limit = {
 					check_variable = {
 						which = giga_preset_blokkat_difficulty
 						value = 1
 					}
 				}
-				set_global_flag = giga_blokkats_normal
+				set_global_flag = giga_blokkats_easy
 			} else_if = {
 				limit = {
 					check_variable = {
@@ -1106,7 +1175,7 @@ country_event = {
 						value = 2
 					}
 				}
-				set_global_flag = giga_blokkats_bismuth
+				set_global_flag = giga_blokkats_normal
 			} else_if = {
 				limit = {
 					check_variable = {
@@ -1114,7 +1183,23 @@ country_event = {
 						value = 3
 					}
 				}
+				set_global_flag = giga_blokkats_bismuth
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_difficulty
+						value = 4
+					}
+				}
 				set_global_flag = giga_blokkats_endtech
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_blokkat_difficulty
+						value = 5
+					}
+				}
+				set_global_flag = giga_blokkats_deathmode
 			} else = {
 				set_global_flag = giga_blokkats_easy
 			}
@@ -1867,12 +1952,74 @@ country_event = {
 			if = {
 				limit = {
 					check_variable = {
-						which = giga_preset_elysium
+						which = giga_preset_elysiums_habs
 						value = 0
 					}
 				}
 				set_global_flag = giga_habitats_disabled
-			} else = {
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysiums_habs
+						value = 1
+					}
+				}
+				set_global_flag = giga_habitats_unlimited
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysiums_habs
+						value = 2
+					}
+				}
+				set_global_flag = giga_habitats_pop_25
+				set_global_flag = giga_habitats_pop
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysiums_habs
+						value = 3
+					}
+				}
+				set_global_flag = giga_habitats_pop_50
+				set_global_flag = giga_habitats_pop
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysiums_habs
+						value = 4
+					}
+				}
+				set_global_flag = giga_habitats_pop_100
+				set_global_flag = giga_habitats_pop
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysiums_habs
+						value = 5
+					}
+				}
+				set_global_flag = giga_habitats_system_3
+				set_global_flag = giga_habitats_system
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysiums_habs
+						value = 6
+					}
+				}
+				set_global_flag = giga_habitats_system_10
+				set_global_flag = giga_habitats_system
+			} else_if = {
+				limit = {
+					check_variable = {
+						which = giga_preset_elysiums_habs
+						value = 7
+					}
+				}
+				set_global_flag = giga_habitats_system_25
+				set_global_flag = giga_habitats_system
+			} else = { 
 				set_global_flag = giga_habitats_unlimited
 			}
 		#BIRCH

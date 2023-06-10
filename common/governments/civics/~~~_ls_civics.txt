@@ -1,0 +1,311 @@
+####################################################################################################
+# Limitless Stellaris Civics
+####################################################################################################
+
+##################################################
+## DarkSpace Civics - Overwrite of all DarkSpace Civics to hide them properly for invalid authorities.
+##################################################
+
+## Spectrals
+# civic_spectrals = {
+# 	potential = {
+# 		authority = { value = auth_machine_intelligence } # Must be a Machine Intelligence
+# 	}
+# 	ai_playable = { always = no }
+# 	possible = {
+# 		authority = { value = auth_machine_intelligence }
+# 		civics = {
+# 			NOR = {
+# 				value = civic_machine_servitor
+# 				value = civic_machine_assimilator
+# 				value = civic_certast
+# 				value = civic_machine_replication
+# 			}
+# 		}
+# 	}
+# 	modification = no
+# 	random_weight = { base = 0 }
+# 	max_once_global = yes	
+# 	description = civic_tooltip_machine_spectrals_effects
+# 	modifier = {
+# 		ship_jumpdrive_cooldown_mult = -0.9
+# 		ship_ftl_jumpdrive_range_mult = 0.5
+# 		ships_upkeep_mult = -0.3
+# 	}
+# }
+
+# ## Certast
+# civic_certast = {
+# 	potential = {
+# 		authority = { value = auth_machine_intelligence } # Must be a Machine Intelligence
+# 	}
+# 	ai_playable = { always = no }
+# 	modification = no
+# 	possible = {
+# 		authority = { value = auth_machine_intelligence }
+# 		civics = {
+# 			NOR = {
+# 				value = civic_machine_terminator
+# 				value = civic_machine_assimilator
+# 			}
+# 		}
+# 	}
+# 	random_weight = { base = 0 }
+# 	max_once_global = yes	
+# 	modifier = {
+# 		starbase_shipyard_build_cost_mult = -0.1
+# 		envoys_add = 2
+# 		megastructure_build_speed_mult = 0.05
+# 	}
+# }
+
+# ## Certus
+# civic_certus = {
+# 	potential = {
+# 		ethics = { NOT = { value = ethic_gestalt_consciousness } } # Must be non-gestalt
+# 	}
+# 	ai_playable = { always = no }
+# 	possible = { 
+# 		ethics = { NOT = { value = ethic_gestalt_consciousness } }	
+# 		civics = {
+# 			NOT = { value = civic_fanatic_purifiers }
+# 		}		
+# 	}		
+# 	modification = no
+# 	random_weight = { base = 0 }
+# 	max_once_global = yes	
+# 	modifier = {
+# 		planet_pops_consumer_goods_upkeep_mult = -1
+# 		planet_pops_food_upkeep_mult = 0.2
+# 		empire_size_mult = -0.33
+# 	}					
+# }
+
+# ## Hearts of Iron (Can be any ethic or authority)
+# civic_hoi = {
+# 	ai_playable = { always = no }
+# 	possible = {  
+# 		civics = {
+# 			NOR = {
+# 				value = civic_pk
+# 				value = civic_hive_devouring_swarm
+# 				value = civic_fanatic_purifiers
+# 				value = civic_machine_terminator				
+# 			}
+# 		}
+# 	}
+# 	modification = no
+# 	random_weight = { base = 1 }
+# 	modifier = {
+# 		weapon_type_strike_craft_weapon_damage_mult = 0.05
+# 		weapon_type_strike_craft_speed_mult = 0.25
+# 		army_damage_mult = 0.33
+# 	}
+# }
+
+# ## Warlord (Can be any ethic or authority)
+# civic_warlord = {
+# 	ai_playable = { always = no }
+# 	possible = {
+# 		civics = {
+# 			NOR = {
+# 				value = civic_pk
+# 				value = civic_hive_devouring_swarm
+# 				value = civic_fanatic_purifiers
+# 				value = civic_machine_terminator	
+# 			}
+# 		}
+# 	}		
+# 	modification = no
+# 	random_weight = { base = 1 } 
+# 	modifier = {
+# 		species_leader_exp_gain = 1
+# 		starbase_defensive_war_ship_build_speed_mult = 1
+# 		planet_stability_add = 10
+# 		country_war_exhaustion_mult = -0.2
+# 	}					
+# }
+
+# # Regime (Must have the Regime origin, doesn't seem to have an ethic or authority requirement)
+# civic_regime = {
+# 	ai_playable = { always = no }
+# 	possible = {
+# 		origin = {
+# 			value = origin_regime
+# 		}
+# 		ethics = {
+# 			OR = {
+# 				value = ethic_militarist
+# 				value = ethic_fanatic_militarist
+# 				value = ethic_xenophobe
+# 				value = ethic_fanatic_xenophobe
+# 				value = ethic_authoritarian
+# 				value = ethic_fanatic_authoritarian
+# 			}
+# 		}
+# 	}
+# 	modification = no
+# 	random_weight = { base = 0 }
+# 	modifier = {
+# 		ships_upkeep_mult = -0.15
+# 		country_unity_produces_mult = 0.1
+# 		country_war_exhaustion_mult = -0.33
+# 	}					
+# }
+
+# # Peacekeepers 
+# civic_pk = {
+# 	potential = {
+# 		ethics = { NOT = { value = ethic_gestalt_consciousness } } # Must be non-gestalt to have pacifist or fanatic pacifist ethics
+# 	}
+# 	ai_playable = { always = no }
+# 	possible = {
+# 		civics = {
+# 			NOR = {
+# 				value = civic_warlord
+# 				value = civic_hoi
+# 				value = civic_regime
+# 				value = civic_hive_devouring_swarm
+# 				value = civic_fanatic_purifiers
+# 				value = civic_machine_terminator
+# 			}
+# 		}
+# 		ethics = {
+# 			OR = {
+# 				value = ethic_pacifist
+# 				value = ethic_fanatic_pacifist
+# 			}
+# 		}
+# 	}		
+# 	modification = no
+# 	random_weight = { base = 1 }
+# 	modifier = {
+# 		starbase_modules_cost_mult = -0.25
+# 		shipclass_starbase_damage_mult = 0.25
+# 		shipclass_starbase_hull_mult = 0.25
+# 		country_starbase_capacity_add = 25
+# 		country_edict_fund_add = 450
+# 		ships_upkeep_mult = 0.10	
+# 	}					
+# }
+
+# # Neutronpower (Must have origin Allmacht, but doesn't seem to have a specific ethic or authority requirement)
+# civic_np = {
+# 	ai_playable = { always = no }
+# 	possible = { 			
+# 		civics = {
+# 			NOT = {
+# 				value = civic_technocracy
+# 			}
+# 		}		
+# 		origin = {
+# 			value = origin_allmacht							
+# 		}				
+# 	}		
+# 	modification = no
+# 	random_weight = { base = 1 }
+# 	modifier = {
+# 		ship_anomaly_research_speed_mult = 1
+# 		megastructure_build_speed_mult = 0.35
+# 	}					
+# }
+
+# # Master Builders (Can be used at all times)
+# civic_mb = {
+# 	ai_playable = { always = no }
+# 	possible = {
+# 	}		
+# 	modification = yes
+# 	random_weight = { base = 0 }
+# 	modifier = {
+# 		megastructure_build_speed_mult = 0.5
+# 		country_megastructure_build_cap_add = 1
+# 	}
+# }
+
+# # Vero
+# civic_vero = {
+# 	potential = {
+# 		authority = { NOT = { value = auth_machine_intelligence } } # Cannot be a machine intelligence
+# 	}
+# 	ai_playable = { always = no }
+# 	possible = {
+# 		authority = { NOT = { value = auth_machine_intelligence } }
+# 		origin = {
+# 			value = origin_vero			
+# 		}
+# 		civics = {
+# 			NOT = { value = civic_hoi }
+# 			NOT = { value = civic_warlord }
+# 			NOT = { value = civic_reanimated_armies }
+# 			NOT = { value = civic_hive_devouring_swarm }
+# 		}		
+# 	}
+# 	max_once_global = yes	
+# 	modification = no
+# 	random_weight = { base = 0 }
+# 	modifier = {
+# 		ship_sensor_range_add = 1
+# 		leader_age = 300
+# 		leader_skill_levels = 5
+# 		species_leader_exp_gain = 5
+# 	}					
+# }
+
+# # Aero (Requires origin, nothing else)
+# civic_ds_aero = {
+# 	ai_playable = { always = no }
+# 	possible = { origin = { OR = { value = origin_ds_molten value = origin_ds_gas_giant } } } 		
+# 	modification = no
+# 	random_weight = { base = 0 }
+# 	description = civic_tooltip_aero_effects
+# }
+
+# # Aero Dragon (Requires origin, nothing else)
+# civic_ds_aero_dragon = {
+# 	ai_playable = { always = no }
+# 	possible = { origin = { OR = { value = origin_ds_molten value = origin_ds_gas_giant } } } 		
+# 	modification = no
+# 	random_weight = { base = 0 }
+# 	description = civic_tooltip_aero_dragon_effects
+# }
+
+# # Crusaders
+# civic_ds_crusaders = {
+# 	potential = {
+# 		ethics = { NOT = { value = ethic_gestalt_consciousness } } # Requires non-gestalt
+# 	}
+# 	ai_playable = { always = no }
+# 	possible = { 
+# 		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+# 		civics = {
+# 			NOR = {
+# 				value = civic_fanatic_purifiers			
+# 				value = civic_certus			
+# 				value = civic_regime			
+# 			}
+# 		}	
+# 	}
+# 	modification = no
+# 	random_weight = { base = 0 }
+# 	modifier = {
+# 		country_naval_cap_mult = 0.75
+# 		country_war_exhaustion_mult = -0.2
+# 		ships_upkeep_mult = -0.1
+# 	}
+# 	description = civic_tooltip_ds_crusaders_effects
+# }
+
+# # Quantum (Always available)
+# civic_ds_quantum = {
+# 	ai_playable = { always = no }
+# 	possible = {
+# 	}		
+# 	modification = yes
+# 	random_weight = { base = 0 }
+# 	modifier = {
+# 		catapult_spread_mult = 1
+# 		catapult_range_mult = 0.25
+# 		ships_energy_upkeep_mult = 0.05
+# 	}
+# }
