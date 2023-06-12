@@ -1,0 +1,459 @@
+##########################################################################
+# Origin Traits
+##########################################################################
+# trait_plague_ridden = {
+# 	icon = "gfx/interface/icons/traits/trait_plague_ridden.dds"
+# 	initial = no
+# 	species_potential_add = {
+# 		always = no
+# 	}
+# 	species_possible_remove = {
+# 		always = no
+# 	}
+# 	randomized = no
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	sorting_priority = 15
+# 	potential_crossbreeding_chance = 0.25
+# 	modifier = {
+# 		pop_environment_tolerance = 0.10
+# 		leader_age = 15
+# 		pop_growth_speed = -0.10
+# 		pop_happiness = -0.10
+# 	}
+# 	ai_weight = {
+# 		weight = 0
+# 	}
+# }
+
+# trait_strong_immune_system = {
+# 	cost = 2
+# 	icon = "gfx/interface/icons/traits/trait_strong_immune_system.dds"
+# 	initial = no
+# 	species_potential_add = {
+# 		always = no
+# 	}
+# 	species_possible_remove = {
+# 		always = no
+# 	}
+# 	randomized = no
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	sorting_priority = 15
+# 	potential_crossbreeding_chance = 0.05
+# 	modifier = {
+# 		pop_environment_tolerance = 0.10
+# 		leader_age = 10
+# 		pop_growth_speed = 0.05
+# 	}
+# 	ai_weight = {
+# 		weight = 0
+# 	}
+# }
+
+# trait_seeded = {
+# 	icon = "gfx/interface/icons/traits/trait_seeded.dds"
+# 	initial = no
+# 	species_potential_add = {
+# 		always = no
+# 	}
+# 	species_possible_remove = {
+# 		always = no
+# 	}
+# 	randomized = no
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	sorting_priority = 15
+# 	potential_crossbreeding_chance = 0
+# 	modifier = {
+# 		leader_age = 20
+# 		country_unity_produces_mult = 0.05
+# 		pop_growth_speed = -0.10
+# 	}
+# 	ai_weight = {
+# 		weight = 0
+# 	}
+# }
+
+# #STARTING TRAITS
+
+# trait_empathic = {
+# 	cost = 2
+# 	potential_crossbreeding_chance = 1.0
+# 	opposites = { "trait_insensitive" "trait_quarrelsome" "trait_traditional" }
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	modifier = {
+# 		planet_jobs_unity_produces_mult = 0.20
+# 	}
+# 	slave_cost = {
+# 		energy = 75
+# 	}
+# }
+
+# trait_insensitive = { #or divisive
+# 	cost = -2
+# 	potential_crossbreeding_chance = 1.0
+# 	opposites = { "trait_empathic" "trait_quarrelsome" "trait_traditional" }
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	modifier = {
+# 		planet_jobs_unity_produces_mult = -0.20
+# 	}
+# 	slave_cost = {
+# 		energy = -50
+# 	}
+# }
+
+
+# trait_rootless = { # nomadic lvl 2 kinda
+# 	cost = 2
+# 	potential_crossbreeding_chance = 0.5
+# 	opposites = { "trait_nomadic" "trait_sedentary" "trait_rooted" }
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	modifier = {
+# 		pop_growth_from_immigration = 0.30
+# 		pop_resettlement_cost_mult = -0.50
+# 		pop_environment_tolerance = 0.025
+# 	}
+# 	slave_cost = {
+# 		energy = 50
+# 	}
+# }
+
+# trait_rooted = { # sedentary lvl 2 kinda
+# 	cost = -2
+# 	potential_crossbreeding_chance = 0.5
+# 	opposites = { "trait_nomadic" "trait_sedentary" "trait_rootless" }
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	modifier = {
+# 		pop_growth_from_immigration = -0.30
+# 		pop_resettlement_cost_mult = 0.50
+# 		pop_environment_tolerance = -0.025
+# 	}
+# }
+
+
+# trait_proprietorial = {
+# 	cost = 3
+# 	potential_crossbreeding_chance = 0.25
+# 	opposites = { "trait_territorial" "trait_craven" "trait_cowardly" }
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	modifier = {
+# 		army_defense_damage_mult = 0.6
+# 		army_morale = 0.5
+# 		country_war_exhaustion_mult = -0.10
+# 	}
+# 	slave_cost = {
+# 		energy = 125
+# 	}
+# }
+
+# trait_territorial = {
+# 	cost = 0
+# 	potential_crossbreeding_chance = 0
+# 	modification = no
+# 	randomized = no
+# 	initial = no
+# 	allowed_archetypes = { }
+# }
+
+# trait_cowardly = {
+# 	cost = -1
+# 	potential_crossbreeding_chance = 0.5
+# 	opposites = { "trait_proprietorial" "trait_territorial" "trait_craven" }
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	modifier = {
+# 		army_defense_damage_mult = -0.3
+# 		army_morale = -0.25
+# 	}
+# 	slave_cost = {
+# 		energy = -50
+# 	}
+# }
+
+# trait_craven = {
+# 	cost = -3
+# 	potential_crossbreeding_chance = 0.25
+# 	opposites = { "trait_proprietorial" "trait_territorial" "trait_cowardly" }
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+# 	modifier = {
+# 		army_defense_damage_mult = -0.5
+# 		army_morale = -0.30
+# 		country_war_exhaustion_mult = 0.10
+# 	}
+# 	slave_cost = {
+# 		energy = -100
+# 	}
+# }
+
+# ##########################################################################
+# # Doge Trait Changes
+# ##########################################################################
+# ### -- Disabled Traits -- ###
+
+# ## Last Children prevented pop growth entirely. Useless.
+# trait_td_last_children = {
+# 	cost = 0
+# 	potential_crossbreeding_chance = 0
+# 	modification = no
+# 	randomized = no
+# 	initial = no
+# 	allowed_archetypes = { }
+# }
+
+# ## Inept reduced mote, crystal, and gas output from jobs by 33% each with a negative cost. Abusable or overwhelmingly terrible.
+# xte_trait_inept = {
+# 	cost = 0
+# 	potential_crossbreeding_chance = 0
+# 	modification = no
+# 	randomized = no
+# 	initial = no
+# 	allowed_archetypes = { }
+# }
+
+# ### -- Adjusted Traits -- ###
+# ## Paragon was far too powerful for the cost.
+# # Reduce planet jobs mult from 10% to 5%
+# # Remove science output increase
+# # Habitability from 7% to 5%.
+# # Leader level from 1 to 2.
+# # Make it incompatible with heroism and all of it's opposites.
+# trait_td_paragon = {
+# 	cost = 6
+# 	potential_crossbreeding_chance = 0.50
+# 	opposites = {
+# 		"trait_talented"
+# 		"trait_quick_learners"
+# 		"trait_slow_learners"
+# 		"trait_td_heroism"
+# 		"trait_td_born_to_rule"
+# 		"trait_td_arrested_learning"
+# 	}
+
+# 	initial = yes
+# 	randomized = yes
+# 	advanced_trait = yes
+
+# 	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+# 	slave_cost = { energy = 250 }
+
+# 	modifier = {
+# 		planet_jobs_produces_mult = 0.05
+# 		pop_environment_tolerance = 0.05
+# 		leader_skill_levels = 2
+# 		leader_age = 10
+# 		army_damage_mult = 0.20
+# 	}
+# }
+
+# ## Hedonistic gives way too many negative points for what it does.
+# # Change cost from -4 to -1.
+# xte_trait_hedonistic = {
+# 	cost = -1
+# 	initial = yes
+# 	randomized = no
+# 	advanced_trait = yes
+# 	opposites = {
+# 		"trait_nerve_stapled"
+# 		"trait_syncretic_proles"
+# 		"xte_trait_austere"
+# 		"trait_hive_mind"
+# 	}
+# 	allowed_archetypes = {
+# 		BIOLOGICAL
+# 		LITHOID
+# 	}
+# 	potential_crossbreeding_chance = 1
+# 	modifier = {
+# 		pop_amenities_usage_mult = 0.20
+# 		planet_pops_consumer_goods_upkeep_mult = 0.15
+# 		pop_happiness = 0.1
+# 	}
+# 	slave_cost = {
+# 		energy = -150
+# 	}
+# }
+
+# ## Nanoorganisms gives too much for what it takes away.
+# # Change cost from -4 to -3
+# # Add 20% increased pop amenities usage
+# trait_td_nanoorganisms = {
+# 	cost = -3
+# 	potential_crossbreeding_chance = 1.00
+
+# 	allowed_archetypes = { BIOLOGICAL PRESAPIENT }
+# 	slave_cost = { energy = -250 }
+# 	ai_weight = { weight = 0 }
+
+# 	modifier = {
+# 		pop_amenities_usage_mult = 0.2
+# 		army_damage_mult = -0.40
+# 		army_health = -0.15
+# 		planet_jobs_worker_produces_mult = -0.10
+# 		planet_livestock_food_produces_add = -1.5
+# 		planet_pops_food_upkeep_mult = -0.075
+# 		planet_pops_consumer_goods_upkeep_mult = -0.075
+# 		pop_housing_usage_mult = -0.15
+# 		pop_resettlement_cost_mult = -0.20
+# 	}
+# }
+# trait_td_lith_nanoorganisms = {
+# 	cost = -3
+# 	potential_crossbreeding_chance = 1.00
+# 	icon = "gfx/interface/icons/traits/trait_td_nanoorganisms.dds"
+
+# 	opposites = {
+# 		"trait_td_lith_meteor_strike"
+# 	}
+# 	allowed_archetypes = { LITHOID }
+# 	slave_cost = { energy = -250 }
+# 	ai_weight = { weight = 0 }
+
+# 	modifier = {
+# 		pop_amenities_usage_mult = 0.2
+# 		army_damage_mult = -0.40
+# 		army_health = -0.30
+# 		planet_jobs_worker_produces_mult = -0.10
+# 		planet_livestock_minerals_produces_add = -0.75
+# 		planet_pops_minerals_upkeep_mult = -0.075
+# 		planet_pops_consumer_goods_upkeep_mult = -0.075
+# 		pop_housing_usage_mult = -0.15
+# 		pop_resettlement_cost_mult = -0.20
+# 	}
+# }
+
+# ## Tiny provided too much for what it takes away.
+# # Change cost from -3 to -2
+# # Add 10% increased pop amenities usage
+# trait_td_tiny = {
+# 	cost = -2
+# 	potential_crossbreeding_chance = 1.00
+
+# 	opposites = {
+# 		"trait_td_nanoorganisms"
+# 	}
+# 	allowed_archetypes = { BIOLOGICAL PRESAPIENT }
+# 	slave_cost = { energy = -200 }
+# 	ai_weight = { weight = 0 }
+
+# 	modifier = {
+# 		pop_amenities_usage_mult = 0.1
+# 		army_damage_mult = -0.30
+# 		army_health = -0.10
+# 		planet_jobs_worker_produces_mult = -0.075
+# 		planet_livestock_food_produces_add = -1.0
+# 		planet_pops_food_upkeep_mult = -0.05
+# 		planet_pops_consumer_goods_upkeep_mult = -0.05
+# 		pop_housing_usage_mult = -0.125
+# 		pop_resettlement_cost_mult = -0.15
+# 	}
+# }
+# trait_td_lith_tiny = {
+# 	cost = -2
+# 	potential_crossbreeding_chance = 1.00
+# 	icon = "gfx/interface/icons/traits/trait_td_tiny.dds"
+
+# 	opposites = {
+# 		"trait_td_lith_meteor_strike"
+# 		"trait_td_lith_nanoorganisms"
+# 	}
+# 	allowed_archetypes = { LITHOID }
+# 	slave_cost = { energy = -200 }
+# 	ai_weight = { weight = 0 }
+
+# 	modifier = {
+# 		pop_amenities_usage_mult = 0.1
+# 		army_damage_mult = -0.30
+# 		army_health = -0.20
+# 		planet_jobs_worker_produces_mult = -0.075
+# 		planet_livestock_minerals_produces_add = -0.5
+# 		planet_pops_minerals_upkeep_mult = -0.05
+# 		planet_pops_consumer_goods_upkeep_mult = -0.05
+# 		pop_housing_usage_mult = -0.125
+# 		pop_resettlement_cost_mult = -0.15
+# 	}
+# }
+
+# ## Genius was giving too much research for the cost
+# # Reduce researches from 17.5% to 15%.
+# trait_td_genius = {
+# 	cost = 4
+# 	potential_crossbreeding_chance = 1.00
+
+# 	opposites = {
+# 		"trait_nerve_stapled"
+# 		"trait_erudite"
+# 		"trait_intelligent"
+# 		"trait_td_brilliant"
+# 		"trait_td_vacuous"
+# 		"trait_td_great_excuses"
+# 	}
+# 	allowed_archetypes = { BIOLOGICAL LITHOID }
+
+# 	modifier = {
+# 		planet_jobs_engineering_research_produces_mult = 0.15
+# 		planet_jobs_physics_research_produces_mult = 0.15
+# 		planet_jobs_society_research_produces_mult = 0.15
+# 		leader_skill_levels = 1
+# 	}
+# }
+
+# ## Genetic Memory was extremely bad value because of the empire size multiplier
+# # Change cost from 4 to 3
+# # Remove the empire size multiplier.
+# xte_trait_genetic_memory = {
+# 	cost = 3
+# 	initial = yes
+# 	randomized = yes
+# 	advanced_trait = yes
+# 	allowed_archetypes = {
+# 		BIOLOGICAL
+# 		LITHOID
+# 	}
+# 	potential_crossbreeding_chance = 0.5
+# 	opposites = {
+# 		"trait_nerve_stapled"
+# 		"trait_syncretic_proles"
+# 		"trait_hive_mind"
+# 	}
+# 	modifier = {
+# 		planet_jobs_unity_produces_mult = 0.25
+# 		pop_government_ethic_attraction = -0.5
+# 	}
+# }
+
+# ## Eternal Youth cost far too much to be useful.
+# # Change cost from 5 to 1
+# # Reduce leader gain penalty from -60% to -25%
+# trait_td_eternal_youth = {
+# 	cost = 1
+# 	potential_crossbreeding_chance = 0
+# 	sorting_priority = 9
+
+# 	species_potential_add = { always = no }
+# 	species_possible_remove = { always = no }
+
+# 	opposites = {
+# 		"trait_robust"
+# 		"trait_venerable"
+# 		"trait_enduring"
+# 		"trait_fleeting"
+# 		"trait_td_parasite"
+# 		"trait_td_lith_parasite"
+# 		"trait_td_virus"
+# 		"trait_td_lith_virus"
+# 		"trait_td_swarm_that_walks"
+# 		"trait_td_energy_slimes"
+# 		"trait_td_shadow_creatures"
+# 		"trait_td_mirror_images"
+# 		"trait_td_ghosts"
+# 		"trait_td_shifting_souls"
+# 		"trait_td_artificial_spirits"
+# 		"trait_td_exiles_of_the_end"
+# 		"trait_td_semimechanized"
+# 	}
+# 	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+
+# 	immortal_leaders = yes
+# 	modifier = {
+# 		species_leader_exp_gain = -0.25
+# 		army_damage_mult = -0.125
+# 		army_morale = -0.15
+# 	}
+# }

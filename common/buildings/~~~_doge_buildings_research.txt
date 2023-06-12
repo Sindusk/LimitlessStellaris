@@ -1,0 +1,444 @@
+####################################################################################################
+# Doge Buildings (Research)
+####################################################################################################
+
+##################################################
+## Research Labs (Tier 0, Foundation) [Vanilla]
+##################################################
+building_research_lab_1 = {
+    base_buildtime = @db0_time #@b1_time
+    exempt_from_ai_planet_specialization = no
+    category = research
+
+	# Building Potential
+    potential = {
+        NOR = {
+            has_modifier = resort_colony
+            has_modifier = slave_colony
+        }
+    }
+	# Tech Prereqs
+    prerequisites = {
+        "tech_basic_science_lab_1"
+    }
+	# Allow Conditions
+    allow = {
+        str_research_allow = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        OR = {
+            has_modifier = slave_colony
+            has_modifier = resort_colony
+            str_research_destroy = yes
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db0_minerals #@b1_minerals
+        }
+        upkeep = {
+            energy = @db0_upkeep #@b1_upkeep
+        }
+    }
+
+	# Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_researcher_add = @db0_jobs #@b1_jobs
+        }
+    }
+	# Hive Mind Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_brain_drone_add = @db0_jobs #@b1_jobs
+        }
+    }
+	# Machine Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_machine_empire = yes }
+        }
+        modifier = {
+            job_calculator_add = @db0_jobs #@b1_jobs
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_research_lab_1_tt
+    }
+	# Researcher (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        text = job_researcher_effect_desc
+    }
+	# Brain Drone (Hive Mind)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        text = job_brain_drone_effect_desc
+    }
+	# Calculator (Machine)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_machine_empire = yes }
+        }
+        text = job_calculator_effect_desc
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_research_lab_2"
+    }
+
+	# AI Resource Production
+    ai_resource_production = {
+        trigger = {
+            always = yes
+        }
+        physics_research = 1
+        society_research = 1
+        engineering_research = 1
+    }
+}
+
+##################################################
+## Research Complexes (Tier 2, Basic) [Vanilla]
+##################################################
+building_research_lab_2 = {
+    base_buildtime = @db2_time #@b2_time
+    can_build = no
+    category = research
+
+	# Tech Prereqs
+    prerequisites = {
+        "tech_basic_science_lab_2"
+    }
+	# Allow Conditions
+    allow = {
+        has_upgraded_capital = yes
+        buildings_has_exotic_gases = yes
+		# StarTech condition - probably not needed.
+        #hidden_trigger = {
+        #    or = {
+        #        owner = {
+        #            is_ai = no
+        #        }
+        #        and = {
+        #            free_building_slots = 0
+        #            free_district_slots < 3
+        #            free_jobs < 2
+        #            or = {
+        #                str_is_col_research = yes
+        #                num_unemployed > 1
+        #                is_capital = yes
+        #            }
+        #            free_housing > 5
+        #            str_research_allow = yes
+        #        }
+        #    }
+        #}
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        OR = {
+            has_modifier = slave_colony
+            has_modifier = resort_colony
+            AND = {
+                buildings_no_exotic_gases = yes
+                has_planet_flag = str_supervisor
+            }
+            str_research_destroy = yes
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db2_minerals #@b2_minerals
+            exotic_gases = @db2_rare_cost #@b2_rare_cost
+        }
+        upkeep = {
+            energy = @db2_upkeep #@b2_upkeep
+            exotic_gases = @db2_rare_upkeep #@b2_rare_upkeep
+        }
+    }
+
+	# Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_researcher_add = @db1_jobs
+        }
+    }
+	# Hive Mind Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_brain_drone_add = @db1_jobs
+        }
+    }
+	# Machine Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_machine_empire = yes }
+        }
+        modifier = {
+            job_calculator_add = @db1_jobs
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_research_lab_2_tt
+    }
+	# Researcher (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        text = job_researcher_effect_desc
+    }
+	# Brain Drone (Hive Mind)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        text = job_brain_drone_effect_desc
+    }
+	# Calculator (Machine)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_machine_empire = yes }
+        }
+        text = job_calculator_effect_desc
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_research_lab_3"
+    }
+	
+	# AI Resource Production
+    ai_resource_production = {
+        trigger = {
+            always = yes
+        }
+        physics_research = 2
+        society_research = 2
+        engineering_research = 2
+    }
+}
+
+##################################################
+## Advanced Research Complexes (Tier 3, Basic) [Vanilla]
+##################################################
+building_research_lab_3 = {
+    base_buildtime = @db3_time #@b3_time
+    can_build = no
+    category = research
+
+	# Tech Prereqs
+    prerequisites = {
+        "tech_basic_science_lab_3"
+    }
+	# Allow Conditions
+    allow = {
+        has_major_upgraded_capital = yes
+        buildings_has_exotic_gases = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        OR = {
+            has_modifier = slave_colony
+            has_modifier = resort_colony
+            AND = {
+                buildings_no_exotic_gases = yes
+                has_planet_flag = str_supervisor
+            }
+            str_research_destroy = yes
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db3_minerals #@b3_minerals
+            exotic_gases = @db3_rare_cost #@b3_rare_cost
+        }
+        upkeep = {
+            energy = @db3_upkeep #@b3_upkeep
+            exotic_gases = @db3_rare_upkeep #@b3_rare_upkeep
+        }
+        upkeep = { # Requires Zro if extradimensional experimentation is active
+            trigger = {
+				exists = owner
+                owner = { is_galactic_community_member = yes }
+                OR = {
+                    is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+                    is_active_resolution = "resolution_galacticstudies_6"
+                }
+                planet = {
+                    has_modifier = pm_extradimensional_experimentation
+                }
+            }
+            sr_zro = 1
+        }
+    }
+
+	# Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_researcher_add = @db3_jobs
+        }
+    }
+	# Hive Mind Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            job_brain_drone_add = @db3_jobs
+        }
+    }
+	# Machine Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_machine_empire = yes }
+        }
+        modifier = {
+            job_calculator_add = @db3_jobs
+        }
+    }
+	# Dimensional Research Jobs (Normal)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_galactic_community_member = yes
+            }
+            OR = {
+                is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+                is_active_resolution = "resolution_galacticstudies_6"
+            }
+            has_modifier = pm_extradimensional_experimentation
+        }
+        modifier = {
+            job_dimensional_portal_researcher_add = 1
+        }
+    }
+	# Dimensional Research Jobs (Gestalt)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+                is_galactic_community_member = yes
+            }
+            OR = {
+                is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+                is_active_resolution = "resolution_galacticstudies_6"
+            }
+            has_modifier = pm_extradimensional_experimentation
+        }
+        modifier = {
+            job_dimensional_portal_researcher_gestalt_add = 1
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_research_lab_3_tt
+    }
+	# Researcher (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        text = job_researcher_effect_desc
+    }
+	# Brain Drone (Hive Mind)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        text = job_brain_drone_effect_desc
+    }
+	# Calculator (Machine)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_machine_empire = yes }
+        }
+        text = job_calculator_effect_desc
+    }
+	# Dimensional Portal Researcher (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+                is_galactic_community_member = yes
+            }
+            OR = {
+                is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+                is_active_resolution = "resolution_galacticstudies_6"
+            }
+            has_modifier = pm_extradimensional_experimentation
+        }
+        text = job_dimensional_portal_researcher_effect_desc
+    }
+	# Dimensional Portal Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+                is_galactic_community_member = yes
+            }
+            OR = {
+                is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+                is_active_resolution = "resolution_galacticstudies_6"
+            }
+            has_modifier = pm_extradimensional_experimentation
+        }
+        text = job_dimensional_portal_researcher_drone_effect_desc
+    }
+}

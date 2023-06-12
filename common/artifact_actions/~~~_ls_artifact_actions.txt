@@ -1,0 +1,84 @@
+##########################################################################
+# Limitless Stellaris - Artifact Actions
+##########################################################################
+
+### Key:
+### GPM - Guilli's Planet Modifiers
+### EMEX - Empires Expanded
+
+### artifact_sell_collector
+# Merge between GPM, EMEX, Ariphaos
+# Base from GPM, effect addition from EMEX, various improvements from Ariphaos
+artifact_sell_collector = {
+	resources = {
+		category = artifact_actions
+		cost = {
+			minor_artifacts = 100
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			has_resource = { type = energy amount > 5000 }
+		}
+		modifier = {
+			factor = 0
+			has_resource = { type = minor_artifacts amount < 1000 }
+		}
+	}
+
+	potential = { always = yes } # Change by Ariphaos, gestalt handling done in allow
+	
+	allow = {
+		custom_tooltip = { # GPM Custom Tooltip
+			fail_text = "requires_artifact_sell_collector_cooldown_no_cooldown"
+			NOT = { has_modifier = artifact_sell_collector_cooldown }
+		}
+		if = { # Ariphaos check
+			limit = { is_gestalt = yes }
+			custom_tooltip = {
+				fail_text = "GALACTIC_MARKET_NOT_FOUNDED"
+				NOT = { has_global_flag = galactic_market_founded }
+			}
+		}
+		if = { # Ariphaos check
+			limit = { is_gestalt = yes }
+			custom_tooltip = {
+				fail_text = "GALACTIC_MARKET_ACCESS"
+				is_galactic_community_member = no
+			}
+		}
+	}	
+
+	effect = {
+		if = { #EMEX begin
+			limit = { 
+				OR = {
+					has_valid_civic = civic_antique_purveyors
+					has_valid_civic = civic_antique_appropriators
+					has_valid_civic = civic_antique_purveyors_ancrel
+					has_valid_civic = civic_antique_appropriators_ancrel
+				}
+			}
+			add_resource = { energy = 1000 } # EMEX Origins gain double
+		}
+		else = {
+			add_resource = { energy = 500 } # Others gain the normal amount
+		} #EMEX end
+		hidden_effect = { # GPM custom cooldown
+			add_modifier = {
+				modifier = "artifact_sell_collector_cooldown" 
+				days = 360
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = energy
+			value = @tier2materialreward
+			min = @tier2materialmin
+			max = @tier3materialmax
+		}
+		custom_tooltip = gpm_artifact_sell_collectorTT
+	}
+}

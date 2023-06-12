@@ -1,0 +1,2076 @@
+####################################################################################################
+# Doge Buildings (Energy)
+####################################################################################################
+
+### Vanilla Building Variables ###
+# Specifically here as a reference, not going to modify them in case it ruins everything.
+#@b1_time = 360
+#@b1_minerals = 400
+#@b1_upkeep = 2
+#@b1_jobs = 2
+
+#@b2_time = 480
+#@b2_minerals = 600
+#@b2_upkeep = 5
+#@b2_rare_cost = 50
+#@b2_rare_upkeep = 1
+#@b2_jobs = 4
+
+#@b3_time = 600
+#@b3_minerals = 800
+#@b3_upkeep = 8
+#@b3_rare_cost = 100
+#@b3_rare_upkeep = 2
+#@b3_jobs = 6
+
+#@b4_time = 900
+#@b4_minerals = 2000
+#@b4_upkeep = 10
+#@b4_rare_cost = 200
+#@b4_rare_upkeep = 4
+
+### Doge Building Variables ###
+# Tier 0 (First building)
+@db0_time = 360 	    # Tier 0 build time
+@db0_minerals = 400     # Tier 0 minerals
+@db0_upkeep = 2 	    # Tier 0 upkeep
+@db0_jobs = 2 		    # Tier 0 jobs
+
+# Tier 1 [Vanilla]
+@db1_time = 440		    # Tier 1 build time
+@db1_minerals = 500     # Tier 1 minerals
+@db1_upkeep = 3 	    # Tier 1 upkeep
+@db1_jobs = 3 		    # Tier 1 jobs
+
+# Tier 2 [Vanilla]
+@db2_time = 560		    # Tier 2 build time
+@db2_minerals = 650     # Tier 2 minerals
+@db2_rare_cost = 50     # Tier 2 rare cost
+@db2_upkeep = 5 	    # Tier 2 upkeep
+@db2_rare_upkeep = 1    # Tier 2 rare upkeep
+@db2_jobs = 4 		    # Tier 2 jobs
+
+# Tier 3 [Vanilla]
+@db3_time = 700 	    # Tier 3 build time
+@db3_minerals = 900     # Tier 3 minerals
+@db3_rare_cost = 100    # Tier 3 rare cost
+@db3_upkeep = 8 	    # Tier 3 upkeep
+@db3_rare_upkeep = 2    # Tier 3 rare upkeep
+@db3_jobs = 4 		    # Tier 3 jobs
+@db3_adv_jobs = 1 	    # Tier 3 adv jobs
+
+# Tier 4 [Extra Buildings]
+@db4_time = 900		    # Tier 4 build time
+@db4_minerals = 1200    # Tier 4 minerals
+@db4_rare_cost = 200    # Tier 4 rare cost
+@db4_upkeep = 14	    # Tier 4 upkeep
+@db4_rare_upkeep = 4    # Tier 4 rare upkeep
+@db4_jobs = 2 		    # Tier 4 jobs
+@db4_adv_jobs = 4 	    # Tier 4 adv jobs
+
+# Tier 5 [Extra Buildings]
+@db5_time = 1200        # Tier 5 build time
+@db5_minerals = 2000    # Tier 5 minerals
+@db5_rare_cost = 400    # Tier 5 rare cost
+@db5_upkeep = 25	    # Tier 5 upkeep
+@db5_rare_upkeep = 6    # Tier 5 rare upkeep
+@db5_jobs = 0 		    # Tier 5 jobs [phased out]
+@db5_adv_jobs = 6 	    # Tier 5 adv jobs
+
+# Tier 6 [ACOT]
+@db6_time = 1600        # Tier 6 build time
+@db6_minerals = 4000    # Tier 6 minerals
+@db6_rare_cost = 800    # Tier 6 rare cost
+@db6_dark_cost = 150    # Tier 6 dark energy cost
+@db6_upkeep = 0         # Tier 6 upkeep [phased out in favor of strategic resources]
+@db6_rare_upkeep = 10   # Tier 6 rare upkeep
+@db6_dark_upkeep = 1    # Tier 6 dark energy upkeep
+@db6_jobs = 0           # Tier 6 jobs [phased out]
+@db6_adv_jobs = 5       # Tier 6 adv jobs
+@db6_dark_jobs = 2      # Tier 6 dark matter jobs
+
+####################################################################################################
+# Energy Buildings
+####################################################################################################
+##################################################
+## Power Plant (Tier 0, Basic Branch) [Extra Buildings]
+##################################################
+eb_energy = {
+    base_buildtime = @db0_time #@b1_time
+    category = resource
+    # Can build on anything that isn't a resort colony.
+    potential = {
+        NOT = {
+            has_modifier = resort_colony
+        }
+    }
+    # Requires power plants
+    prerequisites = {
+        tech_power_plant_1
+    }
+    # Ensure that AI needs it before allowing them to build it.
+    allow = {
+        buildings_simple_allow = yes
+    }
+    destroy_trigger = {
+        has_modifier = resort_colony
+    }
+
+    # Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db0_minerals #@b1_minerals
+        }
+        upkeep = {
+            energy = @db0_upkeep #@b1_upkeep
+        }
+    }
+
+    # Normal Empire Jobs - 2 Technician
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        modifier = {
+            job_technician_add = @db0_jobs #@b1_jobs
+        }
+    }
+    # Spiritualist Fallen Empire Jobs - 2 Acolytes
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        modifier = {
+            job_fe_acolyte_generator_add = @db0_jobs #@b1_jobs
+        }
+    }
+    # Gestalt Jobs - 2 Tech Drones
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+            job_technician_drone_add = @db0_jobs #@b1_jobs
+        }
+    }
+    triggered_desc = {
+        text = eb_energy_tt
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        text = job_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_generator_effect_desc
+    }
+
+    upgrades = {
+    	"upgradebuildings_building_power_plant" #Tier 1, Basic Branch
+    	"building_energy_grid" #Tier 1, Productivity Branch
+        "building_energy_consortium" #Tier 1, Efficiency Branch
+    }
+
+    ai_weight = {
+        weight = 2
+        modifier = {
+            factor = 5
+            owner = {
+                has_monthly_income = {
+                    resource = energy
+                    value < 5
+                }
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 1
+        trigger = {
+            always = yes
+        }
+    }
+}
+
+####################################################################################################
+# Energy - Basic Branch
+####################################################################################################
+##################################################
+## Power Plant 2 (Tier 1, Basic Branch) [Upgradeable Resource Collectors]
+##################################################
+upgradebuildings_building_power_plant = {
+    base_buildtime = @db1_time #@b1_time
+    can_build = no
+    category = resource
+
+    potential = {
+        NOT = {
+            has_modifier = resort_colony
+        }
+    }
+    prerequisites = {
+        tech_power_plant_2 # Power Plant II
+    }
+    # Ensure that AI needs it before allowing them to build it.
+    allow = {
+        buildings_simple_allow = yes
+    }
+    destroy_trigger = {
+        has_modifier = resort_colony
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db1_minerals
+        }
+        upkeep = {
+            energy = @db1_upkeep
+        }
+    }
+
+    # Normal Empire Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        modifier = {
+            job_technician_add = @db1_jobs
+        }
+    }
+    # Spiritualist Fallen Empire Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        modifier = {
+            job_fe_acolyte_generator_add = @db1_jobs
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+            job_technician_drone_add = @db1_jobs
+        }
+    }
+    triggered_desc = {
+        text = upgradebuildings_building_power_plant_tt
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        text = job_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_generator_effect_desc
+    }
+
+    upgrades = {
+        eb_energy2
+    }
+
+    ai_weight = {
+        weight = 2
+        modifier = {
+            factor = 10
+            owner = {
+                has_monthly_income = {
+                    resource = energy
+                    value < 5
+                }
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 2
+        trigger = {
+            always = yes
+        }
+    }
+}
+
+##################################################
+## Power Plant 3 (Tier 2, Basic Branch) [Extra Buildings]
+##################################################
+eb_energy2 = {
+    base_buildtime = @db2_time #@b2_time
+    can_build = no
+    category = resource
+
+    potential = {
+        NOT = {
+            has_modifier = resort_colony
+        }
+    }
+    prerequisites = {
+        "tech_power_plant_3" # Power Plant III
+    }
+    # Ensure that AI needs it before allowing them to build it.
+    allow = {
+        buildings_simple_allow = yes
+        has_upgraded_capital = yes
+        buildings_has_exotic_gases = yes
+    }
+    # Destroy Trigger
+    destroy_trigger = {
+        has_modifier = resort_colony
+    }
+
+    # Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db2_minerals #@b2_minerals
+            exotic_gases = @db2_rare_cost #@b2_rare_cost
+        }
+        upkeep = {
+            energy = @db2_upkeep
+            exotic_gases = @db2_rare_upkeep #@b2_rare_upkeep
+        }
+    }
+
+    # Normal Empire Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        modifier = {
+            job_technician_add = @db2_jobs
+        }
+    }
+    # Spiritualist Fallen Empire Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        modifier = {
+            job_fe_acolyte_generator_add = @db2_jobs
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+            job_technician_drone_add = @db2_jobs
+        }
+    }
+    triggered_desc = {
+        text = eb_energy2_tt
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        text = job_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_generator_effect_desc
+    }
+
+    upgrades = {
+        building_powerplant_2
+    }
+
+    ai_weight = {
+        weight = 2
+        modifier = {
+            factor = 20
+            owner = {
+                has_monthly_income = {
+                    resource = energy
+                    value < 5
+                }
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 4
+        trigger = {
+            always = yes
+        }
+    }
+}
+
+##################################################
+## Power Plant 4 (Tier 3, Basic Branch) [Upgradeable Resource Collectors]
+##################################################
+building_powerplant_2 = {
+	base_buildtime = @db3_time #@b2_time
+	can_build = no
+	category = resource
+	
+    potential = {
+        NOT = {
+            has_modifier = resort_colony
+        }
+    }
+    prerequisites = {
+        "tech_power_plant_4" # Power Plant IV
+    }
+    # Ensure that AI needs it before allowing them to build it.
+    allow = {
+        buildings_simple_allow = yes
+        has_upgraded_capital = yes
+        buildings_has_exotic_gases = yes
+    }
+    destroy_trigger = {
+        has_modifier = resort_colony
+    }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db3_minerals #@b2_minerals
+			exotic_gases = @db3_rare_cost #@b2_rare_cost
+		}
+		upkeep = {
+			energy = @db3_upkeep #@b2_upkeep
+			exotic_gases = @db3_rare_upkeep #@b2_rare_upkeep
+		}
+	}
+
+	# Normal Empire Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        modifier = {
+        	job_doge_master_technician_add = @db3_adv_jobs
+            job_technician_add = @db3_jobs
+        }
+    }
+    # Spiritualist Fallen Empire Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        modifier = {
+        	job_doge_master_technician_add = @db3_adv_jobs
+            job_fe_acolyte_generator_add = @db3_jobs
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+        	job_doge_master_technician_drone_add = @db3_adv_jobs
+            job_technician_drone_add = @db3_jobs
+        }
+    }
+    triggered_desc = {
+        text = building_powerplant_2_tt
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_doge_master_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+            }
+        }
+        text = job_doge_master_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        text = job_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_generator_effect_desc
+    }
+
+	upgrades = {
+		eb_energy3
+	}
+
+    ai_weight = {
+        weight = 4
+        modifier = {
+            factor = 20
+            owner = {
+                has_monthly_income = {
+                    resource = energy
+                    value < 5
+                }
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 8
+        trigger = {
+            always = yes
+        }
+    }
+}
+
+##################################################
+# Power Plant V (Tier 4, Basic Branch) [Extra Buildings]
+##################################################
+eb_energy3 = {
+	base_buildtime = @db4_time #@b3_time
+	can_build = no
+	category = resource
+
+    potential = {
+        NOT = {
+            has_modifier = resort_colony
+        }
+    }
+	prerequisites = {
+		tech_power_plant_4
+	}
+	allow = {
+		buildings_simple_allow = yes
+        has_major_upgraded_capital = yes
+        buildings_has_exotic_gases = yes
+	}
+	destroy_trigger = {
+		has_modifier = resort_colony
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db4_minerals #@b3_minerals
+			exotic_gases = @db4_rare_cost #@b3_rare_cost
+		}
+		upkeep = {
+			energy = @db4_upkeep #2
+			exotic_gases = @db4_rare_upkeep #@b3_rare_upkeep
+		}
+	}	
+	
+	# Normal Empire Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        modifier = {
+        	job_doge_master_technician_add = @db4_adv_jobs
+            job_technician_add = @db4_jobs
+        }
+    }
+    # Spiritualist Fallen Empire Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        modifier = {
+        	job_doge_master_technician_add = @db4_adv_jobs
+            job_fe_acolyte_generator_add = @db4_jobs
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+        	job_doge_master_technician_drone_add = @db4_adv_jobs
+            job_technician_drone_add = @db4_jobs
+        }
+    }
+    # Tooltip
+    triggered_desc = {
+        text = eb_energy3_tt
+    }
+    # Master Technician Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_doge_master_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+            }
+        }
+        text = job_doge_master_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        text = job_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_generator_effect_desc
+    }
+
+	upgrades = {
+		building_powerplant_3
+	}
+	
+    ai_weight = {
+        weight = 8
+        modifier = {
+            factor = 20
+            owner = {
+                has_monthly_income = {
+                    resource = energy
+                    value < 5
+                }
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 16
+        trigger = {
+            always = yes
+        }
+    }
+}
+
+##################################################
+# Power Plant 6 (Tier 5, Basic Branch) [Upgradeable Resource Collectors]
+##################################################
+building_powerplant_3 = {
+    base_buildtime = @db5_time #@b3_time
+    can_build = no
+    category = resource
+    
+    potential = {
+        NOT = { has_modifier = resort_colony }
+    }
+    prerequisites = {
+        tech_power_plant_4
+    }
+    allow = {
+        buildings_simple_allow = yes
+        has_fully_upgraded_capital = yes
+        buildings_has_exotic_gases = yes
+    }
+    destroy_trigger = {
+        has_modifier = resort_colony
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db5_minerals #@b3_minerals
+            exotic_gases = @db5_rare_cost #@b3_rare_cost
+        }
+        upkeep = {
+            energy = @db5_upkeep #@b3_upkeep
+            exotic_gases = @db5_rare_upkeep #@b3_rare_upkeep
+        }
+    }
+    
+    # Normal Empire Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+            }
+        }
+        modifier = {
+            job_doge_master_technician_add = @db5_adv_jobs
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+            job_doge_master_technician_drone_add = @db5_adv_jobs
+        }
+    }
+    # Tooltip
+    triggered_desc = {
+        text = building_powerplant_3_tt
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_doge_master_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+            }
+        }
+        text = job_doge_master_technician_effect_desc
+    }
+    
+    ai_weight = {
+        weight = 16
+        modifier = {
+            factor = 40
+            owner = {
+                has_monthly_income = {
+                    resource = energy
+                    value < 5
+                }
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 32
+        trigger = {
+            always = yes
+        }
+    }
+}
+
+####################################################################################################
+# Energy - Productivity Branch
+####################################################################################################
+
+##################################################
+# Energy Grid (Tier 1, Productivity Branch) [Vanilla]
+##################################################
+building_energy_grid = {
+    base_buildtime = @db1_time #@b1_time
+    can_build = no
+    category = resource
+
+    # Can build on anything that isn't a resort colony.
+    potential = {
+        NOT = {
+            has_modifier = resort_colony
+        }
+    }
+    # Tech Requirements
+    prerequisites = {
+        tech_power_hub_1 # Planetary Power Grid
+    }
+    # Allow conditions
+    allow = {
+    	# Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+        doge_can_build_energy_grid = yes
+        # StarTech allow conditions.
+        buildings_simple_allow = yes
+        str_energy_grid_allow = yes
+    }
+    # AI destroys if it becomes a resort colony or StarTech says so
+    destroy_trigger = {
+        or = {
+            has_modifier = resort_colony
+            str_energy_grid_destroy = yes
+        }
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db1_minerals #@b1_minerals
+        }
+        upkeep = {
+            energy = @db1_upkeep
+        }
+    }
+    # Planet modifier for +1 energy credits from technicians.
+    planet_modifier = {
+        planet_technician_energy_produces_add = 1
+    }
+    # Normal Jobs - 1 Technician
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        modifier = {
+            job_technician_add = 1
+        }
+    }
+    # Fallen Empire Spiritualist Jobs - 1 Acolyte
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        modifier = {
+            job_fe_acolyte_generator_add = 1
+        }
+    }
+    # Gestalt Jobs - 1 Tech Drone
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+            job_technician_drone_add = 1
+        }
+    }
+    # Adds 2 additional generator districts for machine intelligence on normal planets
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_robot_empire = yes
+            }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 2
+        }
+    }
+    # Adds 1 additional generator district for any empire with an architecture civic.
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_bugged_functional_architecture = yes
+            }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 1
+        }
+    }
+    # Adds 5 trade value if they have free market economic stance
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_policy_flag = economic_stance_bugged_free_market
+            }
+        }
+        modifier = {
+            trade_value_add = 5
+        }
+    }
+    # Tooltip
+    triggered_desc = {
+        text = building_energy_grid_tt
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        text = job_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_generator_effect_desc
+    }
+
+    # Upgrades: Energy Nexus
+    upgrades = {
+        building_energy_nexus
+    }
+
+    # StarNet Fake Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_ai = yes
+            }
+            str_force_energy_grid = yes
+        }
+        modifier = {
+            job_starnet_spice_melange_farmer_add = 1
+            job_starnet_spice_melange_antifarmer_add = -1
+        }
+    }
+    
+    # AI Resource Production
+    ai_resource_production = {
+        energy = 3
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 15
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 2
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 30
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 4
+            }
+        }
+    }
+}
+##################################################
+# Energy Nexus (Tier 2, Productivity Branch) [Vanilla]
+##################################################
+building_energy_nexus = {
+    base_buildtime = @db2_time #@b2_time
+    can_build = no
+    category = resource
+
+    # Can build on anything that isn't a resort colony.
+    potential = {
+        NOT = {
+            has_modifier = resort_colony
+        }
+    }
+    # Tech Requirements
+    prerequisites = {
+        tech_power_hub_2
+    }
+    allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+        #doge_can_build_energy_grid = yes
+        has_upgraded_capital = yes
+        buildings_has_exotic_gases = yes
+    }
+    destroy_trigger = {
+        OR = {
+            OR = {
+                has_modifier = resort_colony
+                buildings_no_exotic_gases = yes
+            }
+            AND = {
+                exists = owner
+                owner = {
+                    is_ai = yes
+                }
+                has_any_generator_district_or_building = no
+            }
+        }
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db2_minerals #@b2_minerals
+            exotic_gases = @db2_rare_cost #@b2_rare_cost
+        }
+        upkeep = {
+            energy = @db2_upkeep #2
+            exotic_gases = @db2_rare_upkeep #@b2_rare_upkeep
+        }
+    }
+
+    planet_modifier = {
+        planet_technician_energy_produces_add = 2
+    }
+    # Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        modifier = {
+            job_technician_add = 2
+        }
+    }
+    # Fallen Empire Spiritualist Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_fallen_empire_spiritualist = yes }
+        }
+        modifier = {
+            job_fe_acolyte_generator_add = 2
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+            job_technician_drone_add = 2
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_robot_empire = yes
+            }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 4
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_bugged_functional_architecture = yes
+            }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 2
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_policy_flag = economic_stance_bugged_free_market
+            }
+        }
+        modifier = {
+            trade_value_add = 10
+        }
+    }
+    # Tooltip
+    triggered_desc = {
+        text = building_energy_nexus_tt
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        text = job_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_generator_effect_desc
+    }
+
+    # Upgrades to ROCI Class 4 Singularity
+    upgrades = {
+        building_roci_class_4_singularity_mod
+    }
+
+    # StarNet Fake Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_ai = yes
+            }
+            str_force_energy_grid = yes
+        }
+        modifier = {
+            job_starnet_spice_melange_farmer_add = 1
+            job_starnet_spice_melange_antifarmer_add = -1
+        }
+    }
+
+    # AI Resource Production
+    ai_resource_production = {
+        energy = 6
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 30
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 2
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 60
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 4
+            }
+        }
+    }
+}
+
+##################################################
+# Class 4 Singularity (Tier 4, Productivity Branch) [Rise of Cosmic Industry]
+##################################################
+building_roci_class_4_singularity_mod = {
+    base_buildtime = @db4_time #@b4_time
+    can_build = no
+    category = resource
+    #icon = building_class_4_singularity
+    
+    # Can build on anything that isn't a resort colony.
+    potential = {
+        NOT = { has_modifier = resort_colony }
+    }
+    # Tech Requirements
+    prerequisites = {
+        "tech_roci_singularity_power"
+    }
+    allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+        #doge_can_build_energy_grid = yes
+        has_major_upgraded_capital = yes
+        buildings_has_exotic_gases = yes
+    }
+    # Destroy Trigger
+    destroy_trigger = {
+        OR = {
+            OR = {
+                has_modifier = resort_colony
+                buildings_no_exotic_gases = yes
+            }
+            AND = {
+                exists = owner
+                owner = {
+                    is_ai = yes
+                }
+                has_any_generator_district_or_building = no
+            }
+        }
+    }
+
+    # Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db4_minerals #@b2_minerals
+            exotic_gases = @db4_rare_cost #@b2_rare_cost
+        }
+        upkeep = {
+            energy = @db4_upkeep #2
+            exotic_gases = @db4_rare_upkeep #@b2_rare_upkeep
+        }
+    }
+    
+    planet_modifier = {
+        planet_technician_energy_produces_add = 4
+        #planet_autofab_generator_energy_produces_add = 8
+    }
+    # Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+            }
+        }
+        modifier = {
+            job_doge_master_technician_add = 3
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+            job_doge_master_technician_drone_add = 3
+        }
+    }
+    # Planet modifier for increased districts on robotic empires
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_robot_empire = yes }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 6
+        }
+    }
+    # Districts for functional architecture civic normal empires
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_bugged_functional_architecture = yes
+            }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 3
+        }
+    }
+    # Trade value for free market modifier
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_policy_flag = economic_stance_bugged_free_market
+            }
+        }
+        modifier = {
+            trade_value_add = 20
+        }
+    }
+    # Tooltip
+    triggered_desc = {
+        text = building_roci_class_4_singularity_mod_tt
+    }
+    # Master Technician Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_doge_master_technician_drone_effect_desc
+    }
+    # Master Technician (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_doge_master_technician_effect_desc
+    }
+
+    # Building Upgrades
+    upgrades = {
+        "building_giga_energy_nexus_1"
+        #"building_fe_power_hub"
+    }
+
+    # StarNet Fake Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_ai = yes
+            }
+            str_force_energy_grid = yes
+        }
+        modifier = {
+            job_starnet_spice_melange_farmer_add = 1
+            job_starnet_spice_melange_antifarmer_add = -1
+        }
+    }
+
+    # AI Resource Production
+    ai_resource_production = {
+        energy = 12
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 60
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 2
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 120
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 4
+            }
+        }
+    }
+}
+
+##################################################
+# Laser Conduction Energy Distributor (Tier 5, Productivity Branch) [Gigastructural Engineering]
+##################################################
+building_giga_energy_nexus_1 = {
+	base_buildtime = @db5_time #@b3_time
+    can_build = no
+	category = resource
+	
+    # Can build on anything that isn't a resort colony.
+    potential = {
+        NOT = { has_modifier = resort_colony }
+    }
+    # Tech Prereqs
+	prerequisites = {
+		tech_l_conductor
+	}
+    # Allow Conditions
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+    # Destroy Trigger
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			buildings_no_exotic_gases = yes
+		}
+	}
+
+    # Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db5_minerals #@b3_minerals
+			exotic_gases = @db5_rare_cost #@b3_rare_cost
+			#rare_crystals = 20
+		}
+		upkeep = {
+			energy = @db5_upkeep #6
+			exotic_gases = @db5_rare_upkeep #@b3_rare_upkeep
+		}
+	}
+	
+    planet_modifier = {
+        planet_technician_energy_produces_add = 6
+        planet_jobs_energy_produces_mult = 0.02
+    }
+    # Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_doge_master_technician_add = 3
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_doge_master_technician_drone_add = 3
+        }
+    }
+    # Planet modifier for increased districts on robotic empires
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_robot_empire = yes }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 6
+        }
+    }
+    # Districts for functional architecture civic normal empires
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_functional_architecture = yes }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 3
+        }
+    }
+    # Trade value for free market modifier
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_policy_flag = economic_stance_bugged_free_market
+            }
+        }
+        modifier = {
+            trade_value_add = 30
+        }
+    }
+    # Tooltip
+    triggered_desc = {
+        text = building_giga_energy_nexus_1_tt
+    }
+    # Master Technician Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_doge_master_technician_drone_effect_desc
+    }
+    # Master Technician (Normal)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = no }
+        }
+        text = job_doge_master_technician_effect_desc
+    }
+
+    # StarNet Fake Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_ai = yes }
+            str_force_energy_grid = yes
+        }
+        modifier = {
+            job_starnet_spice_melange_farmer_add = 1
+            job_starnet_spice_melange_antifarmer_add = -1
+        }
+    }
+    
+    # Building Upgrades
+	upgrades = {
+		"building_giga_energy_nexus_2"
+        "building_fe_power_hub"
+	}
+
+    # AI Resource Production
+    ai_resource_production = {
+        energy = 18
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 90
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 2
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 180
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 4
+            }
+        }
+    }
+}
+
+##################################################
+# Dark Energy Power Grid (Tier 6, Productivity Branch) [Ancient Cache of Technology]
+##################################################
+building_fe_power_hub = {
+    base_buildtime = @db6_time #480
+    can_build = no
+    category = resource
+
+    # Can build on anything that isn't a resort colony.
+    potential = {
+        NOT = { has_modifier = resort_colony }
+    }
+    # Tech Requirements
+    prerequisites = {
+        "tech_fe_power_hub"
+    }
+    # Allow Conditions
+    allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+        #doge_can_build_energy_grid = yes
+        has_enigmatic_capital = yes
+        buildings_has_exotic_gases = yes
+    }
+    # Destroy Trigger
+    destroy_trigger = {
+        OR = {
+            OR = {
+                has_modifier = resort_colony
+                buildings_no_exotic_gases = yes
+            }
+            AND = {
+                exists = owner
+                owner = { is_ai = yes }
+                has_any_generator_district_or_building = no
+            }
+        }
+    }
+
+    # Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db6_minerals #250
+            exotic_gases = @db6_rare_cost
+            acot_sr_dark_energy = @db6_dark_cost #150
+        }
+        produces = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            energy = 20
+        }
+        upkeep = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            exotic_gases = @db6_rare_upkeep
+        }
+        upkeep = {
+            trigger = {
+                has_modifier = acot_modifier_ascended_city
+            }
+            acot_sr_dark_energy = @db6_dark_upkeep
+        }
+    }
+    
+    # Permanent Country Modifier
+    country_modifier = {
+        country_resource_max_energy_add = 10000
+    }
+    
+    # Permanent planet modifiers
+    planet_modifier = {
+        planet_technician_energy_produces_add = 8
+        planet_jobs_energy_produces_mult = 0.05
+    }
+    
+    # Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            job_acot_energyman_add = 3
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_acot_energydrone_add = 3
+        }
+    }
+    # Planet modifier for increased districts on robotic empires
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_robot_empire = yes
+            }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 8
+        }
+    }
+    # Districts for functional architecture civic normal empires
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_bugged_functional_architecture = yes
+            }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_generator_max = 4
+        }
+    }
+    # Trade value for free market modifier
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_policy_flag = economic_stance_bugged_free_market
+            }
+        }
+        modifier = {
+            trade_value_add = 40
+        }
+    }
+    # Tooltip
+    triggered_desc = {
+        text = building_fe_power_hub_tt
+    }
+    # Grid Synchronizer (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_acot_energydrone_effect_desc
+    }
+    # Grid Synchronizer (Non-Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = no
+            }
+        }
+        text = job_acot_energyman_effect_desc
+    }
+    
+    # Building Upgrades
+    upgrades = {
+        building_ae_power_hub
+    }
+
+    # StarNet Fake Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_ai = yes
+            }
+            str_force_energy_grid = yes
+        }
+        modifier = {
+            job_starnet_spice_melange_farmer_add = 1
+            job_starnet_spice_melange_antifarmer_add = -1
+        }
+    }
+    
+    # AI Weighting done by ACOT
+    ai_weight = {
+        weight = 3000
+        modifier = {
+            factor = 5
+            owner = { 
+                has_monthly_income = {
+                    resource = energy
+                    value < 10
+                }
+            }
+        }
+        # There are already unworked jobs
+        # Blocks buildings unworkable by remaining pops (slaves/robots etc)
+        # Will be improved... at some point
+        modifier = {
+            factor = 0
+            free_jobs > 0 
+        }
+    }
+
+    # AI Resource Production
+    ai_resource_production = {
+        energy = 24
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 120
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 2
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 240
+        trigger = {
+            str_num_districts_generator = {
+                operator = > num
+                 = 4
+            }
+        }
+    }
+}
+
+####################################################################################################
+# Energy - Efficiency Branch
+####################################################################################################
+##################################################
+# Energy Consortium (Tier 1, Efficiency Branch)
+##################################################
+building_energy_consortium = {
+    base_buildtime = @db1_time #360
+    can_build = no
+    category = resource
+    
+    potential = {
+        NOT = { has_modifier = resort_colony }
+    }
+    prerequisites = {
+        tech_power_hub_1
+    }
+    allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+        NOR = {
+            num_buildings = { type = building_energy_consortium value > 1 in_construction = any }
+        }
+        buildings_simple_allow = yes
+        str_energy_grid_allow = yes
+    }
+    destroy_trigger = {
+        has_modifier = resort_colony
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db1_minerals #400
+        }
+        upkeep = {
+            minerals = @db1_upkeep #2
+        }
+    }
+    
+    planet_modifier = {
+        planet_technician_produces_mult = 0.05
+        #planet_technician_upkeep_mult = -0.05 #Not working apparently?
+    }
+
+    # Normal Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        modifier = {
+            job_technician_add = 3
+        }
+    }
+    # Fallen Empire Spiritualist Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        modifier = {
+            job_fe_acolyte_generator_add = 3
+        }
+    }
+    # Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        modifier = {
+            job_technician_drone_add = 3
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            has_district = district_generator
+        }
+        modifier = {
+            district_generator_max = 1
+            district_mining_max = -1
+            district_farming_max = -1
+        }
+    }
+    # Tooltip
+    triggered_desc = {
+        text = building_energy_consortium_tt
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_gestalt = yes
+            }
+        }
+        text = job_technician_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+            }
+        }
+        text = job_technician_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_generator_effect_desc
+    }
+    
+    # StarNet Fake Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_ai = yes
+            }
+            str_force_energy_grid = yes
+        }
+        modifier = {
+            job_starnet_spice_melange_farmer_add = 1
+            job_starnet_spice_melange_antifarmer_add = -1
+        }
+    }
+    
+    ai_resource_production = {
+        energy = 2
+        trigger = { always = yes }
+    }
+}

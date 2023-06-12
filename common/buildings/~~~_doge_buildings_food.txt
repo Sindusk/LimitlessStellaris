@@ -1,0 +1,2059 @@
+####################################################################################################
+# Doge Buildings (Food)
+####################################################################################################
+
+### Vanilla Building Variables ###
+# Specifically here as a reference, not going to modify them in case it ruins everything.
+#@b1_time = 360
+#@b1_minerals = 400
+#@b1_upkeep = 2
+#@b1_jobs = 2
+
+#@b2_time = 480
+#@b2_minerals = 600
+#@b2_upkeep = 5
+#@b2_rare_cost = 50
+#@b2_rare_upkeep = 1
+#@b2_jobs = 4
+
+#@b3_time = 600
+#@b3_minerals = 800
+#@b3_upkeep = 8
+#@b3_rare_cost = 100
+#@b3_rare_upkeep = 2
+#@b3_jobs = 6
+
+#@b4_time = 900
+#@b4_minerals = 2000
+#@b4_upkeep = 10
+#@b4_rare_cost = 200
+#@b4_rare_upkeep = 4
+
+### Doge Building Variables ###
+# Tier 0 (First building)
+@db0_time = 360 	    # Tier 0 build time
+@db0_minerals = 400     # Tier 0 minerals
+@db0_upkeep = 2 	    # Tier 0 upkeep
+@db0_jobs = 2 		    # Tier 0 jobs
+
+# Tier 1 [Vanilla]
+@db1_time = 440		    # Tier 1 build time
+@db1_minerals = 500     # Tier 1 minerals
+@db1_upkeep = 3 	    # Tier 1 upkeep
+@db1_jobs = 3 		    # Tier 1 jobs
+
+# Tier 2 [Vanilla]
+@db2_time = 560		    # Tier 2 build time
+@db2_minerals = 650     # Tier 2 minerals
+@db2_rare_cost = 50     # Tier 2 rare cost
+@db2_upkeep = 5 	    # Tier 2 upkeep
+@db2_rare_upkeep = 1    # Tier 2 rare upkeep
+@db2_jobs = 4 		    # Tier 2 jobs
+
+# Tier 3 [Vanilla]
+@db3_time = 700 	    # Tier 3 build time
+@db3_minerals = 900     # Tier 3 minerals
+@db3_rare_cost = 100    # Tier 3 rare cost
+@db3_upkeep = 8 	    # Tier 3 upkeep
+@db3_rare_upkeep = 2    # Tier 3 rare upkeep
+@db3_jobs = 4 		    # Tier 3 jobs
+@db3_adv_jobs = 1 	    # Tier 3 adv jobs
+
+# Tier 4 [Extra Buildings]
+@db4_time = 900		    # Tier 4 build time
+@db4_minerals = 1200    # Tier 4 minerals
+@db4_rare_cost = 200    # Tier 4 rare cost
+@db4_upkeep = 14	    # Tier 4 upkeep
+@db4_rare_upkeep = 4    # Tier 4 rare upkeep
+@db4_jobs = 2 		    # Tier 4 jobs
+@db4_adv_jobs = 4 	    # Tier 4 adv jobs
+
+# Tier 5 [Extra Buildings]
+@db5_time = 1200        # Tier 5 build time
+@db5_minerals = 2000    # Tier 5 minerals
+@db5_rare_cost = 400    # Tier 5 rare cost
+@db5_upkeep = 25	    # Tier 5 upkeep
+@db5_rare_upkeep = 6    # Tier 5 rare upkeep
+@db5_jobs = 0 		    # Tier 5 jobs [phased out]
+@db5_adv_jobs = 6 	    # Tier 5 adv jobs
+
+# Tier 6 [ACOT]
+@db6_time = 1600        # Tier 6 build time
+@db6_minerals = 4000    # Tier 6 minerals
+@db6_rare_cost = 800    # Tier 6 rare cost
+@db6_dark_cost = 150    # Tier 6 dark energy cost
+@db6_upkeep = 0         # Tier 6 upkeep [phased out in favor of strategic resources]
+@db6_rare_upkeep = 10   # Tier 6 rare upkeep
+@db6_dark_upkeep = 1    # Tier 6 dark energy upkeep
+@db6_jobs = 0           # Tier 6 jobs [phased out]
+@db6_adv_jobs = 5       # Tier 6 adv jobs
+@db6_dark_jobs = 2      # Tier 6 dark matter jobs
+
+####################################################################################################
+# Food Buildings
+####################################################################################################
+
+##################################################
+## Hydroponic Farm (Tier 0, Foundation) [Vanilla]
+##################################################
+building_hydroponics_farm = {
+    base_buildtime = @db0_time #@b1_time
+    category = resource
+
+	# Building Potential
+    potential = {
+        exists = owner
+        owner = { # If the owner is an AI that doesn't use food, don't build.
+            OR = {
+                country_uses_food = yes
+                is_ai = no
+            }
+        }
+        NOT = { is_planet_class = pc_machine } # Cannot build on a machine world
+        NOT = { has_modifier = resort_colony } # Cannot build on a resort colony
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_hydroponics"
+        "tech_eco_simulation"
+    }
+	# Allow Conditions
+    allow = {
+        buildings_simple_allow = yes
+        str_hydroponics_allow = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = { # One of the following conditions will cause the destroy trigger
+            str_hydroponics_destroy = yes # StarTech wants the hydroponics destroyed
+            owner = { # The owner is an AI that doesn't use food
+                is_ai = yes
+                country_uses_food = no
+            }
+            planet = { # The planet is not a habitat, has no free spots, the owner is an AI and their monthly food income is over 100.
+                NOT = { is_planet_class = pc_habitat }
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 100
+                    }
+                }
+            }
+            planet = { # The planet has no free building slots, the owner is an AI and their monthly food income is over 250.
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 250
+                    }
+                }
+            }
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db0_minerals #@b1_minerals
+        }
+        upkeep = {
+            energy = @db0_upkeep #2
+        }
+    }
+
+	# Normal Empire Jobs (Non-Anglers, or Anglers on Wet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Must not have Anglers civic, or meet requirements below
+                    is_anglers_empire = no
+                    AND = { # Condition for Angler civic that is not on a wet planet (as they are replaced with anglers).
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        modifier = {
+            job_farmer_add = @db0_jobs #@b1_jobs
+        }
+    }
+	# Fallen Empire Spiritualist Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_fallen_empire_spiritualist = yes }
+        }
+        modifier = {
+            job_fe_acolyte_farm_add = @db0_jobs #@b1_jobs
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_agri_drone_add = @db0_jobs #@b1_jobs
+        }
+    }
+	# Void Dwellers origin get an additional farmer
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_origin = origin_void_dwellers }
+        }
+        modifier = {
+            job_farmer_add = 1
+        }
+    }
+	# Anglers Civic Job (Requires Wet Planet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        modifier = {
+            job_angler_add = @db0_jobs
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_hydroponics_farm_tt
+    }
+	# Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_agri_drone_effect_desc
+    }
+	# Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_farmer_effect_desc
+    }
+	# Farming Acolyte (Fallen Empire Spiritualist)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_farm_effect_desc
+    }
+	# Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_aqu_angler_effect_desc
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_hydroponics_farm_2" # Tier 1 - Basic
+		"building_food_processing_facility" # Tier 1 - Productivity
+        building_eutab_hydroponics_tower
+    }
+	
+	# AI Resource Production
+    ai_resource_production = {
+        food = 2
+        trigger = { always = yes }
+    }
+}
+
+####################################################################################################
+# Food - Basic Branch
+####################################################################################################
+
+##################################################
+## Hydroponic Farm II (Tier 1, Basic) [Upgrade Buildings]
+##################################################
+building_hydroponics_farm_2 = {
+	base_buildtime = @db1_time #@b2_time
+	can_build = no
+	category = resource
+
+	# Building Potential
+    potential = {
+        exists = owner
+        owner = { # If the owner is an AI that doesn't use food, don't build.
+            OR = {
+                country_uses_food = yes
+                is_ai = no
+            }
+        }
+        NOT = { is_planet_class = pc_machine } # Cannot build on a machine world
+        NOT = { has_modifier = resort_colony } # Cannot build on a resort colony
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_hydroponics_2"
+    }
+	# Allow Conditions
+    allow = {
+        buildings_simple_allow = yes
+        str_hydroponics_allow = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = { # One of the following conditions will cause the destroy trigger
+            str_hydroponics_destroy = yes # StarTech wants the hydroponics destroyed
+            owner = { # The owner is an AI that doesn't use food
+                is_ai = yes
+                country_uses_food = no
+            }
+            planet = { # The planet is not a habitat, has no free spots, the owner is an AI and their monthly food income is over 100.
+                NOT = { is_planet_class = pc_habitat }
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 100
+                    }
+                }
+            }
+            planet = { # The planet has no free building slots, the owner is an AI and their monthly food income is over 250.
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 250
+                    }
+                }
+            }
+        }
+    }
+	
+	# Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals #@b2_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep #@b2_upkeep
+		}
+	}
+	
+	# Normal Empire Jobs (Non-Anglers, or Anglers on Wet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Must not have Anglers civic, or meet requirements below
+                    is_anglers_empire = no
+                    AND = { # Condition for Angler civic that is not on a wet planet (as they are replaced with anglers).
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        modifier = {
+            job_farmer_add = @db1_jobs
+        }
+    }
+	# Fallen Empire Spiritualist Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_fallen_empire_spiritualist = yes }
+        }
+        modifier = {
+            job_fe_acolyte_farm_add = @db1_jobs
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_agri_drone_add = @db1_jobs
+        }
+    }
+	# Void Dwellers origin get an additional farmer
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_origin = origin_void_dwellers }
+        }
+        modifier = {
+            job_farmer_add = 1
+        }
+    }
+	# Anglers Civic Job (Requires Wet Planet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        modifier = {
+            job_angler_add = @db1_jobs
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_hydroponics_farm_2_tt
+    }
+	# Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_agri_drone_effect_desc
+    }
+	# Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_farmer_effect_desc
+    }
+	# Farming Acolyte (Fallen Empire Spiritualist)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_farm_effect_desc
+    }
+	# Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_aqu_angler_effect_desc
+    }
+
+	# Building Upgrades
+	upgrades = {
+		eb_hydrofarm2
+	}
+
+	# AI Resource Production
+	ai_resource_production = {
+		food = 4
+		trigger = { always = yes }
+	}
+}
+
+##################################################
+## Hydroponic Farm III (Tier 2, Basic) [Extra Buildings]
+##################################################
+eb_hydrofarm2 = {
+	base_buildtime = @db2_time #@b2_time
+	can_build = no
+	category = resource
+
+	# Building Potential
+    potential = {
+        exists = owner
+        owner = { # If the owner is an AI that doesn't use food, don't build.
+            OR = {
+                country_uses_food = yes
+                is_ai = no
+            }
+        }
+        NOT = { is_planet_class = pc_machine } # Cannot build on a machine world
+        NOT = { has_modifier = resort_colony } # Cannot build on a resort colony
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_gene_crops"
+    }
+	# Allow Conditions
+    allow = {
+        buildings_simple_allow = yes
+		has_upgraded_capital = yes
+        str_hydroponics_allow = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = { # One of the following conditions will cause the destroy trigger
+            str_hydroponics_destroy = yes # StarTech wants the hydroponics destroyed
+            owner = { # The owner is an AI that doesn't use food
+                is_ai = yes
+                country_uses_food = no
+            }
+            planet = { # The planet is not a habitat, has no free spots, the owner is an AI and their monthly food income is over 100.
+                NOT = { is_planet_class = pc_habitat }
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 100
+                    }
+                }
+            }
+            planet = { # The planet has no free building slots, the owner is an AI and their monthly food income is over 250.
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 250
+                    }
+                }
+            }
+        }
+    }
+	
+	# Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals #@b2_minerals
+			volatile_motes = @db2_rare_cost #@b2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep #@b2_upkeep
+			volatile_motes = @db2_rare_upkeep #@b2_rare_upkeep
+		}
+	}
+
+	# Normal Empire Jobs (Non-Anglers, or Anglers on Wet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Must not have Anglers civic, or meet requirements below
+                    is_anglers_empire = no
+                    AND = { # Condition for Angler civic that is not on a wet planet (as they are replaced with anglers).
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        modifier = {
+            job_farmer_add = @db2_jobs
+        }
+    }
+	# Fallen Empire Spiritualist Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_fallen_empire_spiritualist = yes }
+        }
+        modifier = {
+            job_fe_acolyte_farm_add = @db2_jobs
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_agri_drone_add = @db2_jobs
+        }
+    }
+	# Void Dwellers origin get an additional farmer
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_origin = origin_void_dwellers }
+        }
+        modifier = {
+            job_farmer_add = 1
+        }
+    }
+	# Anglers Civic Job (Requires Wet Planet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        modifier = {
+            job_angler_add = @db2_jobs
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = eb_hydrofarm2_tt
+    }
+	# Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_agri_drone_effect_desc
+    }
+	# Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_farmer_effect_desc
+    }
+	# Farming Acolyte (Fallen Empire Spiritualist)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_farm_effect_desc
+    }
+	# Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_aqu_angler_effect_desc
+    }
+	
+	# Building Upgrades
+	upgrades = {
+		"building_hydroponics_farm_3"
+	}
+
+	# AI Resource Production
+	ai_resource_production = {
+		food = 8
+		trigger = { always = yes }
+	}
+}
+
+##################################################
+## Hydroponic Farm IV (Tier 3, Basic) [Upgrade Buildings]
+##################################################
+building_hydroponics_farm_3 = {
+	base_buildtime = @db3_time #@b3_time
+	can_build = no
+	category = resource
+
+	# Building Potential
+    potential = {
+        exists = owner
+        owner = { # If the owner is an AI that doesn't use food, don't build.
+            OR = {
+                country_uses_food = yes
+                is_ai = no
+            }
+        }
+        NOT = { is_planet_class = pc_machine } # Cannot build on a machine world
+        NOT = { has_modifier = resort_colony } # Cannot build on a resort colony
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_hydroponics_3"
+    }
+	# Allow Conditions
+    allow = {
+        buildings_simple_allow = yes
+		has_upgraded_capital = yes
+        str_hydroponics_allow = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = { # One of the following conditions will cause the destroy trigger
+            str_hydroponics_destroy = yes # StarTech wants the hydroponics destroyed
+            owner = { # The owner is an AI that doesn't use food
+                is_ai = yes
+                country_uses_food = no
+            }
+            planet = { # The planet is not a habitat, has no free spots, the owner is an AI and their monthly food income is over 100.
+                NOT = { is_planet_class = pc_habitat }
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 100
+                    }
+                }
+            }
+            planet = { # The planet has no free building slots, the owner is an AI and their monthly food income is over 250.
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 250
+                    }
+                }
+            }
+        }
+    }
+	
+	# Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db3_minerals
+			volatile_motes = @db3_rare_cost
+		}
+		upkeep = {
+			energy = @db3_upkeep
+			volatile_motes = @db3_rare_upkeep
+		}
+	}
+
+	# Normal Empire Jobs (Non-Anglers, or Anglers on Wet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Must not have Anglers civic, or meet requirements below
+                    is_anglers_empire = no
+                    AND = { # Condition for Angler civic that is not on a wet planet (as they are replaced with anglers).
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        modifier = {
+			job_doge_master_farmer_add = @db3_adv_jobs
+            job_farmer_add = @db3_jobs
+        }
+    }
+	# Fallen Empire Spiritualist Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_fallen_empire_spiritualist = yes }
+        }
+        modifier = {
+			job_doge_master_farmer_add = @db3_adv_jobs
+            job_fe_acolyte_farm_add = @db3_jobs
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+			job_doge_master_agri_drone_add = @db3_adv_jobs
+            job_agri_drone_add = @db3_jobs
+        }
+    }
+	# Void Dwellers origin get an additional farmer
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_origin = origin_void_dwellers }
+        }
+        modifier = {
+			job_doge_master_farmer_add = 1
+        }
+    }
+	# Anglers Civic Job (Requires Wet Planet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        modifier = {
+			job_doge_master_angler_add = @db3_adv_jobs
+            job_angler_add = @db3_jobs
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_hydroponics_farm_3_tt
+    }
+	# Master Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_doge_master_agri_drone_effect_desc
+    }
+	# Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_agri_drone_effect_desc
+    }
+	# Master Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_doge_master_farmer_effect_desc
+    }
+	# Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_farmer_effect_desc
+    }
+	# Farming Acolyte (Fallen Empire Spiritualist)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_farm_effect_desc
+    }
+	# Master Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_doge_master_angler_effect_desc
+    }
+	# Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_aqu_angler_effect_desc
+    }
+	
+	# Building Upgrades
+	upgrades = {
+		"eb_hydrofarm3"
+	}
+
+	# AI Resource Production
+	ai_resource_production = {
+		food = 16
+		trigger = { always = yes }
+	}
+}
+
+##################################################
+## Hydroponic Farm V (Tier 4, Basic) [Upgrade Buildings]
+##################################################
+eb_hydrofarm3 = {
+	base_buildtime = @db4_time #@b3_time
+	can_build = no
+	category = resource
+
+	# Building Potential
+    potential = {
+        exists = owner
+        owner = { # If the owner is an AI that doesn't use food, don't build.
+            OR = {
+                country_uses_food = yes
+                is_ai = no
+            }
+        }
+        NOT = { is_planet_class = pc_machine } # Cannot build on a machine world
+        NOT = { has_modifier = resort_colony } # Cannot build on a resort colony
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_nano_vitality_crops"
+    }
+	# Allow Conditions
+    allow = {
+        buildings_simple_allow = yes
+		has_major_upgraded_capital = yes
+        str_hydroponics_allow = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = { # One of the following conditions will cause the destroy trigger
+            str_hydroponics_destroy = yes # StarTech wants the hydroponics destroyed
+            owner = { # The owner is an AI that doesn't use food
+                is_ai = yes
+                country_uses_food = no
+            }
+            planet = { # The planet is not a habitat, has no free spots, the owner is an AI and their monthly food income is over 100.
+                NOT = { is_planet_class = pc_habitat }
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 100
+                    }
+                }
+            }
+            planet = { # The planet has no free building slots, the owner is an AI and their monthly food income is over 250.
+                free_building_slots = 0
+                owner = {
+                    is_ai = yes
+                    has_monthly_income = {
+                        resource = food
+                        value > 250
+                    }
+                }
+            }
+        }
+    }
+	
+	# Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db4_minerals #@b3_minerals
+			volatile_motes = @db4_rare_cost #@b3_rare_cost
+		}
+		upkeep = {
+			energy = @db4_upkeep #@b3_upkeep
+			volatile_motes = @db4_rare_upkeep #@b3_rare_upkeep
+		}
+	}
+
+	# Normal Empire Jobs (Non-Anglers, or Anglers on Wet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Must not have Anglers civic, or meet requirements below
+                    is_anglers_empire = no
+                    AND = { # Condition for Angler civic that is not on a wet planet (as they are replaced with anglers).
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        modifier = {
+			job_doge_master_farmer_add = @db4_adv_jobs
+            job_farmer_add = @db4_jobs
+        }
+    }
+	# Fallen Empire Spiritualist Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_fallen_empire_spiritualist = yes }
+        }
+        modifier = {
+			job_doge_master_farmer_add = @db4_adv_jobs
+            job_fe_acolyte_farm_add = @db4_jobs
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+			job_doge_master_agri_drone_add = @db4_adv_jobs
+            job_agri_drone_add = @db4_jobs
+        }
+    }
+	# Void Dwellers origin get an additional farmer
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_origin = origin_void_dwellers }
+        }
+        modifier = {
+			job_doge_master_farmer_add = 1
+        }
+    }
+	# Anglers Civic Job (Requires Wet Planet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        modifier = {
+			job_doge_master_angler_add = @db4_adv_jobs
+            job_angler_add = @db4_jobs
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = eb_hydrofarm3_tt
+    }
+	# Master Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_doge_master_agri_drone_effect_desc
+    }
+	# Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_agri_drone_effect_desc
+    }
+	# Master Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_doge_master_farmer_effect_desc
+    }
+	# Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_farmer_effect_desc
+    }
+	# Farming Acolyte (Fallen Empire Spiritualist)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_farm_effect_desc
+    }
+	# Master Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_doge_master_angler_effect_desc
+    }
+	# Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_aqu_angler_effect_desc
+    }
+	
+	# Building Upgrades
+	upgrades = {
+	}
+
+	# AI Resource Production
+	ai_resource_production = {
+		food = 32
+		trigger = { always = yes }
+	}
+}
+
+####################################################################################################
+# Food - Productivity Branch
+####################################################################################################
+
+##################################################
+## Food Processing Facility (Tier 1, Productivity) [Vanilla]
+##################################################
+building_food_processing_facility = {
+    base_buildtime = @db1_time #@b1_time
+	can_build = no
+    category = resource
+
+	# Building Potential
+    potential = {
+        exists = owner
+        NOR = {
+            is_planet_class = pc_machine
+            has_modifier = resort_colony
+        }
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_food_processing_1"
+    }
+	# Allow Conditions
+    allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+		doge_can_build_food_processing = yes
+        str_food_processing_allow = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            str_food_processing_destroy = yes
+            owner = {
+                is_ai = yes
+                country_uses_food = no
+            }
+            is_planet_class = pc_machine
+            has_modifier = resort_colony
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db1_minerals #@b1_minerals
+        }
+        upkeep = {
+            energy = @db1_upkeep #2
+        }
+    }
+
+	# Permanent Planet Modifier
+    planet_modifier = {
+        planet_farmers_food_produces_add = 1
+    }
+
+	# Normal Empire Jobs (Non-Anglers, or Anglers on Wet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Must not have Anglers civic, or meet requirements below
+                    is_anglers_empire = no
+                    AND = { # Condition for Angler civic that is not on a wet planet (as they are replaced with anglers).
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        modifier = {
+            job_farmer_add = 1
+        }
+    }
+	# Fallen Empire Spiritualist Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_fallen_empire_spiritualist = yes }
+        }
+        modifier = {
+            job_fe_acolyte_farm_add = 1
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_agri_drone_add = 1
+        }
+    }
+	# Anglers Civic Job (Requires Wet Planet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        modifier = {
+            job_angler_add = 1
+        }
+    }
+	# Extra districts for empires with functional architecture.
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_functional_architecture = yes }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_farming_max = 1
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_food_processing_facility_tt
+    }
+	# Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_agri_drone_effect_desc
+    }
+	# Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_farmer_effect_desc
+    }
+	# Farming Acolyte (Fallen Empire Spiritualist)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_farm_effect_desc
+    }
+	# Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_aqu_angler_effect_desc
+    }
+	
+	# Building Upgrades
+    upgrades = {
+        building_food_processing_center
+    }
+
+	# AI Resource Production
+    ai_resource_production = {
+        food = 3
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        food = 10
+        trigger = {
+            str_num_districts_farming = {
+                operator = > num
+                 = 3
+            }
+        }
+    }
+    ai_resource_production = {
+        food = 20
+        trigger = {
+            str_num_districts_farming = {
+                operator = > num
+                 = 5
+            }
+        }
+    }
+}
+
+##################################################
+## Food Processing Center (Tier 2, Productivity) [Vanilla]
+##################################################
+building_food_processing_center = {
+    base_buildtime = @db2_time #@b2_time
+    can_build = no
+    category = resource
+
+	# Building Potential
+    potential = {
+        exists = owner
+        NOR = {
+            is_planet_class = pc_machine
+            has_modifier = resort_colony
+        }
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_food_processing_2"
+    }
+	# Allow Conditions
+    allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+		#doge_can_build_food_processing = yes
+        buildings_has_motes = yes
+        has_upgraded_capital = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        OR = {
+            str_food_processing_destroy = yes
+            AND = {
+                exists = owner
+                owner = {
+                    is_ai = yes
+                    country_uses_food = no
+                }
+            }
+            is_planet_class = pc_machine
+            has_modifier = resort_colony
+            buildings_no_motes = yes
+        }
+    }
+
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db2_minerals #@b2_minerals
+            volatile_motes = @db2_rare_cost #@b2_rare_cost
+        }
+        upkeep = {
+            energy = @db2_upkeep #2
+            volatile_motes = @db2_rare_upkeep #@b2_rare_upkeep
+        }
+    }
+
+	# Permanent Planet Modifier
+    planet_modifier = {
+        planet_farmers_food_produces_add = 2
+    }
+
+	# Normal Empire Jobs (Non-Anglers, or Anglers on Wet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Must not have Anglers civic, or meet requirements below
+                    is_anglers_empire = no
+                    AND = { # Condition for Angler civic that is not on a wet planet (as they are replaced with anglers).
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        modifier = {
+            job_farmer_add = 2
+        }
+    }
+	# Fallen Empire Spiritualist Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_fallen_empire_spiritualist = yes }
+        }
+        modifier = {
+            job_fe_acolyte_farm_add = 2
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_agri_drone_add = 2
+        }
+    }
+	# Anglers Civic Job (Requires Wet Planet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        modifier = {
+            job_angler_add = 2
+        }
+    }
+	# Extra districts for empires with functional architecture.
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_functional_architecture = yes }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_farming_max = 2
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_food_processing_center_tt
+    }
+	# Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_agri_drone_effect_desc
+    }
+	# Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_farmer_effect_desc
+    }
+	# Farming Acolyte (Fallen Empire Spiritualist)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_fallen_empire_spiritualist = yes
+            }
+        }
+        text = job_fe_acolyte_farm_effect_desc
+    }
+	# Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_aqu_angler_effect_desc
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_roci_nourishment_center_mod"
+    }
+
+	# AI Resource Production
+    ai_resource_production = {
+        food = 6
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        food = 15
+        trigger = {
+            str_num_districts_farming = {
+                operator = > num
+                 = 3
+            }
+        }
+    }
+    ai_resource_production = {
+        food = 30
+        trigger = {
+            str_num_districts_farming = {
+                operator = > num
+                 = 5
+            }
+        }
+    }
+}
+
+##################################################
+## Nourishment Center (Tier 4, Productivity) [ROCI]
+##################################################
+building_roci_nourishment_center_mod = {
+    base_buildtime = @db4_time #@b4_time
+    can_build = no
+    can_demolish = yes
+
+	# Building Potential
+    potential = {
+        exists = owner
+        NOR = {
+            is_planet_class = pc_machine
+            has_modifier = resort_colony
+        }
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_roci_nourishment_center"
+    }
+	# Allow Conditions
+    allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+		#doge_can_build_food_processing = yes
+        buildings_has_motes = yes
+        has_major_upgraded_capital = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        OR = {
+            str_food_processing_destroy = yes
+            AND = {
+                exists = owner
+                owner = {
+                    is_ai = yes
+                    country_uses_food = no
+                }
+            }
+            is_planet_class = pc_machine
+            has_modifier = resort_colony
+            buildings_no_motes = yes
+        }
+    }
+
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db4_minerals #@b4_minerals
+			volatile_motes = @db4_rare_cost
+        }
+        upkeep = {
+            energy = @db4_upkeep #30
+            volatile_motes = @db4_rare_upkeep #5
+        }
+    }
+	
+	# Permanent Planet Modifier
+    planet_modifier = {
+        planet_farmers_food_produces_add = 4
+    }
+	
+	# Normal Empire Jobs (Non-Anglers, or Anglers on Wet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                OR = { # Must not have Anglers civic, or meet requirements below
+                    is_anglers_empire = no
+                    AND = { # Condition for Angler civic that is not on a wet planet (as they are replaced with anglers).
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        modifier = {
+            job_doge_master_farmer_add = 3
+        }
+    }
+	# Gestalt Jobs
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        modifier = {
+            job_doge_master_agri_drone_add = 3
+        }
+    }
+	# Anglers Civic Job (Requires Wet Planet)
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_fallen_empire_spiritualist = no
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        modifier = {
+            job_doge_master_angler_add = 3
+        }
+    }
+	# Extra districts for empires with functional architecture.
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_functional_architecture = yes }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_farming_max = 3
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_roci_nourishment_center_mod_tt
+    }
+	# Master Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_doge_master_agri_drone_effect_desc
+    }
+	# Master Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                OR = { # Either does not have Anglers civic or meets requirement below
+                    is_anglers_empire = no
+                    AND = { # Angler Civic not on a wet planet
+                        is_anglers_empire = yes
+                        NOT = { PREV = { planet = { is_wet = yes } } }
+                    }
+                }
+            }
+        }
+        text = job_doge_master_farmer_effect_desc
+    }
+	# Master Angler (Anglers Civic on Wet planet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_regular_empire = yes
+                is_anglers_empire = yes
+                PREV = { planet = { is_wet = yes } }
+            }
+        }
+        text = job_doge_master_angler_effect_desc
+    }
+	
+	# Building Upgrades
+    upgrades = {
+        "building_fe_food_processing_complex"
+    }
+
+	# AI Resource Production
+    ai_resource_production = {
+        food = 12
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        food = 30
+        trigger = {
+            str_num_districts_farming = {
+                operator = > num
+                 = 3
+            }
+        }
+    }
+    ai_resource_production = {
+        food = 60
+        trigger = {
+            str_num_districts_farming = {
+                operator = > num
+                 = 5
+            }
+        }
+    }
+}
+
+##################################################
+## Nourishment Center (Tier 6, Productivity) [ROCI]
+##################################################
+building_fe_food_processing_complex = {
+	base_buildtime = @db6_time #520
+	can_build = no
+	category = resource
+	
+	# Building Potential
+    potential = {
+        exists = owner
+        NOR = {
+            is_planet_class = pc_machine
+            has_modifier = resort_colony
+        }
+    }
+	# Tech Prerequisites
+	prerequisites = {
+		"tech_fe_food_processing"
+	}
+	# Allow Conditions
+    allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+		#doge_can_build_food_processing = yes
+        buildings_has_motes = yes
+        has_enigmatic_capital = yes
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        OR = {
+            str_food_processing_destroy = yes
+            AND = {
+                exists = owner
+                owner = {
+                    is_ai = yes
+                    country_uses_food = no
+                }
+            }
+            is_planet_class = pc_machine
+            has_modifier = resort_colony
+            buildings_no_motes = yes
+        }
+    }
+	
+	# Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db6_minerals #250
+			volatile_motes = @db6_rare_cost
+			sr_dark_matter = 75 #50
+			acot_sr_dark_energy = 75
+		}
+		produces = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			food = 20
+		}
+		upkeep = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			volatile_motes = @db6_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				has_modifier = acot_modifier_ascended_city
+			}
+			acot_sr_dark_energy = 0.5
+			sr_dark_matter = 0.5
+		}
+	}
+
+	# Permanent Country Modifier
+	country_modifier = {
+		country_resource_max_food_add = 10000
+	}
+
+	# Permanent Planet Modifier
+	planet_modifier = {
+        planet_farmers_food_produces_add = 8
+		planet_jobs_food_produces_mult = 0.05
+	}
+
+	# Normal Jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_acot_foodman_add = 3
+		}
+	}
+	# Gestalt Jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_acot_fooddrone_add = 3
+		}
+	}
+	# Extra districts for empires with functional architecture.
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_bugged_functional_architecture = yes }
+            NOR = {
+                is_planet_class = pc_habitat
+                is_planet_class = pc_machine
+                is_planet_class = pc_hive
+                is_planet_class = pc_city
+            }
+        }
+        modifier = {
+            district_farming_max = 4
+        }
+    }
+    # Building Tooltip
+    triggered_desc = {
+        text = building_fe_food_processing_complex_tt
+    }
+	# Master Agri-Drone (Gestalt)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_gestalt = yes }
+        }
+        text = job_acot_fooddrone_effect_desc
+    }
+	# Master Farmer (Normal, Non-Anglers or Anglers not on Wet)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        text = job_acot_foodman_effect_desc
+    }
+	
+	# Building Upgrades
+	upgrades = {
+		building_ae_food_processing_complex
+	}
+
+	# AI Weight
+	ai_weight = {
+		weight = 2
+		modifier = {
+			factor = 5
+			owner = { 
+				has_monthly_income = {
+					resource = food
+					value < 5
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				OR = {
+					is_mechanical_empire = no
+					AND = {
+						is_mechanical_empire = yes
+						OR = {
+							has_civic = civic_machine_servitor
+							has_civic = civic_machine_assimilator
+						}
+					}
+				}
+				has_monthly_income = {
+					resource = energy
+					value < 5
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_mechanical_empire = yes
+				NOR = {
+					has_civic = civic_machine_servitor
+					has_civic = civic_machine_assimilator
+				}
+			}
+		}
+	}
+
+	# AI Resource Production
+    ai_resource_production = {
+        food = 24
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        food = 60
+        trigger = {
+            str_num_districts_farming = {
+                operator = > num
+                 = 3
+            }
+        }
+    }
+    ai_resource_production = {
+        food = 120
+        trigger = {
+            str_num_districts_farming = {
+                operator = > num
+                 = 5
+            }
+        }
+    }
+}

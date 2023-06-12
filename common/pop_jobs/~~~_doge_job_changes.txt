@@ -1,0 +1,806 @@
+####################################################################################################
+# Entertainer Jobs
+####################################################################################################
+##################################################
+## Entertainer (Vanilla) - Update to provide more unity and some pop growth speed without Pleasure Seekers.
+##################################################
+entertainer = {
+    category = specialist
+    condition_string = SPECIALIST_JOB_TRIGGER
+    building_icon = building_holo_theatres
+    clothes_texture_index = 3
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+    possible = {
+        entertainer_job_check_trigger = yes
+    }
+    resources = {
+        category = planet_entertainers
+        produces = {
+            unity = 3 # Default: 1; Changed to 3 to make them more appealing
+        }
+        upkeep = {
+            consumer_goods = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_amenities_add = 8
+        mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+    }
+    triggered_planet_modifier = { # Added 1% pop growth speed without requiring Pleasure Seekers
+        potential = {
+            always = yes
+        }
+		pop_growth_speed = 0.01 
+    }
+    triggered_planet_modifier = { # Pleasure Seekers still provides an additional 1%.
+        potential = {
+            exists = owner
+            owner = { is_pleasure_seeker = yes }
+        }
+        modifier = {
+            pop_growth_speed = 0.01
+        }
+    }
+    weight = {
+        weight = @high_prio_specialist_job_weight
+        mult = value:job_weights_modifier|JOB|entertainer|RESOURCE|unity|FACTOR|0.25|
+        mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = {
+                has_trait = trait_mechanical
+            }
+        }
+        modifier = {
+            factor = 3
+            has_trait = trait_robot_domestic_protocols
+            OR = {
+                is_non_sapient_robot = yes
+                is_shackled_robot = yes
+            }
+        }
+        modifier = {
+            factor = 1.5
+            has_job = entertainer
+        }
+        modifier = {
+            factor = 0.1
+            is_domestic_servant = yes
+        }
+        modifier = {
+            factor = 0.1
+            NOT = {
+                has_job = entertainer
+            }
+            exists = planet
+            planet = {
+                free_amenities > 5
+            }
+        }
+        modifier = {
+            factor = 2
+            NOT = {
+                has_job = entertainer
+            }
+            exists = planet
+            planet = {
+                free_amenities < 2
+                has_available_jobs = entertainer
+            }
+        }
+    }
+}
+
+####################################################################################################
+# Enforcer Jobs
+####################################################################################################
+##################################################
+## Enforcer (Vanilla) - Merged changes from multiple different mods
+##################################################
+enforcer = {
+    category = specialist
+    condition_string = BATTLE_THRALL_JOB_TRIGGER
+    building_icon = building_precinct_house
+    clothes_texture_index = 5
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+    possible = {
+        battle_thrall_job_check_trigger = yes
+    }
+    resources = {
+        category = planet_enforcers
+        produces = {
+            trigger = {
+                exists = owner
+                owner = { has_active_tradition = tr_domination_judgment_corps }
+            }
+            unity = 1
+        }
+        upkeep = {
+            trigger = {
+                exists = planet
+                planet = { has_modifier = anticrime_campaign }
+            }
+            energy = 2
+        }
+    }
+    pop_modifier = {
+        pop_defense_armies_add = 2
+    }
+    planet_modifier = {
+        planet_crime_add = -25
+        planet_stability_add = 1
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = planet
+            planet = { has_modifier = anticrime_campaign }
+        }
+        modifier = {
+            planet_crime_add = -10
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_valid_civic = civic_bugged_exalted_state }
+        }
+        modifier = {
+            planet_stability_add = 1
+            planet_crime_add = 10
+        }
+    }
+    weight = {
+        weight = @specialist_job_weight
+        modifier = {
+            mult = value:job_weights_modifier|JOB|enforcer|RESOURCE|unity|FACTOR|0.25|
+            owner = { has_active_tradition = tr_domination_judgment_corps }
+        }
+        modifier = {
+            factor = 10
+            has_job = enforcer
+        }
+        modifier = {
+            factor = 10
+            planet = { planet_crime > 15 }
+            NOT = { has_job = enforcer }
+        }
+        modifier = {
+            factor = 0.01
+            planet = { planet_crime <= 15 }
+            NOT = { has_job = enforcer }
+        }
+        modifier = {
+            factor = 0.2
+            has_citizenship_rights = no
+            NOT = { has_trait = trait_mechanical }
+        }
+        modifier = {
+            factor = 2
+            has_trait = trait_resilient
+        }
+        modifier = {
+            factor = 2
+            has_trait = trait_very_strong
+        }
+        modifier = {
+            factor = 1.5
+            has_trait = trait_strong
+        }
+        modifier = {
+            factor = 10
+            is_enslaved = yes
+            has_slavery_type = { type = slavery_military }
+        }
+        modifier = {
+            factor = 0.5
+            has_trait = trait_weak
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+        modifier = {
+            factor = 1.1
+            has_trait = trait_cybernetic
+        }
+        modifier = {
+            factor = 2
+            has_trait = trait_presapient_earthbound
+        }
+        modifier = {
+            factor = 1.1
+            has_trait = trait_limited_regeneration
+        }
+        modifier = {
+            factor = 0.8
+            is_enslaved = yes
+            has_slavery_type = { type = slavery_indentured }
+        }
+        modifier = {
+            factor = 2
+            has_trait = trait_lithoid
+        }
+    }
+}
+
+####################################################################################################
+# Soldier Jobs
+####################################################################################################
+##################################################
+## Soldier (Vanilla) - Update to provide some crime reduction and stability like an enforcer.
+##################################################
+soldier = {
+    category = worker
+    condition_string = SOLDIER_JOB_TRIGGER
+    building_icon = building_stronghold
+    clothes_texture_index = 4
+
+    country_modifier = { # Default naval capacity increase
+        country_naval_cap_add = 4
+    }
+    triggered_country_modifier = {
+        potential = {
+            exists = planet
+            planet = {
+                exists = owner
+                owner = { has_technology = "tech_ground_defense_planning" }
+            }
+        }
+        modifier = {
+            country_naval_cap_add = 2
+        }
+    }
+
+    pop_modifier = {
+        pop_defense_armies_add = 3
+    }
+    planet_modifier = { # Add crime reduction and some stability
+        planet_crime_add = -10
+        planet_stability_add = 1
+    }
+    resources = {
+        category = planet_soldiers
+        produces = {
+            trigger = {
+                exists = owner
+                owner = { has_valid_civic = civic_bugged_martial_brotherhood }
+            }
+            unity = 1
+        }
+    }
+    triggered_planet_modifier = {
+        modifier = {
+            planet_stability_add = 1
+        }
+        mult = planet.modifier:job_soldier_stability_add
+    }
+    possible_pre_triggers = {
+        has_owner = yes
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+    possible = {
+        soldier_job_check_trigger = yes
+        owner = {
+            is_gestalt = no
+        }
+    }
+    weight = {
+        weight = @soldier_job_weight
+        modifier = {
+            factor = 10
+            exists = planet
+            planet = {
+                has_modifier = martial_law
+            }
+        }
+        modifier = {
+            factor = 2
+            has_trait = trait_resilient
+        }
+        modifier = {
+            factor = 2
+            has_trait = trait_very_strong
+        }
+        modifier = {
+            factor = 1.5
+            has_trait = trait_strong
+        }
+        modifier = {
+            factor = 0.5
+            has_trait = trait_weak
+        }
+        modifier = {
+            factor = 0.1
+            is_enslaved = no
+            has_trait = trait_decadent
+        }
+        modifier = {
+            factor = 0.1
+            is_enslaved = yes
+            NOT = {
+                has_slavery_type = {
+                    type = slavery_military
+                }
+            }
+        }
+        modifier = {
+            factor = 10
+            is_enslaved = yes
+            has_slavery_type = {
+                type = slavery_military
+            }
+        }
+        modifier = {
+            factor = 0.1
+            can_take_servant_job = yes
+        }
+        modifier = {
+            factor = 1.1
+            has_trait = trait_cybernetic
+        }
+        modifier = {
+            factor = 2
+            has_trait = trait_presapient_earthbound
+        }
+        modifier = {
+            factor = 1.1
+            has_trait = trait_limited_regeneration
+        }
+        modifier = {
+            factor = 0
+            species = {
+                can_be_soldier = no
+            }
+        }
+        modifier = {
+            factor = 2
+            has_trait = trait_lithoid
+        }
+    }
+}
+
+##################################################
+## Warrior Drone (Vanilla) - Update to provide some crime reduction and stability like a hunter-seeker drone.
+##################################################
+warrior_drone = {
+    category = simple_drone
+    condition_string = DRONE_JOB_TRIGGER
+    building_icon = building_stronghold
+    country_modifier = {
+        country_naval_cap_add = 4
+    }
+    resources = {
+        category = planet_soldiers
+    }
+    triggered_country_modifier = {
+        potential = {
+            planet = {
+                exists = owner
+                owner = { has_technology = "tech_ground_defense_planning" }
+            }
+        }
+        modifier = {
+            country_naval_cap_add = 2
+        }
+    }
+    pop_modifier = {
+        pop_defense_armies_add = 3
+    }
+    planet_modifier = { # Add crime reduction and some stability
+        planet_crime_add = -10
+        planet_stability_add = 1
+    }
+    triggered_planet_modifier = {
+        modifier = {
+            planet_stability_add = 1
+        }
+        mult = planet.modifier:job_soldier_stability_add
+    }
+    possible_pre_triggers = {
+        has_owner = yes
+        is_enslaved = no
+        is_being_purged = no
+        is_being_assimilated = no
+        is_sapient = yes
+    }
+    possible_precalc = can_fill_drone_job
+    weight = {
+        weight = 5
+        modifier = {
+            weight = 100
+            exists = owner
+            owner = {
+                is_at_war = yes
+            }
+        }
+        modifier = {
+            factor = 10
+            planet = {
+                OR = {
+                    has_modifier = compliance_protocols
+                    has_modifier = hunter_killer_drones
+                }
+            }
+        }
+        modifier = {
+            factor = 4
+            has_trait = trait_resilient
+        }
+        modifier = {
+            factor = 4
+            has_trait = trait_very_strong
+        }
+        modifier = {
+            factor = 3
+            has_trait = trait_strong
+        }
+        modifier = {
+            factor = 0.5
+            has_trait = trait_weak
+        }
+        modifier = {
+            factor = 0.9
+            exists = owner
+            years_passed < 1
+            owner = {
+                has_valid_civic = civic_machine_assimilator
+            }
+            has_trait = trait_cybernetic
+        }
+        modifier = {
+            factor = 0
+            planet = {
+                num_pops < 12
+            }
+            owner = {
+                is_ai = yes
+            }
+        }
+        modifier = {
+            factor = 2
+            has_trait = trait_lithoid
+        }
+        modifier = {
+            factor = 1.2
+            has_trait = trait_cybernetic
+        }
+    }
+}
+
+
+
+### Research Jobs ###
+
+### --- All AP Job overwrites disabled as of latest update that improved them --- ###
+## Educator (Advanced Policies) has been adjusted to be stronger but less frequent.
+# Worker Educator (6 of each research, 1 unity)
+#worker_educator = {
+#	category = worker
+#	condition_string = WORKER_JOB_TRIGGER
+#	clothes_texture_index = 3
+#	building_icon = building_disinformation_center
+#
+#	possible_pre_triggers = {
+#		has_owner = yes
+#		is_being_purged = no
+#		is_being_assimilated = no
+#		is_sapient = yes
+#	}
+#	possible_precalc = can_fill_worker_job
+#	weight = {
+#		weight = @worker_job_weight
+#		modifier = {
+#			factor = 0.2
+#			has_citizenship_rights = no
+#			NOT = { has_trait = trait_mechanical }
+#		}
+#		modifier = {
+#			factor = 2
+#			has_living_standard = { type = living_standard_academic_privilege }
+#		}
+#		modifier = {
+#			factor = 3
+#			has_trait = trait_erudite
+#		}
+#		modifier = {
+#			factor = 2
+#			has_trait = trait_brainslug
+#		}
+#		modifier = {
+#			factor = 2
+#			OR = {
+#				has_trait = trait_intelligent
+#				has_trait = trait_natural_engineers
+#				has_trait = trait_natural_physicists
+#				has_trait = trait_natural_sociologists
+#			}
+#		}
+#		modifier = {
+#			factor = 0.1
+#			can_take_servant_job = yes
+#		}
+#		modifier = {
+#			factor = 0.65
+#			has_trait = trait_presapient_proles
+#		}
+#		modifier = {
+#			factor = 1.5
+#			has_job = researcher
+#		}
+#		modifier = {
+#			factor = 1.5
+#			has_trait = trait_latent_psionic
+#		}
+#		modifier = {
+#			factor = 2
+#			has_trait = trait_psionic
+#		}
+#	}
+#	resources = {
+#		category = planet_researchers
+#		produces = {
+#			physics_research = 6
+#			engineering_research = 6
+#			society_research = 6
+#			unity = 1
+#		}
+#		upkeep = {
+#			consumer_goods = 0.25
+#		}
+#	}
+#	planet_modifier = {
+#		planet_amenities_add = 2
+#	}
+#}
+#
+## Specialist Educator (8 of each research, 2 unity)
+#specialist_educator = {
+#	category = specialist
+#	condition_string = SPECIALIST_JOB_TRIGGER
+#	clothes_texture_index = 3
+#	building_icon = building_disinformation_center
+#
+#	possible_pre_triggers = {
+#		has_owner = yes
+#		is_being_purged = no
+#		is_being_assimilated = no
+#		is_sapient = yes
+#		is_enslaved = no
+#	}
+#	possible_precalc = can_fill_specialist_job
+#	weight = {
+#		weight = @specialist_job_weight
+#		modifier = {
+#			factor = 0.2
+#			has_citizenship_rights = no
+#			NOT = { has_trait = trait_mechanical }
+#		}
+#		modifier = {
+#			factor = 2
+#			has_living_standard = { type = living_standard_academic_privilege }
+#		}
+#		modifier = {
+#			factor = 3
+#			has_trait = trait_erudite
+#		}
+#		modifier = {
+#			factor = 2
+#			has_trait = trait_brainslug
+#		}
+#		modifier = {
+#			factor = 2
+#			OR = {
+#				has_trait = trait_intelligent
+#				has_trait = trait_natural_engineers
+#				has_trait = trait_natural_physicists
+#				has_trait = trait_natural_sociologists
+#			}
+#		}
+#		modifier = {
+#			factor = 0.1
+#			can_take_servant_job = yes
+#		}
+#		modifier = {
+#			factor = 0.65
+#			has_trait = trait_presapient_proles
+#		}
+#		modifier = {
+#			factor = 1.5
+#			has_job = researcher
+#		}
+#		modifier = {
+#			factor = 1.5
+#			has_trait = trait_latent_psionic
+#		}
+#		modifier = {
+#			factor = 2
+#			has_trait = trait_psionic
+#		}
+#	}
+#	resources = {
+#		category = planet_researchers
+#		produces = {
+#			physics_research = 8
+#			engineering_research = 8
+#			society_research = 8
+#			unity = 2
+#		}
+#		upkeep = {
+#			consumer_goods = 0.5
+#		}
+#	}
+#	planet_modifier = {
+#		planet_amenities_add = 1
+#	}
+#}
+#
+## Ruler Educator (10 of each research, 4 unity)
+#ruler_educator = {
+#	category = ruler
+#	condition_string = RULER_JOB_TRIGGER
+#	clothes_texture_index = 3
+#	building_icon = building_disinformation_center
+#
+#	possible_pre_triggers = {
+#		has_owner = yes
+#		is_being_purged = no
+#		is_being_assimilated = no
+#		is_sapient = yes
+#		is_enslaved = no
+#	}
+#	possible_precalc = can_fill_ruler_job
+#	weight = {
+#		weight = @ruler_job_weight
+#		modifier = {
+#			factor = 2
+#			has_living_standard = { type = living_standard_academic_privilege }
+#		}
+#		modifier = {
+#			factor = 3
+#			has_trait = trait_erudite
+#		}
+#		modifier = {
+#			factor = 2
+#			has_trait = trait_brainslug
+#		}
+#		modifier = {
+#			factor = 2
+#			OR = {
+#				has_trait = trait_intelligent
+#				has_trait = trait_natural_engineers
+#				has_trait = trait_natural_physicists
+#				has_trait = trait_natural_sociologists
+#			}
+#		}
+#		modifier = {
+#			factor = 0.65
+#			has_trait = trait_presapient_proles
+#		}
+#		modifier = {
+#			factor = 1.5
+#			has_job = researcher
+#		}
+#		modifier = {
+#			factor = 1.5
+#			has_trait = trait_latent_psionic
+#		}
+#		modifier = {
+#			factor = 2
+#			has_trait = trait_psionic
+#		}
+#	}
+#	resources = {
+#		category = planet_researchers
+#		produces = {
+#			physics_research = 10
+#			engineering_research = 10
+#			society_research = 10
+#			unity = 4
+#		}
+#		upkeep = {
+#			consumer_goods = 1
+#		}
+#	}
+#	planet_modifier = {
+#		planet_amenities_add = 4
+#	}
+#}
+#
+#### Economic Jobs ###
+#
+### Tariff Clerk (Advanced Policies) was generally awful to have and would be de-prioritized by most empires that have them for reducing trade value.
+## Trade value reduction removed.
+## Unity increased to 5.
+#specialist_tarrifs_clerk = {
+#	category = specialist
+#	condition_string = SPECIALIST_JOB_TRIGGER
+#	building_icon = building_commercial_zone
+#	clothes_texture_index = 2
+#
+#	possible_pre_triggers = {
+#		has_owner = yes
+#		is_being_purged = no
+#		is_being_assimilated = no
+#		is_sapient = yes
+#		is_enslaved = no
+#	}
+#	possible_precalc = can_fill_specialist_job
+#	weight = {
+#		weight = @specialist_job_weight
+#		modifier = {
+#			factor = 1.5
+#			OR = {
+#				has_trait = trait_thrifty
+#				has_trait = trait_nuumismatic_administration
+#			}
+#		}
+#		modifier = {
+#			factor = 1.5
+#			OR = {
+#				has_trait = trait_robot_domestic_protocols
+#				has_trait = trait_charismatic
+#			}
+#		}
+#		modifier = {
+#			factor = 0.5
+#			has_trait = trait_repugnant
+#		}
+#		modifier = {
+#			factor = 0.2
+#			has_citizenship_rights = no
+#			NOT = { has_trait = trait_mechanical }
+#		}
+#	}
+#	resources = {
+#		category = planet_job_tarrif_clerk
+#		produces = {
+#			unity = 5
+#		}
+#		upkeep = {
+#			consumer_goods = 1.5
+#		}
+#	}
+#	planet_modifier = {
+#		planet_amenities_add = 8
+#	}
+#	# Positive Amenities
+#	triggered_planet_modifier = {
+#		potential = {
+#			OR = {
+#				has_trait = trait_robot_domestic_protocols
+#				has_trait = trait_charismatic
+#			}
+#		}
+#		modifier = {
+#			planet_amenities_add = 1
+#		}
+#	}
+#	# Negative Amenities
+#	triggered_planet_modifier = {
+#		potential = {
+#			OR = {
+#				has_trait = trait_repugnant
+#				has_trait = trait_robot_uncanny
+#			}
+#		}
+#		modifier = {
+#			planet_amenities_add = -1
+#		}
+#	}
+#}

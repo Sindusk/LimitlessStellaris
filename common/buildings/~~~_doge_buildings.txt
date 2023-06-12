@@ -1,0 +1,588 @@
+####################################################################################################
+# Doge Buildings
+####################################################################################################
+
+##################################################
+## Research Institute [Vanilla] - StarTech AI, Ethics & Civics: Bug Branch, and EUTAB
+##################################################
+building_institute = {
+    base_buildtime = @b2_time
+    base_cap_amount = 1
+    category = research
+    potential = {
+        NOT = {
+            has_modifier = resort_colony
+        }
+        NOT = {
+            has_modifier = slave_colony
+        }
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+        }
+        or = {
+            owner = {
+                lategame = no
+            }
+            owner = {
+                is_ai = no
+            }
+        }
+    }
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            has_modifier = resort_colony
+            has_modifier = slave_colony
+            owner = {
+                is_gestalt = no
+                is_regular_empire = no
+            }
+            buildings_no_exotic_gases = yes
+            str_research_destroy = yes
+        }
+    }
+    convert_to = {
+        building_supercomputer
+    }
+    allow = {
+        has_major_upgraded_capital = yes
+        hidden_trigger = {
+            exists = owner
+            or = {
+                owner = {
+                    is_ai = no
+                }
+                or = {
+                    num_buildings = {
+                        type = building_research_lab_1
+                        value > 3
+                    }
+                    num_buildings = {
+                        type = building_research_lab_2
+                        value > 1
+                    }
+                    num_buildings = {
+                        type = building_research_lab_3
+                        value > 1
+                    }
+                }
+                str_is_col_research = yes
+            }
+        }
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @b2_minerals
+            exotic_gases = @b2_rare_cost
+        }
+        upkeep = {
+            energy = @b2_upkeep
+            exotic_gases = @b2_rare_upkeep
+        }
+    }
+    planet_modifier = {
+        planet_researchers_produces_mult = 0.15
+        job_head_researcher_add = 1
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_civic = civic_bugged_research_cooperatives
+            }
+        }
+        modifier = {
+            planet_jobs_unity_produces_mult = 0.05
+        }
+    }
+    upgrades = {
+        building_eutab_genetic_data_vault
+        building_eutab_afterlife_vault
+        building_eutab_foundation_institute
+    }
+    prerequisites = {
+        "tech_global_research_initiative"
+    }
+    triggered_desc = {
+        text = job_head_researcher_effect_desc
+    }
+    show_tech_unlock_if = {
+        is_regular_empire = yes
+    }
+    ai_resource_production = {
+        trigger = {
+            always = yes
+        }
+        physics_research = 3
+        society_research = 3
+        engineering_research = 3
+    }
+    ai_resource_production = {
+        trigger = {
+            or = {
+                num_buildings = {
+                    type = building_research_lab_1
+                    value > 2
+                }
+                num_buildings = {
+                    type = building_research_lab_2
+                    value > 1
+                }
+                num_buildings = {
+                    type = building_research_lab_3
+                    value > 1
+                }
+            }
+        }
+        physics_research = 3
+        society_research = 3
+        engineering_research = 3
+    }
+    ai_resource_production = {
+        trigger = {
+            or = {
+                num_buildings = {
+                    type = building_research_lab_1
+                    value > 4
+                }
+                num_buildings = {
+                    type = building_research_lab_2
+                    value > 2
+                }
+                num_buildings = {
+                    type = building_research_lab_3
+                    value > 1
+                }
+            }
+        }
+        physics_research = 3
+        society_research = 3
+        engineering_research = 3
+    }
+}
+
+##################################################
+## Spawning Pool [Vanilla] - StarTech AI, Expanded Megastructures and Technology, and EUTAB
+##################################################
+building_spawning_pool = {
+    base_buildtime = @b1_time
+    base_cap_amount = 1
+    category = pop_assembly
+    potential = {
+        exists = owner
+        owner = {
+            is_hive_empire = yes
+            NOT = {
+                has_origin = origin_progenitor_hive
+            }
+        }
+        OR = {
+            num_buildings = {
+                type = any
+                value < 15
+            }
+            owner = {
+                is_ai = no
+            }
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_ai = yes
+                str_raw_ecocrisis_level_0 = no
+            }
+            num_buildings = {
+                type = building_spawning_pool
+                value = 0
+            }
+        }
+        modifier = {
+            job_starnet_spice_melange_farmer_add = 3
+            job_starnet_spice_melange_antifarmer_add = -3
+        }
+    }
+    destroy_trigger = {
+        exists = owner
+        owner = {
+            OR = {
+                is_hive_empire = no
+                has_origin = origin_progenitor_hive
+            }
+        }
+    }
+    convert_to = {
+        building_offspring_nest
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                NOT = {
+                    has_origin = origin_hive_queen
+                }
+            }
+        }
+        modifier = {
+            job_spawning_drone_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_origin = origin_hive_queen
+            }
+        }
+        modifier = {
+            job_hive_queen_add = 1
+            planet_pop_assembly_organic_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            is_planet_class = pc_hive
+            exists = owner
+            owner = {
+                NOT = {
+                    has_origin = origin_hive_queen
+                }
+            }
+        }
+        modifier = {
+            job_spawning_drone_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            is_planet_class = pc_hive
+            exists = owner
+            owner = {
+                has_origin = origin_hive_queen
+            }
+        }
+        modifier = {
+            job_hive_queen_add = 1
+        }
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_lithoid_empire = yes
+                }
+            }
+            minerals = @b1_minerals
+        }
+        cost = {
+            trigger = {
+                exists = owner
+                owner = {
+                    NOT = {
+                        has_valid_civic = civic_integrated_bioarchitecture
+                    }
+                    is_lithoid_empire = no
+                }
+            }
+            minerals = @b1_hive_minerals
+            food = @b1_hive_food
+        }
+        cost = {
+            trigger = {
+                exists = owner
+                owner = {
+                    has_valid_civic = civic_integrated_bioarchitecture
+                    is_lithoid_empire = no
+                }
+            }
+            food = @b1_minerals
+        }
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_lithoid_empire = no
+                }
+            }
+            energy = @b1_upkeep_hive
+            food = @b1_upkeep_food
+        }
+        upkeep = {
+            trigger = {
+                exists = owner
+                owner = {
+                    is_lithoid_empire = yes
+                }
+            }
+            energy = @b1_upkeep
+        }
+    }
+    upgrades = {
+        "building_spawning_pool_2"
+        building_eutab_spawning_garden
+    }
+    triggered_desc = {
+        trigger = {
+            NAND = {
+                exists = owner
+                OR = {
+                    owner = {
+                        has_origin = origin_necrophage
+                    }
+                    owner = {
+                        has_origin = origin_hive_queen
+                    }
+                }
+                exists = growing_species
+                growing_species = {
+                    NOT = {
+                        has_trait = trait_hive_mind
+                    }
+                }
+            }
+        }
+        text = job_spawning_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                has_origin = origin_necrophage
+            }
+            exists = growing_species
+            growing_species = {
+                NOT = {
+                    has_trait = trait_hive_mind
+                }
+            }
+        }
+        text = job_spawning_drone_necrophage_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                has_origin = origin_hive_queen
+            }
+        }
+        text = job_hive_queen_effect_desc
+    }
+    ai_resource_production = {
+        unity = 10
+        trigger = {
+            num_pops > 10
+        }
+    }
+    ai_weight = {
+        weight = 750
+    }
+}
+
+##################################################
+## Supercomputer [Vanilla] - StarTech AI, Ethics & Civics: Bug Branch, and EUTAB
+##################################################
+building_supercomputer = {
+    base_buildtime = @b2_time
+    base_cap_amount = 1
+    icon = building_institute
+    category = research
+    potential = {
+        exists = owner
+        owner = {
+            is_gestalt = yes
+        }
+        NOR = {
+            has_modifier = resort_colony
+            has_modifier = slave_colony
+        }
+    }
+    allow = {
+        has_major_upgraded_capital = yes
+        hidden_trigger = {
+            or = {
+                owner = {
+                    is_ai = no
+                }
+                or = {
+                    num_buildings = {
+                        type = building_research_lab_1
+                        value > 2
+                    }
+                    num_buildings = {
+                        type = building_research_lab_2
+                        value > 1
+                    }
+                    num_buildings = {
+                        type = building_research_lab_3
+                        value > 1
+                    }
+                }
+                str_is_col_research = yes
+            }
+        }
+    }
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            has_modifier = resort_colony
+            has_modifier = slave_colony
+            owner = {
+                is_regular_empire = yes
+            }
+            str_research_destroy = yes
+        }
+    }
+    convert_to = {
+        building_institute
+    }
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @b2_minerals
+        }
+        upkeep = {
+            energy = @b2_upkeep
+        }
+    }
+    planet_modifier = {
+        planet_researchers_produces_mult = 0.15
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_hive_empire = yes
+            }
+        }
+        modifier = {
+            job_brain_drone_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                is_machine_empire = yes
+            }
+        }
+        modifier = {
+            job_calculator_add = 1
+        }
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                has_civic = civic_bugged_machine_researcher
+            }
+        }
+        modifier = {
+            job_bugged_examinatron_add = 1
+        }
+    }
+    prerequisites = {
+        "tech_global_research_initiative"
+    }
+    upgrades = {
+        building_eutab_foundation_institute
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_hive_empire = yes
+            }
+        }
+        text = job_brain_drone_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                is_machine_empire = yes
+            }
+        }
+        text = job_calculator_effect_desc
+    }
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = {
+                has_civic = civic_bugged_machine_researcher
+            }
+        }
+        text = job_bugged_examinatron_effect_desc
+    }
+    show_tech_unlock_if = {
+        is_gestalt = yes
+    }
+    ai_resource_production = {
+        trigger = {
+            always = yes
+        }
+        physics_research = 3
+        society_research = 3
+        engineering_research = 3
+    }
+    ai_resource_production = {
+        trigger = {
+            or = {
+                num_buildings = {
+                    type = building_research_lab_1
+                    value > 2
+                }
+                num_buildings = {
+                    type = building_research_lab_2
+                    value > 1
+                }
+                num_buildings = {
+                    type = building_research_lab_3
+                    value > 1
+                }
+            }
+        }
+        physics_research = 3
+        society_research = 3
+        engineering_research = 3
+    }
+    ai_resource_production = {
+        trigger = {
+            or = {
+                num_buildings = {
+                    type = building_research_lab_1
+                    value > 4
+                }
+                num_buildings = {
+                    type = building_research_lab_2
+                    value > 2
+                }
+                num_buildings = {
+                    type = building_research_lab_3
+                    value > 1
+                }
+            }
+        }
+        physics_research = 3
+        society_research = 3
+        engineering_research = 3
+    }
+    ai_weight = {
+        weight = 0
+        modifier = {
+            weight = 100
+            OR = {
+                has_building = building_research_lab_1
+                has_building = building_research_lab_2
+                has_building = building_research_lab_3
+                has_district = district_hab_science
+                has_district = district_rw_science
+                jobs_any_research = yes
+            }
+        }
+    }
+}

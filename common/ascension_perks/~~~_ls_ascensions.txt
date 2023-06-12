@@ -3,7 +3,8 @@
 ##########################################################################
 
 ### Key:
-### SAP - Sartek Ascension Perks
+### SAP - Sartek Ascension Perk Merger
+### SAP (Fusion) - Sartek Ascenion Path Fusion
 ### EMEX - Empires Expanded
 ### MEM - More Events Mod
 ### PTEP - Plentiful Traditions - Extra Perks
@@ -827,7 +828,7 @@ ap_enigmatic_engineering = {
 
 ### ap_eternal_vigilance
 ## Eternal Vigilance (Vanilla)
-# Merge between SAP, Utopian Dream, UAP,
+# Merge between SAP, Utopian Dream, UAP, StarTech
 # Base from SAP, change possible condition from Utopian Dream, minor improvements from UAP, adjustment to AI weight from StarTech
 ap_eternal_vigilance = {
 	possible = {
@@ -928,7 +929,7 @@ ap_executive_vigor = {
 		#ESAP
 		country_leader_cap_add = 1
 		# Utopian Dream Modifiers
-		country_edict_fund_add = 200
+		#country_edict_fund_add = 200	# ESAP Government modifier
 		# Worthy Ascension Perks Modifiers
 		edicts_upkeep_mult = -0.20
 		# Since V3.3 efect is now edict_fund_add
@@ -1046,61 +1047,2043 @@ ap_executive_vigor = {
 	}
 }
 
+### ap_galactic_force_projection
+## Galactic Force Projection (Vanilla)
+# Merge between SAP, Utopian Dream, WAP, StarTech
+# Base from SAP, add modifiers from Utopian Dream, modifiers and trigger from WAP, adjust AI weight from StarTech
+ap_galactic_force_projection = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+	}
+	modifier = {
+		# Vanilla
+		#country_naval_cap_add = 80
+		# Limitless Stellaris
+		command_limit_add = 20			# Vanilla
+		country_naval_cap_add = 80		# Vanilla
+		country_naval_cap_mult = 0.1	# Utopian Dream
+		ships_upkeep_mult = -0.25		# Utopian Dream
+		admiral_exp_gain = 0.5			# Utopian Dream
+		diplo_weight_naval_mult = 0.25	# Utopian Dream
+	}
+
+	on_enabled = {
+		custom_tooltip = "ap_galactic_force_projection_naval_cap_agenda"
+		if = {
+			limit = {
+				has_global_flag = gf_utopiandream_activated
+				NOT = { has_technology = tech_strategic_coordination }
+				host_has_dlc = "Megacorp"
+			}
+			add_research_option = tech_strategic_coordination
+			add_tech_progress = { tech = tech_strategic_coordination progress = 0.75 }
+		}
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_galactic_force_projection
+		}
+	}
+
+	ai_weight = {
+		factor = 2 # StarTech AI default factor
+		modifier = {
+			factor = 2
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 2
+			has_ascension_perk = ap_become_the_crisis
+		}
+		# Utopian Dream modifiers
+		modifier = {
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_fanatic_authoritarian
+		}        
+		modifier = {
+			factor = 0.1
+			or = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_pacifist
+			}
+		}
+		modifier = {
+			factor = 0.5
+			or = {
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_fanatic_xenophile
+			}
+		}
+		# StarTech AI modifiers
+		modifier = {
+			factor = 0.1
+			resource_stockpile_compare = {
+				resource = alloys
+				value > 2500
+			}
+			not = { has_ascension_perk = ap_grasp_the_void }
+		}
+		modifier = {
+			factor = 3
+			rusher = yes
+			used_naval_capacity_percent > 0.95
+			resource_stockpile_compare = {
+				resource = alloys
+				value > 2000
+			}
+		}
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = {
+				resource = alloys
+				value < 2500
+			}
+			used_naval_capacity_percent < 0.6
+		}
+	}
+}
+
+### ap_grasp_the_void
+## Grasp The Void (Vanilla)
+# Merge between SAP, Utopian Dream, WAP, Expanded Starbases, StarTech
+# Base from SAP, add modifiers from Utopian Dream, add modifiers from WAP, tech unlocks from Expanded Starbases, AI weight from StarTech
+ap_grasp_the_void = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = "ap_grasp_the_void_tech_effect"
+		
+		# Unlock Hypergates
+		# Make Hypergates cheaper
+		if = {
+			limit = {
+				has_overlord_dlc = yes
+				not = { has_technology = tech_hyper_relays }
+			}
+			give_technology = { tech = tech_hyper_relays message = yes }
+			custom_tooltip = ap_grasp_the_void_hypergates_tooltip
+		}
+		# Expanded Starbases unlocks starbase techs with Grasp The Void
+		if = {
+			limit = {
+				NOT = { has_technology = tech_starbase_3 }
+			}
+			add_research_option = tech_starbase_3
+		}
+		else_if = {
+			limit = {
+				NOT = { has_technology = tech_starbase_4 }
+			}
+			add_research_option = tech_starbase_4
+		}
+		else_if = {
+			limit = {
+				NOT = { has_technology = tech_starbase_5 }
+			}
+			add_research_option = tech_starbase_5
+		}
+		else_if = {
+			limit = {
+				NOT = { has_technology = tech_starbase_6 }
+			}
+			add_research_option = tech_starbase_6
+		}
+	}
+
+	modifier = {
+		# Vanilla
+		country_starbase_capacity_add = 5
+		# Expanded Starbases
+		starbase_upgrade_cost_mult = -0.25
+		# Worthy Ascension Perks
+		starbase_upgrade_speed_mult = 0.33
+		starbase_building_build_speed_mult = 0.33
+		starbase_module_build_speed_mult = 0.33
+		ship_windup_mult = -0.15
+		# Utopian Dream
+		ship_speed_mult = 0.25
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_grasp_the_void
+		}
+	}
+
+	ai_weight = { # StarTech AI weighting and modifiers
+		factor = 10
+		modifier = {
+			factor = 1.2
+			has_civic = civic_inwards_perfection
+		}
+		modifier = {
+			factor = 1.5
+			is_xenophobe = yes
+		}
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = {
+				resource = alloys
+				value < 2500
+			}
+			used_naval_capacity_percent < 0.6
+		}
+		modifier = {
+			factor = 5
+			resource_stockpile_compare = {
+				resource = alloys
+				value > 4000
+			}
+		}
+		modifier = {
+			factor = 5
+			rusher = yes
+			used_naval_capacity_percent > 0.95
+			resource_stockpile_compare = {
+				resource = alloys
+				value > 3000
+			}
+		}
+		# Utopian Dream
+		modifier = {
+			factor = 5
+			or = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_fanatic_xenophile
+			}
+		}
+	}
+}
+
+### ap_hive_worlds
+## Hive Worlds (Vanilla - Utopia)
+# Merge between SAP, Ethics & Civics: Bug Branch, Electroids Species Pack, StarTech
+# Base from SAP, comment out the removal from Bug Branch, add origins from Electroids, AI weight from StarTech
+ap_hive_worlds = {
+	on_enabled = {
+		custom_tooltip = "allow_hive_worlds"
+		custom_tooltip = "describe_hive_worlds"
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		has_authority = auth_hive_mind
+		# OR = { 
+		#	has_global_flag = bug_branch_active
+		#	NOT = { # Lithoid devouring swarms consume worlds and cannot improve them (since they never get terraforming tech)
+		#		AND = {
+		#			is_lithoid_empire = yes
+		#			has_valid_civic = civic_hive_devouring_swarm
+		#		}
+		#	}
+		#}
+		NOR = {
+			has_ascension_perk = ap_hive_worlds
+			has_origin = origin_pd_tree_of_life
+			# Electroids Species Pack Origins
+			has_origin = origin_elec_sun_empire
+			has_origin = origin_elec_supernova
+			has_origin = origin_elec_endless_horizon
+			has_origin = origin_elec_extradimensionals
+			has_origin = origin_elec_nebula_of_creation
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+	}
+
+	ai_weight = { # StarTech AI weights
+		factor = 10000
+		modifier = {
+			factor = 0
+			or = {
+				has_ascension_perk = ap_world_shaper
+				has_ascension_perk = ap_machine_worlds
+			}
+		}
+	}
+}
+
+### ap_imperial_prerogative
+## Imperial Prerogative (Vanilla)
+# Merge between SAP, Utopian Dream, Worthy Ascension Perks
+# Base from SAP, add modifiers from Utopian Dream, additional modifier from Worthy Ascension Perks, Ariphaos
+ap_imperial_prerogative = {
+	modifier = {
+		# Utopian Dream
+		#empire_size_colonies_mult = -0.50	# ESAP Government modifier
+		empire_size_systems_mult = -0.25	# Worthy Ascension Perks
+		leader_upkeep_empire_size_mult = -0.25
+		country_leader_cap_add = 2
+		ruler_skill_levels = 1
+	}
+
+	potential = {
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+			has_ascension_perk = ap_imperial_prerogative
+			has_ascension_perk = ap_esap_gov_3
+		}
+		is_megacorp = no
+	}
+
+	on_enabled = {
+		run_ai_strategic_data = yes
+		# Sartek Merger - Compatibility
+		if = {
+			limit = { NOT = { has_global_flag = esap_mod_in_use } }
+			custom_tooltip = "sartek_imperial_prerogative_tooltip"
+			hidden_effect = {
+					add_modifier = { modifier = "mod_sartek_imperial_prerogative" days = -1 }
+				}
+		}
+		# Utopian Dream
+		if = {
+			limit = {
+				not = { has_technology = tech_orbital_ring_tier_1 }
+				host_has_dlc = "Overlord"
+			}
+			add_research_option = tech_orbital_ring_tier_1
+			add_tech_progress = { tech = tech_orbital_ring_tier_1 progress = 0.5 }
+		}
+		# ESAP Merger Stack
+		if = {
+			limit = { has_global_flag = esap_mod_in_use }
+			custom_tooltip = "ap_esap_gov_3_tooltip"
+			hidden_effect = {
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 0 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_3_1" days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 1 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_3_1" days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 2 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_3_2" days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 3 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_3_3" days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 4 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_3_4" days = -1 }
+				}
+				country_event = {
+					id = esap_gov.1
+				}
+			}
+		}
+	}
+
+	ai_weight = { # Ariphaos AI weight
+		factor = 10
+		modifier = {
+			factor = 0
+			num_owned_planets < 5
+		}
+		modifier = {
+			factor = 2
+			num_owned_planets > 10
+		}
+		modifier = {
+			factor = 3
+			num_owned_planets > 15
+		}
+		modifier = {
+			factor = 4
+			num_owned_planets > 20
+		}
+		modifier = {
+			factor = 5
+			num_owned_planets > 25
+		}
+		modifier = {
+			factor = 6
+			num_owned_planets > 30
+		}
+	}
+}
+
+### ap_interstellar_dominion
+## Interstellar Dominion (Vanilla)
+# Merge between SAP, Utopian Dream, StarTech
+# Base from SAP, add modifiers and tech progress from Utopian Dream, AI modifiers from StarTech
+ap_interstellar_dominion = {
+	modifier = {
+		# Vanilla
+		#country_starbase_influence_cost_mult = -0.20
+		#country_claim_influence_cost_mult = -0.20
+		# Limitless Stellaris Modifiers
+		country_starbase_influence_cost_mult = -0.25	# Worthy Ascension Perks
+		country_claim_influence_cost_mult = -0.25		# Worthy Ascension Perks
+		empire_size_penalty_mult = -0.25				# Utopian Dream
+		planet_colony_development_speed_mult = 0.5		# Utopian Dream
+		colony_start_num_pops_add = 1					# Utopian Dream
+	}
+
+	on_enabled = {
+		if = {
+			limit = {
+				has_global_flag = gf_utopiandream_activated
+				NOT = { has_technology = tech_mega_shipyard }
+				host_has_dlc = "Federations"
+			}
+			add_research_option = tech_mega_shipyard
+			add_tech_progress = { tech = tech_mega_shipyard progress = 0.75 }
+		}
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_interstellar_dominion
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = { # StarTech AI modifier
+			factor = 10
+			rusher = yes
+			num_ascension_perks < 2
+		}
+		modifier = { # StarTech AI modifier
+			factor = 0.01
+			resource_stockpile_compare = {
+				resource = influence
+				value > 300
+			}
+		}
+		modifier = { # StarTech AI modifier
+			factor = 0.001
+			num_ascension_perks > 0
+		}
+		modifier = { # StarTech AI modifier
+			factor = 1.25
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # StarTech AI modifier
+			factor = 1.25
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 25
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 0
+			is_pacifist = yes
+			#years_passed > 40 # Removed by StarTech AI
+		}
+		modifier = {
+			factor = 0
+			OR = { #useless, total war CBs
+				is_homicidal = yes
+				has_valid_civic = civic_machine_assimilator
+				has_ascension_perk = ap_become_the_crisis
+				any_owned_fleet = { is_ship_size = colossus }
+			}
+		}
+	}
+}
+
+### ap_lord_of_war
+## Lord of War (Vanilla - Overlord)
+# Merge between SAP, Civic: Organic Zealots, Utopian Dream
+# Base from SAP, potential adjustments from Organic Zealots, modifiers and potential adjustments from Utopian Dream
+ap_lord_of_war = {
+	potential = {
+		has_overlord_dlc = yes
+		NOT = { has_ascension_perk = ap_lord_of_war }
+		is_gestalt = no
+		is_homicidal = no
+		NOR = { # Utopian Dream restriction
+			has_ethic = ethic_pacifist
+			has_ethic = ethic_fanatic_pacifist
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = ap_lord_of_war_tooltip
+	}
+
+	modifier = {
+		# Vanilla
+		country_enclave_capacity_add = 1
+		diplo_weight_naval_mult = 0.25
+		# Utopian Dream
+		pop_ethic_militarist_attraction_mult = 0.25
+		general_skill_levels = 2
+		leader_generals_cost_mult = -0.5
+	}
+
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+		}
+		modifier = {
+			factor = 0
+			is_pacifist = yes
+		}
+		modifier = {
+			factor = 0.25
+			is_xenophile = yes
+		}
+	}
+}
+
+### ap_machine_worlds
+## Machine Worlds (Vanilla - Synthetic Dawn)
+# Merge between SAP, UAP, StarTech 
+# Base from SAP, minor improvements from UAP, AI weights from StarTech
+ap_machine_worlds = {
+	on_enabled = {
+		custom_tooltip = "allow_machine_worlds"
+		custom_tooltip = "describe_machine_worlds"
+
+		if = {
+			limit = { is_servitor_empire = yes }
+			custom_tooltip = "01_BERSERK_MACHINE_EMPIRE_ERROR"
+			custom_tooltip = "anomaly.3060.c"
+			custom_tooltip = "01_BERSERK_MACHINE_EMPIRE_ERROR"
+		}
+	}
+
+	potential = {
+		has_synthethic_dawn = yes
+		is_synthetic_empire = yes
+		NOT = { has_ascension_perk = ap_machine_worlds }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+	}
+
+	ai_weight = { # StarTech AI weights
+		factor = 10000
+		modifier = {
+			factor = 0
+			or = {
+				has_ascension_perk = ap_world_shaper
+				has_ascension_perk = ap_hive_worlds
+				# Pick ap_world_shaper instead.
+				is_servitor_empire = yes
+				has_valid_civic = civic_machine_assimilator
+			}
+		}
+	}
+}
+
+### ap_master_builders
+## Master Builders (Vanilla)
+# Merge between SAP, Utopian Dream
+# Base from SAP, modifiers from Utopian Dream
+ap_master_builders = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+		custom_tooltip = {
+			fail_text = "requires_mega_engineering"
+			has_technology = tech_mega_engineering
+		}
+	}
+	modifier = {
+		# Vanilla
+		megastructure_build_speed_mult = 0.5
+		country_megastructure_build_cap_add = 1
+		
+		# Utopian Dream 3.8
+		category_materials_research_speed_mult = 0.2	
+		country_alloys_produces_mult = 0.1
+	}
+
+	on_enabled = {
+		if = {
+			limit = { 
+				has_global_flag = gf_utopiandream_activated 
+				NOT = { has_technology = tech_matter_decompressor }
+				host_has_dlc = "Megacorp"
+			}
+			add_research_option = tech_matter_decompressor
+		}
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = {
+			has_ascension_perk = ap_master_builders
+		}
+	}
+
+	ai_weight = {
+		#Giga
+		factor = 1000
+		#Vanilla
+		#factor = 10
+		# squish down to take galwonders first if we can
+		modifier = {
+			factor = 0.01
+			has_technology = tech_mega_engineering
+			has_country_flag = has_built_or_repaired_megastructure
+			has_galactic_wonders = no
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 2
+			has_galactic_wonders = yes
+		}
+		# master builders is even more important when supertensiles are in play
+		# the second hub is just essential
+		modifier = {
+			factor = 50
+			has_global_flag = @giga_amb_flag
+		}
+	}
+}
+
+### ap_mastery_of_nature
+## Mastery of Nature (Vanilla)
+# Merge between SAP, Utopian Dream, WAP, StarTech
+# Base from SAP, modifiers from Utopian Dream, modifiers from WAP, AI factor adjustment from StarTech
+ap_mastery_of_nature = {
+	on_enabled = {
+		if = {
+			limit = { 
+				has_global_flag = has_mute_ap_mod 
+			}
+			custom_tooltip = "worthy_ap_mastery_of_nature"
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_technology = tech_volcano }
+					}
+					add_research_option = tech_volcano
+				}
+					if = {
+						limit = {
+							NOT = { has_technology = tech_dangerous_wildlife }
+						}
+					add_research_option = tech_dangerous_wildlife
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_deep_sinkhole }
+					}
+					add_research_option = tech_deep_sinkhole
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_dense_jungle }
+					}
+					add_research_option = tech_dense_jungle
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_massive_glacier }
+					}
+					add_research_option = tech_massive_glacier
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_mountain_range }
+					}
+					add_research_option = tech_mountain_range
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_noxious_swamp }
+					}
+					add_research_option = tech_noxious_swamp
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_quicksand_basin }
+					}
+					add_research_option = tech_quicksand_basin
+				}
+				if = {
+					limit = {
+						NOT = { has_technology = tech_toxic_kelp }
+					}
+					add_research_option = tech_toxic_kelp
+				}
+			}
+		}
+		custom_tooltip = "allow_decision_mastery_of_nature"
+		custom_tooltip = "describe_decision_mastery_of_nature"
+		if = {
+			limit = { 
+				has_global_flag = planetarydiversity
+			}
+			add_research_option = tech_pd_mastery_of_nature
+		}
+	}
+	
+	modifier = {
+		# Vanilla
+		#deposit_blockers_cost_mult = -0.33
+        
+        # Worthy Ascension Perks 3.8
+        deposit_blockers_cost_mult = -0.5
+        planet_clear_blocker_speed_mult = 0.75
+        # Utopian Dream 3.8
+		deposit_blockers_natural_unity_produces_add = 1
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_mastery_of_nature
+		}
+	}
+
+	ai_weight = {
+		factor = 2 # StarTech disables. Using 2 as a base instead of the default 10.
+		modifier = {
+			factor = 0
+			OR = {
+				is_void_dwellers_empire = yes
+				is_shattered_ring_empire = yes
+			}
+		}
+		modifier = {
+			factor = 2
+			years_passed > 40
+			num_owned_planets < 5
+		}
+		modifier = {
+			factor = 2
+			years_passed > 80
+			num_owned_planets < 10
+		}
+	}
+}
+
+### ap_mind_over_matter
+## Mind Over Matter (Vanilla - Utopia)
+# Merge between SAP (Fusion), Ariphaos
+# Base from SAP (Fusion), AI modifiers by Ariphaos
+ap_mind_over_matter = {
+	on_enabled = {
+		custom_tooltip = "mind_over_matter_tooltip"
+		add_research_option = tech_telepathy
+	}
+	possible = {
+		custom_tooltip = {
+ #			fail_text = "synthetic_empire_psionic_ascension"
+ #			NOT = { has_trait = trait_mechanical }
+ #		}
+ #		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_psionic_theory"
+			has_technology = tech_psionic_theory
+		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_engineered_evolution"
+ #			NOT = { has_ascension_perk = ap_engineered_evolution }
+ #		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_the_flesh_is_weak"
+ #			NOT = { has_ascension_perk = ap_the_flesh_is_weak }
+ #		}
+ #		custom_tooltip = {	
+ #			fail_text = "merger_sartek_not_ap_synthetic_evolution"
+ #			NOT = { has_ascension_perk = ap_synthetic_evolution }
+ #		}
+	#Vanilla restriction
+		#custom_tooltip = {
+		#	fail_text = "requires_free_tradition_tree"
+		#	num_tradition_categories < 7
+		#}
+	}
+
+	potential = {
+		has_utopia = yes
+		NOR = {
+			has_ascension_perk = ap_mind_over_matter
+			is_shroudwalker_apprentice_empire = yes
+			#Planetary Diversity
+			has_origin = origin_pd_shroud
+		}
+		is_gestalt = no
+ #		is_mechanical_empire = no
+ #		is_cyborg_empire = no
+		#Planetary Diversity does not allow this origin to be psionics
+ #		NOT = { has_origin = origin_techno_world }
+	}
+
+	ai_weight = {
+		factor = 100
+		modifier = {
+			factor = 0.1
+			is_spiritualist = no
+		}
+		modifier = { # Ariphaos modifier
+			factor = 10
+			has_ethic = ethic_fanatic_spiritualist
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.1
+			is_materialist = yes
+			NOT = { has_ascension_perk = ap_become_the_crisis }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 4 # Ariphaos change from 6 to 4
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.1
+			num_ascension_perks < 3
+		}
+		modifier = {
+			factor = 10
+			has_ascension_perk = ap_become_the_crisis
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_shroudwalker_apprentice
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_mind_over_matter
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_engineered_evolution
+			}
+		}
+	}
+}
+
+### ap_nihilistic_acquisition
+## Nihilistic Acquisition (Vanilla - Apocalypse)
+# Merge between SAP, Civic: Organic Zealots, Utopian Dream, StarTech
+# Base from SAP, minor improvements from Organic Zealots, modifiers from Utopian Dream, AI weight modifiers from StarTech
+ap_nihilistic_acquisition = {
+	potential = {
+		host_has_dlc = "Apocalypse"
+		NOT = {
+			has_ascension_perk = ap_nihilistic_acquisition
+		}
+		NOR = {
+			is_bugged_raider = yes # Ethics & Civics - Bug Branch
+			is_despoiler_empire = yes # Script Undercoat
+			is_minamar = yes # Script Undercoat
+			has_origin = origin_slavers
+			has_origin = origin_khan_successor
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = "allow_raiding"
+	}
+
+	modifier = {
+		# Limitless Stellaris
+		planet_jobs_slave_produces_mult = 0.1	# Worthy Ascension Perks
+		pop_cat_slave_happiness = 0.1			# Utopian Dream
+	}
+
+	possible = {
+		OR = {
+			is_authoritarian = yes
+			is_xenophobe = yes
+			# Ethics and Civics - Bug Branch
+			is_elitist = yes
+			# Vanilla
+			is_gestalt = yes
+		}
+	}
+
+	ai_weight = {
+		# Utopian Dream
+		factor = 1
+		# Vanilla
+		#factor = 10
+		modifier = { # StarTech AI modifier
+			factor = 0
+			NOT = { has_ai_personality_behaviour = slaver }
+		}
+		modifier = { # StarTech AI modifier
+			factor = 0
+			turtler2 = no
+		}
+		# Utopian Dream
+		modifier = {
+			factor = 0
+			has_policy_flag = slavery_not_allowed
+		}
+		modifier = {
+			factor = 1.1
+			not = { has_policy_flag = slavery_not_allowed }
+			or = {
+				is_authoritarian = yes
+				is_xenophobe = yes
+			}
+		}
+		modifier = {
+			factor = 5
+			has_ai_personality_behaviour = slaver
+		}
+		modifier = {
+			factor = 5
+			or = {
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				is_homicidal = yes
+				is_inwards_perfection_empire = yes
+			}
+		}
+	}
+}
+
+### ap_one_vision
+## One Vision (Vanilla)
+# Merge between SAP, Utopian Dream, Ariphaos
+# Base from SAP, modifiers from Utopian Dream, AI improvements from Ariphaos
+ap_one_vision = {
+	modifier = {
+		# ESAP
+		country_unity_produces_mult = 0.17
+		# Vanilla
+		#country_unity_produces_mult = 0.10
+		pop_amenities_usage_mult = -0.18
+		pop_government_ethic_attraction = 0.50
+		# Utopian Dream
+		pop_ethics_shift_speed_mult = 0.5
+		pop_factions_unity_produces_mult = 0.2
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_one_vision
+		}
+		NOT = {
+			#Vanilla
+			#has_authority = "auth_machine_intelligence"
+			#ESAP 3.8
+			#has_ethic = ethic_gestalt_consciousness
+			is_machine_empire = yes # Script Undercoat
+		}
+	}
+
+	ai_weight = {
+		factor = 2 # StarTech disables, using 2 instead of 10 base factor
+		modifier = {
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_spiritualist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_spiritualist
+		}
+		modifier = {
+			factor = 3
+			is_spiritualist = yes
+			is_authoritarian = yes
+		}
+		modifier = {
+			factor = 5
+			# Helps prevent drift in AI empires who would want to keep these civics
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_inwards_perfection
+			}
+		}
+	}
+}
+
+### ap_organo_machine_interfacing
+## Organo-Machine Interfacing (Vanilla - Utopia)
+# Merge between SAP (Fusion), Empires Expanded, Ariphaos
+# Base from SAP, additional restrictions from Empires Expanded, AI weight modifiers from Ariphaos
+ap_organo_machine_interfacing = {
+	on_enabled = {
+		custom_tooltip = "organo_machine_interfacing_tooltip"
+		add_research_option = tech_neuro_quantum_links
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_integrated_cybernetics"
+			has_technology = tech_integrated_cybernetics
+		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_engineered_evolution"
+ #			NOT = { has_ascension_perk = ap_engineered_evolution }
+ #		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_free_tradition_tree"
+ #			num_tradition_categories < 7
+ #		}
+	}
+
+	potential = {
+		has_utopia = yes
+		NOT = { has_ascension_perk = ap_organo_machine_interfacing }
+		NOR = {
+			is_hive_empire = yes
+			has_valid_civic = civic_hive_cyborgs # EMEX
+			has_valid_civic = civic_hive_manipulators_of_life # EMEX
+		}
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = {
+			factor = 0
+			num_owned_planets < 4 # Ariphaos change from 10
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.1
+			num_ascension_perks < 3
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_shroudwalker_apprentice
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+				has_ascension_perk = ap_mind_over_matter
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_engineered_evolution
+				has_ascension_perk = ap_synthetic_age
+			}
+		}
+	}
+}
+
+### ap_organo_machine_interfacing_assimilator
+## Organo-Machine Interfacing (Vanilla - Utopia)
+# Merge between SAP, Ariphaos
+# Base from SAP, AI weight modifiers from Ariphaos
+ap_organo_machine_interfacing_assimilator = {
+	on_enabled = {
+		custom_tooltip = "organo_machine_interfacing_tooltip"
+		add_research_option = tech_integrated_cybernetics
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+		custom_tooltip = {
+			fail_text = "requires_assimilated_pops"
+			check_variable = {
+				which = num_assimilated_pops
+				value >= 30
+			}
+		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_synthetic_age"
+ #			NOT = { has_ascension_perk = ap_synthetic_age }
+ #		}
+	#Vanilla restriction
+ #		custom_tooltip = {
+ #			fail_text = "requires_free_tradition_tree"
+ #			num_tradition_categories < 7
+ #		}
+	}
+
+	potential = {
+		has_utopia = yes
+		NOT = {
+			has_ascension_perk = ap_organo_machine_interfacing_assimilator
+		}
+		is_machine_assimilator = yes
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = {
+			factor = 0
+			num_owned_planets < 4 # Ariphaos change from 10 to 4
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.1
+			num_ascension_perks < 3
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_shroudwalker_apprentice
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+				has_ascension_perk = ap_mind_over_matter
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_engineered_evolution
+				has_ascension_perk = ap_synthetic_age
+			}
+		}
+	}
+}
+
+### ap_shared_destiny
+## Shared Destiny
+# Merge between SAP, Civic: Organic Zealots, Utopian Dream, WAP, Ariphaos
+# Base from SAP, improved potential check from Organic Zealots, tech progress and modifiers from Utopian Dream, modifiers from WAP, AI modifiers from Ariphaos
+ap_shared_destiny = {
+	on_enabled = {
+		custom_tooltip = "ap_shared_destiny_effect"
+		hidden_effect = {
+			country_event = { id = action.446 }
+		}
+		if = {
+			limit = { 
+				has_global_flag = gf_utopiandream_activated 
+				NOT = { has_technology = tech_interstellar_assembly }
+				host_has_dlc = "Megacorp"
+			}
+			add_research_option = tech_interstellar_assembly
+			add_tech_progress = { tech = tech_interstellar_assembly progress = 0.75 }
+		}
+	}
+
+	modifier = {
+		# Vanilla
+		#envoys_add = 2
+		# Utopian Dream
+		envoys_add = 3
+		country_border_friction_mult = -0.25
+		envoy_improve_relations_mult = 0.25
+		# Worthy Ascension Perks
+		country_subject_technology_sharing_mult = 0.2
+	}
+
+	potential = {
+		NOR = {
+			is_homicidal = yes # Undercoat: moved to scripted trigger
+			is_inwards_perfection_empire = yes
+		}
+		NOT = {
+			has_ascension_perk = ap_shared_destiny
+		}
+	}
+
+	ai_weight = {
+		factor = 5
+		modifier = { # Ariphaos modifier
+			factor = 0
+			subjects < 2
+		}
+		modifier = { # Ariphaos modifier
+			factor = 2
+			count_envoy = {
+				count < 3
+			}
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_fanatic_xenophile
+		}
+	}
+}
+
+### ap_synthetic_age
+## Synthetic Age (Vanilla - Synthetic Dawn)
+# Merge between SAP (Fusion), Ariphaos
+# Base from SAP (Fusion), AI weight modifiers from Ariphaos
+ap_synthetic_age = {
+	on_enabled = {
+		custom_tooltip = "synthetic_age_tooltip"
+		add_research_option = tech_binary_motivators
+	}
+
+	potential = {
+		has_synthethic_dawn = yes
+		is_machine_empire = yes
+		NOT = {
+			has_ascension_perk = ap_synthetic_age
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_robomodding"
+			OR = {
+				has_technology = tech_robomodding_m
+				has_technology = tech_robomodding
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_organo_machine_interfacing"
+ #			NOT = { has_ascension_perk = ap_organo_machine_interfacing_assimilator }
+ #		}
+	#Vanilla restriction
+ #		custom_tooltip = {
+ #			fail_text = "requires_free_tradition_tree"
+ #			num_tradition_categories < 7
+ #		}
+	}
+
+	ai_weight = {
+		factor = 100 # Ariphaos change from 20 to 100
+		modifier = {
+			factor = 0
+			num_owned_planets < 4 # Ariphaos change from 10 to 4
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.1
+			num_ascension_perks < 3
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_shroudwalker_apprentice
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+				has_ascension_perk = ap_mind_over_matter
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_engineered_evolution
+				has_ascension_perk = ap_synthetic_age
+			}
+		}
+	}
+}
+
+### ap_synthetic_evolution
+## Synthetic Evolution (Vanilla - Utopia)
+# Merge between SAP (Fusion), SAP, Civic: Organic Zealots, Ariphaos
+# Base from SAP (Fusion), AI weight modifiers from SAP, various improvements from Organic Zealots, AI weight modifiers from Ariphaos
+ap_synthetic_evolution = {
+	on_enabled = {
+		custom_tooltip = "synthetic_evolution_tooltip"
+		add_research_option = tech_synthetic_leaders
+		hidden_effect = {
+			country_event = { id = utopia.2545 }
+		}
+		if = {
+			limit = {
+				has_origin = origin_necrophage
+				has_trait = trait_necrophage
+			}
+			custom_tooltip = disables_necrophage_features
+		}
+		if = {
+			limit = {
+				has_origin = origin_clone_army
+				OR = {
+					has_trait = trait_clone_soldier_infertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile
+				}
+			}
+			custom_tooltip = disables_clone_army_origin_features
+		}
+		if = {
+			limit = { has_origin = origin_overtuned }
+			custom_tooltip = disables_overtuned_features
+		}
+		if = {
+			limit = { is_idyllic_bloom_empire = yes }
+			custom_tooltip = disables_idyllic_bloom
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "synthetic_empire_synthetic_ascension"
+			is_mechanical_empire = no
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_synthetic_workers"
+			has_technology = tech_synthetic_workers
+		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_engineered_evolution"
+ #			NOT = { has_ascension_perk = ap_engineered_evolution }
+ #		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_the_flesh_is_weak"
+ #			NOT = { has_ascension_perk = ap_the_flesh_is_weak }
+ #		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_mind_over_matter"
+ #			NOT = { has_ascension_perk = ap_mind_over_matter }
+ #		}
+	#Organic Zealots compatibility
+		if = {
+			limit = { has_civic_organic_zealots_active = yes }
+			is_not_restricted_by_organic_zealots_fail = yes
+		}
+	#Vanilla restriction
+ #		custom_tooltip = {
+ #			fail_text = "requires_free_tradition_tree"
+ #			num_tradition_categories < 7
+ #		}
+	}
+
+	potential = {
+		has_utopia = yes
+		NOR = {
+			has_ascension_perk = ap_synthetic_evolution
+			has_authority = "auth_machine_intelligence"
+ #			has_origin = origin_shroudwalker_apprentice
+		}
+		is_gestalt = no
+		# Planetary Diversity Origin
+ #		NOT = { has_origin = origin_techno_world }
+	}
+
+	ai_weight = {
+		factor = 10000
+		modifier = {
+			factor = 0.1
+			is_materialist = no
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.1
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # Civic: Organic Zealots modifier
+			factor = 0
+			num_owned_planets < 4 # Ariphaos change from 6 to 4
+		}
+		modifier = {
+			factor = 0
+			has_origin = origin_necrophage
+			has_origin = origin_slavers
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_shroudwalker_apprentice
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+				has_ascension_perk = ap_mind_over_matter
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_engineered_evolution
+				has_ascension_perk = ap_synthetic_age
+			}
+		}
+	}
+}
+
+### ap_technological_ascendancy
+## Technological Ascendancy (Vanilla)
+# Merge between SAP, Utopian Dream, StarTech
+# Base from SAP, tech progress and modifiers from Utopian Dream, AI weight from StarTech
+ap_technological_ascendancy = {
+	modifier = {
+		# Vanilla
+		# all_technology_research_speed = 0.1
+		# Utopian Dream
+		all_technology_research_speed = 0.15
+		station_researchers_produces_mult = 0.1
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = "ap_technological_ascendancy_rare"
+		if = {
+			limit = { 
+				has_global_flag = gf_utopiandream_activated 
+				NOT = { has_technology = tech_science_nexus }
+				host_has_dlc = "Utopia"
+			}
+			add_research_option = tech_science_nexus
+			add_tech_progress = { tech = tech_science_nexus progress = 0.75 }
+		}
+	}
+
+	ai_weight = {
+		factor = 1 #StarTech doesn't like this perk
+		modifier = {
+			factor = 2
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_materialist
+		}
+		modifier = { # StarTech AI modifier
+			factor = 0.1
+			rusher = yes
+		}
+		modifier = { # StarTech AI modifier
+			factor = 0
+			lategame = yes
+		}
+	}
+}
+
+### ap_the_flesh_is_weak
+## The Flesh is Weak (Vanilla - Utopia)
+# Merge between SAP (Fusion), Electroids, Ariphaos
+# Base from SAP, potential changes from Electroids, AI weight modifiers from Ariphaos
+ap_the_flesh_is_weak = {
+	on_enabled = {
+		custom_tooltip = "flesh_is_weak_tooltip"
+		add_research_option = tech_neuro_quantum_links
+	}
+	possible = {
+		custom_tooltip = {
+ #			fail_text = "synthetic_empire_synthetic_ascension"
+ #			NOT = { has_trait = trait_mechanical }
+ #		}
+ #		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_integrated_cybernetics"
+			has_technology = tech_integrated_cybernetics
+		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_engineered_evolution"
+ #			NOT = { has_ascension_perk = ap_engineered_evolution }
+ #		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_mind_over_matter"
+ #			NOT = { has_ascension_perk = ap_mind_over_matter }
+ #		}
+ #		custom_tooltip = {
+ #			fail_text = "requires_not_ap_synthetic_evolution"
+ #			NOT = { has_ascension_perk = ap_synthetic_evolution }
+ #		}
+	#Organic Zealots compatibility
+		if = {
+			limit = { has_civic_organic_zealots_active = yes }
+			is_not_restricted_by_organic_zealots_fail = yes
+		}
+	#Vanilla restriction
+		#custom_tooltip = {
+		#	fail_text = "requires_free_tradition_tree"
+		#	num_tradition_categories < 7
+		#}
+	}
+
+	potential = {
+		has_utopia = yes
+		NOR = {
+			has_ascension_perk = ap_the_flesh_is_weak
+ #			has_origin = origin_shroudwalker_apprentice
+		}
+		is_gestalt = no
+		# Planetary Diversity Origin
+ #		NOT = { has_origin = origin_techno_world }
+ 		# Electroids
+ 		NOR = {
+			has_origin = origin_elec_sun_empire
+			has_origin = origin_elec_supernova
+			has_origin = origin_elec_endless_horizon
+			has_origin = origin_elec_extradimensionals
+			has_origin = origin_elec_nebula_of_creation
+		}
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = {
+			factor = 0.5
+			is_materialist = no
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.2
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.1
+			has_ethic = ethic_fanatic_spiritualist
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 4 # Ariphaos change from 6 to 4
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.1
+			num_ascension_perks < 3
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_shroudwalker_apprentice
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+				has_ascension_perk = ap_mind_over_matter
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_engineered_evolution
+				has_ascension_perk = ap_synthetic_age
+			}
+		}
+	}
+}
+
+### ap_transcendent_learning
+## Transcendent Learning (Vanilla)
+# Merge between SAP, Utopian Dream, UAP, Ariphaos
+# Base from SAP, modifiers from Utopian Dream, modifiers from UAP, AI modifiers from Ariphaos
+ap_transcendent_learning = {
+	modifier = {
+		# Utopian Dream
+		country_leader_cap_add = 5	# Utopian Dream change from 2 to 5
+		species_leader_exp_gain = 0.5	# Utopian Dream change from 0.33 to 0.5
+		# Unique Ascension Perks
+		country_leader_pool_size = 1
+	}
+	on_enabled = {
+		# Sartek Merger - Compatibility
+		if = {
+			limit = { NOT = { has_global_flag = esap_mod_in_use } }
+			custom_tooltip = "sartek_transcendent_learning_tooltip"
+			hidden_effect = {
+					add_modifier = { modifier = "mod_sartek_transcendent_learning" days = -1 }
+				}
+		}
+		# Worthy Ascension Perks - TEMPORAL DEACTIVATION FROM MOD OWNER
+		# if = {
+		# 	limit = { has_global_flag = has_mute_ap_mod }
+		# 	custom_tooltip = "worthy_transcendent_learning_effect"
+		# 	hidden_effect = {
+		# 		country_event = { id = worthyperks.02 }
+		# 	}
+		# }
+		# Unique Ascension Perks
+		if = {
+			limit = { has_global_flag = has_uap_mod }
+			custom_tooltip = "ap_transcendent_learning_tooltip"
+			hidden_effect = {
+				country_event = { id = UniqueAscensionPerksEvents.31 }
+			}
+		}
+		# ESAP Merger Stack
+		if = {
+			limit = { has_global_flag = esap_mod_in_use }
+			custom_tooltip = "ap_esap_gov_2_tooltip"
+			hidden_effect = {
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 0 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_2_1" days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 1 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_2_1" days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 2 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_2_2" days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 3 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_2_3" days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = var_esap_goverment_perk_count value = 4 }
+					}
+					add_modifier = { modifier = "mod_esap_gov_2_4" days = -1 }
+				}
+				country_event = {
+					id = esap_gov.1
+				}
+			}	
+		}
+	}
+
+	potential = {
+		NOT = {
+			has_ethic = ethic_gestalt_consciousness
+			has_ascension_perk = ap_transcendent_learning
+			has_ascension_perk = ap_esap_gov_2
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = { # Ariphaos modifier
+			factor = 2
+			num_owned_planets > 30
+		}
+		modifier = { # Ariphaos modifier
+			factor = 0.5
+			num_owned_planets < 5
+		}
+	}
+}
+
+### ap_universal_transactions
+## Universal Transactions (Vanilla - Megacorp)
+# Merge between SAP, Utopian Dream, StarTech
+# Base from SAP, modifiers from Utopian Dream, AI factor from StarTech
+ap_universal_transactions = {
+	potential = {
+		host_has_dlc = "Megacorp"
+		NOT = {
+			has_ascension_perk = ap_universal_transactions
+		}
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	modifier = {
+		# Utopian Dream
+		planet_branch_offices_cost_mult = -0.25
+		trade_value_mult = 0.1
+		country_energy_produces_mult = 0.1
+		diplo_weight_economy_mult = 0.25
+		planet_max_branch_office_buildings_add = 1
+	}
+
+	on_enabled = {
+		custom_tooltip = "free_commercial_pacts"
+	}
+
+	ai_weight = {
+		factor = 5 # StarTech factor
+	}
+}
+
+### ap_voidborn
+## Voidborn (Vanilla - Utopia)
+# Merge between SAP, Utopian Dream
+# Base from SAP, habitat tech granted from Utopian Dream
+ap_voidborn = {
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = {
+			has_ascension_perk = ap_voidborn
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_habitat_1"
+			has_technology = tech_habitat_1
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = "ap_voidborn_habitat_effect"
+		if = { # Utopian Dream addition
+			limit = { 
+				NOT = { has_technology = tech_habitat_1 }
+			}
+			give_technology = { message = yes tech = tech_habitat_1 }
+		}
+		if = {
+			limit = {
+				NOT = { has_technology = tech_habitat_2 }
+			}
+			add_research_option = tech_habitat_2
+			custom_tooltip = "add_research_options_voidborn"
+		}
+		if = {
+			limit = {
+				has_technology = tech_habitat_2
+				NOT = { has_technology = tech_habitat_3 }
+			}
+			add_research_option = tech_habitat_3
+		}
+	}
+
+	modifier = {
+		pc_habitat_habitability = 0.2
+		# Planetary Diversity
+		pc_pd_barren_hab_habitability = 0.2
+		pc_pd_barren_cold_hab_habitability = 0.2
+		pc_pd_frozen_hab_habitability = 0.2
+		pc_pd_molten_hab_habitability = 0.2
+		pc_pd_hothouse_hab_habitability = 0.2
+		pc_pd_toxic_hab_habitability = 0.2
+		pc_pd_gas_giant_hab_habitability = 0.2
+		pc_pd_asteroid_hab_habitability = 0.2
+		# Utopian Dream
+        category_voidcraft_research_speed_mult = 0.25
+	}
+
+	ai_weight = {
+		base = 10
+		complex_trigger_modifier = {
+			trigger = count_owned_planet
+			parameters = {
+				limit = { is_habitat = yes }
+			}
+			mode = add
+			mult = 2
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 1000
+			is_void_dwellers_empire = yes
+		}
+	}
+}
+
+### ap_world_shaper
+## World Shaper (Vanilla)
+# Merge between SAP, Utopian Dream, StarTech, Ariphaos
+# Base from SAP, modifiers from Utopian Dream, AI modifiers from StarTech, AI modifiers from Ariphaos
+ap_world_shaper = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+	}
+
+	modifier = {
+		# Utopian Dream
+		terraforming_cost_mult = -0.5
+		terraform_speed_mult = 0.5
+		planet_non_artificial_max_districts_add = 1
+	}
+
+	on_enabled = {
+		custom_tooltip = "allow_gaia"
+		if = {
+			limit = { has_global_flag = gf_utopiandream_activated }
+			give_technology = { message = yes tech = tech_ecological_adaptation }
+		}
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_world_shaper
+		}
+		is_hive_empire = no
+		OR = {
+			is_machine_empire = no
+			NOT = { has_origin = origin_pd_tree_of_life }
+			is_servitor_empire = yes
+			is_machine_assimilator = yes
+		}
+	}
+
+	ai_weight = {
+		factor = 10000 # StarTech AI factor
+
+		modifier = { # StarTech AI/Ariphaos modifier
+			factor = 0.01
+			or = {
+				has_ascension_perk = ap_machine_worlds
+				has_ascension_perk = ap_hive_worlds
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				is_void_dwellers_empire = yes
+				is_shattered_ring_empire = yes
+				has_trait = trait_aquatic
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = { #only way to get more nice planets
+			factor = 100
+			is_life_seeded_empire = yes
+		}
+		modifier = { # StarTech AI modifier
+			factor = 5
+			or = {
+				has_ascension_perk = ap_transcendence
+				has_ascension_perk = ap_synthetic_evolution
+				has_ascension_perk = ap_evolutionary_mastery
+			}
+		}
+	}
+}
+
+### ap_xeno_compatibility
+## Xeno-Compatibility (Vanilla - Megacorp)
+# Merge between SAP, AI Game Performance Optimization Fixes, Utopian Dream, Expanded Megastructures and Technology, Dynamic Political Events, Ariphaos
+# Base from SAP, AI improvement from AI Game Performance Optimization Fixes, modifiers from Utopian Dream, modifiers from Expanded Megastructures and Technology,
+#  event on enable from Dynamic Political Events, AI modifiers from Ariphaos
+ap_xeno_compatibility = {
+	potential = {
+		has_megacorp_dlc = yes
+		NOT = {
+			has_ascension_perk = ap_xeno_compatibility
+		}
+		is_regular_empire = yes
+		xeno_compatibility_enabled = yes
+		if = {
+			limit = { 
+				has_global_flag = ai_xeno_compatibility_flag
+			}
+			is_ai = no
+		}
+	}
+
+	modifier = {
+		# Utopian Dream
+		planet_immigration_pull_mult = 0.5
+		pop_ethic_xenophobe_attraction_mult = -0.5
+		# Expanded Megastructures and Technology
+		BIOLOGICAL_species_trait_points_add = 1
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "civic_tooltip_xenophile"
+			is_xenophile = yes
+		}
+		custom_tooltip = {
+			fail_text = "requires_xeno_species"
+			any_owned_pop = {
+				NOR = {
+					is_same_species = root.owner
+					has_trait = trait_mechanical
+					has_trait = trait_machine_unit
+					has_trait = trait_hive_mind
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_gene_tailoring"
+			has_technology = tech_gene_tailoring
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = "faster_cloning" # Expanded Megastructures and Technology
+		custom_tooltip = "allow_crossbreeding"
+		# Dynamic Political Events enable block
+		if = {
+			limit = {
+				has_modifier = cc_literally_xenophile_country
+			}
+			remove_modifier = cc_literally_xenophile_country
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_policy_flag = allows_im
+					}
+				}
+				set_policy = {
+					policy = cc_interspecies_marriage
+					option = allow_im
+					cooldown = yes
+				}
+				
+				set_country_flag = cc_has_had_interspecies_marriage
+			
+				random_pop_faction = {
+					limit = {
+						is_pop_faction_type = xenoist
+						NOT = {
+							has_modifier = cc_xeno_marriage_allowed_xenoist
+						}
+					}
+					add_modifier = {
+						modifier = cc_xeno_marriage_allowed_xenoist
+						days = -1
+					}
+				}
+				
+				if = {
+					limit = { has_faction = supremacist }
+					random_pop_faction = {
+						limit = {
+							is_pop_faction_type = supremacist
+							NOT = {
+								has_modifier = cc_xeno_marriage_allowed_supremacist
+							}
+						}
+						add_modifier = {
+							modifier = cc_xeno_marriage_allowed_supremacist
+							days = -1
+						}
+					}
+				}
+				if = {
+					limit = { has_faction = isolationist }
+					random_pop_faction = {
+						limit = {
+							is_pop_faction_type = isolationist
+							NOT = {
+								has_modifier = cc_xeno_marriage_allowed_isolationist
+							}
+						}
+						add_modifier = {
+							modifier = cc_xeno_marriage_allowed_isolationist
+							days = -1
+						}
+					}
+				}
+				
+				every_owned_pop = {
+					limit = {
+						has_pop_flag = cc_literally_xenophile_manifested
+						NOT = { has_modifier = cc_practising_xenophile }
+					}
+					add_modifier = {
+						modifier = cc_practising_xenophile
+						days = -1
+					}
+				}
+				every_owned_pop = {
+					limit = { has_modifier = cc_secretly_practising_xenophile }
+					remove_modifier = cc_secretly_practising_xenophile
+				}
+				every_owned_pop = {
+					limit = { has_modifier = cc_secret_xenophile }
+					remove_modifier = cc_secret_xenophile
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = { # Ariphaos modifier
+			factor = 0
+			is_xenophile = no
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 9 # Ariphaos change from 3 to 9
+			has_ethic = ethic_fanatic_xenophile
+		}
+	}
+}
+
 ##################################################
 ## Modded Ascension Perks
 ##################################################
-
-### AAR_AP_navigator
-## Great Navigator (Advanced Ascension Rework) gave 500% sublight speed.
-# I can't remember why I originally disabled this. So I'm re-enabling it for testing purposes.
-# AAR_AP_navigator = {
-# 	potential = {
-# 		always = no
-# 	}
-# 	possible = {
-# 		always = no
-# 	}
-
-# 	on_enabled = {
-# 		custom_tooltip = "AAR_tips_AP_navigator"
-# 		hidden_effect = {
-# 			add_modifier = { modifier = AAR_MOD_cntr_navigator days = -1 }
-# 		}
-# 	}
-
-# 	modifier = {
-# 		pc_habitat_habitability = 0.05	#иор╩╫вн╙0.2
-
-# 		ship_windup_mult = -0.35
-# 		ship_winddown_mult = -0.35
-# 	#	ship_ftl_jumpdrive_range_mult = 0.15
-# 		ship_jumpdrive_cooldown_mult = -0.05
-		
-# 		ship_disengage_chance_mult = 0.25
-# 		ship_emergency_ftl_min_days_mult = -0.50
-# 		ship_emergency_ftl_mult = -0.25
-# 	}
-
-# 	ai_weight = {
-# 		factor = 35
-# 		modifier = {
-# 			factor = 1.2
-# 			OR = {
-# 				has_ethic = ethic_fanatic_pacifist
-# 				has_origin = origin_void_dwellers
-# 			}
-# 		}
-# 		modifier = {
-# 			factor = 1.2
-# 			count_owned_planet = {
-# 				count > 2
-# 				limit = {
-# 					is_planet_class = pc_habitat
-# 				}
-# 			}
-# 		}
-# 	}
-# }
 
 ## Ascension Star (Tidy Traditions)
 # Disabled. Has no english language translation.

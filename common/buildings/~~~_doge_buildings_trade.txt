@@ -1,0 +1,590 @@
+####################################################################################################
+# Doge Buildings (Trade)
+####################################################################################################
+
+### Vanilla Building Variables ###
+# Specifically here as a reference, not going to modify them in case it ruins everything.
+#@b1_time = 360
+#@b1_minerals = 400
+#@b1_upkeep = 2
+#@b1_jobs = 2
+
+#@b2_time = 480
+#@b2_minerals = 600
+#@b2_upkeep = 5
+#@b2_rare_cost = 50
+#@b2_rare_upkeep = 1
+#@b2_jobs = 4
+
+#@b3_time = 600
+#@b3_minerals = 800
+#@b3_upkeep = 8
+#@b3_rare_cost = 100
+#@b3_rare_upkeep = 2
+#@b3_jobs = 6
+
+#@b4_time = 900
+#@b4_minerals = 2000
+#@b4_upkeep = 10
+#@b4_rare_cost = 200
+#@b4_rare_upkeep = 4
+
+### Doge Building Variables ###
+# Tier 0 (First building)
+@db0_time = 360 	    # Tier 0 build time
+@db0_minerals = 400     # Tier 0 minerals
+@db0_upkeep = 2 	    # Tier 0 upkeep
+@db0_jobs = 2 		    # Tier 0 jobs
+
+# Tier 1 [Vanilla]
+@db1_time = 440		    # Tier 1 build time
+@db1_minerals = 500     # Tier 1 minerals
+@db1_upkeep = 3 	    # Tier 1 upkeep
+@db1_jobs = 3 		    # Tier 1 jobs
+
+# Tier 2 [Vanilla]
+@db2_time = 560		    # Tier 2 build time
+@db2_minerals = 650     # Tier 2 minerals
+@db2_rare_cost = 50     # Tier 2 rare cost
+@db2_upkeep = 5 	    # Tier 2 upkeep
+@db2_rare_upkeep = 1    # Tier 2 rare upkeep
+@db2_jobs = 4 		    # Tier 2 jobs
+
+# Tier 3 [Vanilla]
+@db3_time = 700 	    # Tier 3 build time
+@db3_minerals = 900     # Tier 3 minerals
+@db3_rare_cost = 100    # Tier 3 rare cost
+@db3_upkeep = 8 	    # Tier 3 upkeep
+@db3_rare_upkeep = 2    # Tier 3 rare upkeep
+@db3_jobs = 4 		    # Tier 3 jobs
+@db3_adv_jobs = 1 	    # Tier 3 adv jobs
+
+# Tier 4 [Extra Buildings]
+@db4_time = 900		    # Tier 4 build time
+@db4_minerals = 1200    # Tier 4 minerals
+@db4_rare_cost = 200    # Tier 4 rare cost
+@db4_upkeep = 14	    # Tier 4 upkeep
+@db4_rare_upkeep = 4    # Tier 4 rare upkeep
+@db4_jobs = 2 		    # Tier 4 jobs
+@db4_adv_jobs = 4 	    # Tier 4 adv jobs
+
+# Tier 5 [Extra Buildings]
+@db5_time = 1200        # Tier 5 build time
+@db5_minerals = 2000    # Tier 5 minerals
+@db5_rare_cost = 400    # Tier 5 rare cost
+@db5_upkeep = 25	    # Tier 5 upkeep
+@db5_rare_upkeep = 6    # Tier 5 rare upkeep
+@db5_jobs = 0 		    # Tier 5 jobs [phased out]
+@db5_adv_jobs = 6 	    # Tier 5 adv jobs
+
+# Tier 6 [ACOT]
+@db6_time = 1600        # Tier 6 build time
+@db6_minerals = 4000    # Tier 6 minerals
+@db6_rare_cost = 800    # Tier 6 rare cost
+@db6_dark_cost = 150    # Tier 6 dark energy cost
+@db6_upkeep = 0         # Tier 6 upkeep [phased out in favor of strategic resources]
+@db6_rare_upkeep = 10   # Tier 6 rare upkeep
+@db6_dark_upkeep = 1    # Tier 6 dark energy upkeep
+@db6_jobs = 0           # Tier 6 jobs [phased out]
+@db6_adv_jobs = 5       # Tier 6 adv jobs
+@db6_dark_jobs = 2      # Tier 6 dark matter jobs
+
+####################################################################################################
+# Trade Buildings
+####################################################################################################
+
+##################################################
+## Commercial Zone (Tier 0) [Vanilla]
+##################################################
+building_commercial_zone = {
+    base_buildtime = @db0_time #@b1_time
+    exempt_from_ai_planet_specialization = no
+    category = trade
+
+	# Building Potential
+    potential = {
+        NOT = { has_modifier = slave_colony } # Cannot build on a slave colony
+        exists = owner
+        owner = {
+            is_regular_empire = yes # Owner must be a regular empire.
+            or = {
+                is_ai = no
+                years_passed < 3 # AI cannot not build them after 3 years have passed
+                prev = { str_uses_comzones = yes } # Unless the flag for the planet to use commercial zones is true
+            }
+        }
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_interplanetary_commerce" # Starter tech
+    }
+    show_tech_unlock_if = {
+        is_regular_empire = yes
+    }
+	# Allow Conditions
+    allow = {
+        hidden_trigger = {
+            or = {
+                owner = { is_ai = no }
+                and = { # If the owner is an AI, these conditions rule whether building one is allowed.
+                    str_uses_comzones = yes
+                    free_amenities < 2
+                    or = {
+                        str_is_col_research = no
+                        str_is_col_bureau = no
+                        free_amenities < -5
+                    }
+                }
+            }
+        }
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            owner = { is_regular_empire = no } # Destroy if a non-regular empire claimed the planet
+            has_modifier = slave_colony # Destroy if it's on a slave colony
+            and = {
+                owner = { is_ai = yes }
+                years_passed > 5 # Destroy if it's over 5 years into the game
+                str_uses_comzones = no # And the planet is not flagged to use commercial zones
+            }
+        }
+    }
+
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db0_minerals #@b1_minerals
+        }
+        upkeep = {
+            energy = @db0_upkeep #@b1_upkeep
+        }
+    }
+	
+	# Permanent Planet Modifier
+    planet_modifier = {
+        job_bugged_trader_add = 1
+        job_clerk_add = @db0_jobs #2
+    }
+
+	# Mercantile - Commercial Enterprise Tradition Additional Merchant
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_mercantile_commercial_enterprise }
+        }
+        modifier = {
+            job_merchant_add = 1
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_commercial_zone_tt
+    }
+	# Merchant (Mercantile - Commercial Enterprise Tradition)
+    triggered_desc = {
+        trigger = {
+            exists = owner
+            owner = { has_active_tradition = tr_mercantile_commercial_enterprise }
+        }
+        text = job_merchant_effect_desc
+    }
+	# Clerk
+    triggered_desc = {
+        text = job_clerk_effect_desc
+    }
+	# Trader [Ethics & Civics: Bug Branch]
+    triggered_desc = {
+        text = job_bugged_trader_effect_desc
+    }
+
+	# Building Upgrades
+    upgrades = {
+        "building_commercial_megaplex"
+		"building_galactic_stock_exchange"
+    }
+	
+	# AI Resource Production
+    ai_resource_production = {
+        energy = 2
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 3
+        trigger = {
+            OR = {
+                num_unemployed >= 10
+                num_assigned_jobs = {
+                    job = servant
+                    value >= 10
+                }
+            }
+        }
+    }
+}
+
+####################################################################################################
+# Food - Basic Branch
+####################################################################################################
+
+##################################################
+## Commercial Megaplex (Tier 2, Basic) [Vanilla]
+##################################################
+building_commercial_megaplex = {
+    base_buildtime = @db2_time #@b2_time
+    can_build = no
+    category = trade
+
+	# Building Potential
+    potential = {
+        NOT = { has_modifier = slave_colony } # Cannot build on a slave colony
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+            is_ai = no
+        }
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_interstellar_economics"
+    }
+    show_tech_unlock_if = {
+        is_regular_empire = yes
+    }
+	# Allow Conditions
+    allow = {
+        hidden_trigger = {
+            owner = { is_ai = no } # AI are prevented from building these per StarTech AI
+        }
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            owner = { is_regular_empire = no } # Destroy if a non-regular empire claimed the planet
+            has_modifier = slave_colony # Destroy if it's on a slave colony
+            buildings_no_crystals = yes
+            and = {
+                owner = { is_ai = yes }
+                years_passed > 2
+            }
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db2_minerals #@b2_minerals
+            rare_crystals = @db2_rare_cost #@b2_rare_cost
+        }
+        upkeep = {
+            energy = @db2_upkeep #@b2_upkeep
+            rare_crystals = @db2_rare_upkeep #@b2_rare_upkeep
+        }
+    }
+
+	# Permanent Planet Modifier
+    planet_modifier = {
+        job_merchant_add = 1
+        job_bugged_trader_add = 2
+        job_clerk_add = @db2_jobs
+    }
+
+	# Mercantile - Commercial Enterprise Tradition Additional Merchant
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { has_active_tradition = tr_mercantile_commercial_enterprise }
+        }
+        modifier = {
+            job_merchant_add = 1
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_commercial_megaplex_tt
+    }
+	# Merchant
+    triggered_desc = {
+        text = job_merchant_effect_desc
+    }
+	# Clerk
+    triggered_desc = {
+        text = job_clerk_effect_desc
+    }
+	# Trader [Ethics & Civics: Bug Branch]
+    triggered_desc = {
+        text = job_bugged_trader_effect_desc
+    }
+	
+	# Building Upgrades
+	upgrades = {
+		"building_dm_commercial_megaplex" # Tier 6 - Basic
+	}
+
+	# AI Resource Production
+    ai_resource_production = {
+        energy = 4
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 6
+        trigger = {
+            OR = {
+                num_unemployed >= 10
+                num_assigned_jobs = {
+                    job = servant
+                    value >= 10
+                }
+            }
+        }
+    }
+}
+
+##################################################
+## Dark Shopping Mall (Tier 6, Basic) [Vanilla]
+##################################################
+building_dm_commercial_megaplex = {
+	base_buildtime = @db6_time #900
+	can_build = no
+	category = trade
+
+	# Building Potential
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_dm_commercial_megaplex
+		}
+		NOT = {
+			has_modifier = slave_colony
+		}
+	}
+	# Tech Prerequisites
+	prerequisites = {
+		"tech_dm_commercial_megaplex"
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	# Allow Conditions
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	# Destroy Trigger
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_regular_empire = no
+			}
+			has_modifier = slave_colony
+		}
+	}
+
+	# Resources
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db6_minerals #500
+            rare_crystals = @db6_rare_cost
+			sr_dark_matter = @db6_dark_cost #200
+		}
+		upkeep = {
+            rare_crystals = @db6_rare_upkeep
+			sr_dark_matter = @db6_dark_upkeep #2
+		}
+	}
+
+	# Permanent Planet Modifier
+	planet_modifier = {
+		job_merchant_add = 1
+		job_dm_clerk_add = 10
+	}
+
+	# Dark Matter Clerk
+	triggered_desc = {
+		text = job_dm_clerk_effect_desc
+	}
+	# Merchant
+	triggered_desc = {
+		text = job_merchant_effect_desc
+	}
+	
+	# Building Upgrades
+	upgrades = {
+		"building_ae_commercial_megaplex"
+	}
+
+	# AI Weight
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 1
+			owner = {
+				resource_income_compare = {
+					resource = sr_dark_matter
+					value >= 3
+				}
+				resource_income_compare = {
+					resource = energy
+					value >= 15
+				}
+			}
+		}
+		modifier = {
+			factor = 10
+			exists = owner
+			owner = {
+				is_megacorp = yes
+			}
+		}
+	}
+
+	# AI Resource Production
+    ai_resource_production = {
+        energy = 8
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 12
+        trigger = {
+            OR = {
+                num_unemployed >= 10
+                num_assigned_jobs = {
+                    job = servant
+                    value >= 10
+                }
+            }
+        }
+    }
+}
+
+####################################################################################################
+# Trade - Productivity Branch
+####################################################################################################
+
+##################################################
+## Galactic Stock Exchange (Tier 2, Productivity) [Vanilla]
+##################################################
+building_galactic_stock_exchange = {
+    base_buildtime = @db2_time #600
+    can_build = no
+    category = trade
+
+	# Building Potential
+    potential = {
+        NOR = { # Cannot build on slave or resort colonies
+            has_modifier = slave_colony
+            has_modifier = resort_colony
+        }
+        exists = owner
+        owner = { is_regular_empire = yes } # Non-regular empires cannot build
+    }
+	# Tech Prerequisites
+    prerequisites = {
+        "tech_galactic_markets"
+    }
+	# Allow Conditions
+    allow = {
+        # Check for any buildings that are within the upgrade chain and prevent construction if they exist.
+		doge_can_build_stock_exchange = yes
+        has_global_flag = galactic_market_founded # Galactic Market must have been founded
+        has_major_upgraded_capital = yes
+        hidden_trigger = {
+            owner = {
+                OR = {
+                    is_ai = no
+                    is_megacorp = yes # AI will only construct this if they're a Megacorp
+                }
+            }
+        }
+    }
+	# Destroy Trigger
+    destroy_trigger = {
+        exists = owner
+        OR = {
+            owner = { is_regular_empire = no } # Destroy if conquered by a non-regular empire.
+            has_modifier = slave_colony # Destroy if it somehow got on a slave colony.
+            has_modifier = resort_colony # Destroy if it somehow got on a resort colony.
+            buildings_no_crystals = yes
+        }
+    }
+	
+	# Resources
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = @db2_minerals #800
+            rare_crystals = @db2_rare_cost #200
+        }
+        upkeep = {
+            energy = @db2_upkeep #8
+            rare_crystals = @db2_rare_upkeep #4
+        }
+    }
+
+	# Permanent Planet Modifier
+    planet_modifier = {
+        job_merchant_add = 2
+        trade_value_mult = 0.1
+    }
+
+	# Additional Merchants and Trade Value for Merchant Guilds or State Monopoly Civic empires
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = {
+                OR = {
+                    has_civic = civic_merchant_guilds
+                    has_civic = civic_bugged_state_monopoly
+                }
+            }
+        }
+        modifier = {
+            job_merchant_add = 2
+            trade_value_mult = 0.1
+        }
+    }
+	# Building Tooltip
+    triggered_desc = {
+        text = building_galactic_stock_exchange_tt
+    }
+	# Merchant
+    triggered_desc = {
+        text = job_merchant_effect_desc
+    }
+
+	# AI Resource Production
+    ai_resource_production = {
+        energy = 3
+        trigger = {
+            always = yes
+        }
+    }
+    ai_resource_production = {
+        energy = 5
+        trigger = {
+            solar_system = {
+                has_system_trade_value >= 50
+            }
+        }
+    }
+    ai_resource_production = {
+        energy = 3
+        trigger = {
+            solar_system = {
+                has_system_trade_value >= 80
+            }
+        }
+    }
+}
