@@ -1,0 +1,14 @@
+##########################################################################
+# Limitless Stellaris - ACOT Events
+##########################################################################
+namespace = acot_mod_options
+
+# This isn't actually the mod options, it's an intro that shows installed addons and asks if you want to go to the settings.
+# Changed to do literally nothing.
+country_event = {
+	id = acot_mod_options.0
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = { }
+}

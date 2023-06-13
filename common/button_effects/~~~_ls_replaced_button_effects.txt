@@ -1,0 +1,75 @@
+##########################################################################
+# Limitless Stellaris - Button Effects
+##########################################################################
+
+### Casako Mod Menu
+# Ancient Empire button effect
+z_mm_csp_btn_ag_ancient_empire_seetings = {
+	potential = { MM_trgr_all_PANEL_expand = no }
+	allow = {
+		#_MOD°²×°
+		custom_tooltip = {
+			fail_text = z_mm_tips_csp_ag_non
+			hidden_trigger = { has_global_flag = has_ancient_empire_mod }	#_|mod°²×°|
+		}
+		#_[Æô¶¯Ìõ¼þ]
+		custom_tooltip = {
+			fail_text = z_mm_tips_csp_requirement
+			hidden_trigger = {
+				is_ai = no
+				NOR = {
+					has_global_flag = ag_seetings_opened
+					has_global_flag = installed_mod_platform
+				}
+			}
+		}
+		#_×Ó²Ëµ¥¿ªÆô
+		custom_tooltip = {
+			hidden_trigger = {
+			   MM_trgr_all_PANEL_locked = no
+			}
+            fail_text = z_mm_tips_esc_to_unlock
+		}
+	}
+	
+	effect = {
+		custom_tooltip = edict_ag_ancient_empire_seetings_edict
+		custom_tooltip = edict_ag_ancient_empire_seetings_edict_desc
+		hidden_effect = { country_event = { id = ag_settings.1919 } } # New event id
+	}
+}
+# Zer0's Infinity Stones button effect
+z_mm_sp_mods_isr_1 = {
+	potential = {
+		exists = from
+		MM_trgr_all_PANEL_locked = no
+		MM_trgr_all_PANEL_expand = no
+		has_global_flag = ig_menu_opened_first_time
+	}
+	allow = { always = yes }
+	effect = {
+		hidden_effect = { country_event = { id = ig_menu.1919 } } # New event id
+		custom_tooltip = z_mm_sp_ig_desc	#_ig_menu.0.name
+	}
+}
+z_mm_sp_mods_isr_2 = {
+	potential = {
+		exists = from
+		MM_trgr_all_PANEL_locked = no
+		MM_trgr_all_PANEL_expand = no
+		NOT = { has_global_flag = ig_menu_opened_first_time }
+	}
+	allow = { always = yes }
+	effect = {
+		hidden_effect = {
+			if = {#_繁星=dummy事件737
+				limit = { has_global_flag = linkage_support }
+				country_event = { id = ig_menu.737 }
+			}
+			else = {#_非繁星=事件0
+				country_event = { id = ig_menu.1919 } # New event id
+			}
+		}
+		custom_tooltip = z_mm_sp_ig_desc
+	}
+}

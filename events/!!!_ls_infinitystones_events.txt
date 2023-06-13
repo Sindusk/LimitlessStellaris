@@ -1,0 +1,125 @@
+##########################################################################
+# Limitless Stellaris - Zer0's Infinity Stones Events
+##########################################################################
+namespace = ig_menu
+
+country_event = {
+    id = ig_menu.0
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        is_multiplayer = no
+    }
+
+    immediate = {
+        set_global_flag = ig_menu_opened_first_time
+    }
+ }
+#Options Menu appearing at game start
+country_event = {
+    id = ig_menu.1919
+    title = ig_menu.0.name
+    desc = ig_menu.0.desc
+    picture = GFX_evt_ig_menu
+    hide_window = no
+    is_triggered_only = yes
+
+    trigger = {
+        is_multiplayer = no
+    }
+
+    immediate = {
+        set_global_flag = ig_menu_opened_first_time
+        set_country_flag = options_menu_open
+    }
+
+    #Keep Default Options
+    option = {
+        name = ig_menu.0.a
+        hidden_effect = {
+            country_event = { id = ig_menu.1 }
+        }
+    }
+
+    #Configure AI opinions
+    option = {
+        name = ig_menu.0.b
+        hidden_effect = {
+            country_event = { id = ig_menu.2 }
+        }
+    }
+
+    #Configure Infinity Gauntlet
+    option = {
+        name = ig_menu.0.c
+        hidden_effect = {
+            country_event = { id = ig_menu.3 }
+        }
+    }
+
+    #Configure Reality Stone
+    option = {
+        name = ig_menu.0.d
+        hidden_effect = {
+            country_event = { id = ig_menu.4 }
+        }
+    }
+
+    #Configure Leaders
+    option = {
+        name = ig_menu.0.e
+        hidden_effect = {
+            country_event = { id = ig_menu.5 }
+        }
+    }
+
+    #Configure Infinity Drive
+    option = {
+        name = ig_menu.0.f
+        hidden_effect = {
+            country_event = { id = ig_menu.6 }
+        }
+    }
+
+    #Configure Operations
+    option = {
+        name = ig_menu.0.operations
+        hidden_effect = {
+            country_event = { id = ig_menu.7 }
+        }
+    }
+
+    #Enabled Cheat Menu Enabled
+    option = {
+        name = ig_menu.0.cheats.enabled
+        trigger = {
+            has_global_flag = ig_cheats_enabled
+        }
+        custom_tooltip = cheat_menu_tooltip
+        hidden_effect = {
+            country_event = { id = ig_menu.0 }
+            remove_global_flag = ig_cheats_enabled
+        }
+    }
+
+    #Enabled Cheat Menu Disabled
+    option = {
+        name = ig_menu.0.cheats.disabled
+        trigger = {
+            NOT = { has_global_flag = ig_cheats_enabled }
+        }
+        custom_tooltip = cheat_menu_tooltip
+        hidden_effect = {
+            country_event = { id = ig_menu.0 }
+            set_global_flag = ig_cheats_enabled
+        }
+    }
+
+    #Done
+    option = {
+        name = ig_menu.0.g
+        ai_chance = { factor = 100 }
+        remove_country_flag = options_menu_open
+    }
+ }

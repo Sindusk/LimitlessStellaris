@@ -2,6 +2,90 @@
 # Limitless Stellaris - Settings Edicts Changes
 ##########################################################################
 
+### ACOT
+# Remove settings edict.
+acot_mod_menu_edict = {
+	length = -1
+	resources = { category = edicts cost = { } }
+	potential = { always = no } # Disable through potential.
+	icon = GFX_edict_type_policy
+
+	effect = { 
+		country_event = { id = acot_mod_options.1 } 
+	}
+}
+
+### Ancient Empire
+# Remove settings edict.
+ag_ancient_empire_seetings_edict = {
+	length = @ag_null_edict_length
+	icon = "GFX_ag_mod_settings"
+	
+	potential = { always = no } # Disable through potential.
+	
+	effect = { hidden_effect = { country_event = { id = ag_settings.1 } } }
+	ai_weight = { weight = 0 }
+}
+
+### Extra Ship Components NEXT
+# Remove settings edict.
+esc_mod_control_edict = {
+	length = 1
+
+	resources = {
+		category = edicts
+		cost = {
+			energy = 0
+		}
+	}
+
+	allow = {
+		NOT = { has_global_flag = ESC_GLOBAL_FLAG_MENU_ACTIVE }
+	}
+
+	potential = { always = no } # Disable through potential.
+
+	effect = { country_event = { id = esc_options.1000 days = 0 } }
+}
+
+### Machine & Robot Expansion
+# Remove settings edict.
+xvcv_mdlc_mod_config = {
+	length = 1
+	icon = "GFX_edict_xvcv_mdlc_mod_config"
+
+	effect = {
+		custom_tooltip = edict_xvcv_mdlc_mod_config_tooltip
+		hidden_effect = { country_event = { id = xvcv_mdlc_config.1 } }
+	}
+
+	potential = { always = no } # Disable through potential.
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+### Planetary Assault
+# Remove settings edict.
+pasmod_panel = {
+	length = 1
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+	}
+
+	effect = {
+		country_event = { id = pasmod_etc.1 }
+	}
+
+	potential = { always = no } # Disable through potential.
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
 ### Technology Rubberbanding
 # Remove settings edict.
 TR_settings = {
@@ -11,4 +95,30 @@ TR_settings = {
 	potential = { always = no } # Disable through potential
 	effect = { country_event = { id = techrubber.12 } }
 	ai_weight = { weight = 0 }
+}
+
+### Zer0's Infinity Stones
+# Remove settings edict.
+ig_options_menu_edict = {
+	length = 1
+	resources = {
+		category = campaigns
+		cost = {
+			influence = 0
+		}
+	}
+
+	modifier = {}
+
+	potential = { always = no } # Disable through potential.
+
+	effect = {
+		hidden_effect = {
+			country_event = { id = ig_menu.0 }
+		}
+    }
+
+	ai_weight = {
+		weight = 0
+	}
 }

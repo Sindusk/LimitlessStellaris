@@ -1,0 +1,164 @@
+##########################################################################
+# Limitless Stellaris - DarkSpace Events
+##########################################################################
+namespace = dsS
+
+country_event = { # Previously dsS.1, the old mod menu.
+	id = dsS.1
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+#		is_multiplayer = yes
+	}
+	immediate = { set_global_flag = dsS_spectrals_disabled }
+}
+
+country_event = { # Previously dsS.1, the old mod menu.
+	id = dsS.1919
+	title = dsS.1.name
+    desc = dsS.1.desc
+	picture = GFX_evt_ds_startevent
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+#		is_multiplayer = yes
+	}
+	immediate = { set_global_flag = dsS_spectrals_disabled }
+	# enable DS crisis perks
+	option = {
+		name = dsS.1.a
+		custom_tooltip = dsS.1.a.desc
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = dsS_crisisperks_disabled } }
+				set_global_flag = dsS_crisisperks_disabled
+				country_event = { id = dsS.2 }
+			}
+			else = {
+				remove_global_flag = dsS_crisisperks_disabled
+				country_event = { id = dsS.2 }
+			}
+		}
+	}
+	# enable DS megastructure perks
+	option = {
+		name = dsS.2.a
+		custom_tooltip = dsS.2.a.desc
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = dsS_msperks_disabled } }
+				set_global_flag = dsS_msperks_disabled
+				country_event = { id = dsS.2 }
+			}
+			else = {
+				remove_global_flag = dsS_msperks_disabled
+				country_event = { id = dsS.2 }
+			}
+		}
+	}
+	# enable DS superweapon perks
+	option = {
+		name = dsS.3.a
+		custom_tooltip = dsS.3.a.desc
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = dsS_swperks_disabled } }
+				set_global_flag = dsS_swperks_disabled
+				country_event = { id = dsS.2 }
+			}
+			else = {
+				remove_global_flag = dsS_swperks_disabled
+				country_event = { id = dsS.2 }
+			}
+		}
+	}
+	# enable DS superweapon perks
+	option = {
+		name = dsS.4.a
+		custom_tooltip = dsS.4.a.desc
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = dsS_stellarengine_disabled } }
+				set_global_flag = dsS_stellarengine_disabled
+				country_event = { id = dsS.2 }
+			}
+			else = {
+				remove_global_flag = dsS_stellarengine_disabled
+				country_event = { id = dsS.2 }
+			}
+		}
+	}
+	# enable Arcane Ascension perk
+	option = {
+		name = dsS.5.a
+		custom_tooltip = dsS.5.a.desc
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = dsS_arcane_disabled } }
+				set_global_flag = dsS_arcane_disabled
+				country_event = { id = dsS.2 }
+			}
+			else = {
+				remove_global_flag = dsS_arcane_disabled
+				country_event = { id = dsS.2 }
+			}
+		}
+	}
+	# enable Arcane Ascension buildings (in case the player(s) only want to use it for the other techs & spawning new empires)
+	option = {
+		name = dsS.6.a
+		custom_tooltip = dsS.6.a.desc
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = dsS_arcanebuildings_disabled } }
+				set_global_flag = dsS_arcanebuildings_disabled
+				country_event = { id = dsS.2 }
+			}
+			else = {
+				remove_global_flag = dsS_arcanebuildings_disabled
+				country_event = { id = dsS.2 }
+			}
+		}
+	}
+	# enable AI being able to use some mechanics (experimental)
+	option = {
+		name = dsS.7.a
+		custom_tooltip = dsS.7.a.desc
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = dsS_aisettings_disabled } }
+				set_global_flag = dsS_aisettings_disabled
+				country_event = { id = dsS.2 }
+			}
+			else = {
+				remove_global_flag = dsS_aisettings_disabled
+				country_event = { id = dsS.2 }
+			}
+		}
+	}
+	# enable Spectrals crisis - currently not added but required for testing and further changes
+	# LOC EXISTS ALREADY
+#	option = {
+#		name = dsS.8.a
+#		custom_tooltip = dsS.8.a.desc
+#		hidden_effect = {
+#			if = {
+#				limit = { NOT = { has_global_flag = dsS_spectrals_disabled } }
+#				set_global_flag = dsS_spectrals_disabled
+#				country_event = { id = dsS.2 }
+#			}
+#			else = {
+#				remove_global_flag = dsS_spectrals_disabled
+#				country_event = { id = dsS.2 }
+#			}
+#		}
+#	}
+	# Close/Save
+	option = {
+		name = dsS.1000.a
+		custom_tooltip = dsS.1000.a.desc
+	}
+}

@@ -1,0 +1,72 @@
+##########################################################################
+# Limitless Stellaris - Ancient Empire Events
+##########################################################################
+namespace = ag_settings
+
+country_event = { # New initializer.
+	id = ag_settings.1
+	hide_window = yes # Hide the window
+	is_triggered_only = yes
+
+	trigger = { is_ai = no }
+	immediate = { # Change it to immediate effect instead of after effect.
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = ag_scaled_difficulty_changed }
+				remove_global_flag = ag_scaled_difficulty_changed
+				country_event = { id = ag_settings.110 days = 1 }
+			}
+			if = {
+				limit = { has_global_flag = ag_relic_ship_building_changed }
+				remove_global_flag = ag_relic_ship_building_changed
+				country_event = { id = ag_settings.111 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { # Previously ag_settings.1, the main menu.
+	id = ag_settings.1919
+	title = "ag_mod_settings_title"
+	desc = "ag_mod_settings_desc"
+	show_sound = event_alien_signal
+	
+	is_triggered_only = yes
+
+	diplomatic = yes
+	custom_gui = "ag_mod_settings_window"
+	custom_gui_option = "ag_mod_settings_option"
+
+	picture_event_data = { room = ag_ancient_empire_mod_settings_room }
+
+	trigger = { is_ai = no NOT = { has_global_flag = ag_seetings_opened } }
+	immediate = { set_global_flag = ag_seetings_opened set_variable = { which = ag_settings_page value = 1 } }
+	after = { hidden_effect = {
+		clear_variable = ag_settings_page
+		if = {
+			limit = { has_global_flag = ag_scaled_difficulty_changed }
+			remove_global_flag = ag_scaled_difficulty_changed
+			country_event = { id = ag_settings.110 days = 1 }
+		}
+		if = {
+			limit = { has_global_flag = ag_relic_ship_building_changed }
+			remove_global_flag = ag_relic_ship_building_changed
+			country_event = { id = ag_settings.111 days = 1 }
+		}
+	} }
+	
+	option = {
+		name = "ag_settings.exit"
+		default_hide_option = yes
+		hidden_effect = {
+			remove_global_flag = ag_seetings_opened
+			remove_global_flag = ag_forced_triggers_on
+			remove_global_flag = ag_debug_mode_on
+			if = {
+				limit = { check_variable = { which = ag_debug_mode_counter value > 4 } }
+				set_variable = { which = ag_debug_mode_counter value = 4 }
+			}
+			else = { set_variable = { which = ag_debug_mode_counter value = 0 } }
+		}
+	}
+}

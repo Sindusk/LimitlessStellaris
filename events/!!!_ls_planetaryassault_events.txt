@@ -1,0 +1,30 @@
+##########################################################################
+# Limitless Stellaris - Planetary Assault Events
+##########################################################################
+namespace = pasmod_init_setup
+
+event = {
+	id = pasmod_init_setup.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = pasmod_enabled }
+	}
+
+	immediate = {
+		set_global_flag = pasmod_enabled
+		set_global_flag = pasmod_main_feature
+		set_global_flag = pasmod_ai_use_main_feature
+		every_country = {
+			limit = { is_ai = no }
+			set_country_flag = pasmod_set_devastation_25
+			#country_event = { id = pasmod_etc.1 } # Disabling this prevents the mod menu from opening. Quick and easy.
+		}
+		every_country = {
+			limit = { is_ai = yes }
+			set_country_flag = pasmod_set_devastation_0
+			set_country_flag = pasmod_mod_ships_enabled
+		}
+	}
+}
