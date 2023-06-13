@@ -1,0 +1,44 @@
+##########################################################################
+# Limitless Stellaris - Technology Rubberbanding Events
+##########################################################################
+namespace = techrubber
+
+country_event = { # Original Menu
+	id = techrubber.11
+	title = "techrubber.12.title"
+	desc = "techrubber.12.desc"
+	diplomatic = yes
+	custom_gui = "TR_main_menu_window"
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_flag = TR_host
+	}
+	
+	immediate = {
+	}
+	option = {
+		name = "techrubber.12.A"
+		set_global_flag = settings_initalized
+		hidden_effect = {
+			country_event = {
+				id = techrubber.13		#Launch event to give modifiers to all other countries
+			}		
+		}
+	}
+}
+
+country_event = { # Replcement event that only sets variables
+	id = techrubber.12
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = { # Switch close of the menu to an immediate effect.
+		set_global_flag = settings_initalized
+		hidden_effect = {
+			country_event = {
+				id = techrubber.13		#Launch event to give modifiers to all other countries
+			}		
+		}
+	}
+}

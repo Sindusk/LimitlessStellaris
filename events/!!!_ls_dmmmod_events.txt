@@ -1,0 +1,28 @@
+##########################################################################
+# Limitless Stellaris - Dynamic Mod Menu Events
+##########################################################################
+namespace = dmm_mod
+
+### Pirate Waves Menu
+country_event = {
+	id = dmm_mod.47
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		is_ai = no
+		exists = from
+		has_global_flag = dmm_installed
+		from = { has_leader_flag = dmm_mod_pirate_waves }
+		# NOT = { has_global_flag = dmm_mod_pirate_waves_opened }
+		NOT = { has_active_event = { pirate_waves.1919 } } # Changed menu event
+	}
+	immediate = {
+		# set_global_flag = dmm_mod_pirate_waves_opened
+		country_event = { id = pirate_waves.1919 } # Changed menu event
+	}
+	after = {
+		if = { limit = { has_global_flag = dmm_mod_pirate_waves_opened }
+			remove_global_flag = dmm_mod_pirate_waves_opened
+		}
+	}
+}

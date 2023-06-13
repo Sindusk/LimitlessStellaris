@@ -21,25 +21,3 @@ triggered_planet_modifier = {
 		job_executive_add = $count$
 	}
 }
-
-triggered_desc = {
-	trigger = {
-		exists = owner
-		owner = {
-			uses_regular_empire_jobs = yes
-			is_megacorp = no
-		}
-	}
-	text = job_politician_effect_desc
-}
-
-triggered_desc = {
-	trigger = {
-		exists = owner
-		owner = {
-			is_megacorp = yes
-		}
-	}
-	text = job_executive_effect_desc
-}
-

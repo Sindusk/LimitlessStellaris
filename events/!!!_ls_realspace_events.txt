@@ -1,0 +1,20 @@
+##########################################################################
+# Limitless Stellaris - Real Space Events
+##########################################################################
+namespace = realspace
+
+event = {
+	id = realspace.204
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_country = {
+			limit = { is_ai = no }
+			#country_event = { id = realspace.206 } # This event opened the settings menu
+		}
+		hidden_effect = { # This event applies the settings.
+			country_event = { id = realspace.1000 }
+		}
+	}
+}

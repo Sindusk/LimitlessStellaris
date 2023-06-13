@@ -1,0 +1,66 @@
+##########################################################################
+# Limitless Stellaris - Solar Storm Events
+##########################################################################
+namespace = ssmisc
+
+country_event = { # This is the default menu trigger
+	id = ssmisc.1000
+	hide_window = yes
+
+	# Remove all the menu stuff
+	#title = ssmisc.1000.name
+	#desc = ssmisc.1000.desc
+	#show_sound = event_mystic_reveal
+	#diplomatic = yes
+	#custom_gui = "ss_main_menu_window"
+
+	is_triggered_only = yes
+
+	trigger = { has_country_flag = ss_game_host }
+
+	immediate = {
+		set_global_flag = ss_AS_show_disable
+		set_global_flag = ss_AS_gestalt_disable
+		set_global_flag = ss_hard_disable
+		set_global_flag = ss_experimental_enable_disable
+		set_global_flag = ss_weapon_ascension_retire
+		set_global_flag = ss_solar_storm_installed
+		set_variable = { which = ss_AS_strength value = 0 }
+		event_target:global_event_country = { set_variable = { which = ss_PF_chance value = 1.0 } }
+	}
+	
+	# Removing this stops the UI from showing.
+	#option = {
+    #    name = ssmisc.1000.a
+	#	custom_gui = "ss_main_menu_confirm"
+    #}
+	
+	after = {
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = ss_normal_disable }
+				set_global_flag = ss_crisis_hardmode
+				remove_global_flag = ss_hard_disable
+			}
+			if = {
+				limit = { has_global_flag = ss_hard_disable }
+				remove_global_flag = ss_normal_disable 
+			}
+			if = {
+				limit = { NOT = { has_global_flag = ss_AS_show_disable } }
+				set_global_flag = ss_AS_roll_crisis_tech
+			}
+			else = { remove_global_flag = ss_AS_show_disable }
+			if = {
+				limit = { NOT = { has_global_flag = ss_AS_gestalt_disable } }
+				set_global_flag = ss_AS_gestalt_enable
+			}
+			else = { remove_global_flag = ss_AS_gestalt_disable }
+			event_target:global_event_country = {
+				set_variable = { which = ss_AS_strength value = prev.ss_AS_strength }
+				#set_variable = { which = ss_PF_strength value = prev.ss_PF_strength } 
+				#set_variable = { which = ss_PF_chance value = prev.ss_PF_chance }
+			}
+		}
+	}
+}

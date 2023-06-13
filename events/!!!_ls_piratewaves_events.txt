@@ -1,0 +1,758 @@
+##########################################################################
+# Limitless Stellaris - Pirate Waves Events
+##########################################################################
+namespace = pirate_waves
+
+country_event = { # Was the old menu, now transformed to initialization.
+	id = pirate_waves.0
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		# NOT = { has_active_event = { pirate_waves.0 } } not working on selfcall
+	}
+	immediate = {
+		## Auto activate Pirate Waves.
+		## Try to prefill settings
+		# For pirate_waves.112
+		if = { limit = { is_variable_set = pirate_waves_difficulty }
+			set_variable = { which = pirate_waves_difficulty_prev value = pirate_waves_difficulty }
+		}
+		else = {
+			if = { limit = { exists = event_target:pirate_waves_country }
+				save_event_target_as = current_pirate_country
+			}
+			else_if = { limit = { exists = event_target:pirate_waves_2_country }
+				save_event_target_as = current_pirate_country
+			}
+			if = { limit = { exists = event_target:current_pirate_country }
+				event_target:current_pirate_country = {
+					set_pirates_difficulty = yes
+					prev = {
+						set_variable = { which = pirate_waves_difficulty value = prev.pirate_waves_difficulty }
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					exists = event_target:global_event_country
+					event_target:global_event_country = { is_variable_set = CmtVarFleetPower_Khan }
+				}
+				# Fallback: Take default settings from Crisis Manager.
+				event_target:global_event_country = {
+					if = { limit = { check_variable = { which = CmtVarFleetPower_Khan value > 2.1 } }
+						prev = { set_variable = { which = pirate_waves_difficulty value = 5 } }
+					}
+					else_if = { limit = { check_variable = { which = CmtVarFleetPower_Khan value > 1.74 } }
+						prev = { set_variable = { which = pirate_waves_difficulty value = 4 } }
+					}
+					else_if = { limit = { check_variable = { which = CmtVarFleetPower_Khan value > 1.44 } }
+						prev = { set_variable = { which = pirate_waves_difficulty value = 3 } }
+					}
+					else_if = { limit = { check_variable = { which = CmtVarFleetPower_Khan value < 0.55 } }
+						prev = { set_variable = { which = pirate_waves_difficulty value = 0 } }
+					}
+					else_if = { limit = { check_variable = { which = CmtVarFleetPower_Khan value < 0.95 } }
+						prev = { set_variable = { which = pirate_waves_difficulty value = 1 } }
+					}
+					else = {
+						prev = { set_variable = { which = pirate_waves_difficulty value = 2 } }
+					}
+				}
+			}
+		}
+		# For pirate_waves.111
+		if = { limit = { NOT = { is_variable_set = pirate_waves_chance } }
+			if = {
+				limit = {
+					is_multiplayer = yes
+					any_playable_country = { is_pirate_waves_player = yes }
+				}
+				# Take the lowest
+				every_playable_country = {
+					limit = {
+						is_ai = no
+						is_pirate_waves_player = yes
+					}
+					if = {
+						limit = {
+							check_variable = { which = pirate_waves_chance value < prev.pirate_waves_chance }
+						}
+						prev = {
+							set_variable = { which = pirate_waves_chance value = prev.pirate_waves_chance }
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_playable_country = { is_pirate_waves_player = yes }
+				}
+				random_playable_country = {
+					limit = { is_pirate_waves_player = yes }
+					prev = {
+						set_variable = { which = pirate_waves_chance value = prev.pirate_waves_chance }
+					}
+				}
+			}
+			else = {
+				set_variable = { which = pirate_waves_chance value = 5 }
+			}
+		}
+		else_if = {
+			limit = {
+				is_variable_set = pirate_waves_chance
+				check_variable = { which = pirate_waves_chance value != 0 }
+				NOT = { has_global_flag = pirate_waves_active }
+			}
+			set_global_flag = pirate_waves_active
+		}
+	}
+	after = {
+		hidden_effect = {
+			# Compatiblity for CrisisManager-MidGame
+			if = { limit = { is_variable_set = pirate_waves_difficulty_prev }
+				clear_variable = pirate_waves_difficulty_prev
+			}
+			event_target:global_event_country = {
+				if = {
+					limit = {
+						has_global_flag = pirate_waves_active
+						NOT = { has_global_flag = pirate_waves_marauders_inactive }
+						exists = event_target:current_pirate_country
+						event_target:current_pirate_country = { is_variable_set = pirate_waves_difficulty }
+					}
+					if = { # Backup
+						limit = {
+							is_variable_set = CmtVarFleetPower_Khan
+							NOT = { is_variable_set = CmtVarFleetPower_Khan_prev }
+						}
+						set_variable = { which = CmtVarFleetPower_Khan_prev value = CmtVarFleetPower_Khan }
+					}
+					event_target:current_pirate_country = {
+						switch = { trigger = has_country_flag
+							pirate_waves_very_easy = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 0.5 } }
+							}
+							pirate_waves_easy = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 0.75 } }
+							}
+							default = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 1 } }
+							}
+							pirate_waves_hard = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 1.5 } }
+							}
+							pirate_waves_very_hard = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 2 } }
+							}
+							pirate_waves_insane = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 3 } }
+							}
+						}
+					}
+				}
+				else_if = { limit = { is_variable_set = CmtVarFleetPower_Khan_prev }
+					set_variable = { which = CmtVarFleetPower_Khan value = CmtVarFleetPower_Khan_prev }
+					clear_variable = CmtVarFleetPower_Khan_prev
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = pirate_waves.1919
+	title = pirate_waves.0.title
+	desc = pirate_waves.0.desc
+	picture = GFX_evt_pirate_armada
+	show_sound = event_ship_bridge
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+		# NOT = { has_active_event = { pirate_waves.0 } } not working on selfcall
+	}
+
+	after = {
+		hidden_effect = {
+			# Compatiblity for CrisisManager-MidGame
+			if = { limit = { is_variable_set = pirate_waves_difficulty_prev }
+				clear_variable = pirate_waves_difficulty_prev
+			}
+			event_target:global_event_country = {
+				if = {
+					limit = {
+						has_global_flag = pirate_waves_active
+						NOT = { has_global_flag = pirate_waves_marauders_inactive }
+						exists = event_target:current_pirate_country
+						event_target:current_pirate_country = { is_variable_set = pirate_waves_difficulty }
+					}
+					if = { # Backup
+						limit = {
+							is_variable_set = CmtVarFleetPower_Khan
+							NOT = { is_variable_set = CmtVarFleetPower_Khan_prev }
+						}
+						set_variable = { which = CmtVarFleetPower_Khan_prev value = CmtVarFleetPower_Khan }
+					}
+					event_target:current_pirate_country = {
+						switch = { trigger = has_country_flag
+							pirate_waves_very_easy = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 0.5 } }
+							}
+							pirate_waves_easy = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 0.75 } }
+							}
+							default = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 1 } }
+							}
+							pirate_waves_hard = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 1.5 } }
+							}
+							pirate_waves_very_hard = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 2 } }
+							}
+							pirate_waves_insane = {
+								prev = { set_variable = { which = CmtVarFleetPower_Khan value = 3 } }
+							}
+						}
+					}
+				}
+				else_if = { limit = { is_variable_set = CmtVarFleetPower_Khan_prev }
+					set_variable = { which = CmtVarFleetPower_Khan value = CmtVarFleetPower_Khan_prev }
+					clear_variable = CmtVarFleetPower_Khan_prev
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "edict_pirate_waves_enabled"
+		custom_tooltip = "edict_pirate_waves_desc"
+		trigger = { is_pirate_waves_active = yes }
+		allow = {
+			NOT = { has_active_event = { pirate_waves.111 pirate_waves.112 } }
+		}
+		country_event = { id = pirate_waves.111 }
+	}
+	option = {
+		name = "edict_pirate_waves_disabled"
+		custom_tooltip = "edict_pirate_waves_desc"
+		trigger = { is_pirate_waves_active = no }
+		allow = {
+			NOT = { has_active_event = { pirate_waves.111 pirate_waves.112 } }
+		}
+		country_event = { id = pirate_waves.111 }
+	}
+	option = {
+		name = "policy_pirate_waves_difficulty"
+		custom_tooltip = "policy_pirate_waves_difficulty_desc"
+		allow = {
+			# check_variable = { which = pirate_waves_chance value != 0 }
+			NOT = { has_active_event = { pirate_waves.111 pirate_waves.112 } }
+		}
+		country_event = { id = pirate_waves.112 }
+	}
+	option = {
+		name = "pirate_waves.51.a"
+		custom_tooltip = "pirate_waves.51.a.desc"
+		trigger = { has_global_flag = pirate_waves_notifications_disabled }
+		hidden_effect = {
+			remove_global_flag = pirate_waves_notifications_disabled
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	option = {
+		name = "pirate_waves.51.b"
+		custom_tooltip = "pirate_waves.51.b.desc"
+		trigger = { NOT = { has_global_flag = pirate_waves_notifications_disabled } }
+		hidden_effect = {
+			set_global_flag = pirate_waves_notifications_disabled
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	## MARAUDER_MODE
+	option = {
+		name = "MARAUDER_MODE_enabled"
+		custom_tooltip = "MARAUDER_MODE_disable_desc"
+		trigger = {
+			NOT = { has_global_flag = pirate_waves_marauders_inactive }
+			host_has_dlc = Apocalypse
+		}
+		allow = {
+			has_global_flag = pirate_waves_active
+			NOT = { has_global_flag = CmtFlagMidGameEdition }
+		}
+		hidden_effect = {
+			set_global_flag = pirate_waves_marauders_inactive
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	option = {
+		name = "MARAUDER_MODE_disabled"
+		custom_tooltip = "MARAUDER_MODE_enable_desc"
+		trigger = {
+			has_global_flag = pirate_waves_marauders_inactive
+			host_has_dlc = Apocalypse
+		}
+		allow = {
+			has_global_flag = pirate_waves_active
+			NOT = { has_global_flag = CmtFlagMidGameEdition }
+		}
+		hidden_effect = {
+			remove_global_flag = pirate_waves_marauders_inactive
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	## MERCENARY_MODE
+	option = {
+		name = "MERCENARY_MODE_enabled"
+		custom_tooltip = "MERCENARY_MODE_disable_desc"
+		trigger = {
+			NOT = { has_global_flag = pirate_waves_mercenary_inactive }
+			host_has_dlc = Apocalypse
+		}
+		allow = { has_global_flag = pirate_waves_active }
+		hidden_effect = {
+			set_global_flag = pirate_waves_mercenary_inactive
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	option = {
+		name = "MERCENARY_MODE_disabled"
+		custom_tooltip = "MERCENARY_MODE_enable_desc"
+		trigger = {
+			has_global_flag = pirate_waves_mercenary_inactive
+			host_has_dlc = Apocalypse
+		}
+		allow = { has_global_flag = pirate_waves_active }
+		hidden_effect = {
+			remove_global_flag = pirate_waves_mercenary_inactive
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	## PRIVATEER_MODE
+	option = {
+		name = "PRIVATEER_MODE_enabled"
+		custom_tooltip = "PRIVATEER_MODE_disable_desc"
+		trigger = {
+			NOT = { has_global_flag = pirate_waves_PRIVATEER_inactive }
+			host_has_dlc = Nemesis
+		}
+		allow = { has_global_flag = pirate_waves_active }
+		hidden_effect = {
+			set_global_flag = pirate_waves_PRIVATEER_inactive
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	option = {
+		name = "PRIVATEER_MODE_disabled"
+		custom_tooltip = "PRIVATEER_MODE_enable_desc"
+		trigger = {
+			has_global_flag = pirate_waves_PRIVATEER_inactive
+			host_has_dlc = Nemesis
+		}
+		allow = { has_global_flag = pirate_waves_active }
+		hidden_effect = {
+			remove_global_flag = pirate_waves_PRIVATEER_inactive
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	## Pirate Republic
+	option = {
+		name = "pirate_republic_MODE_disable"
+		custom_tooltip = "pirate_republic_MODE_DESC"
+		trigger = {
+			NOT = { has_global_flag = pirate_republic_inactive }
+			host_has_dlc = Apocalypse
+		}
+		hidden_effect = {
+			set_global_flag = pirate_republic_inactive
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	option = {
+		name = "pirate_republic_MODE_enable"
+		custom_tooltip = "pirate_republic_MODE_DESC"
+		trigger = { has_global_flag = pirate_republic_inactive }
+		hidden_effect = {
+			remove_global_flag = pirate_republic_inactive
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	## Outer Bulwark
+	option = {
+		name = "outer_bulwark_MODE_disable"
+		custom_tooltip = "outer_bulwark_MODE_DESC"
+		trigger = {
+			event_target:global_event_country = { NOT = { has_country_flag = outer_bulwark_inactive } }
+			any_country = { is_country_type = outer_bulwarks }
+		}
+		# allow = { any_country = { is_country_type = outer_bulwarks } }
+		hidden_effect = {
+			event_target:global_event_country = { set_country_flag = outer_bulwark_inactive }
+			every_country = {
+				limit = { is_country_type = outer_bulwarks }
+				set_country_type = dormant_marauders
+				switch = { trigger = has_country_flag
+					bulwark_numbers = { set_country_flag = marauder_1 }
+					bulwark_techies = { set_country_flag = marauder_2 }
+					bulwark_monsters = { set_country_flag = marauder_3 }
+				}
+				random_system_within_border = {
+					limit = { has_star_flag = tob_system }
+					set_star_flag = marauder_system
+					switch = { trigger = has_star_flag
+						tob_supremacists = { set_star_flag = marauder_capital_1 }
+						tob_technologists = { set_star_flag = marauder_capital_2 }
+						tob_tamers = { set_star_flag = marauder_capital_3 }
+					}
+				}
+			}
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	 # only once
+	option = {
+		name = "outer_bulwark_MODE_enable"
+		custom_tooltip = "outer_bulwark_MODE_DESC"
+		trigger = {
+			NOR = {
+				has_global_flag = outer_bulwark_initialized
+				event_target:global_event_country = { has_country_flag = outer_bulwark_inactive }
+				any_country = {
+					OR = {
+						is_country_type = dormant_marauders
+						is_country_type = outer_bulwarks
+					}
+					OR = {
+						has_country_flag = bulwark_numbers
+						has_country_flag = bulwark_techies
+						has_country_flag = bulwark_monsters
+					}
+				}
+			}
+		}
+		allow = {
+			NOT = { any_system = { has_star_flag = tob_system } }
+		}
+		hidden_effect = {
+			set_global_flag = outer_bulwark_initialized
+			event_target:global_event_country = { remove_country_flag = outer_bulwark_inactive }
+			# Batch-processes the spawn_system effects between "begin" and "end",
+			# so caches are recalculated only once rather than for every system spawned
+			# Can also be used when removing and adding hyperlanes
+			set_spawn_system_batch = begin
+			no_scope = {
+				# Make system positions originate from galactic core
+				# Make the spawn chance for each more equal (with all 9 possibilities)
+				locked_random_list = {
+					32 = {
+						modifier = { factor = 0.2 exists = event_target:marauder_country_1 }
+						random_rim_system = {
+							limit = { CmtTriggerSpawnableSystem = yes }
+							weights = { base = 1 modifier = { add = 1 has_owner = no } }
+							spawn_system = {
+								min_distance >= 41
+								max_distance <= 64
+								min_orientation_angle = 300
+								max_orientation_angle = 330
+								initializer = supremacists_home
+								direction = corewards
+							}
+						}
+						if = { limit = { num_marauder_empires_to_spawn > 1 }
+							locked_random_list = {
+								2 = {
+									random_rim_system = {
+										limit = { CmtTriggerSpawnableSystem = yes }
+										weights = { base = 1 modifier = { add = 1 has_owner = no } }
+										spawn_system = {
+											min_distance >= 42
+											max_distance <= 65
+											min_orientation_angle = 320
+											max_orientation_angle = 350
+											initializer = technologists_home
+											direction = corewards
+										}
+									}
+									if = { limit = { num_marauder_empires_to_spawn > 2 }
+										random_rim_system = {
+											limit = { CmtTriggerSpawnableSystem = yes }
+											weights = { base = 1 modifier = { add = 1 has_owner = no } }
+											spawn_system = {
+												min_distance >= 43
+												max_distance <= 66
+												min_orientation_angle = 10
+												max_orientation_angle = 30
+												initializer = tamers_home
+												direction = corewards
+											}
+										}
+									}
+								}
+								2 = {
+									modifier = { factor = 0 exists = event_target:marauder_country_3 }
+									random_rim_system = {
+										limit = { CmtTriggerSpawnableSystem = yes }
+										weights = { base = 1 modifier = { add = 1 has_owner = no } }
+										spawn_system = {
+											min_distance >= 42
+											max_distance <= 65
+											min_orientation_angle = 320
+											max_orientation_angle = 350
+											initializer = tamers_home
+											direction = corewards
+										}
+									}
+									if = { limit = { num_marauder_empires_to_spawn > 2 }
+										random_rim_system = {
+											limit = { CmtTriggerSpawnableSystem = yes }
+											weights = { base = 1 modifier = { add = 1 has_owner = no } }
+											spawn_system = {
+												min_distance >= 43
+												max_distance <= 66
+												min_orientation_angle = 10
+												max_orientation_angle = 30
+												initializer = technologists_home
+												direction = corewards
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					32 = {
+						modifier = { factor = 0 exists = event_target:marauder_country_2 }
+						random_rim_system = {
+							limit = { CmtTriggerSpawnableSystem = yes }
+							weights = { base = 1 modifier = { add = 1 has_owner = no } }
+							spawn_system = {
+								min_distance >= 41
+								max_distance <= 64
+								min_orientation_angle = 300
+								max_orientation_angle = 330
+								initializer = technologists_home
+								direction = corewards
+							}
+						}
+						if = { limit = { num_marauder_empires_to_spawn > 1 }
+							locked_random_list = {
+								2 = {
+									random_rim_system = {
+										limit = { CmtTriggerSpawnableSystem = yes }
+										weights = { base = 1 modifier = { add = 1 has_owner = no } }
+										spawn_system = {
+											min_distance >= 42
+											max_distance <= 65
+											min_orientation_angle = 320
+											max_orientation_angle = 350
+											initializer = supremacists_home
+											direction = corewards
+										}
+									}
+									if = { limit = { num_marauder_empires_to_spawn > 2 }
+										random_rim_system = {
+											limit = { CmtTriggerSpawnableSystem = yes }
+											weights = { base = 1 modifier = { add = 1 has_owner = no } }
+											spawn_system = {
+												min_distance >= 43
+												max_distance <= 66
+												min_orientation_angle = 10
+												max_orientation_angle = 30
+												initializer = tamers_home
+												direction = corewards
+											}
+										}
+									}
+								}
+								2 = {
+									modifier = { factor = 0 exists = event_target:marauder_country_3 }
+									random_rim_system = {
+										limit = { CmtTriggerSpawnableSystem = yes }
+										weights = { base = 1 modifier = { add = 1 has_owner = no } }
+										spawn_system = {
+											min_distance >= 42
+											max_distance <= 65
+											min_orientation_angle = 320
+											max_orientation_angle = 350
+											initializer = tamers_home
+											direction = corewards
+										}
+									}
+									if = { limit = { num_marauder_empires_to_spawn > 2 }
+										random_rim_system = {
+											limit = { CmtTriggerSpawnableSystem = yes }
+											weights = { base = 1 modifier = { add = 1 has_owner = no } }
+											spawn_system = {
+												min_distance >= 43
+												max_distance <= 66
+												min_orientation_angle = 10
+												max_orientation_angle = 30
+												initializer = supremacists_home
+												direction = corewards
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					32 = {
+						modifier = { factor = 0 exists = event_target:marauder_country_3 }
+						random_rim_system = {
+							limit = { CmtTriggerSpawnableSystem = yes }
+							weights = { base = 1 modifier = { add = 1 has_owner = no } }
+							spawn_system = {
+								min_distance >= 41
+								max_distance <= 64
+								min_orientation_angle = 300
+								max_orientation_angle = 330
+								initializer = tamers_home
+								direction = corewards
+							}
+						}
+						if = { limit = { num_marauder_empires_to_spawn > 1 }
+							locked_random_list = {
+								2 = {
+									random_rim_system = {
+										limit = { CmtTriggerSpawnableSystem = yes }
+										weights = { base = 1 modifier = { add = 1 has_owner = no } }
+										spawn_system = {
+											min_distance >= 42
+											max_distance <= 65
+											min_orientation_angle = 320
+											max_orientation_angle = 350
+											initializer = supremacists_home
+											direction = corewards
+										}
+									}
+									if = { limit = { num_marauder_empires_to_spawn > 2 }
+										random_rim_system = {
+											limit = { CmtTriggerSpawnableSystem = yes }
+											weights = { base = 1 modifier = { add = 1 has_owner = no } }
+											spawn_system = {
+												min_distance >= 43
+												max_distance <= 66
+												min_orientation_angle = 10
+												max_orientation_angle = 30
+												initializer = technologists_home
+												direction = corewards
+											}
+										}
+									}
+								}
+								2 = {
+									modifier = { factor = 0 exists = event_target:marauder_country_2 }
+									random_rim_system = {
+										limit = { CmtTriggerSpawnableSystem = yes }
+										weights = { base = 1 modifier = { add = 1 has_owner = no } }
+										spawn_system = {
+											min_distance >= 42
+											max_distance <= 65
+											min_orientation_angle = 320
+											max_orientation_angle = 350
+											initializer = technologists_home
+											direction = corewards
+										}
+									}
+									if = { limit = { num_marauder_empires_to_spawn > 2 }
+										random_rim_system = {
+											limit = { CmtTriggerSpawnableSystem = yes }
+											weights = { base = 1 modifier = { add = 1 has_owner = no } }
+											spawn_system = {
+												min_distance >= 43
+												max_distance <= 66
+												min_orientation_angle = 10
+												max_orientation_angle = 30
+												initializer = supremacists_home
+												direction = corewards
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			set_spawn_system_batch = end
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+
+	option = {
+		name = "outer_bulwark_MODE_enable"
+		custom_tooltip = "outer_bulwark_MODE_DESC"
+		trigger = {
+			event_target:global_event_country = { has_country_flag = outer_bulwark_inactive }
+		}
+		allow = {
+			any_country = {
+				is_country_type = dormant_marauders
+				OR = {
+					has_country_flag = bulwark_numbers
+					has_country_flag = bulwark_techies
+					has_country_flag = bulwark_monsters
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:global_event_country = { remove_country_flag = outer_bulwark_inactive }
+			every_country = {
+				limit = {
+					is_country_type = dormant_marauders
+					OR = {
+						has_country_flag = bulwark_numbers
+						has_country_flag = bulwark_techies
+						has_country_flag = bulwark_monsters
+					}
+				}
+				set_country_type = outer_bulwarks
+				random_system_within_border = {
+					limit = { has_star_flag = tob_system }
+					switch = { trigger = has_star_flag
+						marauder_capital_1 = { remove_star_flag = marauder_capital_1 }
+						marauder_capital_2 = { remove_star_flag = marauder_capital_2 }
+						marauder_capital_3 = { remove_star_flag = marauder_capital_3 }
+					}
+				}
+			}
+			country_event = { id = pirate_waves.0 }
+		}
+	}
+	## DEBUGGING OPTIONS ##
+	option = {
+		name = DEBUG_MODE
+		custom_tooltip = DEBUG_MODE_DESC
+		trigger = { host_has_dlc = "Apocalypse" }
+		allow = { has_global_flag = debug_mode }
+		hidden_effect = {
+			country_event = { id = pirate_waves.999 }
+		}
+	}
+	# # Enable
+	# custom_tooltip = "Not implemented yet, work in progress."
+	# option = {
+	# 	name = DEBUG_MODE_enable
+	# 	custom_tooltip = DEBUG_MODE_DESC
+	# 	# trigger = {
+	# 	# 	NOT = { has_global_flag = debug_mode }
+	# 	# }
+	# 	hidden_effect = {
+	# 		# set_timed_global_flag = { flag = debug_mode days = 35 }
+	# 		country_event = { id = pirate_waves.999 }
+	# 	}
+	# }
+	# Disable
+	# option = {
+	# 	name = DEBUG_MODE_disable
+	# 	custom_tooltip = DEBUG_MODE_DESC
+	# 	trigger = { has_global_flag = debug_mode }
+	# 	hidden_effect = {
+	# 		remove_global_flag = debug_mode
+	# 		country_event = { id = pirate_waves.0 }
+	# 	}
+	# }
+	option = { name = CLOSE }
+}

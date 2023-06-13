@@ -104,7 +104,9 @@ l_english:
   ## Buildings
   ##################################################
 
-  ### Capitals
+  ##################
+  # Capitals
+  ##################
   
   ## Organic Capitals
   building_colony_shelter: "Reassembled Ship Shelter"
@@ -174,6 +176,76 @@ l_english:
   building_slave_major_capital: "Governor's Estates"
   building_slave_major_capital_tt: "§MCapital§! - §BTier 2§! - §ESlave§!"
   building_slave_major_capital_desc: "Sprawling and luxurious palaces that house the ruling elite of the Thrall-World."
+
+  ##################
+  # Pop Assembly
+  ##################
+
+  ### Robot Assembly
+  building_robot_assembly_plant: "Robot Assembly Plants"
+  building_robot_assembly_plant_tt: "§MAssembly§! - §BTier 1§! - §ERobot§!"
+  building_robot_assembly_plant_desc: "High-tech factories where skilled Roboticists assemble the latest robot models."
+  building_robot_assembly_complex: "Robot Assembly Complex"
+  building_robot_assembly_complex_tt: "§MAssembly§! - §BTier 2§! - §ERobot§!"
+  building_robot_assembly_complex_desc: "An advanced assembly plant where skilled Roboticists assemble the latest robot models."
+
+  ### Machine Assembly
+  building_machine_assembly_plant: "Machine Assembly Plants"
+  building_machine_assembly_plant_tt: "§MAssembly§! - §BTier 1§! - §EMachine§!"
+  building_machine_assembly_plant_desc: "A production line assembly plant where new units are constructed."
+  building_machine_assembly_complex: "Machine Assembly Complex"
+  building_machine_assembly_complex_tt: "§MAssembly§! - §BTier 2§! - §EMachine§!"
+  building_machine_assembly_complex_desc: "An advanced assembly plant where new units are constructed."
+
+  ### Hive Assembly
+  building_spawning_pool: "Spawning Pools"
+  building_spawning_pool_tt: "§MAssembly§! - §BTier 1§! - §EHive§!"
+  building_spawning_pool_desc: "Tended by the scientific and gentle care of specialists, these pools stimulate our spawn into faster growth."
+
+  ### Progenitor Hive Assembly
+  building_offspring_nest: "Offspring Nest"
+  building_offspring_nest_tt: "§MAssembly§! - §BTier 1§! - §EProgenitor Hive§!"
+  building_offspring_nest_desc: "This fortified nest safely harbors the local Offspring while also accelerating growth for the rest of the nearby hive."
+
+  ### Necrophage Assembly
+  building_necrophage_elevation_chamber: "Chamber of Elevation"
+  building_necrophage_elevation_chamber_tt: "§MAssembly§! - §BTier 1§! - §ENecrophage§!"
+  building_necrophage_elevation_chamber_desc: "Those awaiting transformation spend their days studying the practices and rituals of the [This.Owner.GetSpeciesNamePlural] in the comfort of the Chamber of Elevation."
+  building_necrophage_elevation_chamber_desc_hive: "Those awaiting transformation spend their days preparing for oneness with the [This.Owner.GetAdj] collective consciousness in the comfort of the Chamber of Elevation."
+  building_necrophage_house_of_apotheosis: "House of Apotheosis"
+  building_necrophage_house_of_apotheosis_tt: "§MAssembly§! - §BTier 1§! - §ENecrophage§!"
+  building_necrophage_house_of_apotheosis_desc: "A house of untold splendor where those awaiting their apotheosis as [This.Owner.GetSpeciesNamePlural] can spend their final days in their original forms in comfort."
+  building_necrophage_house_of_apotheosis_desc_hive: "A house of untold splendor where we have gone to great lengths to ensure that those awaiting their transformation into [This.Owner.GetAdj] drones can spend their final days outside the Hive in comfort."
+ 
+  ### Biological Assembly
+  building_clone_vats: "Clone Vats"
+  building_clone_vats_tt: "§MAssembly§! - §BTier 1§! - §EBiological§!"
+  building_clone_vats_desc: "Clone Vats break down simple materials to generate Organic Pop Assembly."
+
+  ### Clone Army Assembly
+  building_clone_army_clone_vat: "Ancient Clone Vat"
+  building_clone_army_clone_vat: "§MAssembly§! - §BTier 1§! - §EClone Army§!"
+  building_clone_army_clone_vat_desc: "Lost technology left behind by the Creators. Can be taken apart and reassembled, but its inner components and workings are much too advanced to replicate."
+  building_clone_army_clone_vat_effect_desc: "Produces and sustains §Y20§! £pops£ §Y$clone_soldier$§! Pops. The effectiveness of this growth is reduced as the $building_clone_army_clone_vat$ reaches capacity."
+
+  ### Undead Assembly
+  building_posthumous_employment_center: "Posthumous Employment Center"
+  building_posthumous_employment_center_tt: "§MAssembly§! - §BTier 1§! - §EUndead§!"
+  building_posthumous_employment_center_desc: "At the Posthumous Employment Center, carcasses bereft of consciousness can find new purpose and a new opportunity to pay off their debts."
+ 
+  ### Bath Assembly (Toxoid)
+  building_toxic_bath: "Mutagenic Spa"
+  building_toxic_bath_tt: "§MAmenities§! - §BTier 1§! - §EBath§!"
+  building_toxic_bath_desc: "Though Mutagenic Spas are highly advanced therapeutic centers with well-documented health benefits, to some, the methods employed remain disgusting. Each drop of bath liquid is more mutagenic than most banned substances in the galaxy."
+  building_toxic_bath_hive: "Mutagenic Permutation Pool"
+  building_toxic_bath_hive_tt: "§MAssembly§! - §BTier 1§! - §EBath§!"
+  building_toxic_bath_hive_desc: "Mutagenic Permutation Pools are the perfect expression of the heights that a hive mind can achieve when utterly focused on the goal of producing more bodies for its ever-expanding consciousness."
+  building_toxic_bath_machine: "Hyper Lubrication Basin"
+  building_toxic_bath_machine_tt: "§MAssembly§! - §BTier 1§! - §EBath§!"
+  building_toxic_bath_machine_desc: "Hyper Lubrication Basins are the most logical answer to emerging problems of friction, over-heating, and static electricity during the production process of new units. "
+
+
+ 
 
   ## Energy
   # Energy - Tier 0

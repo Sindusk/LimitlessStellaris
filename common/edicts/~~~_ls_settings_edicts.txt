@@ -1,0 +1,14 @@
+##########################################################################
+# Limitless Stellaris - Settings Edicts Changes
+##########################################################################
+
+### Technology Rubberbanding
+# Remove settings edict.
+TR_settings = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_assist_research.dds"
+	length = 0
+	resources = { category = edicts cost = { energy = 1 } }
+	potential = { always = no } # Disable through potential
+	effect = { country_event = { id = techrubber.12 } }
+	ai_weight = { weight = 0 }
+}

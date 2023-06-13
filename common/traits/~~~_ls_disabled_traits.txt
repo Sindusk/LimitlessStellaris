@@ -1,0 +1,76 @@
+##########################################################################
+# Limitless Stellaris - Traits
+##########################################################################
+
+### Casako's Performance & Utilities
+# These traits are technical workarounds that do not make sense to have the player engage with.
+PF_trait_core_species = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	sorting_priority = 50
+	initial = no
+	randomized = no
+
+	potential = { always = no } # Disabled through potential
+
+	allowed_archetypes = {
+		BIOLOGICAL
+		ROBOT
+		MACHINE
+		LITHOID
+		WARSHIPGIRL
+		SHENHAI
+		UNITED_FLEET
+		NANITES_CROP
+		STARSHIPGIRLS
+		LILY
+		KANMUSU
+		DATEALIVE
+		KANSEN
+		Dolls
+		ELF
+		Magical_Bitch
+		Magical_Girl
+		NYTO
+		DEITY
+	}
+
+	modifier = {}
+	slave_cost = { energy = 100 }
+	ai_weight = { factor = 0 }
+}
+PF_trait_core_ignore = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	sorting_priority = 50
+	initial = no
+	randomized = no
+	
+	potential = { always = no } # Disabled through potential
+
+	allowed_archetypes = {
+		BIOLOGICAL
+		ROBOT
+		MACHINE
+		LITHOID
+		WARSHIPGIRL
+		SHENHAI
+		UNITED_FLEET
+		NANITES_CROP
+		STARSHIPGIRLS
+		LILY
+		KANMUSU
+		DATEALIVE
+		KANSEN
+		Dolls
+		ELF
+		Magical_Bitch
+		Magical_Girl
+		NYTO
+		DEITY
+	}
+
+	modifier = { pop_government_ethic_attraction = 0.05 }
+	slave_cost = { energy = 100 }
+	ai_weight = { factor = 0 }
+}

@@ -1,0 +1,2103 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Pop Assembly
+##########################################################################
+
+##################################################
+## Pop Assembly - Robot
+##################################################
+
+### building_robot_assembly_plant
+## Robot Assembly Plant (Tier 1)
+# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, StarTech AI, Ariphaos
+building_robot_assembly_plant = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2011000 # Sort Buildings
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			AND = { # StarTech AI
+				OR = {			
+					NOT = {
+						exists = assembling_species
+					}
+					AND = {
+						exists = assembling_species
+						assembling_species = { is_robotic_species = yes }
+					}
+				}
+				owner = { is_ai = yes num_pops < 1000 }
+				OR = {
+					AND = {
+						str_is_col_factory = no
+						str_is_col_foundry = no
+					}
+					owner = { has_technology = tech_droid_workers }
+					free_district_slots > 3
+				}
+			}
+		}
+		owner = {
+			is_gestalt = no
+			NOT = { has_policy_flag = robots_outlawed }
+			OR = {
+				is_ai = no
+				NOT = { has_ascension_perk = ap_engineered_evolution }
+				is_materialist = yes
+			}
+		}
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+		owner = { # Bug Branch
+			is_bugged_machine_cult = no
+		}
+	}
+
+	convert_to = {
+		building_bugged_mecha_monastery # Bug Branch
+		building_machine_assembly_plant
+	}
+
+	upgrades = {
+		building_robot_assembly_complex
+	}
+
+	allow = {
+		hidden_trigger = {
+			OR = {
+				owner = { is_ai = no }
+				AND = { # StarTech AI
+					owner = { is_ai = yes }
+					NAND = {
+						free_jobs < 1
+						OR = {
+							num_buildings = {
+								type = any
+								value >= 12
+							}
+							is_planet_class = pc_habitat
+						}
+					}
+					NAND = {
+						free_district_slots = 0
+						free_building_slots <= 1
+						free_housing <= 0
+						free_jobs <= 0
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				OR = {
+					is_gestalt = yes
+					has_policy_flag = robots_outlawed
+				}
+			}
+			has_modifier = slave_colony
+			AND = { # StarTech AI
+				owner = { is_ai = yes }
+				AND = {
+					free_jobs < 1
+					OR = {
+						num_buildings = {
+							type = any
+							value >= 12
+						}
+						is_planet_class = pc_habitat
+					}
+				}
+				AND = {
+					free_district_slots = 0
+					free_building_slots <= 1
+					free_housing <= 0
+					free_jobs <= 0
+				}
+			}
+			owner = {
+				is_ai = yes
+				has_ascension_perk = ap_engineered_evolution
+				is_materialist = no
+			}
+			owner = { # Bug Branch
+				is_bugged_machine_cult = yes
+			}
+			owner = { # StarTech AI
+				is_ai = yes
+				num_pops > 1000
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_roboticist_add = 1
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_robot_assembly_plant_tt
+    }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+		}
+		upkeep = {
+			energy = @db2_upkeep
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			OR = {
+				NOT = { exists = owner }
+				AND = {
+					exists = owner
+					owner = {
+						NOT = { has_policy_flag = roboticist_output_build_cyborgs }
+					}
+				}
+			}
+
+		}
+		text = job_roboticist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_policy_flag = roboticist_output_build_cyborgs
+			}
+		}
+		text = job_roboticist_cyborg_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			OR = {
+				has_building = building_clone_vats
+				has_building = building_clone_army_clone_vat
+				has_building = building_posthumous_employment_center
+				AND = {
+					exists = assembling_species
+					assembling_species = { is_organic_species = yes }
+					exists = owner
+					owner = {
+						NOT = { has_policy_flag = roboticist_output_build_cyborgs }
+					}
+				}
+			}
+		}
+		text = tooltip_organic_and_artificial_assembly_warning
+	}
+	show_tech_unlock_if = { # Bug Branch
+		is_bugged_machine_cult = no
+	}
+	prerequisites = {
+		"tech_robotic_workers"
+	}
+	
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			NOT = { has_building = building_robot_assembly_plant }
+		}
+		job_starnet_spice_melange_farmer_add = 2
+		job_starnet_spice_melange_antifarmer_add = -2
+	}
+}
+
+## Robot Assembly Complex (Tier 2)
+# Minor addition from Real Space: Planetary Stations
+building_robot_assembly_complex = {
+	icon = building_machine_assembly_complex
+	base_buildtime = @db3_time
+	can_build = no
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			NOT = { exists = assembling_species }
+			assembling_species = { is_robotic_species = yes }
+		}
+		owner = {
+			is_regular_empire = yes
+			NOT = { has_policy_flag = robots_outlawed }
+			OR = {
+				is_ai = no
+				NOT = { has_ascension_perk = ap_engineered_evolution }
+				is_materialist = yes
+			}
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	convert_to = {
+		building_machine_assembly_complex
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				OR = {
+					is_regular_empire = no
+					has_policy_flag = robots_outlawed
+				}
+			}
+			has_modifier = slave_colony
+			AND = {
+				owner = { is_ai = yes }
+				free_district_slots = 0
+				free_building_slots = 0
+				free_housing <= 0
+				free_jobs <= 0
+			}
+			owner = {
+				is_ai = yes
+				has_ascension_perk = ap_engineered_evolution
+				is_materialist = no
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_roboticist_add = 2
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_robot_assembly_complex_tt
+    }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db3_minerals
+			rare_crystals = @b3_rare_cost
+		}
+		upkeep = {
+			energy = @db3_upkeep
+			rare_crystals = @b3_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		tech_robot_assembly_complex
+	}
+
+	triggered_desc = {
+		trigger = {
+			OR = {
+				NOT = { exists = owner }
+				AND = {
+					exists = owner
+					owner = {
+						NOT = { has_policy_flag = roboticist_output_build_cyborgs }
+					}
+				}
+			}
+
+		}
+		text = job_roboticist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_policy_flag = roboticist_output_build_cyborgs
+			}
+		}
+		text = job_roboticist_cyborg_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			OR = {
+				has_building = building_clone_vats
+				has_building = building_clone_army_clone_vat
+				has_building = building_posthumous_employment_center
+				AND = {
+					exists = assembling_species
+					assembling_species = { is_organic_species = yes }
+					exists = owner
+					owner = {
+						NOT = { has_policy_flag = roboticist_output_build_cyborgs }
+					}
+				}
+			}
+		}
+		text = tooltip_organic_and_artificial_assembly_warning
+	}
+}
+
+##################################################
+## Pop Assembly - Machine
+##################################################
+
+## Machine Assembly Plant (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations
+building_machine_assembly_plant = {
+	icon = building_robot_assembly_plant
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2011000 # Sort Buildings
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+		NOR = { 
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+			has_modifier = crucible_colony
+		}
+	}
+
+	convert_to = {
+		building_robot_assembly_plant
+	}
+
+	allow = {
+		hidden_trigger = {
+			OR = {
+				owner = { is_ai = no }
+				NAND = {
+					free_district_slots = 0
+					free_building_slots <= 1
+					free_housing <= 0
+					free_jobs <= 0
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_robot_empire = no }
+			AND = {
+				owner = { is_ai = yes }
+				free_district_slots = 0
+				free_building_slots = 0
+				free_housing <= 0
+				free_jobs <= 0
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_replicator_add = 1
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_machine_assembly_plant_tt
+    }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+
+	upgrades = {
+		building_machine_assembly_complex
+	}
+
+	prerequisites = {
+
+	}
+
+	triggered_desc = {
+		text = job_replicator_effect_desc
+	}
+	
+	# StarTech AI Fake Jobs Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			NOT = { has_building = building_machine_assembly_plant }
+		}
+		job_starnet_spice_melange_farmer_add = 2
+		job_starnet_spice_melange_antifarmer_add = -2
+	}
+}
+
+## Machine Assembly Complex (Tier 2)
+# Merge between EUTAB, Real Space: Planetary Stations, StarTech AI
+building_machine_assembly_complex = {
+	base_buildtime = @db3_time
+	can_build = no
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+		NOT = { has_modifier = crucible_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Station
+	}
+
+	convert_to = {
+		building_robot_assembly_complex
+	}
+
+	allow = { # StarTech AI
+		hidden_trigger = {
+			OR = {
+				owner = { is_ai = no }
+				AND = {
+					num_buildings = { type = any value <= 10 }
+					NOT = { is_planet_class = pc_habitat }
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_robot_empire = no
+			}
+			AND = {
+				owner = { is_ai = yes }
+				free_district_slots = 0
+				free_building_slots = 0
+				free_housing <= 0
+				free_jobs <= 0
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_replicator_add = 3
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_machine_assembly_complex_tt
+    }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db3_minerals
+			rare_crystals = @db3_rare_cost
+		}
+		upkeep = {
+			energy = @db3_upkeep
+			rare_crystals = @db3_rare_upkeep
+		}
+	}
+
+	# EUTAB
+	upgrades = {
+		building_eutab_automation_sector # EUTAB
+		building_avb_machine_assembly_plant_2 # Additional Vanilla Buildings
+	}
+
+	prerequisites = {
+		tech_mega_assembly
+	}
+
+	triggered_desc = {
+		text = job_replicator_effect_desc
+	}
+	
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			NOT = { has_building = building_machine_assembly_complex }
+		}
+		job_starnet_spice_melange_farmer_add = 2
+		job_starnet_spice_melange_antifarmer_add = -2
+	}
+}
+
+##################################################
+## Pop Assembly - Hive
+##################################################
+
+## Spawning Pool (Tier 1)
+# Merge between Sort Buildings, EUTAB, Real Space: Planetary Stations, Expanded Megastructures and Technology, StarTech AI
+building_spawning_pool = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2011000 # Sort Buildings
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			NOT = { is_progenitor_hive_empire = yes }
+		}
+		OR = {
+			num_buildings = { type = any value < 15 }
+			owner = { is_ai = no }
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_hive_empire = no
+				is_progenitor_hive_empire = yes
+			}
+		}
+	}
+	
+	upgrades = {
+		building_eutab_spawning_garden # EUTAB
+		building_avb_spawning_pool_2 # Additional Vanilla Buildings
+		"building_spawning_pool_2" # Expanded Megastructures and Technology
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_spawning_pool_tt
+    }
+
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_origin = origin_hive_queen }
+			}					
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_hive_queen
+			}					
+		}
+		modifier = {
+			job_hive_queen_add = 1
+			planet_pop_assembly_organic_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_cybernetics_modular_cybernetics_hive }
+		}
+		modifier = {
+			job_cyber_drone_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			is_planet_class = pc_hive
+			exists = owner
+			owner = {
+				NOT = { has_origin = origin_hive_queen }
+			}					
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			is_planet_class = pc_hive
+			exists = owner
+			owner = {
+				has_origin = origin_hive_queen
+			}					
+		}
+		modifier = {
+			job_hive_queen_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = { # Expanded Megastructures and Technology
+				exists = owner
+				owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			minerals = @db1_minerals
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				owner = {
+					NOT = { has_valid_civic = civic_integrated_bioarchitecture }
+					is_lithoid_empire = no
+				}
+			}
+			minerals = @b1_hive_minerals
+			food = @b1_hive_food
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_valid_civic = civic_integrated_bioarchitecture
+					is_lithoid_empire = no
+				}
+			}
+			food = @db1_minerals
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = no
+				}
+			}
+			energy = @b1_upkeep_hive
+			food = @b1_upkeep_food
+		}
+		upkeep = {
+			trigger = { # Expanded Megastructures and Technology
+				exists = owner
+				owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			energy = @db1_upkeep
+		}
+	}
+
+	convert_to = {
+		building_offspring_nest
+	}
+	triggered_desc = {
+		trigger = {
+			NAND = {
+				exists = owner
+				OR = {
+					owner = { is_necrophage_empire = yes }
+					owner = { has_origin = origin_hive_queen } # Expanded Megastructures and Technology
+				}
+				exists = growing_species
+				growing_species = {
+					NOT = { has_trait = trait_hive_mind }
+				}
+			}
+		}
+		text = job_spawning_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_necrophage_empire = yes }
+			exists = growing_species
+			growing_species = {
+				NOT = { has_trait = trait_hive_mind }
+			}
+		}
+		text = job_spawning_drone_necrophage_effect_desc
+	}
+	
+	triggered_desc = { # Expanded Megastructures and Technology
+		trigger = {
+			exists = owner
+			owner = {
+				has_origin = origin_hive_queen
+			}
+		}
+		text = job_hive_queen_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_cybernetics_modular_cybernetics_hive
+			}
+		}
+		text = job_cyber_drone_effect_desc
+	}
+
+	triggered_desc = {
+		text = spawning_pool_tooltip
+	}
+	
+	is_essential = yes
+	
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_ai = yes
+				str_raw_ecocrisis_level_0 = no
+			}
+			NOT = { has_building = building_spawning_pool }
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 3
+			job_starnet_spice_melange_antifarmer_add = -3
+		}
+	}
+	
+	ai_resource_production = {
+		unity = 10
+		trigger = { 
+			num_pops > 10
+		}
+	}
+}
+
+##################################################
+## Pop Assembly - Progenitor Hive
+##################################################
+
+## Offspring Nest (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, Expanded Megastructures and Technology
+building_offspring_nest = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2011000 # Sort Buildings
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		owner = { is_progenitor_hive_empire = yes }
+		or = {
+			num_buildings = { type = any value < 15 }
+			owner = { is_ai = no }
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { NOT = { is_progenitor_hive_empire = yes } }
+	}
+
+	#ruined_trigger = {
+	#	has_planet_flag = offspring_defeated
+	#}
+
+	planet_modifier = {
+		job_offspring_drone_add = 1
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_offspring_nest_tt
+    }
+
+	convert_to = {
+		building_spawning_pool
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_cybernetics_modular_cybernetics_hive }
+		}
+		modifier = {
+			job_cyber_drone_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			minerals = @db1_minerals
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				owner = {
+					NOT = { has_valid_civic = civic_integrated_bioarchitecture }
+					is_lithoid_empire = no
+				}
+			}
+			minerals = @b1_hive_minerals
+			food = @b1_hive_food
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_valid_civic = civic_integrated_bioarchitecture
+					is_lithoid_empire = no
+				}
+			}
+			food = @db1_minerals
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = no
+				}
+			}
+			energy = @b1_upkeep_hive
+			food = @b1_upkeep_food
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			energy = @db1_upkeep
+		}
+	}
+	
+	upgrades = {
+		"building_offspring_warren" # Expanded Megastructures and Technology
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_progenitor_hive_empire = yes }
+			exists = growing_species
+			growing_species = {
+				has_trait = trait_hive_mind
+			}
+		}
+		text = job_offspring_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_cybernetics_modular_cybernetics_hive
+			}
+		}
+		text = job_cyber_drone_effect_desc
+	}
+
+	triggered_desc = {
+		text = offspring_nest_tooltip
+	}
+	
+	is_essential = yes
+	
+	ai_resource_production = {
+		unity = 10
+		trigger = { 
+			num_pops > 10
+		}
+	}
+}
+
+##################################################
+## Pop Assembly - Necrophage
+##################################################
+
+## Necrophage Chamber of Elevation (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
+building_necrophage_elevation_chamber = {
+	icon = building_chamber_of_elevation_1
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2014000 # Sort Buildings
+	skip_automation_upgrading = yes #colony automation will not try to upgrade this
+
+	desc = {
+		trigger = {
+			OR = {
+				NOT = { exists = owner }
+				owner = { is_hive_empire = no }
+			}
+		}
+		text = building_necrophage_elevation_chamber_desc
+	}
+	desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = building_necrophage_elevation_chamber_desc_hive
+	}
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		owner = {
+			is_necrophage_empire = yes
+			is_homicidal = no # Scripted Trigger Undercoat improvement
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = NO_CULTURE_SHOCK
+			NOT = { has_modifier = planet_culture_shock }
+		}
+		if = {
+			limit = { owner = { is_hive_empire = no } }
+			NOT = { is_hive_world = yes }
+		}
+		NOT = { is_machine_world = yes }
+		hidden_trigger = {
+			if = {
+				limit = {
+					owner = { is_ai = yes }
+				}
+				any_owned_species = {
+					species_can_be_necrophaged = yes
+				}
+				num_pops > 5
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_necrophage_empire = no
+			}
+			AND = {
+				owner = { is_ai = yes }
+				NOT = {
+					any_owned_species = {
+						species_can_be_necrophaged = yes
+					}
+				}
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_necro_apprentice_add = 1
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_necrophage_elevation_chamber_tt
+    }
+
+	#you are not meant to run out of necrophaging pops on a planet with this building
+	triggered_planet_modifier = {
+		potential = {
+			num_organic_pops_per_year >= 0.2
+		}
+		job_necro_apprentice_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			num_organic_pops_per_year >= 0.3
+		}
+		job_necro_apprentice_add = 1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+
+	upgrades = {
+		building_necrophage_house_of_apotheosis
+	}
+
+	prerequisites = {
+	}
+
+	triggered_desc = {
+		text = job_necro_apprentice_effect_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+				is_hive_empire = no
+			}
+		}
+	}
+	triggered_desc = {
+		text = job_necro_apprentice_effect_lithoid_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				is_hive_empire = no
+			}
+		}
+	}
+	triggered_desc = {
+		text = job_necro_apprentice_effect_hive_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+				is_hive_empire = yes
+			}
+		}
+	}
+	triggered_desc = {
+		text = job_necro_apprentice_effect_hive_lithoid_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				is_hive_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = necrophage_elevation_timer_tooltip
+		trigger = {
+			has_planet_flag = necrophage_elevation_timer
+		}
+	}
+
+	triggered_desc = {
+		text = building_necrophage_elevation_chamber_scaling_tooltip
+	}
+
+	is_essential = yes
+	
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			NOT = { has_building = building_necrophage_elevation_chamber }
+		}
+		job_starnet_spice_melange_farmer_add = 2
+		job_starnet_spice_melange_antifarmer_add = -2
+	}
+}
+
+## Necrophage House of Apotheosis (Tier 2)
+# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
+building_necrophage_house_of_apotheosis = {
+	icon = building_chamber_of_elevation_2
+	base_buildtime = @db3_time
+	can_build = no
+	#position_priority = 100 # Removed by Sort Buildings
+
+	category = pop_assembly
+
+	desc = {
+		trigger = {
+			OR = {
+				NOT = { exists = owner }
+				owner = { is_hive_empire = no }
+			}
+		}
+		text = building_necrophage_house_of_apotheosis_desc
+	}
+	desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = building_necrophage_house_of_apotheosis_desc_hive
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			is_necrophage_empire = yes
+			is_homicidal = no # Scripted Trigger Undercoat improvement
+			is_ai = no #the AI will just kill all its necrophytes
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		hidden_trigger = {
+			if = {
+				limit = {
+					owner = { is_ai = yes }
+				}
+				any_owned_species = {
+					species_can_be_necrophaged = yes
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_necrophage_empire = no
+			}
+			AND = {
+				owner = { is_ai = yes }
+				OR = {
+					buildings_no_exotic_gases = yes # StarTech AI
+					NOT = {
+						any_owned_species = {
+							species_can_be_necrophaged = yes
+						}
+					}
+				}
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_necro_apprentice_add = 6
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_necrophage_house_of_apotheosis_tt
+    }
+
+	triggered_planet_modifier = {
+		potential = {
+			is_hive_world = yes
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		job_necro_apprentice_add = 4
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			exotic_gases = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			exotic_gases = @db2_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		tech_glandular_acclimation
+	}
+
+	show_tech_unlock_if = {
+		is_necrophage_empire = yes
+	}
+
+	triggered_desc = {
+		text = job_necro_apprentice_effect_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+				is_hive_empire = no
+			}
+		}
+	}
+	triggered_desc = {
+		text = job_necro_apprentice_effect_lithoid_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				is_hive_empire = no
+			}
+		}
+	}
+	triggered_desc = {
+		text = job_necro_apprentice_effect_hive_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+				is_hive_empire = yes
+			}
+		}
+	}
+	triggered_desc = {
+		text = job_necro_apprentice_effect_hive_lithoid_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				is_hive_empire = yes
+			}
+		}
+	}
+	triggered_desc = {
+		text = necrophage_elevation_timer_tooltip
+		trigger = {
+			has_planet_flag = necrophage_elevation_timer
+		}
+	}
+}
+
+##################################################
+## Pop Assembly - Biological
+##################################################
+
+## Clone Vats (Tier 1)
+# Merge between Sort Buildings, EUTAB, Bug Branch, Real Space: Planetary Stations, Expanded Megastructures and Technology, StarTech
+building_clone_vats = {
+	base_buildtime = @db1_time
+	position_priority = 2012000 # Sort Buildings
+
+	category = pop_assembly
+
+	base_cap_amount = 1
+
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+		OR = { # Expanded Megastructures and Technology
+			owner = { has_origin = origin_clones }
+			owner = { is_clone_army_empire = yes }
+			owner = { has_tradition = tr_genetics_adopt } # Limitless Stellaris: Allow genetics adopters to use Clone Vats.
+		}
+		OR = { # StarTech AI
+			owner = { is_ai = no }
+			and = {
+				free_building_slots > 0
+				owner = { is_ai = yes num_pops < 1000 }
+			}
+		}
+		OR = {
+			owner = { is_ai = no }
+			NOT = { exists = assembling_species }
+			assembling_species = { is_organic_species = yes }
+		}
+		OR = {
+			owner = { is_ai = no }
+			NAND = {
+				free_district_slots = 0
+				free_building_slots <= 1
+				free_housing <= 0
+				free_jobs <= 0
+			}
+		}
+	}
+	
+	allow = { # Expanded Megastructures and Technology
+		custom_tooltip = {
+			fail_text = "requires_not_basic_clone_army"
+			exists = owner
+			exists = planet
+			OR = {
+				owner = { NOT = { is_clone_army_empire = yes } }
+				owner = { has_country_flag = clone_army_full_potential }
+				owner = { has_country_flag = clone_army_fertility_unlocked }
+				owner = { has_tradition = tr_genetics_adopt }
+				planet = {
+					any_owned_pop = {
+						OR = {
+							has_trait = trait_clone_soldier_infertile_full_potential
+							has_trait = trait_clone_soldier_fertile
+						}
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = { # Expanded Megastructures and Technology
+		exists = owner
+		exists = planet
+		AND = {
+			owner = { is_ai = yes }
+			owner = { num_pops > 1000 } # StarTech
+			free_district_slots = 0
+			free_building_slots = 0
+			free_housing <= 0
+			free_jobs <= 0
+		}
+		NOR = {
+			owner = { has_country_flag = clone_army_full_potential }
+			owner = { has_country_flag = clone_army_fertility_unlocked }
+			owner = { has_tradition = tr_genetics_adopt }
+			planet = {
+				any_owned_pop = {
+					OR = {
+						has_trait = trait_clone_soldier_infertile_full_potential
+						has_trait = trait_clone_soldier_fertile
+					}
+				}
+			}
+		}
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_clone_vats_tt
+    }
+
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_cloning_tech_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_cloning_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_engineered_evolution
+			}
+		}
+		planet_pop_assembly_organic_add = 2
+	}
+	
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_adv_cloning
+			}
+		}
+		planet_pop_assembly_organic_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_genetics_efficient_cloning }
+		}
+		modifier = {
+			planet_pop_assembly_organic_add = 1.5
+		}
+	}
+	
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_xeno_compatibility
+			}
+		}
+		planet_pop_assembly_organic_add = 1
+	}
+	
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			exists = owner
+			owner = {
+				has_modifier = genesis_cloning_vats
+			}
+		}
+		planet_pop_assembly_organic_add = 1
+	}
+	
+	triggered_planet_modifier = { # Expanded Megastructures and Technology
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_total_assimilation
+			}
+		}
+		modifier = {
+			planet_pop_assembly_organic_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_evolutionary_architects = yes
+			}
+		}
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.2
+
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+
+		# Base cost
+		cost = {
+			trigger = {
+				exists = owner
+				exists = planet
+				owner = { is_lithoid_empire = no }
+				NAND = {
+					owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+					planet = {
+						OR = {
+							has_building = building_plentiful_traditions_advanced_slave_processing
+							has_building = building_slave_processing
+						}
+					}
+				}
+			}
+			minerals = 500
+			food = 500
+		}
+		# Org/Lith cost
+		cost = {
+			trigger = {
+				exists = owner
+				exists = planet
+				owner = { is_lithoid_empire = yes }
+				NAND = {
+					owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+					planet = {
+						OR = {
+							has_building = building_plentiful_traditions_advanced_slave_processing
+							has_building = building_slave_processing
+						}
+					}
+				}
+			}
+			minerals = 1000
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				exists = planet
+				owner = { is_lithoid_empire = no }
+				owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+				planet = {
+					OR = {
+						has_building = building_plentiful_traditions_advanced_slave_processing
+						has_building = building_slave_processing
+					}
+				}
+			}
+			minerals = 100
+			food = 100
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				exists = planet
+				owner = { is_lithoid_empire = yes }
+				owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+				planet = {
+					OR = {
+						has_building = building_plentiful_traditions_advanced_slave_processing
+						has_building = building_slave_processing
+					}
+				}
+			}
+			minerals = 200
+		}
+
+		# Base upkeep
+		upkeep = {
+			energy = 2
+		}
+		# Org/Lith upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = no }
+				}
+				owner = { has_tradition = tr_genetics_adopt }
+				NAND = {
+					owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+					planet = {
+						OR = {
+							has_building = building_plentiful_traditions_advanced_slave_processing
+							has_building = building_slave_processing
+						}
+					}
+				}
+			}
+			food = 20
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = no }
+				}
+				owner = { has_tradition = tr_genetics_adopt }
+				owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+				planet = {
+					OR = {
+						has_building = building_plentiful_traditions_advanced_slave_processing
+						has_building = building_slave_processing
+					}
+				}
+			}
+			food = 10
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = no }
+				}
+				owner = { has_technology = tech_adv_cloning }
+			}
+			food = 10
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = no }
+				}
+				owner = { has_modifier = genesis_cloning_vats }
+			}
+			food = 10
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = yes }
+				}
+				owner = { has_tradition = tr_genetics_adopt }
+				NAND = {
+					owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+					planet = {
+						OR = {
+							has_building = building_plentiful_traditions_advanced_slave_processing
+							has_building = building_slave_processing
+						}
+					}
+				}
+			}
+			minerals = 20
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = yes }
+				}
+				owner = { has_tradition = tr_genetics_adopt }
+				owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+				planet = {
+					OR = {
+						has_building = building_plentiful_traditions_advanced_slave_processing
+						has_building = building_slave_processing
+					}
+				}
+			}
+			minerals = 10
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = yes }
+				}
+				owner = { has_technology = tech_adv_cloning }
+			}
+			minerals = 10
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = yes }
+				}
+				owner = { has_modifier = genesis_cloning_vats }
+			}
+			minerals = 10
+		}
+	}
+	
+	prerequisites = { # Expanded Megastructures and Technology
+		"tech_cloning"
+	}
+	
+    upgrades = {
+		building_eutab_adv_clone_vats # EUTAB
+		building_avb_clone_vats_2 # Additional Vanilla Buildings
+	}
+
+	triggered_desc = {
+		trigger = {
+			OR = {
+				has_building = building_robot_assembly_plant
+				AND = {
+					exists = assembling_species
+					assembling_species = { is_robotic_species = yes }
+				}
+			}
+		}
+		text = tooltip_organic_and_artificial_assembly_warning
+	}
+	
+	triggered_desc = { # Expanded Megastructures and Technology
+		text = building_clone_vats_clone_army_effects_desc
+		trigger = {
+			exists = owner
+			exists = planet
+			owner = { is_clone_army_empire = yes }
+			owner = { NOT = { has_technology = tech_adv_cloning } }
+			owner = { NOT = { has_ascension_perk = ap_engineered_evolution } }
+		}
+	}
+	triggered_desc = { # Expanded Megastructures and Technology
+		text = building_clone_vats_adv_clone_army_effects_desc
+		trigger = {
+			exists = owner
+			exists = planet
+			owner = { is_clone_army_empire = yes }
+			OR = {
+				owner = { has_technology = tech_adv_cloning }
+				owner = { has_tradition = tr_genetics_adopt }
+			}
+			NAND = {
+				owner = { has_technology = tech_adv_cloning }
+				owner = { has_tradition = tr_genetics_adopt }
+			}
+		}
+	}
+	triggered_desc = { # Expanded Megastructures and Technology
+		text = building_clone_vats_very_adv_clone_army_effects_desc
+		trigger = {
+			exists = owner
+			exists = planet
+			owner = { is_clone_army_empire = yes }
+			owner = { has_technology = tech_adv_cloning }
+			owner = { has_tradition = tr_genetics_adopt }
+		}
+	}
+}
+
+##################################################
+## Pop Assembly - Clone Army
+##################################################
+
+## Ancient Clone Vat (Tier 1)
+# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, Scripted Trigger Undercoat
+building_clone_army_clone_vat = {
+	icon = building_ancient_relics
+	base_buildtime = 90
+	position_priority = 1011000 # Sort Buildings
+
+	empire_limit = {
+		base = 5
+	}
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		owner = {
+			is_clone_army_empire = yes
+			NOT = {
+				has_country_flag = clone_army_fertility_unlocked
+			}
+		}
+		if = {
+			limit = {
+				owner = { is_ai = yes }
+			}
+			NOR = {
+				has_building = building_clone_army_clone_vat
+				AND = {
+					exists = assembling_species
+					assembling_species = { is_robotic_species = yes }
+				}
+			}
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				OR = {
+					NOT = { is_clone_army_empire = yes }
+					is_synthetic_empire = yes
+					has_country_flag = clone_army_fertility_unlocked
+				}
+			}
+		}
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_clone_army_clone_vat_tt
+    }
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			can_assemble_clone_soldier_pop = yes
+		}
+		planet_pop_assembly_organic_add = 2
+	}
+
+	# Add growth from 0 to 25 depending on 'clone_pops_missing_per_vat'.
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_clone_soldier_pop = yes
+			check_variable = { which = clone_pops_missing_per_vat value > 0 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 2 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_clone_soldier_pop = yes
+			check_variable = { which = clone_pops_missing_per_vat value > 1 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 3 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_clone_soldier_pop = yes
+			check_variable = { which = clone_pops_missing_per_vat value > 4 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 2 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_clone_soldier_pop = yes
+			check_variable = { which = clone_pops_missing_per_vat value > 8 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 3 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_clone_soldier_pop = yes
+			years_passed > 10
+			check_variable = { which = clone_pops_missing_per_vat value > 12 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 5 }
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_evolutionary_architects = yes
+			}
+		}
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.1
+
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+		}
+		upkeep = {
+			energy = @db2_upkeep
+		}
+	}
+
+	upgrades = {
+	}
+
+	prerequisites = {
+	}
+
+	triggered_desc = {
+		text = building_clone_army_clone_vat_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			OR = {
+				has_building = building_robot_assembly_plant
+				AND = {
+					exists = assembling_species
+					assembling_species = { is_robotic_species = yes }
+				}
+			}
+		}
+		text = tooltip_organic_and_artificial_assembly_warning
+	}
+
+	is_essential = yes
+	ai_estimate_without_unemployment = yes
+}
+
+##################################################
+## Pop Assembly - Undead
+##################################################
+
+## Posthumous Employment Center (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, Ariphaos, Scripted Trigger Undercoat
+building_posthumous_employment_center = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2013000 # Sort Buildings
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			NOT = { exists = assembling_species }
+			assembling_species = { is_organic_species = yes }
+		}
+		OR = {
+			owner = { is_ai = no }
+			NAND = {
+				free_district_slots = 0
+				free_building_slots <= 1
+				free_housing <= 0
+				free_jobs <= 0
+			}
+		}
+		owner = {
+			is_gestalt = no
+			has_permanent_employment = yes
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Station
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				NOT = { has_permanent_employment = yes }
+			}
+			AND = {
+				owner = { is_ai = yes }
+				free_district_slots = 0
+				free_building_slots = 0
+				free_housing <= 0
+				free_jobs <= 0
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_reassigner_add = 1
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_posthumous_employment_center_tt
+    }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+
+	triggered_desc = {
+		text = job_reassigner_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			OR = {
+				has_building = building_robot_assembly_plant
+				AND = {
+					exists = assembling_species
+					assembling_species = { is_robotic_species = yes }
+				}
+			}
+		}
+		text = tooltip_organic_and_artificial_assembly_warning
+	}
+}
+
+##################################################
+## Pop Assembly - Toxoid
+##################################################
+
+## Mutagenic Permutation Pool (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, Scripted Trigger Undercoat
+building_toxic_bath_hive = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = amenity
+	icon = building_toxic_bath_hive
+	position_priority = 2072000 # Sort Buildings
+
+	potential = {
+		owner = {
+			is_hive_empire = yes
+			has_toxic_baths = yes
+			NAND = {
+				is_ai = yes
+				prev = { has_any_industry_district = no }
+			}
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	allow = {
+		owner = {
+			OR = {
+				is_ai = no
+				prev = { has_any_industry_district = yes }
+			}
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_hive_empire = no
+				has_toxic_baths = no
+				AND = {
+					is_ai = yes
+					prev = { has_any_industry_district = no }
+				}
+			}
+		}
+	}
+	planet_modifier = {
+		job_bath_attendant_hive_add = @b1_jobs
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_toxic_bath_hive_tt
+    }
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+		}
+		text = job_toxic_baths_effect_hive_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+}
+
+## Hyper Lubrication Basin (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations
+building_toxic_bath_machine = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = amenity
+	icon = building_toxic_bath_machine
+	position_priority = 2072000 # Sort Buildings
+
+	potential = {
+		owner = {
+			is_machine_empire = yes
+			has_toxic_baths = yes
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_machine_empire = no }
+			owner = {
+				has_toxic_baths = no
+			}
+		}
+	}
+	planet_modifier = {
+		job_bath_attendant_machine_add = @b1_jobs
+	}
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_toxic_bath_hive_tt
+    }
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+		}
+		text = building_toxic_bath_machine_tt
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+}

@@ -21,11 +21,14 @@ entertainer = {
     resources = {
         category = planet_entertainers
         produces = {
-            unity = 3 # Default: 1; Changed to 3 to make them more appealing
+            unity = 2 # Default: 1; Changed to 2 to make them more appealing
         }
         upkeep = {
             consumer_goods = 1
         }
+    }
+    planet_modifier = {
+        planet_stability_add = 1 # Entertainers now provide stability to separate them from priests
     }
     triggered_planet_modifier = {
         potential = {
