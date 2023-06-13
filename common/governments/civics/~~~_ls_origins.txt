@@ -1,13 +1,193 @@
 ####################################################################################################
-# Limitless Stellaris Origins
+# Limitless Stellaris - Origins
 ####################################################################################################
 
 ##################################################
-## DarkSpace Origins - Overwrite of all DarkSpace Civics to hide them properly for invalid authorities.
+## ACOT Origins
+##################################################
+
+## Tier 3 Start (ACOT)
+# Disabled. Not a real origin.
+origin_tier_three_start = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_enlightened.dds"
+	picture = GFX_origin_tier_three_start
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	traits = {
+	}
+
+	random_weight = {
+		base = 0
+		modifier = {
+			factor = 0
+			always = yes
+		}
+	}
+	description = "origin_tier_three_start_effect"
+	flags = { custom_start_screen }
+
+	advanced_start = yes
+}
+
+## Tier 5 Start (ACOT)
+# Disabled. Not a real origin.
+origin_tier_five_start = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_hegemon.dds"
+	picture = GFX_origin_tier_five_start
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	traits = {
+	}
+
+	random_weight = {
+		base = 0
+		modifier = {
+			factor = 0
+			always = yes
+		}
+	}
+
+	description = "origin_tier_five_start_effect"
+	flags = { custom_start_screen }
+
+	advanced_start = yes
+}
+
+## Tier 6 Start (ACOT)
+# Disabled. Not a real origin.
+origin_tier_dm_start = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_elder_race.dds"
+	picture = GFX_origin_tier_dm_start
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	traits = {
+	}
+
+	random_weight = {
+		base = 0
+		modifier = {
+			factor = 0
+			always = yes
+		}
+	}
+
+	description = "origin_tier_dm_start_effect"
+	flags = { custom_start_screen }
+
+	advanced_start = yes
+}
+
+##################################################
+## ACOT - Secrets Beyond the Gates Origins
+##################################################
+
+## Stellarborne: Grand Design
+# Disabled. Not a real origin.
+origin_playable_oe = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_elder_race.dds"
+	picture = GFX_origin_playable_oe
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+
+	}
+
+	traits = {
+		trait = trait_pc_all_preference
+		trait = trait_bionic_implants
+		trait = trait_ancient_race
+		trait = trait_ancient_knowledge
+		trait = trait_master_mind
+	}
+
+
+	random_weight = {
+		base = 0
+		modifier = {
+			factor = 0
+			always = yes
+		}
+	}
+
+	description = "origin_playable_oe_effects"
+	flags = { custom_start_screen StoryFirst Story1 Story2 Story4 Story5 Story6 Story7 Story8 }
+	initializers = { sofe_player_oe_init }
+	starting_colony = pc_omega_ringworld_seam
+
+	advanced_start = yes
+}
+
+## Stellarborne: Humble Return
+# Disabled. Not a real origin.
+origin_playable_oe_singular = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_elder_race.dds"
+	picture = GFX_origin_playable_oe_single
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	traits = {
+		trait = trait_pc_all_preference
+		trait = trait_bionic_implants
+		trait = trait_ancient_race
+		trait = trait_ancient_knowledge
+		trait = trait_master_mind
+	}
+
+	random_weight = {
+		base = 0
+		modifier = {
+			factor = 0
+			always = yes
+		}
+	}
+
+	
+	description = "origin_playable_oe_singular_effects"
+	flags = { custom_start_screen StoryFirst Story1 Story2 Story4 Story5 Story6 Story7 Story8 }
+	initializers = { sofe_player_oe_singular_init }
+	starting_colony = pc_golden_world_habitable
+
+	advanced_start = yes
+}
+
+
+##################################################
+## DarkSpace Origins
 ##################################################
 
 # Requieum [or Certus] (DarkSpace)
-# Disabled.
+# Disabled. Too powerful.
 origin_certus = {
 	is_origin = yes
 	icon = "gfx/interface/icons/origins/origins_shattered_ring.dds"
@@ -27,3 +207,318 @@ origin_certus = {
 	advanced_start = yes
 	random_weight = { base = 0 }
 }
+
+# Intergalactic Isolationists [1/2] (DarkSpace)
+# Disabled. Out of place/bloat.
+origin_ds_cluster_start1 = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_resource_consolidation.dds"
+	description = origin_ds_cluster_start1_effects
+	picture = GFX_origin_cluster_start
+	max_once_global = yes	
+	advanced_start = yes
+	random_weight = { base = 0 }
+	potential = {
+		always = no
+	}
+	possible = {
+		always = no
+	}
+}
+
+# Intergalactic Isolationists [2/2] (DarkSpace)
+# Disabled. Out of place/bloat.
+origin_ds_cluster_start2 = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_resource_consolidation.dds"
+	description = origin_ds_cluster_start2_effects
+	picture = GFX_origin_cluster_start
+	max_once_global = yes	
+	advanced_start = yes
+	random_weight = { base = 0 }
+	potential = {
+		always = no
+	}
+	possible = {
+		always = no
+	}
+}
+
+##################################################
+## Zer0's Infinity Stones Origins
+##################################################
+
+## Power Stone
+# Disabled. Bloat.
+origin_power_stone = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_doomsday.dds"
+	picture = GFX_origin_power_stone
+	max_once_global = yes
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	random_weight = {
+		base = -1000
+	}
+	description = "origin_tooltip_power_stone_effects"
+
+}
+
+## Time Stone
+# Disabled. Bloat.
+origin_time_stone = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_doomsday.dds"
+	picture = GFX_origin_time_stone
+	max_once_global = yes
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	random_weight = {
+		base = -1000
+	}
+	description = "origin_tooltip_time_stone_effects"
+
+}
+
+## Reality Stone
+# Disabled. Bloat.
+origin_reality_stone = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_doomsday.dds"
+	picture = GFX_origin_reality_stone
+	max_once_global = yes
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	random_weight = {
+		base = -1000
+	}
+	description = "origin_tooltip_reality_stone_effects"
+
+}
+
+## Soul Stone
+# Disabled. Bloat.
+origin_soul_stone = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_doomsday.dds"
+	picture = GFX_origin_soul_stone
+	max_once_global = yes
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	random_weight = {
+		base = -1000
+	}
+	description = "origin_tooltip_soul_stone_effects"
+
+}
+
+## Mind Stone
+# Disabled. Bloat.
+origin_mind_stone = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_doomsday.dds"
+	picture = GFX_origin_mind_stone
+	max_once_global = yes
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	random_weight = {
+		base = -1000
+	}
+	description = "origin_tooltip_mind_stone_effects"
+
+}
+
+## Space Stone
+# Disabled. Bloat.
+origin_space_stone = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_doomsday.dds"
+	picture = GFX_origin_space_stone
+	max_once_global = yes
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+	}
+
+	random_weight = {
+		base = -1000
+	}
+	description = "origin_tooltip_space_stone_effects"
+
+}
+
+##################################################
+## Miscellaneous Origins
+##################################################
+
+## Birch World (Gigastructural Engineering)
+# Interferes with the Aeternum owning the galactic center.
+origin_birch = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_birch_world.dds"
+	picture = GFX_origin_birch
+	description = "origin_birch_effects"
+	starting_colony = pc_origin_dummy_birch
+	habitability_preference = pc_birch
+	preferred_planet_class_neighbor = no
+	max_once_global = yes
+	flags = { custom_start_screen }
+	initializers = { giga_birch_start }
+
+	potential = {
+		always = no
+	}
+	possible = {
+	 	always = no
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+## Legendary Neighbor (Legendary Worlds)
+# Disabled. Adds a nonsensical trait to the species.
+origin_legw_next = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_legw_next.dds"
+	picture = GFX_origin_next
+	
+	max_once_global = yes
+
+	# starting_colony = pc_ocean
+	# habitability_preference = pc_ocean
+	initializers = { legw_next_start }
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+		ethics = {
+			NOT = { value = ethic_gestalt_consciousness }
+		}
+	}
+
+	description = origin_legw_next_effects
+
+	traits = {
+		trait = trait_legw_empire
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+## Legendary Neighbors (Legendary Worlds)
+# Disabled. Adds a nonsensical trait to the species.
+origin_legw_lucky = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_legw_lucky.dds"
+	picture = GFX_origin_lucky
+	max_once_global = yes
+
+	# starting_colony = pc_ocean
+	# habitability_preference = pc_ocean
+	initializers = { legw_lucky_start }
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+		ethics = {
+			NOT = { value = ethic_gestalt_consciousness }
+		}
+	}
+
+	description = origin_legw_lucky_effects
+
+	traits = {
+		trait = trait_legw_points
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+## Outstanding Insights (Reworked Advanced Ascension)
+# Disabled. Bloat and bad translation.
+AAR_origin_ascended = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/AAR_origin_ascended.dds"
+	picture = GFX_AAR_origin_ascended
+	description = AAR_tips_origin_ascended
+
+	max_once_global = yes
+	advanced_start = yes
+#	flags = { custom_start_screen first_contact_event Story7}
+	
+	playable = {
+		always = no
+	}
+	potential = {
+		always = no
+	}
+	possible = {
+	}
+	
+#	starting_colony = pc_gaia
+#	initializers = { shattered_ring_start }
+#	habitability_preference = pc_gaia
+#	preferred_planet_class_neighbor = no
+
+#	has_secondary_species = {
+#		title = civic_syncretic_evolution_secondary_species
+#		traits = {
+#			trait = trait_syncretic_proles
+#		}
+#	}
+#	traits = {
+#		trait = trait_survivor
+#	}
+
+	random_weight = {
+		base = 5
+	}
+}
+

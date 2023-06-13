@@ -17,10 +17,10 @@ event = {
 		# Limitless Stellaris Settings:
 		#set_global_flag = no_orbital_infra		# Orbital Infrastructure
 		#set_global_flag = no_shipping			# Shipping
-		set_global_flag = no_trade_routes		# Trade Routes
+		set_global_flag = no_trade_routes		# Trade Routes [Disabled. Poor in-game documentation for usage.]
 		set_global_flag = no_realdev			# Realistic Development
-		#set_global_flag = no_exploit			# Exploitation
-		#set_global_flag = no_autofab			# Auto Fabrication
+		set_global_flag = no_exploit			# Exploitation [Disabled. Poor in-game documentation for usage.]
+		set_global_flag = no_autofab			# Auto Fabrication [Disabled. Poor in-game documentation for usage.]
 		
 		#Game Start flags
 		set_global_flag = roci_realdev_build_adjustment_medium_flag

@@ -2622,7 +2622,7 @@ ap_the_flesh_is_weak = {
 ap_transcendent_learning = {
 	modifier = {
 		# Utopian Dream
-		country_leader_cap_add = 5	# Utopian Dream change from 2 to 5
+		country_leader_cap_add = 2
 		species_leader_exp_gain = 0.5	# Utopian Dream change from 0.33 to 0.5
 		# Unique Ascension Perks
 		country_leader_pool_size = 1
@@ -2748,7 +2748,7 @@ ap_universal_transactions = {
 }
 
 ### ap_voidborn
-## Voidborn (Vanilla - Utopia)
+## Voidborne (Vanilla - Utopia)
 # Merge between SAP, Utopian Dream
 # Base from SAP, habitat tech granted from Utopian Dream
 ap_voidborn = {

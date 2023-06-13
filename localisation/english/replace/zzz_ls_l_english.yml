@@ -1,4 +1,7 @@
-﻿l_english:
+﻿##########################################################################
+# Limitless Stellaris - English Localisation (Replacements)
+##########################################################################
+l_english:
   # StarTech Generic
   gal_com_startech_generic: "StarTech"
   gal_com_startech_economic_state: "Economic Power"
@@ -97,7 +100,81 @@
   tr_tt_artifacts_5_delayed: "Some special and unique artifacts have huge differences in appearance and use from other common artifacts, and they can bring us greater benefits, so artifacts are also the focus of our research."
   tr_tt_artifacts_5_desc:0 "$relics$£unity£$unity$ cost: §G-25%§!\nAn additional §Y50§!£unity£ cohesion artifact per §Y$relics$§!"
 
-  ### Buildings ###
+  ##################################################
+  ## Buildings
+  ##################################################
+
+  ### Capitals
+  
+  ## Organic Capitals
+  building_colony_shelter: "Reassembled Ship Shelter"
+  building_colony_shelter_tt: "§MCapital§! - §BTier 1§! - §EBiological§!"
+  building_colony_shelter_desc: "The remains of a Colony Ship, reassembled for planetside form and function."
+  building_capital: "Planetary Administration"
+  building_capital_tt: "§MCapital§! - §BTier 2§! - §EBiological§!"
+  building_capital_desc: "Seat of the local ruling elite."
+  building_major_capital: "Planetary Capital"
+  building_major_capital_tt: "§MCapital§! - §BTier 3§! - §EBiological§!"
+  building_major_capital_desc: "A sprawling complex of bureaucratic structures that acts as the administrative center for a major colony."
+  building_system_capital: "System Capital-Complex"
+  building_system_capital_tt: "§MCapital§! - §BTier 4§! - §EBiological§!"
+  building_system_capital_desc: "A towering configuration of administrative bureaus and networked infrastructure, allowing the construction and operation of highly demanding facilities."
+  building_imperial_capital: "Imperial Palace"
+  building_imperial_capital_tt: "§MCapital§! - §BTier 5§! - §EBiological§!"
+  building_imperial_capital_desc: "A massive palace complex fit for the greatest empire history has ever seen. If there is a bright center to the galaxy, this is it."
+
+  ## Machine Capitals
+  building_deployment_post: "Deployment Post"
+  building_deployment_post_tt: "§MCapital§! - §BTier 1§! - §EMachine§!"
+  building_deployment_post_desc: "The initial deployment post from which we will expand on this world."
+  building_machine_capital: "Administrative Array"
+  building_machine_capital_tt: "§MCapital§! - §BTier 2§! - §EMachine§!"
+  building_machine_capital_desc: "A semi-autonomous computer network that handles the various administrative functions on a planet."
+  building_machine_major_capital: "Planetary Processor"
+  building_machine_major_capital_tt: "§MCapital§! - §BTier 3§! - §EMachine§!"
+  building_machine_major_capital_desc: "A powerful administrative computer that has been designed to manage and oversee the various functions of a complex planetary settlement."
+  building_machine_system_capital: "Primary Nexus"
+  building_machine_system_capital_tt: "§MCapital§! - §BTier 4§! - §EMachine§!"
+  building_machine_system_capital_desc: "The administrative heart of the system. Hundreds of AIs process requests and manage the minute but critical details that are involved in running an efficient interstellar civilization."
+  building_imperial_machine_capital: "Imperial Center"
+  building_imperial_machine_capital_tt: "§MCapital§! - §BTier 5§! - §EMachine§!"
+  building_imperial_machine_capital_desc: "This colossal complex is the administrative heart of the Galactic Imperium. Thousands of AIs are constantly processing and evaluating the current state of the galaxy."
+
+  ## Hive Capitals
+  building_hive_capital: "Hive Core"
+  building_hive_capital_tt: "§MCapital§! - §BTier 2§! - §EHivemind§!"
+  building_hive_capital_desc: "The organizational core from which the Hive Mind coordinates planetside functions."
+  building_hive_major_capital: "Hive Nexus"
+  building_hive_major_capital_tt: "§MCapital§! - §BTier 3§! - §EHivemind§!"
+  building_hive_major_capital_desc: "A sprawling capital complex from which the Hive Mind focuses planetary organization, coordination, and planning."
+  building_imperial_hive_capital: "Imperial Complex"
+  building_imperial_hive_capital_tt: "§MCapital§! - §BTier 5§! - §EHivemind§!"
+  building_imperial_hive_capital_desc: "From this massive structure, the Hive Mind governs the Galactic Imperium. This is where the fate of the galaxy is decided."
+
+  ### Habitat Capitals
+  building_hab_capital: "Habitat Administration"
+  building_hab_capital_tt: "§MCapital§! - §BTier 1§! - §EHabitat§!"
+  building_hab_capital_desc: "The administrative hub of the Habitat, serving as its capital and the seat of the local government."
+  building_hab_major_capital: "Habitat Central Control"
+  building_hab_major_capital_tt: "§MCapital§! - §BTier 2§! - §EHabitat§!"
+  building_hab_major_capital_desc: "An extensive complex of bureaucratic offices that oversees the administration of a highly-populated habitat."
+
+  ### Resort Capitals
+  building_resort_capital: "Resort Administration"
+  building_resort_capital_tt: "§MCapital§! - §BTier 1§! - §EResort§!"
+  building_resort_capital_desc: "The central complex from where this planet-wide resort is administrated."
+  building_resort_major_capital: "Resort Capital-Complex"
+  building_resort_major_capital_tt: "§MCapital§! - §BTier 2§! - §EResort§!"
+  building_resort_major_capital_desc: "A huge sprawling complex capable of administrating an even greater number of resorts and tourist attractions."
+
+  ### Slave Capitals
+  building_slave_capital: "Governor's Palace"
+  building_slave_capital_tt: "§MCapital§! - §BTier 1§! - §ESlave§!"
+  building_slave_capital_desc: "The lavish palace from which this Thrall-World is governed."
+  building_slave_major_capital: "Governor's Estates"
+  building_slave_major_capital_tt: "§MCapital§! - §BTier 2§! - §ESlave§!"
+  building_slave_major_capital_desc: "Sprawling and luxurious palaces that house the ruling elite of the Thrall-World."
+
   ## Energy
   # Energy - Tier 0
   eb_energy: "Power Plant"

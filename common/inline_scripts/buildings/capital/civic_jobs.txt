@@ -1,0 +1,448 @@
+####################################################################################################
+# Limitless Stellaris - Capital Civic Jobs Inline Script
+####################################################################################################
+# Merge between Scripted Trigger Undercoat, Subtle Polish, Ethics and Civics: Bug Branch
+
+### Triggered Planet Modifiers
+# Bug Branch - Additional Enforcer Job for Authoritarians
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_ethic = ethic_authoritarian
+		}
+	}
+	modifier = {
+		job_enforcer_add = 1
+	}
+}
+# Bug Branch - Additional Enforcer Jobs for Fanatic Authoritarians
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_ethic = ethic_fanatic_authoritarian
+		}
+	}
+	modifier = {
+		job_enforcer_add = 2
+	}
+}
+
+# Limitless Stellaris - High Priest Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_exalted_priesthood = { allow_invalid = yes } # Scripted Trigger Undercoat
+				is_bugged_governmental_spiritualist = yes # Bug Branch
+			}
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat } # Bug Branch restriction
+	}
+	modifier = {
+		job_high_priest_add = $count$
+		job_politician_add = -$count$
+	}
+}
+# Limitless Stellaris - Noble Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_aristocratic_empire = { allow_invalid = yes } # Scripted Trigger Undercoat
+				is_bugged_governmental_elitist = yes # Bug Branch
+			}
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat } # Bug Branch restriction
+	}
+	modifier = {
+		job_noble_add = $count$
+		job_politician_add = -$count$
+	}
+}
+# Limitless Stellaris - Head Researcher Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_technocracy = { allow_invalid = yes } # Scripted Trigger Undercoat
+				is_bugged_governmental_materialist = yes # Bug Branch
+			}
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat } # Bug Branch restriction
+	}
+	modifier = {
+		job_head_researcher_add = $count$
+		job_politician_add = -$count$
+	}
+}
+# Scripted Trigger Undercoat - Merchant Guilds Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_capital_merchants = yes } # Merchant Guilds
+		NOT = { has_planet_flag = toxic_knights_habitat } # Bug Branch restriction
+	}
+	modifier = {
+		job_merchant_add = $count$
+		#job_politician_add = -$count$ # Bug Branch: Merchant Guilds grants a merchant instead of replacing a politician
+	}
+}
+
+# Bug Branch - Commander Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_militarist = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	modifier = {
+		job_politician_add = -$count$
+		job_bugged_commander_add = $count$
+	}
+}
+# Bug Branch - Thinker Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_pacifist = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	modifier = {
+		job_politician_add = -$count$
+		job_bugged_thinker_add = $count$
+	}
+}
+# Bug Branch - Advisor Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_pluralist = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	modifier = {
+		job_politician_add = -$count$
+		job_bugged_advisor_add = $count$
+	}
+}
+# Bug Branch - Financier Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_competitive = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	modifier = {
+		job_executive_add = -$count$
+		job_bugged_financier_add = $count$
+	}
+}
+# Bug Branch - Union Representative Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_cooperative = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	modifier = {
+		job_executive_add = -$count$
+		job_bugged_union_representative_add = $count$
+	}
+}
+# Bug Branch - Industry Captain Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_anthropocentric = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	modifier = {
+		job_executive_add = -$count$
+		job_bugged_industry_captain_add = $count$
+	}
+}
+# Bug Branch - Eco Logistician Jobs
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_ecocentric = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	modifier = {
+		job_executive_add = -$count$
+		job_bugged_eco_logistician_add = $count$
+	}
+}
+
+# Venture Politics - Merchant Job Swap
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			AND = {
+				is_megacorp = yes
+				has_civic = civic_bancorp
+			}
+		}
+	}
+	modifier = {
+		job_merchant_add = $count$
+		job_executive_add = -$count$
+	}
+}
+# Venture Politics - Head Researcher Job Swap
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			AND = {
+				is_megacorp = yes
+				has_civic = civic_science_syndicate
+			}
+		}
+	}
+	modifier = {
+		job_head_researcher_add = $count$
+		job_executive_add = -$count$
+	}
+}
+
+# Subtle Polish - High Priest swap from designation
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		should_swap_extra_high_priests = yes
+	}
+	modifier = {
+		job_politician_add = -1
+		job_high_priest_add = 1
+	}
+}
+# Subtle Polish - Noble swap from designation
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		should_swap_extra_nobles = yes
+	}
+	modifier = {
+		job_politician_add = -1
+		job_noble_add = 1
+	}
+}
+# Subtle Polish - Head Researcher swap from designation
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		should_swap_extra_head_researchers = yes
+	}
+	modifier = {
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+}
+# Subtle Polish - Merchant swap from designation
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		should_swap_extra_merchants = yes
+	}
+	modifier = {
+		job_politician_add = -1
+		job_merchant_add = 1
+	}
+}
+
+### Triggered Descriptions
+# Bug Branch - Politician Description
+triggered_desc = { # Lazy version - always show if they're non-megacorp. Can be cleaner with conditions.
+	trigger = {
+		exists = owner
+		owner = {
+			is_megacorp = no
+		}
+	}
+	text = job_politician_effect_desc
+}
+# Bug Branch - Executive Description
+triggered_desc = { # Lazy version - always show if they're megacorp. Can be cleaner with conditions.
+	trigger = {
+		exists = owner
+		owner = {
+			is_megacorp = yes
+		}
+	}
+	text = job_executive_effect_desc
+}
+# Limitless Stellaris - High Priest Description (Merged)
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			OR = { # Must have exalted priesthood or have another swap to a priest.
+				has_exalted_priesthood = { allow_invalid = yes } # Scripted Trigger Undercoat
+				should_swap_extra_high_priests = yes # Subtle Polish
+				is_bugged_governmental_spiritualist = yes # Bug Branch
+			}
+		}
+	}
+	text = job_high_priest_effect_desc
+}
+# Limitless Stellaris - Noble Description (Merged)
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			OR = { # Must have aristocratic elite or have another swap to noble.
+				is_aristocratic_empire = { allow_invalid = yes } # Scripted Trigger Undercoat
+				should_swap_extra_nobles = yes # Subtle Polish
+				is_bugged_governmental_elitist = yes # Bug Branch
+			}
+		}
+	}
+	text = job_noble_effect_desc
+}
+# Limitless Stellaris - Head Researcher Description (Merged)
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			OR = { # Must be a technocracy or have another swap to head researcher.
+				is_technocracy = { allow_invalid = yes } # Scripted Trigger Undercoat
+				should_swap_extra_head_researchers = yes # Subtle Polish
+				is_bugged_governmental_materialist = yes # Bug Branch
+				has_civic = civic_science_syndicate # Venture Politics
+			}
+		}
+	}
+	text = job_head_researcher_effect_desc
+}
+# Limitless Stellaris - Merchant Description (Merged)
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			OR = { # Must be capital merchants or have another swap to merchants.
+				has_capital_merchants = yes # Scripted Trigger Undercoat
+				should_swap_extra_merchants = yes # Subtle Polish
+				has_civic = civic_corporate_dominion # Bug Branch
+				has_civic = civic_bancorp # Venture Politics
+			}
+		}
+	}
+	text = job_merchant_effect_desc
+}
+
+# Bug Branch - Mogul Description
+triggered_desc = { # Kind of confusing? Might need to replace the merchant description above? Needs testing.
+	trigger = {
+		exists = owner
+		owner = {
+			has_capital_merchants = yes # Scripted Trigger Undercoat
+		}
+	}
+	text = job_bugged_mogul_effect_desc
+}
+# Bug Branch - Commander Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_militarist = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	text = job_bugged_commander_effect_desc
+}
+# Bug Branch - Thinker Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_pacifist = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	text = job_bugged_thinker_effect_desc
+}
+# Bug Branch - Advisor Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_pluralist = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	text = job_bugged_advisor_effect_desc
+}
+# Bug Branch - Financier Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_competitive = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	text = job_bugged_financier_effect_desc
+}
+# Bug Branch - Union Representative Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_cooperative = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	text = job_bugged_union_representative_effect_desc
+}
+# Bug Branch - Industry Captain Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_anthropocentric = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	text = job_bugged_industry_captain_effect_desc
+}
+# Bug Branch - Eco Logistician Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_bugged_governmental_ecocentric = yes
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat }
+	}
+	text = job_bugged_eco_logistician_effect_desc
+}
+
+# Vanilla - All capital buildings have an enforcer
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	text = job_enforcer_effect_desc
+}

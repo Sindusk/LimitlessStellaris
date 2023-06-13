@@ -1,5 +1,0 @@
-go to common\scripted_variables\user_preset.txt and read instructions at the top
-it's recommended to edit it in notepad++ or vscode or a similar program as it may not display properly on notepad
-the file has some ascii art to make big visible text if you can't see it properly due to text wrapping the same thing is also written below it
-do not edit the event file unless you know what you're doing
-if you need to ask if you can edit the event file you don't know what you're doing

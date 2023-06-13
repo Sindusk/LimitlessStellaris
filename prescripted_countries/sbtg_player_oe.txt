@@ -1,0 +1,1 @@
+# File to remove the Secrets Beyond the Gates Stellarborne prescripted country.

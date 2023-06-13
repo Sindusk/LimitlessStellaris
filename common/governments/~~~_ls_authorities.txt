@@ -1,0 +1,37 @@
+####################################################################################################
+# Limitless Stellaris - Authorities
+####################################################################################################
+
+## Ancients (ACOT - Secrets Beyond the Gates)
+# Disabled. Not a real authority.
+auth_sofe_ancients = {
+	ruler_council_position = councilor_ruler_dictatorial
+
+	has_factions = no
+	can_reform = no
+	valid_for_released_vassal = no
+	has_agendas = no
+	re_election_allowed = yes
+	can_have_emergency_elections = yes
+	emergency_election_cost = 0
+	max_election_candidates = 6
+	election_type = oligarchic
+	election_term_years = 1000000
+
+	potential = {
+		always = no
+	}
+	possible = {
+		always = no
+	}
+
+	country_modifier = {
+		country_admin_cap_add = 50
+		country_base_influence_produces_add = 1
+	}
+	tags = {
+		auth_sofe_ancients_desc
+	}
+
+	random_weight = { base = 0 }
+}

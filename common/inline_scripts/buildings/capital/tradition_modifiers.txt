@@ -1,0 +1,43 @@
+####################################################################################################
+# Limitless Stellaris - Capital Tradition Modifiers Inline Script
+####################################################################################################
+
+# Vanilla - Add an additional housing if the owner has Imperious Architecture active in their Domination tradition tree.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_active_tradition = tr_domination_imperious_architecture }
+	}
+	modifier = {
+		planet_housing_add = 1
+	}
+}
+
+# Vanilla - Increase pop growth speed if the owner has Organ Harvesting active in their Cybernetics tradition tree, and the growing species is cybernetic.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_active_tradition = tr_cybernetics_organ_harvesting }
+		has_current_purge = yes
+		growing_species = { has_trait = trait_cybernetic }
+	}
+	pop_growth_speed = 0.10
+}
+
+# Vanilla - Adds an additional roboticist job if the owner has completed the Synthetics tradition tree.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_active_tradition = tr_synthetics_finish }
+	}
+	job_roboticist_add = 1
+}
+# Vanilla - Display roboticist description if one is being provided.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { has_active_tradition = tr_synthetics_finish }
+	}
+	
+	text = job_roboticist_effect_desc
+}
