@@ -1,0 +1,2010 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Resource
+##########################################################################
+
+##################################################
+## Resource Buildings
+##################################################
+
+## Hydroponics Farm (Tier 1)
+# Merge between Sort Buildings, Extra Buildings, EUTAB, Real Space: Planetary Stations, StarTech, Subtle Polish
+building_hydroponics_farm = {
+	base_buildtime = @db1_time
+	position_priority = 4032000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_hydroponics_farm_tt
+    }
+
+	category = resource
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				country_uses_food = yes
+				is_ai = no
+			}
+		}
+		NOR = {
+			is_planet_class = pc_machine
+			has_modifier = resort_colony
+		}
+		is_pd_machine = no # Subtle Polish
+		is_pd_robot_arcology = no # Subtle Polish
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		buildings_simple_allow = yes # StarTech AI
+		str_hydroponics_allow = yes # StarTech AI
+		OR = { # EUTAB
+			owner = { is_ai = no }
+			AND = {
+				owner = {
+					is_ai = yes
+					has_monthly_income = {
+						resource = food
+						value < 30
+					}
+				}
+				free_district_slots = 0
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			str_hydroponics_destroy = yes # StarTech AI
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+				AND = { # Subtle Polish
+					has_monthly_income = {
+						resource = food
+						value > 100
+					}
+					prev = {
+						NOT = { is_planet_class = pc_habitat }
+						free_building_slots = 0
+					}
+				}
+			}
+			planet = {
+				NOT = { is_planet_class = pc_habitat }
+				free_building_slots = 0
+				owner = {
+					is_ai = yes
+					has_monthly_income = {
+						resource = food
+						value > 100
+					}
+				}
+			}
+			planet = { # EUTAB
+				free_building_slots = 0
+				owner = {
+					is_ai = yes
+					has_monthly_income = {
+						resource = food
+						value > 250
+					}
+				}
+			}
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				OR = {
+					is_anglers_empire = no
+					AND = {
+						is_anglers_empire = yes
+						prev = {
+							NOR = {
+								is_wet = yes
+								has_modifier = flooded_habitat # Subtle Polish
+							}
+						}
+					}
+				}
+			}
+		}
+		modifier = {
+			job_farmer_add = @b1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = @b1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_void_dwellers }
+		}
+		modifier = {
+			job_farmer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_agri_drone_add = @b1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				prev = {
+					OR = {
+						is_wet = yes
+						has_modifier = flooded_habitat # Subtle Polish
+					}
+				}
+			}
+		}
+		modifier = {
+			job_angler_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+	
+	upgrades = {
+		building_eutab_hydroponics_tower # EUTAB
+		building_avb_hydroponics_farm_2 # Additional Vanilla Buildings
+		"eb_hydrofarm2" #Extra Buildings
+		"building_aquaponics_farm" # Subtle Polish
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_agri_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				OR = {
+					is_anglers_empire = no
+					AND = {
+						is_anglers_empire = yes
+						prev = {
+							NOR = {
+								is_wet = yes
+								has_modifier = flooded_habitat # Subtle Polish
+							}
+						}
+					}
+				}
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_farm_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				prev = {
+					OR = {
+						is_wet = yes
+						has_modifier = flooded_habitat # Subtle Polish
+					}
+				}
+			}
+		}
+		text = job_aqu_angler_effect_desc
+	}
+
+	prerequisites = {
+		"tech_hydroponics"
+	}
+
+	ai_resource_production = { # Extra Buildings
+		food = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+## Food Processing Facility (Tier 1)
+# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos, Scripted Trigger Undercoat
+building_food_processing_facility = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = resource
+	position_priority = 2035000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_food_processing_facility_tt
+    }
+
+	potential = {
+		exists = owner
+		NOR = {
+			is_machine_world = yes
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			str_food_processing_destroy = yes
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_machine_world = yes
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+		}
+	}
+
+	allow = {
+		str_food_processing_allow = yes
+	}
+
+	planet_modifier = {
+		planet_farmers_food_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				OR = {
+					is_anglers_empire = no
+					AND = {
+						is_anglers_empire = yes
+						NOT = { PREV = { planet = { is_wet = yes } } }
+					}
+				}
+			}
+		}
+		modifier = {
+			job_farmer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_agri_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+		}
+		modifier = {
+			job_angler_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_functional_architecture = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_farming_max = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_agri_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_farm_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+		}
+		text = job_aqu_angler_effect_desc
+	}
+
+	upgrades = {
+		building_food_processing_center
+	}
+
+	prerequisites = {
+		"tech_food_processing_1"
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		food = 3
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		food = 10
+		trigger = {
+			str_num_districts_farming = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		food = 20
+		trigger = {
+			str_num_districts_farming = { operator = > num = 5 }
+		}
+	}
+}
+
+## Food Processing Center (Tier 2)
+# Merge between Bug Branch, Rise of Cosmic Industry, StarTech, Ariphaos, Scripted Trigger Undercoat
+building_food_processing_center = {
+	base_buildtime = @db2_time
+	can_build = no
+	category = resource
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_food_processing_center_tt
+    }
+
+	allow = {
+		exists = owner
+		buildings_has_motes = yes # StarTech AI
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			AND = {
+				exists = owner
+				OR = {
+					owner = {
+						is_ai = yes
+						country_uses_food = no
+					}
+					AND = {
+						owner = {
+							is_ai = yes
+						}
+						has_any_farming_district_or_buildings = no
+					}
+				}
+			}
+			is_machine_world = yes
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			buildings_no_motes = yes # StarTech AI
+		}
+	}
+
+	planet_modifier = {
+		planet_farmers_food_produces_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_ringworld_output_boost = yes
+		}
+		modifier = {
+			planet_farmers_food_produces_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				OR = {
+					is_anglers_empire = no
+					AND = {
+						is_anglers_empire = yes
+						NOT = { PREV = { planet = { is_wet = yes } } }
+					}
+				}
+			}
+		}
+		modifier = {
+			job_farmer_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_agri_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+		}
+		modifier = {
+			job_angler_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_functional_architecture = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_farming_max = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			minerals = @db2_minerals
+			volatile_motes = @db2_rare_cost
+		}
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			minerals = 900
+			volatile_motes = 200
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			energy = 2
+			volatile_motes = @db2_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			energy = 5
+			volatile_motes = 3
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_agri_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_farm_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+		}
+		text = job_aqu_angler_effect_desc
+	}
+
+	prerequisites = {
+		"tech_food_processing_2"
+	}
+	
+	upgrades = {
+		building_roci_nourishment_center_mod # Rise of Cosmic Industry
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		food = 6
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		food = 15
+		trigger = {
+			str_num_districts_farming = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		food = 30
+		trigger = {
+			str_num_districts_farming = { operator = > num = 5 }
+		}
+	}
+}
+
+## Baol Organic Plant (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
+building_baol_organic_plant = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	category = resource
+	position_priority = 2034000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_baol_organic_plant_tt
+    }
+
+	potential = {
+		exists = owner
+		NOR = {
+			is_machine_world = yes
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_machine_world = yes
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	planet_modifier = {
+		planet_farmers_food_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				country_uses_consumer_goods = yes
+			}
+		}
+		planet_farmers_consumer_goods_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				country_uses_consumer_goods = no
+			}
+		}
+		planet_farmers_energy_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				country_uses_consumer_goods = yes
+				has_ascension_perk = ap_archaeoengineers
+			}
+		}
+		planet_farmers_consumer_goods_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				country_uses_consumer_goods = no
+				has_ascension_perk = ap_archaeoengineers
+			}
+		}
+		planet_farmers_energy_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire_spiritualist = no
+				OR = {
+					is_anglers_empire = no
+					AND = {
+						is_anglers_empire = yes
+						PREV = {
+							planet = { is_wet = no }
+						}
+					}
+				}
+			}
+		}
+		modifier = {
+			job_farmer_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_agri_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+		}
+		modifier = {
+			job_angler_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			minor_artifacts = 25
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_agri_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_farm_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+		}
+		text = job_aqu_angler_effect_desc
+	}
+
+	prerequisites = {
+		"tech_secrets_baol"
+	}
+}
+
+## Mineral Purification Plant (Tier 1)
+# Merge between Sort Buildings, Bug Branch, StarTech, Ariphaos, Scripted Trigger Undercoat
+building_mineral_purification_plant = {
+	position_priority = 2033000 # Sort Buildings
+
+	desc = {
+		trigger = { NOT = { is_shattered_ring_habitable = yes } }
+		text = building_mineral_purification_plant_desc
+	}
+
+	desc = {
+		trigger = { is_shattered_ring_habitable = yes }
+		text = building_scrap_processing_plant_desc
+	}
+
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = resource
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_mineral_purification_plant_tt
+    }
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
+	}
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+
+		NOT = { # Ringworlds don't have mines
+			uses_district_set = ring_world # undercoat: changed from planet class check
+		}
+		OR = { # Habitats only have mines if they're built on an appropriate deposit
+		is_habitat = no
+		has_planet_flag = mining_habitat
+		}
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
+	}
+
+	allow = {
+		str_mineral_purification_allow = yes
+	}
+
+	planet_modifier = {
+		planet_miners_minerals_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_miner_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_mine_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_scrap_miner_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_scrap_miner_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_robot_empire = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_mining_max = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_functional_architecture = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_mining_max = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		cost = {
+			trigger = {
+				owner = {
+					is_robot_empire = yes
+				}
+			}
+			minerals = 100
+			alloys = 100
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	prerequisites = {
+		tech_mineral_purification_1
+	}
+
+	upgrades = {
+		building_mineral_purification_hub
+	}
+
+	triggered_desc = {
+		trigger = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_mining_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_miner_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_mine_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_scrap_miner_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_scrap_miner_effect_desc
+	}
+	
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			str_force_mineral_purification = yes
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		minerals = 10
+		trigger = {
+			str_num_districts_mining = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		minerals = 20
+		trigger = {
+			str_num_districts_mining = { operator = > num = 4 }
+		}
+	}
+}
+
+## Mineral Purification Hub (Tier 2)
+# Merge between Bug Branch, Rise of Cosmic Industry, StarTech, Ariphaos, Scripted Trigger Undercoat
+building_mineral_purification_hub = {
+
+	desc = {
+		trigger = { NOT = { is_shattered_ring_habitable = yes } }
+		text = building_mineral_purification_hub_desc
+	}
+
+	desc = {
+		trigger = { is_shattered_ring_habitable = yes }
+		text = building_scrap_processing_hub_desc
+	}
+
+	base_buildtime = @db2_time
+	can_build = no
+	category = resource
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_mineral_purification_hub_tt
+    }
+
+	allow = {
+		has_upgraded_capital = yes
+		buildings_has_motes = yes # StarTech AI
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			buildings_no_motes = yes # StarTech AI
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
+	}
+
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_shattered_ring_habitable = yes }
+		}
+		modifier = {
+			planet_miners_minerals_produces_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_shattered_ring_habitable = yes
+		}
+		modifier = {
+			planet_miners_minerals_produces_add = 1
+			planet_miners_alloys_produces_add = 0.5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_ringworld_output_boost = yes
+		}
+		modifier = {
+			planet_miners_minerals_produces_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_miner_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_mine_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_scrap_miner_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_scrap_miner_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_robot_empire = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_mining_max = 4
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_functional_architecture = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_mining_max = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			minerals = @db2_minerals
+			volatile_motes = @db2_rare_cost
+		}
+		cost = {
+			trigger = {
+				owner = {
+					is_robot_empire = yes
+				}
+			}
+			minerals = 300
+			alloys = 150
+		}
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			minerals = 900
+			volatile_motes = 200
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			energy = 2
+			volatile_motes = @db2_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			energy = 5
+			volatile_motes = 3
+		}
+	}
+
+	prerequisites = {
+		tech_mineral_purification_2
+	}
+	
+	upgrades = {
+		building_roci_dimensional_fabricator_mod # Rise of Cosmic Industry
+	}
+
+	triggered_desc = {
+		trigger = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_mining_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_miner_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			NOT = { is_planet_class = pc_shattered_ring_habitable }
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_mine_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_scrap_miner_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			is_planet_class = pc_shattered_ring_habitable
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_scrap_miner_effect_desc
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		minerals = 6
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		minerals = 10
+		trigger = {
+			str_num_districts_mining = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		minerals = 20
+		trigger = {
+			str_num_districts_mining = { operator = > num = 4 }
+		}
+	}
+}
+
+## Energy Grid (Tier 1)
+# Merge between Sort Buildings, Bug Branch, StarTech, Ariphaos, Scripted Trigger Undercoat
+building_energy_grid = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = resource
+	position_priority = 2032000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_energy_grid_tt
+    }
+
+	destroy_trigger = {
+		OR = {
+			str_energy_grid_destroy = yes # StarTech AI
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
+	}
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+		OR = {
+			NOT = { is_habitat = yes }
+			AND = {
+				exists = owner
+				owner = { is_gestalt = yes }
+			}
+			has_planet_flag = energy_habitat
+		}
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
+	}
+
+	allow = {
+		str_energy_grid_allow = yes # StarTech AI
+	}
+
+	planet_modifier = {
+		planet_technician_energy_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_technician_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_technician_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_robot_empire = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_generator_max = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_functional_architecture = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_generator_max = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		cost = {
+			trigger = {
+				owner = {
+					is_robot_empire = yes
+				}
+			}
+			minerals = 100
+			alloys = 100
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	prerequisites = {
+		tech_power_hub_1
+	}
+
+	upgrades = {
+		building_energy_nexus
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_policy_flag = economic_stance_bugged_free_market }
+		}
+		modifier = {
+			trade_value_add = 5
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_technician_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_technician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_generator_effect_desc
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_ai = yes
+			}
+			str_force_energy_grid = yes
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		energy = 3
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		energy = 15
+		trigger = {
+			str_num_districts_generator = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		energy = 30
+		trigger = {
+			str_num_districts_generator = { operator = > num = 4 }
+		}
+	}
+}
+
+## Energy Nexus (Tier 2)
+# Merge between Bug Branch, Rise of Cosmic Industry, StarTech, Ariphaos, Scripted Trigger Undercoat
+building_energy_nexus = {
+	base_buildtime = @db2_time
+	can_build = no
+	category = resource
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_energy_nexus_tt
+    }
+
+	allow = {
+		has_upgraded_capital = yes
+		buildings_has_exotic_gases = yes # StarTech AI
+	}
+
+	destroy_trigger = {
+		OR = {
+			buildings_no_exotic_gases = yes # StarTech AI
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_technician_energy_produces_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_ringworld_output_boost = yes
+		}
+		modifier = {
+			planet_technician_energy_produces_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_technician_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_technician_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_robot_empire = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_generator_max = 4
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_functional_architecture = yes
+			}
+			# undercoat: replaced unnecessary planet class check
+			uses_district_set = standard
+		}
+		modifier = {
+			district_generator_max = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			minerals = @db2_minerals
+			exotic_gases = @db2_rare_cost
+		}
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			minerals = 900
+			exotic_gases = 200
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			energy = 2
+			exotic_gases = @db2_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			energy = 5
+			exotic_gases = 3
+		}
+	}
+	
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_policy_flag = economic_stance_bugged_free_market }
+		}
+		modifier = {
+			trade_value_add = 10
+		}
+	}
+
+	prerequisites = {
+		tech_power_hub_2
+	}
+
+	upgrades = {
+		building_roci_class_4_singularity_mod # Rise of Cosmic Industry
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_technician_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_technician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_generator_effect_desc
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		energy = 6
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		energy = 10
+		trigger = {
+			str_num_districts_generator = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		energy = 20
+		trigger = {
+			str_num_districts_generator = { operator = > num = 4 }
+		}
+	}
+}
+
+## Resource Silo (Tier 1)
+# Merge between Sort Buildings, Extra Buildings, Real Space: Planetary Stations, StarTech, Ariphaos
+building_resource_silo = {
+	base_buildtime = 180
+	position_priority = 4033000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_resource_silo_tt
+    }
+
+	category = resource
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		exists = owner
+		hidden_trigger = {
+			exists = owner
+			owner = { is_ai = no } # StarTech disables AI from building
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_clerk_add = 1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	country_modifier = {
+		country_resource_max_add = 5000
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_global_production_strategy # Change from Construction Templates by Extra Buildings
+			}
+		}
+		country_resource_max_add = 5000
+	}
+
+	prerequisites = {
+		"tech_basic_industry"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_clerk_effect_desc
+	}
+
+	upgrades = {
+		"eb_silo" # Extra Buildings
+	}
+}
+
+## Bio Reactor (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech, Ariphaos
+building_bio_reactor = {
+	base_buildtime = 240
+	position_priority = 4031000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_bio_reactor_tt
+    }
+
+	category = resource
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_machine_empire = yes
+				is_mechanical_empire = yes
+				is_lithoid_empire = yes
+			}
+			OR = {
+				owner = { is_ai = no }
+				owner = { country_uses_food = no }
+			}
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = { # StarTech AI
+		hidden_trigger = {
+			owner = {
+				OR = {
+					is_ai = no
+					AND = {
+						is_ai = yes
+						NOT = {
+							has_deficit = food
+							has_country_flag = buildings_new_reactor_building
+						}
+						resource_stockpile_compare = {
+							resource = food
+							value = 5000
+						}
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = { # StarTech AI
+		exists = owner
+		owner = {
+			is_ai = yes
+			has_deficit = food
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { NOT = { has_deficit = food } }
+			}
+			energy = 20
+		}
+		upkeep = {
+			food = 25
+		}
+	}
+
+	prerequisites = {
+		"tech_bio_reactor"
+	}
+
+	on_queued = { # StarTech AI Triggers
+		IF = {
+			limit = {
+				owner = { has_technology = tech_construction_templates }
+			}
+			owner = { set_timed_country_flag = { flag = buildings_new_reactor_building days = 270 } }
+		}
+		ELSE_IF = {
+			limit = {
+				owner = { has_technology = tech_assembly_pattern }
+			}
+			owner = { set_timed_country_flag = { flag = buildings_new_reactor_building days = 390 } }
+		}
+		ELSE = {
+			planet = {
+				owner = { set_timed_country_flag = { flag = buildings_new_reactor_building days = 510 } }
+			}
+		}
+	}
+}

@@ -140,7 +140,7 @@ l_english:
   building_toxic_bath_hive_desc: "Mutagenic Permutation Pools are the perfect expression of the heights that a hive mind can achieve when utterly focused on the goal of producing more bodies for its ever-expanding consciousness."
   building_toxic_bath_machine: "Hyper Lubrication Basin"
   building_toxic_bath_machine_tt: "§MAssembly§! - §BTier 1§! - §EBath§!"
-  building_toxic_bath_machine_desc: "Hyper Lubrication Basins are the most logical answer to emerging problems of friction, over-heating, and static electricity during the production process of new units. "
+  building_toxic_bath_machine_desc: "Hyper Lubrication Basins are the most logical answer to emerging problems of friction, over-heating, and static electricity during the production process of new units."
 
 ##################
 # Government
@@ -174,10 +174,10 @@ l_english:
   building_psi_corps_tt: "§MGovernment§! - §BTier 1§! - §EPsionic§!"
   building_psi_corps_desc: "Psi-gifted individuals are brought from all across to our empire to a place where they are able to hone their abilities.\n\n§YThe Psi Corps is your friend. Trust the Corps.§!"
   building_embassy: "Embassy Complex"
-  building_embassy_tt: "§MGovernment§! - §BTier 1§! - §EEmbassy§!"
+  building_embassy_tt: "§MEmpire§! - §BTier 1§! - §EEmbassy§!"
   building_embassy_desc: "This building forms the heart of the Empire's diplomatic efforts.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
   building_grand_embassy: "Grand Embassy Complex"
-  building_grand_embassy_tt: "§MGovernment§! - §BTier 2§! - §EEmbassy§!"
+  building_grand_embassy_tt: "§MEmpire§! - §BTier 2§! - §EEmbassy§!"
   building_grand_embassy_desc: "The complex is intended to awe the viewer, rendering them more compliant in negotiations.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
   building_gaiaseeders_1: "$building_gaiaseeders$ - Phase 1"
   building_gaiaseeders_1_tt: "§MUnique§! - §BTier 1§! - §EGaia Seeder§!"
@@ -190,3 +190,45 @@ l_english:
   building_gaiaseeders_3_desc: "$building_gaiaseeders_all_desc$\n\nThis phase emphasizes habitability."
   building_gaiaseeders_4: "$building_gaiaseeders$ - Final Phase"
   building_gaiaseeders_4_tt: "§MUnique§! - §BTier 4§! - §EGaia Seeder§!"
+
+##################
+# Resource
+##################
+
+  ### Food
+  building_hydroponics_farm: "Hydroponics Farms"
+  building_hydroponics_farm_tt: "§MFood§! - §BTier 1§! - §EBasic§!"
+  building_hydroponics_farm_desc: "Hydroponics Farms produce nutrient-rich vegetable matter tailored for consumption by local Pops."
+  building_food_processing_facility: "Food Processing Facilities"
+  building_food_processing_facility_tt: "§MFood§! - §BTier 1§! - §EProductivity§!"
+  building_food_processing_facility_desc: "Food that is processed at these facilities has its nutritional value greatly increased."
+  building_food_processing_center: "Food Processing Centers"
+  building_food_processing_center_tt: "§MFood§! - §BTier 2§! - §EProductivity§!"
+  building_food_processing_center_desc: "Streamlined facilities where large amounts of food can be processed."
+  building_baol_organic_plant: "$tech_secrets_baol$"
+  building_baol_organic_plant_tt: "§MFood§! - §BTier 1§! - §EUnique§!"
+  building_baol_organic_plant_desc: "$tech_secrets_baol_desc$"
+
+  ### Minerals
+  building_mineral_purification_plant: "Mineral Purification Plants"
+  building_mineral_purification_plant_tt: "§MMinerals§! - §BTier 1§! - §EProductivity§!"
+  building_mineral_purification_plant_desc: "Minerals that have passed through these purifiers are of the highest quality."
+  building_mineral_purification_hub: "Mineral Purification Hubs"
+  building_mineral_purification_hub_tt: "§MMinerals§! - §BTier 2§! - §EProductivity§!"
+  building_mineral_purification_hub_desc: "Massive hubs where minerals are received and then shuttled to arrays of purifiers."
+
+  ### Energy
+  building_energy_grid: "Energy Grid"
+  building_energy_grid_tt: "§MEnergy§! - §BTier 1§! - §EProductivity§!"
+  building_energy_grid_desc: "A carefully calibrated grid network maximizes the output of power generators."
+  building_energy_nexus: "Energy Nexus"
+  building_energy_nexus_tt: "§MEnergy§! - §BTier 2§! - §EProductivity§!"
+  building_energy_nexus_desc: "This colossal facility centralizes all energy grids on the planet, improving their efficiency."
+  building_bio_reactor: "Bio-Reactor"
+  building_bio_reactor_tt: "§MEnergy§! - §BTier 1§! - §EConverter§!"
+  building_bio_reactor_desc: "A facility where organic matter is converted into energy at a highly efficient rate."
+
+  ### Storage
+  building_resource_silo: "Resource Silos"
+  building_resource_silo_tt: "§MStorage§! - §BTier 1§! - §EBasic§!"
+  building_resource_silo_desc: "Massive resource silos and storage facilities where large quantities of resources can be safely kept."
