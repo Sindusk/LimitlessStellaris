@@ -1,0 +1,105 @@
+﻿##########################################################################
+# Limitless Stellaris - English Localisation (Replacements)
+##########################################################################
+l_english:
+  # Advanced Policies
+  AP_trial_by_fire: "Begin the Trial by Fire" # Fix capitalization
+  planet_trial_by_fire: "Trial by Fire" # Fix capitalization
+ 
+  # StarTech Generic
+  gal_com_startech_generic: "StarTech"
+  gal_com_startech_economic_state: "Economic Power"
+  gal_com_startech_fleet_state: "Fleet Power"
+  gal_com_startech_technology_state: "Technology Power"
+  gal_com_startech_personality: "Leader Personality"
+
+  # Plentiful Perks and Solar Storm clash on this perk. The Solar Storm one is being used, but the localization of Plentiful Perks takes priority.
+  # This section here is a copy of the Solar Storm ascension perk text, so it replaces the Plentiful Perks version.
+  ap_hive_mind_ascension: "§HAscension of Will§!"
+  ap_hive_mind_ascension_desc: "The mind thinks, dreams and commands across worlds and uncountable drones. The disunity of individual minds is dominated by the will of the hive."
+  ap_hive_mind_ascension_modifier_desc: "§HOrganic Domination:§! grants the §Y$bombardment_hive_seeding$§! bombardment stance, converts pops on bombarbed worlds into Infested Armies, which attack the planet.\n§YIf we have the Hive Worlds Ascension Perk§!, the planet will be converted into a hive world once all planetside pops are dead.\n\n§HDominated Minds:§! Enslaved pops produce an extra 4 £physics£ £society£ £engineering£ §YResearch Points§!. §YDevouring Swarms§! get this bonus and an additional +1 £mod_planet_pop_assembly_mult£ §Y$MOD_PLANET_POP_ASSEMBLY_ORGANIC_ADD$§! per §YPurged§! pop."
+
+  # General Mod Description Improvements
+  mod_country_resource_max_energy_add: "Maximum £energy£ §Y$energy$§! Capacity"
+  mod_country_resource_max_minerals_add: "Maximum £minerals£ §Y$minerals$§! Capacity"
+  mod_country_resource_max_food_add: "Maximum £food£ §Y$food$§! Capacity"
+  mod_country_resource_max_alloys_add: "Max £alloys£ §Y$alloy$§! Capacity"
+
+  # Planetary Wonders - Building Name Colors Update
+  pw_building_space_elevator: "$pw_space_elevator$"
+  pw_building_galactic_model: "$pw_galactic_model$"
+  pw_building_aligned_galactic_model: "$pw_aligned_galactic_model$"
+  pw_building_polyhedron: "§MPolyhedron§!"
+  pw_building_panopticon: "$pw_panopticon$"
+  pw_building_guardian_angel: "$pw_guardian_angel$"
+  pw_building_stellar_sentinel: "$pw_stellar_sentinel$"
+  pw_building_transplanetary_logistics_network: "$pw_transplanetary_logistics_network$"
+  pw_building_transhabitat_logistics_network: "§MTranshabitat Logistics Network§!"
+  pw_building_forbidden_city: "$pw_forbidden_city$"
+  pw_building_festival_plaza: "$pw_festival_plaza$"
+  pw_building_martial_avenue: "$pw_martial_avenue$"
+  pw_building_particle_supercollider: "$pw_particle_supercollider$"
+  pw_building_interdimensional_collider: "$pw_interdimensional_collider$"
+  pw_building_domed_city: "$pw_domed_city$"
+  pw_building_secluded_sector: "$pw_secluded_sector$"
+  pw_building_psionic_observatory: "$pw_psionic_observatory$"
+  pw_building_abyssal_crater_test_site: "$pw_abyssal_crater_test_site$"
+  pw_building_abyssal_crater_test_site_habitat: "$pw_abyssal_crater_test_site_habitat$"
+  pw_building_metal_vivarium: "$pw_metal_vivarium$"
+  pw_building_erebus_project: "$pw_erebus_project$"
+  pw_building_erebus_fracking_plant: "$pw_erebus_fracking_plant$"
+  pw_building_helios_tower: "$pw_helios_tower$"
+  pw_building_helios_translucent_obelisk: "$pw_helios_translucent_obelisk$"
+  pw_building_demetrius_fields: "$pw_demetrius_fields$"
+  pw_building_demetrius_chemical_garden: "$pw_demetrius_chemical_garden$"
+  pw_building_mantle_crucible: "$pw_mantle_crucible$"
+  pw_building_titan_forge: "$pw_titan_forge$"
+  pw_building_industrial_hearth: "$pw_industrial_hearth$"
+  pw_building_pavilion_of_wonders: "$pw_pavilion_of_wonders$"
+  pw_building_fair_of_worlds: "$pw_fair_of_worlds$"
+  pw_building_museum_of_the_grotesque: "$pw_museum_of_the_grotesque$"
+  pw_building_holy_reliquary: "$pw_holy_reliquary$"
+  pw_building_grand_archive: "$pw_grand_archive$"
+  pw_building_nostalgia_paradise: "$pw_nostalgia_paradise$"
+  pw_building_unhallowed_necropolis: "$pw_unhallowed_necropolis$"
+  pw_building_blossoming_preserve: "$pw_blossoming_preserve$"
+  pw_building_department_of_xenoeconomics: "$pw_department_of_xenoeconomics$"
+  pw_building_enigma_engine: "$pw_enigma_engine$"
+  pw_building_solipsist_debate_hall: "$pw_solipsist_debate_hall$"
+
+  # Simple Traditions - Industry
+  tr_industry_finish_desc: "§HUnlocks Planetary Decision:§! Designate as Mining World\n§HUnlocks Planetary Decision:§! Designate as Energy World\n§HUnlocks Planetary Decision:§! Designate as Food World\n§HUnlocks Planetary Decision:§! Designate as Production World\n§HUnlocks Planetary Decision:§! Designate as Foundry World\n§HUnlocks Planetary Decision:§! Designate as Unity World\n§HUnlocks Planetary Decision:§! Designate as Trade World\nAscension Perks Unlocked: §G+1§!"
+  decision_simple_planet_unity: "Designate as Unity World"
+  decision_simple_planet_unity_desc: ""
+  decision_simple_planet_unity_gestalt: "Designate as Unity World"
+  decision_simple_planet_unity_gestalt_desc: ""
+  simple_planet_unity: "Unity Specialization"
+  simple_planet_unity_desc: "We have designated this world as a unity world."
+  simple_planet_unity_gestalt: "Unity Specialization"
+  simple_planet_unity_gestalt_desc: "We have designated this world as a unity world."
+  decision_simple_planet_trade: "Designate as Trade World"
+  decision_simple_planet_trade_desc: ""
+  decision_simple_planet_trade_gestalt: "Designate as Trade World"
+  decision_simple_planet_trade_gestalt_desc: ""
+  simple_planet_trade: "Trade Specialization"
+  simple_planet_trade_desc: "We have designated this world as a trade world."
+  simple_planet_trade_gestalt: "Trade Specialization"
+  simple_planet_trade_gestalt_desc: "We have designated this world as a trade world."
+
+  # Tidy Traditions - Artifacts Localization
+  tradition_tt_artifacts: "Artifacts"
+  tradition_tt_artifacts_desc: "The materials and technologies left by ancient civilizations are very different from our existing ones. Their fields of expertise, research directions, different cultures, and data they possess can all be combined with our existing technologies. and use it for us."
+  tr_tt_artifacts_adopt: "Artifacts Tradition"
+  tr_tt_artifacts_finish: "Artifacts Tradition Finished"
+  tr_tt_artifacts_finish_desc: "§HUnlock Rare Artifacts Action:§!$artifact_complete_analysis$§L (no cooldown, fixed 100 rare artifacts cost, random £unity£ cohesion, £influence£ influence or £physics_research£ £society_research£ £engineering_research £ Research Points)§!"
+  tr_tt_artifacts_1: "Artifacts Research"
+  tr_tt_artifacts_1_delayed: "The study of ancient artifacts can facilitate our reverse interpretation of ancient technology."
+  tr_tt_artifacts_2: "Ancient Architecture Research"
+  tr_tt_artifacts_2_delayed: "The study of ancient architecture has improved the efficiency of our groundwork."
+  tr_tt_artifacts_3: "Ancient Weapons Research"
+  tr_tt_artifacts_3_delayed: "Research on ancient weapons has found that their firing methods and frequencies are quite different from our existing weapons. Therefore, through technological fusion, the firing efficiency of all our weapons has been theoretically improved."
+  tr_tt_artifacts_4: "Ancient Base Research"
+  tr_tt_artifacts_4_delayed: "The study of ancient civilizations' space defense structures and star bases has increased the efficiency of our space construction."
+  tr_tt_artifacts_5: "Artifacts Research"
+  tr_tt_artifacts_5_delayed: "Some special and unique artifacts have huge differences in appearance and use from other common artifacts, and they can bring us greater benefits, so artifacts are also the focus of our research."
+  tr_tt_artifacts_5_desc:0 "$relics$£unity£$unity$ cost: §G-25%§!\nAn additional §Y50§!£unity£ cohesion artifact per §Y$relics$§!"

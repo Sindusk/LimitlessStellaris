@@ -1,0 +1,21 @@
+##########################################################################
+# Limitless Stellaris - AI Performance Fixes Events
+##########################################################################
+namespace = fix_ai_actions
+
+country_event = {
+	id = fix_ai_actions.0
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+	}
+
+	immediate = {
+		country_event = {
+		#	id = fix_ai_actions.2 # This removes the settings menu.
+		}
+	}
+}

@@ -3,7 +3,7 @@ triggered_planet_modifier = {
 	potential = {
 		exists = owner
 		owner = {
-			uses_regular_empire_jobs = yes
+			is_gestalt = no
 			is_megacorp = no
 		}
 	}
