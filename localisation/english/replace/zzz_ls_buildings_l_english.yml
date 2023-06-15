@@ -339,5 +339,77 @@ l_english:
 
   ### Unique
   building_galactic_stock_exchange: "§SGalactic Stock Exchange§!"
-  building_galactic_stock_exchange_tt: "§MTrade§! - §BTier 1§! - §EUnique§!"
+  building_galactic_stock_exchange_tt: "§MTrade§! - §BTier 2§! - §EUnique§!"
   building_galactic_stock_exchange_desc: "By engaging in free trade of goods and services we allow for a more specialized economy, where an individual can excel in a narrow field and trade for their needs."
+
+##################
+# Amenities
+##################
+
+  ### Standard Housing
+  building_luxury_residence: "Luxury Residences"
+  building_luxury_residence_tt: "§MHousing§! - §BTier 1§! - §EBasic§!"
+  building_luxury_residence_desc: "Intricately designed residential towers with luxurious apartments. Advanced zero-g technology is the only thing keeping the more outlandish terrace designs from collapsing."
+  building_paradise_dome: "Paradise Dome"
+  building_paradise_dome_tt: "§MHousing§! - §BTier 2§! - §EBasic§!"
+  building_paradise_dome_desc: "A fully enclosed habitation dome with a self-contained ecosystem, a veritable private paradise for those rich or fortunate enough to live there."
+  building_communal_housing: "Communal Housing"
+  building_communal_housing_tt: "§MHousing§! - §BTier 1§! - §EBasic§!"
+  building_communal_housing_desc: "A block of uniform housing, equal in every way."
+  building_communal_housing_large: "Utopian Communal Housing"
+  building_communal_housing_large_tt: "§MHousing§! - §BTier 2§! - §EBasic§!"
+  building_communal_housing_large_desc: "An incredible feat of engineering that combines efficient, practical residences with carefully maintained idyllic landscapes."
+
+  ## Machine Storage
+  building_drone_storage: "Drone Storage"
+  building_drone_storage_tt: "§MHousing§! - §BTier 1§! - §EBasic§!"
+  building_drone_storage_desc: "A storage area for Drones to undergo maintenance."
+  building_drone_megastorage: "Upgraded Drone Storage"
+  building_drone_megastorage_tt: "§MHousing§! - §BTier 2§! - §EBasic§!"
+  building_drone_megastorage_desc: "With the latest upgrades, while undergoing maintenance a portion of Drones' power-generation can be re-directed to the grid."
+
+  ### Hive Storage
+  building_hive_warren: "Hive Warren"
+  building_hive_warren_tt: "§MHousing§! - §BTier 1§! - §EBasic§!"
+  building_hive_warren_desc: "A vast warren offers shelter for many Drones to rest."
+  building_expanded_warren: "Expanded Warren"
+  building_expanded_warren_tt: "§MHousing§! - §BTier 2§! - §EBasic§!"
+  building_expanded_warren_desc: "By expanding the warrens, still more Drone can shelter within."
+
+  ### Entertainment
+  building_holo_theatres: "Holo-Theatres"
+  building_holo_theatres_tt: "§MAmenities§! - §BTier 1§! - §EBasic§!"
+  building_holo_theatres_desc: "The latest in holographic entertainment. Entire worlds built out of photons and energy fields."
+  building_hyper_entertainment_forum: "Hyper-Entertainment Forums"
+  building_hyper_entertainment_forum_tt: "§MAmenities§! - §BTier 2§! - §EBasic§!"
+  building_hyper_entertainment_forum_desc: "These massive entertainment complexes is where dreams come true. Shopping malls, restaurants, amusement parks, virtual arcades, and more. You dream it - we are it!"
+ 
+  ### Pop Growth
+  building_clinic: "§SGene Clinics§!"
+  building_clinic_tt: "§MPop Growth§! - §BTier 1§! - §EBiological§!"
+  building_clinic_desc: "Gene Clinics can offer advanced medical treatments, which statistically lead to a significantly healthier and longer-living population."
+  building_hospital: "§SCyto-Revitalization Centers§!"
+  building_hospital_tt: "§MPop Growth§! - §BTier 2§! - §EBiological§!"
+  building_hospital_desc: "Cyto-Revitalization Centers can offer advanced medical treatments to a large population. Treatments on a cellular level lead to a significantly healthier and longer-living population."
+
+  ### Gestalt Maintenance
+  building_maintenance_depot: "Maintenance Depots"
+  building_maintenance_depot_tt: "§MMaintenance§! - §BTier 1§! - §EGestalt§!"
+  building_maintenance_depot_desc: "Workshops where maintenance of machinery and structures is planned, managed, and executed."
+ 
+  ### Slave Housing
+  building_slave_huts: "Slave Huts"
+  building_slave_huts_tt: "§MHousing§! - §BTier 1§! - §ESlaves§!"
+  building_slave_huts_desc: "Crude dwellings for the planet's enslaved population."
+  building_overseer_homes: "Overseer Residences"
+  building_overseer_homes_tt: "§MHousing§! - §BTier 1§! - §ESlaves§!"
+  building_overseer_homes_desc: "These homes are reserved for the relatively privileged slave overseers."
+
+  ### Unique
+  building_ranger_lodge: "§SRanger Lodge§!"
+  building_ranger_lodge_tt: "§MAmenities§! - §BTier 1§! - §EUnique§!"
+  building_ranger_lodge_desc: "The first step to live more in tune with nature is to ensure that nature is still around. Making sure none of the colonists impact the natural beauty is essential. The world must remain pure."
+  building_toxic_bath: "§SMutagenic Spa§!"
+  building_toxic_bath_tt: "§MAmenities§! - §BTier 1§! - §EUnique§!"
+  building_toxic_bath_desc: "Though Mutagenic Spas are highly advanced therapeutic centers with well-documented health benefits, to some, the methods employed remain disgusting. Each drop of bath liquid is more mutagenic than most banned substances in the galaxy."
+ 

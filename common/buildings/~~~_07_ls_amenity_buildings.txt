@@ -1,0 +1,1947 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Amenities
+##########################################################################
+
+##################################################
+## Amenities - Standard Housing
+##################################################
+
+## Luxury Residences (Tier 1)
+# Merge between Sort Buildings, EUTAB, Venture Politics, Planetary Diversity: Planetary Habitats, Real Space: Planetary Stations, StarTech
+building_luxury_residence = {
+	base_buildtime = @db1_time
+	position_priority = 4071000 # Sort Buildings
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_luxury_residence_tt
+    }
+
+	potential = {
+		OR = {
+			NOR = {
+				is_planet_class = pc_habitat
+				is_pd_habitat = yes # Planetary Diversity: Planetary Habitats
+			}
+			has_planet_flag = advanced_habitat
+		}
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+		exists = owner
+		owner = {
+			is_gestalt = no
+			NOR = {
+				has_valid_civic = civic_shared_burden
+				has_valid_civic = civic_employee_ownership # Venture Politics
+			}
+		}
+		NOT = { has_building = building_low_tech_capital }
+	}
+
+	allow = {
+		hidden_trigger = { # StarTech AI
+			OR = {
+				owner = { is_ai = no }
+				AND = {
+					NOR = {
+						has_building = building_luxury_residence
+						has_building = building_research_lab_1
+					}
+					is_capital = no
+					num_pops >= 13
+					free_jobs > 2
+					OR = {
+						AND = {
+							free_amenities < -4
+							free_amenities > -9
+							OR = {
+								free_district_slots < 3
+								num_pops < 16
+							}
+						}
+						AND = {
+							free_building_slots > 1
+							free_amenities < -2
+							free_amenities > -6
+							free_district_slots = 0
+							has_building = building_holo_theatres
+						}
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			AND = {
+				free_building_slots = 0
+				free_jobs < -2 # StarTech AI
+				free_housing > 10
+				free_district_slots = 0 # StarTech AI
+				owner = {
+					is_ai = yes
+				}
+			}
+			AND = { # StarTech AI
+				owner = { lategame = no }
+				num_buildings = {
+					type = building_research_lab_1
+					value > 1	
+				}
+				free_jobs < 1
+				free_amenities > 6
+				free_building_slots = 0
+				owner = {
+					is_ai = yes
+				}
+			}
+			owner = { is_gestalt = yes }
+			owner = { 
+				OR = {
+					has_valid_civic = civic_shared_burden
+					has_valid_civic = civic_employee_ownership # Venture Politics
+				}
+			}
+			has_modifier = slave_colony
+		}
+	}
+
+	convert_to = {
+		building_drone_storage
+		building_hive_warren
+		building_communal_housing
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3
+		planet_amenities_add = 5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # EUTAB
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_eutab_habitation_studies
+			}
+		}
+		modifier = {
+			planet_housing_add = 3
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	upgrades = {
+		"building_paradise_dome"
+	}
+}
+
+## Paradise Dome (Tier 2)
+# Merge between EUTAB, Venture Politics, Bug Branch, Planetary Diversity: Planetary Habitats, Real Space: Planetary Stations, StarTech
+building_paradise_dome = {
+	base_buildtime = @db2_time
+	can_build = no
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_paradise_dome_tt
+    }
+
+	potential = {
+		has_building = building_luxury_residence
+		OR = {
+			NOR = {
+				is_planet_class = pc_habitat
+				is_pd_habitat = yes # Planetary Diversity: Planetary Habitats
+				has_planet_flag = planetary_station # Real Space: Planetary Habitats
+			}
+			AND = {
+				has_planet_flag = advanced_habitat
+				exists = owner
+				owner = {
+					has_ascension_perk = ap_voidborn
+				}
+			}
+			has_modifier = resort_colony_pd_hab # Planetary Diversity: Planetary Habitats
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+		owner = { is_ai = no } # StarTech AI
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = yes }
+			owner = { 
+				OR = {
+					has_valid_civic = civic_shared_burden
+					has_valid_civic = civic_employee_ownership # Venture Politics
+				}
+			}
+			has_modifier = slave_colony
+			owner = { is_ai = yes } # StarTech AI
+			buildings_no_crystals = yes # StarTech AI (redundant)
+		}
+	}
+
+	convert_to = {
+		building_organic_paradise
+		building_drone_megastorage
+		building_expanded_warren
+		building_communal_housing_large
+	}
+
+	planet_modifier = {
+		planet_housing_add = 6
+		planet_amenities_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.1
+			planet_housing_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = { # EUTAB
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_eutab_habitation_studies
+			}
+		}
+		modifier = {
+			planet_housing_add = 3
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = 3
+			rare_crystals = @db2_rare_upkeep
+		}
+	}
+
+	upgrades = {
+		building_eutab_gaia_district # EUTAB
+		#building_avb_residence_3 # Additional Vanilla Buildings
+	}
+
+	prerequisites = {
+		"tech_paradise_dome"
+	}
+
+	show_tech_unlock_if = {
+		owner = {
+			is_gestalt = no
+			NOR = {
+				has_valid_civic = civic_shared_burden
+				has_valid_civic = civic_employee_ownership
+			}
+		}
+	}
+}
+
+## Communal Housing (Tier 1)
+# Merge between Sort Buildings, Venture Politics, Planetary Diversity: Planetary Habitats, Real Space: Planetary Stations, StarTech, Ariphaos
+building_communal_housing = {
+	base_buildtime = @db1_time
+	icon = building_residence
+	position_priority = 4071000 # Sort Buildings
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_communal_housing_tt
+    }
+
+	potential = {
+		OR = {
+			NOT = { 
+				OR = {
+					is_planet_class = pc_habitat
+					is_pd_habitat = yes # PD: Planetary Habitats
+				}
+			}
+			has_planet_flag = advanced_habitat
+			has_modifier = resort_colony_pd_hab # PD: Planetary Habitats
+		}
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+		exists = owner
+		owner = {
+			is_gestalt = no
+			OR = {
+				has_valid_civic = civic_shared_burden
+				has_valid_civic = civic_employee_ownership # Venture Politics
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { # StarTech AI
+			OR = {
+				owner = { is_ai = no }
+				AND = {
+					NOR = {
+						has_building = building_communal_housing
+						has_building = building_research_lab_1
+					}
+					is_capital = no
+					num_pops >= 13
+					free_jobs > 2
+					OR = {
+						AND = {
+							free_amenities < -4
+							free_amenities > -9
+							OR = {
+								free_district_slots < 3
+								num_pops < 16
+							}
+						}
+						AND = {
+							free_building_slots > 1
+							free_amenities < -2
+							free_amenities > -6
+							free_district_slots = 0
+							has_building = building_holo_theatres
+						}
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			AND = {
+				owner = { is_ai = yes }
+				free_building_slots = 0
+				free_jobs < -2 # StarTech AI
+				free_housing > 10
+				free_district_slots = 0 # StarTech AI
+				free_amenities > 2 # StarTech AI
+				
+			}
+			AND = { # StarTech AI
+				owner = {
+					is_ai = yes
+					lategame = no
+				}
+				num_buildings = {
+					type = building_research_lab_1
+					value > 1
+				}
+				free_jobs < 1
+				free_amenities > 6
+				free_building_slots = 0
+
+			}
+			AND = {
+				is_planet_class = pc_habitat
+				NOT = { has_planet_flag = advanced_habitat }
+			}
+			has_modifier = slave_colony
+			NOT = {
+				owner = {
+					is_gestalt = no
+					OR = {
+						has_valid_civic = civic_shared_burden
+						has_valid_civic = civic_employee_ownership # Venture Politics
+					}
+				}
+			}
+		}
+	}
+
+	convert_to = {
+		building_drone_storage
+		building_hive_warren
+		building_luxury_residence
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		planet_amenities_add = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	upgrades = {
+		"building_communal_housing_large"
+	}
+}
+
+## Utopian Communal Housing (Tier 2)
+# Merge between Venture Politics, Planetary Diversity: Planetary Habitats, Real Space: Planetary Stations, StarTech
+building_communal_housing_large = {
+	base_buildtime = @db2_time
+	can_build = no
+	icon = building_paradise_dome
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_communal_housing_large_tt
+    }
+
+	potential = {
+		has_building = building_communal_housing
+		owner = {
+			is_regular_empire = yes
+			has_valid_civic = civic_shared_burden
+		}
+		OR = {
+			NOT = { 
+				OR = {
+					is_planet_class = pc_habitat
+					is_pd_habitat = yes # PD: Planetary Habitats
+				}
+			}
+			NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+			AND = {
+				has_planet_flag = advanced_habitat
+				exists = owner
+				owner = {
+					has_ascension_perk = ap_voidborn
+				}
+			}
+			has_modifier = resort_colony_pd_hab # PD: Planetary Habitats
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+		hidden_trigger = { # StarTech AI
+			owner = { is_ai = no }
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_ai = yes } # StarTech AI
+			has_modifier = slave_colony
+			NOT = {
+				owner = {
+					is_regular_empire = yes
+					has_valid_civic = civic_shared_burden
+				}
+			}
+		}
+	}
+
+	show_tech_unlock_if = {
+		owner = {
+			is_regular_empire = yes
+			OR = {
+				has_valid_civic = civic_shared_burden
+				has_valid_civic = civic_employee_ownership # Venture Politics
+			}
+		}
+	}
+
+	convert_to = {
+		building_drone_megastorage
+		building_expanded_warren
+		building_paradise_dome
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10
+		planet_amenities_add = 6
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = 3
+			rare_crystals = @db2_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_paradise_dome"
+	}
+}
+
+##################################################
+## Amenities - Machine Housing
+##################################################
+
+## Drone Storage (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+building_drone_storage = {
+	base_buildtime = @db1_time
+	position_priority = 4071000 # Sort Buildings
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_drone_storage_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			AND = {
+				free_building_slots = 0
+				owner = {
+					is_ai = yes
+				}
+			}
+			NOR = {
+				owner = { is_machine_empire = yes }
+			}
+		}
+	}
+
+	allow = {
+		buildings_simple_allow = yes # StarTech AI
+		hidden_trigger = { # StarTech AI
+			owner = { is_ai = no }
+		}
+	}
+
+	convert_to = {
+		building_luxury_residence
+		building_communal_housing
+		building_hive_warren
+	}
+
+	planet_modifier = {
+		planet_housing_add = 4
+		planet_amenities_add = 3
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	upgrades = {
+		"building_drone_megastorage"
+	}
+}
+
+## Upgraded Drone Storage (Tier 2)
+# Using StarTech version.
+building_drone_megastorage = {
+	base_buildtime = @db2_time
+	can_build = no
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_drone_megastorage_tt
+    }
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+	potential = {
+		has_building = building_drone_storage
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_machine_empire = no }
+			buildings_no_crystals = yes # StarTech AI
+		}
+	}
+
+	convert_to = {
+		building_paradise_dome
+		building_expanded_warren
+		building_communal_housing_large
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+		planet_amenities_add = 6
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = 3
+			rare_crystals = @db2_rare_upkeep
+		}
+	}
+
+
+	prerequisites = {
+		"tech_micro_replicators"
+	}
+}
+
+##################################################
+## Amenities - Hive Housing
+##################################################
+
+## Hive Warren (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+building_hive_warren = {
+	base_buildtime = @db1_time
+	position_priority = 4071000 # Sort Buildings
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_hive_warren_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		buildings_simple_allow = yes # StarTech AI
+		hidden_trigger = { # StarTech AI
+			OR = {
+				owner = { is_ai = no }
+				AND = {
+					free_jobs > 0
+					free_amenities < -2
+					free_amenities > -8
+					OR = {
+						#free_amenities > -10 PM: -11 is LESS than -8, so this will never be true due to earlier check for > -8
+						AND = {
+							num_pops > 13
+							free_housing < 15
+						}
+						AND = {
+							num_pops > 20
+							free_housing < 25
+						}
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = { # StarTech AI
+			AND = {
+				planet = {
+					free_building_slots = 0
+					free_jobs < -3
+					free_housing > 6
+					free_district_slots = 0
+					owner = {
+						is_ai = yes
+					}
+				}
+			}
+			NOR = {
+				owner = { is_hive_empire = yes }
+			}
+		}
+	}
+
+	convert_to = {
+		building_luxury_residence
+		building_drone_storage
+		building_communal_housing
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3
+		planet_amenities_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	upgrades = {
+		"building_expanded_warren"
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		alloys = 10
+		energy = 10
+		trigger = {
+			num_pops > 15
+			free_amenities < -8
+			free_housing < 20
+			free_jobs > 1
+			free_building_slots > 0
+			or = {
+				has_planet_flag = str_good_habitability
+				has_planet_flag = str_acceptable_habitability
+			}
+			owner = {
+				has_country_flag = str_has_room_to_grow
+				resource_income_compare = {
+					resource = alloys
+					value > 20
+				}
+			}
+		}
+	}
+}
+
+## Expanded Warren (Tier 2)
+# Using StarTech version. Slightly altered the destroy trigger.
+building_expanded_warren = {
+	base_buildtime = @db2_time
+	can_build = no
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_expanded_warren_tt
+    }
+
+	potential = {
+		has_building = building_hive_warren
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+		hidden_trigger = { # StarTech AI disables construction
+			owner = { is_ai = no }
+		}
+	}
+
+	show_tech_unlock_if = {
+		owner = { is_hive_empire = yes }
+	}
+	
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_hive_empire = no }
+			buildings_no_crystals = yes # StarTech AI
+		}
+	}
+
+	convert_to = {
+		building_paradise_dome
+		building_drone_megastorage
+		building_communal_housing_large
+	}
+
+	planet_modifier = {
+		planet_housing_add = 6
+		planet_amenities_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = 3
+			rare_crystals = @db2_rare_upkeep
+		}
+	}
+
+
+	prerequisites = {
+		"tech_housing_2"
+	}
+}
+
+##################################################
+## Amenities - Entertainment
+##################################################
+
+## Holo-Theatres (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+building_holo_theatres = {
+	base_buildtime = @db1_time
+	position_priority = 4072000 # Sort Buildings
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_holo_theatres_tt
+    }
+
+	potential = {
+		NOT = {	has_modifier = slave_colony	}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+		owner = {
+			is_regular_empire = yes
+			NOT = { has_valid_civic = civic_dystopian_society }
+		}
+		OR = {
+			owner = {
+				NOT = { is_ai = yes }
+			}
+			AND = {
+				NOT = { has_available_jobs = entertainer }
+				NOT = { has_forbidden_jobs = entertainer }
+			}
+		}
+		NOT = { has_building = building_low_tech_capital }
+	}
+
+	allow = {
+		hidden_trigger = { # StarTech AI
+			OR = {
+				owner = { is_ai = no }
+				AND = {
+					free_amenities < -5
+					num_pops > 11
+				}
+				AND = {
+					free_amenities < -4
+					OR = {
+						has_building = building_luxury_residence
+						has_building = building_communal_housing
+					}
+				}
+				AND = {
+					owner = { has_origin = origin_default }
+					is_capital = yes
+					NOT = { has_building = building_holo_theatres }
+					free_amenities < 2
+					OR = {
+						years_passed > 15
+						free_amenities < -2
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { has_valid_civic = civic_dystopian_society }
+			has_modifier = slave_colony
+			AND = { # StarTech AI
+				owner = { is_ai = yes }
+				free_amenities > 30
+				years_passed > 25
+			}
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_warrior_culture }
+			}
+		}
+		modifier = {
+			job_entertainer_add = @b1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_warrior_culture
+			}
+		}
+		modifier = {
+			job_duelist_add = @b1_jobs
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+
+	upgrades = {
+		"building_hyper_entertainment_forum"
+	}
+
+	prerequisites = {
+		"tech_holo_entertainment"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_warrior_culture }
+			}
+		}
+		text = job_entertainer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_warrior_culture
+			}
+		}
+		text = job_duelist_effect_desc
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			str_force_holotheatre = yes
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 3
+			job_starnet_spice_melange_antifarmer_add = -3
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		alloys = 10
+		trigger = { free_amenities < -11 }
+	}
+	ai_resource_production = {
+		energy = 10
+		physics_research = 15
+		trigger = { free_amenities < -11 }
+	}
+}
+
+## Hyper-Entertainment Forums (Tier 2)
+# Merge between StarTech, Ariphaos
+building_hyper_entertainment_forum = {
+	base_buildtime = @db2_time
+	can_build = no
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_hyper_entertainment_forum_tt
+    }
+
+	potential = {
+		has_building = building_holo_theatres
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+		owner = {
+			NOT = { has_valid_civic = civic_dystopian_society }
+		}
+		OR = {
+			owner = {
+				NOT = { is_ai = yes }
+			}
+			AND = {
+				NOT = { has_available_jobs = entertainer }
+				NOT = { has_forbidden_jobs = entertainer }
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { has_valid_civic = civic_dystopian_society }
+		OR = {
+			owner = { is_gestalt = yes }
+			has_modifier = slave_colony
+			buildings_no_exotic_gases = yes # StarTech AI
+			AND = { # Ariphaos
+				owner = { is_ai = yes }
+				free_amenities > 30
+				years_passed > 25
+			}
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_warrior_culture }
+			}
+		}
+		modifier = {
+			job_entertainer_add = @b2_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_warrior_culture
+			}
+		}
+		modifier = {
+			job_duelist_add = @b2_jobs
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			exotic_gases = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			exotic_gases = @db2_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_hyper_entertainment_forum"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_warrior_culture }
+			}
+		}
+		text = job_entertainer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_warrior_culture
+			}
+		}
+		text = job_duelist_effect_desc
+	}
+}
+
+##################################################
+## Amenities - Pop Growth
+##################################################
+
+## Gene Clinics (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, Resolutions Expanded, StarTech, Ariphaos
+building_clinic = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2071000 # Sort Buildings
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_clinic_tt
+    }
+
+	potential = {
+		owner = {
+			OR = {
+				is_gestalt = no
+				AND = {
+					has_origin = origin_fear_of_the_dark
+					is_country_type = primitive
+				}
+			}
+		}
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+
+		OR = {
+			owner = {
+				OR = {
+					is_ai = no
+					has_valid_civic = civic_private_healthcare_corporate
+					prev = {
+						has_branch_office = yes
+						branch_office_owner = {
+							has_valid_civic = civic_private_healthcare_corporate
+						}
+					}
+				}
+			}
+			AND = {
+				NOT = { has_available_jobs = entertainer }
+				NOT = { has_forbidden_jobs = entertainer }
+				planet_stability < 50
+				free_amenities < 0
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { # StarTech AI disables construction
+			exists = owner
+			owner = {
+				is_ai = no
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { 
+				NOR = {
+					is_gestalt = no
+					AND = {
+						has_origin = origin_fear_of_the_dark
+						is_country_type = primitive
+					}
+				}
+			}
+			has_modifier = slave_colony
+			AND = {
+				owner = {
+					is_ai = yes
+					NOT = { has_valid_civic = civic_private_healthcare_corporate }
+				}
+				planet_stability > 70
+				free_amenities > 20
+			}
+			AND = { # Resolutions Expanded
+				buildings_stop_pop = yes
+				owner = { is_ai = yes }
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_healthcare_add = 2
+	}
+
+	triggered_planet_modifier = { # Resolutions Expanded
+		potential = {
+			exists = owner
+			owner = { 
+				has_policy_flag = medicare_for_all
+			}
+		}
+		modifier = {
+			planet_amenities_add = 10
+			pop_growth_speed = 0.1
+			planet_jobs_consumer_goods_upkeep_mult = 0.04
+			trade_value_mult = -0.04
+		}
+	}
+
+	triggered_planet_modifier = { # Resolutions Expanded
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = public_healthcarep
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			pop_growth_speed = 0.05
+			planet_jobs_consumer_goods_upkeep_mult = 0.02
+			trade_value_mult = -0.02
+		}
+	}
+
+	triggered_planet_modifier = { # Resolutions Expanded
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = private_healthcarep
+			}
+		}
+		modifier = {
+			trade_value_mult = 0.02
+			planet_jobs_energy_produces_mult = 0.02
+			planet_amenities_add = -1
+			pop_growth_speed = -0.05
+		}
+	}
+
+	triggered_planet_modifier = { # Resolutions Expanded
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = pay_to_heal
+			}
+		}
+		modifier = {
+			trade_value_mult = 0.04
+			planet_jobs_energy_produces_mult = 0.04
+			planet_amenities_add = -2
+			pop_growth_speed = -0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_frontier_health"
+	}
+
+	upgrades = {
+		"building_hospital"
+	}
+
+	triggered_desc = {
+		text = job_healthcare_effect_desc
+	}
+
+	on_destroy = {
+		owner = {
+			if = {
+				limit = {
+					has_event_chain = payback_out_of_warranty_chain
+				}
+				end_event_chain = payback_out_of_warranty_chain
+			}
+		}
+	}
+
+	on_repaired = {
+		if = {
+			limit = {
+				planet.owner = {
+					has_event_chain = payback_out_of_warranty_chain
+				}
+			}
+			random_list = {
+				50 = { # still broken
+					planet.owner = {
+						country_event = { id = origin.4302 }
+					}
+					modifier = {
+						factor = 0
+						planet.owner = { has_technology = tech_frontier_health }
+					}
+				}
+				20 = { # repaired
+					planet.owner = {
+						country_event = { id = origin.4301 }
+					}
+					modifier = {
+						factor = 2
+						planet.owner = { num_research_agreements = 1 }
+					}
+					modifier = {
+						factor = 3
+						planet.owner = { num_research_agreements = 2 }
+					}
+					modifier = {
+						factor = 4
+						planet.owner = { num_research_agreements >= 3 }
+					}
+				}
+				10 = { # broken beyond repair
+					planet = {
+						planet_event = { id = origin.4303 }
+					}
+				}
+			}
+		}
+	}
+}
+
+## Cyto-Revitalization Centers (Tier 2)
+# Merge between Resolutions Expanded, StarTech, Ariphaos
+building_hospital = {
+	base_buildtime = @db2_time
+	can_build = no
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_hospital_tt
+    }
+
+	potential = {
+		has_building = building_clinic
+		owner = { is_ai = no } # StarTech AI disables construction
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+		OR = {
+			owner = {
+				OR = {
+					has_valid_civic = civic_private_healthcare_corporate
+					is_ai = no
+				}
+			}
+			AND = {
+				NOT = { has_available_jobs = entertainer }
+				NOT = { has_forbidden_jobs = entertainer }
+				planet_stability < 55
+				free_amenities < 5
+			}
+			AND = {
+				has_branch_office = yes
+				branch_office_owner = {
+					has_valid_civic = civic_private_healthcare_corporate
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = yes }
+			has_modifier = slave_colony
+			AND = {
+				buildings_stop_pop = yes
+				owner = { is_ai = yes }
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_healthcare_add = @b2_jobs
+	}
+
+	triggered_planet_modifier = { # Resolutions Expanded
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = medicare_for_all
+			}
+		}
+		modifier = {
+			planet_amenities_add = 20
+			pop_growth_speed = 0.2
+			planet_jobs_consumer_goods_upkeep_mult = 0.08
+			trade_value_mult = -0.08
+		}
+	}
+
+	triggered_planet_modifier = { # Resolutions Expanded
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = public_healthcarep
+			}
+		}
+		modifier = {
+			planet_amenities_add = 10
+			pop_growth_speed = 0.1
+			planet_jobs_consumer_goods_upkeep_mult = 0.04
+			trade_value_mult = -0.04
+		}
+	}
+
+	triggered_planet_modifier = { # Resolutions Expanded
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = private_healthcarep
+			}
+		}
+		modifier = {
+			trade_value_mult = 0.04
+			planet_jobs_energy_produces_mult = 0.04
+			planet_amenities_add = -2
+			pop_growth_speed = -0.1
+		}
+	}
+
+	triggered_planet_modifier = { # Resolutions Expanded
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = pay_to_heal
+			}
+		}
+		modifier = {
+			trade_value_mult = 0.08
+			planet_jobs_energy_produces_mult = 0.08
+			planet_amenities_add = -4
+			pop_growth_speed = -0.2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			exotic_gases = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			exotic_gases = @db2_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_frontier_hospital"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	triggered_desc = {
+		text = job_healthcare_effect_desc
+	}
+}
+
+##################################################
+## Amenities - Gestalt Maintenance
+##################################################
+
+## Maintenance Depots (Tier 1)
+# Merge between EUTAB, Real Space: Planetary Stations
+building_maintenance_depot = {
+	base_buildtime = 240
+	can_build = no
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_maintenance_depot_tt
+    }
+
+	potential = {
+		owner = { is_gestalt = yes }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = no }
+			AND = {
+				owner = { is_ai = yes }
+				free_amenities > 30
+				free_building_slots = 0
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_maintenance_drone_add = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	upgrades = {
+		building_eutab_preservation_nexus # EUTAB
+		#building_avb_maintenance_depot_2 # Additional Vanilla Buildings
+	}
+
+	triggered_desc = {
+		text = job_maintenance_drone_effect_desc
+	}
+}
+
+##################################################
+## Amenities - Slaves
+##################################################
+
+## Slave Huts (Tier 1)
+# Merge between Sort Buildings, StarTech, Ariphaos
+building_slave_huts = {
+	base_buildtime = 240
+	icon = building_crude_huts
+	position_priority = 4071100 # Sort Buildings
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_slave_huts_tt
+    }
+
+	potential = {
+		has_modifier = slave_colony
+	}
+
+	allow = {
+		buildings_simple_allow = yes # StarTech AI
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = yes }
+			NOT = { has_modifier = slave_colony }
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+}
+
+## Overseer Residences (Tier 1)
+# Merge between Sort Buildings, Ariphaos
+building_overseer_homes = {
+	base_buildtime = 240
+	icon = building_residence
+	position_priority = 4071000 # Sort Buildings
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_overseer_homes_tt
+    }
+
+	potential = {
+		has_modifier = slave_colony
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = yes }
+			NOT = { has_modifier = slave_colony }
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+		job_slave_overseer_add = 2
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+}
+
+##################################################
+## Amenities - Unique
+##################################################
+
+## Ranger Lodge (Tier 1)
+# Merge between Sort Buildings, Ecology, Real Space: Planetary Stations, StarTech
+building_ranger_lodge = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = amenity
+	icon = holding_park_ranger_lodge
+	position_priority = 2073000 # Sort Buildings
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ranger_lodge_tt
+    }
+
+	potential = {
+		NOT = {	has_modifier = slave_colony	}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+		owner = {
+			is_regular_empire = yes
+			is_environmentalist_empire = yes # Ecology
+		}
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_machine_world = yes # Ecology
+			is_planet_class = pc_relic
+		}
+		is_artificial = no
+	}
+
+	allow = {
+		hidden_trigger = { # StarTech AI disables construction
+			exists = owner
+			owner = {
+				is_ai = no
+			}
+		}
+		custom_tooltip = {
+			fail_text = no_free_district_for_ranger_lodge
+			planet = {
+				num_free_districts = {
+					type = any
+					value > 0
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			has_modifier = slave_colony
+			owner = { NOT = { is_environmentalist_empire = yes } } # Ecology
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_machine_world = yes # Ecology
+			is_planet_class = pc_relic
+		}
+	}
+
+	ai_resource_production = {
+		unity = 2
+		mult = value:natural_blocker_count
+	}
+
+	ai_resource_production = {
+		unity = 1
+		trigger = { owner_has_resolution = { RES = resolution_ecology_integrated_gardens } }
+		mult = value:natural_blocker_count
+	}
+
+	ai_resource_production = {
+		unity = 1
+		trigger = { owner_has_resolution = { RES = resolution_ecology_environmental_control_board } }
+		mult = value:natural_blocker_count
+	}
+
+	ai_resource_production = {
+		unity = 1
+		trigger = { owner_has_resolution = { RES = resolution_ecology_paradise_initiative } }
+		mult = value:natural_blocker_count
+	}
+
+	planet_modifier = { # Ecology
+		deposit_blockers_natural_unity_produces_add = 4
+		pop_environment_tolerance = 0.05
+	}
+
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			NOT = { has_global_flag = EcologyMod_active }
+		}
+		job_ranger_add = @b1_jobs
+	}
+
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			has_global_flag = EcologyMod_active
+		}
+		job_park_ranger_add = @b1_jobs
+	}
+
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			has_designation = col_resort
+			NOT = { has_global_flag = EcologyMod_active }
+		}
+		job_ranger_per_pop = 0.1 # 1 job per 10 pops
+	}
+
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			has_designation = col_resort
+			has_global_flag = EcologyMod_active
+		}
+		job_park_ranger_per_pop = 0.1 # 1 job per 10 pops
+	}
+
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+				is_active_resolution = resolution_ecology_integrated_gardens
+			}
+		}
+		deposit_blockers_natural_unity_produces_add = 2
+	}
+
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+				is_active_resolution = resolution_ecology_environmental_control_board
+			}
+		}
+		deposit_blockers_natural_unity_produces_add = 2
+	}
+
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+				is_active_resolution = resolution_ecology_paradise_initiative
+			}
+		}
+		deposit_blockers_natural_unity_produces_add = 2
+	}
+
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_terrestrial_sculpting
+			}
+		}
+		pop_environment_tolerance = 0.05
+	}
+
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_ecological_adaptation
+			}
+		}
+		pop_environment_tolerance = 0.05
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+
+	triggered_desc = {
+		text = job_ranger_effect_desc
+	}
+
+	on_built = {
+		planet = {
+			add_blocker = { type = d_big_nature_preserve_blocker }
+		}
+	}
+
+	on_destroy = {
+		planet = {
+			if = {
+				limit = { has_deposit = d_big_nature_preserve_blocker }
+				remove_deposit = d_big_nature_preserve_blocker
+			}
+		}
+	}
+}
+
+## Mutagenic Spa (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, Ariphaos, Scripted Trigger Undercoat
+building_toxic_bath = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = amenity
+	icon = building_toxic_bath
+	position_priority = 2072000 # Sort Buildings
+
+	potential = {
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Station
+		owner = {
+			is_gestalt = no
+			has_toxic_baths = no # Scripted Trigger Undercoat
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				OR = {
+					is_gestalt = yes
+					has_toxic_baths = no # Scripted Trigger Undercoat
+				}
+			}
+			has_modifier = slave_colony
+		}
+	}
+	planet_modifier = {
+		job_bath_attendant_add = @b1_jobs
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_megacorp = no }
+		}
+		text = job_toxic_baths_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+}
