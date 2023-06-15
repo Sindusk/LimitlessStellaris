@@ -282,11 +282,11 @@ l_english:
   building_production_center_desc: "A vast facility which centralizes the handling of resources and manufacturing across the entire planet."
 
   ### Toxoids
-  building_coordinated_fulfillment_center_1: "Coordinated Fulfillment Center"
+  building_coordinated_fulfillment_center_1: "§SCoordinated Fulfillment Center§!"
   building_coordinated_fulfillment_center_1_tt: "§MManufacturing§! - §BTier 1§! - §EUnique§!"
   building_coordinated_fulfillment_center_1_plural: "Coordinated Fulfillment Center"
   building_coordinated_fulfillment_center_1_desc: "Although some might deem the practices promoted in this facility to be unsafe or dangerously short-sighted, one cannot argue with the productivity numbers they produce."
-  building_coordinated_fulfillment_center_2: "Universal Productivity Alignment Facility" #N.B. Corporate speak, doesn't need to mean anything...
+  building_coordinated_fulfillment_center_2: "§SUniversal Productivity Alignment Facility§!" #N.B. Corporate speak, doesn't need to mean anything...
   building_coordinated_fulfillment_center_2_tt: "§MManufacturing§! - §BTier 2§! - §EUnique§!"
   building_coordinated_fulfillment_center_2_desc: "Through tireless number-crunching and ubiquitous performance reviews, industrial productivity can be pushed to hitherto unmatched levels. Even if this leaves little time for distractions such as reproduction and environmental concerns."
   building_coordinated_fulfillment_center_tooltip: "§RThis world will be exploited ruthlessly. Eventually, it will be rendered a Tomb World.§!"
@@ -295,3 +295,32 @@ l_english:
   building_archaeo_refinery: "Ancient Refinery"
   building_archaeo_refinery_tt: "§MManufacturing§! - §BTier 1§! - §EUnique§!"
   building_archaeo_refinery_desc: "$tech_archaeo_refinery_desc$"
+
+##################
+# Research
+##################
+
+  ### Basic
+  building_research_lab_1: "Research Labs"
+  building_research_lab_1_tt: "§MResearch§! - §BTier 1§! - §EBasic§!"
+  building_research_lab_1_desc: "Research Labs provide the basic facilities for general research."
+  building_research_lab_2: "Research Complexes"
+  building_research_lab_2_tt: "§MResearch§! - §BTier 2§! - §EBasic§!"
+  building_research_lab_2_desc: "Upgraded research facilities with a very large staff capacity."
+  building_research_lab_3: "Advanced Research Complexes"
+  building_research_lab_3_tt: "§MResearch§! - §BTier 3§! - §EBasic§!"
+  building_research_lab_3_desc: "These advanced research facilities have the very latest science equipment along with an extremely large staff capacity."
+
+  ### Unique
+  building_institute: "§SResearch Institute§!"
+  building_institute_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
+  building_institute_desc: "The Research Institute is a massive complex, gathering the cutting edges of disparate fields together for unprecedented synergy, improving the research output of the whole planet."
+  building_supercomputer: "§SPlanetary Supercomputer§!"
+  building_supercomputer_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
+  building_supercomputer_desc: "A single colossal supercomputer which can carry out incredibly complex calculations, improving the research output of the whole planet."
+  building_archaeostudies_faculty: "§SFaculty of Archaeostudies§!"
+  building_archaeostudies_faculty_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
+  building_archaeostudies_faculty_desc: "A series of laboratories dedicated to the studies of technological applications of minor artifacts retrieved from elder empires."
+  building_vultaum_reality_computer: "§SVultaum Reality Computer§!"
+  building_vultaum_reality_computer_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
+  building_vultaum_reality_computer_desc: "$tech_secrets_vultaum_desc$"
