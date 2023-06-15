@@ -1,0 +1,392 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Trade
+##########################################################################
+
+##################################################
+## Trade - Basic
+##################################################
+
+## Commercial Zones (Tier 1)
+# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
+building_commercial_zone = {
+	base_buildtime = @db1_time
+	position_priority = 4061000 # Sort Buildings
+
+	exempt_from_ai_planet_specialization = no
+	category = trade
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_commercial_zone_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { # StarTech AI
+			is_gestalt = no
+			OR = {
+				is_ai = no
+				years_passed < 3
+				prev = { str_uses_comzones = yes }
+			}
+		}
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_building = building_low_tech_capital }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = yes }
+			has_modifier = slave_colony
+			AND = { # StarTech AI
+				owner = { is_ai = yes }
+				years_passed > 5
+				str_uses_comzones = no 
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { # StarTech AI
+			OR = {
+				owner = { is_ai = no }
+				AND = {
+					str_uses_comzones = yes
+					free_amenities < 2
+					OR = {
+						str_is_col_research = no
+						str_is_col_bureau = no
+						free_amenities < -5
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_clerk_add = 3
+		job_bugged_trader_add = 1 # Bug Branch
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+		modifier = {
+			job_merchant_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+		text = job_merchant_effect_desc
+	}
+
+	prerequisites = {
+		"tech_interplanetary_commerce"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	upgrades = {
+		"building_commercial_megaplex"
+	}
+
+	triggered_desc = {
+		text = job_clerk_effect_desc
+	}
+	
+	triggered_desc = { # Bug Branch
+		text = job_bugged_trader_effect_desc
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		energy = 2
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		energy = 0
+		trigger = {
+			OR = {
+				num_unemployed >= 10
+				num_assigned_jobs = {
+					job = servant
+					value >= 10
+				}
+			}
+		}
+	}
+}
+
+## Commercial Megaplexes (Tier 2)
+# Merge between Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
+building_commercial_megaplex = {
+	base_buildtime = @db2_time
+	can_build = no
+
+	category = trade
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_commercial_megaplex_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_ai = no # StarTech AI prevents AI from upgrading
+		}
+		NOT = { has_modifier = slave_colony }
+		has_building = building_commercial_zone
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		hidden_trigger = { # StarTech AI prevents AI from upgrading
+			owner = { is_ai = no }
+		}
+	}
+	
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = yes }
+			has_modifier = slave_colony
+			buildings_no_crystals = yes # StarTech AI
+			AND = { # StarTech AI
+				owner = { is_ai = yes }
+				years_passed > 2
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			rare_crystals = @db2_rare_upkeep
+		}
+	}
+
+    planet_modifier = {
+        job_merchant_add = 1
+		job_bugged_trader_add = 2 # Bug Branch
+        job_clerk_add = 4 # Bug Branch changes from 6 to 4
+    }
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+		modifier = {
+			job_merchant_add = 1
+		}
+	}
+
+	triggered_desc = {
+		text = job_clerk_effect_desc
+	}
+
+	triggered_desc = { # Bug Branch
+        text = job_bugged_trader_effect_desc
+    }
+    
+	triggered_desc = {
+		text = job_merchant_effect_desc
+	}
+
+	prerequisites = {
+		"tech_interstellar_economics"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		energy = 4
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		energy = 6
+		trigger = {
+			OR = {
+				num_unemployed >= 10
+				num_assigned_jobs = {
+				job = servant
+					value >= 10
+				}
+			}
+		}
+	}
+}
+
+##################################################
+## Trade - Unique
+##################################################
+
+## Galactic Stock Exchange (Tier 1)
+# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
+building_galactic_stock_exchange = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	#position_priority = 2061000 # Sort Buildings
+	can_build = no # Bug Branch converts this to an upgrade of the Planetary Stock Exchange
+
+	category = trade
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_galactic_stock_exchange_tt
+    }
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+		OR = { # Bug Branch
+			has_global_flag = galactic_market_founded
+			owner = {
+				is_bugged_globalism = yes
+			}
+		}
+		hidden_trigger = { # StarTech AI
+			owner = {
+				OR = {
+					is_ai = no
+					is_megacorp = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			orbital_defence = {
+				exists = starbase
+				starbase = {
+					NOR = {
+						has_starbase_building = ring_galactic_stock_exchange
+						is_starbase_building_building = ring_galactic_stock_exchange
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = yes }
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+			buildings_no_crystals = yes # StarTech AI
+		}
+	}
+
+
+	planet_modifier = {
+		job_merchant_add = 2
+		trade_value_mult = 0.1 # Bug Branch reduces from 0.2 to 0.1
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_merchant_guilds
+					has_civic = civic_bugged_state_monopoly
+				}
+			}
+		}
+		modifier = {
+			job_merchant_add = 2
+			trade_value_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			rare_crystals = @db2_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_galactic_markets"
+	}
+
+	triggered_desc = {
+		text = job_merchant_effect_desc
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		energy = 3
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		energy = 5
+		trigger = {
+			solar_system = {
+				has_system_trade_value >= 50
+			}
+		}
+	}
+	ai_resource_production = {
+		energy = 3
+		trigger = {
+			solar_system = {
+				has_system_trade_value >= 80
+			}
+		}
+	}
+}
