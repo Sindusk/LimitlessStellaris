@@ -1,0 +1,31 @@
+# Unique Ascension Perks - Add Industrialist Jobs.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_ascension_perk = ap_pyramidal_society
+				has_country_flag = ap_pyramidal_society
+			}
+			is_common_empire = yes
+		}
+	}
+	modifier = {
+		job_industrialist_add = $industrialist$
+	}
+}
+
+# Limitless Stellaris - Added effect description of UAP industrialist job.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				has_ascension_perk = ap_pyramidal_society
+				has_country_flag = ap_pyramidal_society
+			}
+			is_common_empire = yes
+		}
+	}
+	text = job_industrialist_effect_desc # Might not have a description. Should add one if it doesn't.
+}

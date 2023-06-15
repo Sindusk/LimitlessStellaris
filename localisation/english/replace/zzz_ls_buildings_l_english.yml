@@ -1,77 +1,79 @@
 ﻿##########################################################################
 # Limitless Stellaris - English Localisation (Buildings)
 ##########################################################################
+# Extra Localisation Colors:
+# https://steamuserimages-a.akamaihd.net/ugc/2040737956562736069/C206B1AB94B34EE00F7FF04EF75A594B6D3D3E4A/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=#000000&letterbox=false
 l_english:
 ##################
 # Capitals
 ##################
   
   ## Organic Capitals
-  building_colony_shelter: "Reassembled Ship Shelter"
+  building_colony_shelter: "§LReassembled Ship Shelter§!"
   building_colony_shelter_tt: "§MCapital§! - §BTier 1§! - §EBiological§!"
   building_colony_shelter_desc: "The remains of a Colony Ship, reassembled for planetside form and function."
-  building_capital: "Planetary Administration"
+  building_capital: "§LPlanetary Administration§!"
   building_capital_tt: "§MCapital§! - §BTier 2§! - §EBiological§!"
   building_capital_desc: "Seat of the local ruling elite."
-  building_major_capital: "Planetary Capital"
+  building_major_capital: "§LPlanetary Capital§!"
   building_major_capital_tt: "§MCapital§! - §BTier 3§! - §EBiological§!"
   building_major_capital_desc: "A sprawling complex of bureaucratic structures that acts as the administrative center for a major colony."
-  building_system_capital: "System Capital-Complex"
+  building_system_capital: "§LSystem Capital-Complex§!"
   building_system_capital_tt: "§MCapital§! - §BTier 4§! - §EBiological§!"
   building_system_capital_desc: "A towering configuration of administrative bureaus and networked infrastructure, allowing the construction and operation of highly demanding facilities."
-  building_imperial_capital: "Imperial Palace"
+  building_imperial_capital: "§LImperial Palace§!"
   building_imperial_capital_tt: "§MCapital§! - §BTier 5§! - §EBiological§!"
   building_imperial_capital_desc: "A massive palace complex fit for the greatest empire history has ever seen. If there is a bright center to the galaxy, this is it."
 
   ## Machine Capitals
-  building_deployment_post: "Deployment Post"
+  building_deployment_post: "§LDeployment Post§!"
   building_deployment_post_tt: "§MCapital§! - §BTier 1§! - §EMachine§!"
   building_deployment_post_desc: "The initial deployment post from which we will expand on this world."
-  building_machine_capital: "Administrative Array"
+  building_machine_capital: "§LAdministrative Array§!"
   building_machine_capital_tt: "§MCapital§! - §BTier 2§! - §EMachine§!"
   building_machine_capital_desc: "A semi-autonomous computer network that handles the various administrative functions on a planet."
-  building_machine_major_capital: "Planetary Processor"
+  building_machine_major_capital: "§LPlanetary Processor§!"
   building_machine_major_capital_tt: "§MCapital§! - §BTier 3§! - §EMachine§!"
   building_machine_major_capital_desc: "A powerful administrative computer that has been designed to manage and oversee the various functions of a complex planetary settlement."
-  building_machine_system_capital: "Primary Nexus"
+  building_machine_system_capital: "§LPrimary Nexus§!"
   building_machine_system_capital_tt: "§MCapital§! - §BTier 4§! - §EMachine§!"
   building_machine_system_capital_desc: "The administrative heart of the system. Hundreds of AIs process requests and manage the minute but critical details that are involved in running an efficient interstellar civilization."
-  building_imperial_machine_capital: "Imperial Center"
+  building_imperial_machine_capital: "§LImperial Center§!"
   building_imperial_machine_capital_tt: "§MCapital§! - §BTier 5§! - §EMachine§!"
   building_imperial_machine_capital_desc: "This colossal complex is the administrative heart of the Galactic Imperium. Thousands of AIs are constantly processing and evaluating the current state of the galaxy."
 
   ## Hive Capitals
-  building_hive_capital: "Hive Core"
+  building_hive_capital: "§LHive Core§!"
   building_hive_capital_tt: "§MCapital§! - §BTier 2§! - §EHivemind§!"
   building_hive_capital_desc: "The organizational core from which the Hive Mind coordinates planetside functions."
-  building_hive_major_capital: "Hive Nexus"
+  building_hive_major_capital: "§LHive Nexus§!"
   building_hive_major_capital_tt: "§MCapital§! - §BTier 3§! - §EHivemind§!"
   building_hive_major_capital_desc: "A sprawling capital complex from which the Hive Mind focuses planetary organization, coordination, and planning."
-  building_imperial_hive_capital: "Imperial Complex"
+  building_imperial_hive_capital: "§LImperial Complex§!"
   building_imperial_hive_capital_tt: "§MCapital§! - §BTier 5§! - §EHivemind§!"
   building_imperial_hive_capital_desc: "From this massive structure, the Hive Mind governs the Galactic Imperium. This is where the fate of the galaxy is decided."
 
   ### Habitat Capitals
-  building_hab_capital: "Habitat Administration"
+  building_hab_capital: "§LHabitat Administration§!"
   building_hab_capital_tt: "§MCapital§! - §BTier 1§! - §EHabitat§!"
   building_hab_capital_desc: "The administrative hub of the Habitat, serving as its capital and the seat of the local government."
-  building_hab_major_capital: "Habitat Central Control"
+  building_hab_major_capital: "§LHabitat Central Control§!"
   building_hab_major_capital_tt: "§MCapital§! - §BTier 2§! - §EHabitat§!"
   building_hab_major_capital_desc: "An extensive complex of bureaucratic offices that oversees the administration of a highly-populated habitat."
 
   ### Resort Capitals
-  building_resort_capital: "Resort Administration"
+  building_resort_capital: "§LResort Administration§!"
   building_resort_capital_tt: "§MCapital§! - §BTier 1§! - §EResort§!"
   building_resort_capital_desc: "The central complex from where this planet-wide resort is administrated."
-  building_resort_major_capital: "Resort Capital-Complex"
+  building_resort_major_capital: "§LResort Capital-Complex§!"
   building_resort_major_capital_tt: "§MCapital§! - §BTier 2§! - §EResort§!"
   building_resort_major_capital_desc: "A huge sprawling complex capable of administrating an even greater number of resorts and tourist attractions."
 
   ### Slave Capitals
-  building_slave_capital: "Governor's Palace"
+  building_slave_capital: "§LGovernor's Palace§!"
   building_slave_capital_tt: "§MCapital§! - §BTier 1§! - §ESlave§!"
   building_slave_capital_desc: "The lavish palace from which this Thrall-World is governed."
-  building_slave_major_capital: "Governor's Estates"
+  building_slave_major_capital: "§LGovernor's Estates§!"
   building_slave_major_capital_tt: "§MCapital§! - §BTier 2§! - §ESlave§!"
   building_slave_major_capital_desc: "Sprawling and luxurious palaces that house the ruling elite of the Thrall-World."
 
@@ -79,66 +81,66 @@ l_english:
 # Pop Assembly
 ##################
 
-  ### Robot Assembly
-  building_robot_assembly_plant: "Robot Assembly Plants"
+  ### Robot
+  building_robot_assembly_plant: "§SRobot Assembly Plants§!"
   building_robot_assembly_plant_tt: "§MAssembly§! - §BTier 1§! - §ERobot§!"
   building_robot_assembly_plant_desc: "High-tech factories where skilled Roboticists assemble the latest robot models."
-  building_robot_assembly_complex: "Robot Assembly Complex"
+  building_robot_assembly_complex: "§SRobot Assembly Complex§!"
   building_robot_assembly_complex_tt: "§MAssembly§! - §BTier 2§! - §ERobot§!"
   building_robot_assembly_complex_desc: "An advanced assembly plant where skilled Roboticists assemble the latest robot models."
 
-  ### Machine Assembly
-  building_machine_assembly_plant: "Machine Assembly Plants"
+  ### Machine
+  building_machine_assembly_plant: "§SMachine Assembly Plants§!"
   building_machine_assembly_plant_tt: "§MAssembly§! - §BTier 1§! - §EMachine§!"
   building_machine_assembly_plant_desc: "A production line assembly plant where new units are constructed."
-  building_machine_assembly_complex: "Machine Assembly Complex"
+  building_machine_assembly_complex: "§SMachine Assembly Complex§!"
   building_machine_assembly_complex_tt: "§MAssembly§! - §BTier 2§! - §EMachine§!"
   building_machine_assembly_complex_desc: "An advanced assembly plant where new units are constructed."
 
-  ### Hive Assembly
-  building_spawning_pool: "Spawning Pools"
+  ### Hive
+  building_spawning_pool: "§SSpawning Pools§!"
   building_spawning_pool_tt: "§MAssembly§! - §BTier 1§! - §EHive§!"
   building_spawning_pool_desc: "Tended by the scientific and gentle care of specialists, these pools stimulate our spawn into faster growth."
 
-  ### Progenitor Hive Assembly
-  building_offspring_nest: "Offspring Nest"
+  ### Progenitor Hive
+  building_offspring_nest: "§SOffspring Nest§!"
   building_offspring_nest_tt: "§MAssembly§! - §BTier 1§! - §EProgenitor Hive§!"
   building_offspring_nest_desc: "This fortified nest safely harbors the local Offspring while also accelerating growth for the rest of the nearby hive."
 
-  ### Necrophage Assembly
-  building_necrophage_elevation_chamber: "Chamber of Elevation"
+  ### Necrophage
+  building_necrophage_elevation_chamber: "§SChamber of Elevation§!"
   building_necrophage_elevation_chamber_tt: "§MAssembly§! - §BTier 1§! - §ENecrophage§!"
   building_necrophage_elevation_chamber_desc: "Those awaiting transformation spend their days studying the practices and rituals of the [This.Owner.GetSpeciesNamePlural] in the comfort of the Chamber of Elevation."
   building_necrophage_elevation_chamber_desc_hive: "Those awaiting transformation spend their days preparing for oneness with the [This.Owner.GetAdj] collective consciousness in the comfort of the Chamber of Elevation."
-  building_necrophage_house_of_apotheosis: "House of Apotheosis"
+  building_necrophage_house_of_apotheosis: "§SHouse of Apotheosis§!"
   building_necrophage_house_of_apotheosis_tt: "§MAssembly§! - §BTier 1§! - §ENecrophage§!"
   building_necrophage_house_of_apotheosis_desc: "A house of untold splendor where those awaiting their apotheosis as [This.Owner.GetSpeciesNamePlural] can spend their final days in their original forms in comfort."
   building_necrophage_house_of_apotheosis_desc_hive: "A house of untold splendor where we have gone to great lengths to ensure that those awaiting their transformation into [This.Owner.GetAdj] drones can spend their final days outside the Hive in comfort."
  
-  ### Biological Assembly
-  building_clone_vats: "Clone Vats"
+  ### Biological
+  building_clone_vats: "§SClone Vats§!"
   building_clone_vats_tt: "§MAssembly§! - §BTier 1§! - §EBiological§!"
   building_clone_vats_desc: "Clone Vats break down simple materials to generate Organic Pop Assembly."
 
-  ### Clone Army Assembly
-  building_clone_army_clone_vat: "Ancient Clone Vat"
+  ### Clone Army
+  building_clone_army_clone_vat: "§SAncient Clone Vat§!"
   building_clone_army_clone_vat: "§MAssembly§! - §BTier 1§! - §EClone Army§!"
   building_clone_army_clone_vat_desc: "Lost technology left behind by the Creators. Can be taken apart and reassembled, but its inner components and workings are much too advanced to replicate."
   building_clone_army_clone_vat_effect_desc: "Produces and sustains §Y20§! £pops£ §Y$clone_soldier$§! Pops. The effectiveness of this growth is reduced as the $building_clone_army_clone_vat$ reaches capacity."
 
-  ### Undead Assembly
-  building_posthumous_employment_center: "Posthumous Employment Center"
+  ### Undead
+  building_posthumous_employment_center: "§SPosthumous Employment Center§!"
   building_posthumous_employment_center_tt: "§MAssembly§! - §BTier 1§! - §EUndead§!"
   building_posthumous_employment_center_desc: "At the Posthumous Employment Center, carcasses bereft of consciousness can find new purpose and a new opportunity to pay off their debts."
  
-  ### Bath Assembly (Toxoid)
-  building_toxic_bath: "Mutagenic Spa"
+  ### Bath (Toxoid)
+  building_toxic_bath: "§SMutagenic Spa§!"
   building_toxic_bath_tt: "§MAmenities§! - §BTier 1§! - §EBath§!"
   building_toxic_bath_desc: "Though Mutagenic Spas are highly advanced therapeutic centers with well-documented health benefits, to some, the methods employed remain disgusting. Each drop of bath liquid is more mutagenic than most banned substances in the galaxy."
-  building_toxic_bath_hive: "Mutagenic Permutation Pool"
+  building_toxic_bath_hive: "§SMutagenic Permutation Pool§!"
   building_toxic_bath_hive_tt: "§MAssembly§! - §BTier 1§! - §EBath§!"
   building_toxic_bath_hive_desc: "Mutagenic Permutation Pools are the perfect expression of the heights that a hive mind can achieve when utterly focused on the goal of producing more bodies for its ever-expanding consciousness."
-  building_toxic_bath_machine: "Hyper Lubrication Basin"
+  building_toxic_bath_machine: "§SHyper Lubrication Basin§!"
   building_toxic_bath_machine_tt: "§MAssembly§! - §BTier 1§! - §EBath§!"
   building_toxic_bath_machine_desc: "Hyper Lubrication Basins are the most logical answer to emerging problems of friction, over-heating, and static electricity during the production process of new units."
 
@@ -170,13 +172,13 @@ l_english:
   building_order_castle_desc: "The Order of the Toxic God has established a castle on this habitat. A contingent of knights and squires have set up base here."
 
   ### Ascension Government
-  building_psi_corps: "Psi Corps"
+  building_psi_corps: "§SPsi Corps§!"
   building_psi_corps_tt: "§MGovernment§! - §BTier 1§! - §EPsionic§!"
   building_psi_corps_desc: "Psi-gifted individuals are brought from all across to our empire to a place where they are able to hone their abilities.\n\n§YThe Psi Corps is your friend. Trust the Corps.§!"
-  building_embassy: "Embassy Complex"
+  building_embassy: "§SEmbassy Complex§!"
   building_embassy_tt: "§MEmpire§! - §BTier 1§! - §EEmbassy§!"
   building_embassy_desc: "This building forms the heart of the Empire's diplomatic efforts.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
-  building_grand_embassy: "Grand Embassy Complex"
+  building_grand_embassy: "§SGrand Embassy Complex§!"
   building_grand_embassy_tt: "§MEmpire§! - §BTier 2§! - §EEmbassy§!"
   building_grand_embassy_desc: "The complex is intended to awe the viewer, rendering them more compliant in negotiations.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
   building_gaiaseeders_1: "$building_gaiaseeders$ - Phase 1"
@@ -199,10 +201,10 @@ l_english:
   building_hydroponics_farm: "Hydroponics Farms"
   building_hydroponics_farm_tt: "§MFood§! - §BTier 1§! - §EBasic§!"
   building_hydroponics_farm_desc: "Hydroponics Farms produce nutrient-rich vegetable matter tailored for consumption by local Pops."
-  building_food_processing_facility: "Food Processing Facilities"
+  building_food_processing_facility: "§SFood Processing Facilities§!"
   building_food_processing_facility_tt: "§MFood§! - §BTier 1§! - §EProductivity§!"
   building_food_processing_facility_desc: "Food that is processed at these facilities has its nutritional value greatly increased."
-  building_food_processing_center: "Food Processing Centers"
+  building_food_processing_center: "§SFood Processing Centers§!"
   building_food_processing_center_tt: "§MFood§! - §BTier 2§! - §EProductivity§!"
   building_food_processing_center_desc: "Streamlined facilities where large amounts of food can be processed."
   building_baol_organic_plant: "$tech_secrets_baol$"
@@ -210,18 +212,18 @@ l_english:
   building_baol_organic_plant_desc: "$tech_secrets_baol_desc$"
 
   ### Minerals
-  building_mineral_purification_plant: "Mineral Purification Plants"
+  building_mineral_purification_plant: "§SMineral Purification Plants§!"
   building_mineral_purification_plant_tt: "§MMinerals§! - §BTier 1§! - §EProductivity§!"
   building_mineral_purification_plant_desc: "Minerals that have passed through these purifiers are of the highest quality."
-  building_mineral_purification_hub: "Mineral Purification Hubs"
+  building_mineral_purification_hub: "§SMineral Purification Hubs§!"
   building_mineral_purification_hub_tt: "§MMinerals§! - §BTier 2§! - §EProductivity§!"
   building_mineral_purification_hub_desc: "Massive hubs where minerals are received and then shuttled to arrays of purifiers."
 
   ### Energy
-  building_energy_grid: "Energy Grid"
+  building_energy_grid: "§SEnergy Grid§!"
   building_energy_grid_tt: "§MEnergy§! - §BTier 1§! - §EProductivity§!"
   building_energy_grid_desc: "A carefully calibrated grid network maximizes the output of power generators."
-  building_energy_nexus: "Energy Nexus"
+  building_energy_nexus: "§SEnergy Nexus§!"
   building_energy_nexus_tt: "§MEnergy§! - §BTier 2§! - §EProductivity§!"
   building_energy_nexus_desc: "This colossal facility centralizes all energy grids on the planet, improving their efficiency."
   building_bio_reactor: "Bio-Reactor"
@@ -232,3 +234,64 @@ l_english:
   building_resource_silo: "Resource Silos"
   building_resource_silo_tt: "§MStorage§! - §BTier 1§! - §EBasic§!"
   building_resource_silo_desc: "Massive resource silos and storage facilities where large quantities of resources can be safely kept."
+
+##################
+# Manufacturing
+##################
+
+  ### Resources
+  building_foundry_1: "Alloy Foundries"
+  building_foundry_1_tt: "§MAlloys§! - §BTier 1§! - §EBasic§!"
+  building_foundry_1_desc: "The [Owner.GetAlloyProducerPlural] working in these foundries produce high-quality alloys."
+  building_foundry_2: "Alloy Mega-Forges"
+  building_foundry_2_tt: "§MAlloys§! - §BTier 2§! - §EBasic§!"
+  building_foundry_2_desc: "These massive forges can assist the end-stage production of alloys in our industries across the planet."
+  building_foundry_3: "Alloy Nano-Plants"
+  building_foundry_3_tt: "§MAlloys§! - §BTier 3§! - §EBasic§!"
+  building_foundry_3_desc: "Large industrial fabricators geared towards increasing the production of alloys on the planet."
+  building_factory_1: "Civilian Industries"
+  building_factory_1_tt: "§MConsumer Goods§! - §BTier 1§! - §EBasic§!"
+  building_factory_1_desc: "A wide collection of civilian industries and manufactories where a variety of consumer goods are produced."
+  building_factory_2: "Civilian Fabricators"
+  building_factory_2_tt: "§MConsumer Goods§! - §BTier 2§! - §EBasic§!"
+  building_factory_2_desc: "Large industrial fabricators geared towards increasing the production of consumer goods on the planet."
+  building_factory_3: "Civilian Repli-Complexes"
+  building_factory_3_tt: "§MConsumer Goods§! - §BTier 3§! - §EBasic§!"
+  building_factory_3_desc: "Nearly anything can be replicated at the kiosks in these complexes."
+
+  ### Refineries
+  building_refinery: "Exotic Gas Refineries"
+  building_refinery_tt: "§MExotic Gas§! - §BTier 1§! - §EBasic§!"
+  building_refinery_desc: "These advanced refineries work day and night to produce exotic gases."
+  building_chemical_plant: "Chemical Plants"
+  building_chemical_plant_tt: "§MVolatile Motes§! - §BTier 1§! - §EBasic§!"
+  building_chemical_plant_desc: "The unpredictable and sometimes unstable Volatile Motes are produced here artificially. No open flames are permitted within a five kilometer radius of the plants."
+  building_crystal_plant: "Synthetic Crystal Plants"
+  building_crystal_plant_tt: "§MCrystals§! - §BTier 1§! - §EBasic§!"
+  building_crystal_plant_desc: "Nearly identical to the real thing, the crystals produced here are of the highest quality."
+  building_nanite_transmuter: "Nanite Transmuter"
+  building_nanite_transmuter_tt: "§MNanites§! - §BTier 1§! - §EBasic§!"
+  building_nanite_transmuter_desc: "This factory mass-produces a variety of rare resources using extremely advanced nanites. A Nanite deficit will halt production."
+
+  ### Special
+  building_ministry_production: "§SMinistry of Production§!"
+  building_ministry_production_tt: "§MManufacturing§! - §BTier 1§! - §EUnique§!"
+  building_ministry_production_desc: "The Ministry of Production works tirelessly to organize and streamline manufacturing across the entire planet."
+  building_production_center: "§SResource Processing Center§!"
+  building_production_center_tt: "§MManufacturing§! - §BTier 1§! - §EUnique§!"
+  building_production_center_desc: "A vast facility which centralizes the handling of resources and manufacturing across the entire planet."
+
+  ### Toxoids
+  building_coordinated_fulfillment_center_1: "Coordinated Fulfillment Center"
+  building_coordinated_fulfillment_center_1_tt: "§MManufacturing§! - §BTier 1§! - §EUnique§!"
+  building_coordinated_fulfillment_center_1_plural: "Coordinated Fulfillment Center"
+  building_coordinated_fulfillment_center_1_desc: "Although some might deem the practices promoted in this facility to be unsafe or dangerously short-sighted, one cannot argue with the productivity numbers they produce."
+  building_coordinated_fulfillment_center_2: "Universal Productivity Alignment Facility" #N.B. Corporate speak, doesn't need to mean anything...
+  building_coordinated_fulfillment_center_2_tt: "§MManufacturing§! - §BTier 2§! - §EUnique§!"
+  building_coordinated_fulfillment_center_2_desc: "Through tireless number-crunching and ubiquitous performance reviews, industrial productivity can be pushed to hitherto unmatched levels. Even if this leaves little time for distractions such as reproduction and environmental concerns."
+  building_coordinated_fulfillment_center_tooltip: "§RThis world will be exploited ruthlessly. Eventually, it will be rendered a Tomb World.§!"
+
+  ### Archaeology
+  building_archaeo_refinery: "Ancient Refinery"
+  building_archaeo_refinery_tt: "§MManufacturing§! - §BTier 1§! - §EUnique§!"
+  building_archaeo_refinery_desc: "$tech_archaeo_refinery_desc$"

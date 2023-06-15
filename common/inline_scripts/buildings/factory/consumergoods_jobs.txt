@@ -1,0 +1,74 @@
+####################################################################################################
+# Limitless Stellaris - Alloy Jobs Inline Script
+####################################################################################################
+# Merge between Vanilla
+
+### Triggered Planet Modifiers
+# Vanilla - Standard non-crafter CG jobs.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_crafter_empire = no
+		}
+	}
+	modifier = {
+		job_artisan_add = $basic$
+	}
+}
+# Vanilla - Standard crafter CG jobs.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_crafter_empire = yes
+		}
+	}
+	modifier = {
+		job_artificer_add = $basic$
+	}
+}
+# Vanilla - Gestalt CG jobs.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	modifier = {
+		job_artisan_drone_add = $basic$
+	}
+}
+
+### Triggered Descriptions
+# Vanilla - Standard artisan jobs.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_crafter_empire = no
+		}
+	}
+	text = job_artisan_effect_desc
+}
+# Vanilla - Standard artificer jobs.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_crafter_empire = yes
+		}
+	}
+	text = job_artificer_effect_desc
+}
+# Vanilla - Gestalt artisan jobs.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	text = job_artisan_drone_effect_desc
+}

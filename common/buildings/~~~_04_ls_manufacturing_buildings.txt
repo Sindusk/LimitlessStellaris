@@ -1,0 +1,2329 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Manufacturing
+##########################################################################
+
+##################################################
+## Manufacturing - Resources
+##################################################
+
+## Alloy Foundries (Tier 1)
+# Merge between Sort Buildings, Planetary Diversity: Unique Worlds, Real Space: Planetary Stations, StarTech, Ariphaos
+building_foundry_1 = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = manufacturing
+	position_priority = 2042000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_foundry_1_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+		}
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_industry_district = yes
+		}
+	}
+
+	allow = {
+		str_foundry_allow = yes # StarTech AI
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			AND = { # StarTech AI
+				is_capital = yes
+				owner = {
+					is_ai = yes
+					resource_income_compare = { resource = alloys value > 45 }
+					num_owned_planets > 3
+					OR = {
+						resource_stockpile_compare = { resource = alloys value > 3500 }
+						used_naval_capacity_percent > 0.95
+					}
+				}
+				years_passed > 20
+				NOT = { owner = { has_origin = origin_void_dwellers } }
+			}
+		}
+	}
+
+	inline_script = { # Adds the alloy jobs based on proper conditions.
+		script = buildings/foundry/alloy_jobs
+		basic = @db1_jobs
+		adv = @db1_adv_jobs
+		dm = @db1_dm_jobs
+	}
+	
+	inline_script = { # Adds ascension perk jobs.
+		script = buildings/foundry/alloy_jobs
+		industrialist = 1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+
+	upgrades = {
+		building_foundry_2
+	}
+
+	prerequisites = {
+		tech_basic_industry
+	}
+
+	# StarTech AI Fake Jobs Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_ai = yes
+			}
+			str_force_building_foundry = yes
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		alloys = 3 # This is an important building for future upgrades
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		alloys = 10
+		trigger = {
+			is_capital = yes
+		}
+	}
+	ai_resource_production = { # Overvalue this building if this planet is a major source of alloys.
+		alloys = 3
+		trigger = {
+			str_is_col_foundry = yes
+			str_num_districts_milindustry = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		alloys = 3
+		trigger = {
+			str_is_col_foundry = yes
+			str_num_districts_milindustry = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		alloys = 3
+		trigger = {
+			str_is_col_foundry = yes
+			str_num_districts_milindustry = { operator = > num = 4 }
+		}
+	}
+}
+
+## Alloy Mega-Forges (Tier 2)
+# Merge between Planetary Diversity: Unique Worlds, Unique Ascension Perks, StarTech
+building_foundry_2 = {
+	base_buildtime = @db2_time
+	can_build = no
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_foundry_2_tt
+    }
+
+	allow = {
+		has_upgraded_capital = yes
+		buildings_upgrade_allow = yes # StarTech AI
+		buildings_has_motes = yes # StarTech AI
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			AND = { # StarTech AI
+				exists = owner
+				buildings_no_motes = yes
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_industry_district = no
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			volatile_motes = @db3_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			volatile_motes = @db3_rare_upkeep
+		}
+	}
+
+	upgrades = {
+		building_foundry_3
+	}
+
+	prerequisites = {
+		tech_alloys_1
+	}
+
+	planet_modifier = {
+		planet_metallurgists_alloys_produces_add = 1
+	}
+	
+	inline_script = { # Adds the alloy jobs based on proper conditions.
+		script = buildings/foundry/alloy_jobs
+		basic = @db2_jobs
+		adv = @db2_adv_jobs
+		dm = @db2_dm_jobs
+	}
+
+	inline_script = { # Adds ascension perk jobs.
+		script = buildings/foundry/alloy_jobs
+		industrialist = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+			}
+			NOT = { # PD: Unique Worlds
+				OR = {
+					is_planet_class = pc_crucible 
+					is_planet_class = pc_shroud_crucible 
+					is_planet_class = pc_clean_crucible
+				}
+			}
+		}
+		modifier = {
+			planet_metallurgists_minerals_upkeep_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # PD: Unique Worlds
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+			}
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+		modifier = {
+			planet_metallurgists_energy_upkeep_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = { # Limitless Stellaris - separated from inline script
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+			}
+			NOT = { # PD: Unique Worlds
+				OR = {
+					is_planet_class = pc_crucible 
+					is_planet_class = pc_shroud_crucible 
+					is_planet_class = pc_clean_crucible
+				}
+			}
+		}
+		modifier = {
+			planet_metallurgists_food_upkeep_add = 3
+		}
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			str_force_building_foundry_upgrade = yes
+			NOT = { has_building = building_foundry_2 }
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		alloys = 8
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		alloys = 8
+		trigger = {
+			str_num_districts_milindustry = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		alloys = 8
+		trigger = {
+			str_num_districts_milindustry = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		alloys = 8
+		trigger = {
+			str_num_districts_milindustry = { operator = > num = 3 }
+		}
+	}
+}
+
+## Alloy Nano-Plants (Tier 3)
+# Merge between Planetary Diversity: Unique Worlds, Unique Ascension Perks, Rise of Cosmic Industry, StarTech
+building_foundry_3 = {
+	base_buildtime = @db3_time
+	can_build = no
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_foundry_3_tt
+    }
+
+	allow = {
+		has_major_upgraded_capital = yes
+		buildings_upgrade_allow = yes # StarTech AI
+		buildings_has_motes = yes # StarTech AI
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			AND = { # StarTech AI
+				exists = owner
+				buildings_no_motes = yes
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_industry_district = no
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			minerals = @db3_minerals
+			volatile_motes = @db4_rare_cost
+		}
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			minerals = 1500
+			volatile_motes = 600
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			energy = @db3_upkeep
+			volatile_motes = @db4_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			energy = 15
+			volatile_motes = 8
+		}
+	}
+
+	prerequisites = {
+		tech_alloys_2
+	}
+	
+	upgrades = {
+		building_roci_nano_forge_mod # Rise of Cosmic Industry
+	}
+
+	planet_modifier = {
+		planet_metallurgists_alloys_produces_add = 2
+	}
+	
+	inline_script = { # Adds the alloy jobs based on proper conditions.
+		script = buildings/foundry/alloy_jobs
+		basic = @db3_jobs
+		adv = @db3_adv_jobs
+		dm = @db3_dm_jobs
+	}
+	
+	inline_script = { # Adds ascension perk jobs.
+		script = buildings/foundry/ascension_jobs
+		industrialist = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+			}
+			NOT = { # PD: Unique Worlds
+				OR = {
+					is_planet_class = pc_crucible 
+					is_planet_class = pc_shroud_crucible 
+					is_planet_class = pc_clean_crucible
+				}
+			}
+		}
+		modifier = {
+			planet_metallurgists_minerals_upkeep_add = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_ringworld_output_boost = yes
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+			}
+			NOT = { # PD: Unique Worlds
+				OR = {
+					is_planet_class = pc_crucible 
+					is_planet_class = pc_shroud_crucible 
+					is_planet_class = pc_clean_crucible
+				}
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_minerals_upkeep_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_ringworld_output_boost = yes
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+			}
+			NOT = { # PD: Unique Worlds
+				OR = {
+					is_planet_class = pc_crucible 
+					is_planet_class = pc_shroud_crucible 
+					is_planet_class = pc_clean_crucible
+				}
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_food_upkeep_add = 3
+		}
+	}
+
+	triggered_planet_modifier = { # PD: Unique Worlds
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+			}
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+		modifier = {
+			planet_metallurgists_energy_upkeep_add = 4
+		}
+	}
+
+	triggered_planet_modifier = { # Limitless Stellaris - separated from inline script
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+			}
+			NOT = { # PD: Unique Worlds
+				OR = {
+					is_planet_class = pc_crucible 
+					is_planet_class = pc_shroud_crucible 
+					is_planet_class = pc_clean_crucible
+				}
+			}
+		}
+		modifier = {
+			planet_metallurgists_food_upkeep_add = 6
+		}
+	}
+	
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			str_force_building_foundry_upgrade = yes
+			NOT = { has_building = building_foundry_3 }
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		alloys = 16
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		alloys = 16
+		trigger = {
+			str_num_districts_milindustry = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		alloys = 16
+		trigger = {
+			str_num_districts_milindustry = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		alloys = 16
+		trigger = {
+			str_num_districts_milindustry = { operator = > num = 4 }
+		}
+	}
+}
+
+## Civilian Industries (Tier 1)
+# Merge between Sort Buildings, Planetary Diversity: Unique Worlds, Unique Ascension Perks, Real Space: Planetary Stations
+building_factory_1 = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = manufacturing
+	position_priority = 2041000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_factory_1_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				country_uses_consumer_goods = yes
+				is_fear_of_the_dark_empire = yes
+			}
+		}
+		str_factory_allow = yes # StarTech AI
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+		}
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			and = {
+				has_any_industry_district = yes
+				owner = {
+					should_ai_focus_on_trade = no
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+
+			AND = {
+				exists = owner
+				OR = {
+					owner = { 
+						AND = {
+							country_uses_consumer_goods = no
+							is_fear_of_the_dark_empire = no
+						}
+					}
+					AND = {
+						owner = {
+							is_ai = yes
+						}
+						has_any_industry_district = no
+					}
+					AND = {
+						owner = {
+							should_ai_focus_on_trade = yes
+							has_monthly_income = { resource = consumer_goods value > 30 }
+						}
+					}
+					AND = { # Planetary Diversity: Unique Worlds
+						owner = {
+							is_ai = yes
+						}
+						NOT = { has_district = district_rw_industrial }
+						NOT = { has_district = district_hab_industrial }
+						NOT = { has_district = district_industrial }
+					}
+				}
+			}
+			AND = { # StarTech AI
+				num_unemployed < 1
+				is_capital = yes
+				years_passed > 10
+				exists = owner
+				owner = {
+					is_ai = yes
+					resource_income_compare = {
+						resource = consumer_goods
+						value > 100
+					}
+					resource_stockpile_compare = {
+						resource = consumer_goods
+						value > 1000
+					}
+				}
+			}
+		}
+	}
+	
+	inline_script = { # Adds the consumer goods jobs and descriptions based on proper conditions.
+		script = buildings/factory/consumergoods_jobs
+		basic = @db1_jobs
+		adv = @db1_adv_jobs
+		dm = @db1_dm_jobs
+	}
+	
+	inline_script = { # Adds ascension perk jobs.
+		script = buildings/factory/ascension_jobs
+		industrialist = 1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+
+	prerequisites = {
+		tech_basic_industry
+	}
+
+	upgrades = {
+		building_factory_2
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			str_force_building_factory = yes
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		consumer_goods = 8 # This is an important building for future upgrades
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = { # Overvalue this building if this planet is a major source of consumer goods
+		consumer_goods = 8
+		trigger = {
+			str_num_districts_civindustry = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 8
+		trigger = {
+			str_num_districts_civindustry = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 8
+		trigger = {
+			str_num_districts_civindustry = { operator = > num = 4 }
+		}
+	}
+}
+
+## Civilian Fabricators (Tier 2)
+# Merge between Unique Ascension Perks, Real Space: Planetary Stations, StarTech
+building_factory_2 = {
+	base_buildtime = @db2_time
+	can_build = no
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_factory_2_tt
+    }
+
+	allow = {
+		has_upgraded_capital = yes
+		buildings_upgrade_allow = yes # StarTech AI
+		buildings_has_crystals = yes # StarTech AI
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			country_uses_consumer_goods = yes
+		}
+		NOT = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				OR = {
+					owner = { country_uses_consumer_goods = no }
+					AND = {
+						owner = {
+							is_ai = yes
+						}
+						has_any_industry_district = no
+					}
+				}
+			}
+			buildings_no_crystals = yes # StarTech AI
+		}
+	}
+
+	planet_modifier = {
+		planet_artisans_consumer_goods_produces_add = 1
+		planet_artisans_minerals_upkeep_add = 1
+	}
+
+	inline_script = { # Adds the consumer goods jobs and descriptions based on proper conditions.
+		script = buildings/factory/consumergoods_jobs
+		basic = @db2_jobs
+		adv = @db2_adv_jobs
+		dm = @db2_dm_jobs
+	}
+	
+	inline_script = { # Adds ascension perk jobs.
+		script = buildings/factory/ascension_jobs
+		industrialist = 1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			rare_crystals = @db3_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			rare_crystals = @db3_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		tech_luxuries_1
+	}
+
+	upgrades = {
+		building_factory_3
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			str_force_building_factory_upgrade = yes
+			NOT = { has_building = building_factory_2 }
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		consumer_goods = 16
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 16
+		trigger = {
+			str_num_districts_civindustry = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 16
+		trigger = {
+			str_num_districts_civindustry = { operator = > num = 4 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 16
+		trigger = {
+			str_num_districts_civindustry = { operator = > num = 5 }
+		}
+	}
+}
+
+## Civilian Repli-Complexes (Tier 3)
+# Merge between Unique Ascension Perks, Real Space: Planetary Stations, Rise of Cosmic Industry, StarTech
+building_factory_3 = {
+	base_buildtime = @db3_time
+	can_build = no
+
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_factory_3_tt
+    }
+
+	allow = {
+		has_major_upgraded_capital = yes
+		buildings_upgrade_allow = yes # StarTech AI
+		buildings_has_crystals = yes # StarTech AI
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			country_uses_consumer_goods = yes
+		}
+		NOT = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+
+			AND = {
+				exists = owner
+				OR = {
+					owner = { country_uses_consumer_goods = no }
+					AND = {
+						owner = {
+							is_ai = yes
+						}
+						has_any_industry_district = no
+					}
+				}
+			}
+			buildings_no_crystals = yes # StarTech AI
+		}
+	}
+
+
+	planet_modifier = {
+		planet_artisans_consumer_goods_produces_add = 2
+		planet_artisans_minerals_upkeep_add = 2
+	}
+	
+	inline_script = { # Adds the consumer goods jobs and descriptions based on proper conditions.
+		script = buildings/factory/consumergoods_jobs
+		basic = @db3_jobs
+		adv = @db3_adv_jobs
+		dm = @db3_dm_jobs
+	}
+	
+	inline_script = { # Adds ascension perk jobs.
+		script = buildings/factory/ascension_jobs
+		industrialist = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_ringworld_output_boost = yes
+		}
+		modifier = {
+			planet_artisans_consumer_goods_produces_add = 1
+			planet_artisans_minerals_upkeep_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			minerals = @db3_minerals
+			rare_crystals = @db4_rare_cost
+		}
+		cost = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			minerals = 1500
+			rare_crystals = 600
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = no
+			}
+			energy = @db3_upkeep
+			rare_crystals = @db4_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				has_ringworld_output_boost = yes
+			}
+			energy = 15
+			rare_crystals = 8
+		}
+	}
+
+	prerequisites = {
+		tech_luxuries_2
+	}
+	upgrades = {
+		building_roci_affluence_center_mod # Rise of Cosmic Industry
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			str_force_building_factory_upgrade = yes
+			NOT = { has_building = building_factory_2 }
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		consumer_goods = 24
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 24
+		trigger = {
+			str_num_districts_civindustry = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 20
+		trigger = {
+			str_num_districts_civindustry = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 20
+		trigger = {
+			str_num_districts_civindustry = { operator = > num = 4 }
+		}
+	}
+}
+
+##################################################
+## Manufacturing - Refiners
+##################################################
+
+## Exotic Gas Refineries (Tier 1)
+# Merge between Sort Buildings, Extra Buildings, Real Space: Planetary Stations, StarTech
+building_refinery = {
+	base_buildtime = @db2_time
+	position_priority = 4043000 # Sort Buildings
+
+	exempt_from_ai_planet_specialization = yes # StarTech AI enables this
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_refinery_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+		}
+		building_basic_income_check = yes # StarTech AI
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_gas_refiner_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_gas_refiner_drone_add = 1
+		}
+	}
+
+	destroy_trigger = { # StarTech AI
+		free_building_slots = 0
+		exists = owner
+		owner = {
+			is_ai = yes
+			has_monthly_income = {
+				resource = exotic_gases
+				value > 11
+			}
+		}
+	}
+
+	on_queued = { # StarTech AI
+		owner = {
+			set_timed_country_flag = {
+				flag = str_is_building_gases
+				days = 720
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	prerequisites = {
+		"tech_exotic_gases"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_gas_refiner_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_gas_refiner_drone_effect_desc
+	}
+	
+	upgrades = {
+		"eb_refinery" # Extra Buildings
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_ai = yes
+				str_force_gases = yes
+			}
+			NOT = { has_building = building_refinery }
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 2
+			job_starnet_spice_melange_antifarmer_add = -2
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		exotic_gases = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+## Chemical Plants (Tier 1)
+# Merge between Sort Buildings, Extra Buildings, Real Space: Planetary Stations, StarTech
+building_chemical_plant = {
+	base_buildtime = @db2_time
+	position_priority = 4042000 # Sort Buildings
+
+	exempt_from_ai_planet_specialization = yes # StarTech AI enables this
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_chemical_plant_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+		}
+		building_basic_income_check = yes # StarTech AI
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_chemist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_chemist_drone_add = 1
+		}
+	}
+
+	destroy_trigger = { # StarTech AI
+		free_building_slots = 0
+		exists = owner
+		owner = {
+			is_ai = yes
+			has_monthly_income = {
+				resource = volatile_motes
+				value > 9
+			}
+		}
+	}
+
+	on_queued = { # StarTech AI
+		owner = {
+			set_timed_country_flag = {
+				flag = str_is_building_motes
+				days = 720
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	prerequisites = {
+		"tech_volatile_motes"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_chemist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_chemist_drone_effect_desc
+	}
+
+	upgrades = {
+		"eb_chemical_plant" # Extra Buildings
+	}
+	
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_ai = yes
+				str_force_motes = yes
+			}
+			NOT = { has_building = building_chemical_plant }
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 2
+			job_starnet_spice_melange_antifarmer_add = -2
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		volatile_motes = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+## Synthetic Crystal Plants (Tier 1)
+# Merge between Sort Buildings, Extra Buildings, Real Space: Planetary Stations, StarTech
+building_crystal_plant = {
+	base_buildtime = @db2_time
+	position_priority = 4044000 # Sort Buildings
+
+	exempt_from_ai_planet_specialization = yes # StarTech AI enables this
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_crystal_plant_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+		}
+		building_basic_income_check = yes # StarTech AI
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_translucer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_translucer_drone_add = 1
+		}
+	}
+
+	destroy_trigger = { # StarTech AI
+		free_building_slots = 0
+		exists = owner
+		owner = {
+			is_ai = yes
+			has_monthly_income = {
+				resource = rare_crystals
+				value > 9
+			}
+		}
+	}
+
+	on_queued = { # StarTech AI
+		owner = {
+			set_timed_country_flag = {
+				flag = str_is_building_crystals
+				days = 720
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	prerequisites = {
+		"tech_rare_crystals"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_translucer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_translucer_drone_effect_desc
+	}
+
+	upgrades = {
+		"building_crystal_plant_2"
+		"eb_crystal_plant" # Extra Buildings
+	}
+	
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_ai = yes
+				str_force_crystals = yes
+			}
+			NOT = { has_building = building_crystal_plant }
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 2
+			job_starnet_spice_melange_antifarmer_add = -2
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		rare_crystals = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+## Nanite Transmuter (Tier 1)
+# Merge between Sort Buildings
+building_nanite_transmuter = {
+	base_buildtime = @db3_time
+	position_priority = 4041000 # Sort Buildings
+
+	category = manufacturing
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_nanite_transmuter_tt
+    }
+
+	potential = {
+		exists = owner
+		OWNER = {
+			OR = {
+				has_monthly_income = {
+					resource = nanites
+					value > 0
+				}
+				AND = {
+					is_ai = no
+					has_resource = {
+						type = nanites
+						amount > 0
+					}
+				}
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+		}
+		building_basic_income_check = yes # StarTech AI
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		produces = {
+			trigger = {
+				owner = {
+					NOT = {
+						has_deficit = nanites
+					}
+				}
+			}
+			rare_crystals = 2
+			volatile_motes = 2
+			exotic_gases = 2
+		}
+		upkeep = {
+			nanites = 1
+			energy = 5
+		}
+	}
+
+	prerequisites = {
+		"tech_nanite_transmutation"
+	}
+
+	ai_resource_production = {
+		rare_crystals = @b3_rare_upkeep
+		volatile_motes = @b3_rare_upkeep
+		exotic_gases = @b3_rare_upkeep
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+##################################################
+## Manufacturing - Special
+##################################################
+
+## Ministry of Production (Tier 1)
+# Merge between Sort Buildings, Unique Ascension Perks, Real Space: Planetary Stations, Gigastructural Engineering, StarTech
+building_ministry_production = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	icon = building_production_center
+	position_priority = 2044000 # Sort Buildings
+
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ministry_production_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Station
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = yes }
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			buildings_no_motes = yes # StarTech AI
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_industry_district = no
+			}
+		}
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+		hidden_trigger = { # StarTech AI
+			OR = {
+				owner = { is_ai = no }
+				str_num_districts_allindustry = { operator = > num = 3 }
+				str_is_col_factory = yes
+				str_is_col_foundry = yes
+				str_is_col_industrial = yes
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_politician_add = 1
+		planet_metallurgists_produces_mult = 0.15
+		planet_artisans_produces_mult = 0.15
+		planet_cultivators_produces_mult = 0.15 # Gigastructural Engineering
+	}
+
+	triggered_planet_modifier = { # Unique Ascension Perks
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_ascension_perk = ap_pyramidal_society
+					has_country_flag = ap_pyramidal_society
+				}
+				is_common_empire = yes
+			}
+		}
+		modifier = {
+			job_industrialist_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			volatile_motes = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			volatile_motes = @db2_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_global_production_strategy"
+	}
+
+	triggered_desc = {
+		text = job_politician_effect_desc
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	ai_resource_production = {
+		alloys = 6
+		trigger = {
+			planet_resource_compare = {
+				resource = alloys
+				value >= 40
+				type = produces
+			}
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 8
+		trigger = {
+			planet_resource_compare = {
+				resource = consumer_goods
+				value >= 50
+				type = produces
+			}
+		}
+	}
+	ai_resource_production = { # Gigastructural Engineering
+		ehof_sr_sentient_metal = 6
+		trigger = {
+			planet_resource_compare = {
+				resource = ehof_sr_sentient_metal
+				value >= 40
+				type = produces
+			}
+		}
+	}
+	
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			NOT = { has_building = building_ministry_production }
+			OR = {
+				str_is_col_foundry = yes
+				str_is_col_factory = yes
+				str_is_col_industrial = yes
+			}
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		trigger = { always = yes }
+		alloys = 3
+		consumer_goods = 6
+	}
+	ai_resource_production = {
+		alloys = 3
+		trigger = {
+			str_num_districts_allindustry = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		alloys = 3
+		trigger = {
+			str_num_districts_allindustry = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 5
+		trigger = {
+			str_num_districts_allindustry = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 5
+		trigger = {
+			str_num_districts_allindustry = { operator = > num = 3 }
+		}
+	}
+}
+
+## Resource Processing Center (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, Gigastructural Engineering, StarTech
+building_production_center = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2044000 # Sort Buildings
+
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_production_center_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_gestalt = yes }
+		OR = {
+			owner = { is_ai = no }
+			has_any_industry_district = yes
+		}
+		NOT = { has_modifier = crucible_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = no }
+			buildings_no_motes = yes # StarTech AI
+			AND = {
+				owner = { is_ai = yes }
+				has_any_industry_district = no
+			}
+			has_modifier = crucible_colony
+		}
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+		hidden_trigger = { # StarTech AI
+			OR = {
+				owner = { is_ai = no }
+				str_num_districts_allindustry = { operator = > num = 3 }
+				str_is_col_foundry = yes
+				str_is_col_factory = yes
+				str_is_col_industrial = yes
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_metallurgists_produces_mult = 0.15
+		planet_artisans_produces_mult = 0.15
+		planet_cultivators_produces_mult = 0.15 # Gigastructural Engineering
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			volatile_motes = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			volatile_motes = @db2_rare_upkeep
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		job_alloy_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = yes
+			}
+		}
+		job_catalytic_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		job_fabricator_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = yes
+			}
+		}
+		job_catalytic_drone_add = 1
+	}
+
+	prerequisites = {
+		"tech_global_production_strategy"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_alloy_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_fabricator_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_drone_effect_desc
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = yes
+	}
+
+	ai_resource_production = {
+		alloys = 6
+		trigger = {
+			planet_resource_compare = {
+				resource = alloys
+				value >= 40
+				type = produces
+			}
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 8
+		trigger = {
+			owner = { country_uses_consumer_goods = yes }
+			planet_resource_compare = {
+				resource = consumer_goods
+				value >= 50
+				type = produces
+			}
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		trigger = { always = yes }
+		alloys = 3
+	}
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				country_uses_consumer_goods = yes
+			}
+		}
+		consumer_goods = 6
+	}
+	ai_resource_production = {
+		trigger = { always = yes }
+		alloys = 3
+	}
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				country_uses_consumer_goods = yes
+			}
+		}
+		consumer_goods = 6
+	}
+	ai_resource_production = {
+		alloys = 3
+		trigger = {
+			str_num_districts_allindustry = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		alloys = 3
+		trigger = {
+			str_num_districts_allindustry = { operator = > num = 3 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 5
+		trigger = {
+			str_num_districts_allindustry = { operator = > num = 2 }
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 5
+		trigger = {
+			str_num_districts_allindustry = { operator = > num = 3 }
+		}
+	}
+}
+
+## Coordinated Fulfillment Center (Tier 1)
+# Merge between Sort Buildings, Planetary Diversity, Real Space: Planetary Stations, Scripted Trigger Undercoat
+building_coordinated_fulfillment_center_1 = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2043000 # Sort Buildings
+
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_coordinated_fulfillment_center_1_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_relentless_industrialist_empire = yes }
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_industry_district = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_relentless_industrialist_empire = no }
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_industry_district = no
+			}
+		}
+	}
+
+	prerequisites = {
+		tech_basic_industry
+	}
+
+	show_tech_unlock_if = {
+		is_relentless_industrialist_empire = yes
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	triggered_desc = {
+		trigger = {
+			NOR = {
+				is_pd_nuked = yes # Planetary Diversity
+				is_city_world = yes # Scripted Trigger Undercoat
+				uses_district_set = habitat
+				uses_district_set = ring_world
+				uses_district_set = shattered_ring_world
+			}
+		}
+		text = building_coordinated_fulfillment_center_tooltip
+	}
+
+	planet_modifier = {
+		planet_metallurgists_produces_mult = 0.2
+		planet_artisans_produces_mult = 0.2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_policy_flag = relentless_industrialists_full_steam_ahead }
+		}
+		modifier = {
+			planet_metallurgists_produces_mult = 0.1
+			planet_artisans_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { is_synthetic_empire = no }
+		}
+		modifier = {
+			pop_growth_speed_reduction = 0.15
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_synthetic_empire = no
+				NAND = {
+					has_policy_flag = relentless_industrialists_study
+					has_country_flag = relentless_industrialists_study_completed
+				}
+			}
+		}
+		modifier = {
+			pop_growth_speed_reduction = 0.05
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { is_synthetic_empire = yes }
+		}
+		modifier = {
+			habitability_ceil_add = -0.075
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				owner = { is_synthetic_empire = yes }
+				NAND = {
+					has_policy_flag = relentless_industrialists_study
+					has_country_flag = relentless_industrialists_study_completed
+				}
+			}
+		}
+		modifier = {
+			habitability_ceil_add = -0.025
+		}
+	}
+
+	upgrades = {
+		building_coordinated_fulfillment_center_2
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+		upkeep = {
+			unity = 10
+			trigger = {
+				owner = { has_policy_flag = relentless_industrialists_cleanup }
+			}
+		}
+	}
+
+	ai_resource_production = {
+		alloys = 6
+		trigger = {
+			planet_resource_compare = {
+				resource = alloys
+				value >= 40
+				type = produces
+			}
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 8
+		trigger = {
+			planet_resource_compare = {
+				resource = consumer_goods
+				value >= 50
+				type = produces
+			}
+		}
+	}
+}
+
+## Universal Productivity Alignment Facility (Tier 2)
+# Merge between Planetary Diversity, Scripted Trigger Undercoat
+building_coordinated_fulfillment_center_2 = {
+	base_buildtime = @db2_time
+	can_build = no
+
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_coordinated_fulfillment_center_2_tt
+    }
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_relentless_industrialist_empire = no }
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_industry_district = no
+			}
+		}
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	triggered_desc = {
+		trigger = {
+			NOR = {
+				is_pd_nuked = yes # Planetary Diversity
+				is_city_world = yes # Scripted Trigger Undercoat
+				uses_district_set = habitat
+				uses_district_set = ring_world
+				uses_district_set = shattered_ring_world
+			}
+		}
+		text = building_coordinated_fulfillment_center_tooltip
+	}
+
+	planet_modifier = {
+		planet_metallurgists_produces_mult = 0.4
+		planet_artisans_produces_mult = 0.4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_policy_flag = relentless_industrialists_full_steam_ahead }
+		}
+		modifier = {
+			planet_metallurgists_produces_mult = 0.2
+			planet_artisans_produces_mult = 0.2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { is_synthetic_empire = no }
+		}
+		modifier = {
+			pop_growth_speed_reduction = 0.25
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_synthetic_empire = no
+				NAND = {
+					has_policy_flag = relentless_industrialists_study
+					has_country_flag = relentless_industrialists_study_completed
+				}
+			}
+		}
+		modifier = {
+			pop_growth_speed_reduction = 0.15
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { is_synthetic_empire = yes }
+		}
+		modifier = {
+			habitability_ceil_add = -0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				owner = { is_synthetic_empire = yes }
+				NAND = {
+					has_policy_flag = relentless_industrialists_study
+					has_country_flag = relentless_industrialists_study_completed
+				}
+			}
+		}
+		modifier = {
+			habitability_ceil_add = -0.05
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			volatile_motes = @db3_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			volatile_motes = @db3_rare_upkeep
+		}
+		upkeep = {
+			unity = 20
+			trigger = {
+				owner = { has_policy_flag = relentless_industrialists_cleanup }
+			}
+		}
+	}
+
+	prerequisites = {
+		tech_global_production_strategy
+	}
+
+	show_tech_unlock_if = {
+		is_relentless_industrialist_empire = yes
+	}
+
+	ai_resource_production = {
+		alloys = 6
+		trigger = {
+			planet_resource_compare = {
+				resource = alloys
+				value >= 40
+				type = produces
+			}
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 8
+		trigger = {
+			planet_resource_compare = {
+				resource = consumer_goods
+				value >= 50
+				type = produces
+			}
+		}
+	}
+}
+
+## Ancient Refinery (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations
+building_archaeo_refinery = {
+	base_buildtime = @db3_time
+	base_cap_amount = 1
+	position_priority = 2045000 # Sort Buildings
+
+	category = manufacturing
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_archaeo_refinery_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+			has_planet_flag = planetary_station # Real Space: Planetary Stations
+		}
+		owner = { has_technology = tech_archaeo_refinery }
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_translucer_add = 1
+			job_gas_refiner_add = 1
+			job_chemist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_translucer_drone_add = 1
+			job_gas_refiner_drone_add = 1
+			job_chemist_drone_add = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_exotic_gases_produces_mult = 0.25
+		planet_jobs_rare_crystals_produces_mult = 0.25
+		planet_jobs_volatile_motes_produces_mult = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_ascension_perk = ap_archaeoengineers
+			}
+		}
+		planet_jobs_exotic_gases_produces_mult = 0.15
+		planet_jobs_rare_crystals_produces_mult = 0.15
+		planet_jobs_volatile_motes_produces_mult = 0.15
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			minor_artifacts = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_archaeo_refinery"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_translucer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_chemist_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_gas_refiner_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_translucer_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_chemist_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_gas_refiner_drone_effect_desc
+	}
+}

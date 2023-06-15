@@ -1,0 +1,288 @@
+####################################################################################################
+# Limitless Stellaris - Alloy Jobs Inline Script
+####################################################################################################
+# Merge between Planetary Diversity: Unique Worlds
+
+## Triggered Planet Modifiers
+# Vanilla - Non-catalytic hive jobs. Added PD conditions
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			is_catalytic_empire = no
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	modifier = {
+		job_alloy_drone_add = $basic$
+	}
+}
+# Vanilla - Non-catalytic machine jobs. Added PD conditions
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+			is_catalytic_empire = no
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	modifier = {
+		job_fabricator_add = $basic$
+	}
+}
+# Vanilla - Catalytic gestalt jobs. Added PD conditions
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+			is_catalytic_empire = yes
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	modifier = {
+		job_catalytic_drone_add = $basic$
+	}
+}
+# Vanilla - Non-catalytic standard jobs. Added PD conditions
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_catalytic_empire = no
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	modifier = {
+		job_foundry_add = $basic$
+	}
+}
+# Vanilla - Catalytic standard jobs. Added PD conditions
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_catalytic_empire = yes
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	modifier = {
+		job_catalytic_technician_add = $basic$
+	}
+}
+# Planetary Diversity: Unique Worlds - Standard foundry jobs.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		OR = {
+			is_planet_class = pc_crucible 
+			is_planet_class = pc_shroud_crucible 
+			is_planet_class = pc_clean_crucible
+		}
+	}
+	modifier = {
+		job_crucible_foundry_add = $basic$
+	}
+}
+# Planetary Diversity: Unique Worlds - Hive alloy jobs.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+		}
+		OR = {
+			is_planet_class = pc_crucible 
+			is_planet_class = pc_shroud_crucible 
+			is_planet_class = pc_clean_crucible
+		}
+	}
+	modifier = {
+		job_crucible_alloy_drone_add = $basic$
+	}
+}
+# Planetary Diversity: Unique Worlds - Machine alloy jobs.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+		}
+		OR = {
+			is_planet_class = pc_crucible 
+			is_planet_class = pc_shroud_crucible 
+			is_planet_class = pc_clean_crucible
+		}
+	}
+	modifier = {
+		job_crucible_fabricator_add = $basic$
+	}
+}
+
+### Triggered Descriptions
+# Vanilla - Non-catalytic standard foundry job. Added PD conditions.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_catalytic_empire = no
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	text = job_foundry_effect_desc
+}
+# Vanilla - Catalytic standard alloy jobs. Added PD conditions.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_catalytic_empire = yes
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	text = job_catalytic_technician_effect_desc
+}
+# Vanilla - Non-catalytic hive alloy jobs. Added PD conditions.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			is_catalytic_empire = no
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	text = job_alloy_drone_effect_desc
+}
+# Vanilla - Non-catalytic machine alloy jobs. Added PD conditions.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+			is_catalytic_empire = no
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	text = job_fabricator_effect_desc
+}
+# Vanilla - Catalytic gestalt jobs. Added PD conditions.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+			is_catalytic_empire = yes
+		}
+		NOT = { # PD: Unique Worlds
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_shroud_crucible 
+				is_planet_class = pc_clean_crucible
+			}
+		}
+	}
+	text = job_catalytic_drone_effect_desc
+}
+# Planetary Diversity: Unique Worlds - Standard crucible jobs.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_gestalt = no }
+		OR = {
+			is_planet_class = pc_crucible 
+			is_planet_class = pc_shroud_crucible 
+			is_planet_class = pc_clean_crucible
+		}
+	}
+	text = job_crucible_foundry_effect_desc
+}
+# Planetary Diversity: Unique Worlds - Hive crucible jobs.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		OR = {
+			is_planet_class = pc_crucible 
+			is_planet_class = pc_shroud_crucible 
+			is_planet_class = pc_clean_crucible
+		}
+	}
+	text = job_crucible_alloy_drone_effect_desc
+}
+# Planetary Diversity: Unique Worlds - Machine crucible jobs.
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+		OR = {
+			is_planet_class = pc_crucible 
+			is_planet_class = pc_shroud_crucible 
+			is_planet_class = pc_clean_crucible
+		}
+	}
+	text = job_crucible_fabricator_effect_desc
+}
