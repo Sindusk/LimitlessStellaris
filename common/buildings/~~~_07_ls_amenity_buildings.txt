@@ -1903,6 +1903,11 @@ building_toxic_bath = {
 	icon = building_toxic_bath
 	position_priority = 2072000 # Sort Buildings
 
+    # Building Tooltip
+    triggered_desc = {
+        text = building_toxic_bath_tt
+    }
+
 	potential = {
 		NOT = { has_modifier = slave_colony }
 		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Station
