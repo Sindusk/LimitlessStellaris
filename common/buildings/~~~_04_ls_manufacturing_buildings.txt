@@ -68,7 +68,7 @@ building_foundry_1 = {
 	}
 	
 	inline_script = { # Adds ascension perk jobs.
-		script = buildings/foundry/alloy_jobs
+		script = buildings/foundry/ascension_jobs
 		industrialist = 1
 	}
 
@@ -211,7 +211,7 @@ building_foundry_2 = {
 	}
 
 	inline_script = { # Adds ascension perk jobs.
-		script = buildings/foundry/alloy_jobs
+		script = buildings/foundry/ascension_jobs
 		industrialist = 1
 	}
 

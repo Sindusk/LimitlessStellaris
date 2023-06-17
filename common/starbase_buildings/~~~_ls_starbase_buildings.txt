@@ -1,0 +1,132 @@
+# Expanded Starbases - Crash fix on the possible conditions.
+# Will need to re-test on an update from the mod author.
+trade_patrol = {
+	icon = "GFX_starbase_hangar_bay"
+	construction_days = 360
+	
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_interstellar_enforcement
+			is_gestalt = no
+		}
+		is_orbital_ring = no
+	}
+	
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			has_starbase_size >= starbase_starport
+		}
+		OR = {
+			has_starbase_module = gun_battery
+			has_starbase_module = missile_battery
+			has_starbase_module = hangar_bay
+			has_starbase_module = large_battery
+			has_starbase_module = extra_large_battery
+			has_starbase_module = titanic_battery
+			#starbase_buildable_is_in_queue_before = { first = gun_battery second = trade_patrol }
+			#starbase_buildable_is_in_queue_before = { first = missile_battery second = trade_patrol }
+			#starbase_buildable_is_in_queue_before = { first = hangar_bay second = trade_patrol }
+			#starbase_buildable_is_in_queue_before = { first = large_battery second = trade_patrol }
+			#starbase_buildable_is_in_queue_before = { first = extra_large_battery second = trade_patrol }
+			#starbase_buildable_is_in_queue_before = { first = titanic_battery second = trade_patrol }
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 3
+			alloys = 1
+		}
+	}
+
+	custom_tooltip = sm_trade_patrol_desc_modifier
+	show_in_tech = "tech_interstellar_enforcement"
+	
+	ai_build_at_chokepoint = no
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}
+
+# Expanded Starbases - Crash fix on the possible conditions.
+# Will need to re-test on an update from the mod author.
+orbital_institute = {
+	icon = "GFX_starbase_super_computer"
+	construction_days = 360
+	
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_global_research_initiative }
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			has_starbase_size >= starbase_starport
+		}
+		OR = {
+			has_starbase_module = orbital_lab
+			#starbase_buildable_is_in_queue_before = {
+			#	first = orbital_lab
+			#	second = orbital_institute
+			#}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+		
+		produces = {
+			physics_research = 5
+			society_research = 5
+			engineering_research = 5
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			physics_research = 5
+			society_research = 5
+			engineering_research = 5
+		}
+
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			always = yes
+		}
+		custom_tooltip = orbital_institute_effects
+	}
+
+	show_in_tech = "tech_global_research_initiative"
+
+	ai_build_at_chokepoint = no
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}

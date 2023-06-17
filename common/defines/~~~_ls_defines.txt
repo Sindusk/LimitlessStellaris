@@ -223,16 +223,20 @@
 		REQUIRED_POP_ASSEMBLY				= 150	# Required assembly to add a pop
 	}
 	NGameplay = {
+		### Temporary fix for Scripted Trigger Undercoat
+		PLANET_ARMIES_PROTECT_POPS				 = 2		# Each army present on a planet will protect this many pops from raids.
+		EMPIRE_SIZE_FLOOR						= 50	# Empire Size is never treated as under this
+
 		# Planetary Ascension cost formula: ( Empire Sprawl * PLANET_ASCENSION_SPRAWL_SCALE) * ( 1 + ( Empire Wide Sum of Ascension Tiers * PLANET_ASCENSION_SUM_SCALE )
 		PLANET_ASCENSION_SPRAWL_SCALE		= 20.0  # Scaling factor for Planetary Ascension cost based on the empire Sprawl
 		PLANET_ASCENSION_SUM_SCALE			= 0.2   # Scaling factor for Planetary Ascension cost based on the empire-wide sum of Ascension Tiers
-		PLANET_ASCENSION_SPRAWL_MODIFIER   = -0.025 # Reduction of planet sprawl per level of ascension
+		PLANET_ASCENSION_SPRAWL_MODIFIER	= -0.025 # Reduction of planet sprawl per level of ascension
 
 		# Default value is 50, meaning 5% chance for a prescripted empire to spawn.
 		# Limitless Stellaris offers high quality prescripted countries that the AI will use more efficiently. So we set this value to 200 for a 20% chance.
 		CUSTOM_EMPIRE_SPAWN_CHANCE			= 200	# Chance that an empire will be created from an existing template instead of randomly generated (10 = 1% chance)
 
-		# Default value is 1.0
+		### Faster Reinforcement Transit ###
 		REINFORCE_MIA_TIME_MULT = 0.17 		# Used to customize the duration of reinforcement times. Expected to be > 0; Default: 1.0
 		MIA_TIME_MULT = 0.17				# Used to customize the duration of MIA times. Expected to be > 0; Default 1.0
 
@@ -269,40 +273,40 @@
 		SYSTEM_LOST_CLAIM_STRENGTH				= 10	# Strength of a claim given to an empire when their system is annexed
 
 		### Faster Galactic Community ###
-		RESOLUTION_VOTE_TIMER = 720						# number of days a resolution will be on the senate floor before being passed/failed
-		RESOLUTION_VOTE_PREMATURE_TIMER = 180			# number of days until the custodian/emperor can prematurely end the senate session
-		SENATE_RECESS_TIMER = 540						# number of days until the next proposed resolution will be put on the floor after the current vote			COUNCIL_DIPLOMACY_WEIGHT_MODIFIER = 1.5			# how much a countries diplomatic weight will be increased when voting if on the council
-		CHANGE_VOTE_COOLDOWN = 30						# number of days after voting in a resolution before you can change your vote
+		#RESOLUTION_VOTE_TIMER = 720					# number of days a resolution will be on the senate floor before being passed/failed
+		#RESOLUTION_VOTE_PREMATURE_TIMER = 180			# number of days until the custodian/emperor can prematurely end the senate session
+		#SENATE_RECESS_TIMER = 540						# number of days until the next proposed resolution will be put on the floor after the current vote			COUNCIL_DIPLOMACY_WEIGHT_MODIFIER = 1.5			# how much a countries diplomatic weight will be increased when voting if on the council
+		#CHANGE_VOTE_COOLDOWN = 30						# number of days after voting in a resolution before you can change your vote
 	
-		DEFAULT_COUNCIL_SIZE = 0 						# default number of community council members, will be modified
-		DEFAULT_COUNCIL_VETO = no 						# can the council veto resolutions by default?
-		DEFAULT_COUNCIL_EMERGENCY_MEASURES = yes		# can the council by default propose emergency measures?
-		CATEGORY_VOTE_COOLDOWN = 1260					# time before another resolution in a given category can proposed again
-		TYPE_VOTE_COOLDOWN = 2520						# time before a referendum of a given type can be proposed again
-		VETO_COOLDOWN = 480								# time before a country can enact another veto
+		#DEFAULT_COUNCIL_SIZE = 0 						# default number of community council members, will be modified
+		#DEFAULT_COUNCIL_VETO = no 						# can the council veto resolutions by default?
+		#DEFAULT_COUNCIL_EMERGENCY_MEASURES = yes		# can the council by default propose emergency measures?
+		#CATEGORY_VOTE_COOLDOWN = 1260					# time before another resolution in a given category can proposed again
+		#TYPE_VOTE_COOLDOWN = 2520						# time before a referendum of a given type can be proposed again
+		#VETO_COOLDOWN = 480							# time before a country can enact another veto
 		#EMERGENCY_MEASURES_COOLDOWN = 3600				# time before a country can propose another emergency measure
 		#DEFAULT_VETO_COST_MULT = 2						# proposed resolution cost is multiplied by this to determine the cost of vetoing that resolution
-		JOIN_COMMUNITY_INFLUENCE_COST = 100				# cost to join the community manually after its formation
-		LEAVE_COMMUNITY_MIN_INFLUENCE_COST = 100		# minimum cost to leave the galactic community
-		LEAVE_COMMUNITY_MAX_INFLUENCE_COST = 500		# maximum cost to leave the galactic community
-		LEAVE_COMMUNITY_INFLUENCE_COST_FACTOR = 0.5		# factor determining actual cost of leaving the community, this is multiplied with empire sprawl
-		LEFT_COMMUNITY_MODIFIER_TIMER = 7200			# how many days the left_community_modifier will affect the leaving country
-		COUNCIL_ELECTION_TIMER = 7200					# time between galactic council elections
-		COUNCIL_ELECTION_SOON_CUTOFF = 180				# when there is less than this many days left until the next council we show an alert
-		COMMUNITY_FREEZE_RESOLUTION_MONTHS = 24			# The time period a resolution is frozen by the Custodian/Emperor
-		CUSTODIAN_TERM_LIMIT_DAYS = 10800				# The time period that a Custodian keeps their position
+		#JOIN_COMMUNITY_INFLUENCE_COST = 100			# cost to join the community manually after its formation
+		#LEAVE_COMMUNITY_MIN_INFLUENCE_COST = 100		# minimum cost to leave the galactic community
+		#LEAVE_COMMUNITY_MAX_INFLUENCE_COST = 500		# maximum cost to leave the galactic community
+		#LEAVE_COMMUNITY_INFLUENCE_COST_FACTOR = 0.5	# factor determining actual cost of leaving the community, this is multiplied with empire sprawl
+		#LEFT_COMMUNITY_MODIFIER_TIMER = 7200			# how many days the left_community_modifier will affect the leaving country
+		#COUNCIL_ELECTION_TIMER = 7200					# time between galactic council elections
+		#COUNCIL_ELECTION_SOON_CUTOFF = 180				# when there is less than this many days left until the next council we show an alert
+		#COMMUNITY_FREEZE_RESOLUTION_MONTHS = 24		# The time period a resolution is frozen by the Custodian/Emperor
+		#CUSTODIAN_TERM_LIMIT_DAYS = 10800				# The time period that a Custodian keeps their position
 		#CUSTODIAN_TERM_LIMIT_EXPIRATION_MESSAGE_DAYS = 3600 # The amount of days left on a term limit when a notification should be sent to the custodian about their term expiring
 	
-		ENVOY_STRENGTHEN_IMPERIAL_AUTHORITY_RELATION_GROWTH = 2 	# Monthly opinion growth when having envoys assigned that strengthen the imperial authority
-		ENVOY_STRENGTHEN_IMPERIAL_AUTHORITY_RELATION_DECAY = -1 	# Monthly opinion decay when having envoys assigned that strengthen the imperial authority
-		ENVOY_STRENGTHEN_IMPERIAL_AUTHORITY_RELATION_MAX = 200 		# The highest the above growth can get to
-		ENVOY_UNDERMINE_IMPERIAL_AUTHORITY_RELATION_GROWTH = -2 	# Monthly opinion "growth" when having envoys assigned that undermine the imperial authority
-		ENVOY_UNDERMINE_IMPERIAL_AUTHORITY_RELATION_DECAY = 1 		# Monthly opinion "decay" when having envoys assigned that undermine the imperial authority
-		ENVOY_UNDERMINE_IMPERIAL_AUTHORITY_RELATION_MIN = -200 		# The "lowest" the above growth can get to
+		#ENVOY_STRENGTHEN_IMPERIAL_AUTHORITY_RELATION_GROWTH = 2 	# Monthly opinion growth when having envoys assigned that strengthen the imperial authority
+		#ENVOY_STRENGTHEN_IMPERIAL_AUTHORITY_RELATION_DECAY = -1 	# Monthly opinion decay when having envoys assigned that strengthen the imperial authority
+		#ENVOY_STRENGTHEN_IMPERIAL_AUTHORITY_RELATION_MAX = 200 	# The highest the above growth can get to
+		#ENVOY_UNDERMINE_IMPERIAL_AUTHORITY_RELATION_GROWTH = -2 	# Monthly opinion "growth" when having envoys assigned that undermine the imperial authority
+		#ENVOY_UNDERMINE_IMPERIAL_AUTHORITY_RELATION_DECAY = 1 		# Monthly opinion "decay" when having envoys assigned that undermine the imperial authority
+		#ENVOY_UNDERMINE_IMPERIAL_AUTHORITY_RELATION_MIN = -200 	# The "lowest" the above growth can get to
 	
-		FAVOR_CAP							= 10		# Max amount of favors from same empire that can be stored
-		FAVORS_PER_RESOLUTION_CAP			= 100		# Max amount of favors that can be used for a resolution
-		BORROWED_DIPLO_WEIGHT_FAVOR_MULT	= 0.1 		# Diplo weight mult per favor
+		#FAVOR_CAP							= 10		# Max amount of favors from same empire that can be stored
+		#FAVORS_PER_RESOLUTION_CAP			= 100		# Max amount of favors that can be used for a resolution
+		#BORROWED_DIPLO_WEIGHT_FAVOR_MULT	= 0.1 		# Diplo weight mult per favor
 
 		### Better Sliders ###
 		# These values control the mid and end game sliders in game setup
@@ -345,6 +349,41 @@
 		MAX_EXPANSION_DISTANCE_SUBJECT = 1		# Max number of jumps away AI subjects will build starbases; Default: 2
 	}
 	NInterface = {
+		### Temporary fix for the un-updated Scripted Trigger Undercoat
+		FLAG_CAPITAL_DECORATION_SCALE = 1.0 # Scale for the tiny stars around map icons
+		FLAG_CAPITAL_DECORATION_SCALE_BIG_FRAME = 1.3 # Scale for the tiny stars around map icons
+
+		PORTRAIT_GUI_NAME_TOAST = "paragon_portrait_container_toast"
+		PORTRAIT_GUI_NAME_ANOMALY_LEADER_VIEW = "paragon_portrait_container_horizontal_slim"
+		PORTRAIT_GUI_NAME_ANOMALY_CONTROLLER_VIEW = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_ARCHAEOLOGY_VIEW = "paragon_portrait_container_vertical_small"
+		PORTRAIT_GUI_NAME_SITE_LEADER_ENTRY = "paragon_portrait_container_horizontal_slim"
+		PORTRAIT_GUI_NAME_ASSIGNABLE_LEADER_LIST_ENTRY = "paragon_portrait_container_leader_assignment"
+		PORTRAIT_GUI_NAME_ASSIGNABLE_COUNCILOR_LIST_ENTRY = "paragon_portrait_container_assign_councilor"
+		PORTRAIT_GUI_NAME_HIRE_AND_ASSIGN_LIST_ENTRY = "paragon_portrait_container_horizontal_slim"
+		PORTRAIT_GUI_NAME_ASSIGN_TRAIT = "paragon_portrait_container_vertical"
+		PORTRAIT_GUI_NAME_COMBAT_FLEET_VIEW = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_COUNCIL_VIEW_RULER = "paragon_portrait_container_ruler_council"
+		PORTRAIT_GUI_NAME_COUNCIL_POSITION = "paragon_portrait_container_council"
+		PORTRAIT_GUI_NAME_COUNCIL_POSITION_GESTALT = "paragon_portrait_container_council_gestalt"
+		PORTRAIT_GUI_NAME_DEMOCRATIC_ELECTION_CANDIDATE = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_ELECTION_CANDIDATE = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_EMPIRE_VIEW_SECTOR_ENTRY = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_FLEET_MANAGER_VIEW = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_FLEET_VIEW = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_GOVERNMENT_VIEW_RULER = "paragon_portrait_container_ruler_government"
+		PORTRAIT_GUI_NAME_GOVERNMENT_VIEW_HEIR = "paragon_portrait_container_heir"
+		PORTRAIT_GUI_NAME_ATTACKING_GENERAL = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_DEFENDING_GENERAL = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_PLANET_GOVERNOR = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_PLANET_SECTOR_GOVERNOR = "paragon_portrait_container_sector_governor"
+		PORTRAIT_GUI_NAME_PLANET_GENERAL = "paragon_portrait_container_horizontal"
+		PORTRAIT_GUI_NAME_TECH_VIEW = "paragon_portrait_container_research"
+		PORTRAIT_GUI_NAME_EXPANDED_LEADER_PORTRAIT = "paragon_portrait_container_expanded"
+		PORTRAIT_GUI_NAME_LEADER_VIEW_ENTRY = "paragon_portrait_container_horizontal_slim"
+		PORTRAIT_GUI_NAME_EVENT_STORY = "paragon_portrait_container_story_event"
+		PORTRAIT_GUI_NAME_EVENT_RECRUIT = "paragon_portrait_container_recruit_event"
+	
 		### Vanilla Hotkeys & Topbar Buttons ###
 		#TOPBAR_BUTTONS_SHORTCUTS				= {
 		#	"contacts" "F1"

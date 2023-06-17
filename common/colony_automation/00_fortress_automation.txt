@@ -1,0 +1,71 @@
+# Merge between Expanded Megastructures and Technology, More Standard Districts
+automate_fortress_planet = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+		has_fortress_designation = yes
+	}
+
+	prio_districts = {
+		district_hab_fortress # Expanded Megastructures and Technology
+		district_orders_demesne # Expanded Megastructures and Technology
+		district_standard_cm_military # More Standard Districts
+		district_standard_cm_hab_military # More Standard Districts
+	}
+
+	buildings = {
+		1 = { # More Standard Districts
+			building = building_capital
+			available = {
+				msd_uses_district_set_habitat = no
+				owner = {
+					is_hive_empire = no
+					is_machine_empire = no
+				}
+			}
+		}
+
+		1 = { # More Standard Districts
+			building = building_hive_capital
+			available = {
+				msd_uses_district_set_habitat = no
+				owner = { is_hive_empire = yes }
+			}
+		}
+
+		1 = { # More Standard Districts
+			building = building_machine_capital
+			available = {
+				msd_uses_district_set_habitat = no
+				owner = { is_machine_empire = yes }
+			}
+		}
+
+		1 = { # More Standard Districts
+			building = building_hab_capital
+			available = { msd_uses_district_set_habitat = yes }
+		}
+
+		2 = {
+			building = building_dread_encampment
+			available = { owner = { has_reanimated_armies = yes } }
+		}
+
+		3 = {
+			building = building_military_academy
+			available = { owner = { has_reanimated_armies = no } }
+		}
+
+		4 = {
+			building = building_planetary_shield_generator
+			available = { owner = { planetary_shield_generator_upkeep_affordable = yes } } # More Standard Districts
+		}
+
+		5 = {
+			building = building_stronghold
+			available = { # More Standard Districts
+				owner = { stronghold_upkeep_affordable = yes }
+			}
+		}
+	}
+}

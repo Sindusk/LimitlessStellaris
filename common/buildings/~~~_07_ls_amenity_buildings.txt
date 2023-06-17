@@ -1913,7 +1913,7 @@ building_toxic_bath = {
 		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Station
 		owner = {
 			is_gestalt = no
-			has_toxic_baths = no # Scripted Trigger Undercoat
+			has_toxic_baths = yes # Scripted Trigger Undercoat
 		}
 	}
 	destroy_trigger = {
