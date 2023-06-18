@@ -7,7 +7,7 @@
 ##################################################
 
 ## Noble Estates (Tier 1)
-# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, StarTech
 building_noble_estates = {
 	base_buildtime = @db2_time
 	icon = building_palace
@@ -67,8 +67,8 @@ building_noble_estates = {
 	}
 
 	planet_modifier = {
-		job_noble_add = 1
-		planet_housing_add = 1
+		job_noble_add = 2 # OSA 1 -> 2
+		planet_housing_add = 5 # OSA 1 -> 5
 	}
 
 	triggered_planet_modifier = { # Bug Branch
@@ -88,7 +88,16 @@ building_noble_estates = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_order_4
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -117,7 +126,7 @@ building_noble_estates = {
 }
 
 ## Slave Processing Facility (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Plentiful Traditions, Ariphaos
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Plentiful Traditions, Ariphaos
 building_slave_processing = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -177,9 +186,9 @@ building_slave_processing = {
 	
 	planet_modifier = {
 		job_slave_enforcer_add = 2 # Plentiful Traditions
-		planet_jobs_slave_produces_mult = 0.05
+		planet_jobs_slave_produces_mult = 0.10 # OSA 0.05 -> 0.1
 		pop_cat_slave_political_power = -0.25
-		planet_resettlement_unemployed_mult = -0.50
+		planet_resettlement_unemployed_mult = -0.25 # OSA -0.50 -> -0.25
 	}
 
 	resources = {
@@ -188,7 +197,8 @@ building_slave_processing = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2
+			energy = 2.5
+			minerals = 2.5
 		}
 	}
 
@@ -214,7 +224,7 @@ building_slave_processing = {
 }
 
 ## Precinct House (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech, Ariphaos
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech, Ariphaos
 building_precinct_house = {
 	base_buildtime = @db1_time
 	position_priority = 4021000 # Sort Buildings
@@ -271,7 +281,16 @@ building_precinct_house = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_order_4
+				}
+			}
+			unity = 5
 		}
 	}
 
@@ -293,7 +312,7 @@ building_precinct_house = {
 }
 
 ## Hall of Judgement (Tier 2)
-# Merge between Real Space: Planetary Stations, StarTech, Ariphaos
+# Merge between OSA, Real Space: Planetary Stations, StarTech, Ariphaos
 building_hall_judgment = {
 	base_buildtime = @db2_time
 
@@ -330,8 +349,17 @@ building_hall_judgment = {
 			volatile_motes = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 5
+			minerals = 5
 			volatile_motes = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_order_4
+				}
+			}
+			unity = 10
 		}
 	}
 
@@ -349,7 +377,7 @@ building_hall_judgment = {
 }
 
 ## Sentinel Posts (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, More Emperor and Galactic Custodian Resolutions, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, More Emperor and Galactic Custodian Resolutions, StarTech
 building_sentinel_posts = {
 	base_buildtime = @db1_time
 	position_priority = 4021000 # Sort Buildings
@@ -397,7 +425,16 @@ building_sentinel_posts = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_order_4
+				}
+			}
+			unity = 5
 		}
 	}
 
@@ -414,18 +451,19 @@ building_sentinel_posts = {
 	}
 
 	upgrades = {
+		building_sentinel_hubs # OSA
 		building_galpol_sentinel_posts # More Emperor and Galactic Custodian Resolutions
 	}
 }
 
 ## Order's Keep (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Scripted Trigger Undercoat
+# Merge between Sort Buildings, Real Space: Planetary Stations, Daemonic Incursion, Scripted Trigger Undercoat
 building_order_keep = {
 	base_buildtime = 180
 	position_priority = 1022000 # Sort Buildings
 
-	can_demolish = no
-	can_be_disabled = no
+	can_demolish = yes # Daemonic Incursion no -> yes
+	can_be_disabled = yes # Daemonic Incursion no -> yes
 
 	empire_limit = {
 		base = 1
@@ -439,22 +477,33 @@ building_order_keep = {
 	category = government
 
 	potential = {
-		owner = { is_toxic_knights_empire = yes }
+		owner = {
+			OR = {
+				has_origin = origin_toxic_knights
+				has_country_flag = decision_toxic_knights # Daemonic Incursion
+			}
+		}
 		has_planet_flag = toxic_knights_habitat
 		owner = { NOT = { has_country_flag = quest_abandoned } }
 		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
 	}
 
 	destroy_trigger = {
-		OR = {
-			NOT = { exists = owner }
-			NOT = { owner = { is_toxic_knights_empire = yes } }
+		NAND = {
+			exists = owner
+			owner = {
+				OR = {
+					has_origin = origin_toxic_knights
+					has_country_flag = decision_toxic_knights # Daemonic Incursion
+				}
+			}
 		}
 	}
 
 	planet_modifier = {
+		job_knight_commander_add = 1 # Daemonic Incursion
 		job_squire_add = 1
-		job_knight_add = 1
+		job_knight_add = 3 # Daemonic Incursion 1 -> 3
 		job_knight_per_pop = 0.05 # 1 for every 10 pop while quest active. 1 for 20 after quest.
 
 		planet_immigration_pull_add = 5
@@ -504,10 +553,14 @@ building_order_keep = {
 	triggered_desc = {
 		text = job_squire_effect_desc
 	}
+
+	triggered_desc = { # Daemonic Incursion
+		text = job_knight_commander_effect_desc
+	}
 }
 
 ## Order's Castle (Tier 2)
-# Merge between Sort Buildings, Scripted Trigger Undercoat
+# Merge between Sort Buildings, Daemonic Incursion, Scripted Trigger Undercoat
 building_order_castle = {
 	icon = building_order_holding
 	base_buildtime = 180
@@ -524,9 +577,14 @@ building_order_castle = {
 	category = government
 
 	destroy_trigger = {
-		OR = {
-			NOT = { exists = owner }
-			NOT = { owner = { is_toxic_knights_empire = yes } }
+		NAND = {
+			exists = owner
+			owner = {
+				OR = {
+					has_origin = origin_toxic_knights
+					has_country_flag = decision_toxic_knights # Daemonic Incursion
+				}
+			}
 		}
 	}
 
@@ -569,7 +627,7 @@ building_order_castle = {
 ##################################################
 
 ## Psi Corps (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_psi_corps = {
 	base_buildtime = @db2_time
 	position_priority = 2024000 # Sort Buildings
@@ -628,7 +686,16 @@ building_psi_corps = {
 			minerals = 500
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_order_4
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -638,7 +705,7 @@ building_psi_corps = {
 }
 
 ## Embassy (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Ariphaos
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Ariphaos
 building_embassy = {
 	base_buildtime = @db2_time
 	position_priority = 1023000 # Sort Buildings
@@ -696,7 +763,8 @@ building_embassy = {
 	}
 
 	country_modifier = {
-		envoys_add = 1
+		country_edict_fund_add = 50 # OSA
+		envoys_add = 2 # OSA 1 -> 2
 	}
 
 	resources = {
@@ -706,8 +774,17 @@ building_embassy = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
 			rare_crystals = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_order_4
+				}
+			}
+			unity = 10
 		}
 	}
 
@@ -721,7 +798,7 @@ building_embassy = {
 }
 
 ## Grand Embassy (Tier 2)
-# Merge between Real Space: Planetary Stations, Ariphaos
+# Merge between OSA, Real Space: Planetary Stations, Ariphaos
 building_grand_embassy = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -772,7 +849,8 @@ building_grand_embassy = {
 	}
 
 	country_modifier = {
-		envoys_add = 2
+		country_edict_fund_add = 100 # OSA
+		envoys_add = 4 # OSA 2 -> 4
 	}
 
 	resources = {
@@ -782,8 +860,17 @@ building_grand_embassy = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db3_upkeep
+			energy = 10
+			minerals = 10
 			rare_crystals = @db3_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_order_4
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -797,7 +884,7 @@ building_grand_embassy = {
 }
 
 ## Gaia Seeder (Tier 1)
-# Merge between Sort Buildings, Planetary Diversity
+# Merge between Sort Buildings, OSA, Planetary Diversity
 building_gaiaseeders_1 = {
 	base_buildtime = @db2_time
 	base_cap_amount = 1
@@ -849,10 +936,7 @@ building_gaiaseeders_1 = {
 			is_planet_class = pc_nuked_relic
 			NOT = { exists = owner }
 			owner = {
-				NOR = {
-					has_valid_civic = civic_idyllic_bloom
-					has_valid_civic = civic_hive_idyllic_bloom
-				}
+				is_idyllic_bloom_empire = no # OSA
 			}
 		}
 	}
@@ -875,7 +959,7 @@ building_gaiaseeders_1 = {
 }
 
 ## Gaia Seeder (Tier 2)
-# Using Planetary Diversity
+# Merge between OSA, Planetary Diversity
 building_gaiaseeders_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -920,13 +1004,13 @@ building_gaiaseeders_2 = {
 	}
 
 	planet_modifier = {
-		pop_growth_speed = 0.05
+		pop_growth_speed = 0.1 # OSA 0.05 -> 0.1
 		pop_environment_tolerance = 0.1
 	}
 }
 
 ## Gaia Seeder (Tier 3)
-# Using Planetary Diversity
+# Merge between OSA, Planetary Diversity
 building_gaiaseeders_3 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -971,6 +1055,7 @@ building_gaiaseeders_3 = {
 	}
 
 	planet_modifier = {
+		pop_growth_speed = 0.1 # OSA
 		pop_environment_tolerance = 0.2
 	}
 }
