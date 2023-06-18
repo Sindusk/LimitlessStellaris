@@ -8,6 +8,7 @@
 
 ## Alloy Foundries (Tier 1)
 # Merge between Sort Buildings, OSA, Planetary Diversity: Unique Worlds, Real Space: Planetary Stations, StarTech, Ariphaos
+# Custom inlines handle most of the job creation
 building_foundry_1 = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -196,6 +197,7 @@ building_foundry_1 = {
 
 ## Alloy Mega-Forges (Tier 2)
 # Merge between OSA, Planetary Diversity: Unique Worlds, Unique Ascension Perks, StarTech
+# Custom inlines handle most of the job creation
 building_foundry_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -415,6 +417,7 @@ building_foundry_2 = {
 
 ## Alloy Nano-Plants (Tier 3)
 # Merge between OSA, Planetary Diversity: Unique Worlds, Unique Ascension Perks, Rise of Cosmic Industry, StarTech
+# Custom inlines handle most of the job creation
 building_foundry_3 = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -696,6 +699,7 @@ building_foundry_3 = {
 
 ## Civilian Industries (Tier 1)
 # Merge between Sort OSA, Buildings, Planetary Diversity: Unique Worlds, Unique Ascension Perks, Real Space: Planetary Stations
+# Custom inlines handle most of the job creation
 building_factory_1 = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -888,6 +892,7 @@ building_factory_1 = {
 
 ## Civilian Fabricators (Tier 2)
 # Merge between OSA, Unique Ascension Perks, Real Space: Planetary Stations, StarTech
+# Custom inlines handle most of the job creation
 building_factory_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -1037,6 +1042,7 @@ building_factory_2 = {
 
 ## Civilian Repli-Complexes (Tier 3)
 # Merge between OSA, Unique Ascension Perks, Real Space: Planetary Stations, Rise of Cosmic Industry, StarTech
+# Custom inlines handle most of the job creation
 building_factory_3 = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -1598,7 +1604,7 @@ building_crystal_plant = {
 }
 
 ## Nanite Transmuter (Tier 1)
-# Merge between Sort Buildings
+# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
 building_nanite_transmuter = {
 	base_buildtime = @db3_time
 	position_priority = 4041000 # Sort Buildings

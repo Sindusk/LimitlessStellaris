@@ -6,9 +6,8 @@
 ## Pop Assembly - Robot
 ##################################################
 
-### building_robot_assembly_plant
 ## Robot Assembly Plant (Tier 1)
-# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, StarTech AI, Ariphaos
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, StarTech AI, Ariphaos
 building_robot_assembly_plant = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -152,7 +151,8 @@ building_robot_assembly_plant = {
 			minerals = @db2_minerals
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
 		}
 	}
 
@@ -220,7 +220,7 @@ building_robot_assembly_plant = {
 }
 
 ## Robot Assembly Complex (Tier 2)
-# Minor addition from Real Space: Planetary Stations
+# Merge between OSA, Real Space: Planetary Stations
 building_robot_assembly_complex = {
 	icon = building_machine_assembly_complex
 	base_buildtime = @db3_time
@@ -289,11 +289,12 @@ building_robot_assembly_complex = {
 		category = planet_buildings
 		cost = {
 			minerals = @db3_minerals
-			rare_crystals = @b3_rare_cost
+			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db3_upkeep
-			rare_crystals = @b3_rare_upkeep
+			energy = 10
+			minerals = 10
+			rare_crystals = @db3_rare_upkeep
 		}
 	}
 
@@ -352,7 +353,7 @@ building_robot_assembly_complex = {
 ##################################################
 
 ## Machine Assembly Plant (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations
 building_machine_assembly_plant = {
 	icon = building_robot_assembly_plant
 	base_buildtime = @db1_time
@@ -411,13 +412,24 @@ building_machine_assembly_plant = {
         text = building_machine_assembly_plant_tt
     }
 
+    triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_finish_machine }
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
 		}
 	}
 
@@ -446,7 +458,7 @@ building_machine_assembly_plant = {
 }
 
 ## Machine Assembly Complex (Tier 2)
-# Merge between EUTAB, Real Space: Planetary Stations, StarTech AI
+# Merge between EUTAB, OSA, Real Space: Planetary Stations, StarTech AI
 building_machine_assembly_complex = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -500,6 +512,16 @@ building_machine_assembly_complex = {
     triggered_desc = {
         text = building_machine_assembly_complex_tt
     }
+    
+    triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_finish_machine }
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
 
 	resources = {
 		category = planet_buildings
@@ -508,12 +530,12 @@ building_machine_assembly_complex = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db3_upkeep
+			energy = 10
+			minerals = 10
 			rare_crystals = @db3_rare_upkeep
 		}
 	}
 
-	# EUTAB
 	upgrades = {
 		building_eutab_automation_sector # EUTAB
 		building_avb_machine_assembly_plant_2 # Additional Vanilla Buildings
@@ -544,7 +566,7 @@ building_machine_assembly_complex = {
 ##################################################
 
 ## Spawning Pool (Tier 1)
-# Merge between Sort Buildings, EUTAB, Real Space: Planetary Stations, Expanded Megastructures and Technology, StarTech AI
+# Merge between Sort Buildings, EUTAB, OSA, Real Space: Planetary Stations, Expanded Megastructures and Technology, StarTech AI
 building_spawning_pool = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -552,6 +574,11 @@ building_spawning_pool = {
 
 	category = pop_assembly
 
+    # Building Tooltip
+    triggered_desc = {
+        text = building_spawning_pool_tt
+    }
+    
 	potential = {
 		exists = owner
 		owner = {
@@ -577,14 +604,13 @@ building_spawning_pool = {
 	
 	upgrades = {
 		building_eutab_spawning_garden # EUTAB
-		building_avb_spawning_pool_2 # Additional Vanilla Buildings
+		#building_avb_spawning_pool_2 # Additional Vanilla Buildings
 		"building_spawning_pool_2" # Expanded Megastructures and Technology
 	}
 	
-    # Building Tooltip
-    triggered_desc = {
-        text = building_spawning_pool_tt
-    }
+    planet_modifier = {
+		job_spawning_drone_add = 1 # OSA
+	}
 
 	triggered_planet_modifier = { # Expanded Megastructures and Technology
 		potential = {
@@ -796,7 +822,7 @@ building_offspring_nest = {
 
 	potential = {
 		exists = owner
-		owner = { is_progenitor_hive_empire = yes }
+		owner = { has_origin = origin_progenitor_hive }
 		or = {
 			num_buildings = { type = any value < 15 }
 			owner = { is_ai = no }
@@ -806,7 +832,7 @@ building_offspring_nest = {
 
 	destroy_trigger = {
 		exists = owner
-		owner = { NOT = { is_progenitor_hive_empire = yes } }
+		owner = { NOT = { has_origin = origin_progenitor_hive } }
 	}
 
 	#ruined_trigger = {
@@ -896,7 +922,7 @@ building_offspring_nest = {
 	triggered_desc = {
 		trigger = {
 			exists = owner
-			owner = { is_progenitor_hive_empire = yes }
+			owner = { has_origin = origin_progenitor_hive }
 			exists = growing_species
 			growing_species = {
 				has_trait = trait_hive_mind
@@ -934,7 +960,7 @@ building_offspring_nest = {
 ##################################################
 
 ## Necrophage Chamber of Elevation (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
 building_necrophage_elevation_chamber = {
 	icon = building_chamber_of_elevation_1
 	base_buildtime = @db1_time
@@ -1039,7 +1065,8 @@ building_necrophage_elevation_chamber = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
 		}
 	}
 
@@ -1117,7 +1144,7 @@ building_necrophage_elevation_chamber = {
 }
 
 ## Necrophage House of Apotheosis (Tier 2)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
 building_necrophage_house_of_apotheosis = {
 	icon = building_chamber_of_elevation_2
 	base_buildtime = @db3_time
@@ -1211,7 +1238,8 @@ building_necrophage_house_of_apotheosis = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
 			exotic_gases = @db2_rare_upkeep
 		}
 	}
@@ -1897,7 +1925,7 @@ building_clone_army_clone_vat = {
 ##################################################
 
 ## Posthumous Employment Center (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Ariphaos, Scripted Trigger Undercoat
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Ariphaos, Scripted Trigger Undercoat
 building_posthumous_employment_center = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -1923,7 +1951,7 @@ building_posthumous_employment_center = {
 		}
 		owner = {
 			is_gestalt = no
-			has_permanent_employment = yes
+			has_valid_civic = civic_permanent_employment
 		}
 		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Station
 	}
@@ -1936,7 +1964,7 @@ building_posthumous_employment_center = {
 		exists = owner
 		OR = {
 			owner = {
-				NOT = { has_permanent_employment = yes }
+				NOT = { has_valid_civic = civic_permanent_employment }
 			}
 			AND = {
 				owner = { is_ai = yes }
@@ -1963,7 +1991,8 @@ building_posthumous_employment_center = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
 		}
 	}
 
@@ -1989,7 +2018,7 @@ building_posthumous_employment_center = {
 ##################################################
 
 ## Mutagenic Permutation Pool (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Scripted Trigger Undercoat
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Scripted Trigger Undercoat
 building_toxic_bath_hive = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -2030,7 +2059,7 @@ building_toxic_bath_hive = {
 		}
 	}
 	planet_modifier = {
-		job_bath_attendant_hive_add = @b1_jobs
+		job_bath_attendant_hive_add = 4
 	}
 	
     # Building Tooltip
@@ -2057,7 +2086,7 @@ building_toxic_bath_hive = {
 }
 
 ## Hyper Lubrication Basin (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations
 building_toxic_bath_machine = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -2082,7 +2111,7 @@ building_toxic_bath_machine = {
 		}
 	}
 	planet_modifier = {
-		job_bath_attendant_machine_add = @b1_jobs
+		job_bath_attendant_machine_add = 4 # OSA
 	}
 	
     # Building Tooltip
@@ -2094,7 +2123,7 @@ building_toxic_bath_machine = {
 		trigger = {
 			exists = owner
 		}
-		text = building_toxic_bath_machine_tt
+		text = job_toxic_baths_effect_machine_desc
 	}
 
 	resources = {

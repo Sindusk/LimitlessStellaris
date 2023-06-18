@@ -13,6 +13,14 @@
 @tier_3_capital_defense_armies = 8
 @tier_4_capital_defense_armies = 16
 
+### OSA Variables ###
+# Here as a reference, defined in scripted_variables.
+
+#@building_influence_t1 = 0.05
+#@building_influence_t2 = 0.10
+#@building_influence_t3 = 0.15
+#@building_influence_t4 = 0.20
+
 ##################################################
 ## Capitals - Biological
 ##################################################
