@@ -7,9 +7,10 @@
 ##################################################
 
 ## Hydroponics Farm (Tier 1)
-# Merge between Sort Buildings, Extra Buildings, EUTAB, Real Space: Planetary Stations, StarTech, Subtle Polish
+# Merge between Sort Buildings, Extra Buildings, EUTAB, OSA, Real Space: Planetary Stations, StarTech, Subtle Polish
 building_hydroponics_farm = {
 	base_buildtime = @db1_time
+	base_cap_amount = 6 # OSA caps to 6 maximum
 	position_priority = 4032000 # Sort Buildings
 	
     # Building Tooltip
@@ -96,6 +97,10 @@ building_hydroponics_farm = {
 		}
 	}
 
+	planet_modifier = {
+		planet_farmers_food_produces_add = 0.5 # OSA
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -120,6 +125,31 @@ building_hydroponics_farm = {
 			job_farmer_add = @b1_jobs
 		}
 	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				OR = {
+					is_anglers_empire = no
+					AND = {
+						is_anglers_empire = yes
+						NOT = { PREV = { planet = { is_wet = yes } } }
+					}
+				}
+			}
+			OR = {
+				has_active_building = building_food_processing_facility
+				has_active_building = building_food_processing_center
+				has_active_building = building_food_processing_complex
+			}
+		}
+		modifier = {
+			job_farmer_add = 1
+		}
+	}
 
 	triggered_planet_modifier = {
 		potential = {
@@ -128,6 +158,21 @@ building_hydroponics_farm = {
 		}
 		modifier = {
 			job_fe_acolyte_farm_add = @b1_jobs
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+			OR = {
+				has_active_building = building_food_processing_facility
+				has_active_building = building_food_processing_center
+				has_active_building = building_food_processing_complex
+			}
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = 1
 		}
 	}
 
@@ -151,6 +196,21 @@ building_hydroponics_farm = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+			OR = {
+				has_active_building = building_food_processing_facility
+				has_active_building = building_food_processing_center
+				has_active_building = building_food_processing_complex
+			}
+		}
+		modifier = {
+			job_agri_drone_add = 1
+		}
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -171,13 +231,37 @@ building_hydroponics_farm = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+			OR = {
+				has_active_building = building_food_processing_facility
+				has_active_building = building_food_processing_center
+				has_active_building = building_food_processing_complex
+			}
+		}
+		modifier = {
+			job_pearl_diver_add = 1
+		}
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			food = 5
 		}
 	}
 	
@@ -186,6 +270,7 @@ building_hydroponics_farm = {
 		building_avb_hydroponics_farm_2 # Additional Vanilla Buildings
 		"eb_hydrofarm2" #Extra Buildings
 		"building_aquaponics_farm" # Subtle Polish
+		"building_hydroponics_station" # OSA
 	}
 
 	triggered_desc = {
@@ -240,6 +325,18 @@ building_hydroponics_farm = {
 		}
 		text = job_aqu_angler_effect_desc
 	}
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+		}
+		text = job_pearl_diver_effect_desc
+	}
 
 	prerequisites = {
 		"tech_hydroponics"
@@ -254,12 +351,13 @@ building_hydroponics_farm = {
 }
 
 ## Food Processing Facility (Tier 1)
-# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos, Scripted Trigger Undercoat
+# Merge between Sort Buildings, Bug Branch, OSA, Real Space: Planetary Stations, StarTech, Ariphaos, Scripted Trigger Undercoat
 building_food_processing_facility = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
 	category = resource
 	position_priority = 2035000 # Sort Buildings
+	is_essential = yes # OSA
 	
     # Building Tooltip
     triggered_desc = {
@@ -317,6 +415,9 @@ building_food_processing_facility = {
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
+				NOT = {
+					has_active_tradition = tr_perseverance_2 # OSA
+				}
 				OR = {
 					is_anglers_empire = no
 					AND = {
@@ -328,6 +429,21 @@ building_food_processing_facility = {
 		}
 		modifier = {
 			job_farmer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_perseverance_2
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_agri_director_add = 1
 		}
 	}
 
@@ -344,10 +460,33 @@ building_food_processing_facility = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = yes }
+			owner = {
+				is_gestalt = yes
+				NOR = {
+					has_active_tradition = tr_perseverance_2_hive
+					has_active_tradition = tr_perseverance_2_machine
+				}
+			}
 		}
 		modifier = {
 			job_agri_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_perseverance_2_hive
+					has_active_tradition = tr_perseverance_2_machine
+				}
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_omni_drone_add = 1
 		}
 	}
 
@@ -359,6 +498,9 @@ building_food_processing_facility = {
 				is_fallen_empire_spiritualist = no
 				is_anglers_empire = yes
 				PREV = { planet = { is_wet = yes } }
+				NOT = {
+					has_active_tradition = tr_perseverance_2
+				}
 			}
 		}
 		modifier = {
@@ -389,7 +531,38 @@ building_food_processing_facility = {
 			energy = 2
 		}
 	}
-
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = osa_building_food_processing_gestalt_effect_desc
+	}
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_perseverance_2_hive
+					has_active_tradition = tr_perseverance_2_machine
+				}
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_perseverance_2
+			}
+		}
+		text = job_osa_agri_director_effect_desc
+	}
 	triggered_desc = {
 		trigger = {
 			exists = owner
@@ -403,6 +576,13 @@ building_food_processing_facility = {
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
+				OR = { # OSA
+					is_anglers_empire = no
+					AND = {
+						is_anglers_empire = yes
+						NOT = { PREV = { planet = { is_wet = yes } } }
+					}
+				}
 			}
 		}
 		text = job_farmer_effect_desc
@@ -456,7 +636,7 @@ building_food_processing_facility = {
 }
 
 ## Food Processing Center (Tier 2)
-# Merge between Bug Branch, Rise of Cosmic Industry, StarTech, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, Rise of Cosmic Industry, StarTech, Ariphaos, Scripted Trigger Undercoat
 building_food_processing_center = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -516,6 +696,9 @@ building_food_processing_center = {
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
+				NOT = { # OSA
+					has_active_tradition = tr_perseverance_2
+				}
 				OR = {
 					is_anglers_empire = no
 					AND = {
@@ -527,6 +710,21 @@ building_food_processing_center = {
 		}
 		modifier = {
 			job_farmer_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_perseverance_2
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_agri_director_add = 2
 		}
 	}
 
@@ -543,10 +741,33 @@ building_food_processing_center = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = yes }
+			owner = {
+				is_gestalt = yes
+				NOR = { # OSA
+					has_active_tradition = tr_perseverance_2_hive
+					has_active_tradition = tr_perseverance_2_machine
+				}
+			}
 		}
 		modifier = {
 			job_agri_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_perseverance_2_hive
+					has_active_tradition = tr_perseverance_2_machine
+				}
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_omni_drone_add = 2
 		}
 	}
 
@@ -558,10 +779,14 @@ building_food_processing_center = {
 				is_fallen_empire_spiritualist = no
 				is_anglers_empire = yes
 				PREV = { planet = { is_wet = yes } }
+				NOT = { # OSA
+					has_active_tradition = tr_perseverance_2
+				}
 			}
 		}
 		modifier = {
-			job_angler_add = 2
+			job_angler_add = 1 # OSA 2 -> 1
+			job_pearl_diver_add = 1 # OSA
 		}
 	}
 
@@ -599,16 +824,51 @@ building_food_processing_center = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = 2
+			energy = 5
+			minerals = 5
 			volatile_motes = @db2_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 5
+			energy = 10
+			minerals = 10
 			volatile_motes = 3
 		}
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = osa_building_food_processing_gestalt_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				NOR = {
+					has_active_tradition = tr_perseverance_2_hive
+					has_active_tradition = tr_perseverance_2_machine
+				}
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_perseverance_2
+			}
+		}
+		text = job_osa_agri_director_effect_desc
 	}
 
 	triggered_desc = {
@@ -624,6 +884,13 @@ building_food_processing_center = {
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
+				OR = { # OSA
+					is_anglers_empire = no
+					AND = {
+						is_anglers_empire = yes
+						NOT = { PREV = { planet = { is_wet = yes } } }
+					}
+				}
 			}
 		}
 		text = job_farmer_effect_desc
@@ -646,6 +913,18 @@ building_food_processing_center = {
 		}
 		text = job_aqu_angler_effect_desc
 	}
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				is_fallen_empire_spiritualist = no
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+		}
+		text = job_pearl_diver_effect_desc
+	}
 
 	prerequisites = {
 		"tech_food_processing_2"
@@ -653,6 +932,7 @@ building_food_processing_center = {
 	
 	upgrades = {
 		building_roci_nourishment_center_mod # Rise of Cosmic Industry
+		building_food_processing_complex # OSA
 	}
 
 	# StarTech AI Resource Production
@@ -864,7 +1144,7 @@ building_baol_organic_plant = {
 }
 
 ## Mineral Purification Plant (Tier 1)
-# Merge between Sort Buildings, Bug Branch, StarTech, Ariphaos, Scripted Trigger Undercoat
+# Merge between Sort Buildings, OSA, Bug Branch, StarTech, Ariphaos, Scripted Trigger Undercoat
 building_mineral_purification_plant = {
 	position_priority = 2033000 # Sort Buildings
 
@@ -879,6 +1159,7 @@ building_mineral_purification_plant = {
 	}
 
 	base_buildtime = @db1_time
+	is_essential = yes # OSA
 	base_cap_amount = 1
 	category = resource
 	
@@ -911,8 +1192,8 @@ building_mineral_purification_plant = {
 			uses_district_set = ring_world # undercoat: changed from planet class check
 		}
 		OR = { # Habitats only have mines if they're built on an appropriate deposit
-		is_habitat = no
-		has_planet_flag = mining_habitat
+			is_habitat = no
+			has_planet_flag = mining_habitat
 		}
 		OR = {
 			owner = {
@@ -937,10 +1218,28 @@ building_mineral_purification_plant = {
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
+				NOT = { # OSA
+					has_active_tradition = tr_mettle_2
+				}
 			}
 		}
 		modifier = {
 			job_miner_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_mettle_2
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_mining_director_add = 1
 		}
 	}
 
@@ -959,10 +1258,33 @@ building_mineral_purification_plant = {
 		potential = {
 			NOT = { is_planet_class = pc_shattered_ring_habitable }
 			exists = owner
-			owner = { is_gestalt = yes }
+			owner = {
+				is_gestalt = yes
+				NOR = { # OSA
+					has_active_tradition = tr_mettle_2_hive
+					has_active_tradition = tr_mettle_2_machine
+				}
+			}
 		}
 		modifier = {
 			job_mining_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_mettle_2_hive
+					has_active_tradition = tr_mettle_2_machine
+				}
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_omni_drone_add = 1
 		}
 	}
 
@@ -1031,7 +1353,7 @@ building_mineral_purification_plant = {
 			alloys = 100
 		}
 		upkeep = {
-			energy = 2
+			energy = 5 # OSA 2 -> 5
 		}
 	}
 
@@ -1041,6 +1363,31 @@ building_mineral_purification_plant = {
 
 	upgrades = {
 		building_mineral_purification_hub
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_mettle_2_hive
+					has_active_tradition = tr_mettle_2_machine
+				}
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_mettle_2
+			}
+		}
+		text = job_osa_mining_director_effect_desc
 	}
 
 	triggered_desc = {
@@ -1117,7 +1464,7 @@ building_mineral_purification_plant = {
 }
 
 ## Mineral Purification Hub (Tier 2)
-# Merge between Bug Branch, Rise of Cosmic Industry, StarTech, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, Rise of Cosmic Industry, StarTech, Ariphaos, Scripted Trigger Undercoat
 building_mineral_purification_hub = {
 
 	desc = {
@@ -1199,10 +1546,28 @@ building_mineral_purification_hub = {
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
+				NOT = { # OSA
+					has_active_tradition = tr_mettle_2
+				}
 			}
 		}
 		modifier = {
 			job_miner_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_mettle_2
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_mining_director_add = 2
 		}
 	}
 
@@ -1220,7 +1585,13 @@ building_mineral_purification_hub = {
 		potential = {
 			NOT = { is_planet_class = pc_shattered_ring_habitable }
 			exists = owner
-			owner = { is_gestalt = yes }
+			owner = {
+				is_gestalt = yes
+				NOR = { # OSA
+					has_active_tradition = tr_mettle_2_hive
+					has_active_tradition = tr_mettle_2_machine
+				}
+			}
 		}
 		modifier = {
 			job_mining_drone_add = 2
@@ -1246,6 +1617,23 @@ building_mineral_purification_hub = {
 		}
 		modifier = {
 			job_scrap_miner_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_mettle_2_hive
+					has_active_tradition = tr_mettle_2_machine
+				}
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_omni_drone_add = 2
 		}
 	}
 
@@ -1306,14 +1694,14 @@ building_mineral_purification_hub = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = 2
+			energy = 10 # OSA 2 -> 10
 			volatile_motes = @db2_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 5
+			energy = 15 # OSA 5 -> 15
 			volatile_motes = 3
 		}
 	}
@@ -1324,6 +1712,32 @@ building_mineral_purification_hub = {
 	
 	upgrades = {
 		building_roci_dimensional_fabricator_mod # Rise of Cosmic Industry
+		building_mineral_purification_complex # OSA
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_mettle_2_hive
+					has_active_tradition = tr_mettle_2_machine
+				}
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_mettle_2
+			}
+		}
+		text = job_osa_mining_director_effect_desc
 	}
 
 	triggered_desc = {
@@ -1393,10 +1807,11 @@ building_mineral_purification_hub = {
 }
 
 ## Energy Grid (Tier 1)
-# Merge between Sort Buildings, Bug Branch, StarTech, Ariphaos, Scripted Trigger Undercoat
+# Merge between Sort Buildings, OSA, Bug Branch, StarTech, Ariphaos, Scripted Trigger Undercoat
 building_energy_grid = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
+	is_essential = yes # OSA
 	category = resource
 	position_priority = 2032000 # Sort Buildings
 	
@@ -1457,10 +1872,28 @@ building_energy_grid = {
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
+				NOT = { # OSA
+					has_active_tradition = tr_radiance_2
+				}
 			}
 		}
 		modifier = {
 			job_technician_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_radiance_2
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_energy_director_add = 1
 		}
 	}
 
@@ -1477,10 +1910,33 @@ building_energy_grid = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = yes }
+			owner = {
+				is_gestalt = yes
+				NOR = { # OSA
+					has_active_tradition = tr_radiance_2_hive
+					has_active_tradition = tr_radiance_2_machine
+				}
+			}
 		}
 		modifier = {
 			job_technician_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_radiance_2_hive
+					has_active_tradition = tr_radiance_2_machine
+				}
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_omni_drone_add = 1
 		}
 	}
 
@@ -1527,7 +1983,7 @@ building_energy_grid = {
 			alloys = 100
 		}
 		upkeep = {
-			energy = 2
+			minerals = 5 # OSA 2 energy -> 5 minerals
 		}
 	}
 
@@ -1537,6 +1993,31 @@ building_energy_grid = {
 
 	upgrades = {
 		building_energy_nexus
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_radiance_2_hive
+					has_active_tradition = tr_radiance_2_machine
+				}
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_radiance_2
+			}
+		}
+		text = job_osa_energy_director_effect_desc
 	}
 
 	triggered_planet_modifier = { # Bug Branch
@@ -1611,7 +2092,7 @@ building_energy_grid = {
 }
 
 ## Energy Nexus (Tier 2)
-# Merge between Bug Branch, Rise of Cosmic Industry, StarTech, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, Rise of Cosmic Industry, StarTech, Ariphaos, Scripted Trigger Undercoat
 building_energy_nexus = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -1661,10 +2142,28 @@ building_energy_nexus = {
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
+				NOT = { # OSA
+					has_active_tradition = tr_radiance_2
+				}
 			}
 		}
 		modifier = {
 			job_technician_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_radiance_2
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_energy_director_add = 2
 		}
 	}
 
@@ -1681,10 +2180,33 @@ building_energy_nexus = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = yes }
+			owner = {
+				is_gestalt = yes
+				NOR = { # OSA
+					has_active_tradition = tr_radiance_2_hive
+					has_active_tradition = tr_radiance_2_machine
+				}
+			}
 		}
 		modifier = {
 			job_technician_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_radiance_2_hive
+					has_active_tradition = tr_radiance_2_machine
+				}
+			}
+		}
+		modifier = {
+			planet_housing_add = 5
+			job_osa_omni_drone_add = 2
 		}
 	}
 
@@ -1732,18 +2254,27 @@ building_energy_nexus = {
 			minerals = 900
 			exotic_gases = 200
 		}
+		cost = { # OSA
+			trigger = {
+				owner = {
+					is_robot_empire = yes
+				}
+			}
+			minerals = 300
+			alloys = 150
+		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = 2
+			minerals = 10 # OSA 2 energy -> 10 minerals
 			exotic_gases = @db2_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 5
+			minerals = 15 # OSA 5 energy -> 15 minerals
 			exotic_gases = 3
 		}
 	}
@@ -1764,6 +2295,32 @@ building_energy_nexus = {
 
 	upgrades = {
 		building_roci_class_4_singularity_mod # Rise of Cosmic Industry
+		building_energy_distribution_complex # OSA
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				OR = {
+					has_active_tradition = tr_radiance_2_hive
+					has_active_tradition = tr_radiance_2_machine
+				}
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+				has_active_tradition = tr_radiance_2
+			}
+		}
+		text = job_osa_energy_director_effect_desc
 	}
 
 	triggered_desc = {
@@ -1813,9 +2370,10 @@ building_energy_nexus = {
 }
 
 ## Resource Silo (Tier 1)
-# Merge between Sort Buildings, Extra Buildings, Real Space: Planetary Stations, StarTech, Ariphaos
+# Merge between Sort Buildings, OSA, Extra Buildings, Real Space: Planetary Stations, StarTech, Ariphaos
 building_resource_silo = {
 	base_buildtime = 180
+	base_cap_amount = 3 # OSA limits to 3
 	position_priority = 4033000 # Sort Buildings
 	
     # Building Tooltip
@@ -1848,7 +2406,8 @@ building_resource_silo = {
 			owner = { is_gestalt = no }
 		}
 		modifier = {
-			job_clerk_add = 1
+			job_politician_add = 1 # OSA
+			job_clerk_add = 2 # OSA 1 -> 2
 		}
 	}
 	triggered_planet_modifier = {
@@ -1857,17 +2416,19 @@ building_resource_silo = {
 			owner = { is_gestalt = yes }
 		}
 		modifier = {
-			job_maintenance_drone_add = 1
+			job_patrol_drone_add = 1 # OSA
+			job_maintenance_drone_add = 2 # OSA 1 -> 2
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 200
+			minerals = 500 # OSA 200 -> 500
 		}
 		upkeep = {
-			energy = 1
+			energy = 2.5
+			minerals = 2.5
 		}
 	}
 
@@ -1885,10 +2446,22 @@ building_resource_silo = {
 		country_resource_max_add = 5000
 	}
 
+	upgrades = {
+		"eb_silo" # Extra Buildings
+		building_resource_silo_adv # OSA
+	}
 	prerequisites = {
 		"tech_basic_industry"
 	}
 
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_patrol_drone_effect_desc
+	}
+	
 	triggered_desc = {
 		trigger = {
 			exists = owner
@@ -1896,16 +2469,21 @@ building_resource_silo = {
 		}
 		text = job_maintenance_drone_effect_desc
 	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_politician_effect_desc
+	}
+	
 	triggered_desc = {
 		trigger = {
 			exists = owner
 			owner = { is_gestalt = no }
 		}
 		text = job_clerk_effect_desc
-	}
-
-	upgrades = {
-		"eb_silo" # Extra Buildings
 	}
 }
 
