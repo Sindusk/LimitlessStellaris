@@ -577,3 +577,24 @@ l_english:
   building_planetary_shield_generator: "Planetary Shield Generator"
   building_planetary_shield_generator_tt: "§MDefense§! - §BTier 1§! - §EShield§!"
   building_planetary_shield_generator_desc: "$tech_planetary_shield_generator_desc$"
+
+##################
+# Deposits
+##################
+
+  ### General
+  building_mote_harvesters: "Mote Harvesting Traps"
+  building_mote_harvesters_tt: "§MExtractor§! - §BTier 1§! - §EVolatile Motes§!"
+  building_mote_harvesters_desc: "These intricate facilities trap Volatile Motes within energy fields, funneling them into special containment zones below ground where they can be stabilized and harvested."
+  building_gas_extractors: "Gas Extraction Wells"
+  building_gas_extractors_tt: "§MExtractor§! - §BTier 1§! - §EExotic Gas§!"
+  building_gas_extractors_desc: "These hulking wells reach deep into the planet's mantle to access pockets of Exotic Gas."
+  building_crystal_mines: "Crystal Mines"
+  building_crystal_mines_tt: "§MExtractor§! - §BTier 1§! - §ECrystals§!"
+  building_crystal_mines_desc: "Great care must be taken when excavating these mines to avoid damaging the crystals."
+  building_betharian_power_plant: "Betharian Power Plant"
+  building_betharian_power_plant_tt: "§MExtractor§! - §BTier 1§! - §EEnergy§!"
+  building_betharian_power_plant_desc: "Betharian Power Plants consume Betharian Stone to produce vast amounts of Energy Credits."
+  building_xeno_zoo: "Alien Zoo"
+  building_xeno_zoo_tt: "§MPreserve§! - §BTier 1§! - §EZoo§!"
+  building_xeno_zoo_desc: "A preserve dedicated to the conservation and study of local fauna."

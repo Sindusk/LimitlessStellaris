@@ -1,0 +1,633 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Deposits
+##########################################################################
+
+##################################################
+## Deposits - General
+##################################################
+
+## Mote Harvesting Traps (Tier 1)
+# Merge between Sort Buildings, OSA, Ariphaos
+building_mote_harvesters = {
+	base_buildtime = @db1_time
+	icon = building_mote_harvesting_traps
+	position_priority = 3032000
+
+	is_capped_by_modifier = yes
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_mote_harvesters_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no } # Ariphaos
+		}
+		modifier = {
+			job_mote_harvester_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				AND = {
+					is_regular_empire = yes
+					has_active_tradition = tr_renewal_3
+				}
+			}
+		}
+		modifier = {
+			job_mote_harvester_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mote_harvesting_drone_add = 2 # OSA 1 -> 2
+		}
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					is_gestalt = yes
+					has_active_tradition = tr_renewal_3
+				}
+			}
+		}
+		modifier = {
+			job_mote_harvesting_drone_add = 3
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 5 # OSA 1 -> 5
+		}
+	}
+
+	prerequisites = {
+		"tech_mine_volatile_motes"
+	}
+}
+
+## Gas Extraction Wells (Tier 1)
+# Merge between Sort Buildings, OSA, Ariphaos
+building_gas_extractors = {
+	base_buildtime = @db1_time
+	icon = building_gas_extractors
+	position_priority = 3033000 # Sort Buildings
+
+	is_capped_by_modifier = yes
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_gas_extractors_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no } # Ariphaos
+		}
+		modifier = {
+			job_gas_extractor_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				AND = {
+					is_regular_empire = yes
+					has_active_tradition = tr_renewal_3
+				}
+			}
+		}
+		modifier = {
+			job_gas_extractor_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_gas_extraction_drone_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					is_gestalt = yes
+					has_active_tradition = tr_renewal_3
+				}
+			}
+		}
+		modifier = {
+			job_gas_extraction_drone_add = 3
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 5 # OSA 1 -> 5
+		}
+	}
+
+	prerequisites = {
+		"tech_mine_exotic_gases"
+	}
+}
+
+## Crystal Mines (Tier 1)
+# Merge between Sort Buildings, OSA, Ariphaos
+building_crystal_mines = {
+	base_buildtime = @db1_time
+	position_priority = 3034000 # Sort Buildings
+
+	is_capped_by_modifier = yes
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_crystal_mines_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no } # Ariphaos
+		}
+		modifier = {
+			job_crystal_miner_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				AND = {
+					is_regular_empire = yes
+					has_active_tradition = tr_renewal_3
+				}
+			}
+		}
+		modifier = {
+			job_crystal_miner_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_crystal_mining_drone_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					is_gestalt = yes
+					has_active_tradition = tr_renewal_3
+				}
+			}
+		}
+		modifier = {
+			job_crystal_mining_drone_add = 3
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 5 # OSA 1 -> 5
+		}
+	}
+
+	prerequisites = {
+		"tech_mine_rare_crystals"
+	}
+}
+
+## Betharian Power Plant (Tier 1)
+# Merge between Sort Buildings, OSA, Subtle Polish, Ariphaos
+building_betharian_power_plant = {
+	base_buildtime = @db1_time
+	position_priority = 3031000 # Sort Buildings
+
+	is_capped_by_modifier = yes
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_betharian_power_plant_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = { has_ringworld_output_boost = no } # Subtle Polish
+			minerals = 200
+		}
+		cost = { # Subtle Polish
+			trigger = { has_ringworld_output_boost = yes }
+			minerals = 300
+			exotic_gases = 25
+		}
+		produces = {
+			energy = 40 # OSA
+		}
+		upkeep = {
+			minerals = 5 # OSA
+		}
+		produces = { # Subtle Polish
+			trigger = { has_ringworld_output_boost = yes }
+			energy = 20
+		}
+		upkeep = { # Subtle Polish
+			trigger = { has_ringworld_output_boost = yes }
+			exotic_gases = 0.5
+		}
+	}
+	
+	planet_modifier = { # Subtle Polish
+		planet_technician_energy_produces_add = 2
+	}
+	triggered_planet_modifier = { # Subtle Polish
+		potential = { has_ringworld_output_boost = yes }
+		planet_technician_energy_produces_add = 2
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_energy_consortiums
+					has_civic = civic_corporate_energy_consortiums
+				}
+			}
+		}
+		modifier = {
+			job_osa_energy_director_add = 1
+			job_technician_add = -1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no } # Ariphaos
+		}
+		modifier = {
+			job_technician_add = 5 # OSA 4 -> 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_technician_drone_add = 5 # OSA 4 -> 5
+		}
+	}
+
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			NOR = {
+				is_planet_class = pc_habitat
+				is_planet_class = pc_machine
+				is_planet_class = pc_hive
+				is_planet_class = pc_city
+			}
+			is_pd_habitat = no
+			is_pd_arcology = no
+			is_pd_hive_world = no
+			is_pd_hive_arcology = no
+			is_pd_machine = no
+			is_pd_robot_arcology = no
+		}
+		district_generator_max = 4
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_technician_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_technician_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_energy_consortiums
+					has_civic = civic_corporate_energy_consortiums
+				}
+			}
+		}
+		text = job_osa_energy_director_effect_desc
+	}
+
+	prerequisites = {
+		"tech_mine_betharian"
+	}
+}
+
+## Alien Zoo (Tier 1)
+# Merge between Sort Buildings, OSA
+building_xeno_zoo = {
+	base_buildtime = @db1_time
+	position_priority = 3071000 # Sort Buildings
+	base_cap_amount = 1
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_xeno_zoo_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		planet = {
+			OR = {
+				has_deposit = d_alien_pets_deposit
+				AND = {
+					exists = owner
+					owner = { has_policy_flag = pre_sapients_protect }
+					any_owned_pop = {
+						is_sapient = no
+					}
+				}
+				any_owned_pop = {
+					is_livestock = yes
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			AND = {
+				exists = owner
+				owner = {
+					is_regular_empire = no
+				}
+			}
+			planet = {
+				NOR = {
+					has_deposit = d_alien_pets_deposit
+					AND = {
+						exists = owner
+						owner = { has_policy_flag = pre_sapients_protect }
+						any_owned_pop = {
+							is_sapient = no
+						}
+					}
+					any_owned_pop = {
+						is_livestock = yes
+					}
+				}
+			}			
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+			food = 10
+		}
+		produces = { # OSA
+			unity = 20
+			society_research = 20
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
+			}
+		}
+		modifier = {
+			job_duelist_add = 2 # OSA 1 -> 2
+			job_entertainer_add = -2 # OSA -1 -> -2
+		}
+	}
+
+	planet_modifier = {
+		job_entertainer_add = 2 # OSA 1 -> 2
+		job_xeno_zoo_keeper_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				any_owned_pop = {
+					is_livestock = yes
+				}
+			}
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_warrior_culture }
+			}
+		}
+		modifier = {
+			job_livestock_zoo_animal_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				any_owned_pop = {
+					is_livestock = no
+				}
+			}
+			exists = owner
+			owner = {
+				has_valid_civic = civic_warrior_culture
+			}
+		}
+		modifier = {
+			job_livestock_zoo_beast_add = 3
+		}
+	}
+
+	prerequisites = {
+		"tech_alien_life_studies"
+	}
+
+	triggered_desc = {
+		text = job_xeno_zoo_keeper_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { NOT = { has_valid_civic = civic_warrior_culture } }
+		}
+		text = job_entertainer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
+			}
+		}
+		text = job_duelist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				any_owned_pop = {
+					is_sapient = no
+				}
+			}
+			exists = owner
+			owner = { 
+				NOR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
+			}
+		}
+		text = job_xeno_zoo_animal_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				any_owned_pop = {
+					is_livestock = yes
+				}
+			}
+			exists = owner
+			owner = { NOT = { has_valid_civic = civic_warrior_culture } }
+		}
+		text = job_livestock_zoo_animal_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				any_owned_pop = {
+					is_sapient = no
+				}
+			}
+			exists = owner
+			owner = { has_valid_civic = civic_warrior_culture }
+		}
+		text = job_xeno_zoo_beast_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				any_owned_pop = {
+					is_livestock = yes
+				}
+			}
+			exists = owner
+			owner = { has_valid_civic = civic_warrior_culture }
+		}
+		text = job_livestock_zoo_beast_effect_desc
+	}
+}

@@ -571,6 +571,11 @@ building_fortress = {
 	can_be_ruined = no
 	category = army
 	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_fortress_tt
+    }
+
 	potential = {
 		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
 	}
@@ -844,6 +849,11 @@ building_planetary_shield_generator = {
 
 	category = army
 	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_planetary_shield_generator_tt
+    }
+
 	potential = { # OSA
 		planet = {
 			NOR = {
