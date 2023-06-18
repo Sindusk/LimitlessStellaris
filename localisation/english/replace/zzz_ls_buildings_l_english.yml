@@ -680,3 +680,44 @@ l_english:
   building_solarpunk_organic_paradise: "Hanging Cities"
   building_solarpunk_organic_paradise_tt: "§MSolarpunk§! - §BTier 0§! - §EPrimitive§!"
   building_solarpunk_organic_paradise_desc: "Cities covered in grand forests, bringing the inhabitants closer to nature."
+
+##################
+# Event
+##################
+
+  ### General
+  building_junkheap: "Junk Heap"
+  building_junkheap_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_junkheap_desc: "A rusting, irradiated jumble of collapsed infrastructure, destroyed buildings, and decaying wreckage from an unknown civilization."
+  building_akx_worm_3: "Omega Alignment"
+  building_akx_worm_3_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_akx_worm_3_desc: "The surface of this object angles space. The interior is not visible to any sensor or imaging technology available. But we all know what's in there."
+  building_great_pyramid: "Great Pyramid"
+  building_great_pyramid_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_great_pyramid_desc: "A pyramid constructed by the local population to appease a deity descended from the sky."
+  building_artist_patron: "Ministry of Culture"
+  building_artist_patron_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_artist_patron_desc: "A fashionable headquarters for the Ministry of Culture, helping to spread knowledge, entertainment and art to the masses."
+  building_waste_reprocessing_center: "Waste Reprocessing Center"
+  building_waste_reprocessing_center_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_waste_reprocessing_center_desc: "A planet's one stop center for converting industrial and bio-waste into mostly clean, mostly reusable energy and minerals. Designed by the $NAME_Caravaneer_Fleet3$, its construction is somewhat arcane, and largely non-reverse- engineerable."
+  building_nuumismatic_shrine: "Numistic Shrine"
+  building_nuumismatic_shrine_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_nuumismatic_shrine_desc: "A shrine devoted to the worship of Numa, goddess of fortune."
+  building_crystal_plant_2: "Kha'lanka Crystal Plant"
+  building_crystal_plant_2_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_crystal_plant_2_desc: "The discovery of new crystal manufacturing techniques, far below the surface in the city of the Kha'lanka lithoids, has effectivized artificial crystal manufacturing through oxidation of rapidly growing silicon-based cell-clusters."
+  building_composer_sanctum: "Sanctum of the Composer"
+  building_composer_sanctum_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_composer_sanctum_desc: "The Sanctum is a place dedicated to communion with the Composer. Here, flesh roams as freely as thought. Who knows what changes the Shroud might impart upon your mortal form?"
+  building_eater_sanctum: "Sanctum of the Eater"
+  building_eater_sanctum_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_eater_sanctum_desc: "The Sanctum is a place dedicated to communion with the Eater. Here, war is prepared as we plan for the next feast."
+  building_instrument_sanctum: "Sanctum of the Instrument"
+  building_instrument_sanctum_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_instrument_sanctum_desc: "The Sanctum is a place dedicated to communion with the Instrument. Here, riches are hoarded then traded away in a consumptive frenzy that brings us no closer to fulfillment."
+  building_whisperers_sanctum: "Sanctum of the Whisperers"
+  building_whisperers_sanctum_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
+  building_whisperers_sanctum_desc: "The Sanctum is a place dedicated to communion with the Whisperers. Here, secrets are traded in hushed tones, new knowledge is brought to be sealed away, and our murmurs join the chorus."
+ 
+ 
