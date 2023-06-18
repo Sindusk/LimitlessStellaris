@@ -7,7 +7,7 @@
 ##################################################
 
 ## Commercial Zones (Tier 1)
-# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
 building_commercial_zone = {
 	base_buildtime = @db1_time
 	position_priority = 4061000 # Sort Buildings
@@ -399,7 +399,7 @@ building_bugged_planetary_stock_exchange = {
 }
 
 ## Galactic Stock Exchange (Tier 2)
-# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
 building_galactic_stock_exchange = {
 	base_buildtime = @db2_time
 	#base_cap_amount = 1
@@ -463,8 +463,9 @@ building_galactic_stock_exchange = {
 
 
 	planet_modifier = {
-		job_merchant_add = 2
-		trade_value_mult = 0.1 # Bug Branch reduces from 0.2 to 0.1
+		job_merchant_add = 4 # OSA 2 -> 4
+		job_clerk_add = 2 # OSA
+		trade_value_mult = 0.5 # OSA 0.2 -> 0.5
 	}
 
 	triggered_planet_modifier = { # Bug Branch
@@ -490,8 +491,17 @@ building_galactic_stock_exchange = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
 			rare_crystals = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_commerce_3
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -519,7 +529,7 @@ building_galactic_stock_exchange = {
 		}
 	}
 	ai_resource_production = {
-		energy = 3
+		energy = 12 # OSA 3 -> 12
 		trigger = {
 			solar_system = {
 				has_system_trade_value >= 80
