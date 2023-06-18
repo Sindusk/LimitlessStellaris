@@ -1,0 +1,1285 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Fallen Empire
+##########################################################################
+
+##################################################
+## Fallen Empire - General
+##################################################
+
+## Ancient Control Center (Tier ?)
+# Using ACOT, add tooltip.
+building_ancient_control_center = {
+	base_buildtime = 480
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	position_priority = 0
+	
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ancient_control_center_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_fallen_machine_empire = yes }
+	}	
+	
+	convert_to = {
+		building_hive_major_capital
+		building_machine_major_capital
+		building_major_capital
+		building_ancient_palace
+	}
+
+	planet_modifier = {
+		planet_housing_add = 15
+		planet_amenities_add = 15
+		planet_max_buildings_add = 15
+	}
+
+	##### FOR DEFEARTHH ###
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_machine_empire = no
+			}
+		}
+		modifier = {
+			job_coordinator_add = 5
+			job_replicator_add = 6
+			job_patrol_drone_add = 3
+			job_maintenance_drone_add = 4
+		}
+	}
+
+	##### FOR FE ###
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_guardian_bot_add = 5
+		}
+	}
+
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+		}
+	}
+		
+	upgrades = {
+	}
+	
+	ai_weight = {
+		weight = 100
+	}	
+}
+
+## Ancient Palace (Tier ?)
+# Using ACOT, add Real Space: Planetary Stations
+building_ancient_palace = {
+	base_buildtime = 480
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	position_priority = 0
+	
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ancient_palace_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_fallen_empire = yes }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}	
+	
+	convert_to = {
+		building_hive_major_capital
+		building_machine_major_capital
+		building_major_capital
+		building_ancient_control_center
+	}
+
+	planet_modifier = {
+		planet_housing_add = 15
+		planet_amenities_add = 15
+		planet_max_buildings_add = 15
+	}
+
+	##### FIR DEFUALT ###
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+			}					
+		}
+		modifier = {
+			job_acot_enforcer_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+				is_fallen_empire = no
+			}					
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_mechanical_empire = yes 
+				is_fallen_empire = no
+			}		
+		}
+		job_roboticist_add = 5
+	}	
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				NOR = {
+					has_authority = auth_corporate
+					has_civic = civic_exalted_priesthood 
+					has_civic = civic_aristocratic_elite
+					has_civic = civic_merchant_guilds
+					has_civic = civic_technocracy
+				}
+				is_fallen_empire = no
+			}					
+		}
+		modifier = {
+			job_politician_add = 5
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_authority = auth_corporate 
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_executive_add = 5
+		}
+	}	
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_civic = civic_exalted_priesthood 
+				is_fallen_empire = no
+			}					
+		}
+		modifier = {	
+			job_high_priest_add = 3
+			job_politician_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_civic = civic_aristocratic_elite
+				is_fallen_empire = no
+			 }					
+		}
+		modifier = {
+			job_noble_add = 2
+			job_politician_add = 3
+		} 
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_civic = civic_technocracy 
+				is_fallen_empire = no
+			}					
+		}
+		modifier = {
+			job_head_researcher_add = 2		
+			job_politician_add = 3
+		} 
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_civic = civic_merchant_guilds 
+				is_fallen_empire = no			
+			}					
+		}
+		modifier = {
+			job_merchant_add = 3
+			job_politician_add = 2
+		}
+	}
+
+	##### FOR FE ###
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire_spiritualist = no 
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_overseer_add = 2
+			job_fe_protector_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire_spiritualist = yes 
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_sky_cardinal_add = 2
+			job_fe_protector_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+		}
+	}
+		
+	upgrades = {
+	}
+	
+	ai_weight = {
+		weight = 100
+	}	
+}
+
+## Habitat Administration (Tier ?)
+# Merge between Real Space: Planetary Stations, ACOT, Scripted Trigger Undercoat
+building_hab_fe_capital = {
+	base_buildtime = @db2_time
+	capital = yes
+	can_build = no
+	can_demolish = yes
+	position_priority = 0
+
+	icon = building_ancient_palace # ACOT
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_hab_fe_capital_tt
+    }
+
+	potential = {
+		is_habitat = yes # Scripted Trigger Undercoat
+		exists = owner
+		owner = { is_fallen_empire = yes }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	convert_to = {
+		building_hab_major_capital
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		planet_amenities_add = 5
+		planet_max_buildings_add = 11
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = no }
+			owner = { is_fallen_machine_empire = no }
+		}
+		modifier = {
+			job_fe_overseer_add = 1
+			job_fe_protector_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_sky_cardinal_add = 1
+			job_fe_protector_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_machine_empire = yes }
+		}
+		job_fe_guardian_bot_add = 2
+		job_fe_maintenance_bot_add = 1
+	}
+
+	upgrades = {
+	}
+}
+
+## Affluence Center (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_affluence_center = {
+	base_buildtime = 480
+	can_build = yes
+	can_demolish = yes
+	position_priority = 42000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_affluence_center_tt
+    }
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			OR = {
+				owner = { is_fallen_empire = yes }
+				owner = {
+					check_variable = { which = affluence_center_build_count value >= 1 }
+				}
+			}
+			fail_text = "ancrel.10004.failtext"
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 50
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			consumer_goods = 200
+			unity = 100
+			society_research = 100
+		}
+		upkeep = {
+		}
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = { which = affluence_center_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = affluence_center_build_count value = 1 }
+		}
+	}
+	ai_weight = {
+		weight = 1
+			modifier = {
+				factor = 50
+				owner = {
+				resource_income_compare = {
+					resource = consumer_goods
+					value < 10
+					}
+				}
+			}
+			modifier = {
+				factor = 0.05
+				owner = {
+				resource_income_compare = {
+					resource = consumer_goods
+					value > 40
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				owner = {
+					not = {
+						has_country_flag = just_destroyed_awakened_consgoods
+					}	
+					resource_income_compare = {
+						resource = consumer_goods
+						value > 150
+					}
+					resource_stockpile_compare = {
+						resource = consumer_goods
+						value > 5000
+					}
+				}
+			}
+		}
+		on_destroy = {
+			owner = {
+			set_timed_country_flag = {
+				flag = just_destroyed_awakened_consgoods
+				days = 40
+			} }
+		}		
+
+
+	upgrades = {
+		building_ae_affluence_center
+	}
+}
+
+## Nourishment Center (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_nourishment_center = {
+	base_buildtime = 480
+	can_build = yes
+	can_demolish = yes
+	position_priority = 32000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_nourishment_center_tt
+    }
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			OR = {
+				owner = { is_fallen_empire = yes }
+				owner = {
+					check_variable = { which = nourishment_center_build_count value >= 1 }
+				}
+			}
+			fail_text = "ancrel.10004.failtext"
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	
+	planet_modifier = {
+		biological_pop_happiness = 0.20
+		BIOLOGICAL_pop_growth_speed = 0.10
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			food = 200
+		}
+		upkeep = {
+		}
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = { which = nourishment_center_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = nourishment_center_build_count value = 1 }
+		}
+	}
+		
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 50
+			owner = {
+			resource_income_compare = {
+				resource = food
+				value < 100
+				}
+			}
+		}
+		modifier = {
+			factor = 0.05
+			owner = {
+			resource_income_compare = {
+				resource = food
+				value > 200
+				}
+			}
+			owner = {
+			resource_stockpile_compare = {
+				resource = food
+				value = 5000
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				not = {
+					has_country_flag = just_destroyed_awakened_food
+				}	
+				resource_income_compare = {
+					resource = food
+					value > 500
+				}
+				resource_stockpile_compare = {
+					resource = food
+					value > 6000
+				}
+			}
+		}
+	}
+	on_destroy = {
+		owner = {
+		set_timed_country_flag = {
+			flag = just_destroyed_awakened_food
+			days = 40
+			} 
+		}
+	}
+
+	upgrades = {
+		building_ae_nourishment_center
+	}
+}
+
+## Dimensional Fabricator (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_dimensional_fabricator = {
+	can_build = yes
+	can_demolish = yes
+	position_priority = 41000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_dimensional_fabricator_tt
+    }
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			OR = {
+				owner = { is_fallen_empire = yes }
+				owner = {
+					check_variable = { which = dimensional_fabricator_build_count value >= 1 }
+				}
+			}
+			fail_text = "ancrel.10004.failtext"
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	
+	planet_modifier = {
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			minerals = 200
+			rare_crystals = 20
+			exotic_gases = 20
+			volatile_motes = 20		
+			sr_zro = 10
+			nanites = 10
+			sr_dark_matter = 10
+			acot_sr_dark_energy = 10
+			sr_living_metal = 10	
+		}
+		upkeep = {
+		}
+	}
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 50
+			owner = {
+			or = {
+				resource_income_compare = {
+					resource = minerals
+					value < 300
+				}
+				resource_income_compare = {
+					resource = rare_crystals
+					value < 3
+				}
+				resource_income_compare = {
+					resource = exotic_gases
+					value < 3
+				}
+				resource_income_compare = {
+					resource = volatile_motes
+					value < 3
+					}
+				}	
+			}
+		}
+		modifier = {
+			factor = 0.05 
+			owner = {
+			and = {
+				resource_income_compare = {
+					resource = minerals
+					value > 500
+				}
+				resource_income_compare = {
+					resource = rare_crystals
+					value > 5
+				}
+				resource_income_compare = {
+					resource = exotic_gases
+					value > 5
+				}
+				resource_income_compare = {
+					resource = volatile_motes
+					value > 5
+						}
+					}
+				}
+			}
+		modifier = {
+			factor = 0
+			owner = {
+				not = {
+					has_country_flag = just_destroyed_awakened_minerals
+				}	
+				and = {
+					resource_income_compare = {
+						resource = minerals
+						value > 1000
+					}
+					resource_income_compare = {
+						resource = rare_crystals
+						value > 10
+					}
+					resource_income_compare = {
+						resource = exotic_gases
+						value > 10
+					}
+					resource_income_compare = {
+						resource = volatile_motes
+						value > 10
+					}
+					resource_stockpile_compare = {
+						resource = minerals
+						value > 5000
+						
+						}
+					}
+				}
+			}
+		}
+		on_destroy = {
+			owner = {
+			set_timed_country_flag = {
+				flag = just_destroyed_awakened_minerals
+				days = 40
+				} 
+			}
+		}
+	on_queued = {
+		owner = {
+			subtract_variable = { which = dimensional_fabricator_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = dimensional_fabricator_build_count value = 1 }
+		}
+	}
+		
+	upgrades = {
+		building_ae_dimensional_fabricator
+	}
+}
+
+## Class-4 Singularity (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, AOT
+building_class_4_singularity = {
+	base_buildtime = 480
+	can_build = yes
+	can_demolish = yes
+	position_priority = 31000 # Sort Buildings
+
+	category = resource
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_class_4_singularity_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_fe_class_4_singularity
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	planet_modifier = {
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 150
+		}
+		upkeep = {
+			sr_dark_matter = 3
+		}
+		produces = {
+			energy = @auto_energy_dm
+		}
+	}
+	upgrades = {
+		building_ae_class_4_singularity
+	}
+	prerequisites = {
+		tech_fe_class_4_singularity
+	}
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 50
+			owner = {
+				resource_income_compare = {
+					resource = energy
+					value < 100
+				}
+			}
+		}
+		modifier = {
+			factor = 0.05
+			owner = {
+				resource_income_compare = {
+					resource = energy
+					value > 500
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				not = {
+					has_country_flag = just_destroyed_awakened_energy
+				}
+				resource_income_compare = {
+					resource = energy
+					value > 500
+				}
+				resource_stockpile_compare = {
+					resource = energy
+					value > 10000
+				}
+			}
+		}
+	}
+	on_destroy = {
+		owner = {
+			set_timed_country_flag = {
+				flag = just_destroyed_awakened_energy
+				days = 40
+			}
+		}
+	}
+}
+
+## Auto-Forge (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_nano_forge = {
+	base_buildtime = 480
+	can_build = yes
+	can_demolish = yes
+	position_priority = 43000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_nano_forge_tt
+    }
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			OR = {
+				owner = { is_fallen_empire = yes }
+				owner = {
+					check_variable = { which = nano_forge_build_count value >= 1 }
+				}
+			}
+			fail_text = "ancrel.10004.failtext"
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	
+	planet_modifier = {
+		planet_building_build_speed_mult = 0.10
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			alloys = 100
+			engineering_research = 20
+		}
+		upkeep = {
+		}
+	}
+		
+	upgrades = {
+		building_ae_nano_forge
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = { which = nano_forge_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = nano_forge_build_count value = 1 }
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0.05
+			owner = {
+			or = {
+				resource_income_compare = {
+					resource = energy
+					value < 0
+				}
+				resource_income_compare = {
+					resource = minerals
+					value < 50
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value > 5000
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				not = {
+					has_country_flag = just_destroyed_awakened_alloys
+				}	
+				resource_income_compare = {
+					resource = energy
+					value < 0
+				}
+				resource_stockpile_compare = {
+					resource = energy
+					value < 500
+				}
+			}
+		}
+	}
+	on_destroy = {
+		owner = {
+			set_timed_country_flag = {
+				flag = just_destroyed_awakened_alloys
+				days = 40
+			} 
+		}
+	}
+
+}
+
+## Master Archive (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_master_archive = {
+	base_buildtime = 480
+	can_build = no
+	can_demolish = yes
+	position_priority = 51000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_master_archive_tt
+    }
+
+	potential = {
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		job_fe_archivist_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = no }
+		}
+		job_researcher_add = 10
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			physics_research = 100
+			society_research = 100
+			engineering_research = 100
+			minor_artifacts = 5
+		}
+		upkeep = {
+		}
+	}
+		
+	upgrades = {
+		building_ae_master_archive
+	}
+}
+
+## Empyrean Shrine (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_empyrean_shrine = {
+	base_buildtime = 480
+	can_build = no
+	can_demolish = yes
+	position_priority = 81000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_empyrean_shrine_tt
+    }
+
+	potential = {
+		exists = owner
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}	
+	
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		job_fe_augur_add = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire = no 
+				is_spiritualist = yes
+			}
+		}
+		job_priest_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire = no 
+				is_spiritualist = no
+			}
+		}
+		job_culture_worker_add = 10
+	}
+
+
+	resources = {
+		category = planet_buildings	
+		produces = {
+			society_research = 100
+			sr_zro = 50
+			unity = 50
+		}
+		upkeep = {
+		}
+	}
+		
+	upgrades = {
+		building_ae_empyrean_shrine
+	}
+}
+
+## Ancient Cryo-Chamber (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_ancient_cryo_chamber = {
+	base_buildtime = 480
+	can_build = no
+	can_demolish = yes
+	position_priority = 21000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ancient_cryo_chamber_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_fallen_machine_empire = yes }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}	
+	
+	planet_modifier = {
+	}
+
+	resources = {
+		category = planet_buildings	
+		upkeep = {
+		}
+	}
+		
+	upgrades = {
+		building_ae_ancient_cryo_chamber
+	}
+}
+
+## Xeno Preserve (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_fe_xeno_zoo = {
+	base_buildtime = 480
+	capital = yes
+	can_build = no
+	can_demolish = yes
+	position_priority = 0 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_fe_xeno_zoo_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { 
+			is_fallen_empire = yes 
+			is_xenophile = yes
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}	
+	
+	convert_to = {
+		building_ae_ancient_palace
+		building_ae_ancient_hive_cluster
+		building_ae_ancient_control_center
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = 15
+		job_fe_xeno_keeper_add = 2
+		planet_housing_add = 30
+	}
+
+	resources = {
+		category = planet_buildings	
+		upkeep = {
+		}
+	}
+		
+	upgrades = {
+	}
+}
+
+## Sky-Dome (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_fe_dome = {
+	base_buildtime = 480
+	can_build = yes
+	position_priority = 71000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_fe_dome_tt
+    }
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			OR = {
+				owner = { is_fallen_empire = yes }
+				owner = {
+					check_variable = { which = skydome_build_count value >= 1 }
+				}
+			}
+			fail_text = "ancrel.10004.failtext"
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	
+	planet_modifier = {
+		planet_max_buildings_add = 2
+		planet_max_districts_add = 2
+		planet_housing_add = 50
+		planet_amenities_add = 50
+	}
+	
+	resources = {
+		category = planet_buildings
+		upkeep = {
+		}
+	}
+	on_queued = {
+		owner = {
+			subtract_variable = { which = skydome_build_count value = 1 }
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = { which = skydome_build_count value = 1 }
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0.05
+			free_amenities > 20
+		}
+		modifier = {
+			factor = 50
+			free_amenities < -10
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				not = { has_country_flag = just_destroyed_awakened_amenities } 
+			}
+			free_amenities > 50
+		}
+	}
+
+	on_destroy = {
+		owner = { 
+			set_timed_country_flag = {
+				flag = just_destroyed_awakened_amenities
+				days = 40
+			} 
+		}		
+	}
+
+	upgrades = {
+		building_ae_sky_dome
+	}
+}
+
+## Aegis Complex (Tier ?)
+# Merge between Sort Buildings, Real Space: Planetary Stations, ACOT
+building_fe_stronghold = {
+	can_build = no
+	position_priority = 91000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_fe_stronghold_tt
+    }
+
+	potential = {
+		exists = owner
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	
+	
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_fallen_empire = no
+				is_gestalt = no 
+			}
+		}
+		modifier = {
+			job_acot_enforcer_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_fallen_empire = no
+				is_gestalt = yes 
+			}
+		}
+		modifier = {
+			job_acot_enforcer_drone_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_protector_add = 5
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 50
+			owner = { used_naval_capacity_percent > 1.1 }
+		}
+		modifier = {
+			factor = 0.05
+			owner = { used_naval_capacity_percent < 0.9 }
+		}
+	}
+
+	resources = {
+		category = planet_buildings	
+		upkeep = {
+		}
+	}
+
+	upgrades = {
+		building_ae_stronghold
+	}
+}
