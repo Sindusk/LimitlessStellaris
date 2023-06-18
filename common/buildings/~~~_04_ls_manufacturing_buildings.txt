@@ -7,7 +7,7 @@
 ##################################################
 
 ## Alloy Foundries (Tier 1)
-# Merge between Sort Buildings, Planetary Diversity: Unique Worlds, Real Space: Planetary Stations, StarTech, Ariphaos
+# Merge between Sort Buildings, OSA, Planetary Diversity: Unique Worlds, Real Space: Planetary Stations, StarTech, Ariphaos
 building_foundry_1 = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -59,6 +59,10 @@ building_foundry_1 = {
 			}
 		}
 	}
+	
+	planet_modifier = {
+		planet_metallurgists_alloys_produces_add = 1 # OSA
+	}
 
 	inline_script = { # Adds the alloy jobs based on proper conditions.
 		script = buildings/foundry/alloy_jobs
@@ -71,14 +75,63 @@ building_foundry_1 = {
 		script = buildings/foundry/ascension_jobs
 		industrialist = 1
 	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+				has_active_tradition = tr_metallurgy_4
+			}
+		}
+		modifier = {
+			planet_metallurgists_unity_produces_add = 2
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_minerals_upkeep_add = 4
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+				has_active_tradition = tr_metallurgy_4
+			}
+		}
+		modifier = {
+			planet_metallurgists_unity_produces_add = 2
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_food_upkeep_add = 4
+		}
+	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
 			minerals = @db1_minerals
 		}
-		upkeep = {
-			energy = @db1_upkeep
+		upkeep = { # OSA
+			energy = 2.5
+			minerals = 2.5
+		}
+		upkeep = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			minerals = 10
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			alloys = 5
 		}
 	}
 
@@ -142,7 +195,7 @@ building_foundry_1 = {
 }
 
 ## Alloy Mega-Forges (Tier 2)
-# Merge between Planetary Diversity: Unique Worlds, Unique Ascension Perks, StarTech
+# Merge between OSA, Planetary Diversity: Unique Worlds, Unique Ascension Perks, StarTech
 building_foundry_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -186,8 +239,27 @@ building_foundry_2 = {
 			volatile_motes = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
 			volatile_motes = @db3_rare_upkeep
+		}
+		upkeep = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			minerals = 20
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			alloys = 10
 		}
 	}
 
@@ -200,7 +272,7 @@ building_foundry_2 = {
 	}
 
 	planet_modifier = {
-		planet_metallurgists_alloys_produces_add = 1
+		planet_metallurgists_alloys_produces_add = 2 # OSA 1 -> 2
 	}
 	
 	inline_script = { # Adds the alloy jobs based on proper conditions.
@@ -213,6 +285,36 @@ building_foundry_2 = {
 	inline_script = { # Adds ascension perk jobs.
 		script = buildings/foundry/ascension_jobs
 		industrialist = 1
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+				has_active_tradition = tr_metallurgy_4
+			}
+		}
+		modifier = {
+			planet_metallurgists_unity_produces_add = 2
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_minerals_upkeep_add = 4
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+				has_active_tradition = tr_metallurgy_4
+			}
+		}
+		modifier = {
+			planet_metallurgists_unity_produces_add = 2
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_food_upkeep_add = 4
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -312,7 +414,7 @@ building_foundry_2 = {
 }
 
 ## Alloy Nano-Plants (Tier 3)
-# Merge between Planetary Diversity: Unique Worlds, Unique Ascension Perks, Rise of Cosmic Industry, StarTech
+# Merge between OSA, Planetary Diversity: Unique Worlds, Unique Ascension Perks, Rise of Cosmic Industry, StarTech
 building_foundry_3 = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -361,22 +463,42 @@ building_foundry_3 = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			minerals = 1500
-			volatile_motes = 600
+			minerals = @db3_minerals
+			volatile_motes = @db4_rare_cost
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
 			energy = @db3_upkeep
+			minerals = @db3_upkeep
 			volatile_motes = @db4_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 15
-			volatile_motes = 8
+			energy = @db3_upkeep
+			minerals = @db3_upkeep
+			volatile_motes = @db4_rare_upkeep
+		}
+		upkeep = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			minerals = 40
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			alloys = 20
 		}
 	}
 
@@ -389,7 +511,7 @@ building_foundry_3 = {
 	}
 
 	planet_modifier = {
-		planet_metallurgists_alloys_produces_add = 2
+		planet_metallurgists_alloys_produces_add = 3 # OSA 2 -> 3
 	}
 	
 	inline_script = { # Adds the alloy jobs based on proper conditions.
@@ -402,6 +524,36 @@ building_foundry_3 = {
 	inline_script = { # Adds ascension perk jobs.
 		script = buildings/foundry/ascension_jobs
 		industrialist = 2
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+				has_active_tradition = tr_metallurgy_4
+			}
+		}
+		modifier = {
+			planet_metallurgists_unity_produces_add = 2
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_minerals_upkeep_add = 4
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+				has_active_tradition = tr_metallurgy_4
+			}
+		}
+		modifier = {
+			planet_metallurgists_unity_produces_add = 2
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_food_upkeep_add = 6
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -543,7 +695,7 @@ building_foundry_3 = {
 }
 
 ## Civilian Industries (Tier 1)
-# Merge between Sort Buildings, Planetary Diversity: Unique Worlds, Unique Ascension Perks, Real Space: Planetary Stations
+# Merge between Sort OSA, Buildings, Planetary Diversity: Unique Worlds, Unique Ascension Perks, Real Space: Planetary Stations
 building_factory_1 = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -640,6 +792,11 @@ building_factory_1 = {
 		}
 	}
 	
+	planet_modifier = {
+		planet_artisans_consumer_goods_produces_add = 1 # OSA
+		planet_artisans_minerals_upkeep_add = 2 # OSA
+	}
+	
 	inline_script = { # Adds the consumer goods jobs and descriptions based on proper conditions.
 		script = buildings/factory/consumergoods_jobs
 		basic = @db1_jobs
@@ -658,7 +815,26 @@ building_factory_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
+		}
+		upkeep = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			minerals = 10
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			consumer_goods = 5
 		}
 	}
 
@@ -711,7 +887,7 @@ building_factory_1 = {
 }
 
 ## Civilian Fabricators (Tier 2)
-# Merge between Unique Ascension Perks, Real Space: Planetary Stations, StarTech
+# Merge between OSA, Unique Ascension Perks, Real Space: Planetary Stations, StarTech
 building_factory_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -763,8 +939,8 @@ building_factory_2 = {
 	}
 
 	planet_modifier = {
-		planet_artisans_consumer_goods_produces_add = 1
-		planet_artisans_minerals_upkeep_add = 1
+		planet_artisans_consumer_goods_produces_add = 2 # OSA 1 -> 2
+		planet_artisans_minerals_upkeep_add = 4 # OSA 1 -> 4
 	}
 
 	inline_script = { # Adds the consumer goods jobs and descriptions based on proper conditions.
@@ -786,8 +962,27 @@ building_factory_2 = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
 			rare_crystals = @db3_rare_upkeep
+		}
+		upkeep = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			minerals = 20
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			consumer_goods = 10
 		}
 	}
 
@@ -841,7 +1036,7 @@ building_factory_2 = {
 }
 
 ## Civilian Repli-Complexes (Tier 3)
-# Merge between Unique Ascension Perks, Real Space: Planetary Stations, Rise of Cosmic Industry, StarTech
+# Merge between OSA, Unique Ascension Perks, Real Space: Planetary Stations, Rise of Cosmic Industry, StarTech
 building_factory_3 = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -896,8 +1091,8 @@ building_factory_3 = {
 
 
 	planet_modifier = {
-		planet_artisans_consumer_goods_produces_add = 2
-		planet_artisans_minerals_upkeep_add = 2
+		planet_artisans_consumer_goods_produces_add = 3 # OSA 2 -> 3
+		planet_artisans_minerals_upkeep_add = 6 # OSA 2 -> 4
 	}
 	
 	inline_script = { # Adds the consumer goods jobs and descriptions based on proper conditions.
@@ -943,14 +1138,34 @@ building_factory_3 = {
 				has_ringworld_output_boost = no
 			}
 			energy = @db3_upkeep
+			minerals = @db3_upkeep
 			rare_crystals = @db4_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 15
-			rare_crystals = 8
+			energy = @db3_upkeep
+			minerals = @db3_upkeep
+			rare_crystals = @db4_rare_upkeep
+		}
+		upkeep = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			minerals = 40
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_nanobiotics_2
+				}
+			}
+			consumer_goods = 20
 		}
 	}
 
@@ -1007,7 +1222,7 @@ building_factory_3 = {
 ##################################################
 
 ## Exotic Gas Refineries (Tier 1)
-# Merge between Sort Buildings, Extra Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, Extra Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_refinery = {
 	base_buildtime = @db2_time
 	position_priority = 4043000 # Sort Buildings
@@ -1028,26 +1243,6 @@ building_refinery = {
 			has_planet_flag = planetary_station # Real Space: Planetary Stations
 		}
 		building_basic_income_check = yes # StarTech AI
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-		modifier = {
-			job_gas_refiner_add = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		modifier = {
-			job_gas_refiner_drone_add = 1
-		}
 	}
 
 	destroy_trigger = { # StarTech AI
@@ -1071,13 +1266,34 @@ building_refinery = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_gas_refiner_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_gas_refiner_drone_add = 2 # OSA 1 -> 2
+		}
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = {
 			minerals = @db2_minerals
 		}
 		upkeep = {
-			energy = 3
+			energy = 2.5
+			minerals = 2.5
 		}
 	}
 
@@ -1202,6 +1418,7 @@ building_chemical_plant = {
 		}
 		upkeep = {
 			energy = @db2_upkeep
+			minerals = @db2_upkeep
 		}
 	}
 
@@ -1255,7 +1472,7 @@ building_chemical_plant = {
 }
 
 ## Synthetic Crystal Plants (Tier 1)
-# Merge between Sort Buildings, Extra Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, Extra Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_crystal_plant = {
 	base_buildtime = @db2_time
 	position_priority = 4044000 # Sort Buildings
@@ -1277,27 +1494,7 @@ building_crystal_plant = {
 		}
 		building_basic_income_check = yes # StarTech AI
 	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-		modifier = {
-			job_translucer_add = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		modifier = {
-			job_translucer_drone_add = 1
-		}
-	}
-
+	
 	destroy_trigger = { # StarTech AI
 		free_building_slots = 0
 		exists = owner
@@ -1309,7 +1506,7 @@ building_crystal_plant = {
 			}
 		}
 	}
-
+	
 	on_queued = { # StarTech AI
 		owner = {
 			set_timed_country_flag = {
@@ -1319,13 +1516,34 @@ building_crystal_plant = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_translucer_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_translucer_drone_add = 2 # OSA 1 -> 2
+		}
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = {
 			minerals = @db2_minerals
 		}
 		upkeep = {
-			energy = 3
+			energy = 2.5
+			minerals = 2.5
 		}
 	}
 
@@ -1464,7 +1682,7 @@ building_nanite_transmuter = {
 ##################################################
 
 ## Ministry of Production (Tier 1)
-# Merge between Sort Buildings, Unique Ascension Perks, Real Space: Planetary Stations, Gigastructural Engineering, StarTech
+# Merge between Sort Buildings, OSA, Unique Ascension Perks, Real Space: Planetary Stations, Gigastructural Engineering, StarTech
 building_ministry_production = {
 	base_buildtime = @db2_time
 	base_cap_amount = 1
@@ -1519,8 +1737,8 @@ building_ministry_production = {
 
 	planet_modifier = {
 		job_politician_add = 1
-		planet_metallurgists_produces_mult = 0.15
-		planet_artisans_produces_mult = 0.15
+		planet_metallurgists_produces_mult = 0.25 # OSA 0.15 -> 0.25
+		planet_artisans_produces_mult = 0.25 # OSA 0.15 -> 0.25
 		planet_cultivators_produces_mult = 0.15 # Gigastructural Engineering
 	}
 
@@ -1547,7 +1765,8 @@ building_ministry_production = {
 			volatile_motes = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
 			volatile_motes = @db2_rare_upkeep
 		}
 	}
@@ -1646,7 +1865,7 @@ building_ministry_production = {
 }
 
 ## Resource Processing Center (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Gigastructural Engineering, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Gigastructural Engineering, StarTech
 building_production_center = {
 	base_buildtime = @db2_time
 	base_cap_amount = 1
@@ -1697,8 +1916,8 @@ building_production_center = {
 	}
 
 	planet_modifier = {
-		planet_metallurgists_produces_mult = 0.15
-		planet_artisans_produces_mult = 0.15
+		planet_metallurgists_produces_mult = 0.25 # OSA 0.15 -> 0.25
+		planet_artisans_produces_mult = 0.25 # OSA 0.15 -> 0.25
 		planet_cultivators_produces_mult = 0.15 # Gigastructural Engineering
 	}
 
@@ -1709,7 +1928,8 @@ building_production_center = {
 			volatile_motes = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
 			volatile_motes = @db2_rare_upkeep
 		}
 	}
