@@ -17,10 +17,8 @@
 ## Capitals - Biological
 ##################################################
 
-### building_colony_shelter
 ## Colony (Tier 1)
-# Merge between StarTech AI, Ariphaos
-# Base from StarTech AI, minor tweak by Ariphaos
+# Merge between OSA, StarTech AI, Ariphaos
 building_colony_shelter = {
 	capital = yes
 	can_build = no
@@ -57,6 +55,7 @@ building_colony_shelter = {
 		planet_housing_add = 3
 		planet_amenities_add = 7
 		planet_max_buildings_add = @buildings_t1
+		planet_max_branch_office_buildings_add = 1 # OSA
 	}
 	
     # Building Tooltip
@@ -67,6 +66,31 @@ building_colony_shelter = {
 	inline_script = {
 		script = buildings/on_all_capital_buildings
 	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		modifier = {
+			job_healthcare_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_police_state			
+			}
+		}
+		modifier = {
+			job_osa_commando_add = 1
+		}
+	}
+
 
 	triggered_planet_modifier = {
 		potential = {
@@ -82,19 +106,7 @@ building_colony_shelter = {
 			owner = { has_active_tradition = tr_synthetics_finish }
 		}
 		job_roboticist_add = 1
-	}
-
-	triggered_planet_modifier = { # StarTech AI
-		potential = {
-			exists = owner
-			OR = {
-				owner = {
-					is_ai = no
-				}
-				resettlement_cheesy_disable = no
-			}
-		}
-		job_colonist_add = 1
+		job_colonist_add = 1 # OSA
 	}
 
 	triggered_planet_modifier = {
@@ -117,124 +129,12 @@ building_colony_shelter = {
 		country_naval_cap_add = 1
 		mult = value:naval_cap_vassals_councilor_feudal_realm
 	}
-	
-	triggered_planet_modifier = { # StarTech AI
-		potential = {
-			exists = owner
-			owner = { is_ai = yes }
-			num_districts = {
-				type = district_mining
-				value > 0
-			}
-			str_force_district_mining = yes
-		}
-		job_starnet_spice_melange_farmer_add = -2
-		job_starnet_spice_melange_antifarmer_add = 2
-	}
-
-	triggered_planet_modifier = { # StarTech AI
-		potential = {
-			exists = owner
-			owner = { is_ai = yes }
-			num_districts = {
-				type = district_mining
-				value > 2
-			}
-			str_force_district_mining = yes
-		}
-		job_starnet_spice_melange_farmer_add = -2
-		job_starnet_spice_melange_antifarmer_add = 2
-	}
-
-	triggered_planet_modifier = { # StarTech AI
-		potential = {
-			exists = owner
-			owner = { is_ai = yes }
-			num_districts = {
-				type = district_mining
-				value > 4
-			}
-			str_force_district_mining = yes
-		}
-		job_starnet_spice_melange_farmer_add = -2
-		job_starnet_spice_melange_antifarmer_add = 2
-	}
-
-	triggered_planet_modifier = { # StarTech AI
-		potential = {
-			exists = owner
-			owner = { is_ai = yes }
-			num_districts = {
-				type = district_mining
-				value > 6
-			}
-			str_force_district_mining = yes
-		}
-		job_starnet_spice_melange_farmer_add = -2
-		job_starnet_spice_melange_antifarmer_add = 2
-	}
-
-	triggered_planet_modifier = { # StarTech AI
-		potential = {
-			exists = owner
-			owner = { is_ai = yes }
-			num_districts = {
-				type = district_city
-				value > 0
-			}
-			str_force_city_district = yes
-		}
-		job_starnet_spice_melange_farmer_add = -2
-		job_starnet_spice_melange_antifarmer_add = 2
-	}
-
-
-	triggered_planet_modifier = { # StarTech AI
-		potential = {
-			exists = owner
-			owner = { is_ai = yes }
-			num_districts = {
-				type = district_city
-				value > 2
-			}
-			str_force_city_district = yes
-		}
-		job_starnet_spice_melange_farmer_add = -2
-		job_starnet_spice_melange_antifarmer_add = 2
-	}
-
-	triggered_planet_modifier = { # StarTech AI
-		potential = {
-			exists = owner
-			owner = { is_ai = yes }
-			num_districts = {
-				type = district_city
-				value > 4
-			}
-			str_force_city_district = yes
-		}
-		job_starnet_spice_melange_farmer_add = -2
-		job_starnet_spice_melange_antifarmer_add = 2
-	}
-
-	triggered_planet_modifier = { # StarTech AI
-		potential = {
-			exists = owner
-			owner = { is_ai = yes }
-			num_districts = {
-				type = district_city
-				value > 6
-			}
-			str_force_city_district = yes
-		}
-		job_starnet_spice_melange_farmer_add = -2
-		job_starnet_spice_melange_antifarmer_add = 2
-	}
 
 	resources = {
 		category = planet_buildings
 		upkeep = {
 			energy = 1
+			influence = @building_influence_t1 # OSA
 		}
 	}
 
@@ -253,6 +153,26 @@ building_colony_shelter = {
 		}
 		text = job_roboticist_effect_desc
 	}
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		text = job_healthcare_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_police_state			
+			}
+		}
+		text = job_osa_commando_effect_desc
+	}
 
 	triggered_desc = {
 		trigger = {
@@ -260,11 +180,136 @@ building_colony_shelter = {
 		}
 		text = job_unifier_effect_desc
 	}
+	
+	# StarTech AI Fake Jobs Manipulation
+	triggered_planet_modifier = { # StarTech AI
+		potential = {
+			exists = owner
+			OR = {
+				owner = {
+					is_ai = no
+				}
+				resettlement_cheesy_disable = no
+			}
+		}
+		job_colonist_add = 1
+	}
+	triggered_planet_modifier = { # StarTech AI
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			num_districts = {
+				type = district_mining
+				value > 0
+			}
+			str_force_district_mining = yes
+		}
+		job_starnet_spice_melange_farmer_add = -2
+		job_starnet_spice_melange_antifarmer_add = 2
+	}
+
+	triggered_planet_modifier = { # StarTech AI
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			num_districts = {
+				type = district_mining
+				value > 2
+			}
+			str_force_district_mining = yes
+		}
+		job_starnet_spice_melange_farmer_add = -2
+		job_starnet_spice_melange_antifarmer_add = 2
+	}
+
+	triggered_planet_modifier = { # StarTech AI
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			num_districts = {
+				type = district_mining
+				value > 4
+			}
+			str_force_district_mining = yes
+		}
+		job_starnet_spice_melange_farmer_add = -2
+		job_starnet_spice_melange_antifarmer_add = 2
+	}
+
+	triggered_planet_modifier = { # StarTech AI
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			num_districts = {
+				type = district_mining
+				value > 6
+			}
+			str_force_district_mining = yes
+		}
+		job_starnet_spice_melange_farmer_add = -2
+		job_starnet_spice_melange_antifarmer_add = 2
+	}
+
+	triggered_planet_modifier = { # StarTech AI
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			num_districts = {
+				type = district_city
+				value > 0
+			}
+			str_force_city_district = yes
+		}
+		job_starnet_spice_melange_farmer_add = -2
+		job_starnet_spice_melange_antifarmer_add = 2
+	}
+
+
+	triggered_planet_modifier = { # StarTech AI
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			num_districts = {
+				type = district_city
+				value > 2
+			}
+			str_force_city_district = yes
+		}
+		job_starnet_spice_melange_farmer_add = -2
+		job_starnet_spice_melange_antifarmer_add = 2
+	}
+
+	triggered_planet_modifier = { # StarTech AI
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			num_districts = {
+				type = district_city
+				value > 4
+			}
+			str_force_city_district = yes
+		}
+		job_starnet_spice_melange_farmer_add = -2
+		job_starnet_spice_melange_antifarmer_add = 2
+	}
+
+	triggered_planet_modifier = { # StarTech AI
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			num_districts = {
+				type = district_city
+				value > 6
+			}
+			str_force_city_district = yes
+		}
+		job_starnet_spice_melange_farmer_add = -2
+		job_starnet_spice_melange_antifarmer_add = 2
+	}
 }
 
-### building_capital
-## Capital (Tier 2)
-# Merge between Bug Branch, Venture Politics, Subtle Polish, and more.
+## Planetary Administration (Tier 2)
+# Merge between OSA, Bug Branch, Venture Politics, Subtle Polish, and more.
 # Custom inlines handle most of the functionality.
 building_capital = {
 	base_buildtime = @db2_time
@@ -374,6 +419,7 @@ building_capital = {
 		}
 		upkeep = {
 			energy = @db2_upkeep
+			influence = @building_influence_t2 # OSA
 		}
 	}
 
@@ -510,8 +556,9 @@ building_capital = {
 	}
 }
 
-### major_capital
-## Major Capital (Tier 3)
+## Planetary Capital (Tier 3)
+# Merge between OSA, Bug Branch, Venture Politics, Subtle Polish, and more.
+# Custom inlines handle most of the functionality.
 building_major_capital = {
 	base_buildtime = @db3_time
 	capital = yes
@@ -763,8 +810,9 @@ building_major_capital = {
 	}
 }
 
-### building_system_capital
-## System Capital (Tier 4)
+## System Capital-Complex (Tier 4)
+# Merge between OSA, Bug Branch, Venture Politics, Subtle Polish, and more.
+# Custom inlines handle most of the functionality.
 building_system_capital = {
 	base_buildtime = @db4_time
 	capital = yes
@@ -1028,8 +1076,9 @@ building_system_capital = {
 	}
 }
 
-### building_imperial_capital
-## Imperial Capital (Tier 5) [Emperor]
+## Imperial Palace (Tier 5) [Emperor]
+# Merge between OSA, Bug Branch, Venture Politics, Subtle Polish, and more.
+# Custom inlines handle most of the functionality.
 building_imperial_capital = {
 	base_buildtime = @db4_time
 	capital = yes

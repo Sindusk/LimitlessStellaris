@@ -4,6 +4,81 @@
 # Merge between Scripted Trigger Undercoat, Subtle Polish, Ethics and Civics: Bug Branch
 
 ### Triggered Planet Modifiers
+# Omega's Stellaris Additions - Transform politicians and enforcers to commander and commando with Police State civic.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_civic = civic_police_state			
+		}
+	}
+	modifier = {
+		job_osa_commander_add = 1
+		job_osa_commando_add = 1
+		job_politician_add = -1
+		job_enforcer_add = -1
+	}
+}
+# Omega's Stellaris Additions - Add mining directors from Mining Guilds civic.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_civic = civic_mining_guilds
+				has_civic = civic_corporate_mining_guilds					
+			}
+		}
+	}
+	modifier = {
+		job_osa_mining_director_add = $count$
+	}
+}
+# Omega's Stellaris Additions - Add agricultural directors from Agriculture Councils civic.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_civic = civic_agriculture_councils
+				has_civic = civic_corporate_agriculture_councils
+			}
+		}
+	}
+	modifier = {
+		job_osa_agri_director_add = $count$
+	}
+}
+# Omega's Stellaris Additions - Add energy directors from Energy Consortiums civic.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_civic = civic_energy_consortiums
+				has_civic = civic_corporate_energy_consortiums
+			}
+		}
+	}
+	modifier = {
+		job_osa_energy_director_add = $count$
+	}
+}
+# Omega's Stellaris Additions - Add speleologists from Speleology Societies civic.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_civic = civic_speleology_societies
+				has_civic = civic_corporate_speleology_societies
+			}
+		}
+	}
+	modifier = {
+		job_osom_speleologist_add = $count$
+	}
+}
 # Bug Branch - Additional Enforcer Job for Authoritarians
 triggered_planet_modifier = {
 	potential = {
@@ -271,6 +346,78 @@ triggered_planet_modifier = {
 }
 
 ### Triggered Descriptions
+# Omega's Stellaris Additions - Mining Director Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				has_civic = civic_mining_guilds
+				has_civic = civic_corporate_mining_guilds					
+			}
+		}
+	}
+	text = job_osa_mining_director_effect_desc
+}
+# Omega's Stellaris Additions - Agriculture Director Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				has_civic = civic_agriculture_councils
+				has_civic = civic_corporate_agriculture_councils
+			}
+		}
+	}
+	text = job_osa_agri_director_effect_desc
+}
+# Omega's Stellaris Additions - Energy Director Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				has_civic = civic_energy_consortiums
+				has_civic = civic_corporate_energy_consortiums
+			}
+		}
+	}
+	text = job_osa_energy_director_effect_desc
+}
+# Omega's Stellaris Additions - Speleologist Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				has_civic = civic_speleology_societies
+				has_civic = civic_corporate_speleology_societies
+			}
+		}
+	}
+	text = job_osom_speleologist_effect_desc
+}
+# Omega's Stellaris Additions - Commander Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			has_civic = civic_police_state			
+		}
+	}
+	text = job_osa_commander_effect_desc
+}
+# Omega's Stellaris Additions - Commando Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			has_civic = civic_police_state			
+		}
+	}
+	text = job_osa_commando_effect_desc
+}
 # Bug Branch - Politician Description
 triggered_desc = { # Lazy version - always show if they're non-megacorp. Can be cleaner with conditions.
 	trigger = {
@@ -437,7 +584,6 @@ triggered_desc = {
 	}
 	text = job_bugged_eco_logistician_effect_desc
 }
-
 # Vanilla - All capital buildings have an enforcer
 triggered_desc = {
 	trigger = {

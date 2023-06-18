@@ -11,6 +11,7 @@
 building_commercial_zone = {
 	base_buildtime = @db1_time
 	position_priority = 4061000 # Sort Buildings
+	base_cap_amount = 5 # OSA caps to 5 maximum
 
 	exempt_from_ai_planet_specialization = no
 	category = trade
@@ -70,14 +71,25 @@ building_commercial_zone = {
 		cost = {
 			minerals = @db1_minerals
 		}
-		upkeep = {
-			energy = @db1_upkeep
+		upkeep = { # OSA
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_commerce_3
+				}
+			}
+			unity = 5
 		}
 	}
 
 	planet_modifier = {
+		job_merchant_add = 1 # OSA
 		job_clerk_add = 3
 		job_bugged_trader_add = 1 # Bug Branch
+		trade_value_mult = 0.05 # OSA
 	}
 
 	triggered_planet_modifier = {
@@ -144,7 +156,7 @@ building_commercial_zone = {
 }
 
 ## Commercial Megaplexes (Tier 2)
-# Merge between Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
+# Merge between OSA, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
 building_commercial_megaplex = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -192,16 +204,26 @@ building_commercial_megaplex = {
 			minerals = @db2_minerals
 			rare_crystals = @db2_rare_cost
 		}
-		upkeep = {
-			energy = @db2_upkeep
+		upkeep = { # OSA
+			energy = 5
+			minerals = 5
 			rare_crystals = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_commerce_3
+				}
+			}
+			unity = 10
 		}
 	}
 
     planet_modifier = {
-        job_merchant_add = 1
+        job_merchant_add = 2 # OSA
 		job_bugged_trader_add = 2 # Bug Branch
         job_clerk_add = 4 # Bug Branch changes from 6 to 4
+		trade_value_mult = 0.10 # OSA
     }
 
 	triggered_planet_modifier = {
@@ -234,6 +256,10 @@ building_commercial_megaplex = {
 
 	show_tech_unlock_if = {
 		is_gestalt = no
+	}
+	
+	upgrades = {
+		"building_commercial_trading_terminal" # OSA
 	}
 
 	# StarTech AI Resource Production

@@ -712,7 +712,7 @@ building_supercomputer = {
 }
 
 ## Faculty of Archaeostudies (Tier 1)
-# Merge between Sort Buildings, Planetary Diversity, Real Space: Planetary Stations, Guilli's Planet Modifiers
+# Merge between Sort Buildings, OSA, Planetary Diversity, Real Space: Planetary Stations, Guilli's Planet Modifiers
 building_archaeostudies_faculty = {
 	base_buildtime = @db2_time
 	position_priority = 1051000 # Sort Buildings
@@ -760,6 +760,26 @@ building_archaeostudies_faculty = {
 		upkeep = {
 			energy = 20
 		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_insight_3
+				}
+			}
+			physics_research = 20
+		}
+	}
+
+	planet_modifier = { # OSA
+		planet_researchers_produces_mult = 0.25
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_ascension_perk = ap_archaeoengineers }
+		}
+		planet_researchers_produces_mult = 0.25
 	}
 
 	triggered_planet_modifier = {

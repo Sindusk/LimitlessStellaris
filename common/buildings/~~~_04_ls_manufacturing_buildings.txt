@@ -1131,7 +1131,7 @@ building_refinery = {
 }
 
 ## Chemical Plants (Tier 1)
-# Merge between Sort Buildings, Extra Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, Extra Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_chemical_plant = {
 	base_buildtime = @db2_time
 	position_priority = 4042000 # Sort Buildings
@@ -1160,7 +1160,7 @@ building_chemical_plant = {
 			owner = { is_gestalt = no }
 		}
 		modifier = {
-			job_chemist_add = 1
+			job_chemist_add = 2 # OSA 1 -> 2
 		}
 	}
 
@@ -1170,7 +1170,7 @@ building_chemical_plant = {
 			owner = { is_gestalt = yes }
 		}
 		modifier = {
-			job_chemist_drone_add = 1
+			job_chemist_drone_add = 2 # OSA 1 -> 2
 		}
 	}
 
@@ -1201,7 +1201,7 @@ building_chemical_plant = {
 			minerals = @db2_minerals
 		}
 		upkeep = {
-			energy = 3
+			energy = @db2_upkeep
 		}
 	}
 
@@ -2204,7 +2204,7 @@ building_coordinated_fulfillment_center_2 = {
 }
 
 ## Ancient Refinery (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations
 building_archaeo_refinery = {
 	base_buildtime = @db3_time
 	base_cap_amount = 1
@@ -2233,9 +2233,9 @@ building_archaeo_refinery = {
 			owner = { is_gestalt = no }
 		}
 		modifier = {
-			job_translucer_add = 1
-			job_gas_refiner_add = 1
-			job_chemist_add = 1
+			job_translucer_add = 2 # OSA increases from 1 to 2
+			job_gas_refiner_add = 2 # OSA increases from 1 to 2
+			job_chemist_add = 2 # OSA increases from 1 to 2
 		}
 	}
 
@@ -2245,9 +2245,9 @@ building_archaeo_refinery = {
 			owner = { is_gestalt = yes }
 		}
 		modifier = {
-			job_translucer_drone_add = 1
-			job_gas_refiner_drone_add = 1
-			job_chemist_drone_add = 1
+			job_translucer_drone_add = 2 # OSA increases from 1 to 2
+			job_gas_refiner_drone_add = 2 # OSA increases from 1 to 2
+			job_chemist_drone_add = 2 # OSA increases from 1 to 2
 		}
 	}
 
@@ -2263,9 +2263,9 @@ building_archaeo_refinery = {
 				has_ascension_perk = ap_archaeoengineers
 			}
 		}
-		planet_jobs_exotic_gases_produces_mult = 0.15
-		planet_jobs_rare_crystals_produces_mult = 0.15
-		planet_jobs_volatile_motes_produces_mult = 0.15
+		planet_jobs_exotic_gases_produces_mult = 0.25 # OSA increases from 0.15 to 0.25
+		planet_jobs_rare_crystals_produces_mult = 0.25 # OSA increases from 0.15 to 0.25
+		planet_jobs_volatile_motes_produces_mult = 0.25 # OSA increases from 0.15 to 0.25
 	}
 
 	resources = {

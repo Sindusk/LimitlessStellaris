@@ -1910,7 +1910,7 @@ building_resource_silo = {
 }
 
 ## Bio Reactor (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech, Ariphaos
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech, Ariphaos
 building_bio_reactor = {
 	base_buildtime = 240
 	position_priority = 4031000 # Sort Buildings
@@ -1977,10 +1977,10 @@ building_bio_reactor = {
 				exists = owner
 				owner = { NOT = { has_deficit = food } }
 			}
-			energy = 20
+			energy = 30 # OSA increases from 20 to 30
 		}
 		upkeep = {
-			food = 25
+			food = 35 # OSA increases from 25 to 35
 		}
 	}
 

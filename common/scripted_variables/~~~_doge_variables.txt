@@ -74,6 +74,14 @@
 #@b4_rare_cost = 200
 #@b4_rare_upkeep = 4
 
+### OSA Variables ###
+# Added to global scope for compatibility.
+
+@building_influence_t1 = 0.05
+@building_influence_t2 = 0.10
+@building_influence_t3 = 0.15
+@building_influence_t4 = 0.20
+
 ### Doge Building Variables ###
 # Tier 0 (First building) [Deprecated]
 @db0_time = 360 	    # Tier 0 build time

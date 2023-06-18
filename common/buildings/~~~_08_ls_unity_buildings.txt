@@ -4,6 +4,7 @@
 
 ### Key:
 ### MECR - More Emperor and Custodian Resolutions
+### OSA - Omega's Stellaris Additions
 
 ##################################################
 ## Unity - Monument
@@ -62,6 +63,19 @@ building_autochthon_monument = {
 		cost = {
 			minerals = @db1_minerals
 		}
+		upkeep = { # OSA
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
+		}
 	}
 
 	planet_modifier = {
@@ -71,6 +85,18 @@ building_autochthon_monument = {
 
 	triggered_desc = {
 		text = building_autochthon_monument_effect
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
 	}
 
 	triggered_desc = {
@@ -290,9 +316,10 @@ building_hypercomms_forum = {
 ##################################################
 
 ## Administrative Offices (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Plentiful Traditions, StarTech, Ariphaos
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Plentiful Traditions, StarTech, Ariphaos
 building_bureaucratic_1 = {
 	base_buildtime = @db1_time
+	base_cap_amount = 5 # OSA caps to 5
 
 	exempt_from_ai_planet_specialization = no
 
@@ -353,7 +380,16 @@ building_bureaucratic_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2
+			energy = @db1_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
 		}
 	}
 
@@ -406,6 +442,18 @@ building_bureaucratic_1 = {
 		text = job_manager_effect_desc
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
 	upgrades = {
 		"building_bureaucratic_2"
 	}
@@ -422,7 +470,7 @@ building_bureaucratic_1 = {
 }
 
 ## Administrative Park (Tier 2)
-# Merge between Real Space: Planetary Stations, Plentiful Traditions, StarTech, Ariphaos
+# Merge between OSA, Real Space: Planetary Stations, Plentiful Traditions, StarTech, Ariphaos
 building_bureaucratic_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -480,6 +528,15 @@ building_bureaucratic_2 = {
 			energy = @db2_upkeep
 			rare_crystals = @db2_rare_upkeep
 		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -531,6 +588,18 @@ building_bureaucratic_2 = {
 		text = job_manager_effect_desc
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
 	upgrades = {
 		"building_bureaucratic_3"
 	}
@@ -547,7 +616,7 @@ building_bureaucratic_2 = {
 }
 
 ## Administrative Complex (Tier 3)
-# Merge between Real Space: Planetary Stations, StarTech, Subtle Polish, Ariphaos
+# Merge between OSA, Real Space: Planetary Stations, StarTech, Subtle Polish, Ariphaos
 building_bureaucratic_3 = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -604,6 +673,15 @@ building_bureaucratic_3 = {
 		upkeep = {
 			energy = @db3_upkeep
 			rare_crystals = @db3_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -668,6 +746,18 @@ building_bureaucratic_3 = {
 			owner = { is_megacorp = yes }
 		}
 		text = job_manager_effect_desc
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
 	}
 
 	triggered_desc = {
@@ -2999,7 +3089,7 @@ building_simulation_3 = {
 ##################################################
 
 ## Corporate Culture Site (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_corporate_monument = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -3058,6 +3148,19 @@ building_corporate_monument = {
 		cost = {
 			minerals = @db1_minerals
 		}
+		upkeep = { # OSA
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
+		}
 	}
 
 	planet_modifier = {
@@ -3067,6 +3170,18 @@ building_corporate_monument = {
 
 	triggered_desc = {
 		text = building_autochthon_monument_effect
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
 	}
 
 	triggered_desc = {
@@ -3177,7 +3292,7 @@ building_corporate_site = {
 }
 
 ## Synergy Forum (Tier 3)
-# Merge between Real Space: Planetary Stations, StarTech
+# Merge between OSA, Real Space: Planetary Stations, StarTech
 building_corporate_forum = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -3236,6 +3351,21 @@ building_corporate_forum = {
 		}
 		cost = {
 			minerals = @db3_minerals
+			rare_crystals = @db3_rare_cost
+		}
+		upkeep = {
+			energy = 10
+			minerals = 10
+			rare_crystals = 3
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -3246,6 +3376,18 @@ building_corporate_forum = {
 
 	triggered_desc = {
 		text = building_hypercomms_forum_effect
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
 	}
 
 	triggered_desc = {
@@ -3541,7 +3683,7 @@ building_sensorium_3 = {
 ##################################################
 
 ## Auto-Curating Vault (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_autocurating_vault = {
 	base_buildtime = @db2_time
 	base_cap_amount = 1
@@ -3629,12 +3771,26 @@ building_autocurating_vault = {
 			rare_crystals = 3
 		}
 		produces = {
-			unity = 10
+			unity = 25 # OSA increases from 10 to 25
 		}
 	}
 
-	planet_modifier = {
-		planet_administrators_produces_mult = 0.15
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		planet_culture_workers_produces_mult = 0.25
+		job_culture_worker_add = 5
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		planet_synapse_drones_unity_produces_mult = 0.15
+		job_synapse_drone_add = 5
 	}
 
 	triggered_planet_modifier = {
@@ -3650,6 +3806,21 @@ building_autocurating_vault = {
 	prerequisites = {
 		"tech_autocurating_vault"
 	}
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_culture_worker_effect_desc
+	}
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_synapse_drone_effect_desc
+	}
 
 	show_tech_unlock_if = {
 		is_machine_empire = no
@@ -3663,7 +3834,7 @@ building_autocurating_vault = {
 }
 
 ## Citadel of Faith (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_citadel_of_faith = {
 	base_buildtime = @db2_time
 	base_cap_amount = 1
@@ -3723,8 +3894,8 @@ building_citadel_of_faith = {
 	}
 
 	planet_modifier = {
-		job_high_priest_add = 1
-		pop_ethic_spiritualist_attraction_mult = 0.20
+		job_high_priest_add = 5 # OSA 1 -> 5
+		pop_ethic_spiritualist_attraction_mult = 0.25 # OSA 0.2 -> 0.25
 		planet_administrators_produces_mult = 0.15
 	}
 
@@ -3748,14 +3919,16 @@ building_citadel_of_faith = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = @db2_upkeep
+			energy = 7.5
+			minerals = 7.5
 			rare_crystals = @db2_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 8
+			energy = 15
+			minerals = 15
 			rare_crystals = 3
 		}
 		produces = {
@@ -3898,7 +4071,7 @@ building_corporate_vault = {
 }
 
 ## Alpha Hub (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, MECR, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, MECR, StarTech
 building_alpha_hub = {
 	base_buildtime = @db3_time
 	base_cap_amount = 1
@@ -3971,12 +4144,14 @@ building_alpha_hub = {
 			rare_crystals = 4 # MECR changes from 3 to 4
 		}
 		produces = {
-			unity = 10
+			unity = 20 # OSA changes from 10 to 20
 		}
 	}
 
 	planet_modifier = {
 		planet_administrators_produces_mult = 0.15
+		planet_evaluators_unity_produces_mult = 0.25 # OSA
+		job_evaluator_add = 5 # OSA
 	}
 
 	triggered_planet_modifier = { # MECR
@@ -3994,6 +4169,10 @@ building_alpha_hub = {
 
 	prerequisites = {
 		"tech_autocurating_vault"
+	}
+
+	triggered_desc = { # OSA
+		text = job_evaluator_effect_desc
 	}
 
 	show_tech_unlock_if = {

@@ -8,6 +8,7 @@
 ### EMEX - Empires Expanded
 ### MEM - More Events Mod
 ### PTEP - Plentiful Traditions - Extra Perks
+### OSA - Omega's Stellaris Additions
 ### UAP - Unique Ascension Perks
 ### WAP - Worthy Ascension Perks
 
@@ -93,7 +94,7 @@ ap_arcology_project = {
 
 ### ap_become_the_crisis
 ## Become The Crisis (Vanilla)
-# Merge between SAP, StarTech, and DarkSpace
+# Merge between SAP, OSA, StarTech, and DarkSpace
 ap_become_the_crisis = {
 	potential = {
 		has_nemesis = yes
@@ -107,6 +108,8 @@ ap_become_the_crisis = {
 			# Dark Space Ascensions
 			has_ascension_perk = ap_halo_crisis
 			has_ascension_perk = ap_gray_salvation
+			# Omega's Stellaris Additions
+			has_origin = origin_slavers
 			# Normal checks
 			has_ascension_perk = ap_become_the_crisis
 			is_minamar = yes
@@ -115,8 +118,8 @@ ap_become_the_crisis = {
 
 	possible = {
 		custom_tooltip = {
-			fail_text = "requires_ascension_perks_2"
-			num_ascension_perks > 1
+			fail_text = "requires_ascension_perks_5"
+			num_ascension_perks > 4
 		}
 		custom_tooltip = {
 			fail_text = "requires_independence"
@@ -567,8 +570,8 @@ ap_detox = {
 
 ### ap_engineered_evolution
 ## Engineered Evolution (Vanilla)
-# Merge between SAP (Fusion), EMEX, Ariphaos
-# Base from SAP (Fusion), potential changes to account for civics from EMEX (commented pending testing), and AI improvements from Ariphaos
+# Merge between SAP (Fusion), OSA, EMEX, Ariphaos
+# Base from SAP (Fusion), check removal from OSA, potential changes to account for civics from EMEX (commented pending testing), and AI improvements from Ariphaos
 ap_engineered_evolution = {
 	on_enabled = {
 		custom_tooltip = "engineered_evolution_tooltip"
@@ -599,10 +602,11 @@ ap_engineered_evolution = {
 		}
 	}
 	possible = {
-		custom_tooltip = {
-			fail_text = "synthetic_empire_biological_ascension"
-			NOT = { has_trait = trait_mechanical }
-		}
+		# Omega's Stellaris Additions removes this check
+		#custom_tooltip = {
+		#	fail_text = "synthetic_empire_biological_ascension"
+		#	NOT = { has_trait = trait_mechanical }
+		#}
 		custom_tooltip = {
 			fail_text = "requires_ascension_perks_1"
 			num_ascension_perks > 0
@@ -828,8 +832,8 @@ ap_enigmatic_engineering = {
 
 ### ap_eternal_vigilance
 ## Eternal Vigilance (Vanilla)
-# Merge between SAP, Utopian Dream, UAP, StarTech
-# Base from SAP, change possible condition from Utopian Dream, minor improvements from UAP, adjustment to AI weight from StarTech
+# Merge between SAP, OSA, Utopian Dream, UAP, StarTech
+# Base from SAP, modifiers from OSA, change possible condition from Utopian Dream, minor improvements from UAP, adjustment to AI weight from StarTech
 ap_eternal_vigilance = {
 	possible = {
 		has_technology = tech_starbase_3 # Utopian Dream opens this up faster
@@ -875,8 +879,8 @@ ap_eternal_vigilance = {
 	modifier = {
 		# Limitless Stellaris Merged Modifiers
 		shipclass_starbase_damage_mult = 0.5	# Utopian Dream
-		shipclass_starbase_hull_mult = 0.25		# Vanilla
-		shipclass_military_station_damage_mult = 0.25	# Vanilla
+		shipclass_starbase_hull_mult = 1		# Omega's Stellaris Additions
+		shipclass_military_station_damage_mult = 0.5	# Omega's Stellaris Additions
 		shipclass_military_station_hull_mult = 0.25		# Worthy Ascension Perks
         starbase_defense_platform_capacity_add = 5		# Vanilla
 		starbase_defensive_war_ship_build_speed_mult = 0.25 # Worthy Ascension Perks
@@ -922,19 +926,15 @@ ap_eternal_vigilance = {
 
 ### ap_executive_vigor
 ## Executive Vigor (Vanilla)
-# Merge between SAP, Utopian Dream, WAP, StarTech, Ariphaos
-# Base from SAP, add modifier from Utopian Dream, add modifier from WAP, adjust AI weight from StarTech and Ariphaos
+# Merge between SAP, OSA, Utopian Dream, WAP, StarTech, Ariphaos
+# Base from SAP, modifier from OSA, add modifier from Utopian Dream, add modifier from WAP, adjust AI weight from StarTech and Ariphaos
 ap_executive_vigor = {
 	modifier = {
-		#ESAP
-		country_leader_cap_add = 1
-		# Utopian Dream Modifiers
+		# Limitless Stellaris
+		country_leader_cap_add = 1 # ESAP
+		country_edict_fund_mult = 0.5 # Omega's Stellaris Additions
+		edicts_upkeep_mult = -0.20 # Worthy Ascension Perks
 		#country_edict_fund_add = 200	# ESAP Government modifier
-		# Worthy Ascension Perks Modifiers
-		edicts_upkeep_mult = -0.20
-		# Since V3.3 efect is now edict_fund_add
-		# Added modifiers on_enabled instead
-		#country_edict_fund_add = 100
 	}
 
 	potential = {
@@ -1049,8 +1049,8 @@ ap_executive_vigor = {
 
 ### ap_galactic_force_projection
 ## Galactic Force Projection (Vanilla)
-# Merge between SAP, Utopian Dream, WAP, StarTech
-# Base from SAP, add modifiers from Utopian Dream, modifiers and trigger from WAP, adjust AI weight from StarTech
+# Merge between SAP, OSA, Utopian Dream, WAP, StarTech
+# Base from SAP, adjust modifiers from OSA, add modifiers from Utopian Dream, modifiers and trigger from WAP, adjust AI weight from StarTech
 ap_galactic_force_projection = {
 	possible = {
 		custom_tooltip = {
@@ -1062,8 +1062,8 @@ ap_galactic_force_projection = {
 		# Vanilla
 		#country_naval_cap_add = 80
 		# Limitless Stellaris
-		command_limit_add = 20			# Vanilla
-		country_naval_cap_add = 80		# Vanilla
+		command_limit_add = 50			# Omega's Stellaris Additions
+		country_naval_cap_add = 150		# Omega's Stellaris Additions
 		country_naval_cap_mult = 0.1	# Utopian Dream
 		ships_upkeep_mult = -0.25		# Utopian Dream
 		admiral_exp_gain = 0.5			# Utopian Dream
@@ -1157,8 +1157,8 @@ ap_galactic_force_projection = {
 
 ### ap_grasp_the_void
 ## Grasp The Void (Vanilla)
-# Merge between SAP, Utopian Dream, WAP, Expanded Starbases, StarTech
-# Base from SAP, add modifiers from Utopian Dream, add modifiers from WAP, tech unlocks from Expanded Starbases, AI weight from StarTech
+# Merge between SAP, OSA, Utopian Dream, WAP, Expanded Starbases, StarTech
+# Base from SAP, add modifiers from OSA, add modifiers from Utopian Dream, add modifiers from WAP, tech unlocks from Expanded Starbases, AI weight from StarTech
 ap_grasp_the_void = {
 	possible = {
 		custom_tooltip = {
@@ -1208,17 +1208,17 @@ ap_grasp_the_void = {
 	}
 
 	modifier = {
-		# Vanilla
-		country_starbase_capacity_add = 5
-		# Expanded Starbases
-		starbase_upgrade_cost_mult = -0.25
-		# Worthy Ascension Perks
-		starbase_upgrade_speed_mult = 0.33
-		starbase_building_build_speed_mult = 0.33
-		starbase_module_build_speed_mult = 0.33
-		ship_windup_mult = -0.15
-		# Utopian Dream
-		ship_speed_mult = 0.25
+		# Limitless Stellaris
+		country_starbase_capacity_mult = 0.5 # Omega's Stellaris Additions
+		country_starbase_capacity_add = 5 # Vanilla
+		starbase_upgrade_cost_mult = -0.25 # Expanded Starbases
+		starbase_upgrade_speed_mult = 0.33 # Worthy Ascension Perks
+		starbase_building_build_speed_mult = 0.33 # Worthy Ascension Perks
+		starbase_module_build_speed_mult = 0.33 # Worthy Ascension Perks
+		ship_windup_mult = -0.15 # Worthy Ascension Perks
+		ship_speed_mult = 0.25 # Utopian Dream
+		op_cat_sabotage_skill_add = 4 # Omega's Stellaris Additions
+		op_cat_sabotage_speed_mult = 0.25 # Omega's Stellaris Additions
 	}
 
 	potential = {
@@ -1287,6 +1287,7 @@ ap_hive_worlds = {
 	potential = {
 		host_has_dlc = "Utopia"
 		has_authority = auth_hive_mind
+		# Bug Branch disables this check
 		# OR = { 
 		#	has_global_flag = bug_branch_active
 		#	NOT = { # Lithoid devouring swarms consume worlds and cannot improve them (since they never get terraforming tech)
@@ -1333,16 +1334,17 @@ ap_hive_worlds = {
 
 ### ap_imperial_prerogative
 ## Imperial Prerogative (Vanilla)
-# Merge between SAP, Utopian Dream, Worthy Ascension Perks
-# Base from SAP, add modifiers from Utopian Dream, additional modifier from Worthy Ascension Perks, Ariphaos
+# Merge between SAP, OSA, Utopian Dream, Worthy Ascension Perks
+# Base from SAP, add modifiers from OSA, add modifiers from Utopian Dream, additional modifier from Worthy Ascension Perks, Ariphaos
 ap_imperial_prerogative = {
 	modifier = {
-		# Utopian Dream
+		# Limitless Stellaris
+		country_government_civic_points_add = 1 # Omega's Stellaris Additions
 		#empire_size_colonies_mult = -0.50	# ESAP Government modifier
-		empire_size_systems_mult = -0.25	# Worthy Ascension Perks
-		leader_upkeep_empire_size_mult = -0.25
-		country_leader_cap_add = 2
-		ruler_skill_levels = 1
+		empire_size_mult = -0.20	# Omega's Stellaris Additions
+		leader_upkeep_empire_size_mult = -0.25 # Utopian Dream
+		country_leader_cap_add = 2 # Utopian Dream
+		ruler_skill_levels = 1 # Utopian Dream
 	}
 
 	potential = {
@@ -1532,8 +1534,8 @@ ap_interstellar_dominion = {
 
 ### ap_lord_of_war
 ## Lord of War (Vanilla - Overlord)
-# Merge between SAP, Civic: Organic Zealots, Utopian Dream
-# Base from SAP, potential adjustments from Organic Zealots, modifiers and potential adjustments from Utopian Dream
+# Merge between SAP, OSA, Civic: Organic Zealots, Utopian Dream
+# Base from SAP, modifier increase from OSA, potential adjustments from Organic Zealots, modifiers and potential adjustments from Utopian Dream
 ap_lord_of_war = {
 	potential = {
 		has_overlord_dlc = yes
@@ -1552,7 +1554,7 @@ ap_lord_of_war = {
 
 	modifier = {
 		# Vanilla
-		country_enclave_capacity_add = 1
+		country_enclave_capacity_add = 2 # Omega's Stellaris Additions increases from 1 to 2
 		diplo_weight_naval_mult = 0.25
 		# Utopian Dream
 		pop_ethic_militarist_attraction_mult = 0.25
@@ -2013,19 +2015,16 @@ ap_nihilistic_acquisition = {
 
 ### ap_one_vision
 ## One Vision (Vanilla)
-# Merge between SAP, Utopian Dream, Ariphaos
-# Base from SAP, modifiers from Utopian Dream, AI improvements from Ariphaos
+# Merge between SAP, OSA, Utopian Dream, Ariphaos
+# Base from SAP, modifier increase from OSA, modifiers from Utopian Dream, AI improvements from Ariphaos
 ap_one_vision = {
 	modifier = {
-		# ESAP
-		country_unity_produces_mult = 0.17
-		# Vanilla
-		#country_unity_produces_mult = 0.10
-		pop_amenities_usage_mult = -0.18
-		pop_government_ethic_attraction = 0.50
-		# Utopian Dream
-		pop_ethics_shift_speed_mult = 0.5
-		pop_factions_unity_produces_mult = 0.2
+		# Limitless Stellaris
+		country_unity_produces_mult = 0.20 # Omega's Stellaris Additions
+		pop_amenities_usage_mult = -0.18 # Vanilla
+		pop_government_ethic_attraction = 0.50 # Vanilla
+		pop_ethics_shift_speed_mult = 0.5 # Utopian Dream
+		pop_factions_unity_produces_mult = 0.2 # Utopian Dream
 	}
 
 	potential = {
@@ -2207,8 +2206,8 @@ ap_organo_machine_interfacing_assimilator = {
 
 ### ap_shared_destiny
 ## Shared Destiny
-# Merge between SAP, Civic: Organic Zealots, Utopian Dream, WAP, Ariphaos
-# Base from SAP, improved potential check from Organic Zealots, tech progress and modifiers from Utopian Dream, modifiers from WAP, AI modifiers from Ariphaos
+# Merge between SAP, OSA, Civic: Organic Zealots, Utopian Dream, WAP, Ariphaos
+# Base from SAP, add modifiers from OSA, improved potential check from Organic Zealots, tech progress and modifiers from Utopian Dream, modifiers from WAP, AI modifiers from Ariphaos
 ap_shared_destiny = {
 	on_enabled = {
 		custom_tooltip = "ap_shared_destiny_effect"
@@ -2227,14 +2226,13 @@ ap_shared_destiny = {
 	}
 
 	modifier = {
-		# Vanilla
-		#envoys_add = 2
-		# Utopian Dream
-		envoys_add = 3
-		country_border_friction_mult = -0.25
-		envoy_improve_relations_mult = 0.25
-		# Worthy Ascension Perks
-		country_subject_technology_sharing_mult = 0.2
+		# Limitless Stellaris
+		envoys_add = 3 # Utopian Dream
+		country_border_friction_mult = -0.25 # Utopian Dream
+		envoy_improve_relations_mult = 0.25 # Utopian Dream
+		country_subject_technology_sharing_mult = 0.2 # Worthy Ascension Perks
+		subject_integration_influence_cost_mult = -0.5 # Omega's Stellaris Additions
+		country_subject_trust_cap_add = 100 # Omega's Stellaris Additions
 	}
 
 	potential = {
@@ -2617,15 +2615,14 @@ ap_the_flesh_is_weak = {
 
 ### ap_transcendent_learning
 ## Transcendent Learning (Vanilla)
-# Merge between SAP, Utopian Dream, UAP, Ariphaos
-# Base from SAP, modifiers from Utopian Dream, modifiers from UAP, AI modifiers from Ariphaos
+# Merge between SAP, OSA, Utopian Dream, UAP, Ariphaos
+# Base from SAP, modifiers from OSA, modifiers from Utopian Dream, modifiers from UAP, AI modifiers from Ariphaos
 ap_transcendent_learning = {
 	modifier = {
-		# Utopian Dream
-		country_leader_cap_add = 2
-		species_leader_exp_gain = 0.5	# Utopian Dream change from 0.33 to 0.5
-		# Unique Ascension Perks
-		country_leader_pool_size = 1
+		# Limitless Stellaris
+		country_leader_cap_add = 2 # Limitless Stellaris (5 is too high, nerfed to 2)
+		species_leader_exp_gain = 1.5	# Omega's Stellaris Additions
+		country_leader_pool_size = 1 # Unique Ascension Perks
 	}
 	on_enabled = {
 		# Sartek Merger - Compatibility
@@ -2717,8 +2714,8 @@ ap_transcendent_learning = {
 
 ### ap_universal_transactions
 ## Universal Transactions (Vanilla - Megacorp)
-# Merge between SAP, Utopian Dream, StarTech
-# Base from SAP, modifiers from Utopian Dream, AI factor from StarTech
+# Merge between SAP, OSA, Utopian Dream, StarTech
+# Base from SAP, modifier from OSA, modifiers from Utopian Dream, AI factor from StarTech
 ap_universal_transactions = {
 	potential = {
 		host_has_dlc = "Megacorp"
@@ -2730,12 +2727,13 @@ ap_universal_transactions = {
 	}
 
 	modifier = {
-		# Utopian Dream
-		planet_branch_offices_cost_mult = -0.25
-		trade_value_mult = 0.1
-		country_energy_produces_mult = 0.1
-		diplo_weight_economy_mult = 0.25
-		planet_max_branch_office_buildings_add = 1
+		# Limitless Stellaris
+		branch_office_value_mult = 0.15 # Omega's Stellaris Additions
+		planet_branch_offices_cost_mult = -0.25 # Utopian Dream
+		trade_value_mult = 0.1 # Utopian Dream
+		country_energy_produces_mult = 0.1 # Utopian Dream
+		diplo_weight_economy_mult = 0.25 # Utopian Dream
+		planet_max_branch_office_buildings_add = 1 # Utopian Dream
 	}
 
 	on_enabled = {
