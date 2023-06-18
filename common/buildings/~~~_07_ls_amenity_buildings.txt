@@ -7,10 +7,11 @@
 ##################################################
 
 ## Luxury Residences (Tier 1)
-# Merge between Sort Buildings, EUTAB, Venture Politics, Planetary Diversity: Planetary Habitats, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, EUTAB, OSA, Venture Politics, Planetary Diversity: Planetary Habitats, Real Space: Planetary Stations, StarTech
 building_luxury_residence = {
 	base_buildtime = @db1_time
 	position_priority = 4071000 # Sort Buildings
+	base_cap_amount = 1 # OSA limits to 1
 
 	category = amenity
 
@@ -117,8 +118,8 @@ building_luxury_residence = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 3
-		planet_amenities_add = 5
+		planet_housing_add = 15 # OSA 3 -> 15
+		planet_amenities_add = 25 # OSA 5 -> 25
 	}
 
 	triggered_planet_modifier = {
@@ -150,8 +151,31 @@ building_luxury_residence = {
 		cost = {
 			minerals = @db1_minerals
 		}
-		upkeep = {
-			energy = 2
+		upkeep = { # OSA
+			trigger = {
+				owner = { 
+					OR = {
+						is_regular_empire = yes
+						is_hive_empire = yes
+					}
+				}
+			}
+			energy = 5
+			food = 5
+			minerals = 5
+		}
+		upkeep = { # OSA
+			trigger = {
+				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 7.5
+			minerals = 7.5
 		}
 	}
 
@@ -161,7 +185,7 @@ building_luxury_residence = {
 }
 
 ## Paradise Dome (Tier 2)
-# Merge between EUTAB, Venture Politics, Bug Branch, Planetary Diversity: Planetary Habitats, Real Space: Planetary Stations, StarTech
+# Merge between EUTAB, OSA, Venture Politics, Bug Branch, Planetary Diversity: Planetary Habitats, Real Space: Planetary Stations, StarTech
 building_paradise_dome = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -221,8 +245,8 @@ building_paradise_dome = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 6
-		planet_amenities_add = 10
+		planet_housing_add = 30 # OSA 6 -> 30
+		planet_amenities_add = 50 # OSA 10 -> 50
 	}
 
 	triggered_planet_modifier = {
@@ -268,9 +292,33 @@ building_paradise_dome = {
 			minerals = @db2_minerals
 			rare_crystals = @db2_rare_cost
 		}
-		upkeep = {
-			energy = 3
-			rare_crystals = @db2_rare_upkeep
+		upkeep = { # OSA
+			trigger = {
+				owner = { 
+					OR = {
+						is_regular_empire = yes
+						is_hive_empire = yes
+					}
+				}
+			}
+			energy = 10
+			food = 10
+			minerals = 10
+			rare_crystals = @b2_rare_upkeep
+		}
+		upkeep = { # OSA
+			trigger = {
+				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 15
+			minerals = 15
+			rare_crystals = @b2_rare_upkeep
 		}
 	}
 
@@ -609,10 +657,11 @@ building_communal_housing_large = {
 ##################################################
 
 ## Drone Storage (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_drone_storage = {
 	base_buildtime = @db1_time
 	position_priority = 4071000 # Sort Buildings
+	base_cap_amount = 1 # OSA limits to 1
 
 	category = amenity
 
@@ -656,8 +705,8 @@ building_drone_storage = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 4
-		planet_amenities_add = 3
+		planet_housing_add = 20 # OSA 4 -> 20
+		planet_amenities_add = 20 # OSA 3 -> 20
 	}
 
 	resources = {
@@ -666,7 +715,8 @@ building_drone_storage = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2
+			energy = 7.5
+			minerals = 7.5
 		}
 	}
 
@@ -676,7 +726,7 @@ building_drone_storage = {
 }
 
 ## Upgraded Drone Storage (Tier 2)
-# Using StarTech version.
+# Merge between OSA, StarTech
 building_drone_megastorage = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -709,8 +759,8 @@ building_drone_megastorage = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 8
-		planet_amenities_add = 6
+		planet_housing_add = 40 # OSA 8 -> 40
+		planet_amenities_add = 40 # OSA 6 -> 40
 	}
 
 	triggered_planet_modifier = {
@@ -732,7 +782,8 @@ building_drone_megastorage = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = {
-			energy = 3
+			energy = 15
+			minerals = 15
 			rare_crystals = @db2_rare_upkeep
 		}
 	}
@@ -748,10 +799,11 @@ building_drone_megastorage = {
 ##################################################
 
 ## Hive Warren (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_hive_warren = {
 	base_buildtime = @db1_time
 	position_priority = 4071000 # Sort Buildings
+	base_cap_amount = 1 # OSA limits to 1
 
 	category = amenity
 
@@ -794,6 +846,10 @@ building_hive_warren = {
 	destroy_trigger = {
 		exists = owner
 		OR = { # StarTech AI
+			AND = { # OSA
+				owner = { is_ai = yes }
+				years_passed < 3
+			}#Blow up the one on the homeworld.
 			AND = {
 				planet = {
 					free_building_slots = 0
@@ -818,8 +874,8 @@ building_hive_warren = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 3
-		planet_amenities_add = 5
+		planet_housing_add = 20 # OSA 3 -> 20
+		planet_amenities_add = 20 # OSA 5 -> 20
 	}
 
 	resources = {
@@ -827,8 +883,31 @@ building_hive_warren = {
 		cost = {
 			minerals = @db1_minerals
 		}
-		upkeep = {
-			energy = 2
+		upkeep = { # OSA
+			trigger = {
+				owner = { 
+					OR = {
+						is_regular_empire = yes
+						is_hive_empire = yes
+					}
+				}
+			}
+			energy = 5
+			food = 5
+			minerals = 5
+		}
+		upkeep = { # OSA
+			trigger = {
+				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 7.5
+			minerals = 7.5
 		}
 	}
 
@@ -862,7 +941,7 @@ building_hive_warren = {
 }
 
 ## Expanded Warren (Tier 2)
-# Using StarTech version. Slightly altered the destroy trigger.
+# Merge between OSA, StarTech
 building_expanded_warren = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -904,8 +983,8 @@ building_expanded_warren = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 6
-		planet_amenities_add = 10
+		planet_housing_add = 40 # OSA 6 -> 40
+		planet_amenities_add = 40 # OSA 10 -> 40
 	}
 
 	triggered_planet_modifier = {
@@ -926,8 +1005,32 @@ building_expanded_warren = {
 			minerals = @db2_minerals
 			rare_crystals = @db2_rare_cost
 		}
-		upkeep = {
-			energy = 3
+		upkeep = { # OSA
+			trigger = {
+				owner = { 
+					OR = {
+						is_regular_empire = yes
+						is_hive_empire = yes
+					}
+				}
+			}
+			energy = 10
+			food = 10
+			minerals = 10
+			rare_crystals = @db2_rare_upkeep
+		}
+		upkeep = { # OSA
+			trigger = {
+				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 15
+			minerals = 15
 			rare_crystals = @db2_rare_upkeep
 		}
 	}
@@ -943,7 +1046,7 @@ building_expanded_warren = {
 ##################################################
 
 ## Holo-Theatres (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_holo_theatres = {
 	base_buildtime = @db1_time
 	position_priority = 4072000 # Sort Buildings
@@ -1021,7 +1124,10 @@ building_holo_theatres = {
 		potential = {
 			exists = owner
 			owner = {
-				NOT = { has_valid_civic = civic_warrior_culture }
+				NOR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		modifier = {
@@ -1033,7 +1139,10 @@ building_holo_theatres = {
 		potential = {
 			exists = owner
 			owner = {
-				has_valid_civic = civic_warrior_culture
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		modifier = {
@@ -1047,7 +1156,8 @@ building_holo_theatres = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
 		}
 	}
 
@@ -1063,7 +1173,10 @@ building_holo_theatres = {
 		trigger = {
 			exists = owner
 			owner = {
-				NOT = { has_valid_civic = civic_warrior_culture }
+				NOR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		text = job_entertainer_effect_desc
@@ -1073,7 +1186,10 @@ building_holo_theatres = {
 		trigger = {
 			exists = owner
 			owner = {
-				has_valid_civic = civic_warrior_culture
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		text = job_duelist_effect_desc
@@ -1105,7 +1221,7 @@ building_holo_theatres = {
 }
 
 ## Hyper-Entertainment Forums (Tier 2)
-# Merge between StarTech, Ariphaos
+# Merge between OSA, StarTech, Ariphaos
 building_hyper_entertainment_forum = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -1156,7 +1272,10 @@ building_hyper_entertainment_forum = {
 		potential = {
 			exists = owner
 			owner = {
-				NOT = { has_valid_civic = civic_warrior_culture }
+				NOR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		modifier = {
@@ -1168,7 +1287,10 @@ building_hyper_entertainment_forum = {
 		potential = {
 			exists = owner
 			owner = {
-				has_valid_civic = civic_warrior_culture
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		modifier = {
@@ -1183,8 +1305,9 @@ building_hyper_entertainment_forum = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
 			exotic_gases = @db2_rare_upkeep
+			minerals = 5
 		}
 	}
 
@@ -1196,7 +1319,10 @@ building_hyper_entertainment_forum = {
 		trigger = {
 			exists = owner
 			owner = {
-				NOT = { has_valid_civic = civic_warrior_culture }
+				NOR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		text = job_entertainer_effect_desc
@@ -1206,7 +1332,10 @@ building_hyper_entertainment_forum = {
 		trigger = {
 			exists = owner
 			owner = {
-				has_valid_civic = civic_warrior_culture
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		text = job_duelist_effect_desc
@@ -1468,7 +1597,7 @@ building_clinic = {
 }
 
 ## Cyto-Revitalization Centers (Tier 2)
-# Merge between Resolutions Expanded, StarTech, Ariphaos
+# Merge between OSA, Resolutions Expanded, StarTech, Ariphaos
 building_hospital = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -1522,6 +1651,8 @@ building_hospital = {
 	}
 
 	planet_modifier = {
+		planet_housing_add = 5 # OSA
+		planet_pop_assembly_organic_add = 2 # OSA
 		job_healthcare_add = @b2_jobs
 	}
 
@@ -1591,8 +1722,31 @@ building_hospital = {
 			minerals = @db2_minerals
 			exotic_gases = @db2_rare_cost
 		}
-		upkeep = {
-			energy = @db2_upkeep
+		upkeep = { # OSA
+			trigger = {
+				owner = { 
+					OR = {
+						is_regular_empire = yes
+						is_hive_empire = yes
+					}
+				}
+			}
+			energy = 5
+			food = 5
+			exotic_gases = @db2_rare_upkeep
+		}
+		upkeep = { # OSA
+			trigger = {
+				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 5
+			minerals = 5
 			exotic_gases = @db2_rare_upkeep
 		}
 	}
@@ -1615,10 +1769,11 @@ building_hospital = {
 ##################################################
 
 ## Maintenance Depots (Tier 1)
-# Merge between EUTAB, Real Space: Planetary Stations
+# Merge between EUTAB, OSA, Real Space: Planetary Stations
 building_maintenance_depot = {
 	base_buildtime = 240
-	can_build = no
+	base_cap_amount = 3 # OSA limits to 3
+	can_build = yes # OSA no -> yes
 
 	category = amenity
 
@@ -1645,7 +1800,31 @@ building_maintenance_depot = {
 	}
 
 	planet_modifier = {
-		job_maintenance_drone_add = 5
+		planet_jobs_simple_drone_produces_mult = 0.1 # OSA
+	}
+		
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_hive_aggregate_catharsis }
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 5
+		}
+	}
+		
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_hive_aggregate_catharsis
+			}
+		}
+		modifier = {
+			job_evaluator_add = 5
+		}
 	}
 
 	resources = {
@@ -1654,7 +1833,8 @@ building_maintenance_depot = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2
+			energy = 2.5
+			minerals = 2.5
 		}
 	}
 
@@ -1662,9 +1842,27 @@ building_maintenance_depot = {
 		building_eutab_preservation_nexus # EUTAB
 		#building_avb_maintenance_depot_2 # Additional Vanilla Buildings
 	}
-
-	triggered_desc = {
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				NOT = {
+					has_valid_civic = civic_hive_aggregate_catharsis
+				}
+			}
+		}
 		text = job_maintenance_drone_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_hive_aggregate_catharsis
+			}
+		}
+		text = job_evaluator_effect_desc
 	}
 }
 
@@ -1673,9 +1871,10 @@ building_maintenance_depot = {
 ##################################################
 
 ## Slave Huts (Tier 1)
-# Merge between Sort Buildings, StarTech, Ariphaos
+# Merge between Sort Buildings, OSA, StarTech, Ariphaos
 building_slave_huts = {
 	base_buildtime = 240
+	base_cap_amount = 3 # OSA limits to 3
 	icon = building_crude_huts
 	position_priority = 4071100 # Sort Buildings
 
@@ -1703,7 +1902,7 @@ building_slave_huts = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 8
+		planet_housing_add = 25 # OSA 8 -> 25
 	}
 
 	resources = {
@@ -1711,16 +1910,19 @@ building_slave_huts = {
 		cost = {
 			minerals = 200
 		}
-		upkeep = {
-			energy = 1
+		upkeep = { # OSA
+			energy = 15
+			food = 15
+			minerals = 15
 		}
 	}
 }
 
 ## Overseer Residences (Tier 1)
-# Merge between Sort Buildings, Ariphaos
+# Merge between Sort Buildings, OSA, Ariphaos
 building_overseer_homes = {
 	base_buildtime = 240
+	base_cap_amount = 3 # OSA limits to 3
 	icon = building_residence
 	position_priority = 4071000 # Sort Buildings
 
@@ -1744,8 +1946,8 @@ building_overseer_homes = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 2
-		job_slave_overseer_add = 2
+		planet_housing_add = 5 # OSA 2 -> 5
+		job_slave_overseer_add = 5 # OSA 2 -> 5
 	}
 
 	resources = {
@@ -1753,8 +1955,10 @@ building_overseer_homes = {
 		cost = {
 			minerals = 200
 		}
-		upkeep = {
-			energy = 1
+		upkeep = { # OSA
+			energy = 10
+			food = 10
+			minerals = 10
 		}
 	}
 }
@@ -1764,7 +1968,7 @@ building_overseer_homes = {
 ##################################################
 
 ## Ranger Lodge (Tier 1)
-# Merge between Sort Buildings, Ecology, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, Ecology, OSA, Real Space: Planetary Stations, StarTech
 building_ranger_lodge = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -1848,7 +2052,7 @@ building_ranger_lodge = {
 	}
 
 	planet_modifier = { # Ecology
-		deposit_blockers_natural_unity_produces_add = 4
+		deposit_blockers_natural_unity_produces_add = 10 # OSA 4 -> 10
 		pop_environment_tolerance = 0.05
 	}
 
@@ -1890,7 +2094,7 @@ building_ranger_lodge = {
 				is_active_resolution = resolution_ecology_integrated_gardens
 			}
 		}
-		deposit_blockers_natural_unity_produces_add = 2
+		deposit_blockers_natural_unity_produces_add = 5 # OSA 2 -> 5
 	}
 
 	triggered_planet_modifier = { # Ecology
@@ -1912,7 +2116,7 @@ building_ranger_lodge = {
 				is_active_resolution = resolution_ecology_paradise_initiative
 			}
 		}
-		deposit_blockers_natural_unity_produces_add = 2
+		deposit_blockers_natural_unity_produces_add = 5 # OSA 2 -> 5
 	}
 
 	triggered_planet_modifier = { # Ecology
