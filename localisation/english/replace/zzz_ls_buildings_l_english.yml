@@ -556,3 +556,24 @@ l_english:
   building_league_offices: "First League Filing Offices"
   building_league_offices_tt: "§MUnity§! - §BTier 1§! - §EUnique§!"
   building_league_offices_desc: "$tech_secrets_league_desc$"
+
+##################
+# Army
+##################
+
+  ### General
+  building_military_academy: "Military Academy"
+  building_military_academy_tt: "§MDefense§! - §BTier 1§! - §EArmy§!"
+  building_military_academy_desc: "Military Academies improve local recruitment rates and offer a higher standard of training."
+  building_dread_encampment: "Dread Encampment"
+  building_dread_encampment_tt: "§MDefense§! - §BTier 1§! - §EArmy§!"
+  building_dread_encampment_desc: "It is best to shield the activities of the necromancers from the tender eyes of the public as they raise undead hordes to fight in our armies."
+  building_stronghold: "Stronghold"
+  building_stronghold_tt: "§MDefense§! - §BTier 1§! - §EArmy§!"
+  building_stronghold_desc: "A planetary stronghold housing a substantial garrison force to protect the world from invasion and rebellion."
+  building_fortress: "Fortress"
+  building_fortress_tt: "§MDefense§! - §BTier 2§! - §EArmy§!"
+  building_fortress_desc: "A massive fortress complex with an expanded garrison and training facilities for soldiers."
+  building_planetary_shield_generator: "Planetary Shield Generator"
+  building_planetary_shield_generator_tt: "§MDefense§! - §BTier 1§! - §EShield§!"
+  building_planetary_shield_generator_desc: "$tech_planetary_shield_generator_desc$"

@@ -29,6 +29,11 @@ building_colony_shelter = {
 
 	category = government
 
+    # Building Tooltip
+    triggered_desc = {
+        text = building_colony_shelter_tt
+    }
+
 	potential = {
 		exists = owner
 		owner = {
@@ -58,11 +63,6 @@ building_colony_shelter = {
 		planet_max_branch_office_buildings_add = 1 # OSA
 	}
 	
-    # Building Tooltip
-    triggered_desc = {
-        text = building_colony_shelter_tt
-    }
-
 	inline_script = {
 		script = buildings/on_all_capital_buildings
 	}
@@ -608,7 +608,7 @@ building_major_capital = {
 		planet_housing_add = 8
 		planet_amenities_add = 8
 		planet_max_buildings_add = @buildings_t3
-		planet_max_branch_office_buildings_add = 2
+		planet_max_branch_office_buildings_add = 3 # OSA 2 -> 3
 		defense_armies_add = @tier_3_capital_defense_armies
 	}
 	
@@ -681,6 +681,7 @@ building_major_capital = {
 		}
 		upkeep = {
 			energy = @db3_upkeep
+			influence = @building_influence_t3 # OSA
 		}
 	}
 
@@ -947,6 +948,7 @@ building_system_capital = {
 		}
 		upkeep = {
 			energy = @db4_upkeep
+			influence = @building_influence_t4 # OSA
 		}
 	}
 
@@ -1119,8 +1121,8 @@ building_imperial_capital = {
 		job_enforcer_add = 5
 		planet_housing_add = 18
 		planet_amenities_add = 18
-		planet_max_buildings_add = 11
-		planet_max_branch_office_buildings_add = 4
+		planet_max_buildings_add = 16 # OSA 11 -> 16
+		planet_max_branch_office_buildings_add = 6 # OSA 4 -> 6
 		defense_armies_add = @tier_4_capital_defense_armies
 	}
 	
@@ -1204,6 +1206,7 @@ building_imperial_capital = {
 		}
 		upkeep = {
 			energy = @db4_upkeep
+			influence = @building_influence_t4 # OSA
 		}
 	}
 

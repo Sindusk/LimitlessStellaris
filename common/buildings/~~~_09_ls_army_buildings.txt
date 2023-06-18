@@ -1,0 +1,963 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Army
+##########################################################################
+
+##################################################
+## Army - General
+##################################################
+
+## Military Academy (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, StarTech
+building_military_academy = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	can_be_ruined = no
+	category = army
+	position_priority = 2092000 # Sort Buildings
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_military_academy_tt
+    }
+
+	potential = {
+		buildings_simple_allow = yes # StarTech AI
+		exists = owner
+		owner = { is_bugged_reanimator = no } # Bug Branch
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		exists = owner
+		owner = { is_ai = no } # StarTech AI disables construction
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				is_ai = yes # StarTech destroys on sight
+				is_bugged_reanimator = yes # Bug Branch [LS Edit]
+			}
+		}
+	}
+
+	convert_to = {
+		building_dread_encampment
+	}
+
+	army_modifier = {
+		army_starting_experience_add = 150 # OSA 100 -> 150
+	}
+
+	planet_modifier = {
+		planet_army_build_speed_mult = 0.50 # OSA
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				has_active_tradition = tr_defense_4
+			}
+		}
+		modifier = {
+			job_osa_commander_add = 1
+			job_osa_commando_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				NOT = {
+					has_active_tradition = tr_defense_4
+				}
+			}
+		}
+		modifier = {
+			job_soldier_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				has_active_tradition = tr_defense_4
+			}
+		}
+		modifier = {
+			job_osa_commando_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				NOT = {
+					has_active_tradition = tr_defense_4
+				}
+			}
+		}
+		modifier = {
+			job_warrior_drone_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = { # EUTAB
+			trigger = {
+				exists = owner
+				owner = { has_valid_civic = civic_citizen_service }
+			}
+			unity = 2
+		}
+		cost = {
+			minerals = @db1_minerals
+		}			
+		upkeep = { # OSA
+			trigger = {
+				owner = { 
+					OR = {
+						is_regular_empire = yes
+						is_hive_empire = yes
+					}
+				}
+			}
+			energy = 2.5
+			food = 2.5
+		}
+		upkeep = { # OSA
+			trigger = {
+				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 2.5
+			minerals = 2.5
+		}
+	}
+
+	upgrades = {
+		"building_mechanicum_academy" # OSA
+		building_eutab_battle_praxeum # EUTAB
+		#building_avb_military_academy_2 # Additional Vanilla Buildings
+	}
+
+	prerequisites = {
+		"tech_centralized_command"
+	}
+
+	show_tech_unlock_if = {
+		is_bugged_reanimator = no # Bug Branch [LS Edit]
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_warrior_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_soldier_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				has_active_tradition = tr_defense_4
+			}
+		}
+		text = job_osa_commando_drone_effect_desc
+	}
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				has_active_tradition = tr_defense_4
+			}
+		}
+		text = job_osa_commander_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				has_active_tradition = tr_defense_4
+			}
+		}
+		text = job_osa_commando_effect_desc
+	}
+}
+
+## Dread Encampment (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, StarTech
+building_dread_encampment = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	can_be_ruined = no
+	category = army
+	position_priority = 2092000 # Sort Buildings
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_dread_encampment_tt
+    }
+
+	potential = {
+		buildings_simple_allow = yes # StarTech AI
+		exists = owner
+		owner = { is_bugged_reanimator = yes } # Bug Branch
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	convert_to = {
+		building_military_academy
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	army_modifier = {
+		army_starting_experience_add = 150 # OSA 100 -> 150
+	}
+
+	planet_modifier = {
+		planet_army_build_speed_mult = 0.50 # OSA
+		job_necromancer_add = 2
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+		}			
+		upkeep = { # OSA
+			trigger = {
+				owner = { 
+					OR = {
+						is_machine_empire = no
+						is_mechanical_empire = no
+						is_lithoid_empire = no
+					}
+				}
+			}
+			energy = 2.5
+			food = 2.5
+		}
+		upkeep = { # OSA
+			trigger = {
+				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 2.5
+			minerals = 2.5
+		}
+	}
+
+	upgrades = {
+		"building_blackknight_encampment" # OSA
+	}
+	
+	prerequisites = {
+		"tech_centralized_command" # OSA
+	}
+
+	show_tech_unlock_if = {
+		is_bugged_reanimator = yes # Bug Branch [LS Edit]
+	}
+	
+	triggered_desc = {
+		trigger = {
+			always = yes
+		}
+		text = job_necromancer_effect_desc
+	}
+}
+
+## Stronghold (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
+building_stronghold = {
+	base_buildtime = 240
+	position_priority = 4091000 # Sort Buildings
+	can_be_ruined = no
+	category = army
+	exempt_from_ai_planet_specialization = no
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_stronghold_tt
+    }
+
+	potential = {
+		buildings_simple_allow = yes # StarTech AI
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	
+	allow = { # StarTech AI
+		OR = {
+			owner = { is_ai = no }
+			AND = {
+				NOR = {
+					has_building = building_stronghold
+					has_building = building_fortress
+				}
+				is_capital = no
+				num_buildings = {
+					type = any
+					value > 5
+				}
+			}
+		}
+	}
+	
+	destroy_trigger = { # StarTech AI
+		exists = owner
+		owner = { is_ai = yes }
+		AND = {
+			OR = {
+				num_buildings = { type = building_stronghold value > 1 }
+				has_building = building_fortress
+			}
+			free_building_slots = 0
+			owner = {
+				used_naval_capacity_percent < 0.6
+				is_at_war = no # don't destroy while at war
+			}
+		}
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 5 # OSA
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+			   is_gestalt = no
+			   not = { has_civic = civic_private_militaries has_civic = civic_private_militaries_corpo }
+			   }
+		}
+		modifier = {
+			job_soldier_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				has_active_tradition = tr_defense_4
+			}
+		}
+		modifier = {
+			job_osa_commander_add = 1
+			job_osa_commando_add = 1
+		}
+	}
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				NOT = {
+					has_active_tradition = tr_defense_4
+				}
+			}
+		}
+		modifier = {
+			job_soldier_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				has_active_tradition = tr_defense_4
+			}
+		}
+		modifier = {
+			job_osa_commando_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				NOT = {
+					has_active_tradition = tr_defense_4
+				}
+			}
+		}
+		modifier = {
+			job_warrior_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_private_militaries = yes
+			}
+		}
+		modifier = {
+			job_bugged_mercenary_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 5
+		}
+		cost = {
+			minerals = @db1_minerals
+		}			
+		upkeep = { # OSA
+			trigger = {
+				owner = { 
+					OR = {
+						is_regular_empire = yes
+						is_hive_empire = yes
+					}
+				}
+			}
+			energy = 2.5
+			food = 2.5
+		}
+		upkeep = { # OSA
+			trigger = {
+				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 2.5
+			minerals = 2.5
+		}
+	}
+
+	country_modifier = {
+		country_resource_max_add = 5000 # OSA
+	}
+
+	prerequisites = {
+		"tech_planetary_defenses"
+	}
+
+	upgrades = {
+		"building_fortress"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_warrior_drone_effect_desc
+	}
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { OR = { has_civic = civic_private_militaries has_civic = civic_private_militaries_corpo } }
+		}
+		text = job_mercenary_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_soldier_effect_desc
+	}
+	
+	triggered_desc = { # Bug Branch
+		trigger = {
+			exists = owner
+			owner = {
+				is_bugged_private_militaries = yes
+			}
+		}
+		text = job_bugged_mercenary_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				has_active_tradition = tr_defense_4
+			}
+		}
+		text = job_osa_commando_drone_effect_desc
+	}
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				has_active_tradition = tr_defense_4
+			}
+		}
+		text = job_osa_commander_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				has_active_tradition = tr_defense_4
+			}
+		}
+		text = job_osa_commando_effect_desc
+	}
+}
+
+## Fortress (Tier 2)
+# Merge between OSA, Bug Branch, Real Space: Planetary Stations, StarTech
+building_fortress = {
+	base_buildtime = @db1_time
+	can_build = no
+	planetary_ftl_inhibitor = yes
+	can_be_ruined = no
+	category = army
+	
+	potential = {
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = { # StarTech AI
+		exists = owner
+		owner = { is_ai = yes }
+		OR = {
+			AND = {
+				num_buildings = { type = building_fortress value > 1 } # StarTech AI 3 -> 1
+				free_building_slots = 0
+				owner = { used_naval_capacity_percent < 0.4	}
+			}
+			buildings_no_motes = yes # StarTech AI
+		}
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 5 # OSA
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			owner = {
+			   is_gestalt = no
+			   not = { has_civic = civic_private_militaries has_civic = civic_private_militaries_corpo }
+			   }
+		}
+		modifier = {
+			job_soldier_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_private_militaries = yes
+			}
+		}
+		modifier = {
+			job_bugged_mercenary_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				has_active_tradition = tr_defense_4
+			}
+		}
+		modifier = {
+			job_osa_commander_add = 1
+			job_osa_commando_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				NOT = {
+					has_active_tradition = tr_defense_4
+				}
+			}
+		}
+		modifier = {
+			job_soldier_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				has_active_tradition = tr_defense_4
+			}
+		}
+		modifier = {
+			job_osa_commando_drone_add = 2
+			job_warrior_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				NOT = {
+					has_active_tradition = tr_defense_4
+				}
+			}
+		}
+		modifier = {
+			job_warrior_drone_add = @b2_jobs
+		}
+	}
+	
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_plentiful_traditions_bunker_mentality
+			}
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_soldier_add = @b2_jobs
+		}
+	}
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+			owner = {
+				has_ascension_perk = ap_plentiful_traditions_bunker_mentality
+			}
+		}
+		modifier = {
+			job_warrior_drone_add = @b2_jobs
+		}
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @db2_minerals
+			volatile_motes = @db2_rare_cost
+		}			
+		upkeep = { # OSA
+			trigger = {
+				owner = { 
+					OR = {
+						is_regular_empire = yes
+						is_hive_empire = yes
+					}
+				}
+			}
+			energy = 5
+			food = 5
+			volatile_motes = 2
+		}
+		upkeep = { # OSA
+			trigger = {
+				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 5
+			minerals = 5
+			volatile_motes = 2
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_unyielding_resistance_is_frugal
+				}
+			}
+			unity = 5
+		}
+		upkeep = {
+			energy = 1
+			volatile_motes = @db2_rare_upkeep
+		}
+	}
+
+	country_modifier = {
+		country_resource_max_add = 5000 # OSA
+	}
+
+	upgrades = {
+		"building_plentiful_traditions_zitadom" # Plentiful Traditions
+		"building_zitadom" # OSA
+	}
+
+	prerequisites = {
+		"tech_global_defense_grid"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_warrior_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_soldier_effect_desc
+	}
+	
+	triggered_desc = { # Bug Branch
+		trigger = {
+			exists = owner
+			owner = {
+				is_bugged_private_militaries = yes
+			}
+		}
+		text = job_bugged_mercenary_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { OR = { has_civic = civic_private_militaries  has_civic = civic_private_militaries_corpo } }
+		}
+		text = job_mercenary_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				has_active_tradition = tr_defense_4
+			}
+		}
+		text = job_osa_commando_drone_effect_desc
+	}
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				has_active_tradition = tr_defense_4
+			}
+		}
+		text = job_osa_commander_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				has_active_tradition = tr_defense_4
+			}
+		}
+		text = job_osa_commando_effect_desc
+	}
+}
+
+## Planetary Shield Generator (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, Ariphaos
+building_planetary_shield_generator = {
+	base_buildtime = @db3_time
+	base_cap_amount = 1
+	position_priority = 2091000 # Sort Buildings
+	can_be_ruined = no
+	can_build = yes # OSA
+	is_essential = yes # OSA
+
+	category = army
+	
+	potential = { # OSA
+		planet = {
+			NOR = {
+				uses_habitat_capitals = yes
+				is_planet_class = pc_habitat
+			}	
+		}
+		NOR = {
+			has_building = "building_mem_planetary_shield_generator"
+			has_building = "building_mem_planetary_shield_generator_heavy"
+			has_building = "building_mem_planetary_shield_generator_orila"
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+		hidden_trigger = { owner = { is_ai = no } }
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			orbital_defence = {
+				exists = starbase
+				starbase = {
+					NOR = {
+						has_starbase_building = ring_orbital_shield_generator
+						is_starbase_building_building = ring_orbital_shield_generator
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { is_ai = yes }
+		is_capital = no # Ariphaos
+		solar_system = { is_bottleneck_system = no } # Ariphaos
+		num_buildings = { type = building_stronghold value < 1 } # Ariphaos
+		num_buildings = { type = building_fortress value < 1 } # Ariphaos
+	}
+
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.5
+		planet_housing_add = 5 # OSA
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = 5 # OSA
+			minerals = 10 # OSA
+		}
+	}
+
+	prerequisites = {
+		"tech_planetary_shield_generator"
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_inwards_perfection }
+		}
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_soldier_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_warrior_drone_add = 2
+		}
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_warrior_drone_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_soldier_effect_desc
+	}
+	
+	
+	ai_resource_production = { # OSA
+		alloys = 20
+		trigger = {
+			always = yes
+		}
+	}
+}
