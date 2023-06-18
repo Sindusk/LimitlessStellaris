@@ -1223,8 +1223,8 @@ building_imperial_capital = {
 ## Capitals - Machine
 ##################################################
 
-### building_development_post
-## Machine Colony (Tier 1)
+## Deployment Post (Tier 1)
+# Merge between OSA, StarTech, Scripted Trigger Undercoat
 building_deployment_post = {
 	capital = yes
 	can_build = no
@@ -1271,6 +1271,18 @@ building_deployment_post = {
 	inline_script = {
 		script = buildings/on_all_capital_buildings
 	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3_machine
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
 
 	triggered_planet_modifier = {
 		potential = {
@@ -1306,6 +1318,7 @@ building_deployment_post = {
 		category = planet_buildings
 		upkeep = {
 			energy = 1
+			influence = @building_influence_t1 # OSA
 		}
 	}
 
@@ -1336,8 +1349,8 @@ building_deployment_post = {
 	}
 }
 
-### building_machine_capital
-## Machine Capital (Tier 2)
+## Administrative Array (Tier 2)
+# Merge between OSA, Bug Branch, StarTech, Scripted Trigger Undercoat
 building_machine_capital = {
 	base_buildtime = @db2_time
 	capital = yes
@@ -1407,6 +1420,18 @@ building_machine_capital = {
 	inline_script = {
 		script = buildings/on_all_capital_buildings
 	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3_machine
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
 
 	triggered_planet_modifier = {
 		potential = {
@@ -1467,6 +1492,7 @@ building_machine_capital = {
 		}
 		upkeep = {
 			energy = @db2_upkeep
+			influence = @building_influence_t2 # OSA
 		}
 	}
 
@@ -1505,8 +1531,8 @@ building_machine_capital = {
 	}
 }
 
-### building_machine_major_capital
-## Machine Major Capital (Tier 3)
+## Planetary Processor (Tier 3)
+# Merge between OSA, Bug Branch, StarTech, Scripted Trigger Undercoat
 building_machine_major_capital = {
 	base_buildtime = @db3_time
 	capital = yes
@@ -1565,6 +1591,18 @@ building_machine_major_capital = {
 
 	inline_script = {
 		script = buildings/on_all_capital_buildings
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3_machine
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -1637,6 +1675,7 @@ building_machine_major_capital = {
 		}
 		upkeep = {
 			energy = @db3_upkeep
+			influence = @building_influence_t3 # OSA
 		}
 	}
 
@@ -1675,8 +1714,8 @@ building_machine_major_capital = {
 	}
 }
 
-### building_machine_system_capital
-## Machine System Capital (Tier 4)
+## Primary Nexus (Tier 4)
+# Merge between OSA, Bug Branch, StarTech, Scripted Trigger Undercoat
 building_machine_system_capital = {
 	base_buildtime = @db4_time
 	capital = yes
@@ -1736,6 +1775,18 @@ building_machine_system_capital = {
 
 	inline_script = {
 		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3_machine
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -1835,6 +1886,7 @@ building_machine_system_capital = {
 		}
 		upkeep = {
 			energy = @db4_upkeep
+			influence = @building_influence_t4 # OSA
 		}
 	}
 
@@ -1870,8 +1922,8 @@ building_machine_system_capital = {
 	}
 }
 
-### building_imperial_machine_capital
-## Machine Imperial Capital (Tier 5) [Emperor]
+## Imperial Center (Tier 5) [Emperor]
+# Merge between OSA, Bug Branch, StarTech, Scripted Trigger Undercoat
 building_imperial_machine_capital = {
 	base_buildtime = @db4_time
 	capital = yes
@@ -1917,8 +1969,8 @@ building_imperial_machine_capital = {
 		job_replicator_add = 4
 		job_patrol_drone_add = 5
 		job_maintenance_drone_add = 6
-		planet_max_buildings_add = 11
-		planet_max_branch_office_buildings_add = 3
+		planet_max_buildings_add = 16 # OSA 11 -> 16
+		planet_max_branch_office_buildings_add = 6 # OSA 3 -> 6
 		defense_armies_add = @tier_4_capital_defense_armies
 	}
 	
@@ -1931,6 +1983,18 @@ building_imperial_machine_capital = {
 		script = buildings/on_all_capital_buildings
 	}
 
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3_machine
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
 	triggered_planet_modifier = {
 		potential = {
 			num_pops >= 10
@@ -2028,6 +2092,7 @@ building_imperial_machine_capital = {
 		}
 		upkeep = {
 			energy = @db4_upkeep
+			influence = @building_influence_t4
 		}
 	}
 
@@ -2063,8 +2128,8 @@ building_imperial_machine_capital = {
 ## Capitals - Hive
 ##################################################
 
-### building_hive_capital
 ## Hive Core (Tier 2)
+# Merge between OSA, Planetary Diversity, StarTech, Scripted Trigger Undercoat
 building_hive_capital = {
 	capital = yes
 	can_build = no
@@ -2129,6 +2194,41 @@ building_hive_capital = {
 	inline_script = {
 		script = buildings/on_all_capital_buildings
 	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		modifier = {
+			job_osom_mapping_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_hive_aggregate_catharsis }
+		}
+		modifier = {
+			job_osa_omni_drone_add = 2
+			job_maintenance_drone_add = -2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3_hive
+			}
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
+	}
 
 	triggered_planet_modifier = {
 		potential = {
@@ -2172,6 +2272,7 @@ building_hive_capital = {
 		}
 		upkeep = {
 			energy = 2
+			influence = @building_influence_t2 # OSA
 		}
 	}
 
@@ -2185,6 +2286,26 @@ building_hive_capital = {
 
 	triggered_desc = {
 		text = job_patrol_drone_effect_desc
+	}
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_hive_aggregate_catharsis
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		text = job_osom_mapping_drone_effect_desc
 	}
 	
 	# StarTech AI Fake Job Manipulation
@@ -2229,8 +2350,8 @@ building_hive_capital = {
 	}
 }
 
-### building_hive_major_capital
-## Hive Major Capital (Tier 3)
+## Hive Nexus (Tier 3)
+# Merge between OSA, Planetary Diversity, StarTech, Scripted Trigger Undercoat
 building_hive_major_capital = {
 	base_buildtime = @db2_time
 	capital = yes
@@ -2293,6 +2414,41 @@ building_hive_major_capital = {
 
 	inline_script = {
 		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		modifier = {
+			job_osom_mapping_drone_add = 4
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_hive_aggregate_catharsis }
+		}
+		modifier = {
+			job_osa_omni_drone_add = 4
+			job_maintenance_drone_add = -4
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3_hive
+			}
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -2359,6 +2515,7 @@ building_hive_major_capital = {
 		}
 		upkeep = {
 			energy = @db2_upkeep
+			influence = @building_influence_t4 # OSA
 		}
 	}
 
@@ -2372,6 +2529,26 @@ building_hive_major_capital = {
 
 	triggered_desc = {
 		text = job_patrol_drone_effect_desc
+	}
+	
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_hive_aggregate_catharsis
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		text = job_osom_mapping_drone_effect_desc
 	}
 	
 	# StarTech AI Fake Job Manipulation
@@ -2416,8 +2593,8 @@ building_hive_major_capital = {
 	}
 }
 
-### building_imperial_hive_capital
-## Hive Imperial Capital (Tier 5) [Emperor]
+## Imperial Complex (Tier 5) [Emperor]
+# Merge between OSA, Planetary Diversity, StarTech, Scripted Trigger Undercoat
 building_imperial_hive_capital = {
 	base_buildtime = @db4_time
 	capital = yes
@@ -2463,8 +2640,8 @@ building_imperial_hive_capital = {
 		job_synapse_drone_add = 5
 		job_maintenance_drone_add = 7
 		job_patrol_drone_add = 4
-		planet_max_buildings_add = 11
-		planet_max_branch_office_buildings_add = 3
+		planet_max_buildings_add = 16 # OSA 11 -> 16
+		planet_max_branch_office_buildings_add = 6 # OSA 3 -> 6
 		defense_armies_add = @tier_4_capital_defense_armies
 	}
 	
@@ -2488,6 +2665,28 @@ building_imperial_hive_capital = {
 		}
 		job_spawning_drone_add = -1
 		job_offspring_drone_add = 1
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_hive_aggregate_catharsis }
+		}
+		modifier = {
+			job_osa_omni_drone_add = 4
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3_hive
+			}
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -2540,6 +2739,7 @@ building_imperial_hive_capital = {
 		}
 		upkeep = {
 			energy = @db4_upkeep
+			influence = @building_influence_t4 # OSA
 		}
 	}
 
@@ -2554,14 +2754,34 @@ building_imperial_hive_capital = {
 	triggered_desc = {
 		text = job_patrol_drone_effect_desc
 	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_hive_aggregate_catharsis
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}	
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		text = job_osom_mapping_drone_effect_desc
+	}
 }
 
 ##################################################
 ## Capitals - Habitat
 ##################################################
 
-### building_hab_capital
-## Habitat Capital (Tier 1)
+## Habitat Administration (Tier 1)
+# Merge between OSA, Bug Branch
 building_hab_capital = {
 	capital = yes
 	can_build = no
@@ -2589,6 +2809,7 @@ building_hab_capital = {
 		upkeep = {
 			energy = 3
 			alloys = 5
+			influence = @building_influence_t1 # OSA
 		}
 		upkeep = {
 			trigger = { owner = { has_active_tradition = tr_domination_adopt_void } }
@@ -2619,6 +2840,129 @@ building_hab_capital = {
 		mult = modifier:habitat_stability_add
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_mining_guilds
+					has_civic = civic_corporate_mining_guilds					
+				}
+			}
+		}
+		modifier = {
+			job_osa_mining_director_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_agriculture_councils
+					has_civic = civic_corporate_agriculture_councils
+				}
+			}
+		}
+		modifier = {
+			job_osa_agri_director_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_energy_consortiums
+					has_civic = civic_corporate_energy_consortiums
+				}
+			}
+		}
+		modifier = {
+			job_osa_energy_director_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_speleology_societies
+					has_civic = civic_corporate_speleology_societies
+				}
+			}
+		}
+		modifier = {
+			job_osom_speleologist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		modifier = {
+			job_osom_mapping_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					has_active_tradition = tr_solidarity_3
+					is_gestalt = no
+				}
+			}
+		}
+		modifier = {
+			job_healthcare_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					has_active_tradition = tr_solidarity_3_machine
+					is_machine_empire = yes
+				}
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					has_active_tradition = tr_solidarity_3_hive
+					is_hive_empire = yes
+				}
+			}
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -2644,40 +2988,7 @@ building_hab_capital = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = {
-				has_origin = origin_void_dwellers
-				is_regular_empire = yes
-			}
-		}
-		modifier = {
-			job_colonist_add = 2
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_civic = civic_dystopian_society }
-		}
-		modifier = {
-			job_enforcer_add = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_ascension_perk = ap_voidborn }
-		}
-		modifier = {
-			planet_max_buildings_add = 2
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_mechanical_empire = yes }
+			owner = { has_active_tradition = tr_synthetics_finish }
 		}
 		job_roboticist_add = 1
 	}
@@ -2709,6 +3020,39 @@ building_hab_capital = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_void_dwellers
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_colonist_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_dystopian_society }
+		}
+		modifier = {
+			job_enforcer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_ascension_perk = ap_voidborn }
+		}
+		modifier = {
+			planet_max_buildings_add = 2
+		}
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -2729,6 +3073,29 @@ building_hab_capital = {
 		planet_amenities_add = 3
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_active_tradition = tr_synthetics_finish_machine
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_cybernetics_organ_harvesting }
+			has_current_purge = yes
+			growing_species = { has_trait = trait_cybernetic }
+		}
+		pop_growth_speed = 0.10
+	}
+
 	triggered_desc = {
 		trigger = {
 			exists = owner
@@ -2740,12 +3107,48 @@ building_hab_capital = {
 		text = job_enforcer_effect_desc
 	}
 
-	triggered_desc = {
+	triggered_desc = { # OSA
 		trigger = {
 			exists = owner
-			owner = { is_mechanical_empire = yes }
+			owner = {
+				has_origin = origin_void_dwellers
+				is_regular_empire = yes
+			}
+		}
+		text = job_colonist_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				NOR = {
+					is_megacorp = yes
+					has_origin = origin_void_dwellers
+				}
+				is_regular_empire = yes
+			}
+		}
+		text = job_politician_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_finish }
 		}
 		text = job_roboticist_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				is_megacorp = yes
+				NOT = { has_origin = origin_void_dwellers }
+			}
+		}
+		text = job_executive_effect_desc
 	}
 
 	triggered_desc = {
@@ -2780,13 +3183,92 @@ building_hab_capital = {
 		text = job_synapse_drone_effect_desc
 	}
 
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		text = job_healthcare_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_mining_guilds
+					has_civic = civic_corporate_mining_guilds					
+				}
+			}
+		}
+		text = job_osa_mining_director_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_agriculture_councils
+					has_civic = civic_corporate_agriculture_councils
+				}
+			}
+		}
+		text = job_osa_agri_director_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_energy_consortiums
+					has_civic = civic_corporate_energy_consortiums
+				}
+			}
+		}
+		text = job_osa_energy_director_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_speleology_societies
+					has_civic = civic_corporate_speleology_societies
+				}
+			}
+		}
+		text = job_osom_speleologist_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		text = job_osom_mapping_drone_effect_desc
+	}
+
 	upgrades = {
 		"building_hab_major_capital"
 	}
 }
 
-### building_hab_major_capital
-## Habitat Major Capital (Tier 2)
+## Habitat Central Control (Tier 2)
+# Merge between OSA, Venture Politics, Bug Branch, Subtle Polish
+# Custom inlines handle most of the functionality.
 building_hab_major_capital = {
 	base_buildtime = @db2_time
 	capital = yes
@@ -2858,12 +3340,150 @@ building_hab_major_capital = {
 		script = buildings/capital/civic_jobs
 		count = 1
 	}
-    
-    triggered_planet_modifier = {
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_police_state			
+			}
+		}
+		modifier = {
+			job_osa_commander_add = 1
+			job_osa_commando_add = 1
+			job_politician_add = -1
+			job_enforcer_add = -1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					has_active_tradition = tr_solidarity_3
+					is_gestalt = no
+				}
+			}
+		}
+		modifier = {
+			job_healthcare_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					has_active_tradition = tr_solidarity_3_machine
+					is_machine_empire = yes
+				}
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					has_active_tradition = tr_solidarity_3_hive
+					is_hive_empire = yes
+				}
+			}
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_mining_guilds
+					has_civic = civic_corporate_mining_guilds					
+				}
+			}
+		}
+		modifier = {
+			job_osa_mining_director_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_agriculture_councils
+					has_civic = civic_corporate_agriculture_councils
+				}
+			}
+		}
+		modifier = {
+			job_osa_agri_director_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_energy_consortiums
+					has_civic = civic_corporate_energy_consortiums
+				}
+			}
+		}
+		modifier = {
+			job_osa_energy_director_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_speleology_societies
+					has_civic = civic_corporate_speleology_societies
+				}
+			}
+		}
+		modifier = {
+			job_osom_speleologist_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		modifier = {
+			job_osom_mapping_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
 		modifier = { planet_stability_add = 1 }
 		mult = modifier:habitat_stability_add
 	}
-	
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -2886,22 +3506,68 @@ building_hab_major_capital = {
 		}
 	}
 
-	triggered_planet_modifier = {
+	triggered_planet_modifier = { # OSA
 		potential = {
 			exists = owner
-			owner = { has_ascension_perk = ap_voidborn }
+			owner = { is_hive_empire = yes }
 		}
-		modifier = {
-			planet_max_buildings_add = 2
+		job_synapse_drone_add = 3
+		planet_amenities_add = 3
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
 		}
+		job_coordinator_add = 2
+		job_replicator_add = 1
+		job_maintenance_drone_add = 3
+		planet_amenities_add = 3
 	}
 
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_regular_empire = yes }
+			owner = {
+				is_machine_empire = yes
+				has_active_tradition = tr_synthetics_finish_machine
+			}
 		}
-		job_enforcer_add = 1
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_synthetics_finish }
+		}
+		job_roboticist_add = 1
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				NOR = {
+					has_authority = auth_corporate
+					has_civic = civic_exalted_priesthood
+					has_civic = civic_aristocratic_elite
+					has_civic = civic_merchant_guilds
+					has_civic = civic_technocracy
+				}
+			}
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
+		}
+		modifier = {
+			job_politician_add = 2
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -2918,32 +3584,63 @@ building_hab_major_capital = {
 		}
 	}
 
-	triggered_planet_modifier = {
+	triggered_planet_modifier = { # OSA
 		potential = {
+			NOT = { has_planet_flag = toxic_knights_habitat }
 			exists = owner
-			owner = { is_hive_empire = yes }
+			owner = { has_authority = auth_corporate }
 		}
-		job_synapse_drone_add = 2
+		modifier = {
+			job_executive_add = 2
+		}
 	}
 
-	triggered_planet_modifier = {
+	triggered_planet_modifier = { # OSA
 		potential = {
 			exists = owner
-			owner = { is_machine_empire = yes }
+			owner = { has_civic = civic_exalted_priesthood }
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
 		}
-		job_coordinator_add = 2
-		job_replicator_add = 1
+		modifier = {
+			job_politician_add = 1
+			job_high_priest_add = 1
+		}
 	}
 
-	triggered_planet_modifier = {
+	triggered_planet_modifier = { # OSA
 		potential = {
 			exists = owner
-			owner = { is_mechanical_empire = yes }
+			owner = { has_civic = civic_aristocratic_elite }
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
 		}
-		job_roboticist_add = 2
+		modifier = {
+			job_politician_add = 1
+			job_noble_add = 1
+		}
 	}
 
-	triggered_planet_modifier = {
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_technocracy }
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
+		}
+		modifier = {
+			job_head_researcher_add = 1
+			job_politician_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
 		potential = {
 			exists = owner
 			owner = { has_civic = civic_bugged_machine_researcher }
@@ -2951,6 +3648,128 @@ building_hab_major_capital = {
 		modifier = {
 			job_bugged_examinatron_add = 2
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_merchant_guilds }
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
+		}
+		modifier = {
+			job_politician_add = 1
+			job_merchant_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		job_enforcer_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_ascension_perk = ap_voidborn }
+		}
+		modifier = {
+			planet_max_buildings_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			planet_jobs_productive_upkeep_mult = 0.1
+			planet_jobs_productive_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner.federation
+			owner = {
+				is_regular_empire = yes
+				federation = { has_federation_perk = culture_workers_1 }
+			}
+		}
+		job_culture_worker_add = 1
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_cybernetics_organ_harvesting }
+			has_current_purge = yes
+			growing_species = { has_trait = trait_cybernetic }
+		}
+		pop_growth_speed = 0.10
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_exalted_priesthood
+			}
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
+		}
+		text = job_high_priest_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_aristocratic_elite
+			}
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
+		}
+		text = job_noble_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_merchant_guilds
+			}
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
+		}
+		text = job_merchant_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				NOT = { has_authority = auth_corporate }
+				is_regular_empire = yes
+			}
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
+		}
+		text = job_politician_effect_desc
 	}
 
 	triggered_desc = {
@@ -2999,9 +3818,31 @@ building_hab_major_capital = {
 	triggered_desc = {
 		trigger = {
 			exists = owner
-			owner = { is_mechanical_empire = yes }
+			owner = { has_active_tradition = tr_synthetics_finish }
 		}
 		text = job_roboticist_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_authority = auth_corporate
+			}
+			OR = {
+				NOT = { has_planet_flag = toxic_knights_habitat }
+				NOT = { owner = { has_origin = origin_toxic_knights } }
+			}
+		}
+		text = job_executive_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_enforcer_effect_desc
 	}
 
 	triggered_desc = {
@@ -3020,6 +3861,14 @@ building_hab_major_capital = {
 		text = job_replicator_effect_desc
 	}
 
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+
 	triggered_desc = {
 		trigger = {
 			exists = owner
@@ -3028,7 +3877,28 @@ building_hab_major_capital = {
 		text = job_synapse_drone_effect_desc
 	}
 
-	triggered_desc = {
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner.federation
+			owner = {
+				is_regular_empire = yes
+				federation = { has_federation_perk = culture_workers_1 }
+			}
+		}
+		text = job_culture_worker_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		text = job_healthcare_effect_desc
+	}
+
+	triggered_desc = { # Bug Branch
 		trigger = {
 			exists = owner
 			owner = { has_civic = civic_bugged_machine_researcher }
@@ -3036,37 +3906,92 @@ building_hab_major_capital = {
 		text = job_bugged_examinatron_effect_desc
 	}
 
-	triggered_planet_modifier = {
-		potential = {
+	triggered_desc = { # OSA
+		trigger = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_1 }
+			owner = {
+				OR = {
+					has_civic = civic_mining_guilds
+					has_civic = civic_corporate_mining_guilds					
+				}
+			}
 		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
+		text = job_osa_mining_director_effect_desc
 	}
 
-	triggered_planet_modifier = {
-		potential = {
+	triggered_desc = { # OSA
+		trigger = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_2 }
+			owner = {
+				OR = {
+					has_civic = civic_agriculture_councils
+					has_civic = civic_corporate_agriculture_councils
+				}
+			}
 		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
-		}
+		text = job_osa_agri_director_effect_desc
 	}
 
-	triggered_planet_modifier = {
-		potential = {
+	triggered_desc = { # OSA
+		trigger = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_3 }
+			owner = {
+				OR = {
+					has_civic = civic_energy_consortiums
+					has_civic = civic_corporate_energy_consortiums
+				}
+			}
 		}
-		modifier = {
-			planet_jobs_upkeep_mult = 0.1
-			planet_jobs_produces_mult = 0.1
+		text = job_osa_energy_director_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_speleology_societies
+					has_civic = civic_corporate_speleology_societies
+				}
+			}
 		}
+		text = job_osom_speleologist_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		text = job_osom_mapping_drone_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_police_state			
+			}
+		}
+		text = job_osa_commander_effect_desc
+	}
+
+	triggered_desc = { # OSA
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_police_state			
+			}
+		}
+		text = job_osa_commando_effect_desc
 	}
 }
 
@@ -3074,8 +3999,8 @@ building_hab_major_capital = {
 ## Capitals - Resort
 ##################################################
 
-### building_resort_capital
-## Resort Capital (Tier 1)
+## Resort Administration (Tier 1)
+# Merge between OSA, Planetary Diversity, Ariphaos
 building_resort_capital = {
 	capital = yes
 	can_build = no
@@ -3107,6 +4032,7 @@ building_resort_capital = {
 		category = planet_buildings
 		upkeep = {
 			energy = 2
+			influence = @building_influence_t2 # OSA
 		}
 	}
 
@@ -3114,8 +4040,8 @@ building_resort_capital = {
 		planet_housing_add = 5
 		planet_amenities_add = 5
 		job_entertainer_add = 1
-		planet_max_buildings_add = 5
-		planet_max_branch_office_buildings_add = 1
+		planet_max_buildings_add = 10 # OSA 5 -> 10
+		planet_max_branch_office_buildings_add = 4 # OSA 1 -> 4
 	}
 	
     # Building Tooltip
@@ -3127,11 +4053,26 @@ building_resort_capital = {
 		script = buildings/on_all_capital_buildings
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		modifier = {
+			job_healthcare_add = 1
+		}
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = {
-				has_valid_civic = civic_warrior_culture
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		modifier = {
@@ -3211,10 +4152,10 @@ building_resort_capital = {
 	}
 }
 
-### building_resort_major_capital
-## Resort Capital (Tier 3)
+## Resort Capital-Complex (Tier 3)
+# Merge between OSA, Planetary Diversity, Ariphaos
 building_resort_major_capital = {
-	base_buildtime = @b2_time
+	base_buildtime = @db2_time
 	capital = yes
 	can_build = no
 	can_demolish = no
@@ -3248,10 +4189,11 @@ building_resort_major_capital = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = @b2_minerals
+			minerals = @db2_minerals
 		}
 		upkeep = {
-			energy = @b2_upkeep
+			energy = @db2_upkeep
+			influence = @building_influence_t4 # OSA
 		}
 	}
 
@@ -3259,8 +4201,8 @@ building_resort_major_capital = {
 		planet_housing_add = 10
 		planet_amenities_add = 10
 		job_entertainer_add = 2
-		planet_max_buildings_add = 11
-		planet_max_branch_office_buildings_add = 2
+		planet_max_buildings_add = 20 # OSA 11 -> 20
+		planet_max_branch_office_buildings_add = 7 # OSA 2 -> 7
 	}
 	
     # Building Tooltip
@@ -3272,11 +4214,56 @@ building_resort_major_capital = {
 		script = buildings/on_all_capital_buildings
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		modifier = {
+			job_healthcare_add = 3
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					has_active_tradition = tr_solidarity_3_machine
+					is_machine_empire = yes
+				}
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					has_active_tradition = tr_solidarity_3_hive
+					is_hive_empire = yes
+				}
+			}
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = {
-				has_valid_civic = civic_warrior_culture
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
 			}
 		}
 		modifier = {
@@ -3367,10 +4354,263 @@ building_resort_major_capital = {
 ## Capitals - Slave
 ##################################################
 
-### building_slave_capital
-## Slave Capital (Tier 1) - Ignored for now
-#building_slave_capital = { }
+## Slave Capital (Tier 1)
+# Merge between OSA, Ariphaos
+building_slave_capital = {
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
 
-### building_slave_major_capital
-## Slave Major Capital (Tier 3) - Ignored for now
-#building_slave_major_capital = { }
+	icon = building_capital
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_slave_capital_tt
+    }
+
+	potential = {
+		has_modifier = slave_colony
+	}
+
+	convert_to = {
+		building_hive_capital
+		building_machine_capital
+		building_capital
+		building_ancient_control_center
+		building_ancient_palace
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 2
+			influence = @building_influence_t2 # OSA
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		planet_amenities_add = 5
+		job_slave_overseer_add = 2
+		planet_stability_add = 5
+		planet_max_buildings_add = 5
+		planet_max_branch_office_buildings_add = 1
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		modifier = {
+			job_healthcare_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = no # Ariphaos
+			}
+		}
+		job_politician_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_megacorp = yes } # Ariphaos
+		}
+		modifier = {
+			job_executive_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_cybernetics_organ_harvesting }
+			has_current_purge = yes
+			growing_species = { has_trait = trait_cybernetic }
+		}
+		pop_growth_speed = 0.10
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_megacorp = no # Ariphaos
+			}
+		}
+		text = job_politician_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_megacorp = yes # Ariphaos
+			}
+		}
+		text = job_executive_effect_desc
+	}
+
+	triggered_desc = {
+		text = job_slave_overseer_effect_desc
+	}
+
+	upgrades = {
+		"building_slave_major_capital"
+	}
+}
+
+## Slave Major Capital (Tier 3)
+# Merge between OSA, Ariphaos
+building_slave_major_capital = {
+	base_buildtime = @b2_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	icon = building_major_capital
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_slave_major_capital_tt
+    }
+
+	potential = {
+		has_modifier = slave_colony
+	}
+
+	allow = {
+		num_pops >= 20
+	}
+
+	convert_to = {
+		building_hive_major_capital
+		building_machine_major_capital
+		building_major_capital
+		building_ancient_control_center
+		building_ancient_palace
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = @b1_upkeep
+			influence = @building_influence_t4 # OSA
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10
+		planet_amenities_add = 10
+		job_slave_overseer_add = 4
+		planet_stability_add = 10
+		planet_max_buildings_add = 11
+		planet_max_branch_office_buildings_add = 2
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		modifier = {
+			job_healthcare_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = no # Ariphaos
+			}
+		}
+		job_politician_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_megacorp = yes } # Ariphaos
+		}
+		modifier = {
+			job_executive_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			planet_jobs_productive_upkeep_mult = 0.1
+			planet_jobs_productive_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_cybernetics_organ_harvesting }
+			has_current_purge = yes
+			growing_species = { has_trait = trait_cybernetic }
+		}
+		pop_growth_speed = 0.10
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_megacorp = no # Ariphaos
+			}
+		}
+		text = job_politician_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_megacorp = yes # Ariphaos
+			}
+		}
+		text = job_executive_effect_desc
+	}
+
+	triggered_desc = {
+		text = job_slave_overseer_effect_desc
+	}
+}
