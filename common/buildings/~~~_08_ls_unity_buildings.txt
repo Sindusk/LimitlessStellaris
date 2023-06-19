@@ -11,7 +11,7 @@
 ##################################################
 
 ## Autochthon Monument (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations
 building_autochthon_monument = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -126,7 +126,7 @@ building_autochthon_monument = {
 }
 
 ## Heritage Site (Tier 2)
-# Merge between Real Space: Planetary Stations, StarTech
+# Merge between OSA, Real Space: Planetary Stations, StarTech
 building_heritage_site = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -188,7 +188,22 @@ building_heritage_site = {
 			multiplier = owner.trigger:num_ascension_perks
 		}
 		cost = {
-			minerals = @db2_minerals
+			minerals = @b2_minerals
+			rare_crystals = @b2_rare_cost
+		}
+		upkeep = {
+			energy = 5
+			minerals = 5
+			rare_crystals = 1
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
 		}
 	}
 
@@ -199,6 +214,18 @@ building_heritage_site = {
 
 	triggered_desc = {
 		text = building_heritage_site_effect
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
 	}
 
 	triggered_desc = {
@@ -221,7 +248,7 @@ building_heritage_site = {
 }
 
 ## Hypercomms Forum (Tier 3)
-# Merge between Real Space: Planetary Stations, StarTech
+# Merge between OSA, Real Space: Planetary Stations, StarTech
 building_hypercomms_forum = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -284,6 +311,21 @@ building_hypercomms_forum = {
 		}
 		cost = {
 			minerals = @db3_minerals
+			rare_crystals = @db3_rare_cost
+		}
+		upkeep = {
+			energy = 10
+			minerals = 10
+			rare_crystals = 3
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -294,6 +336,18 @@ building_hypercomms_forum = {
 
 	triggered_desc = {
 		text = building_hypercomms_forum_effect
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
 	}
 
 	triggered_desc = {
@@ -784,9 +838,10 @@ building_bureaucratic_3 = {
 ##################################################
 
 ## Temple (Tier 1)
-# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_temple = {
 	base_buildtime = @db1_time
+	base_cap_amount = 5 # OSA limits to 5
 
 	exempt_from_ai_planet_specialization = no
 
@@ -856,13 +911,22 @@ building_temple = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
 		}
 	}
 
 	planet_modifier = {
 		job_priest_add = 1
-		pop_ethic_spiritualist_attraction_mult = 0.05
+		pop_ethic_spiritualist_attraction_mult = 0.10 # OSA 0.05 -> 0.1
 	}
 
 	triggered_planet_modifier = {
@@ -923,6 +987,18 @@ building_temple = {
 		text = job_manager_effect_desc
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
 	upgrades = {
 		building_holotemple
 	}
@@ -948,7 +1024,7 @@ building_temple = {
 }
 
 ## Holotemple (Tier 2)
-# Merge between Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
+# Merge between OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_holotemple = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -1013,14 +1089,24 @@ building_holotemple = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
-			rare_crystals = @db2_rare_upkeep
+			energy = 5
+			minerals = 5
+			rare_crystals = 1
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
 		}
 	}
 
 	planet_modifier = {
 		job_priest_add = 2
-		pop_ethic_spiritualist_attraction_mult = 0.10
+		pop_ethic_spiritualist_attraction_mult = 0.20 # OSA 0.1 -> 0.2
 	}
 
 	triggered_planet_modifier = {
@@ -1081,6 +1167,18 @@ building_holotemple = {
 		text = job_manager_effect_desc
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
 	upgrades = {
 		building_sacred_nexus
 	}
@@ -1106,7 +1204,7 @@ building_holotemple = {
 }
 
 ## Sacred Nexus (Tier 3)
-# Merge between Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
+# Merge between OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_sacred_nexus = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -1171,14 +1269,24 @@ building_sacred_nexus = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db3_upkeep
-			rare_crystals = @db3_rare_upkeep
+			energy = 10
+			minerals = 10
+			rare_crystals = 3
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
 		}
 	}
 
 	planet_modifier = {
 		job_priest_add = 3
-		pop_ethic_spiritualist_attraction_mult = 0.15
+		pop_ethic_spiritualist_attraction_mult = 0.30 # OSA 0.15 -> 0.30
 	}
 
 	triggered_planet_modifier = {
@@ -1260,6 +1368,19 @@ building_sacred_nexus = {
 		text = job_manager_effect_desc
 	}
 
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
 	triggered_desc = {
 		trigger = {
 			exists = owner.federation
@@ -1294,10 +1415,11 @@ building_sacred_nexus = {
 ##################################################
 
 ## Uplink Node (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Plentiful Traditions, StarTech, Scripted Trigger Undercoat
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Plentiful Traditions, StarTech, Scripted Trigger Undercoat
 building_uplink_node = {
 	base_buildtime = @db1_time
 	icon = building_autochthon_monument
+	base_cap_amount = 5 # OSA limits to 5
 
 	exempt_from_ai_planet_specialization = no
 
@@ -1357,7 +1479,17 @@ building_uplink_node = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
 		}
 	}
 
@@ -1399,7 +1531,7 @@ building_uplink_node = {
 }
 
 ## Network Junction (Tier 2)
-# Merge between Real Space: Planetary Stations, Plentiful Traditions, StarTech, Scripted Trigger Undercoat
+# Merge between OSA, Real Space: Planetary Stations, Plentiful Traditions, StarTech, Scripted Trigger Undercoat
 building_network_junction = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -1457,8 +1589,18 @@ building_network_junction = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 5
+			minerals = 5
 			rare_crystals = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
 		}
 	}
 	
@@ -1500,7 +1642,7 @@ building_network_junction = {
 }
 
 ## System Conflux (Tier 3)
-# Merge between Real Space: Planetary Stations, Plentiful Traditions, StarTech, Scripted Trigger Undercoat
+# Merge between OSA, Real Space: Planetary Stations, Plentiful Traditions, StarTech, Scripted Trigger Undercoat
 building_system_conflux = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -1558,8 +1700,18 @@ building_system_conflux = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db3_upkeep
+			energy = 10
+			minerals = 10
 			rare_crystals = @db3_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -1601,9 +1753,10 @@ building_system_conflux = {
 ##################################################
 
 ## Synaptic Nodes (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Plentiful Traditions, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_hive_node = {
 	base_buildtime = @db1_time
+	base_cap_amount = 5 # OSA limits to 5
 	position_priority = 4081000 # Sort Buildings
 
 	exempt_from_ai_planet_specialization = no
@@ -1656,12 +1809,33 @@ building_hive_node = {
 			}
 			energy = 2
 		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
+		}
 	}
 
 	planet_modifier = {
 		job_synapse_drone_add = @b1_jobs
 	}
-	
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			planet_crime_no_happiness_add = -10
+		}
+	}
+
 	triggered_planet_modifier = { # Plentiful Traditions
 		potential = {
 			exists = owner
@@ -1720,7 +1894,7 @@ building_hive_node = {
 }
 
 ## Synaptic Clusters (Tier 2)
-# Merge between Real Space: Planetary Stations, Plentiful Traditions, StarTech
+# Merge between OSA, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_hive_cluster = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -1781,12 +1955,32 @@ building_hive_cluster = {
 			}
 			energy = 2
 		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
+		}
 	}
 
 	planet_modifier = {
 		job_synapse_drone_add = @b2_jobs
 	}
-	
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			planet_crime_no_happiness_add = -10
+		}
+	}
+
 	triggered_planet_modifier = { # Plentiful Traditions
 		potential = {
 			exists = owner
@@ -1845,7 +2039,7 @@ building_hive_cluster = {
 }
 
 ## Confluence of Thought (Tier 3)
-# Merge between Real Space: Planetary Stations, Plentiful Traditions, StarTech
+# Merge between OSA, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_hive_confluence = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -1906,12 +2100,33 @@ building_hive_confluence = {
 			}
 			energy = 2
 		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
+		}
 	}
 
 	planet_modifier = {
 		job_synapse_drone_add = @b3_jobs
 	}
-	
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			planet_crime_no_happiness_add = -10
+		}
+	}
+
 	triggered_planet_modifier = { # Plentiful Traditions
 		potential = {
 			exists = owner
@@ -1983,9 +2198,10 @@ building_hive_confluence = {
 ##################################################
 
 ## Sacrificial Temple (Tier 1)
-# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions
 building_sacrificial_temple_1 = {
 	base_buildtime = @db1_time
+	base_cap_amount = 5 # OSA limits to 5
 	position_priority = 4081000 # Sort Buildings
 
 	category = unity
@@ -2027,7 +2243,17 @@ building_sacrificial_temple_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
 		}
 	}
 
@@ -2035,6 +2261,18 @@ building_sacrificial_temple_1 = {
 		pop_ethic_spiritualist_attraction_mult = 0.05
 		job_death_priest_add = 1
 		job_mortal_initiate_add = 1
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
 	}
 	
 	triggered_planet_modifier = { # Plentiful Traditions
@@ -2073,7 +2311,7 @@ building_sacrificial_temple_1 = {
 }
 
 ## Grim Holotemple (Tier 2)
-# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_sacrificial_temple_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -2129,8 +2367,18 @@ building_sacrificial_temple_2 = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
-			exotic_gases = @db3_rare_upkeep
+			energy = 5
+			minerals = 5
+			exotic_gases = 1
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
 		}
 	}
 
@@ -2179,6 +2427,18 @@ building_sacrificial_temple_2 = {
 		}
 	}
 	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+	
 	triggered_planet_modifier = { # Plentiful Traditions
 		potential = {
 			exists = owner
@@ -2219,7 +2479,7 @@ building_sacrificial_temple_2 = {
 }
 
 ## Temple of Grand Sacrifice
-# Merge between Sort Buildings, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
+# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_sacrificial_temple_3 = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -2271,9 +2531,19 @@ building_sacrificial_temple_3 = {
 			exotic_gases = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db3_upkeep
-			exotic_gases = @db3_rare_upkeep
-			volatile_motes = @db2_rare_upkeep
+			energy = 10
+			minerals = 10
+			exotic_gases = 2
+			volatile_motes = 2
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -2346,6 +2616,18 @@ building_sacrificial_temple_3 = {
 			job_manager_add = 2
 		}
 	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
 
 	triggered_desc = {
 		trigger = {
@@ -2401,7 +2683,7 @@ building_sacrificial_temple_3 = {
 ##################################################
 
 ## Sanctuary of Repose (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
 building_galactic_memorial_1 = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -2457,7 +2739,17 @@ building_galactic_memorial_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			minerals = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
 		}
 	}
 
@@ -2503,6 +2795,18 @@ building_galactic_memorial_1 = {
 		text = "job_chronicle_drone_effect_desc"
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
 	#Tomb/Relic worlds
 	triggered_planet_modifier = {
 		potential = {
@@ -2537,7 +2841,7 @@ building_galactic_memorial_1 = {
 }
 
 ## Pillar of Quietus (Tier 2)
-# Merge between Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
+# Merge between OSA, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
 building_galactic_memorial_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -2596,8 +2900,18 @@ building_galactic_memorial_2 = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			minerals = @db2_upkeep
-			exotic_gases = @db2_rare_upkeep
+			energy = 5
+			minerals = 5
+			exotic_gases = 1
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
 		}
 	}
 
@@ -2644,6 +2958,18 @@ building_galactic_memorial_2 = {
 		text = "job_chronicle_drone_effect_desc"
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
 	#Tomb/Relic worlds
 	triggered_planet_modifier = {
 		potential = {
@@ -2678,7 +3004,7 @@ building_galactic_memorial_2 = {
 }
 
 ## Galactic Memorial (Tier 3)
-# Merge between Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
+# Merge between OSA, Real Space: Planetary Stations, StarTech, Scripted Trigger Undercoat
 building_galactic_memorial_3 = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -2734,8 +3060,18 @@ building_galactic_memorial_3 = {
 			exotic_gases = @db3_rare_cost
 		}
 		upkeep = {
-			minerals = @db3_upkeep
-			exotic_gases = @db3_rare_upkeep
+			energy = 10
+			minerals = 10
+			exotic_gases = 3
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -2781,6 +3117,18 @@ building_galactic_memorial_3 = {
 		text = "job_chronicle_drone_effect_desc"
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
 	#Tomb/Relic worlds
 	triggered_planet_modifier = {
 		potential = {
@@ -2815,7 +3163,7 @@ building_galactic_memorial_3 = {
 ##################################################
 
 ## Simulation Site (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_simulation_1 = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -2869,6 +3217,19 @@ building_simulation_1 = {
 		cost = {
 			minerals = @db1_minerals
 		}
+		upkeep = {
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
+		}
 	}
 
 	planet_modifier = {
@@ -2882,6 +3243,18 @@ building_simulation_1 = {
 
 	triggered_desc = {
 		text = job_evaluator_effect_desc
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			planet_crime_no_happiness_add = -10
+		}
 	}
 
 	prerequisites = {
@@ -2906,7 +3279,7 @@ building_simulation_1 = {
 }
 
 ## Simulation Center (Tier 2)
-# Merge between Real Space: Planetary Stations, StarTech
+# Merge between OSA, Real Space: Planetary Stations, StarTech
 building_simulation_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -2967,6 +3340,20 @@ building_simulation_2 = {
 		cost = {
 			minerals = @db2_minerals
 		}
+		upkeep = {
+			energy = 5
+			minerals = 5
+			rare_crystals = 1
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
+		}
 	}
 
 	planet_modifier = {
@@ -2980,6 +3367,18 @@ building_simulation_2 = {
 
 	triggered_desc = {
 		text = job_evaluator_effect_desc
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			planet_crime_no_happiness_add = -10
+		}
 	}
 
 	prerequisites = {
@@ -2997,7 +3396,7 @@ building_simulation_2 = {
 }
 
 ## Simulation Complex (Tier 3)
-# Merge between Real Space: Planetary Stations, StarTech
+# Merge between OSA, Real Space: Planetary Stations, StarTech
 building_simulation_3 = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -3058,6 +3457,20 @@ building_simulation_3 = {
 		cost = {
 			minerals = @db3_minerals
 		}
+		upkeep = {
+			energy = 10
+			minerals = 10
+			rare_crystals = 2
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
+		}
 	}
 
 	planet_modifier = {
@@ -3069,9 +3482,20 @@ building_simulation_3 = {
 		text = building_hypercomms_forum_effect
 	}
 
-
 	triggered_desc = {
 		text = job_evaluator_effect_desc
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			planet_crime_no_happiness_add = -10
+		}
 	}
 
 	prerequisites = {
@@ -3203,7 +3627,7 @@ building_corporate_monument = {
 }
 
 ## Business Management Nexus (Tier 2)
-# Merge between Real Space: Planetary Stations, StarTech
+# Merge between OSA, Real Space: Planetary Stations, StarTech
 building_corporate_site = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -3262,6 +3686,21 @@ building_corporate_site = {
 		}
 		cost = {
 			minerals = @db2_minerals
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = 5
+			minerals = 5
+			rare_crystals = 1
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
 		}
 	}
 
@@ -3274,6 +3713,18 @@ building_corporate_site = {
 		text = building_heritage_site_effect
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+	
 	triggered_desc = {
 		text = job_culture_worker_effect_desc
 	}
@@ -3408,7 +3859,7 @@ building_corporate_forum = {
 ##################################################
 
 ## Sensorium Site (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_sensorium_1 = {
 	base_buildtime = @db1_time
 	base_cap_amount = 1
@@ -3462,6 +3913,19 @@ building_sensorium_1 = {
 		cost = {
 			minerals = @db1_minerals
 		}
+		upkeep = {
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 5
+		}
 	}
 
 	planet_modifier = {
@@ -3499,7 +3963,7 @@ building_sensorium_1 = {
 }
 
 ## Sensorium Center (Tier 2)
-# Merge between Real Space: Planetary Stations, StarTech
+# Merge between OSA, Real Space: Planetary Stations, StarTech
 building_sensorium_2 = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -3562,6 +4026,20 @@ building_sensorium_2 = {
 		cost = {
 			minerals = @db2_minerals
 		}
+		upkeep = {
+			energy = 5
+			minerals = 5
+			exotic_gases = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
+		}
 	}
 
 	planet_modifier = {
@@ -3592,7 +4070,7 @@ building_sensorium_2 = {
 }
 
 ## Sensorium Complex (Tier 3)
-# Merge between Real Space: Planetary Stations, StarTech
+# Merge between OSA, Real Space: Planetary Stations, StarTech
 building_sensorium_3 = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -3652,6 +4130,20 @@ building_sensorium_3 = {
 		}
 		cost = {
 			minerals = @db3_minerals
+		}
+		upkeep = {
+			energy = 10
+			minerals = 10
+			exotic_gases = @db3_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -3956,7 +4448,7 @@ building_citadel_of_faith = {
 }
 
 ## Vault of Acquisitions (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_corporate_vault = {
 	base_buildtime = @db3_time
 	base_cap_amount = 1
@@ -4030,7 +4522,8 @@ building_corporate_vault = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = @db2_upkeep
+			energy = 10
+			minerals = 10
 			rare_crystals = @db2_rare_upkeep
 		}
 		upkeep = {
@@ -4041,12 +4534,14 @@ building_corporate_vault = {
 			rare_crystals = 3
 		}
 		produces = {
-			unity = 10
+			unity = 20 # OSA 10 -> 20
 		}
 	}
 
 	planet_modifier = {
 		planet_administrators_produces_mult = 0.15
+		planet_managers_produces_mult = 0.25 # OSA
+		job_manager_add = 5 # OSA
 	}
 
 	triggered_planet_modifier = {
@@ -4060,7 +4555,10 @@ building_corporate_vault = {
 	}
 
 	prerequisites = {
-		"tech_autocurating_vault"
+	}
+
+	triggered_desc = { # OSA
+		text = job_manager_effect_desc
 	}
 
 	show_tech_unlock_if = {
@@ -4185,7 +4683,7 @@ building_alpha_hub = {
 ##################################################
 
 ## Organic Sanctuary (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Scripted Trigger Undercoat
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Scripted Trigger Undercoat
 building_organic_sanctuary = {
 	base_buildtime = @db1_time
 	position_priority = 4082000 # Sort Buildings
@@ -4243,7 +4741,17 @@ building_organic_sanctuary = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = 2.5
+			minerals = 2.5
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 10
 		}
 	}
 
@@ -4322,7 +4830,7 @@ building_organic_sanctuary = {
 }
 
 ## Organic Paradise (Tier 2)
-# Merge between Real Space: Planetary Stations, Scripted Trigger Undercoat
+# Merge between OSA, Real Space: Planetary Stations, Scripted Trigger Undercoat
 building_organic_paradise = {
 	base_buildtime = @db2_time
 	can_build = no
@@ -4364,8 +4872,18 @@ building_organic_paradise = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = 7.5
+			minerals = 7.5
 			exotic_gases = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_benevolence_1
+				}
+			}
+			unity = 20
 		}
 	}
 
@@ -4443,7 +4961,7 @@ building_organic_paradise = {
 ##################################################
 
 ## First League Filing Offices (Tier 1)
-# Merge between Sort Buildings, Real Space: Planetary Stations, Subtle Polish
+# Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Subtle Polish
 building_league_offices = {
 	base_buildtime = @db2_time
 	empire_limit = {
@@ -4489,7 +5007,7 @@ building_league_offices = {
 	}
 
 	country_modifier = {
-		country_edict_fund_add = 50
+		country_edict_fund_add = 500 # OSA 50 -> 500
 	}
 
 	triggered_country_modifier = {
@@ -4497,13 +5015,13 @@ building_league_offices = {
 			exists = owner
 			owner = { has_ascension_perk = ap_archaeoengineers }
 		}
-		country_edict_fund_add = 50
+		country_edict_fund_add = 500 # OSA 50 -> 500
 	}
 
 	planet_modifier = {
-		planet_administrators_unity_produces_add = 1
-		planet_managers_unity_produces_add = 1
-		planet_priests_unity_produces_add = 1
+		planet_administrators_unity_produces_add = 4 # OSA 1 -> 4
+		planet_managers_unity_produces_add = 4 # OSA 1 -> 4
+		planet_priests_unity_produces_add = 4 # OSA 1 -> 4
 	}
 
 	triggered_planet_modifier = {
@@ -4665,6 +5183,18 @@ building_league_offices = {
 			owner = { is_machine_empire = yes }
 		}
 		text = job_coordinator_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_spiritualist = no
+				is_megacorp = no
+			}
+		}
+		text = job_bureaucrat_effect_desc
 	}
 
 	triggered_desc = { # Subtle Polish
