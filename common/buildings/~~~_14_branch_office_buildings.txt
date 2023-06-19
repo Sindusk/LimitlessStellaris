@@ -1,0 +1,1796 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Branch Office
+##########################################################################
+
+##################################################
+## Branch Office - Standard Megacorp
+##################################################
+
+## Private Mining Consortium (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts, Ariphaos
+building_private_mining_consortium = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4031000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_private_mining_consortium_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+			}
+			is_criminal_syndicate = no
+		}
+		is_artificial = no
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_city
+		}
+	}
+
+	planet_modifier = {
+		job_miner_add = 2 # OSA 1 -> 2
+		job_osa_mining_director_add = 1 # OSA
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = {
+			minerals = 30 # OSA 10 -> 30
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	upgrades = {
+		"building_bugged_mining_corp" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		factor = 10 # Ariphaos 1 -> 10
+	}
+}
+
+## Fast Food Chain (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts
+building_food_conglomerate = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4032000 # Sort Buildings
+	
+	owner_type = corporate
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_food_conglomerate_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+			}
+			is_criminal_syndicate = no
+		}
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_relic
+		}
+	}
+
+	planet_modifier = {
+		job_osa_agri_director_add = 1 # OSA
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					is_anglers_empire = no
+					AND = {
+						is_anglers_empire = yes
+						PREV = { planet = { is_wet = no } }
+					}
+				}
+			}
+		}
+		modifier = {
+			job_farmer_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_anglers_empire = yes
+				PREV = { planet = { is_wet = yes } }
+			}
+		}
+		modifier = {
+			job_angler_add = 2 # OSA 1 -> 2
+		}
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = {
+			food = 30 # OSA 10 -> 30
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	upgrades = {
+		"building_bugged_food_enterprise" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		factor = 1
+	}#AI has many other sources for this resource
+}
+
+## Virtual Entertainment Studios (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts, Ariphaos
+building_virtual_entertainment_studios = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4041000 # Sort Buildings
+	
+	owner_type = corporate
+
+	category = manufacturing
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_virtual_entertainment_studios_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+			}
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_clerk_add = 2
+		job_artisan_add = 1 # Bug Branch: Corporate Buildings
+		job_entertainer_add = 1 # OSA
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = {
+			consumer_goods = 15 # OSA 6 -> 15
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+    upgrades = {
+        "building_bugged_virtual_entertainment_publisher" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		weight = 10 # Ariphaos 3 -> 10
+		modifier = {
+			factor = 5
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value < 0
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value >= 10
+				}
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 0
+			owner = {
+				resource_income_compare = {
+					resource = consumer_goods
+					value > 15
+				}
+			}
+		}
+	}
+}
+
+## Private Military Industries (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts, Ariphaos
+building_private_shipyards = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4042000 # Sort Buildings
+	
+	owner_type = corporate
+
+	category = manufacturing
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_private_shipyards_tt
+    }
+
+	country_modifier = {
+		country_starbase_capacity_add = 0.5 # OSA
+	}
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+			}
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_clerk_add = 2
+		job_foundry_add = 1 # OSA
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = {
+			alloys = 15 # OSA 3 -> 15
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+    upgrades = {
+    	"building_bugged_military_consortium" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		weight = 50 # Ariphaos 1 -> 50
+	}
+}
+
+## Mercenary Liaison Office (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts, Ariphaos
+building_military_contractors = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4091000 # Sort Buildings
+	
+	owner_type = corporate
+
+	category = army
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_military_contractors_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+			}
+			is_criminal_syndicate = no
+		}
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 15 # OSA 10 -> 15
+	}
+
+	army_modifier = {
+		army_starting_experience_add = 100
+	}
+
+	planet_modifier = {
+		planet_army_build_speed_mult = 0.05 # Bug Branch: Corporate Buildings
+		job_soldier_add = 2 # OSA 1 -> 2
+		job_healthcare_add = 1 # OSA
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+	upgrades = {
+		"building_bugged_military_company" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		factor = 100 # OSA 10 -> 100
+	}
+}
+
+## Public Relations Firm (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts, Ariphaos
+building_public_relations_office = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2081000 # OSA
+
+	owner_type = corporate
+
+	category = unity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_public_relations_office_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+			}
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_clerk_add = 2
+		job_politician_add = 1 # OSA
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		produces = {
+			unity = 20 # OSA 6 -> 20
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	
+	upgrades = {
+    	"building_bugged_telecom_corporation" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+## Private Research Enterprises (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts
+building_private_research_initiative = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2051000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = research
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_private_research_initiative_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+			}
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		job_clerk_add = 2
+		job_researcher_add = 2 # OSA
+		job_head_researcher_add = 1 # OSA
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		produces = {
+			physics_research = 15 # OSA 6 -> 15
+			engineering_research = 15 # OSA 6 -> 15
+			society_research = 15 # OSA 6 -> 15
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	
+	upgrades = {
+    	"building_bugged_research_consortium" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+## Amusement Megaplex (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts, Ariphaos
+building_amusement_megaplex = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2071000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_amusement_megaplex_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+				has_origin = origin_toxic_knights
+			}
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 10
+		job_clerk_add = 1 # OSA
+		job_culture_worker_add = 2 # OSA
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		produces = {
+			energy = 30 # OSA 10 -> 30
+		}
+	}
+	
+	upgrades = {
+		"building_bugged_amusement_gigaplex" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		weight = 1 # Ariphaos 2 -> 1
+
+		modifier = {
+			weight = 0 # Ariphaos 0.5 -> 0
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = energy
+					value > 50
+				}
+			}
+		}
+	}
+}
+
+## Commercial Forum (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts, Ariphaos
+building_commercial_forum = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2023000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_commercial_forum_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+			}
+			is_criminal_syndicate = no
+		}
+	}
+
+	planet_modifier = {
+		branch_office_value_mult = 0.25
+		job_bugged_trader_add = 1 # Bug Branch: Corporate Buildings
+		job_clerk_add = 1 # OSA
+		job_merchant_add = 2 # OSA 1 -> 2
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	
+	upgrades = {
+		"building_bugged_commercial_nexus" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		weight = 50
+		modifier = { # Ariphaos
+			factor = 0
+			planet_crime > 40
+		}
+		modifier = { # Ariphaos
+			factor = 0
+			branch_office_value = {
+				who = THIS
+				value < 30
+			}
+		}
+	}
+}
+
+## Corporate Embassy (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Expanded Gestalts, Ariphaos
+building_corporate_embassy = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2022000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_corporate_embassy_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			NOR = { # Expanded Gestalts
+				has_valid_civic = civic_mutualistic_behavior
+				has_valid_civic = civic_machine_trading
+			}
+			is_criminal_syndicate = no
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "requires_building_major_capital"
+			OR = {
+				has_building = building_major_capital
+				has_building = building_system_capital
+				has_building = building_imperial_capital
+			}
+		}
+	}
+
+	prerequisites = {
+		"tech_xeno_diplomacy"
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+
+	country_modifier = {
+		diplo_weight_economy_mult = 0.05
+	}
+
+	planet_modifier = {
+		job_bureaucrat_add = 2 # Bug Branch: Corporate Buildings
+		job_clerk_add = 2
+		job_politician_add = 1 # OSA
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	
+	upgrades = {
+		"building_bugged_corporate_parliament" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		weight = 2 # Ariphaos 50 -> 2
+		modifier = {
+			factor = 10
+			branch_office_owner = {
+				is_galactic_community_member = yes
+			}
+		}
+	}
+}
+
+##################################################
+## Branch Office - Criminal Megacorp
+##################################################
+
+## Wildcat Mining Operations (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Ariphaos
+building_wildcat_miners = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4021000 # Sort Buildings
+	
+	owner_type = corporate
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_wildcat_miners_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+		is_artificial = no
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_city
+		}
+	}
+
+	planet_modifier = {
+		planet_miners_minerals_produces_mult = -0.15 # OSA
+		planet_crime_add = 25
+		trade_value_add = 5
+		job_bugged_wildcat_miner_add = 2 # Bug Branch: Corporate Buildings
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = {
+			minerals = 30 # OSA 10 -> 30
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+    upgrades = {
+        "building_bugged_stripminers_guild" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		factor = 10 # Ariphaos 1 -> 10
+	}
+}
+
+## Bio-Reprocessing Plants (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings
+building_bio_reprocessing_facilities = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4031000 # Sort Buildings
+	
+	owner_type = corporate
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_bio_reprocessing_facilities_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+		NOR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_relic
+		}
+	}
+
+	planet_modifier = {
+		planet_farmers_food_produces_mult = -0.15 # OSA
+		planet_crime_add = 25
+		trade_value_add = 5
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = {
+			food = 30 # OSA 10 -> 30
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+    upgrades = {
+        "building_bugged_bio_reprocessing_complex" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		factor = 1
+	}
+}
+
+## Concealed Drug Labs (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Ariphaos
+building_underground_chemists = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4041000 # Sort Buildings
+	
+	owner_type = corporate
+
+	category = manufacturing
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_underground_chemists_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = { is_criminal_syndicate = yes }
+	}
+
+	planet_modifier = {
+		planet_jobs_consumer_goods_produces_mult = -0.15 # OSA
+		planet_crime_add = 25
+		trade_value_add = 5
+		job_bugged_narco_chemist_add = 1 # Bug Branch: Corporate Buildings
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = {
+			consumer_goods = 15 # OSA 6 -> 15
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+    upgrades = {
+        "building_bugged_secret_drug_factory" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		weight = 10 # Ariphaos 3 -> 10
+		modifier = {
+			factor = 5
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value < 0
+				}
+			}
+		}
+		modifier = {
+			factor = 0 # Ariphaos 0.5 -> 0
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value >= 15 # Ariphaos 10 -> 15
+				}
+			}
+		}
+	}
+}
+
+## Wrecking Yards (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Ariphaos
+building_wrecking_yards = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4042000 # Sort Buildings
+	
+	owner_type = corporate
+
+	category = manufacturing
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_wrecking_yards_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_alloys_produces_mult = -0.15 # OSA
+		planet_crime_add = 25
+		trade_value_add = 5
+		job_bugged_salvager_add = 1 # Bug Branch: Corporate Buildings
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = {
+			alloys = 15 # OSA 3 -> 15
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+    upgrades = {
+        "building_bugged_chopshop" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		factor = 75 # Ariphaos 1 -> 75
+	}
+}
+
+## Pirate Free Haven (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Ariphaos
+building_pirate_haven = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1 # OSA limits to 1
+	position_priority = 4091000 # Sort Buildings
+	
+	owner_type = corporate
+
+	category = army
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_pirate_haven_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = yes
+		}
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 10
+	}
+
+	planet_modifier = {
+		planet_crime_add = 40
+		job_soldier_add = 1
+		job_bugged_assassin_add = 2 # Bug Branch: Corporate Buildings
+	}
+
+	army_modifier = {
+		army_starting_experience_add = 100
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+    upgrades = {
+        "building_bugged_assassins_guild" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		factor = 100 # Ariphaos 15 -> 100
+	}
+}
+
+## Underground Clubs (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Ariphaos
+building_underground_clubs = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2071000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_underground_clubs_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = { is_criminal_syndicate = yes }
+	}
+
+	planet_modifier = {
+		planet_technician_energy_produces_mult = -0.15 # OSA
+		planet_crime_add = 40
+		planet_amenities_add = 10
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		produces = {
+			energy = 30 # OSA 10 -> 30
+		}
+	}
+	
+    upgrades = {
+        "building_bugged_club_network" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		weight = 5
+
+		modifier = {
+			factor = 2 # Ariphaos 3 -> 2
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = energy
+					value < 0
+				}
+			}
+		}
+		modifier = {
+			factor = 0 # Ariphaos 0.5 -> 0
+			branch_office_owner = {
+				has_monthly_income = {
+					resource = energy
+					value > 50
+				}
+			}
+		}
+	}
+}
+
+## Syndicate Front Corporations (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings
+building_syndicate_outreach_office = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2022000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_syndicate_outreach_office_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = { is_criminal_syndicate = yes }
+	}
+
+	planet_modifier = {
+		planet_crime_add = 40
+		job_clerk_add = 2
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		produces = {
+			unity = 25 # OSA 6 -> 25
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+    upgrades = {
+        "building_bugged_marketing_HQ" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+## Illicit Research Labs (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings
+building_illicit_research_labs = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2051000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = research
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_illicit_research_labs_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = { is_criminal_syndicate = yes }
+	}
+
+	planet_modifier = {
+		planet_crime_add = 40
+		job_clerk_add = 2
+		job_researcher_add = 2 # OSA
+        job_bugged_mad_scientist_add = 1 # Bug Branch: Corporate Buildings
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		produces = {
+			physics_research = 10 # OSA 6 -> 10
+			engineering_research = 10 # OSA 6 -> 10
+			society_research = 10 # OSA 6 -> 10
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	
+    upgrades = {
+        "building_bugged_live_subjects" # Bug Branch: Corporate Buildings
+    }
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+## Smuggler's Port (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings, Ariphaos
+building_smuggling_rings = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2023000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_smuggling_rings_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = { is_criminal_syndicate = yes }
+	}
+
+	planet_modifier = {
+		planet_crime_add = 50
+		branch_office_value_mult = 0.25
+		job_merchant_add = 1
+		job_bugged_smuggler_add = 1 # Bug Branch: Corporate Buildings
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	
+	upgrades = {
+    	"building_bugged_isar" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		weight = 25 # Ariphaos 100 -> 25
+		modifier = { # Ariphaos
+			factor = 0
+			branch_office_value = {
+				who = this
+				value < 30
+			}
+		}
+	}
+}
+
+## Disinformation Center (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings
+building_disinformation_center = {
+	base_buildtime = @db2_time
+	base_cap_amount = 1
+	position_priority = 2024000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_disinformation_center_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = { is_criminal_syndicate = yes }
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "requires_building_major_capital"
+			OR = {
+				has_building = building_major_capital
+				has_building = building_system_capital
+				has_building = building_imperial_capital
+			}
+		}
+	}
+
+	prerequisites = {
+		"tech_xeno_diplomacy"
+	}
+
+	show_tech_unlock_if = {
+		is_megacorp = yes
+		is_criminal_syndicate = yes
+	}
+
+	country_modifier = {
+		spy_network_levels_add = 5
+	}
+
+	planet_modifier = {
+		planet_crime_add = 40
+		pop_government_ethic_attraction = -0.50 # OSA -0.25 -> -0.50
+		job_clerk_add = 2
+		job_bugged_deceiver_add = 2 # Bug Branch: Corporate Buildings
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	
+	upgrades = {
+		"building_bugged_corporate_parliament" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		weight = 50
+	}
+}
+
+## Subversive Shrine (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings
+building_subversive_shrine = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	owner_type = corporate
+	position_priority = 2081000 # Sort Buildings
+
+	category = unity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_subversive_shrine_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			has_valid_civic = civic_gospel_of_the_masses
+			is_criminal_syndicate = yes
+		}
+	}
+	planet_modifier = {
+		job_preacher_add = 2
+		job_bugged_cultist_add = 2 # Bug Branch: Corporate Buildings
+		pop_ethic_spiritualist_attraction_mult = 0.50 # OSA 0.25 -> 0.50
+		planet_crime_add = 25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			branch_office_owner = {
+				has_councilor = { COUNCILOR = "councilor_gospel_of_the_masses" }
+			}
+		}
+		pop_ethics_shift_speed_mult = 0.05
+		mult = value:councilor_level|TYPE|councilor_gospel_of_the_masses|
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	ai_weight = {
+		weight = 250
+	}
+}
+
+##################################################
+## Branch Office - Spiritualist Megacorp
+##################################################
+
+## Temple of Prosperity (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch
+building_temple_of_prosperity = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2082000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = unity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_temple_of_prosperity_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			has_valid_civic = civic_gospel_of_the_masses
+			is_criminal_syndicate = no
+			is_bugged_basic_cult = no # Bug Branch
+		}
+	}
+
+	planet_modifier = {
+		job_preacher_add = 2
+		job_high_priest_add = 1 # OSA
+		pop_ethic_spiritualist_attraction_mult = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			branch_office_owner = {
+				has_councilor = { COUNCILOR = "councilor_gospel_of_the_masses" }
+			}
+		}
+		pop_ethics_shift_speed_mult = 0.05
+		mult = value:branch_office_councilor_level|TYPE|councilor_gospel_of_the_masses|
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = { # OSA
+			unity = 10
+			society_research = 10
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	ai_weight = {
+		weight = 100 # Ariphaos 250 -> 100
+
+		modifier = { # Ariphaos
+			factor = 10
+			owner = {
+				has_ethic = ethic_fanatic_spiritualist
+			}
+		}
+	}
+}
+
+##################################################
+## Branch Office - Special
+##################################################
+
+## Executive Retreat (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings
+building_executive_retreat = {
+	base_buildtime = @db3_time
+	base_cap_amount = 1
+	position_priority = 2072000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_executive_retreat_tt
+    }
+
+	prerequisites = { "tech_executive_retreat" }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no # Bug Branch: Corporate Buildings
+		}
+	}
+
+	allow = {
+		num_pops >= 25
+	}
+
+	country_modifier = {
+		planet_amenities_mult = 0.1
+	}
+
+	planet_modifier = {
+		trade_value_mult = 0.05
+		job_merchant_add = 1 # Bug Branch: Corporate Buildings
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 1000
+			exotic_gases = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			exotic_gases = @db2_rare_upkeep
+		}
+	}
+	
+	show_tech_unlock_if = { # Bug Branch: Corporate Buildings
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+	
+	upgrades = {
+		"building_bugged_executive_resort" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		factor = 100
+	}
+}
+
+## Xeno-Outreach Agency (Tier 1)
+# Merge between Sort Buildings, OSA, Bug Branch: Corporate Buildings
+building_xeno_tourism_agency = {
+	base_buildtime = @db3_time
+	base_cap_amount = 1
+	position_priority = 2025000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_xeno_tourism_agency_tt
+    }
+
+	prerequisites = { "tech_xeno_tourism_agency" }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			is_criminal_syndicate = no # Bug Branch: Corporate Buildings
+		}
+	}
+
+	allow = {
+		num_pops >= 25
+	}
+
+	country_modifier = {
+		planet_immigration_pull_mult = 0.25
+	}
+
+	planet_modifier = {
+		trade_value_mult = 0.05
+		pop_resettlement_cost_mult = -0.2 # Bug Branch: Corporate Buildings
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 1000
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			rare_crystals = @db2_rare_upkeep
+		}
+	}
+	
+	show_tech_unlock_if = { # Bug Branch: Corporate Buildings
+		is_megacorp = yes
+		is_criminal_syndicate = no
+	}
+	
+	upgrades = {
+		"building_bugged_xeno_relocation_agency" # Bug Branch: Corporate Buildings
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+## Imperial Concession Port (Tier 1)
+# Merge between Sort Buildings, OSA, MECR
+building_imperial_concession_port = {
+	base_buildtime = @b3_time
+	base_cap_amount = 1
+	position_priority = 2021000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_imperial_concession_port_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			OR = {
+				has_modifier = imperial_charter
+				has_civic = civic_galactic_sovereign_megacorp
+				is_galactic_emperor = yes # MECR
+			}
+		}
+	}
+	destroy_trigger = { # MECR
+		branch_office_owner = {
+			NOR = {
+				has_modifier = imperial_charter
+				is_galactic_emperor = yes
+			}
+		}
+	}
+	convert_to = { # MECR
+		building_commercial_forum
+	}
+	
+	planet_modifier = {
+		branch_office_value_mult = 0.25
+		job_politician_add = 2 # OSA
+		job_merchant_add = 2 # OSA
+	}
+
+	country_modifier = {
+		diplo_weight_economy_mult = 0.05
+	}
+	triggered_country_modifier = { # MECR
+		potential = {
+			galactic_emperor = {
+				has_federation = yes
+				federation = { has_federation_perk = imperium_market }
+				NAND = {
+					has_policy_flag = diplo_stance_universal_transactions
+					has_active_tradition = tr_diplomacy_imperial_prestige
+				}
+			}
+		}
+		diplo_weight_economy_mult = -0.01
+	}
+	triggered_country_modifier = { # MECR
+		potential = {
+			galactic_emperor = {
+				has_federation = yes
+				federation = { has_federation_perk = imperium_market_2 }
+				NAND = {
+					has_policy_flag = diplo_stance_universal_transactions
+					has_active_tradition = tr_diplomacy_imperial_prestige
+				}
+			}
+		}
+		diplo_weight_economy_mult = -0.01
+	}
+	triggered_country_modifier = { # MECR
+		potential = {
+			galactic_emperor = {
+				has_federation = yes
+				federation = { has_federation_perk = imperium_market_3 }
+				NAND = {
+					has_policy_flag = diplo_stance_universal_transactions
+					has_active_tradition = tr_diplomacy_imperial_prestige
+				}
+			}
+		}
+		diplo_weight_economy_mult = -0.01
+	}
+	triggered_country_modifier = { # MECR
+		potential = {
+			galactic_emperor = {
+				has_federation = yes
+				federation = { has_federation_perk = imperium_market_4 }
+				NAND = {
+					has_policy_flag = diplo_stance_universal_transactions
+					has_active_tradition = tr_diplomacy_imperial_prestige
+				}
+			}
+		}
+		diplo_weight_economy_mult = -0.01
+	}
+
+	triggered_planet_modifier = { # MECR
+		potential = {
+			exists = owner
+			owner = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+		}
+		job_merchant_per_pop = 0.025
+		trade_value_mult = 0.25
+		branch_office_value_mult = 0.25
+	}
+	triggered_planet_modifier = { # MECR
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		job_evaluator_per_pop = 0.025
+		planet_amenities_mult = 0.1
+		branch_office_value_mult = 0.25
+	}
+	triggered_planet_modifier = { # MECR
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		job_synapse_drone_per_pop = 0.025
+		planet_amenities_mult = 0.1
+		branch_office_value_mult = 0.25
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = 1000
+		}
+		produces = {
+			energy = 50 # OSA 8 -> 50
+			alloys = 50 # OSA
+		}
+	}
+
+	ai_weight = {
+		weight = 1000 # MECR 100 -> 1000
+	}
+}
+
+##################################################
+## Branch Office - Toxic Knights
+##################################################
+
+## Knightly Fair Grounds (Tier 1)
+# Merge between Sort Buildings, Daemonic Incursion
+building_knightly_theme_park = {
+	base_buildtime = @db2_time
+	icon = building_order_holding
+	base_cap_amount = 1
+	position_priority = 2071000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = amenity
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_knightly_theme_park_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = {
+			OR = {
+				has_origin = origin_toxic_knights
+				has_country_flag = decision_toxic_knights # Daemonic Incursion
+			}
+			NOT = { has_country_flag = quest_abandoned }
+		}
+	}
+
+	allow = {
+		num_pops >= 50
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 10
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		produces = {
+			energy = 10
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = planet.owner
+		}
+		text = knightly_theme_park_quest_effect_desc
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+##################################################
+## Branch Office - Clinics
+##################################################
+
+## Corporate Clinic (Tier 1)
+# Merge between Sort Buildings, OSA
+building_corporate_clinics = {
+	base_buildtime = @db2_time
+	icon = building_corporate_clinic
+	base_cap_amount = 1
+	position_priority = 2031000 # Sort Buildings
+
+	owner_type = corporate
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_corporate_clinics_tt
+    }
+
+	potential = {
+		has_branch_office = yes
+		branch_office_owner = { has_valid_civic = civic_private_healthcare_corporate }
+	}
+
+	on_built = {
+		planet = {
+			set_planet_flag = has_private_clinics
+		}
+	}
+
+	on_destroy = {
+		planet = {
+			remove_planet_flag = has_private_clinics
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			branch_office_owner = { is_criminal_syndicate = yes }
+		}
+		planet_crime_add = 20
+	}
+	planet_modifier = {
+		job_healthcare_add = 1
+	}
+
+	resources = {
+		category = planet_branch_office_buildings
+		cost = {
+			minerals = @db3_minerals
+		}
+		produces = {
+			energy = 10 # OSA 8 -> 10
+			unity = 5 # OSA 2 -> 5
+		}
+		upkeep = {
+			consumer_goods = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = planet.owner
+		}
+		text = building_corporate_clinics_effect
+	}
+
+	ai_weight = {
+		weight = 100 # OSA 120 -> 100
+	}
+}

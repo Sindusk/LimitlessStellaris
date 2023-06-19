@@ -719,11 +719,12 @@ l_english:
   building_whisperers_sanctum: "Sanctum of the Whisperers"
   building_whisperers_sanctum_tt: "§MEvent§! - §BTier 1§! - §EUnique§!"
   building_whisperers_sanctum_desc: "The Sanctum is a place dedicated to communion with the Whisperers. Here, secrets are traded in hushed tones, new knowledge is brought to be sealed away, and our murmurs join the chorus."
- 
+
 ##################
 # Fallen Empire
 ##################
 
+  ### General
   building_ancient_control_center: "Ancient Control Center"
   building_ancient_control_center_tt: "§MCapital§! - §BTier ?§! - §EFallen Empire§!"
   building_ancient_control_center_desc: "The ancient control center of this section of the ringworld is just barely kept functional by the tireless efforts of a legion of machine drones."
@@ -766,3 +767,105 @@ l_english:
   building_fe_stronghold: "Aegis Complex"
   building_fe_stronghold_tt: "§MDefense§! - §BTier ?§! - §EFallen Empire§!"
   building_fe_stronghold_desc: "A massive planetary defense complex housing a multitude of armories stocked to the brim with advanced precursor weaponry."
+
+##################
+# Branch Offices
+##################
+
+  ### Standard
+  building_private_mining_consortium: "Private Mining Consortium"
+  building_private_mining_consortium_tt: "§MMinerals§! - §BTier 1§! - §EBranch Office§!"
+  building_private_mining_consortium_desc: "A private mineral extraction company owned by a megacorporation. It employs local miners to access the planet's wealth."
+  building_food_conglomerate: "Fast Food Chain"
+  building_food_conglomerate_tt: "§MFood§! - §BTier 1§! - §EBranch Office§!"
+  building_food_conglomerate_desc: "Affordable, fast, and with a perfectly acceptable nutritional value. Zero toxins* and zero hassle!\n\n* Food may contain traces of potassium benzoate, nitric acid, dark matter, soylent green and liquid smoke."
+  building_virtual_entertainment_studios: "Virtual Entertainment Studios"
+  building_virtual_entertainment_studios_tt: "§MConsumer Goods§! - §BTier 1§! - §EBranch Office§!"
+  building_virtual_entertainment_studios_desc: "Using nano-transaction systems and neuro-chemical retention algorithms, these development houses bring the latest in virtual entertainment software into the homes and lives of billions of sapient consumers."
+  building_private_shipyards: "Private Military Industries"
+  building_private_shipyards: "§MAlloys§! - §BTier 1§! - §EBranch Office§!"
+  building_private_shipyards_desc: "These planet-based corporate factories produce and assemble a variety of components that are vital in starship construction."
+  building_military_contractors: "Mercenary Liaison Office"
+  building_military_contractors_tt: "§MDefense§! - §BTier 1§! - §EBranch Office§!"
+  building_military_contractors_desc: "This office allows locals to sign up for the exciting life of a corporate soldier of fortune. Generous compensation, limited health insurance and stories of adventure ensure a steady stream of recruits."
+  building_public_relations_office: "Public Relations Firm"
+  building_public_relations_office_tt: "§MUnity§! - §BTier 1§! - §EBranch Office§!"
+  building_public_relations_office_desc: "Misconceptions and suspicions are always floating around any large corporate entity. It is in the public's interest to hear out all sides of any dispute, and this PR firm makes it their business to get their employer's point across."
+  building_private_research_initiative: "Private Research Enterprises"
+  building_private_research_initiative_tt: "§MResearch§! - §BTier 1§! - §EBranch Office§!"
+  building_private_research_initiative_desc: "In these state-of-the-art facilities, private tech-enterprises carry out important research and development on behalf of their parent company."
+  building_amusement_megaplex: "Amusement Megaplex"
+  building_amusement_megaplex_tt: "§MAmenities§! - §BTier 1§! - §EBranch Office§!"
+  building_amusement_megaplex_desc: "A magical place where dreams can become reality, this megaplex features wholesome, corporate-sanctioned fun for the entire family unit."
+  building_commercial_forum: "Commercial Forum"
+  building_commercial_forum_tt: "§MTrade§! - §BTier 1§! - §EBranch Office§!"
+  building_commercial_forum_desc: "Movers and shakers, local economic leaders, and other important figures can meet with corporate representatives here in a relaxed, soothing environment ideal for the creation of new business deals."
+  building_corporate_embassy: "Corporate Embassy"
+  building_corporate_embassy_tt: "§MDiplomatic§! - §BTier 1§! - §EBranch Office§!"
+  building_corporate_embassy_desc: "Diplomacy is just advertising to governments instead of to the customer. This office analyzes local customs and trends to more efficiently target our efforts."
+ 
+  ### Criminal
+  building_wildcat_miners: "Wildcat Mining Operations"
+  building_wildcat_miners_tt: "§MMinerals§! - §BTier 1§! - §ECriminal Branch§!"
+  building_wildcat_miners_desc: "Illegal, highly unsafe mining operations operated by the destitute and the desperate, who toil away in the vain hopes of striking it rich."
+  building_bio_reprocessing_facilities: "Bio-Reprocessing Plants"
+  building_bio_reprocessing_facilities_tt: "§MFood§! - §BTier 1§! - §ECriminal Branch§!"
+  building_bio_reprocessing_facilities_desc: "Underground facilities where disloyal employees and other forms of unsavory bio-matter are reprocessed into ready-to-eat food products."
+  building_underground_chemists: "Concealed Drug Labs"
+  building_underground_chemists_tt: "§MConsumer Goods§! - §BTier 1§! - §ECriminal Branch§!"
+  building_underground_chemists_desc: "Subterranean drug labs in remote regions that are virtually undetectable from the surface. Chemists work day and night here to produce various illegal, highly addictive and quite lucrative narcotics."
+  building_wrecking_yards: "Wrecking Yards"
+  building_wrecking_yards_tt: "§MAlloys§! - §BTier 1§! - §ECriminal Branch§!"
+  building_wrecking_yards_desc: "Stolen vessels and prize ships brought in by pirates are broken into scrap here. Any valuable components and alloys are carefully salvaged."
+  building_pirate_haven: "Pirate Free Haven"
+  building_pirate_haven_tt: "§MDefense§! - §BTier 1§! - §ECriminal Branch§!"
+  building_pirate_haven_desc: "A secluded and hidden city on the planet's surface, where pirates and other lowlifes can congregate to repair their ships and trade stories."
+  building_underground_clubs: "Underground Clubs"
+  building_underground_clubs_tt: "§MAmenities§! - §BTier 1§! - §ECriminal Branch§!"
+  building_underground_clubs_desc: "These illegal entertainment clubs will satisfy any vice. As night descends, they are open for business in the planet's seedier districts."
+  building_syndicate_outreach_office: "Syndicate Front Corporations"
+  building_syndicate_outreach_office_tt: "§MUnity§! - §BTier 1§! - §ECriminal Branch§!"
+  building_syndicate_outreach_office_desc: "These above-the-board businesses allow the local criminal syndicate to operate behind a veneer of upstanding legality."
+  building_illicit_research_labs: "Illicit Research Labs"
+  building_illicit_research_labs_tt: "§MResearch§! - §BTier 1§! - §ECriminal Branch§!"
+  building_illicit_research_labs_desc: "All manner of highly illegal research and development is carried out in these secret laboratories."
+  building_smuggling_rings: "Smuggler's Port"
+  building_smuggling_rings_tt: "§MTrade§! - §BTier 1§! - §ECriminal Branch§!"
+  building_smuggling_rings_desc: "An unauthorized spaceport that remains off the records thanks to secrecy and generous bribes. Large volumes of illegal cargo passes through here every day."
+  building_disinformation_center: "Disinformation Center"
+  building_disinformation_center_tt: "§MGovernment§! - §BTier 1§! - §ECriminal Branch§!"
+  building_disinformation_center_desc: "Through targeted advertisements and propaganda, we can control opinion and make the people agree with our version of the truth."
+  building_subversive_shrine: "Subversive Shrine"
+  building_subversive_shrine_tt: "§MUnity§! - §BTier 1§! - §ECriminal Branch§!"
+  building_subversive_shrine_desc: "A meeting place for followers of the Subversive Cult to gather and conduct their ceremonies."
+
+  ### Spiritualist
+  building_temple_of_prosperity: "Temple of Prosperity"
+  building_temple_of_prosperity_tt: "§MUnity§! - §BTier 1§! - §EBranch Office§!"
+  building_temple_of_prosperity_desc: "A high-security temple that spreads the gospel of the Megachurch that built it."
+
+  ### Special
+  building_executive_retreat: "Executive Retreat"
+  building_executive_retreat_tt: "§MSpecial§! - §BTier 1§! - §EBranch Office§!"
+  building_executive_retreat_desc: "A luxurious resort complex for high ranking corporate officers. Here they can sample the local planetary culture in a high security environment."
+  building_xeno_tourism_agency: "Xeno-Outreach Agency"
+  building_xeno_tourism_agency_tt: "§MSpecial§! - §BTier 1§! - §EBranch Office§!"
+  building_xeno_tourism_agency_desc: "This corporate agency promotes a wide variety of interstellar tourist attractions, as well as offering employment packages and signing bonuses to potential emigrants interested in relocating to corporate space."
+  building_imperial_concession_port: "Imperial Concession Port"
+  building_imperial_concession_port_tt: "§MSpecial§! - §BTier 1§! - §EBranch Office§!"
+  building_imperial_concession_port_desc: "This concession port enjoys extraterritorial rights and is legally considered the sovereign territory of the Galactic Imperium. It is exempt from local taxes and regulations."
+ 
+  ### Toxic Knights
+  building_knightly_theme_park: "Knightly Fair Grounds"
+  building_knightly_theme_park_tt: "§MToxic Knights§! - §BTier 1§! - §EBranch Office§!"
+  building_knightly_theme_park_desc: "Looking like a true fortress, this building is actually a park glorifying our knights and the Quest. Visitors can buy autographs, action figures, and holoposters of their favorite knights. Of course, the true purpose of the facility is to collect information for our Quest and serve as a resupply point for questing knights."
+  knightly_theme_park_quest_effect_desc: "§GIncreases Toxic Knights Quest progress by 0.01 per month.§!"
+
+  ### Clinics
+  building_corporate_clinics: "Corporate Clinic"
+  building_corporate_clinics_tt: "§MPop Growth§! - §BTier 1§! - §EBranch Office§!"
+  building_corporate_clinics_desc: "A private medical company employing local and off-world medical specialists to provide services for a reasonable fee."
+
+##################
+# ---
+##################
