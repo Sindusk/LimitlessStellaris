@@ -938,6 +938,7 @@ l_english:
 # First Contact
 ##################
 
+  ### Low Tech
   building_low_tech_scrap_refinery: "Scrap Refinery"
   building_low_tech_scrap_refinery_tt: "§MRefinery§! - §BTier 1§! - §ELow Tech§!"
   building_low_tech_scrap_refinery_desc: "A small-scale refinery making use of scrap salvaged from our former masters' ship."
@@ -956,3 +957,24 @@ l_english:
   building_low_tech_research_lab: "Laboratory Complex"
   building_low_tech_research_lab_tt: "§MResearch§! - §BTier 1§! - §ELow Tech§!"
   building_low_tech_research_lab_desc: "Experiments in multiple disciplines take place in what was once an engineering bay."
+
+##################
+# Galactic Paragons
+##################
+
+  ### Origin
+  building_paragon_origin_academy: "Grand Academy"
+  building_paragon_origin_academy_tt: "§MParagon§! - §BTier 1§! - §EUnique§!"
+  building_paragon_origin_academy_desc: "The Grand Academy is home to our best and brightest. Continuing to elevate their minds will benefit new leaders and allow us to educate future generations."
+
+  ### General
+  building_paragon_memory_vaults: "Vaults of Knowledge"
+  building_paragon_memory_vaults_tt: "§MParagon§! - §BTier 1§! - §EUnique§!"
+  building_paragon_memory_vaults_desc: "Our society has always preserved the stories of heroes and prominent figures from the past. Their knowledge and experiences are digitized and gathered in the Vaults of Knowledge. Destroying this building will eradicate the data stored inside."
+  building_the_beholder: "$NAME_Temple_of_Whispers$"
+  building_the_beholder_tt: "§MParagon§! - §BTier 1§! - §EUnique§!"
+  building_the_beholder_desc: "§Y$temple_of_whispers$§!'s conduit into our plane of existence. A ship, feeding upon the planet's energy to amass Zro and sustain its connection to the Shroud."
+  building_contained_ecosphere: "Contained Ecosphere"
+  building_contained_ecosphere_tt: "§MParagon§! - §BTier 1§! - §EUnique§!"
+  building_contained_ecosphere_desc: "§Y$NAME_Astrocreator_Azaryn$§!'s legacy, left to us when she passed. It is but a small section of the Vivarium's internal ecosystem.\n\nIntroduces a high concentration of §H$contained_ecosphere_pheromones$§! to a planet's atmosphere, applying positive effects to the population."
+ 
