@@ -1,0 +1,506 @@
+##########################################################################
+# Limitless Stellaris - Authorities
+##########################################################################
+
+##################################################
+## Standard
+##################################################
+
+## Direct Democratic (Bug Branch)
+# Not changing for now...
+#auth_bugged_direct_democratic
+
+## Democratic (Vanilla)
+# Merge between Bug Branch, OSA
+auth_democratic = {
+	election_term_years = 10
+	re_election_allowed = yes
+	election_type = democratic
+	max_election_candidates = 8 # Bug Branch
+
+	uses_mandates = yes
+
+	ruler_council_position = councilor_ruler_democratic
+
+	possible = {
+		origin = {
+			NOR = {
+				text = origin_legendary_leader_no_gov_change
+				value = origin_legendary_leader_dictatorial
+				value = origin_legendary_leader_imperial
+			}
+		}
+		ethics = {
+			NOR = {
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+			}
+			NOR = { # Bug Branch
+				text = ethic_tooltip_gestalt
+				value = ethic_form_autonomous
+				value = ethic_form_convergent
+				value = ethic_form_affective
+				value = ethic_form_extrospective
+				value = ethic_form_introspective
+				value = ethic_form_impassive
+				value = ethic_foci_analysis
+				value = ethic_foci_connection
+				value = ethic_foci_convalescence
+				value = ethic_foci_encroachment
+				value = ethic_foci_logistics
+				value = ethic_foci_progression
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	country_modifier = {
+		show_only_custom_tooltip = no # OSA
+		intel_decryption_add = 1 # OSA
+		faction_approval = 0.10
+		num_tech_alternatives_add = 2 # OSA
+		country_leader_pool_size = 2 # OSA
+		country_edict_fund_mult = 0.50 # OSA
+		custom_tooltip = auth_democratic_tt
+	}
+
+	random_weight = {
+		base = 2
+	}
+
+	tags = {
+		AUTHORITY_ELECTION_DEMOCRATIC
+	}
+}
+
+## Oligarchic (Vanilla)
+# Merge between Bug Branch, OSA
+auth_oligarchic = {
+	election_term_years = 20
+	election_type = oligarchic
+	re_election_allowed = yes # Bug Branch
+	can_have_emergency_elections = yes
+	max_election_candidates = 4
+
+	has_agendas = yes
+
+	ruler_council_position = councilor_ruler_oligarchic
+
+	possible = {
+		origin = {
+			NOR = {
+				text = origin_legendary_leader_no_gov_change
+				value = origin_legendary_leader_dictatorial
+				value = origin_legendary_leader_imperial
+			}
+		}
+		ethics = {
+			NOR = {
+				value = ethic_fanatic_egalitarian
+				value = ethic_fanatic_authoritarian
+			}
+			NOR = { # Bug Branch
+				text = ethic_tooltip_gestalt
+				value = ethic_form_autonomous
+				value = ethic_form_convergent
+				value = ethic_form_affective
+				value = ethic_form_extrospective
+				value = ethic_form_introspective
+				value = ethic_form_impassive
+				value = ethic_foci_analysis
+				value = ethic_foci_connection
+				value = ethic_foci_convalescence
+				value = ethic_foci_encroachment
+				value = ethic_foci_logistics
+				value = ethic_foci_progression
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	country_modifier = {
+		intel_decryption_add = 1 # OSA
+		spy_network_levels_add = 10 # OSA
+		pop_factions_produces_mult = 1.5 # OSA
+		councilor_skill_add = 2
+	}
+
+	random_weight = {
+		base = 5 # Bug Branch 2 -> 5
+	}
+
+	tags = {
+		AUTHORITY_ELECTION_OLIGARCHIC
+	}
+}
+
+## Dictatorial (Vanilla)
+# Merge between Bug Branch, OSA
+auth_dictatorial = {
+	election_type = oligarchic
+
+	has_agendas = yes
+
+	ruler_council_position = councilor_ruler_dictatorial
+
+	possible = {
+		origin = {
+			NOT = {
+				text = origin_legendary_leader_no_gov_change
+				value = origin_legendary_leader_imperial
+			}
+		}
+		ethics = {
+			NOR = {
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+			}
+			NOR = { # Bug Branch
+				text = ethic_tooltip_gestalt
+				value = ethic_form_autonomous
+				value = ethic_form_convergent
+				value = ethic_form_affective
+				value = ethic_form_extrospective
+				value = ethic_form_introspective
+				value = ethic_form_impassive
+				value = ethic_foci_analysis
+				value = ethic_foci_connection
+				value = ethic_foci_convalescence
+				value = ethic_foci_encroachment
+				value = ethic_foci_logistics
+				value = ethic_foci_progression
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	country_modifier = {
+		# All modifiers are on "councilor_ruler_dictatorial". # Vanilla
+		intel_encryption_add = 1 # OSA
+		intel_decryption_add = 1 # OSA
+		spy_power_cost_mult = -0.25 # OSA
+		espionage_operation_cost_mult = -0.25 # OSA
+		espionage_operation_difficulty_mult = -0.25 # OSA
+		espionage_hostile_operation_difficulty_add = 2 # OSA
+		empire_size_penalty_mult = -0.25 # OSA
+	}
+
+	random_weight = {
+		base = 3 # Bug Branch 2 -> 3
+	}
+
+	tags = {
+		AUTHORITY_ELECTION_ON_RULER_DEATH
+	}
+}
+
+## Imperial (Vanilla)
+# Merge between Bug Branch, OSA
+auth_imperial = {
+	has_heir = yes
+
+	has_agendas = yes
+
+	ruler_council_position = councilor_ruler_imperial
+
+	possible = {
+		origin = {
+			NOT = {
+				text = origin_legendary_leader_no_gov_change
+				value = origin_legendary_leader_dictatorial
+			}
+		}
+		ethics = {
+			OR = { # Bug Branch
+				text = civic_tooltip_authoritarian
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+				value = ethic_focused
+			}
+			NOR = { # Bug Branch
+				text = ethic_tooltip_gestalt
+				value = ethic_form_autonomous
+				value = ethic_form_convergent
+				value = ethic_form_affective
+				value = ethic_form_extrospective
+				value = ethic_form_introspective
+				value = ethic_form_impassive
+				value = ethic_foci_analysis
+				value = ethic_foci_connection
+				value = ethic_foci_convalescence
+				value = ethic_foci_encroachment
+				value = ethic_foci_logistics
+				value = ethic_foci_progression
+				value = ethic_gestalt_consciousness			
+			}
+		}
+	}
+
+	country_modifier = {
+		# Country modifier is on Capital buildings. # Vanilla
+		intel_encryption_add = 1 # OSA
+		leader_governors_influence_produces_add = 0.20 # OSA
+		country_edict_fund_add = 200 # OSA
+		diplo_weight_mult = 0.15 # OSA
+		spy_network_levels_add = 10 # OSA
+	}
+
+	random_weight = {
+		base = 2
+	}
+
+	tags = {
+		AUTHORITY_HAS_HEIR
+		AUTH_IMPERIAL_CAPITAL_SYSTEM_BONUS
+	}
+}
+
+##################################################
+## Hive Mind
+##################################################
+
+## Hive Mind (Vanilla)
+# Merge between Bug Branch, OSA
+auth_hive_mind = {
+	has_heir = no
+	election_type = none
+	has_factions = no
+	can_reform = no
+	localization_postfix = hive_mind
+
+	valid_for_released_vassal = no # Bug Branch yes -> no
+
+	ruler_council_position = councilor_ruler_hive_mind
+
+	playable = { host_has_dlc = "Utopia" }
+	possible = {
+		ethics = {
+			value = ethic_gestalt_consciousness
+			NOR = { # Bug Branch
+				text = ethic_tooltip_not_gestalt
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+				value = ethic_competitive
+				value = ethic_fanatic_competitive
+				value = ethic_elitist
+				value = ethic_fanatic_elitist
+				value = ethic_materialist
+				value = ethic_fanatic_materialist
+				value = ethic_anthropocentric
+				value = ethic_fanatic_anthropocentric
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_cooperative
+				value = ethic_fanatic_cooperative
+				value = ethic_pluralist
+				value = ethic_fanatic_pluralist
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+				value = ethic_ecocentric
+				value = ethic_fanatic_ecocentric
+			}
+		}
+	}
+	random_weight = {
+		base = 5 # Bug Branch 2 -> 5
+	}
+
+	traits = {
+		trait = trait_hive_mind
+	}
+
+	country_modifier = {
+		intel_encryption_add = 2 # OSA
+		leader_trait_selection_options_add = 1 # OSA
+		country_leader_cap_add = 2 # OSA
+		pop_growth_speed = 0.25
+		empire_size_penalty_mult = -0.25
+	}
+
+	tags = {
+		AUTH_HIVE_MIND_AI_RESTRICTIONS
+		AUTH_HIVE_MIND_FOREIGN_POP_SURVIVAL
+		AUTH_HIVE_MIND_GENEMODDING
+		AUTH_HIVE_MIND_ASCENSION_RESTRICTIONS
+	}
+}
+
+##################################################
+## Machine Intelligence
+##################################################
+
+## Machine Intelligence (Vanilla)
+# Merge between Bug Branch, OSA
+auth_machine_intelligence = {
+	machine_empire = yes
+	has_heir = no
+	election_type = none
+	has_factions = no
+	can_reform = no
+	localization_postfix = machine_intelligence
+
+	valid_for_released_vassal = no
+
+	ruler_council_position = councilor_ruler_machine_intelligence
+
+	playable = {
+		host_has_dlc = "Synthetic Dawn Story Pack"
+	}
+	possible = {
+		ethics = {
+			value = ethic_gestalt_consciousness
+			NOR = { # Bug Branch
+				text = ethic_tooltip_not_gestalt
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+				value = ethic_competitive
+				value = ethic_fanatic_competitive
+				value = ethic_elitist
+				value = ethic_fanatic_elitist
+				value = ethic_materialist
+				value = ethic_fanatic_materialist
+				value = ethic_anthropocentric
+				value = ethic_fanatic_anthropocentric
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_cooperative
+				value = ethic_fanatic_cooperative
+				value = ethic_pluralist
+				value = ethic_fanatic_pluralist
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+				value = ethic_ecocentric
+				value = ethic_fanatic_ecocentric
+			}
+		}
+	}
+	random_weight = {
+		base = 5 # Bug Branch 2 -> 5
+	}
+
+	traits = {
+		trait = trait_machine_unit
+	}
+
+	country_modifier = {
+		intel_encryption_add = 2 # OSA
+		intel_decryption_add = 2 # OSA
+		colony_start_num_pops_add = 1
+		planet_pop_assembly_add = 1
+		station_gatherers_produces_mult = 0.25 # OSA 0.1 -> 0.25
+		empire_size_penalty_mult = 0.75 # OSA
+		empire_size_pops_mult = -0.15 # Bug Branch
+		empire_size_colonies_mult = 0.5
+		pop_growth_speed_reduction = 0.5
+	}
+
+	tags = {
+		AUTH_MACHINE_INTELLIGENCE_IMMORTAL_LEADERS
+		AUTH_MACHINE_NATIVE_POPS
+		AUTH_MACHINE_FOREIGN_POP_SURVIVAL
+		AUTH_MACHINE_TECH_ADDITIONS
+		AUTH_MACHINE_TECH_RESTRICTIONS
+		AUTH_MACHINE_ASCENSION_RESTRICTIONS
+	}
+}
+
+##################################################
+## Corporate
+##################################################
+
+## Democratic Corporate (Bug Branch)
+# Not changing for now...
+#auth_bugged_corporate_democratic
+
+## Corporate (Vanilla)
+# Merge between Bug Branch, OSA
+auth_corporate = {
+	election_term_years = 20
+	election_type = oligarchic
+	#can_have_emergency_elections = yes # Bug Branch removes this
+	max_election_candidates = 4
+	localization_postfix = corporate
+
+	has_agendas = yes
+
+	ruler_council_position = councilor_ruler_corporate
+
+	potential = {
+		country_type = { NOT = { value = primitive } }
+	}
+
+	playable = { host_has_dlc = "Megacorp" }
+	possible = {
+		origin = {
+			NOR = {
+				text = origin_legendary_leader_no_gov_change
+				value = origin_legendary_leader_dictatorial
+				value = origin_legendary_leader_imperial
+			}
+		}
+		ethics = {
+			# NO LONGER COMPETITIVE
+            # OR = {
+            #     text = civic_tooltip_competitive
+            #     value = ethic_competitive
+            #     value = ethic_fanatic_competitive
+            # }
+			NOR = {
+				value = ethic_fanatic_authoritarian
+				value = ethic_fanatic_egalitarian
+			}
+			NOR = {
+				text = ethic_tooltip_gestalt
+				value = ethic_form_autonomous
+				value = ethic_form_convergent
+				value = ethic_form_affective
+				value = ethic_form_extrospective
+				value = ethic_form_introspective
+				value = ethic_form_impassive
+				value = ethic_foci_analysis
+				value = ethic_foci_connection
+				value = ethic_foci_convalescence
+				value = ethic_foci_encroachment
+				value = ethic_foci_logistics
+				value = ethic_foci_progression
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	
+	random_weight = {
+		base = 2 # Bug Branch
+	}
+
+	country_modifier = {
+		commercial_pact_mult = 0.50 # OSA 0.20 -> 0.50
+		empire_size_penalty_mult = 0.50 # OSA
+		empire_size_colonies_mult = 0.50
+		add_base_country_intel = 20 # OSA
+		diplomacy_upkeep_mult = -0.25 # OSA
+	}
+
+	tags = {
+		AUTHORITY_ELECTION_OLIGARCHIC
+	}
+}
+
+## Imperial Corporate (Bug Branch)
+# Not changing for now...
+#auth_bugged_corporate_imperial
