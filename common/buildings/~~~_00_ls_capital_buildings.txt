@@ -2841,7 +2841,7 @@ building_hab_capital = {
 	}
 
 	inline_script = "buildings/bugged_inline_capital_distributism_effects"
-	inline_script = "buildings/bugged_inline_capital_desc"
+	#inline_script = "buildings/bugged_inline_capital_desc"
     
     triggered_planet_modifier = {
 		modifier = { planet_stability_add = 1 }
@@ -3765,20 +3765,21 @@ building_hab_major_capital = {
 		text = job_merchant_effect_desc
 	}
 
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				NOT = { has_authority = auth_corporate }
-				is_regular_empire = yes
-			}
-			OR = {
-				NOT = { has_planet_flag = toxic_knights_habitat }
-				NOT = { owner = { has_origin = origin_toxic_knights } }
-			}
-		}
-		text = job_politician_effect_desc
-	}
+	# Covered in the inline script.
+	#triggered_desc = { # OSA
+	#	trigger = {
+	#		exists = owner
+	#		owner = {
+	#			NOT = { has_authority = auth_corporate }
+	#			is_regular_empire = yes
+	#		}
+	#		OR = {
+	#			NOT = { has_planet_flag = toxic_knights_habitat }
+	#			NOT = { owner = { has_origin = origin_toxic_knights } }
+	#		}
+	#	}
+	#	text = job_politician_effect_desc
+	#}
 
 	triggered_desc = {
 		trigger = {
@@ -3845,13 +3846,14 @@ building_hab_major_capital = {
 		text = job_executive_effect_desc
 	}
 
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		text = job_enforcer_effect_desc
-	}
+	# Covered in the inline script.
+	#triggered_desc = { # OSA
+	#	trigger = {
+	#		exists = owner
+	#		owner = { is_regular_empire = yes }
+	#	}
+	#	text = job_enforcer_effect_desc
+	#}
 
 	triggered_desc = {
 		trigger = {

@@ -1,0 +1,172 @@
+## Penal Colony
+# Merge between Subtle Polish and Expanded Espionage and Diplomacy
+col_penal = {
+	icon = GFX_colony_type_penal
+
+	potential = {
+		has_modifier = penal_colony
+	}
+
+	planet_modifier = {
+		planet_jobs_inmate_produces_mult = 0.1 # Subtle Polish
+		planet_technician_produces_mult = 0.05 # EED
+		planet_miners_produces_mult = 0.05 # EED
+		planet_farmers_produces_mult = 0.05 # EED
+	}
+	
+	triggered_planet_modifier = { # EED
+		potential = {
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+				is_gestalt = no
+			}
+			OR = {
+				is_active_resolution = "resolution_lawandorder_domestic_security"
+				is_active_resolution = "resolution_lawandorder_right_to_work"
+				is_active_resolution = "resolution_lawandorder_administrative_subsidies"
+				is_active_resolution = "resolution_lawandorder_free_migration"
+				is_active_resolution = "resolution_lawandorder_informed_governance"
+			}
+		}
+		modifier = {
+			planet_jobs_worker_produces_mult = 0.10
+		}
+	}
+	
+	triggered_planet_modifier = { # EED
+		potential = {
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+				is_gestalt = yes
+			}
+			OR = {
+				is_active_resolution = "resolution_lawandorder_domestic_security"
+				is_active_resolution = "resolution_lawandorder_right_to_work"
+				is_active_resolution = "resolution_lawandorder_administrative_subsidies"
+				is_active_resolution = "resolution_lawandorder_free_migration"
+				is_active_resolution = "resolution_lawandorder_informed_governance"
+			}
+		}
+		modifier = {
+			planet_jobs_simple_drone_produces_mult = 0.10
+		}
+	}
+
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					AND = {
+						has_valid_civic = civic_police_state
+						is_authoritarian = no
+					}
+					AND = {
+						NOT = { has_valid_civic = civic_police_state }
+						is_authoritarian = yes
+					}
+				}
+			}
+		}
+		modifier = {
+			planet_resettlement_unemployed_destination_mult = 0.25
+		}
+	}
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_police_state
+				is_authoritarian = yes
+			}
+		}
+		modifier = {
+			planet_resettlement_unemployed_destination_mult = 0.5
+		}
+	}
+	# inmate unhappiness increases stability
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			pop_percentage = {
+				percentage > 0.5
+				limit = {
+					is_pop_category = inmate
+					happiness <= 0.5
+					happiness > 0.4
+				}
+				exclude = { pop_has_happiness = no }
+			}
+		}
+		modifier = {
+			planet_stability_add = 1.5
+		}
+	}
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			pop_percentage = {
+				percentage > 0.5
+				limit = {
+					is_pop_category = inmate
+					happiness <= 0.4
+					happiness > 0.3
+				}
+				exclude = { pop_has_happiness = no }
+			}
+		}
+		modifier = {
+			planet_stability_add = 3
+		}
+	}
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			pop_percentage = {
+				percentage > 0.5
+				limit = {
+					is_pop_category = inmate
+					happiness <= 0.3
+					happiness > 0.2
+				}
+				exclude = { pop_has_happiness = no }
+			}
+		}
+		modifier = {
+			planet_stability_add = 6
+		}
+	}
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			pop_percentage = {
+				percentage > 0.5
+				limit = {
+					is_pop_category = inmate
+					happiness <= 0.2
+					happiness > 0.1
+				}
+				exclude = { pop_has_happiness = no }
+			}
+		}
+		modifier = {
+			planet_stability_add = 12
+		}
+	}
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			pop_percentage = {
+				percentage > 0.5
+				limit = {
+					is_pop_category = inmate
+					happiness <= 0.1
+				}
+				exclude = { pop_has_happiness = no }
+			}
+		}
+		modifier = {
+			planet_stability_add = 24
+		}
+	}
+	weight_modifier = {
+		base = 1000
+	}
+}

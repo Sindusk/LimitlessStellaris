@@ -3125,3 +3125,34 @@ ap_darkmatter_ripper = {
 	}
 	ai_weight = { factor = 0 }
 }
+
+## Slow Learner (Unique Ascension Perks)
+# Disabled. Balance concerns. May revisit later.
+ap_slow_learner = {
+	possible = { }
+	modifier = { country_base_unity_produces_add = 10 }	# 50 v3.4 (give more later)
+	on_enabled = {
+		custom_tooltip = "ap_slow_learner_tooltip"
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_active_event = { UniqueAscensionPerksEvents.400 UniqueAscensionPerksEvents.401 }
+					}
+				}
+				country_event = { id = UniqueAscensionPerksEvents.400 }
+			}
+		}
+	}
+	potential = {
+		always = no # Disabled through potential.
+		#NOT = { has_ascension_perk = ap_slow_learner }
+		#OR = {
+		#	is_ai = no
+		#	event_target:global_event_country = {
+		#		check_variable = { which = ap_slow_learner value > 0 }
+		#	}
+		#}		# because ai_weight doesn't work
+	}
+	ai_weight = { factor = event_target:global_event_country.ap_slow_learner }
+}
