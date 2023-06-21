@@ -1,0 +1,130 @@
+##########################################################################
+# Limitless Stellaris - Decisions
+##########################################################################
+
+## Project Cornucopia
+# Merge between MECR and NGS
+decision_project_cornucopia = {
+	owned_planets_only = yes
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			unity = 250
+			energy = 500
+		}
+	}
+
+	potential = {
+		is_artificial = no
+		NOT = { is_planet_class = pc_city }
+		owner = {
+			is_galactic_community_member = yes
+			OR = { # NGS - Adds the second resolution
+				is_active_resolution = "resolution_industry_project_cornucopia"
+				is_active_resolution = "resolution_industry_6" # NGS
+			}
+		}
+		OR = { # MECR allows this resolution to bypass machine/hive planet classes
+			NAND = {
+				is_planet_class = pc_machine
+				is_planet_class = pc_hive
+			}
+			is_active_resolution = resolution_custodian_galactic_department_of_exploit
+		}
+		NOT = {
+			has_deposit = d_project_cornucopia
+		}
+	}
+
+	effect = { # MECR changes the effect
+		#custom_tooltip = decision_project_cornucopia_effects_short # MECR removes this tooltip
+		add_deposit = d_project_cornucopia
+		if = {
+			limit = { is_active_resolution = resolution_custodian_galactic_department_of_exploit }
+			custom_tooltip = decision_project_cornucopia_effect_may_discovers_sr
+			hidden_effect = {
+				random_list = {
+					61 = { set_planet_flag = cornucopia_rare_insti_not_founded }
+					11 = { add_deposit = d_dust_caverns }
+					11 = { add_deposit = d_crystalline_caverns }
+					11 = { add_deposit = d_bubbling_swamp }
+					2 = { add_deposit = d_dust_desert }
+					2 = { if = { limit = { is_planet_class = pc_ocean } add_deposit = d_crystal_reef } else = { add_deposit = d_crystal_forest } }
+					2 = { add_deposit = d_fuming_bog }
+				}
+				if = {
+					limit = { NOT = { has_planet_flag = cornucopia_rare_insti_not_founded } }
+					create_message = {
+						type = MESSAGE_TYPE_PLANET_PROSPECTED
+						localization = "MESSAGE_PLANET_PROSPECTED_CORNUCOPIA_RARE_FOUND_DESC"
+						days = 30
+						target = THIS
+						variable = {
+							type = name
+							localization = PLANET
+							scope = this
+						}
+						variable = {
+							type = name
+							localization = DEPOSIT
+							scope = last_added_deposit
+						}
+					}
+				}
+				else = {
+					create_message = {
+						type = MESSAGE_TYPE_PLANET_PROSPECTED
+						localization = "MESSAGE_PLANET_PROSPECTED_CORNUCOPIA_DESC"
+						days = 30
+						target = this
+						variable = {
+							type = name
+							localization = PLANET
+							scope = this
+						}
+					}
+					remove_planet_flag = cornucopia_rare_insti_not_founded
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			num_pops < 20
+		}
+		modifier = { # MECR
+			factor = 5
+			colony_type = col_mining
+		}
+		modifier = { # MECR
+			factor = 10
+			OR = {
+				num_districts = { type = district_mining value >= 5 }
+				num_districts = { type = district_mining_uncapped value >= 5 }
+			}
+		}
+		modifier = { # MECR
+			factor = 0.5
+			OR = {
+				is_planet_class = pc_machine
+				is_planet_class = pc_hive
+			}
+		}
+		modifier = { # MECR
+			factor = 0
+			colony_type = col_farming
+		}
+		modifier = { # MECR
+			factor = 0.2
+			OR = {
+				num_districts = { type = district_farming value >= 5 }
+				num_districts = { type = district_farming_uncapped value >= 5 }
+			}
+		}
+	}
+}

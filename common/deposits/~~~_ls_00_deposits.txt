@@ -1,0 +1,1371 @@
+##########################################################################
+# Limitless Stellaris - Deposits
+##########################################################################
+
+### Key:
+### PD-RS:NF - Planetary Diversity & Real Space: New Frontiers Compatibility
+
+## Mountain Range
+# Merge between PD-RS:NF, Bug Branch
+d_mountain_range = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	potential = {
+		planet_size >= 10
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+	
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			planet_housing_add = 2
+			job_bugged_druid_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { is_ecocentric = yes }
+		}
+		modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_amenities_add = 5			
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_environmental_engineers = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_bugged_geoengineer_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_miner_add = 3
+			planet_non_artificial_max_districts_add = 1
+			pop_environment_tolerance = 0.01
+            biological_pop_happiness = 0.01 			
+		}
+	}
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_low
+		modifier = {
+			factor = 2
+			OR = {
+				is_planet_class = pc_alpine
+				is_planet_class = pc_cascadian
+				is_planet_class = pc_hadesert
+				is_planet_class = pc_hajungle
+			}
+		}
+		modifier = {
+			factor = 0.5
+			planet_size < 15
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				has_modifier = "adiabatic_world"
+				has_modifier = "highland_world"
+			}
+		}
+		modifier = {
+			factor = 0.5
+			has_modifier = "dune_world"
+		}
+		modifier = {
+			factor = 0.25
+			has_modifier = "steppe_world"
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				is_planet_class = pc_aquatic
+				has_modifier = "panthalassic_world"
+				has_modifier = "steppe_world"
+				has_modifier = "eyeball_world"
+				has_modifier = "rust_world"
+				is_planet_class = pc_hollow
+			}
+		}
+	}
+
+	prerequisites = { "tech_mountain_range" }
+}
+
+## Active Volcano
+# Merge between Lithoid Supremacy, PD-RS:NF, Bug Branch
+d_active_volcano = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	potential = {
+		planet_size >= 10
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+	
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			planet_housing_add = 2
+			job_bugged_druid_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { is_ecocentric = yes }
+		}
+		modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_amenities_add = 5			
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_environmental_engineers = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_bugged_geoengineer_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_miner_add = 1
+			job_technician_add = 2
+			planet_non_artificial_max_districts_add = 1
+			pop_environment_tolerance = 0.01
+            biological_pop_happiness = 0.01 			
+		}
+	}
+	
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_pyroviles }
+		}
+		modifier = {
+			lithoid_pop_happiness = 0.1
+			planet_pops_upkeep_mult = -0.1
+			#Nice Stuff for Lithoids
+		}
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			exists = owner
+			owner = { 
+				has_civic = civic_pyroviles 
+				has_origin = origin_necrophage
+			}
+		}
+		modifier = {
+			job_necro_apprentice_add = 2
+			#This is where the fun begins
+		}
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			exists = owner
+			owner = { 
+				has_civic = civic_pyroviles 
+				NOT = { has_origin = origin_necrophage }
+			}
+		}
+		modifier = {
+			job_culture_worker_add = 2
+			#This is where the fun begins
+		}
+	}
+
+	inline_script = deposits/ai_weight_natural_blocker # Creates AI weight block
+
+	drop_weight = {
+		weight = @blocker_low
+		modifier = { # RS:NF
+			factor = 5
+			has_modifier = "lava_world"
+		}
+		modifier = { # RS:NF
+			factor = 3
+			has_modifier = "young_world"
+		}
+		modifier = { # PD-RS:NF
+			factor = 3
+			is_planet_class = pc_ash
+		}
+		modifier = { # RS:NF
+			factor = 2
+			OR = {
+				has_modifier = "primal_world"
+				has_modifier = "effusive_world"
+				is_planet_class = pc_sterile
+				is_planet_class = pc_primal # PD-RS:NF
+			}
+		}
+		modifier = { # RS:NF
+			factor = 1.5
+			has_modifier = "unstable_tectonics"
+		}
+		modifier = { # PD-RS:NF
+			factor = 1.5
+			is_planet_class = pc_geothermal
+		}
+		modifier = {
+			factor = 0.5
+			OR = { # PD-RS:NF
+				is_planet_class = pc_alpine
+				is_planet_class = pc_cascadian
+				is_planet_class = pc_hadesert
+				is_planet_class = pc_hajungle
+			}
+		}
+		modifier = {
+			factor = 0.5
+			planet_size < 15
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+		modifier = { # RS:NF
+			factor = 0
+			OR = {
+				has_modifier = "steppe_world" # PD-RS:NF
+				is_planet_class = pc_steppe # PD-RS:NF
+				is_planet_class = pc_hollow
+				has_modifier = "rust_world"
+			}
+		}
+	}
+
+	prerequisites = { "tech_volcano" }
+}
+
+## Dangerous Wildlife
+# Merge between PD-RS:NF, Bug Branch
+d_dangerous_wildlife_blocker = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		planet_size >= 10
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			planet_housing_add = 2
+			job_bugged_druid_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { is_ecocentric = yes }
+		}
+		modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_amenities_add = 5			
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_environmental_engineers = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_bugged_xenobiologist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_farmer_add = 2
+			pop_environment_tolerance = 0.01
+            biological_pop_happiness = 0.01 			
+		}
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = owner
+					owner = {
+						has_civic = civic_hive_devouring_swarm
+					}
+				}
+				owner = { add_resource = { food = 200 } }
+			}
+		}
+	}
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_low
+		modifier = {
+			factor = 5
+			has_modifier = "death_world"
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_modifier = "dangerous_wildlife"
+				is_extreme_subclass = yes
+			}
+		}
+		modifier = {
+			factor = 0.5
+			planet_size < 15
+		}
+		modifier = {
+			factor = 0
+			is_planet_class = pc_sterile
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+
+	prerequisites = { "tech_dangerous_wildlife" }
+}
+
+## Dense Jungle
+# Merge between PD-RS:NF, Bug Branch
+d_dense_jungle = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		OR = {
+			is_wet = yes
+			is_planet_class = pc_oasis
+			has_modifier = "oasis_world"
+			is_planet_class = pc_geothermal
+			has_modifier = "geothermal_world"
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			planet_housing_add = 2
+			job_bugged_druid_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { is_ecocentric = yes }
+		}
+		modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_amenities_add = 5			
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_environmental_engineers = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_bugged_xenobiologist_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_farmer_add = 3
+			planet_non_artificial_max_districts_add = 1
+			pop_environment_tolerance = 0.01
+            biological_pop_happiness = 0.01 			
+		}
+	}
+	
+	all_blocker_swap_types = yes
+	
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 2
+			OR = {
+				is_planet_class = pc_continental
+				is_planet_class = pc_tropical
+				is_planet_class = pc_hollow
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_modifier = "megaflora_world"
+				is_planet_class = pc_hajungle
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_modifier = "forest_world"
+				is_planet_class = pc_forest
+				is_planet_class = pc_mangrove
+			}
+		}
+		modifier = {
+			factor = 0.25
+			OR = {
+				has_modifier = "geothermal_world"
+				has_modifier = "supercontinental_world"
+				has_modifier = "mediterranean_world"
+				is_planet_class = pc_geothermal
+			}
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_modifier = "panthalassic_world"
+				has_modifier = "boreal_world"
+				has_modifier = "reef_world"
+				has_modifier = "storm_world"
+				has_modifier = "infernal_world"
+				has_modifier = "subglacial_world"
+				is_planet_class = pc_mushroom
+				is_planet_class = pc_aquatic
+				is_planet_class = pc_boreal
+				is_planet_class = pc_storm
+			}
+		}
+	}
+
+	prerequisites = { "tech_dense_jungle" }
+}
+
+## Toxic Kelp
+# Merge between PD-RS:NF, Bug Branch
+d_toxic_kelp = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		OR = {
+			is_wet = yes
+			is_planet_class = pc_oasis
+			is_planet_class = pc_antarctic
+			has_modifier = "oasis_world"
+			has_modifier = "subglacial_world"
+			has_modifier = "iceberg_world"
+			has_modifier = "eyeball_world"
+		}
+		NOT = {
+			has_modifier = "swamp_world"
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			planet_housing_add = 2
+			job_bugged_druid_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { is_ecocentric = yes }
+		}
+		modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_amenities_add = 5			
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_environmental_engineers = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_bugged_xenobiologist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_farmer_add = 2
+			pop_environment_tolerance = 0.01
+            biological_pop_happiness = 0.01 			
+		}
+	}
+
+	all_blocker_swap_types = yes
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 2
+			is_planet_class = pc_ocean
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_modifier = "panthalassic_world"
+				has_modifier = "reef_world"
+				is_planet_class = pc_aquatic
+			}
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				is_planet_class = pc_oasis
+				has_modifier = "oasis_world"
+			}
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+
+	prerequisites = { "tech_toxic_kelp" }
+}
+
+## Deep Sinkhole
+# Merge between PD-RS:NF, Bug Branch
+d_deep_sinkhole = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		OR = {
+			has_modifier = "supercontinental_world"
+			has_modifier = "wasteland_world"
+			is_dry = yes
+			is_planet_class = pc_tidallylocked
+			is_planet_class = pc_sterile
+			is_planet_class = pc_karst
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+    triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			planet_housing_add = 2
+			job_bugged_druid_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { is_ecocentric = yes }
+		}
+		modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_amenities_add = 5			
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_environmental_engineers = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_bugged_geoengineer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_miner_add = 2
+			pop_environment_tolerance = 0.01
+            biological_pop_happiness = 0.01 			
+		}
+	}
+
+	all_blocker_swap_types = yes
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 2
+			OR = {
+				is_planet_class = pc_arid
+				is_planet_class = pc_savannah
+				is_planet_class = pc_prairie
+				is_planet_class = pc_veld
+				is_planet_class = pc_outback
+				is_planet_class = pc_sterile
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				is_planet_class = pc_karst
+				has_modifier = "karst_world"
+			}
+		}
+		modifier = {
+			factor = 5
+			has_modifier = "effusive_world"
+		}
+		modifier = {
+			factor = 0.25
+			has_modifier = "mesocyclonic_world"
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_modifier = "eyeball_world"
+				has_modifier = "rust_world"
+			}
+		}
+	}
+
+	prerequisites = { "tech_deep_sinkhole" }
+}
+
+## Quicksand Basin
+# Merge between PD-RS:NF, Bug Branch
+d_quicksand_basin = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		OR ={
+			is_planet_class = pc_continental
+			is_dry = yes
+			has_modifier = "supercontinental_world"
+			has_modifier = "flaming_world"
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+    
+    triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			planet_housing_add = 2
+			job_bugged_druid_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { is_ecocentric = yes }
+		}
+		modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_amenities_add = 5			
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_environmental_engineers = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_bugged_geoengineer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_miner_add = 2
+			pop_environment_tolerance = 0.01
+            biological_pop_happiness = 0.01 			
+		}
+	}
+
+	all_blocker_swap_types = yes
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 2
+			is_planet_class = pc_desert
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+		modifier = {
+			factor = 0.25
+			OR = {
+				is_planet_class = pc_steppe
+				has_modifier = "mesocyclonic_world"
+				has_modifier = "prairie_world"
+				is_planet_class = pc_prairie
+			}
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				is_planet_class = pc_salt
+				has_modifier = "salt_world"
+			}
+		}
+		modifier = {
+			factor = 0.1
+			OR = {
+				is_planet_class = pc_sandsea
+				has_modifier = "dune_world"
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_modifier = "boreal_world"
+				has_modifier = "rust_world"
+			}
+		}
+	}
+
+	prerequisites = { "tech_quicksand_basin" }
+}
+
+## Noxious Swamp
+# Merge between PD-RS:NF, Bug Branch
+d_noxious_swamp = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_tundra
+			is_planet_class = pc_continental
+			is_planet_class = pc_tropical
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+    
+    triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			planet_housing_add = 2
+			job_bugged_druid_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { is_ecocentric = yes }
+		}
+		modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_amenities_add = 5			
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_environmental_engineers = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_bugged_xenobiologist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_farmer_add = 2
+			pop_environment_tolerance = 0.01
+            biological_pop_happiness = 0.01 			
+		}
+	}
+
+	all_blocker_swap_types = yes
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 4
+			has_modifier = "noxious_world"
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				is_planet_class = pc_swamp
+				is_planet_class = pc_wetswamp
+				has_modifier = "swamp_world"
+				has_modifier = "bog_world"
+			}
+		}
+		modifier = {
+			factor = 2
+			has_modifier = "taiga_world"
+		}
+		modifier = {
+			factor = 0.25
+			OR = {
+				is_planet_class = pc_continental
+				AND = {
+					is_planet_class = pc_tundra
+					NOT = { has_modifier = "bog_world" }
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_modifier = "infernal_world"
+				has_modifier = "subglacial_world"
+			}
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+
+	prerequisites = { "tech_noxious_swamp" }
+}
+
+## Massive Glacier
+# Merge between PD-RS:NF, Bug Branch
+d_massive_glacier = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		OR = {
+			is_cold = yes
+			is_planet_class = pc_tidallylocked
+			has_modifier = "boreal_world"
+			has_modifier = "subglacial_world"
+			has_modifier = "archean_world"
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+	
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_keepers_of_harmony = yes
+			}
+		}
+		modifier = {
+			planet_amenities_add = 5
+			planet_housing_add = 2
+			job_bugged_druid_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { is_ecocentric = yes }
+		}
+		modifier = {
+            planet_jobs_unity_produces_mult = 0.1
+            planet_amenities_add = 5			
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_environmental_engineers = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_bugged_geoengineer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_miner_add = 2
+			pop_environment_tolerance = 0.01
+            biological_pop_happiness = 0.01 			
+		}
+	}
+
+	all_blocker_swap_types = yes
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+		inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 2
+			OR = {
+				is_planet_class = pc_alpine
+				is_planet_class = pc_arctic
+				is_planet_class = pc_tidallylocked
+			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				has_modifier = "glacial_world"
+				is_planet_class = pc_glacial
+				is_planet_class = pc_snow
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_modifier = "moraine_world"
+				has_modifier = "geothermal_world"
+				has_modifier = "meridiem_world"
+				is_planet_class = pc_antarctic
+				is_planet_class = pc_geothermal
+				is_planet_class = pc_eyeball
+			}
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				has_modifier = "boreal_world"
+				is_planet_class = pc_tidallylocked
+			}
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+
+	prerequisites = { "tech_massive_glacier" }
+}
+
+## Lithoid Devastation
+# Merge between PD-RS:NF, Bug Branch
+d_lithoid_devastation = {
+	icon = d_gaseous_eruption
+
+	time = 360
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = requires_actor_not_devouring_swarm_lithoid
+			exists = owner
+			owner = {
+				OR = {
+					is_lithoid_empire = no
+					NOT = { has_valid_civic = civic_hive_devouring_swarm }
+				}
+			}
+		}
+		custom_tooltip = { # Bug Branch
+			fail_text = requires_actor_not_mineralizer
+			exists = owner
+			owner = {
+				is_bugged_terravore = no
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		pop_environment_tolerance = -0.1
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1000
+		}
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}

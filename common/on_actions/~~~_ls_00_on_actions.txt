@@ -1,7 +1,8 @@
 ##########################################################################
-# Limitless Stellaris Ascension Changes
+# Limitless Stellaris - On Actions
 ##########################################################################
 
+# Forces the giga preset to load automatically on game start, instead of requiring user input.
 on_press_begin = {
 	events = { giga_preset.1 } # Load the custom preset immediately.
 }
