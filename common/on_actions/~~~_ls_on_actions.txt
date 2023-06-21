@@ -1,0 +1,7 @@
+##########################################################################
+# Limitless Stellaris Ascension Changes
+##########################################################################
+
+on_press_begin = {
+	events = { giga_preset.1 } # Load the custom preset immediately.
+}

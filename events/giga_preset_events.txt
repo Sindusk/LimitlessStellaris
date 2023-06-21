@@ -3514,6 +3514,7 @@ country_event = {
 			}
 		#END
 		}
+		set_global_flag = giga_menu_initial_settings_done
 	}
 }
 

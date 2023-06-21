@@ -12,8 +12,7 @@ building_ancient_control_center = {
 	base_buildtime = 480
 	capital = yes
 	can_build = no
-	can_demolish = no
-	can_be_ruined = no
+	can_demolish = yes
 	position_priority = 0
 	
 	category = government
@@ -68,6 +67,7 @@ building_ancient_control_center = {
 			}
 		}
 		modifier = {
+			job_fe_maintenance_bot_add = 4 # ACOT
 			job_fe_guardian_bot_add = 5
 		}
 	}
@@ -93,8 +93,7 @@ building_ancient_palace = {
 	base_buildtime = 480
 	capital = yes
 	can_build = no
-	can_demolish = no
-	can_be_ruined = no
+	can_demolish = yes
 	position_priority = 0
 	
 	category = government
@@ -393,12 +392,20 @@ building_affluence_center = {
 			OR = {
 				owner = { is_fallen_empire = yes }
 				owner = {
-					check_variable = { which = affluence_center_build_count value >= 1 }
+					has_country_flag = affluence_center_can_build
 				}
+				has_planet_flag = fallen_empire_world
 			}
-			fail_text = "ancrel.10004.failtext"
 		}
-		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = ancrel.10004.failtext
+			owner = {
+				check_variable = { which = affluence_center_build_count value >= 1 }
+			}
+		}
 	}
 
 	planet_modifier = {
@@ -496,14 +503,22 @@ building_nourishment_center = {
 			OR = {
 				owner = { is_fallen_empire = yes }
 				owner = {
-					check_variable = { which = nourishment_center_build_count value >= 1 }
+					has_country_flag = nourishment_center_can_build
 				}
+				has_planet_flag = fallen_empire_world
 			}
-			fail_text = "ancrel.10004.failtext"
 		}
-		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
 	}
 	
+	allow = {
+		custom_tooltip = {
+			fail_text = ancrel.10004.failtext
+			owner = {
+				check_variable = { which = nourishment_center_build_count value >= 1 }
+			}
+		}
+	}
+
 	planet_modifier = {
 		biological_pop_happiness = 0.20
 		BIOLOGICAL_pop_growth_speed = 0.10
@@ -604,12 +619,20 @@ building_dimensional_fabricator = {
 			OR = {
 				owner = { is_fallen_empire = yes }
 				owner = {
-					check_variable = { which = dimensional_fabricator_build_count value >= 1 }
+					has_country_flag = dimensional_fabricator_can_build
 				}
+				has_planet_flag = fallen_empire_world
 			}
-			fail_text = "ancrel.10004.failtext"
 		}
-		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = ancrel.10004.failtext
+			owner = {
+				check_variable = { which = dimensional_fabricator_build_count value >= 1 }
+			}
+		}
 	}
 	
 	planet_modifier = {
@@ -848,12 +871,22 @@ building_nano_forge = {
 			OR = {
 				owner = { is_fallen_empire = yes }
 				owner = {
-					check_variable = { which = nano_forge_build_count value >= 1 }
+					has_country_flag = nano_forge_can_build
 				}
+				has_planet_flag = fallen_empire_world
+			}
+		}
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = ancrel.10004.failtext
+			owner = {
+				check_variable = { which = nano_forge_build_count value >= 1 }
 			}
 			fail_text = "ancrel.10004.failtext"
 		}
-		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
 	}
 	
 	planet_modifier = {
@@ -1116,6 +1149,7 @@ building_fe_xeno_zoo = {
 		planet_amenities_add = 15
 		job_fe_xeno_keeper_add = 2
 		planet_housing_add = 30
+		planet_max_buildings_add = 15 # ACOT
 	}
 
 	resources = {
@@ -1146,12 +1180,21 @@ building_fe_dome = {
 			OR = {
 				owner = { is_fallen_empire = yes }
 				owner = {
-					check_variable = { which = skydome_build_count value >= 1 }
+					has_country_flag = skydome_can_build
 				}
+				has_planet_flag = fallen_empire_world
 			}
-			fail_text = "ancrel.10004.failtext"
 		}
 		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = ancrel.10004.failtext
+			owner = {
+				check_variable = { which = skydome_build_count value >= 1 }
+			}
+		}
 	}
 	
 	planet_modifier = {
