@@ -1,0 +1,151 @@
+####################################################################################################
+# Limitless Stellaris - Scripted Triggers
+####################################################################################################
+
+## Homicidal Diplomacy Restrictions
+# Add support for Co-Op Start In Teams
+homicidal_diplomacy_restrictions = {
+	custom_tooltip = {
+		fail_text = "requires_actor_not_fanatic_purifiers"
+		OR = {
+			has_country_flag = is_in_coop_with@$recipient|from$ # Co-Op Start In Teams
+			is_same_species = $recipient|from$
+			NOT = { has_valid_civic = civic_fanatic_purifiers	}
+		}
+	}
+	[[mirror]custom_tooltip = {
+		fail_text = "requires_recipient_not_fanatic_purifiers"
+		OR = {
+			has_country_flag = is_in_coop_with@$recipient|from$ # Co-Op Start In Teams
+			is_same_species = $recipient|from$
+			$recipient|from$ = { NOT = { has_valid_civic = civic_fanatic_purifiers } }
+		}
+	}]
+	[[mirror_with_intel]if = {
+		limit = { $recipient|from$ = { has_valid_civic = civic_fanatic_purifiers } }
+		if = {
+			limit = {
+				has_intel = {
+					who = $recipient|from$
+					intel = civics
+				}
+			}
+			custom_tooltip = {
+				fail_text = requires_recipient_not_fanatic_purifiers
+				OR = {
+					is_same_species = $recipient|from$
+					$recipient|from$ = { NOT = { has_valid_civic = civic_fanatic_purifiers } }
+				}
+			}
+		}
+		else = {
+			custom_tooltip = {
+				fail_text = diplo_action_no_low_intel
+				OR = {
+					is_same_species = $recipient|from$
+					NOT = { has_valid_civic = civic_fanatic_purifiers }
+				}
+			}
+		}
+	}]
+	custom_tooltip = {
+		fail_text = "requires_actor_not_devouring_swarm"
+		OR = {
+			has_country_flag = is_in_coop_with@$recipient|from$ # Co-Op Start In Teams
+			NOT = { has_valid_civic = civic_hive_devouring_swarm	}
+		}
+	}
+	[[mirror]custom_tooltip = {
+		fail_text = "requires_recipient_not_devouring_swarm"
+		OR = {
+			has_country_flag = is_in_coop_with@$recipient|from$ # Co-Op Start In Teams
+			$recipient|from$ = { NOT = { has_valid_civic = civic_hive_devouring_swarm } }
+		}
+	}]
+	[[mirror_with_intel]if = {
+		limit = { $recipient|from$ = { has_valid_civic = civic_hive_devouring_swarm } }
+		if = {
+			limit = {
+				has_intel = {
+					who = $recipient|from$
+					intel = civics
+				}
+			}
+			custom_tooltip = {
+				fail_text = requires_recipient_not_devouring_swarm
+				always = no
+			}
+		}
+		else = {
+			custom_tooltip = {
+				fail_text = diplo_action_no_low_intel
+				always = no
+			}
+		}
+	}]
+	custom_tooltip = {
+		fail_text = "requires_actor_not_machine_terminator"
+		OR = {
+			has_country_flag = is_in_coop_with@$recipient|from$ # Co-Op Start In Teams
+			is_same_species = $recipient|from$
+			NOT = { has_civic = civic_machine_terminator }
+			AND = {
+				has_civic = civic_machine_terminator
+				$recipient|from$ = {
+					OR = {
+						has_country_flag = synthetic_empire
+						is_machine_empire = yes
+					}
+				}
+			}
+		}
+	}
+	[[mirror]custom_tooltip = {
+		fail_text = "requires_recipient_not_machine_terminator"
+		OR = {
+			has_country_flag = is_in_coop_with@$recipient|from$ # Co-Op Start In Teams
+			is_same_species = $recipient|from$
+			$recipient|from$ = { NOT = { has_civic = civic_machine_terminator } }
+			AND = {
+				$recipient|from$ = { has_civic = civic_machine_terminator }
+				OR = {
+					has_country_flag = synthetic_empire
+					is_machine_empire = yes
+				}
+			}
+		}
+	}]
+	[[mirror_with_intel]if = {
+		limit = { $recipient|from$ = { has_valid_civic = civic_machine_terminator } }
+		if = {
+			limit = {
+				has_intel = {
+					who = $recipient|from$
+					intel = civics
+				}
+			}
+			custom_tooltip = {
+				fail_text = requires_recipient_not_machine_terminator
+				AND = {
+					$recipient|from$ = { has_civic = civic_machine_terminator }
+					OR = {
+						has_country_flag = synthetic_empire
+						is_machine_empire = yes
+					}
+				}
+			}
+		}
+		else = {
+			custom_tooltip = {
+				fail_text = diplo_action_no_low_intel
+				AND = {
+					$recipient|from$ = { has_civic = civic_machine_terminator }
+					OR = {
+						has_country_flag = synthetic_empire
+						is_machine_empire = yes
+					}
+				}
+			}
+		}
+	}]
+}
