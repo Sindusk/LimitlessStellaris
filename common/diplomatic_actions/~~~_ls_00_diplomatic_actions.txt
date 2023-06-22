@@ -1610,7 +1610,7 @@ action_make_rival = {
 }
 
 ## Open Technological Enlightenment
-# Merge between Gigastructural Engineering, EED, Scripted Trigger Undercoat
+# Merge between Gigastructural Engineering, EED, Origins of Civilization, Scripted Trigger Undercoat
 action_open_technological_enlightenment = {
 	icon = "GFX_diplomacy_open_technological_enlightenment"
 	diplo_view_acceptance_icon = yes
@@ -1686,6 +1686,17 @@ action_open_technological_enlightenment = {
 		modifier = {
 			add = 1
 			has_ai_personality_behaviour = uplifter
+			NAND = { # Origins of Civilization
+				from = { is_robot_empire = yes }
+				NOR = {
+					has_ai_personality_behaviour = robot_liberator
+					is_minamar = yes
+				}
+			}
+		}
+		modifier = { # Origins of Civilization
+			add = 1
+			has_country_flag = scion_master@from
 		}
 	}
 
@@ -1703,6 +1714,11 @@ action_open_technological_enlightenment = {
 				has_modifier = pre_ftl_distrustful
 			}
 			desc = pre_ftl_distrustful
+		}
+		modifier = { # Origins of Civilization
+			add = 2000
+			has_country_flag = scion_of@from
+			desc = origin_scion
 		}
 	}
 }
@@ -1901,7 +1917,7 @@ action_release_subject = {
 }
 
 ## Reveal Presence
-# Merge between Gigastructural Engineering, EED, Scripted Trigger Undercoat
+# Merge between Gigastructural Engineering, EED, Origins of Civilization, Scripted Trigger Undercoat
 action_reveal_presence = {
 	icon = "GFX_diplomacy_reveal_presence"
 	auto_accepted = yes
@@ -2009,12 +2025,19 @@ action_reveal_presence = {
 		modifier = {
 			add = 1
 			has_ai_personality_behaviour = uplifter
+			NAND = { # Origins of Civilization
+				from = { is_robot_empire = yes }
+				NOR = {
+					has_ai_personality_behaviour = robot_liberator
+					is_minamar = yes
+				}
+			}
 		}
 	}
 }
 
 ## Societal Enlightenment
-# Merge between Gigastructural Engineering, EED, Scripted Trigger Undercoat
+# Merge between Gigastructural Engineering, EED, Origins of Civilization, Scripted Trigger Undercoat
 action_societal_enlightenment = {
 	icon = "GFX_diplomacy_societal_enlightenment"
 	diplo_view_acceptance_icon = yes
@@ -2090,6 +2113,10 @@ action_societal_enlightenment = {
 			add = 1
 			has_ai_personality_behaviour = uplifter
 		}
+		modifier = { # Origins of Civilization
+			add = 1
+			has_country_flag = scion_master@from
+		}
 	}
 
 	ai_acceptance = {
@@ -2106,6 +2133,11 @@ action_societal_enlightenment = {
 				has_modifier = pre_ftl_distrustful
 			}
 			desc = pre_ftl_distrustful
+		}
+		modifier = { # Origins of Civilization
+			add = 2000
+			has_country_flag = scion_of@from
+			desc = origin_scion
 		}
 	}
 }

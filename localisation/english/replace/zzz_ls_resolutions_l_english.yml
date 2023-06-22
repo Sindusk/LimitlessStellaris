@@ -1,0 +1,29 @@
+﻿##########################################################################
+# Limitless Stellaris - English Localisation (Resolutions)
+##########################################################################
+l_engligh:
+
+##################
+# EED Resolutions
+##################
+
+  ### Galactic Cooperation
+  resolution_galacticcooperation_eed_repeal_1: "§RRepeal $resolution_galacticcooperation_mutual_assistance$§!"
+  resolution_galacticcooperation_eed_repeal_1_desc: "Current Galactic Law unduly infringes on the sovereignty of its members. We must repeal these misguided laws in order to take back control over our own destiny."
+  resolution_galacticcooperation_eed_repal_1_effect_success: "Repeals the §Y$resolution_galacticcooperation_mutual_assistance$§! resolution."
+
+  resolution_galacticcooperation_eed_repeal_2: "§RRepeal $resolution_galacticcooperation_pan_galactic_migration$§!"
+  resolution_galacticcooperation_eed_repeal_2_desc: "$resolution_galacticcooperation_repeal_1_desc$"
+  resolution_galacticcooperation_eed_repeal_2_effect_success: "Repeals the §Y$resolution_galacticcooperation_pan_galactic_migration$§! resolution, leaving §Y$resolution_galacticcooperation_mutual_assistance$§! as galactic law."
+
+  resolution_galacticcooperation_eed_repeal_3: "§RRepeal $resolution_galacticcooperation_indigenous_protection_protocols$§!"
+  resolution_galacticcooperation_eed_repeal_3_desc: "$resolution_galacticcooperation_repeal_1_desc$"
+  resolution_galacticcooperation_eed_repeal_3_effect_success: "Repeals the §Y$resolution_galacticcooperation_indigenous_protection_protocols$§! resolution, leaving §Y$resolution_galacticcooperation_pan_galactic_migration$§! as galactic law."
+
+  resolution_galacticcooperation_eed_repeal_4: "§RRepeal $resolution_galacticcooperation_interstellar_mediation$§!"
+  resolution_galacticcooperation_eed_repeal_4_desc: "$resolution_galacticcooperation_repeal_1_desc$"
+  resolution_galacticcooperation_eed_repeal_4_effect_success: "Repeals the §Y$resolution_galacticcooperation_interstellar_mediation$§! resolution, leaving §Y$resolution_galacticcooperation_indigenous_protection_protocols$§! as galactic law.\n\n"
+
+  resolution_galacticcooperation_eed_repeal_5: "§RRepeal $resolution_galacticcooperation_sanctity_of_life$§!"
+  resolution_galacticcooperation_eed_repeal_5_desc: "$resolution_galacticcooperation_repeal_1_desc$"
+  resolution_galacticcooperation_eed_repeal_5_effect_success: "Repeals the §Y$resolution_galacticcooperation_sanctity_of_life$§! resolution, leaving §Y$resolution_galacticcooperation_interstellar_mediation$§! as galactic law."

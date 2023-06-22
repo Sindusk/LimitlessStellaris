@@ -349,41 +349,6 @@
 		MAX_EXPANSION_DISTANCE_SUBJECT = 1		# Max number of jumps away AI subjects will build starbases; Default: 2
 	}
 	NInterface = {
-		### Temporary fix for the un-updated Scripted Trigger Undercoat
-		FLAG_CAPITAL_DECORATION_SCALE = 1.0 # Scale for the tiny stars around map icons
-		FLAG_CAPITAL_DECORATION_SCALE_BIG_FRAME = 1.3 # Scale for the tiny stars around map icons
-
-		PORTRAIT_GUI_NAME_TOAST = "paragon_portrait_container_toast"
-		PORTRAIT_GUI_NAME_ANOMALY_LEADER_VIEW = "paragon_portrait_container_horizontal_slim"
-		PORTRAIT_GUI_NAME_ANOMALY_CONTROLLER_VIEW = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_ARCHAEOLOGY_VIEW = "paragon_portrait_container_vertical_small"
-		PORTRAIT_GUI_NAME_SITE_LEADER_ENTRY = "paragon_portrait_container_horizontal_slim"
-		PORTRAIT_GUI_NAME_ASSIGNABLE_LEADER_LIST_ENTRY = "paragon_portrait_container_leader_assignment"
-		PORTRAIT_GUI_NAME_ASSIGNABLE_COUNCILOR_LIST_ENTRY = "paragon_portrait_container_assign_councilor"
-		PORTRAIT_GUI_NAME_HIRE_AND_ASSIGN_LIST_ENTRY = "paragon_portrait_container_horizontal_slim"
-		PORTRAIT_GUI_NAME_ASSIGN_TRAIT = "paragon_portrait_container_vertical"
-		PORTRAIT_GUI_NAME_COMBAT_FLEET_VIEW = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_COUNCIL_VIEW_RULER = "paragon_portrait_container_ruler_council"
-		PORTRAIT_GUI_NAME_COUNCIL_POSITION = "paragon_portrait_container_council"
-		PORTRAIT_GUI_NAME_COUNCIL_POSITION_GESTALT = "paragon_portrait_container_council_gestalt"
-		PORTRAIT_GUI_NAME_DEMOCRATIC_ELECTION_CANDIDATE = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_ELECTION_CANDIDATE = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_EMPIRE_VIEW_SECTOR_ENTRY = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_FLEET_MANAGER_VIEW = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_FLEET_VIEW = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_GOVERNMENT_VIEW_RULER = "paragon_portrait_container_ruler_government"
-		PORTRAIT_GUI_NAME_GOVERNMENT_VIEW_HEIR = "paragon_portrait_container_heir"
-		PORTRAIT_GUI_NAME_ATTACKING_GENERAL = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_DEFENDING_GENERAL = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_PLANET_GOVERNOR = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_PLANET_SECTOR_GOVERNOR = "paragon_portrait_container_sector_governor"
-		PORTRAIT_GUI_NAME_PLANET_GENERAL = "paragon_portrait_container_horizontal"
-		PORTRAIT_GUI_NAME_TECH_VIEW = "paragon_portrait_container_research"
-		PORTRAIT_GUI_NAME_EXPANDED_LEADER_PORTRAIT = "paragon_portrait_container_expanded"
-		PORTRAIT_GUI_NAME_LEADER_VIEW_ENTRY = "paragon_portrait_container_horizontal_slim"
-		PORTRAIT_GUI_NAME_EVENT_STORY = "paragon_portrait_container_story_event"
-		PORTRAIT_GUI_NAME_EVENT_RECRUIT = "paragon_portrait_container_recruit_event"
-	
 		### Vanilla Hotkeys & Topbar Buttons ###
 		#TOPBAR_BUTTONS_SHORTCUTS				= {
 		#	"contacts" "F1"
