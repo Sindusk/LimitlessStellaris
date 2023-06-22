@@ -19,7 +19,388 @@
 ### EED - Expanded Espionage and Diplomacy
 ### VER - Vassals Expanded and Reworked
 
-# resource_subsidies_advanced
+## Join Overlord Wars - All
+# Merge between VER, MECR
+joins_overlord_wars_all = {
+	term = joins_overlord_wars
+	loyalty_change = -30
+	ai_acceptance = {
+		overlord = 180
+		subject = -150
+	}
+	triggered_loyalty_change = {
+		trigger = {
+			target = { is_pacifist = yes }
+		}
+		loyalty_change = -30
+		ai_acceptance = {
+			subject = -150
+		}
+	}
+	activate_effect = {
+		set_rule_join_overlord_wars = all
+	}
+	deactivate_effect = {
+		set_rule_join_overlord_wars = none
+	}
+	target_modifier = {
+		monthly_loyalty = -3
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			NOT = { agreement_preset = preset_tributary }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_auto_state
+			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_satellite
+			NOT = { agreement_preset = preset_ver_satellite }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_jrpartner
+			NOT = { agreement_preset = preset_ver_jrpartner }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_devolved
+			NOT = { agreement_preset = preset_ver_devolved }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_condo
+			NOT = { agreement_preset = preset_ver_condo }
+		}
+	}
+	potential = { is_imperial_province_agreement = no } # MECR
+}
+
+## Join Overlord Wars - Defensive
+# Merge between VER, MECR
+joins_overlord_wars_defensive = {
+	term = joins_overlord_wars
+	loyalty_change = -10
+	ai_acceptance = {
+		overlord = 60
+		subject = -50
+	}
+	triggered_loyalty_change = {
+		trigger = {
+			target = { is_pacifist = yes }
+		}
+		loyalty_change = -10
+		ai_acceptance = {
+			subject = -50
+		}
+	}
+	activate_effect = {
+		set_rule_join_overlord_wars = defensive
+	}
+	deactivate_effect = {
+		set_rule_join_overlord_wars = none
+	}
+	target_modifier = {
+		monthly_loyalty = -1
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			NOT = { agreement_preset = preset_tributary }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_auto_state
+			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_foederatus
+			NOT = { agreement_preset = preset_ver_foederatus }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_satellite
+			NOT = { agreement_preset = preset_ver_satellite }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_condo
+			NOT = { agreement_preset = preset_ver_condo }
+		}
+	}
+	potential = { is_imperial_province_agreement = no } # MECR
+}
+
+## Join Overlord Wars - Offensive
+# Merge between VER, MECR
+joins_overlord_wars_offensive = {
+	term = joins_overlord_wars
+	loyalty_change = -20
+	ai_acceptance = {
+		overlord = 120
+		subject = -100
+	}
+	triggered_loyalty_change = {
+		trigger = {
+			target = { is_pacifist = yes }
+		}
+		loyalty_change = -20
+		ai_acceptance = {
+			subject = -100
+		}
+	}
+	activate_effect = {
+		set_rule_join_overlord_wars = offensive
+	}
+	deactivate_effect = {
+		set_rule_join_overlord_wars = none
+	}
+	target_modifier = {
+		monthly_loyalty = -2
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			NOT = { agreement_preset = preset_tributary }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_auto_state
+			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_foederatus
+			NOT = { agreement_preset = preset_ver_foederatus }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_satellite
+			NOT = { agreement_preset = preset_ver_satellite }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_jrpartner
+			NOT = { agreement_preset = preset_ver_jrpartner }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_devolved
+			NOT = { agreement_preset = preset_ver_devolved }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_condo
+			NOT = { agreement_preset = preset_ver_condo }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_neocolony
+			NOT = { agreement_preset = preset_ver_neocolony }
+		}
+	}
+	potential = { is_imperial_province_agreement = no } # MECR
+}
+
+## Join Subject Wars - All
+# Merge between VER, MECR
+joins_subject_wars_all = {
+	term = joins_subject_wars
+	loyalty_change = 15
+	ai_acceptance = {
+		overlord = -90
+		subject = 15 # VER 75 -> 15
+	}
+	activate_effect = {
+		set_rule_join_subject_wars = all
+	}
+	deactivate_effect = {
+		set_rule_join_subject_wars = none
+	}
+	target_modifier = {
+		monthly_loyalty = 1.5
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			NOT = { agreement_preset = preset_tributary }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_auto_state
+			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_organic
+			NOT = { agreement_preset = preset_ver_organic }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_condo
+			NOT = { agreement_preset = preset_ver_condo }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_satellite
+			NOT = { agreement_preset = preset_ver_satellite }
+		}
+	}
+	potential = { is_imperial_province_agreement = no } # MECR
+}
+
+## Join Subject Wars - Defensive
+# Merge between VER, MECR
+joins_subject_wars_defensive = {
+	term = joins_subject_wars
+	loyalty_change = 5
+	ai_acceptance = {
+		overlord = -30
+		subject = 10 # VER 25 -> 10
+	}
+	activate_effect = {
+		set_rule_join_subject_wars = defensive
+	}
+	deactivate_effect = {
+		set_rule_join_subject_wars = none
+	}
+	target_modifier = {
+		monthly_loyalty = 0.5
+	}
+	possible = {
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_auto_state
+			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_foederatus
+			NOT = { agreement_preset = preset_ver_foederatus }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_condo
+			NOT = { agreement_preset = preset_ver_condo }
+		}
+	}
+	potential = { is_imperial_province_agreement = no } # MECR
+}
+
+## Join Subject Wars - None
+# Merge between VER, MECR
+joins_subject_wars_none = {
+	term = joins_subject_wars
+	loyalty_change = -10
+	ai_acceptance = {
+		overlord = 60
+		subject = -50
+	}
+	activate_effect = {
+		set_rule_join_subject_wars = none
+	}
+	deactivate_effect = {
+		set_rule_join_subject_wars = none
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = not_allowed_for_scholarium
+			NOT = { agreement_preset = preset_scholarium }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_protectorate
+			NOT = { agreement_preset = preset_protectorate }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			NOT = { agreement_preset = preset_tributary }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_feudal_society
+			NOT = { owner = { has_civic = civic_feudal_realm } }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_subsidiary
+			NOT = { agreement_preset = preset_subsidiary }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_devolved
+			NOT = { agreement_preset = preset_ver_devolved }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_organic
+			NOT = { agreement_preset = preset_ver_organic }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_satellite
+			NOT = { agreement_preset = preset_ver_satellite }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_foederatus
+			NOT = { agreement_preset = preset_ver_foederatus }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_blood
+			NOT = { agreement_preset = preset_ver_blood }
+		}
+	}
+	potential = { is_imperial_province_agreement = no } # MECR
+}
+
+## Join Subject Wars - Offensive
+# Merge between VER, MECR
+joins_subject_wars_offensive = {
+	term = joins_subject_wars
+	loyalty_change = 10
+	ai_acceptance = {
+		overlord = -60
+		subject = 5 # VER 50 -> 5
+	}
+	activate_effect = {
+		set_rule_join_subject_wars = offensive
+	}
+	deactivate_effect = {
+		set_rule_join_subject_wars = none
+	}
+	target_modifier = {
+		monthly_loyalty = 1
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = not_allowed_for_scholarium
+			NOT = { agreement_preset = preset_scholarium }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_protectorate
+			NOT = { agreement_preset = preset_protectorate }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			NOT = { agreement_preset = preset_tributary }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_auto_state
+			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_devolved
+			NOT = { agreement_preset = preset_ver_devolved }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_foederatus
+			NOT = { agreement_preset = preset_ver_foederatus }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_organic
+			NOT = { agreement_preset = preset_ver_organic }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_satellite
+			NOT = { agreement_preset = preset_ver_satellite }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_condo
+			NOT = { agreement_preset = preset_ver_condo }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_puppet
+			NOT = { agreement_preset = preset_ver_puppet }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_neocolony
+			NOT = { agreement_preset = preset_ver_neocolony }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_blood
+			NOT = { agreement_preset = preset_ver_blood }
+		}
+	}
+	potential = { is_imperial_province_agreement = no }
+}
+
 # Merge between EMEX, MECRU, and EED
 # EED doesn't appear to change anything
 # VER disables this term, so there may be a conflict.
@@ -131,7 +512,6 @@ resource_subsidies_advanced = {
 	}
 }
 
-# resource_subsidies_basic
 # Merge between EMEX, MECRU, and EED
 # EED doesn't appear to change anything
 # VER disables this term, so there may be a conflict.
@@ -250,9 +630,8 @@ resource_subsidies_basic = {
 	}
 }
 
-# resource_subsidies_research
-# Merge between EMEX, MECRU, and EED
-# EED doesn't appear to change anything
+## Resource Subsidies - Research
+# Merge between MECRU, EMEX
 # VER disables this term, so there may be a conflict.
 resource_subsidies_research = {
 	term = resource_subsidies
@@ -263,8 +642,7 @@ resource_subsidies_research = {
 		engineering_research
 	}
 	
-	# VERU
-	potential = {
+	potential = { # VER
 		NOT = { has_global_flag = gf_veru_activated }
 	}
 
@@ -274,36 +652,42 @@ resource_subsidies_research = {
 	resource_min = {
 		base = @subsidy_minimum
 		
-		# EMEX start
-		modifier = {
+		modifier = { # EMEX
 			set = @set_factor_0_neg
 			agreement_preset = preset_comvas
 		}
-		# EMEX end
 
 		modifier = {
 			set = 0.0
 			OR = {
 				agreement_preset = preset_subsidiary
 				agreement_preset = preset_tributary
+				agreement_preset = preset_prospectorium # MECR
 				agreement_preset = preset_relic_satrapy
 			}
 		}
 
-		modifier = {
+		modifier = { # MECR
 			set = @set_factor_1
-			agreement_preset = preset_scholarium
+			agreement_preset = preset_prospectorium
+			has_active_specialization = specialist_prospectorium
+			OR = {
+				specialist_tier = 2
+				specialist_tier = 3
+			}
+
 		}
 
 		modifier = {
 			set = @set_factor_2_neg
 			OR = {
 				agreement_preset = preset_vassal
+				agreement_preset = preset_scholarium # MECR
 				agreement_preset = preset_bulwark
 			}
 		}
 
-		modifier = { # MECRGU
+		modifier = { # MECR
 			set = 0.9
 			is_imperial_province_agreement = yes
 			owner = {
@@ -316,12 +700,10 @@ resource_subsidies_research = {
 	resource_max = {
 		base = @subsidy_maximum
 		
-		# EMEX start
-		modifier = {
+		modifier = { # EMEX
 			set = @set_factor_0
 			agreement_preset = preset_comvas
 		}
-		# EMEX end
 		
 		modifier = {
 			set = 0.0
@@ -358,7 +740,7 @@ resource_subsidies_research = {
 			}
 		}
 
-		modifier = { # MECRGU
+		modifier = { # MECR
 			set = 0.9
 			is_imperial_province_agreement = yes
 			owner = {
@@ -369,7 +751,6 @@ resource_subsidies_research = {
 	}
 }
 
-# resource_subsidies_strategic
 # Merge between EMEX, MECRU, and EED
 # EED doesn't appear to change anything
 # VER disables this term, so there may be a conflict.
@@ -478,7 +859,6 @@ resource_subsidies_strategic = {
 	}
 }
 
-### resource_subsidies_strategic
 # Merge between EMEX, MECRU, EED, and VER
 # EMEX and MECRU are the only ones making significant changes.
 subject_can_be_integrated = {
@@ -506,21 +886,15 @@ subject_can_be_integrated = {
 		# EMEX end
 		custom_tooltip = {
 			fail_text = not_allowed_for_bulwark
-			NOT = {
-				agreement_preset = preset_bulwark
-			}
+			NOT = { agreement_preset = preset_bulwark }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_scholarium
-			NOT = {
-				agreement_preset = preset_scholarium
-			}
+			NOT = { agreement_preset = preset_scholarium }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_prospectorium
-			NOT = {
-				agreement_preset = preset_prospectorium
-			}
+			NOT = { agreement_preset = preset_prospectorium }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_tributary
@@ -584,7 +958,6 @@ subject_can_be_integrated = {
 	potential = { is_imperial_province_agreement = no }
 }
 
-### subject_can_do_diplomacy
 # Merge between MECRU, EED, and VER
 # VER takes priority, MECRU makes some changes, EED does not change anything
 subject_can_do_diplomacy = {
@@ -626,7 +999,6 @@ subject_can_do_diplomacy = {
 	potential = { is_imperial_province_agreement = no }
 }
 
-### subject_can_do_diplomacy_but_not_vote
 # Merge between Civic Organic Zealots, MECRU, EED, and VER
 # VER takes priority, MECRU makes some changes, EED does not change anything, Civic Zealots adds some logic which is rewritten and merged.
 subject_can_do_diplomacy_but_not_vote = {
@@ -769,7 +1141,74 @@ subject_can_do_diplomacy_but_not_vote = {
 	potential = { is_imperial_province_agreement = no }
 }
 
-### subject_cannot_expand
+## Subject Can Not Do Diplomacy
+# Merge between EMEX, MECR, VER
+subject_can_not_do_diplomacy = {
+	term = subject_diplomacy
+	loyalty_change = -15
+	ai_acceptance = {
+		overlord = 90
+		subject = -75
+	}
+	activate_effect = {
+		set_rule_can_subject_vote = no
+		set_rule_can_subject_do_diplomacy = no
+	}
+	target_modifier = {
+		monthly_loyalty = -1
+	}
+	possible = {
+		custom_tooltip = { # EMEX
+			fail_text = not_allowed_for_comvas
+			NOT = {
+				agreement_preset = preset_comvas
+			}
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_tributary
+			NOT = { agreement_preset = preset_tributary }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_feudal_society
+			NOT = { owner = { has_civic = civic_feudal_realm } }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_franchising
+			NOT = { owner = { has_civic = civic_franchising } }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_subsidiary
+			NOT = { agreement_preset = preset_subsidiary }
+		}
+		custom_tooltip = {
+			fail_text = not_allowed_for_galcom_resolution
+			not_allowed_for_galcom_resolution_trigger = { RESOLUTION = resolution_intergalacticdirective_a_voice_for_all }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_auto_state
+			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_devolved
+			NOT = { agreement_preset = preset_ver_devolved }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_condo
+			NOT = { agreement_preset = preset_ver_condo }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_foederatus
+			NOT = { agreement_preset = preset_ver_foederatus }
+		}
+	}
+	potential = {
+		OR = { # MECR
+			is_imperial_province_agreement = no
+			target = { has_modifier = province_civil_war_punishment }
+		}
+	}
+}
+
 # Merge between EED and VER
 # EED takes priority, VER adds some blocks
 subject_cannot_expand = {
@@ -788,59 +1227,47 @@ subject_cannot_expand = {
 	possible = {
 		custom_tooltip = {
 			fail_text = not_allowed_for_bulwark
-			NOT = {
-				agreement_preset = preset_bulwark
-			}
+			NOT = { agreement_preset = preset_bulwark }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_scholarium
-			NOT = {
-				agreement_preset = preset_scholarium
-			}
+			NOT = { agreement_preset = preset_scholarium }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_prospectorium
-			NOT = {
-				agreement_preset = preset_prospectorium
-			}
+			NOT = { agreement_preset = preset_prospectorium }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_tributary
-			NOT = {
-				agreement_preset = preset_tributary
-			}
+			NOT = { agreement_preset = preset_tributary }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_subsidiary
-			NOT = {
-				agreement_preset = preset_subsidiary
-			}
-		}
-		custom_tooltip = {
-			fail_text = not_allowed_for_satrapy
-			NOT = {
-				agreement_preset = preset_relic_satrapy
-			}
+			NOT = { agreement_preset = preset_subsidiary }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_feudal_society
-			NOT = {
-				owner = { is_feudal_empire = { allow_invalid = yes } }
-			}
+			NOT = { owner = { has_civic = civic_feudal_realm } }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_franchising
-			NOT = {
-				owner = { is_franchise = { allow_invalid = yes } }
-			}
+			NOT = { owner = { has_civic = civic_franchising } }
 		}
-		custom_tooltip = { # VER Block
+		custom_tooltip = { # VER
 			fail_text = not_allowed_for_ver_devolved
 			NOT = { agreement_preset = preset_ver_devolved }
 		}
-		custom_tooltip = { # VER Block
+		custom_tooltip = { # VER
 			fail_text = not_allowed_for_auto_state
 			NOT = { agreement_preset = preset_auto_state }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_satellite
+			NOT = { agreement_preset = preset_ver_satellite }
+		}
+		custom_tooltip = { # VER
+			fail_text = not_allowed_for_ver_condo
+			NOT = { agreement_preset = preset_ver_condo }
 		}
 		custom_tooltip = {
 			fail_text = not_allowed_for_galcom_resolution
