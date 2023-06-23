@@ -1,0 +1,1649 @@
+##########################################################################
+# Limitless Stellaris - Bureaucratic Surveillance Resolutions
+##########################################################################
+
+# Vanilla Variables
+#@resolution_weight_hated = 3
+#@resolution_weight_disliked = 4
+#@resolution_weight_unpopular = 5
+#@resolution_weight_normal = 6
+#@resolution_weight_popular = 6.5
+#@resolution_weight_loved = 7
+#@resolution_weight_fever = 10 # MECR
+#
+#@resolution_cost_t1 = 100
+#@resolution_cost_t2 = 150
+#@resolution_cost_t3 = 200
+#@resolution_cost_t4 = 250
+#@resolution_cost_t5 = 300
+#@resolution_cost_denounce = 25
+#
+#@resolution_flag_timer = 360
+#
+# MECR Variables
+#@resolution_cost_t1_half = 50
+#@resolution_cost_t2_half = 75
+#@resolution_cost_t3_half = 100
+#@resolution_cost_t4_half = 125
+#@resolution_cost_t5_half = 150
+#@resolution_cost_denounce_half = 12.5
+
+##################################################
+## Commerce
+##################################################
+
+## Commerce - Buzzword Standardization
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_buzzword_standardization = {
+	icon = "GFX_resolution_galactic_commerce"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+	level = 1
+
+	modifier = {
+		resolution_commerce_buzzword_standardization = 1
+	}
+
+	effect = {
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_buzzword_standardization }
+		}
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOR = {
+				is_active_resolution = "resolution_commerce_buzzword_standardization"
+				is_active_resolution = "resolution_commerce_leveraged_privateering"
+				is_active_resolution = "resolution_commerce_underdeveloped_system_utilization"
+				is_active_resolution = "resolution_commerce_holistic_asset_coordination"
+				is_active_resolution = "resolution_commerce_profit_maximization_engines"
+				is_active_resolution = "resolution_commerce_6" # NGS
+			}
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+
+		modifier = {
+			factor = 1.2
+			OR = {
+				has_valid_civic = civic_free_traders
+				has_valid_civic = civic_trading_posts
+				has_valid_civic = civic_merchant_guilds
+			}
+			desc = gal_com_trade_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			has_valid_civic = civic_byzantine_bureaucracy
+			desc = civic_byzantine_bureaucracy
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			is_civic_efficient_bureaucracy = yes
+			desc = gal_com_efficient_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_shared_burden_empire = yes
+			is_capitalist = no
+			desc = civic_shared_burden
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_despoiler_empire = yes
+			desc = civic_barbaric_despoilers
+		}
+
+		modifier = {
+			factor = 0.8
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor }
+			desc = ethic_gestalt_consciousness
+		}
+		modifier = {
+			factor = 0 # Servitors want nothing to do with this chain.
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
+
+## Commerce - Leveraged Privateering
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_leveraged_privateering = {
+	icon = "GFX_resolution_galactic_commerce"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+	level = 2
+
+	modifier = {
+		resolution_commerce_buzzword_standardization = 1
+		resolution_commerce_leveraged_privateering = 1
+	}
+
+	effect = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_leveraged_privateering }
+		}
+		is_active_resolution = "resolution_commerce_buzzword_standardization"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular # NGS normal -> popular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+		
+		modifier = { # EED
+			factor = 2.5
+			is_militarist = no
+			is_anti_corp = no
+			any_system_within_border = {
+				has_trade_route = yes
+				trade_intercepted_value >= 30
+			}
+			desc = gal_com_piracy
+		}
+		
+		modifier = { # EED
+			factor = 2
+			any_owned_planet = {
+				planet_crime > 40
+			}
+			desc = gal_com_owns_high_crime_planet
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_criminal_syndicate = yes
+			desc = gov_criminal_syndicate
+		}
+
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_valid_civic = civic_free_traders
+				has_valid_civic = civic_trading_posts
+				has_valid_civic = civic_merchant_guilds
+			}
+			desc = gal_com_trade_civic
+		}
+		
+		modifier = {
+			factor = 1.5
+			any_country = {
+				is_country_type = default
+				has_commercial_pact = prev
+			}
+			desc = ariphaos_patch_gal_com_have_commercial_pacts
+		}
+
+		modifier = {
+			factor = 0.8
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+
+		modifier = { # NGS
+			factor = 1.2
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		
+		modifier = {
+			factor = 1.2
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+
+		modifier = {
+			factor = 0.5
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor }
+			desc = ethic_gestalt_consciousness
+		}
+		modifier = {
+			factor = 0 # Servitors want nothing to do with this chain.
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
+
+## Commerce - Underdeveloped System Utilization
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_underdeveloped_system_utilization = {
+	icon = "GFX_resolution_galactic_commerce"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	level = 3
+
+	modifier = {
+		resolution_commerce_buzzword_standardization = 1
+		resolution_commerce_leveraged_privateering = 1
+		resolution_commerce_underdeveloped_system_utilization = 1
+	}
+
+	effect = {
+		custom_tooltip = resolution_commerce_underdeveloped_system_utilization_tooltip
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_underdeveloped_system_utilization }
+		}
+		is_active_resolution = "resolution_commerce_leveraged_privateering"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			any_planet_within_border = {
+				has_observation_outpost = yes
+			}
+			desc = gal_com_observing_primitives
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			has_valid_civic = civic_byzantine_bureaucracy
+			desc = civic_byzantine_bureaucracy
+		}
+
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+
+		modifier = { # Ariphaos
+			factor = 1.2
+			OR = {
+				has_valid_civic = civic_free_traders
+				has_valid_civic = civic_trading_posts
+				has_valid_civic = civic_merchant_guilds
+			}
+			desc = gal_com_trade_civic
+		}
+
+		modifier = { # NGS
+			factor = 0.8
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_civic_militarist = yes
+			desc = gal_com_military_civic
+		}
+
+		modifier = {
+			factor = 1.2
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_shared_burden_empire = yes
+			is_capitalist = no
+			desc = civic_shared_burden
+		}
+
+		modifier = {
+			factor = 0.5
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor }
+			desc = ethic_gestalt_consciousness
+		}
+		modifier = { # Ariphaos
+			factor = 0 # Servitors want nothing to do with this chain.
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
+
+## Commerce - Holistic Asset Coordination
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_holistic_asset_coordination = {
+	icon = "GFX_resolution_galactic_commerce"
+
+	potential = {
+		has_federations_dlc = yes
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+	level = 4
+
+	modifier = {
+		resolution_commerce_buzzword_standardization = 1
+		resolution_commerce_leveraged_privateering = 1
+		resolution_commerce_underdeveloped_system_utilization = 1
+		resolution_commerce_holistic_asset_coordination = 1
+	}
+
+	effect = {
+		if = { # EED
+			limit = { has_global_flag = starbase_expanded_installed }
+			custom_tooltip = resolution_commerce_holistic_asset_coordination_tooltip
+		}
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_holistic_asset_coordination }
+		}
+		is_active_resolution = "resolution_commerce_underdeveloped_system_utilization"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+
+		modifier = { # Ariphaos
+			factor = 1.2
+			OR = {
+				has_valid_civic = civic_free_traders
+				has_valid_civic = civic_trading_posts
+				has_valid_civic = civic_merchant_guilds
+			}
+			desc = gal_com_trade_civic
+		}
+
+		modifier = { # Ariphaos
+			factor = 0.8
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_civic_militarist = yes
+			desc = gal_com_military_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_shared_burden_empire = yes
+			is_capitalist = no
+			desc = civic_shared_burden
+		}
+		
+		modifier = { # EED
+			factor = 2.5
+			is_militarist = no
+			is_anti_corp = no
+			any_system_within_border = {
+				has_trade_route = yes
+				trade_intercepted_value >= 30
+			}
+			desc = gal_com_piracy
+		}
+		
+		modifier = { # EED
+			factor = 2
+			any_owned_planet = {
+				planet_crime > 40
+			}
+			desc = gal_com_owns_high_crime_planet
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_criminal_syndicate = yes
+			desc = gov_criminal_syndicate
+		}
+
+		modifier = { # Ariphaos
+			factor = 1.5 # They're keen on the next one.
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor }
+			desc = ethic_gestalt_consciousness
+		}
+		modifier = { # Ariphaos
+			factor = 0 # Servitors want nothing to do with this chain.
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
+
+## Commerce - Profit Maximization Enginees
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_profit_maximization_engines = {
+	icon = "GFX_resolution_galactic_commerce"
+
+	potential = {
+		has_federations_dlc = yes
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+	level = 5
+
+	modifier = {
+		resolution_commerce_buzzword_standardization = 1
+		resolution_commerce_leveraged_privateering = 1
+		resolution_commerce_underdeveloped_system_utilization = 1
+		resolution_commerce_holistic_asset_coordination = 1
+		resolution_commerce_profit_maximization_engines = 1
+	}
+
+	effect = {
+		custom_tooltip = resolution_commerce_profit_maximization_engines_tooltip # EED
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_profit_maximization_engines }
+		}
+		is_active_resolution = "resolution_commerce_holistic_asset_coordination"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular # NGS disliked -> unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+		
+		modifier = { # EED
+			factor = 1.75
+			is_civic_has_elite  = yes
+			desc = gal_com_elite_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_civic_has_meritocracy = yes
+			desc = gal_com_meritocracy_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			is_civic_cutthroat_politics = yes
+			desc = gal_com_cutthroat_civic
+		}
+
+		modifier = {
+			factor = 2 # EED 1.5 -> 2
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			OR = {
+				is_slaver = yes
+				has_slaver_civic = yes
+			}
+			desc = gal_com_slaver_empire
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			has_valid_civic = civic_byzantine_bureaucracy
+			desc = civic_byzantine_bureaucracy
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+		
+		modifier = {
+			factor = 0.75
+			is_civic_militarist = yes
+			desc = gal_com_military_civic
+		}
+
+		modifier = {
+			factor = 0.33 # EED 0.5 -> 0.33
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_pleasure_seeker = yes
+			desc = civic_pleasure_seekers
+		}
+
+
+		modifier = { # Ariphaos
+			factor = 1.2
+			OR = {
+				has_valid_civic = civic_free_traders
+				has_valid_civic = civic_trading_posts
+				has_valid_civic = civic_merchant_guilds
+			}
+			desc = gal_com_trade_civic
+		}
+
+		modifier = { # Ariphaos
+			factor = 2
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor }
+			desc = ethic_gestalt_consciousness
+		}
+		modifier = { # Ariphaos
+			factor = 0 # Bio-Trophy happiness :(
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
+
+## Commerce - Repeal 1
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_repeal_1 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_commerce_repeal_1_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_commerce_buzzword_standardization"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_commerce_buzzword_standardization"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_repeal_1 }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = {
+			factor = 0
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 0
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			has_valid_civic = civic_byzantine_bureaucracy
+			desc = civic_byzantine_bureaucracy
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_civic_efficient_bureaucracy = yes
+			desc = gal_com_efficient_civic
+		}
+
+		modifier = {
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_free_traders
+				has_valid_civic = civic_trading_posts
+			}
+			desc = gal_com_trade_civic
+		}
+
+		modifier = {
+			factor = 1.5
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor } # Ariphaos
+			desc = ethic_gestalt_consciousness
+		}
+		modifier = { # Ariphaos
+			factor = 10 # Servitors want nothing to do with this chain.
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
+
+## Commerce - Repeal 2
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_repeal_2 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_commerce_repeal_2_effect_success
+
+		hidden_effect = {
+			cancel_resolution = "resolution_commerce_leveraged_privateering"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce_repeal days = @resolution_flag_timer }
+			if = { # EED
+				limit = { is_capitalist = yes }
+				set_timed_country_flag = { flag = galcom_resolution_passed_anti_prosperity days = 7200 }
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_commerce_leveraged_privateering"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_repeal_2 }
+		}
+	}
+
+	modifier = {
+		resolution_commerce_buzzword_standardization = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = {
+			factor = 0
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 0
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+
+		modifier = {
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_free_traders
+				has_valid_civic = civic_trading_posts
+			}
+			desc = gal_com_trade_civic
+		}
+		
+		modifier = { # Ariphaos
+			factor = 0.5
+			any_country = {
+				is_country_type = default
+				has_commercial_pact = prev
+			}
+			desc = ariphaos_patch_gal_com_have_commercial_pacts
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_gestalt = no
+			any_system_within_border = {
+				trade_intercepted_percentage >= 40
+			}
+			desc = gal_com_piracy
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_gestalt = no
+			any_system_within_border = {
+				trade_intercepted_percentage >= 60
+			}
+			desc = gal_com_piracy
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_gestalt = no
+			any_system_within_border = {
+				trade_intercepted_percentage >= 80
+			}
+			desc = gal_com_piracy
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			has_valid_civic = civic_byzantine_bureaucracy
+			desc = civic_byzantine_bureaucracy
+		}
+
+		modifier = { # EED
+			factor = 0.75
+			is_civic_free_traders = yes
+			desc = gal_com_trade_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+
+		modifier = {
+			factor = 1.5
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor } # Ariphaos
+			desc = ethic_gestalt_consciousness
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			any_owned_planet = {
+				planet_crime > 30
+			}
+			desc = gal_com_owns_high_crime_planet
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_criminal_syndicate = yes
+			desc = gov_criminal_syndicate
+		}
+		
+		modifier = { # Ariphaos
+			factor = 10 # Servitors want nothing to do with this chain.
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
+
+## Commerce - Repeal 3
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_repeal_3 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_commerce_repeal_3_effect_success
+
+		hidden_effect = {
+			cancel_resolution = "resolution_commerce_underdeveloped_system_utilization"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce_repeal days = @resolution_flag_timer }
+			if = { # EED
+				limit = { is_capitalist = yes }
+				set_timed_country_flag = { flag = galcom_resolution_passed_anti_prosperity days = 7200 }
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_commerce_underdeveloped_system_utilization"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_repeal_3 }
+		}
+	}
+
+	modifier = {
+		resolution_commerce_buzzword_standardization = 1
+		resolution_commerce_leveraged_privateering = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal # NGS unpopular -> normal
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = {
+			factor = 0
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 0
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			has_valid_civic = civic_byzantine_bureaucracy
+			desc = civic_byzantine_bureaucracy
+		}
+
+		modifier = {
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_free_traders
+				has_valid_civic = civic_trading_posts
+			}
+			desc = gal_com_trade_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+
+		modifier = {
+			factor = 1.5
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor } # Ariphaos
+			desc = ethic_gestalt_consciousness
+		}
+		modifier = { # Ariphaos
+			factor = 10 # Servitors want nothing to do with this chain.
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
+
+## Commerce - Repeal 4
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_repeal_4 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_commerce_repeal_4_effect_success
+
+		hidden_effect = {
+			cancel_resolution = "resolution_commerce_holistic_asset_coordination"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce_repeal days = @resolution_flag_timer }
+			if = { # EED
+				limit = { is_capitalist = yes }
+				set_timed_country_flag = { flag = galcom_resolution_passed_anti_prosperity days = 7200 }
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+
+		custom_tooltip = resolution_commerce_underdeveloped_system_utilization_tooltip
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		is_active_resolution = "resolution_commerce_holistic_asset_coordination"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_repeal_4 }
+		}
+	}
+
+	modifier = {
+		resolution_commerce_buzzword_standardization = 1
+		resolution_commerce_leveraged_privateering = 1
+		resolution_commerce_underdeveloped_system_utilization = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal # NGS unpopular -> normal
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = {
+			factor = 0
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 0
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+
+		modifier = { # EED
+			factor = 0
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 3
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			has_valid_civic = civic_byzantine_bureaucracy
+			desc = civic_byzantine_bureaucracy
+		}
+
+		modifier = {
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_free_traders
+				has_valid_civic = civic_trading_posts
+			}
+			desc = gal_com_trade_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_gestalt = no
+			any_system_within_border = {
+				trade_intercepted_percentage >= 40
+			}
+			desc = gal_com_piracy
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_gestalt = no
+			any_system_within_border = {
+				trade_intercepted_percentage >= 60
+			}
+			desc = gal_com_piracy
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_gestalt = no
+			any_system_within_border = {
+				trade_intercepted_percentage >= 80
+			}
+			desc = gal_com_piracy
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			any_owned_planet = {
+				planet_crime > 25
+			}
+			desc = gal_com_owns_high_crime_planet
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_criminal_syndicate = yes
+			desc = gov_criminal_syndicate
+		}
+
+		modifier = {
+			factor = 0.75 # They want the next one.
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor } # Ariphaos
+			desc = ethic_gestalt_consciousness
+		}
+		modifier = { # Ariphaos
+			factor = 10 # Servitors want nothing to do with this chain.
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
+
+## Commerce - Repeal 5
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_commerce_repeal_5 = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_commerce_repeal_5_effect_success
+
+		hidden_effect = {
+			cancel_resolution = "resolution_commerce_profit_maximization_engines"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_commerce_repeal days = @resolution_flag_timer }
+			if = { # EED
+				limit = { is_capitalist = yes }
+				set_timed_country_flag = { flag = galcom_resolution_passed_anti_prosperity days = 7200 }
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_commerce_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		is_active_resolution = "resolution_commerce_profit_maximization_engines"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_commerce_repeal_5 }
+		}
+	}
+
+	modifier = {
+		resolution_commerce_buzzword_standardization = 1
+		resolution_commerce_leveraged_privateering = 1
+		resolution_commerce_underdeveloped_system_utilization = 1
+		resolution_commerce_holistic_asset_coordination = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular # NGS unpopular -> popular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = {
+			factor = 0
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+
+		modifier = {
+			factor = 0
+			has_valid_civic = civic_corporate_dominion
+			desc = civic_corporate_dominion
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_capitalist = yes
+			is_egalitarian = no
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 3
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			has_valid_civic = civic_byzantine_bureaucracy
+			desc = civic_byzantine_bureaucracy
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_capitalist = yes
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 0
+			OR = {
+				is_slaver = yes
+				has_slaver_civic = yes
+			}
+			desc = gal_com_slaver_empire
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_civic_has_elite  = yes
+			desc = gal_com_elite_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_civic_has_meritocracy = yes
+			desc = gal_com_meritocracy_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 0.8
+			is_civic_cutthroat_politics = yes
+			desc = gal_com_cutthroat_civic
+		}
+
+		modifier = {
+			factor = 0.75
+			is_civic_free_traders = yes
+			desc = gal_com_trade_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 3
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 10
+			is_shared_burden_empire = yes
+			desc = civic_shared_burden
+		}
+		
+		modifier = {
+			factor = 0.5 # They like it here.
+			is_gestalt = yes
+			NOT = { has_valid_civic = civic_machine_servitor } # Ariphaos
+			desc = ethic_gestalt_consciousness
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_pleasure_seeker = yes
+			desc = civic_pleasure_seekers
+		}
+
+		modifier = { # Ariphaos
+			factor = 10 # Bio-trophies matter.
+			has_valid_civic = civic_machine_servitor
+			desc = civic_machine_servitor
+		}
+	}
+}
