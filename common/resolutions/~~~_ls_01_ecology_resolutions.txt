@@ -1,0 +1,2912 @@
+##########################################################################
+# Limitless Stellaris - Resolutions
+##########################################################################
+
+# Vanilla Variables
+#@resolution_weight_hated = 3
+#@resolution_weight_disliked = 4
+#@resolution_weight_unpopular = 5
+#@resolution_weight_normal = 6
+#@resolution_weight_popular = 6.5
+#@resolution_weight_loved = 7
+#@resolution_weight_fever = 10 # MECR
+#
+#@resolution_cost_t1 = 100
+#@resolution_cost_t2 = 150
+#@resolution_cost_t3 = 200
+#@resolution_cost_t4 = 250
+#@resolution_cost_t5 = 300
+#@resolution_cost_denounce = 25
+#
+#@resolution_flag_timer = 360
+#
+# MECR Variables
+#@resolution_cost_t1_half = 50
+#@resolution_cost_t2_half = 75
+#@resolution_cost_t3_half = 100
+#@resolution_cost_t4_half = 125
+#@resolution_cost_t5_half = 150
+#@resolution_cost_denounce_half = 12.5
+
+##################################################
+## Ecology
+##################################################
+
+## Ecology - Recycling Initiatives
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_recycling_initiatives = {
+	icon = "GFX_resolution_ecological_protection"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+	level = 1
+
+	modifier = {
+		resolution_ecology_recycling_initiatives = 1
+	}
+
+	effect = {
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_recycling_initiatives }
+		}
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOR = {
+				is_active_resolution = "resolution_ecology_recycling_initiatives"
+				is_active_resolution = "resolution_ecology_natural_sanctuaries"
+				is_active_resolution = "resolution_ecology_integrated_gardens"
+				is_active_resolution = "resolution_ecology_environmental_control_board"
+				is_active_resolution = "resolution_ecology_paradise_initiative"
+				is_active_resolution = "resolution_ecology_6" # NGS
+			}
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.5
+			BAD = 1.2
+			TERRIBLE = 2
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = { # NGS
+			factor = 1.2
+			is_spiritualist = yes
+			NOT = { has_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 2
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.2
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.6
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 0.5
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 1.4
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+
+		modifier = { # EED
+			factor = 5
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = { # EED
+			factor = 3
+			is_civic_terraformer = yes
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+			is_xenophobe = no
+			is_authoritarian = no
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_civic_machine_servitor = yes
+				is_shared_burden_empire = yes
+			}
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			has_valid_civic = civic_idealistic_foundation
+			desc = civic_idealistic_foundation
+		}
+
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_lithoid_empire = no
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.1
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			OR = {
+				has_valid_civic = civic_agribusiness
+				is_agrarian_empire = { allow_invalid = yes }
+			}
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_pacifist = yes
+			}
+			desc = gal_com_farming_civic
+		}
+
+		modifier = { # EED
+			factor = 0.5
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+
+		modifier = {
+			factor = 0.8
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+		modifier = { # Ariphaos
+			factor = 0.4
+			country_uses_consumer_goods = no
+			desc = ariphaos_patch_gal_com_country_uses_goods_no
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_lithoid_empire  = yes
+			desc = lithoid
+		}
+	}
+}
+
+## Ecology - Natural Sanctuaries
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_natural_sanctuaries = {
+	icon = "GFX_resolution_ecological_protection"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+	level = 2
+
+	modifier = {
+		resolution_ecology_recycling_initiatives = 1
+		resolution_ecology_natural_sanctuaries = 1
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_natural_sanctuaries }
+		}
+		is_active_resolution = "resolution_ecology_recycling_initiatives"
+	}
+	
+	breach = { # EED
+		NOT = { has_country_flag = constitutional_immunity }
+		has_global_flag = ecology_pops_patch_flag
+		OR = {
+			has_policy_flag = eco_policy_environmental_selfregulation
+			has_policy_flag = eco_policy_environmental_exploitation
+		}
+	}
+
+	effect = {
+		if = { # EED
+			limit = { has_global_flag = ecology_pops_patch_flag }
+			custom_tooltip = resolution_ecology_natural_sanctuaries_tooltip
+		}
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } }
+		hidden_effect = {
+			set_global_flag = resolution_with_breach_effect_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology days = @resolution_flag_timer } # EED
+			every_playable_country = { # EED
+				limit = {
+					is_galactic_community_member = yes
+					has_global_flag = ecology_pops_patch_flag
+					OR = {
+						has_policy_flag = eco_policy_environmental_selfregulation
+						has_policy_flag = eco_policy_environmental_exploitation
+					}
+				}
+				country_event = { id = diploevent.1 }
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.5
+			BAD = 1.2
+			TERRIBLE = 2
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = { # NGS
+			factor = 1.2
+			is_spiritualist = yes
+			NOT = { has_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 2
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.35 # NGS 1.2 -> 1.35
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.65 # NGS 0.5 -> 0.65
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 0.5
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 1.4
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+
+		modifier = { # EED
+			factor = 5
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = { # EED
+			factor = 3
+			is_civic_terraformer = yes
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+			is_xenophobe = no
+			is_authoritarian = no
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_civic_machine_servitor = yes
+				is_shared_burden_empire = yes
+			}
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			has_valid_civic = civic_idealistic_foundation
+			desc = civic_idealistic_foundation
+		}
+
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_lithoid_empire = no
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			OR = {
+				is_agrarian_empire = { allow_invalid = yes }
+				has_valid_civic = civic_agribusiness
+			}
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_pacifist = yes
+			}
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.9
+			is_civic_functional_architecture = yes
+			desc = civic_functional_architecture
+		}
+
+		modifier = { # EED
+			factor = 0.25
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+
+		modifier = {
+			factor = 0.8
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+
+		modifier = {
+			factor = 0.8
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+		
+		modifier = { # EED
+			factor = 0
+			in_breach_of = resolution_ecology_natural_sanctuaries
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+		modifier = { # EED
+			factor = 0.75
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_ecology_natural_sanctuaries
+			}
+		}
+	}
+}
+
+## Ecology - Integrated Gardens
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_integrated_gardens = {
+	icon = "GFX_resolution_ecological_protection"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	level = 3
+
+	modifier = {
+		resolution_ecology_recycling_initiatives = 1
+		resolution_ecology_natural_sanctuaries = 1
+		resolution_ecology_integrated_gardens = 1
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_integrated_gardens }
+		}
+		is_active_resolution = "resolution_ecology_natural_sanctuaries"
+	}
+
+	breach = { # EED
+		NOT = { has_country_flag = constitutional_immunity }
+		in_breach_of = resolution_ecology_natural_sanctuaries
+	}
+
+	effect = {
+		#custom_tooltip = resolution_ecology_integrated_gardens_tooltip # MECR disables
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.5
+			BAD = 1.2
+			TERRIBLE = 2
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = { # NGS
+			factor = 1.2
+			is_spiritualist = yes
+			NOT = { has_valid_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 2
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.2
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.4
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 0.5
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 1.4
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+
+		modifier = { # EED
+			factor = 5
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = { # EED
+			factor = 3
+			is_civic_terraformer = yes
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+			is_xenophobe = no
+			is_authoritarian = no
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_civic_machine_servitor = yes
+				is_shared_burden_empire = yes
+			}
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_valid_civic = civic_starvation_fearing
+			desc = gal_com_farming_civic
+			is_lithoid_empire = no
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			has_valid_civic = civic_idealistic_foundation
+			desc = civic_idealistic_foundation
+		}
+
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_lithoid_empire = no
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			OR = {
+				is_agrarian_empire = { allow_invalid = yes }
+				has_valid_civic = civic_agribusiness
+			}
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_pacifist = yes
+			}
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_catalytic_empire  = yes
+			desc = civic_catalytic_processing
+		}
+		
+		modifier = { # EED
+			factor = 0.8
+			is_civic_functional_architecture = yes
+			desc = civic_functional_architecture
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+
+		modifier = {
+			factor = 0.25 # EED 0.8 -> 0.25
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+
+		modifier = {
+			factor = 0.5 # EED 0.8 -> 0.5
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+		
+		modifier = { # EED
+			factor = 0
+			in_breach_of = resolution_ecology_natural_sanctuaries
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+		modifier = { # EED
+			factor = 0.75
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_ecology_natural_sanctuaries
+			}
+		}
+		
+		modifier = { # EED
+			factor = 1.1
+			country_uses_food = yes
+			has_monthly_income = { resource = food value < 10 }
+			desc = gal_com_food_income
+		}
+		
+		modifier = { # EED
+			factor = 1.1
+			desc = trait_nonadaptive
+			owner_species = {
+				OR = {
+					has_trait = trait_nonadaptive
+					has_trait = trait_endemic
+				}
+			}
+		}
+	}
+}
+
+## Ecology - Environmental Control Board
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_environmental_control_board = {
+	icon = "GFX_resolution_ecological_protection"
+
+	potential = {
+		has_federations_dlc = yes
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+	level = 4
+
+	effect = {
+		custom_tooltip = resolution_ecology_environmental_control_board_tooltip
+		hidden_effect = {
+			set_global_flag = resolution_with_breach_effect_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	modifier = {
+		resolution_ecology_recycling_initiatives = 1
+		resolution_ecology_natural_sanctuaries = 1
+		resolution_ecology_integrated_gardens = 1
+		resolution_ecology_environmental_control_board = 1
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_environmental_control_board }
+		}
+		is_active_resolution = "resolution_ecology_integrated_gardens"
+	}
+
+	breach = {
+		has_country_flag = resolution_breached_terraformed
+		NOT = { has_country_flag = constitutional_immunity }
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.5
+			BAD = 1.2
+			TERRIBLE = 2
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = { # NGS
+			factor = 1.2
+			is_spiritualist = yes
+			NOT = { has_valid_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 0
+			NOT = { has_valid_civic = civic_environmentalist } # NGS
+			in_breach_of = resolution_ecology_environmental_control_board
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+
+		modifier = {
+			factor = 2
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.35 # NGS 1.2 -> 1.35
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.65 # NGS 0 -> 0.65
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 0.5
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 1.4
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+		
+		modifier = { # EED
+			factor = 0.9
+			is_civic_expansionist = yes
+			desc = gal_com_expansion_civic
+		}
+
+		modifier = { # EED
+			factor = 0
+			desc = gal_com_in_breach_of_proposed_resolution
+			in_breach_of = resolution_ecology_environmental_control_board
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_ecology_environmental_control_board
+			}
+		}
+
+		modifier = { # EED
+			factor = 5
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+			is_xenophobe = no
+			is_authoritarian = no
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_civic_machine_servitor = yes
+				is_shared_burden_empire = yes
+			}
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 2
+			country_uses_food = yes
+			is_pacifist = yes
+			is_xenophobe = no
+			is_capitalist = no
+			is_civic_mining_guilds = no
+			desc = gal_com_supporting_ethics
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+		
+		modifier = { # EED
+			factor = 3
+			has_valid_civic = civic_starvation_fearing
+			desc = gal_com_farming_civic
+			is_lithoid_empire = no
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_valid_civic = civic_starvation_fearing
+			is_lithoid_empire  = yes
+			desc = lithoid
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			has_valid_civic = civic_idealistic_foundation
+			desc = civic_idealistic_foundation
+		}
+
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_lithoid_empire = no
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			OR = {
+				has_valid_civic = civic_agribusiness
+				is_agrarian_empire = { allow_invalid = yes }
+			}
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_pacifist = yes
+			}
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_catalytic_empire  = yes
+			desc = civic_catalytic_processing
+		}
+		
+		modifier = { # EED
+			factor = 0
+			OR = {
+				has_ascension_perk = ap_arcology_project
+				is_civic_terraformer = yes
+			}
+			NOR = {
+				has_ascension_perk = ap_world_shaper
+				is_civic_environmentalist = yes
+				is_agrarian_empire = { allow_invalid = yes }
+				is_life_seeded_empire = yes
+			}
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ascension_perk = ap_hydrocentric
+			desc = ap_hydrocentric
+		}
+		
+		modifier = { # EED
+			factor = 0.8
+			is_civic_functional_architecture = yes
+			desc = civic_functional_architecture
+		}
+		
+		modifier = { # EEED
+			factor = 0
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+
+		modifier = {
+			factor = 0.8 # NGS 0.5 -> 0.8
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+		modifier = { # EED
+			factor = 0
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+		modifier = { # EED
+			factor = 0
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+
+		modifier = {
+			factor = 0.5
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			desc = trait_nonadaptive
+			owner_species = {
+				OR = {
+					has_trait = trait_nonadaptive
+					has_trait = trait_endemic
+				}
+			}
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			country_uses_food = yes
+			has_monthly_income = { resource = food value < 10 }
+			desc = gal_com_food_income
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_monthly_income = { resource = minerals  value < 50 }
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_monthly_income = { resource = alloys  value < 25 }
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 0
+			has_deficit = alloys
+			desc = gal_com_alloy_income
+		}
+		modifier = { # EED
+			factor = 0
+			has_deficit = minerals
+			desc = gal_com_mineral_income
+		}
+	}
+}
+
+## Ecology - Paradise Initiative
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_paradise_initiative = {
+	icon = "GFX_resolution_ecological_protection"
+
+	potential = {
+		has_federations_dlc = yes
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+	level = 5
+
+	modifier = {
+		resolution_ecology_recycling_initiatives = 1
+		resolution_ecology_natural_sanctuaries = 1
+		resolution_ecology_integrated_gardens = 1
+		resolution_ecology_environmental_control_board = 1
+		resolution_ecology_paradise_initiative = 1
+	}
+
+	effect = {
+		#custom_tooltip = resolution_ecology_paradise_initiative_tooltip # MECR disables
+		if = { # EED
+			limit = { has_global_flag = ecology_pops_patch_flag }
+			custom_tooltip = resolution_ecology_paradise_initiative_tooltip_2
+		}
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_global_flag = resolution_with_breach_effect_passed # EED
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology days = @resolution_flag_timer }
+			every_playable_country = { # EED
+				limit = {
+					is_galactic_community_member = yes
+					has_global_flag = ecology_pops_patch_flag
+					OR = {
+						has_policy_flag = eco_policy_environmental_selfregulation
+						has_policy_flag = eco_policy_environmental_exploitation
+						has_policy_flag = eco_policy_environmental_deregulation
+						has_policy_flag = eco_environmental_policy_default
+					}
+				}
+				country_event = { id = diploevent.3 }
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_paradise_initiative }
+		}
+		is_active_resolution = "resolution_ecology_environmental_control_board"
+	}
+	
+	breach = {
+		NOT = { has_country_flag = constitutional_immunity }
+		has_country_flag = resolution_breached_terraformed # Ariphaos
+		OR = {
+			in_breach_of = resolution_ecology_environmental_control_board
+			AND = {
+				has_global_flag = ecology_pops_patch_flag
+				has_policy_flag = eco_environmental_policy_default
+			}
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular # NGS disliked -> unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 0.5
+			BAD = 1.2
+			TERRIBLE = 2
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = { # NGS
+			factor = 1.2
+			is_spiritualist = yes
+			NOT = { has_valid_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = { # Ariphaos
+			factor = 0
+			in_breach_of = resolution_ecology_environmental_control_board
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+
+		modifier = {
+			factor = 2
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 1.35 # NGS 1.2 -> 1.35
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 0.65 # NGS 0 -> 0.65
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 0.5
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 1.4
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+
+		modifier = {
+			factor = 0
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+
+		modifier = { # NGS
+			factor = 0
+			NOT = { has_valid_civic = civic_environmentalist }
+			in_breach_of = resolution_ecology_paradise_initiative
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+		
+		modifier = { # EED
+			factor = 0.9
+			is_civic_expansionist = yes
+			desc = gal_com_expansion_civic
+		}
+		
+		modifier = { # EED
+			factor = 0
+			desc = gal_com_in_breach_of_proposed_resolution
+			in_breach_of = resolution_ecology_paradise_initiative
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_ecology_paradise_initiative
+			}
+		}
+
+		modifier = { # EED
+			factor = 5
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+			is_xenophobe = no
+			is_authoritarian = no
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_civic_machine_servitor = yes
+				is_shared_burden_empire = yes
+			}
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 2
+			country_uses_food = yes
+			is_pacifist = yes
+			is_xenophobe = no
+			is_capitalist = no
+			is_civic_mining_guilds = no
+			desc = gal_com_supporting_ethics
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+		
+		modifier = { # EED
+			factor = 3
+			has_valid_civic = civic_starvation_fearing
+			desc = gal_com_farming_civic
+			is_lithoid_empire = no
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_valid_civic = civic_starvation_fearing
+			is_lithoid_empire  = yes
+			desc = lithoid
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			has_valid_civic = civic_idealistic_foundation
+			desc = civic_idealistic_foundation
+		}
+
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_lithoid_empire = no
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_lithoid_empire = no
+			OR = {
+				has_valid_civic = civic_agribusiness
+				is_agrarian_empire = { allow_invalid = yes }
+			}
+			OR = {
+				is_xenophile = yes
+				is_spiritualist = yes
+				is_pacifist = yes
+			}
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_catalytic_empire  = yes
+			desc = civic_catalytic_processing
+		}
+		
+		modifier = { # EED
+			factor = 0
+			OR = {
+				has_ascension_perk = ap_arcology_project
+				is_civic_terraformer = yes
+			}
+			NOR = {
+				has_ascension_perk = ap_world_shaper
+				is_civic_environmentalist = yes
+				is_agrarian_empire = { allow_invalid = yes }
+				is_life_seeded_empire = yes
+			}
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ascension_perk = ap_hydrocentric
+			desc = ap_hydrocentric
+		}
+		
+		modifier = { # EED
+			factor = 0.8
+			is_civic_functional_architecture = yes
+			desc = civic_functional_architecture
+		}
+		
+		modifier = { # EED
+			factor = 0.66
+			
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			desc = trait_nonadaptive
+			owner_species = {
+				OR = {
+					has_trait = trait_nonadaptive
+					has_trait = trait_endemic
+				}
+			}
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+		modifier = { # EED
+			factor = 0
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+
+		modifier = {
+			factor = 0
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+		modifier = { # EED
+			factor = 0
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			country_uses_food = yes
+			has_monthly_income = { resource = food value < 10 }
+			desc = gal_com_food_income
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_monthly_income = { resource = minerals  value < 50 }
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_monthly_income = { resource = alloys  value < 25 }
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 0
+			has_deficit = alloys
+			desc = gal_com_alloy_income
+		}
+		modifier = { # EED
+			factor = 0
+			has_deficit = minerals
+			desc = gal_com_mineral_income
+		}
+	}
+}
+
+## Ecology - Repeal 1
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_repeal_1 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_ecology_repeal_1_effect_success
+
+		hidden_effect = {
+			cancel_resolution = "resolution_ecology_recycling_initiatives"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_ecology_recycling_initiatives"
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_repeal_1 }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 2
+			BAD = 0.75
+			TERRIBLE = 0.5
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = { # NGS
+			factor = 0.8
+			is_spiritualist = yes
+			NOT = { has_valid_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 0
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 0.65 # NGS 0.25 -> 0.65
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 1.35 # NGS 2 -> 1.35
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 2
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 0.6
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+
+		modifier = { # EED
+			factor = 0
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_terraformer = yes
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+
+		modifier = { # EED
+			factor = 0.1
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.9
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+
+		modifier = { # EED
+			factor = 3
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+
+		modifier = {
+			factor = 1.5 # EED 1.2 -> 1.5
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+
+		modifier = {
+			factor = 1.5 # EED 1.2 -> 1.5
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+	}
+}
+
+## Ecology - Repeal 2
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_repeal_2 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_ecology_repeal_2_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_ecology_natural_sanctuaries"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_ecology_natural_sanctuaries"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_repeal_2 }
+		}
+	}
+
+	modifier = {
+		resolution_ecology_recycling_initiatives = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 2
+			BAD = 0.75
+			TERRIBLE = 0.5
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = { # NGS
+			factor = 0.8
+			is_spiritualist = yes
+			NOT = { has_valid_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 0
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 0.65 # NGS 0.25 -> 0.65
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 1.35 # NGS 2 -> 1.35
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 2
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 0.6
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+
+		modifier = { # EED
+			factor = 0
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_terraformer = yes
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+
+		modifier = { # EED
+			factor = 0.1
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+
+		modifier = { # EED
+			factor = 1.1
+			is_civic_functional_architecture = yes
+			desc = civic_functional_architecture
+		}
+		
+		modifier = { # EED
+			factor = 3
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+
+		modifier = {
+			factor = 1.5 # EED 1.2 -> 1.5
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+
+		modifier = {
+			factor = 1.5 # EED 1.2 -> 1.5
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+		
+		modifier = { # EED
+			factor = 10
+			in_breach_of = resolution_ecology_natural_sanctuaries
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+		
+		modifier = { # EED
+			factor = 2
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_ecology_natural_sanctuaries
+			}
+		}
+	}
+}
+
+## Ecology - Repeal 3
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_repeal_3 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_ecology_repeal_3_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_ecology_integrated_gardens"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+		#custom_tooltip = resolution_ecology_integrated_gardens_tooltip # MECR removes this
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_ecology_integrated_gardens"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_repeal_3 }
+		}
+	}
+
+	modifier = {
+		resolution_ecology_recycling_initiatives = 1
+		resolution_ecology_natural_sanctuaries = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal # NGS unpopular -> normal
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 2
+			BAD = 0.75
+			TERRIBLE = 0.5
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = { # NGS
+			factor = 0.8
+			is_spiritualist = yes
+			NOT = { has_valid_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 0
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 0.65 # NGS 0.25 -> 0.65
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 1.35 # NGS 2 -> 1.35
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 2
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 0.6
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+
+		modifier = { # EED
+			factor = 0
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_terraformer = yes
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+
+		modifier = { # EED
+			factor = 0
+			has_valid_civic = civic_starvation_fearing
+			desc = gal_com_farming_civic
+			is_lithoid_empire = no
+		}
+		
+		modifier = { # EED
+			factor = 0.1
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_catalytic_empire  = yes
+			desc = civic_catalytic_processing
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			is_civic_functional_architecture = yes
+			desc = civic_functional_architecture
+		}
+
+		modifier = { # EED
+			factor = 3
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+
+		modifier = {
+			factor = 1.2
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+
+		modifier = {
+			factor = 2 # EED 1.2 -> 2
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+		
+		modifier = { # EED
+			factor = 10
+			in_breach_of = resolution_ecology_natural_sanctuaries
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+		modifier = { # EED
+			factor = 2
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_ecology_natural_sanctuaries
+			}
+		}
+		
+		modifier = { # EED
+			factor = 0.9
+			desc = trait_nonadaptive
+			owner_species = {
+				OR = {
+					has_trait = trait_nonadaptive
+					has_trait = trait_endemic
+				}
+			}
+		}
+	}
+}
+
+## Ecology - Repeal 4
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_repeal_4 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_ecology_repeal_4_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_ecology_environmental_control_board"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+		#custom_tooltip = resolution_ecology_environmental_control_board_tooltip # MECR removes this
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		is_active_resolution = "resolution_ecology_environmental_control_board"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_repeal_4 }
+		}
+	}
+
+	modifier = {
+		resolution_ecology_recycling_initiatives = 1
+		resolution_ecology_natural_sanctuaries = 1
+		resolution_ecology_integrated_gardens = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular # NGS unpopular -> popular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 2
+			BAD = 0.75
+			TERRIBLE = 0.5
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = { # NGS
+			factor = 0.8
+			is_spiritualist = yes
+			NOT = { has_valid_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 0
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 10
+			in_breach_of = resolution_ecology_environmental_control_board
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+
+		modifier = {
+			factor = 0.65 # NGS 0.25 -> 0.65
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = { # NGS
+			factor = 5
+			in_breach_of = resolution_ecology_environmental_control_board
+			NOT = { has_valid_civic = civic_environmentalist }
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+
+		modifier = {
+			factor = 1.35 # NGS 2 -> 1.35
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 2
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 0.6
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+		
+		modifier = { # EED
+			factor = 1.1
+			is_civic_expansionist = yes
+			desc = gal_com_expansion_civic
+		}
+
+		modifier = { # EED
+			factor = 0
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = {
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			country_uses_food = yes
+			is_pacifist = yes
+			is_xenophobe = no
+			is_capitalist = no
+			is_civic_mining_guilds = no
+			desc = gal_com_opposing_ethics
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+
+		modifier = { # EED
+			factor = 10
+			in_breach_of = resolution_ecology_environmental_control_board
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+		modifier = { # EED
+			factor = 2
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_ecology_environmental_control_board
+			}
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_valid_civic = civic_starvation_fearing
+			desc = gal_com_farming_civic
+			is_lithoid_empire = no
+		}
+		
+		modifier = { # EED
+			factor = 5
+			has_valid_civic = civic_starvation_fearing
+			is_lithoid_empire  = yes
+			desc = lithoid
+		}
+
+		modifier = { # EED
+			factor = 0.1
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_catalytic_empire  = yes
+			desc = civic_catalytic_processing
+		}
+		
+		modifier = { # EED
+			factor = 2
+			OR = {
+				has_ascension_perk = ap_arcology_project
+				is_civic_terraformer = yes
+			}
+			NOR = {
+				has_ascension_perk = ap_world_shaper
+				is_civic_environmentalist = yes
+				is_agrarian_empire = { allow_invalid = yes }
+				is_life_seeded_empire = yes
+			}
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 10
+			has_ascension_perk = ap_hydrocentric
+			desc = ap_hydrocentric
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			is_civic_functional_architecture = yes
+			desc = civic_functional_architecture
+		}
+
+		modifier = { # EED
+			factor = 3
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+
+		modifier = {
+			factor = 1.2
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+
+		modifier = {
+			factor = 2 # EED 1.2 -> 2
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+		
+		modifier = { # EED
+			factor = 0.8
+			desc = trait_nonadaptive
+			owner_species = {
+				OR = {
+					has_trait = trait_nonadaptive
+					has_trait = trait_endemic
+				}
+			}
+		}
+		modifier = { # EED
+			factor = 2
+			has_monthly_income = { resource = minerals  value < 50 }
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 2
+			has_monthly_income = { resource = alloys  value < 25 }
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 2
+			has_deficit = minerals
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 2
+			has_deficit = alloys
+			desc = gal_com_alloy_income
+		}
+	}
+}
+
+## Ecology - Repeal 5
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_ecology_repeal_5 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_ecology_repeal_5_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_ecology_paradise_initiative"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+		custom_tooltip = resolution_ecology_paradise_initiative_tooltip
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_ecology_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		is_active_resolution = "resolution_ecology_paradise_initiative"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_ecology_repeal_5 }
+		}
+	}
+
+	modifier = {
+		resolution_ecology_recycling_initiatives = 1
+		resolution_ecology_natural_sanctuaries = 1
+		resolution_ecology_integrated_gardens = 1
+		resolution_ecology_environmental_control_board = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular # NGS unpopular -> popular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = economy
+			NOTBAD = 2
+			BAD = 0.75
+			TERRIBLE = 0.5
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = { # NGS
+			factor = 0.8
+			is_spiritualist = yes
+			NOT = { has_valid_civic = civic_relentless_industrialists }
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 0
+			is_environmentalist_empire = yes # STU
+			desc = civic_environmentalist
+		}
+
+		modifier = {
+			factor = 0.65 # NGS 0.25 -> 0.65
+			is_agrarian_empire = yes # STU
+			desc = civic_agrarian_idyll
+		}
+
+		modifier = {
+			factor = 1.35 # NGS 2 -> 1.35
+			OR = {
+				has_valid_civic = civic_mining_guilds
+				has_valid_civic = civic_machine_rockbreakers
+			}
+			desc = gal_com_miner_civic
+		}
+
+		modifier = { # NGS
+			factor = 2
+			has_valid_civic = civic_relentless_industrialists
+			desc = civic_relentless_industrialists
+		}
+
+		modifier = { # NGS
+			factor = 0.6
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+		
+		modifier = { # EED
+			factor = 1.1
+			is_civic_expansionist = yes
+			desc = gal_com_expansion_civic
+		}
+
+		modifier = { # EED
+			factor = 0
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			country_uses_food = yes
+			is_pacifist = yes
+			is_xenophobe = no
+			is_capitalist = no
+			is_civic_mining_guilds = no
+			desc = gal_com_opposing_ethics
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			owner_species = { has_trait = eco_trait_clean }
+			desc = eco_trait_clean 
+		}
+		
+		modifier = { # EED
+			factor = 1.2
+			owner_species = { has_trait = eco_trait_dirty }
+			desc = eco_trait_dirty
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_valid_civic = civic_starvation_fearing
+			desc = gal_com_farming_civic
+			is_lithoid_empire = no
+		}
+		
+		modifier = { # EED
+			factor = 10
+			has_valid_civic = civic_starvation_fearing
+			is_lithoid_empire  = yes
+			desc = lithoid
+		}
+
+		modifier = { # EED
+			factor = 0.1
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_plant_organic = yes
+			desc = civic_plant_organic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			has_valid_civic = civic_agribusiness
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_catalytic_empire  = yes
+			desc = civic_catalytic_processing
+		}
+		
+		modifier = { # EED
+			factor = 3
+			OR = {
+				has_ascension_perk = ap_arcology_project
+				is_civic_terraformer = yes
+			}
+			NOR = {
+				has_ascension_perk = ap_world_shaper
+				is_civic_environmentalist = yes
+				is_agrarian_empire = { allow_invalid = yes }
+				is_life_seeded_empire = yes
+			}
+			desc = gal_com_terraforming_civic
+		}
+		
+		modifier = { # EED
+			factor = 10
+			has_ascension_perk = ap_hydrocentric
+			desc = ap_hydrocentric
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			is_civic_functional_architecture = yes
+			desc = civic_functional_architecture
+		}
+
+		modifier = { # EED
+			factor = 3
+			is_civic_mining_guilds = yes
+			desc = gal_com_miner_civic
+		}
+
+		modifier = {
+			factor = 1.2
+			country_uses_food = no
+			desc = gal_com_country_uses_food_no
+		}
+
+		modifier = {
+			factor = 3 # EED 1.2 -> 3
+			is_lithoid_empire = yes
+			desc = lithoid
+		}
+		modifier = { # EED
+			factor = 1.25
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+
+		modifier = { # NGS
+			factor = 10 # EED 5 -> 10
+			in_breach_of = resolution_ecology_paradise_initiative
+			NOT = { has_valid_civic = civic_environmentalist }
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+		modifier = { # EED
+			factor = 2
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_ecology_paradise_initiative
+			}
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			desc = trait_nonadaptive
+			owner_species = {
+				OR = {
+					has_trait = trait_nonadaptive
+					has_trait = trait_endemic
+				}
+			}
+		}
+		modifier = { # EED
+			factor = 3
+			has_monthly_income = { resource = minerals  value < 50 }
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 3
+			has_monthly_income = { resource = alloys  value < 25 }
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 3
+			has_deficit = minerals
+			desc = gal_com_mineral_income
+		}
+		modifier = { # EED
+			factor = 3
+			has_deficit = alloys
+			desc = gal_com_alloy_income
+		}
+	}
+}

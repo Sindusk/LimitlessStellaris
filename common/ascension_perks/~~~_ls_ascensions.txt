@@ -932,8 +932,9 @@ ap_executive_vigor = {
 	modifier = {
 		# Limitless Stellaris
 		country_leader_cap_add = 1 # ESAP
-		country_edict_fund_mult = 0.5 # Omega's Stellaris Additions
-		edicts_upkeep_mult = -0.20 # Worthy Ascension Perks
+		country_edict_fund_mult = 0.3 # Omega's Stellaris Additions - 0.5 -> 0.3 [Balance]
+		#edicts_upkeep_mult = -0.20 # Worthy Ascension Perks - Removed [Balance]
+		council_agenda_progress_speed = 0.3 # Limitless Stellaris
 		#country_edict_fund_add = 200	# ESAP Government modifier
 	}
 
@@ -1341,10 +1342,11 @@ ap_imperial_prerogative = {
 		# Limitless Stellaris
 		country_government_civic_points_add = 1 # Omega's Stellaris Additions
 		#empire_size_colonies_mult = -0.50	# ESAP Government modifier
-		empire_size_mult = -0.20	# Omega's Stellaris Additions
+		#empire_size_mult = -0.20	# Omega's Stellaris Additions - Disabled [Balance]
 		leader_upkeep_empire_size_mult = -0.25 # Utopian Dream
-		country_leader_cap_add = 2 # Utopian Dream
-		ruler_skill_levels = 1 # Utopian Dream
+		country_leader_cap_add = 1 # Utopian Dream - 2 -> 1 [Balance]
+		#ruler_skill_levels = 1 # Utopian Dream
+		council_agenda_finishing_effect_duration_mult = 0.3 # Limitless Stellaris
 	}
 
 	potential = {

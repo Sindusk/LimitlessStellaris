@@ -1,5 +1,5 @@
 ##########################################################################
-# Limitless Stellaris - Bureaucratic Surveillance Resolutions
+# Limitless Stellaris - Resolutions
 ##########################################################################
 
 # Vanilla Variables
