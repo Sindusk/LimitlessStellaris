@@ -1,0 +1,85 @@
+##########################################################################
+# Limitless Stellaris - Resolution Categories
+##########################################################################
+
+## Emperor - Imperial Institutions
+# Merge between EED, MECR
+resolution_category_emperor_imperial_institutions = {
+	group = galactic_empire
+	icon = "GFX_resolution_imperial_institutions"
+	multiple_active_resolutions = yes
+	resolution_types = {
+		# Normal Resolutions
+		"resolution_emperor_expand_ia"
+		# Imperial - Formation
+		"resolution_emperor_imperial_academy_of_sciences" # MECR
+		"resolution_emperor_imperial_armada"
+		"resolution_emperor_imperial_bank" # MECR
+		"resolution_emperor_imperial_department_of_engineering" # MECR
+		"resolution_emperor_imperial_ministry_of_defence" # MECR
+		"resolution_emperor_imperial_ministry_of_education" # MECR
+		"resolution_emperor_imperial_legions"
+		"resolution_empire_science_academy" # EED
+		# Imperial - Disbands
+		"resolution_custodian_gfta" # EED
+		"resolution_emperor_disband_imperial_academy_of_sciences" # MECR
+		"resolution_emperor_disband_imperial_department_of_engineering" # MECR
+		"resolution_emperor_disband_imperial_ministry_of_defence" # MECR
+		"resolution_emperor_disband_imperial_ministry_of_education" # MECR
+		"resolution_disband_empire_science_academy" # EED
+		# Standard - Formations
+		"resolution_emperor_gto"
+		"resolution_emperor_ina"
+		"resolution_emperor_isd"
+		"resolution_emperor_imperial_charter"
+		# Standard - Disbands
+		"resolution_custodian_disband_gfta" # EED
+		"resolution_emperor_disband_gto"
+		"resolution_emperor_disband_ina"
+		# Extra
+		"resolution_emperor_revoke_imperial_charter"
+		"resolution_category_imperial_institutions_reset_cooldown" # MECR
+	}
+}
+
+## Healthcare (NGS Version)
+# This is a copy of the NGS version of Healthcare resolution category to take priority over EED.
+resolution_category_healthcare = {
+	group = environment_technology
+	icon = "GFX_resolution_healthcare"
+
+	resolution_types = {
+		"resolution_healthcare_repeal_1"
+		"resolution_healthcare_repeal_2"
+		"resolution_healthcare_repeal_3"
+		"resolution_healthcare_repeal_4"
+		"resolution_healthcare_repeal_5"
+		"resolution_healthcare_repeal_6"
+		"resolution_healthcare_1"
+		"resolution_healthcare_2"
+		"resolution_healthcare_3"
+		"resolution_healthcare_4"
+		"resolution_healthcare_5"
+		"resolution_healthcare_6"
+	}
+}
+
+## Healthcare (EED Version)
+# This is a copy of the EED version of Healthcare resolution category with adjusted repeals for compatibility.
+resolution_category_healthcare_eed = {
+	group = environment_technology
+	icon = "GFX_resolution_healthcare"
+
+	resolution_types = {
+		"resolution_healthcare_eed_repeal_1"
+		"resolution_healthcare_eed_repeal_2"
+		"resolution_healthcare_eed_repeal_3"
+		"resolution_healthcare_eed_repeal_4"
+		"resolution_healthcare_eed_repeal_5"
+		"resolution_healthcare_board_of_health"
+		"resolution_healthcare_xenomedical_research"
+		"resolution_healthcare_war_relief"
+		"resolution_healthcare_clonal_medicine"
+		"resolution_healthcare_universal_healthcare"
+	}
+}

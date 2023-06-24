@@ -1085,8 +1085,1531 @@ resolution_development_aides = {
 }
 
 ##################################################
-## Copied Resolutions - EED
+## Copied Resolutions
 ##################################################
 
-### Galactic Cooperation
-# Copy of all the galactic cooperation repeals, renamed so they can coexist with NGS.
+### Healthcare (NGS Version)
+# Copy of all the healthcare repeals, without rename so they take priority over EED versions.
+resolution_healthcare_repeal_1 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_healthcare_repeal_1_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_1"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_1"
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_disliked
+
+		modifier = {
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 1.5
+			is_spiritualist = yes
+			is_egalitarian = no
+			desc = ethic_spiritualist
+		}
+		modifier = {
+			factor = 0.25
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0.85
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 1.25
+			has_valid_civic = civic_dystopian_society
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 1.25
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+		modifier = {
+			factor = 0.75
+			has_valid_civic = civic_shared_burden
+			desc = civic_shared_burden
+		}
+	}
+}
+
+resolution_healthcare_repeal_2 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_healthcare_repeal_2_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_2"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_2"
+	}
+
+	modifier = {
+		resolution_healthcare_1 = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		modifier = {
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 1.5
+			is_spiritualist = yes
+			is_egalitarian = no
+			desc = ethic_spiritualist
+		}
+		modifier = {
+			factor = 0.25
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0.85
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 1.25
+			has_valid_civic = civic_dystopian_society
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 1.25
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+		modifier = {
+			factor = 0.75
+			has_valid_civic = civic_shared_burden
+			desc = civic_shared_burden
+		}
+	}
+}
+
+resolution_healthcare_repeal_3 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_healthcare_repeal_3_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_3"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_3"
+	}
+
+	modifier = {
+		resolution_healthcare_1 = 1
+		resolution_healthcare_2 = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		modifier = {
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 1.5
+			is_spiritualist = yes
+			is_egalitarian = no
+			desc = ethic_spiritualist
+		}
+		modifier = {
+			factor = 0.25
+			is_xenophile = yes
+			is_megacorp = no
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+		modifier = {
+			factor = 0.85
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 1.25
+			has_valid_civic = civic_dystopian_society
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 0.75
+			has_valid_civic = civic_shared_burden
+			desc = civic_shared_burden
+		}
+	}
+}
+
+resolution_healthcare_repeal_4 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_healthcare_repeal_4_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_4"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_4"
+	}
+
+	modifier = {
+		resolution_healthcare_1 = 1
+		resolution_healthcare_2 = 1
+		resolution_healthcare_3 = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_normal
+
+		modifier = {
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 1.5
+			is_spiritualist = yes
+			is_egalitarian = no
+			desc = ethic_spiritualist
+		}
+		modifier = {
+			factor = 0.25
+			is_xenophile = yes
+			is_megacorp = no
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+		modifier = {
+			factor = 0.85
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 1.25
+			has_valid_civic = civic_dystopian_society
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 0.75
+			has_valid_civic = civic_shared_burden
+			desc = civic_shared_burden
+		}
+	}
+}
+
+resolution_healthcare_repeal_5 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_healthcare_repeal_5_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_5"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_5"
+	}
+
+	modifier = {
+		resolution_healthcare_1 = 1
+		resolution_healthcare_2 = 1
+		resolution_healthcare_3 = 1
+		resolution_healthcare_4 = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_normal
+
+		modifier = {
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 1.5
+			is_spiritualist = yes
+			is_egalitarian = no
+			desc = ethic_spiritualist
+		}
+		modifier = {
+			factor = 0.25
+			is_xenophile = yes
+			is_megacorp = no
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+		modifier = {
+			factor = 0.85
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 1.25
+			has_valid_civic = civic_dystopian_society
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 0.75
+			has_valid_civic = civic_shared_burden
+			desc = civic_shared_burden
+		}
+	}
+}
+
+resolution_healthcare_repeal_6 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t6
+		}
+	}
+	target = no
+
+	fire_and_forget = yes
+
+	effect = {
+		custom_tooltip = resolution_healthcare_repeal_6_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_6"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_6"
+	}
+
+	modifier = {
+		resolution_healthcare_1 = 1
+		resolution_healthcare_2 = 1
+		resolution_healthcare_3 = 1
+		resolution_healthcare_4 = 1
+		resolution_healthcare_5 = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_popular
+
+		modifier = {
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 1.5
+			is_spiritualist = yes
+			is_egalitarian = no
+			desc = ethic_spiritualist
+		}
+		modifier = {
+			factor = 0.25
+			is_xenophile = yes
+			is_megacorp = no
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+			desc = gov_megacorporation
+		}
+		modifier = {
+			factor = 0.85
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 1.25
+			has_valid_civic = civic_dystopian_society
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 0.75
+			has_valid_civic = civic_shared_burden
+			desc = civic_shared_burden
+		}
+	}
+}
+
+### Healthcare (EED Version)
+# Copy of all the healthcare repeals, renamed so they can coexist with NGS.
+resolution_healthcare_eed_repeal_1 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_xenoist days = 7200 }
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_progressivee days = 7200 }
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } }
+		custom_tooltip = resolution_healthcare_repeal_1_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_board_of_health"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } }
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_board_of_health"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 10
+			has_dystopian_society = yes
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 0
+			is_hive_empire = yes
+			desc = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			is_civic_health = yes
+			desc = gal_com_health_civic
+		}
+		modifier = {
+			factor = 0
+			is_civic_machine_servitor = yes
+			desc = civic_machine_servitor
+		}
+		modifier = {
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0.5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0.5
+			is_civic_has_meritocracy = yes
+			desc = gal_com_meritocracy_civic
+		}
+		modifier = {
+			factor = 0.75
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_erudite_explorers = yes
+			desc = personality_erudite_explorers
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_efficient_bureaucracy = yes
+			desc = gal_com_efficient_civic
+		}
+		modifier = {
+			factor = 1.25
+			is_honorbound_warriors = yes
+			desc = personality_honorbound_warriors
+		}
+		modifier = {
+			factor = 0
+			is_shared_burden_empire = yes
+			desc = civic_shared_burden
+		}
+		modifier = {
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+			is_shared_burden_empire = no
+		}
+		modifier = {
+			factor = 1.5
+			is_civic_cutthroat_politics = yes
+			desc = gal_com_cutthroat_civic
+		}
+		modifier = {
+			factor = 2
+			OR = { is_xenophobe = yes is_xenophobic_isolationists = yes }
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			is_civic_has_elite  = yes
+			desc = gal_com_elite_civic
+		}
+		modifier = {
+			factor = 2
+			is_civic_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			is_authoritarian  = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 5
+			is_origin_syncretic_livestock = yes
+			desc = origin_syncretic_livestock
+		}
+		modifier = {
+			factor = 3
+			is_robot_empire = yes
+			desc = auth_machine_intelligence
+			NOT = {
+				any_owned_species = {
+					is_sapient = yes
+					NOR = {
+						is_archetype = ROBOT
+						is_archetype = MACHINE
+					}
+				}
+			}
+		}
+	}
+}
+
+resolution_healthcare_eed_repeal_2 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_xenoist days = 7200 }
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_progressivee days = 7200 }
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } }
+		custom_tooltip = resolution_healthcare_repeal_2_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_xenomedical_research"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } }
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_xenomedical_research"
+	}
+
+	modifier = {
+		resolution_healthcare_board_of_health = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 10
+			has_dystopian_society = yes
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 0
+			is_hive_empire = yes
+			desc = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			is_civic_health = yes
+			desc = gal_com_health_civic
+		}
+		modifier = {
+			factor = 0
+			is_civic_machine_servitor = yes
+			desc = civic_machine_servitor
+		}
+		modifier = {
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0.5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0.5
+			is_civic_has_meritocracy = yes
+			desc = gal_com_meritocracy_civic
+		}
+		modifier = {
+			factor = 0.75
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_erudite_explorers = yes
+			desc = personality_erudite_explorers
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_efficient_bureaucracy = yes
+			desc = gal_com_efficient_civic
+		}
+		modifier = {
+			factor = 1.25
+			is_honorbound_warriors = yes
+			desc = personality_honorbound_warriors
+		}
+		modifier = {
+			factor = 0
+			is_shared_burden_empire = yes
+			desc = civic_shared_burden
+		}
+		modifier = {
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+			is_shared_burden_empire = no
+		}
+		modifier = {
+			factor = 1.5
+			is_civic_cutthroat_politics = yes
+			desc = gal_com_cutthroat_civic
+		}
+		modifier = {
+			factor = 2
+			OR = { is_xenophobe = yes is_xenophobic_isolationists = yes }
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			is_civic_has_elite  = yes
+			desc = gal_com_elite_civic
+		}
+		modifier = {
+			factor = 2
+			is_civic_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			is_authoritarian  = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 5
+			is_origin_syncretic_livestock = yes
+			desc = origin_syncretic_livestock
+		}
+		modifier = {
+			factor = 3
+			is_robot_empire = yes
+			desc = auth_machine_intelligence
+			NOT = {
+				any_owned_species = {
+					is_sapient = yes
+					NOR = {
+						is_archetype = ROBOT
+						is_archetype = MACHINE
+					}
+				}
+			}
+		}
+	}
+}
+
+resolution_healthcare_eed_repeal_3 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_xenoist days = 7200 }
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_progressivee days = 7200 }
+		if = {
+			limit = { has_global_flag = expanded_pops_active }
+			custom_tooltip = resolution_healthcare_xenomedical_research_tooltip_pops
+		}
+		else = {
+			custom_tooltip = resolution_healthcare_xenomedical_research_tooltip_no_pops
+		}
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } }
+		custom_tooltip = resolution_healthcare_repeal_3_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_war_relief"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } }
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_war_relief"
+	}
+
+	modifier = {
+		resolution_healthcare_board_of_health = 1
+		resolution_healthcare_xenomedical_research = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 10
+			has_dystopian_society = yes
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 10
+			desc = gal_com_in_breach_of_proposed_resolution
+			in_breach_of = resolution_healthcare_war_relief
+		}
+		
+		modifier = {
+			factor = 2
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_healthcare_war_relief
+			}
+		}
+		modifier = {
+			factor = 0
+			is_hive_empire = yes
+			desc = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			is_civic_health = yes
+			desc = gal_com_health_civic
+		}
+		modifier = {
+			factor = 0
+			is_civic_machine_servitor = yes
+			desc = civic_machine_servitor
+		}
+		modifier = {
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0.5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0.5
+			is_civic_has_meritocracy = yes
+			desc = gal_com_meritocracy_civic
+		}
+		modifier = {
+			factor = 0.75
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_erudite_explorers = yes
+			desc = personality_erudite_explorers
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_efficient_bureaucracy = yes
+			desc = gal_com_efficient_civic
+		}
+		modifier = {
+			factor = 1.25
+			is_honorbound_warriors = yes
+			desc = personality_honorbound_warriors
+		}
+		modifier = {
+			factor = 0
+			is_shared_burden_empire = yes
+			desc = civic_shared_burden
+		}
+		modifier = {
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+			is_shared_burden_empire = no
+		}
+		modifier = {
+			factor = 1.5
+			is_civic_cutthroat_politics = yes
+			desc = gal_com_cutthroat_civic
+		}
+		modifier = {
+			factor = 2
+			OR = { is_xenophobe = yes is_xenophobic_isolationists = yes }
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			is_civic_has_elite  = yes
+			desc = gal_com_elite_civic
+		}
+		modifier = {
+			factor = 2
+			is_civic_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			is_authoritarian  = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 5
+			is_origin_syncretic_livestock = yes
+			desc = origin_syncretic_livestock
+		}
+		modifier = {
+			factor = 3
+			is_robot_empire = yes
+			desc = auth_machine_intelligence
+			NOT = {
+				any_owned_species = {
+					is_sapient = yes
+					NOR = {
+						is_archetype = ROBOT
+						is_archetype = MACHINE
+					}
+				}
+			}
+		}
+	}
+}
+
+resolution_healthcare_eed_repeal_4 = {
+	icon = "GFX_repeal_blue"
+
+	potential = {
+		has_federations_dlc = yes
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_xenoist days = 7200 }
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_progressivee days = 7200 }
+		custom_tooltip = resolution_healthcare_war_relief_tooltip
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } }
+		custom_tooltip = resolution_healthcare_repeal_4_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_clonal_medicine"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } }
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_clonal_medicine"
+	}
+
+	modifier = {
+		resolution_healthcare_board_of_health = 1
+		resolution_healthcare_xenomedical_research = 1
+		resolution_healthcare_war_relief = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 10
+			has_dystopian_society = yes
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 5
+			is_private_healthcare_empire = yes
+			desc = civic_private_healthcare_corporate
+		}
+		modifier = {
+			factor = 10
+			desc = gal_com_in_breach_of_proposed_resolution
+			in_breach_of = resolution_healthcare_clonal_medicine
+		}
+		
+		modifier = {
+			factor = 2
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_healthcare_clonal_medicine
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_civic = civic_living_hosts
+				is_current_or_former_necrophage_empire = yes
+			}
+			desc = gal_com_supporting_civics
+		}
+		modifier = {
+			factor = 0
+			is_hive_empire = yes
+			desc = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			is_civic_health = yes
+			NOT = { is_private_healthcare_empire = yes }
+			desc = gal_com_health_civic
+		}
+		modifier = {
+			factor = 0
+			is_civic_machine_servitor = yes
+			desc = civic_machine_servitor
+		}
+		modifier = {
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0.5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0.5
+			is_civic_has_meritocracy = yes
+			desc = gal_com_meritocracy_civic
+		}
+		modifier = {
+			factor = 0.75
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_erudite_explorers = yes
+			desc = personality_erudite_explorers
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_efficient_bureaucracy = yes
+			desc = gal_com_efficient_civic
+		}
+		modifier = {
+			factor = 1.25
+			is_honorbound_warriors = yes
+			desc = personality_honorbound_warriors
+		}
+		modifier = {
+			factor = 0
+			is_shared_burden_empire = yes
+			desc = civic_shared_burden
+		}
+		modifier = {
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+			is_shared_burden_empire = no
+		}
+		modifier = {
+			factor = 1.5
+			is_civic_cutthroat_politics = yes
+			desc = gal_com_cutthroat_civic
+		}
+		modifier = {
+			factor = 2
+			OR = { is_xenophobe = yes is_xenophobic_isolationists = yes }
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			is_civic_has_elite  = yes
+			desc = gal_com_elite_civic
+		}
+		modifier = {
+			factor = 2
+			is_civic_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			is_authoritarian  = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 5
+			is_origin_syncretic_livestock = yes
+			desc = origin_syncretic_livestock
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				is_clone_army_empire = yes
+				has_origin = origin_clones
+				has_origin = origin_hive_queen
+			}
+			desc = gal_com_opposing_civics
+		}
+		modifier = {
+			factor = 3
+			is_robot_empire = yes
+			desc = auth_machine_intelligence
+			NOT = {
+				any_owned_species = {
+					is_sapient = yes
+					NOR = {
+						is_archetype = ROBOT
+						is_archetype = MACHINE
+					}
+				}
+			}
+		}
+	}
+}
+
+resolution_healthcare_eed_repeal_5 = {
+	icon = "GFX_repeal_blue"
+
+	potential = {
+		has_federations_dlc = yes
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_xenoist days = 7200 }
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_progressivee days = 7200 }
+		if = {
+			limit = { has_global_flag = expanded_pops_active }
+			custom_tooltip = resolution_healthcare_clonal_medicine_tooltip_pops
+		}
+		else = {
+			custom_tooltip = resolution_healthcare_clonal_medicine_tooltip_no_pops
+		}
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } }
+		custom_tooltip = resolution_healthcare_repeal_5_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_healthcare_universal_healthcare"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } }
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_healthcare_repeal days = @resolution_flag_timer }
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_healthcare_universal_healthcare"
+	}
+
+
+	modifier = {
+		resolution_healthcare_board_of_health = 1
+		resolution_healthcare_xenomedical_research = 1
+		resolution_healthcare_war_relief = 1
+		resolution_healthcare_clonal_medicine = 1
+	}
+
+	allow = {}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+		modifier = {
+			factor = 10
+			has_dystopian_society = yes
+			desc = civic_dystopian_society
+		}
+		modifier = {
+			factor = 10
+			is_private_healthcare_empire = yes
+			desc = civic_private_healthcare_corporate
+		}
+		modifier = {
+			factor = 10
+			desc = gal_com_in_breach_of_proposed_resolution
+			in_breach_of = resolution_healthcare_universal_healthcare
+		}
+		
+		modifier = {
+			factor = 2
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_healthcare_universal_healthcare
+			}
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				has_civic = civic_living_hosts
+				is_current_or_former_necrophage_empire = yes
+			}
+			desc = gal_com_supporting_civics
+		}
+		modifier = {
+			factor = 0
+			is_hive_empire = yes
+			desc = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			is_civic_health = yes
+			desc = gal_com_health_civic
+		}
+		modifier = {
+			factor = 0
+			is_civic_machine_servitor = yes
+			desc = civic_machine_servitor
+		}
+		modifier = {
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		modifier = {
+			factor = 0.5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+		modifier = {
+			factor = 0.5
+			is_civic_has_meritocracy = yes
+			desc = gal_com_meritocracy_civic
+		}
+		modifier = {
+			factor = 0.75
+			is_civic_environmentalist = yes
+			desc = gal_com_environment_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_erudite_explorers = yes
+			desc = personality_erudite_explorers
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = {
+			factor = 0.85
+			is_civic_efficient_bureaucracy = yes
+			desc = gal_com_efficient_civic
+		}
+		modifier = {
+			factor = 1.25
+			is_honorbound_warriors = yes
+			desc = personality_honorbound_warriors
+		}
+		modifier = {
+			factor = 0
+			is_shared_burden_empire = yes
+			desc = civic_shared_burden
+		}
+		modifier = {
+			factor = 2
+			is_capitalist = yes
+			desc = auth_corporate
+			is_shared_burden_empire = no
+		}
+		modifier = {
+			factor = 1.5
+			is_civic_cutthroat_politics = yes
+			desc = gal_com_cutthroat_civic
+		}
+		modifier = {
+			factor = 2
+			OR = { is_xenophobe = yes is_xenophobic_isolationists = yes }
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			is_civic_has_elite  = yes
+			desc = gal_com_elite_civic
+		}
+		modifier = {
+			factor = 2
+			is_civic_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			is_authoritarian  = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 5
+			is_origin_syncretic_livestock = yes
+			desc = origin_syncretic_livestock
+		}
+		modifier = {
+			factor = 3
+			is_robot_empire = yes
+			desc = auth_machine_intelligence
+			NOT = {
+				any_owned_species = {
+					is_sapient = yes
+					NOR = {
+						is_archetype = ROBOT
+						is_archetype = MACHINE
+					}
+				}
+			}
+		}
+	}
+}
