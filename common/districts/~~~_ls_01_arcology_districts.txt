@@ -1,0 +1,1391 @@
+####################################################################################################
+# Limitless Stellaris - Districts
+####################################################################################################
+
+##################################################
+## Arcology Districts
+##################################################
+
+## Housing
+# Merge between Bug Branch, Planetary Diversity, StarTech
+district_arcology_housing = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	show_on_uncolonized = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdmilarc
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdtechnoarch
+		}
+	}
+
+	potential = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdmilarc
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdtechnoarch
+		}
+	}
+
+	allow = {
+		str_city_district_allow = yes # StarTech AI
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 15
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_maintenance_drone_add = 9
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_1
+			}
+		}
+		modifier = {
+			planet_housing_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				is_gestalt = yes # Merged
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+			}
+		}
+		modifier = {
+			job_clerk_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_mercantile_trickle_up_economics }
+		}
+		modifier = {
+			job_clerk_add = 3
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_bugged_rooftop_farmers }
+		}
+		modifier = {
+			job_clerk_add = -3
+			job_farmer_add = 3
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+			}
+		}
+		text = job_clerk_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+
+	triggered_desc = { # Bug Branch
+		trigger = {
+			exists = owner
+			owner = { has_valid_civic = civic_bugged_rooftop_farmers }
+		}
+		text = job_farmer_effect_desc
+	}
+}
+
+## Arms Industry
+# Merge between OSA, Plentiful Traditions
+district_arcology_arms_industry = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = {
+			uses_district_set = city_world
+			uses_district_set = pdmilarc # OSA
+		}
+	}
+
+	potential = {
+		OR = {
+			uses_district_set = city_world
+			uses_district_set = pdmilarc # OSA
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+			volatile_motes = 50
+		}
+		upkeep = {
+			energy = 5
+			volatile_motes = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_edict = industrial_maintenance
+				}
+			}
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_fabricator_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_alloy_drone_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_drone_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_foundry_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_technician_add = 6
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+				is_catalytic_empire = no
+			}
+		}
+		text = job_foundry_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_technician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_alloy_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_fabricator_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_drone_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_industry_3 }
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_alloy_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_industry_3 }
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_fabricator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_industry_3 }
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_foundry_add = 1
+		}
+	}
+}
+
+## Civilian Industry
+# Merge between Planetary Diversity, Plentiful Traditions, Scripted Trigger Undercoat
+district_arcology_civilian_industry = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = {
+			AND = {
+				uses_district_set = city_world
+				exists = owner
+				owner = {
+					OR = {
+						is_gestalt = no # Merged
+						is_servitor_empire = yes # STU
+					}
+				}
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_servitor_empire = yes # STU
+				}
+				uses_district_set = pdecocity # Planetary Diversity
+			}
+		}
+	}
+
+	potential = {
+		OR = {
+			AND = {
+				uses_district_set = city_world
+				exists = owner
+				owner = {
+					OR = {
+						is_gestalt = no # Merged
+						is_servitor_empire = yes # STU
+					}
+				}
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_servitor_empire = yes # STU
+				}
+				uses_district_set = pdecocity # Planetary Diversity
+			}
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 5
+			rare_crystals = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_edict = industrial_maintenance
+				}
+			}
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_artisan_drone_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no # Merged
+				is_crafter_empire = no
+			}
+		}
+		modifier = {
+			job_artisan_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no # Merged
+				is_crafter_empire = yes
+			}
+		}
+		modifier = {
+			job_artificer_add = 6
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no # Merged
+				is_crafter_empire = no
+			}
+		}
+		text = job_artisan_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no # Merged
+				is_crafter_empire = yes
+			}
+		}
+		text = job_artificer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+		text = job_artisan_drone_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_affinity_finish }
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_alloy_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_affinity_finish }
+			owner = { is_machine_empire = yes }
+			owner = { country_uses_consumer_goods = no }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_fabricator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_affinity_finish }
+			owner = { is_machine_empire = yes }
+			owner = { country_uses_consumer_goods = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_artisan_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_affinity_finish }
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_artisan_add = 1
+		}
+	}
+}
+
+## Leisure
+# Merge between OSA, Venture Politics, Planetary Diversity, StarTech, Subtle Polish
+district_arcology_leisure = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdmilarc
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdtechnoarch
+		}
+		exists = from
+		from = {
+			is_regular_empire = yes
+			NOT = { has_civic = civic_dystopian_society }
+		}
+	}
+
+	potential = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdmilarc
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdtechnoarch
+		}
+		exists = owner
+		owner = {
+			is_gestalt = no # Merged
+			NOT = { has_civic = civic_dystopian_society }
+			NOT = { has_valid_civic = civic_urban_idyll } # Venture Politics
+		}
+	}
+
+	allow = {
+		str_habitat_culture_allow = yes # StarTech AI
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_arcology_organic_housing
+		district_city
+		district_nexus
+		district_hive
+		district_arcology_housing
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 5
+			exotic_gases = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+				NOR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
+			}
+		}
+		modifier = {
+			job_entertainer_add = 3 # Subtle Polish 6 -> 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
+			}
+		}
+		modifier = {
+			job_duelist_add = 3 # Subtle Polish 6 -> 3
+		}
+	}
+	
+	triggered_planet_modifier = { # Subtle Polish
+		potential = { always = yes }
+		# uses triggered_planet_modifier to ensue it appears under the entertainer/duelist jobs
+		job_culture_worker_add = 3
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
+			}
+		}
+		text = job_duelist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				NOR = {
+					has_valid_civic = civic_warrior_culture
+					has_valid_civic = civic_corporate_mercenary_contractors # OSA
+				}
+			}
+		}
+		text = job_entertainer_effect_desc
+	}
+	
+	triggered_desc = { # Subtle Polish
+		text = job_culture_worker_effect_desc
+	}
+}
+
+## Organic Housing
+# Merge between Planetary Diversity, Scripted Trigger Undercoat
+district_arcology_organic_housing = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdmilarc
+		}
+		from = {
+			is_servitor_empire = yes # STU
+		}
+	}
+
+	potential = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdmilarc
+		}
+		exists = owner
+		owner = {
+			is_servitor_empire = yes # STU
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_arcology_leisure
+		district_city
+		district_nexus
+		district_hive
+		district_arcology_housing
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 5
+			exotic_gases = 1
+		}
+	}
+
+	planet_modifier = {
+		job_bio_trophy_add = 15
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_servitor_empire = yes } # STU
+		}
+		text = job_bio_trophy_effect_desc
+	}
+}
+
+## Administrative
+# Merge between Planetary Diversity, Plentiful Traditions, StarTech, Subtle Polish, STU
+district_arcology_administrative = 	{
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdmilarc
+			uses_district_set = pdtechnoarch
+		}
+		exists = from
+		from = {
+			is_gestalt = no # Merged
+			is_spiritualist = no # Merged
+			has_make_spiritualist_perk = no
+		}
+	}
+
+	potential = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdmilarc
+			uses_district_set = pdtechnoarch
+		}
+		exists = owner
+		owner = {
+			is_gestalt = no # Merged
+			is_spiritualist = no # Merged
+			has_make_spiritualist_perk = no
+		}
+	}
+
+	allow = {
+		str_habitat_culture_allow = yes # StarTech
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_nexus
+		district_hive
+		district_arcology_religious
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 5
+			rare_crystals = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+				is_megacorp = no # Merged
+			}
+		}
+		modifier = {
+			job_bureaucrat_add = 6
+		}
+	}
+
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			exists = owner
+			owner = { is_valid_byzantine_bureaucracy = yes }
+		}
+		modifier = {
+			job_bureaucrat_add = -1
+			job_magistrate_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = yes # Merged
+				#is_spiritualist = no # Subtle Polish removes
+			}
+		}
+		modifier = {
+			job_manager_add = 6
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no # Merged
+				is_megacorp = no # Merged
+			}
+		}
+		text = job_bureaucrat_effect_desc
+	}
+
+	triggered_desc = { # Subtle Polish
+		trigger = {
+			exists = owner
+			owner = { is_valid_byzantine_bureaucracy = yes }
+		}
+		text = job_magistrate_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_megacorp = yes # Merged
+				#is_spiritualist = no # Subtle Polish removes
+			}
+		}
+		text = job_manager_effect_desc
+	}
+	
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_aspiration_3 }
+			owner = {
+				is_regular_empire = yes
+				is_megacorp = no
+			}
+		}
+		modifier = {
+			job_bureaucrat_add = 3
+		}
+	}
+	
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_aspiration_3 }
+			owner = {
+				is_megacorp = yes
+				is_spiritualist = no
+			}
+		}
+		modifier = {
+			job_manager_add = 3
+		}
+	}
+}
+
+## Religious
+# Merge between Bug Branch, Planetary Diversity, Plentiful Traditions, StarTech
+district_arcology_religious = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdmilarc
+			uses_district_set = pdtechnoarch
+		}
+		from = {
+			OR = {
+				is_spiritualist = yes
+				has_make_spiritualist_perk = yes
+			}
+		}	
+	}
+
+	potential = {
+		OR = { # Planetary Diversity
+			uses_district_set = city_world
+			uses_district_set = pdecocity
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdmilarc
+			uses_district_set = pdtechnoarch
+		}
+		owner = {
+			OR = {
+				is_spiritualist = yes
+				has_make_spiritualist_perk = yes
+			}
+		}
+	}
+
+	allow = {
+		str_habitat_culture_allow = yes # StarTech AI
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_nexus
+		district_hive
+		district_arcology_administrative
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 5
+			rare_crystals = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = no
+				is_bugged_advanced_cult = no # Bug Branch
+			}
+		}
+		modifier = {
+			# Megacorp NO, Cult NO.
+			job_priest_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = yes
+				is_bugged_advanced_cult = no # Bug Branch
+			}
+		}
+		modifier = {
+			# Megacorp YES, Cult NO.
+			job_priest_add = 3
+			job_manager_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = no
+				is_death_cult_empire = yes
+			}
+		}
+		modifier = {
+			# Megacorp NO, Death Cult YES.
+			job_death_priest_add = 3
+			job_mortal_initiate_add = 3
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = yes
+				is_death_cult_empire = yes
+			}
+		}
+		modifier = {
+			# Megacorp YES, Death Cult YES.
+			job_death_priest_add = 2
+			job_mortal_initiate_add = 2
+			job_manager_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = no
+				is_bugged_luminosity_cult = yes
+			}
+		}
+		modifier = {
+			# Megacorp NO, Luminosity Cult YES.
+			job_bugged_luminosity_priest_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = yes
+				is_bugged_luminosity_cult = yes
+			}
+		}
+		modifier = {
+			# Megacorp YES, Luminosity Cult YES.
+			job_bugged_luminosity_priest_add = 3
+			job_manager_add = 3
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = no
+				is_bugged_war_cult = yes
+			}
+		}
+		modifier = {
+			# Megacorp NO, Luminosity Cult YES.
+			job_bugged_warrior_priest_add = 3
+			job_bugged_war_forger_add = 3
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = yes
+				is_bugged_war_cult = yes
+			}
+		}
+		modifier = {
+			# Megacorp YES, Luminosity Cult YES.
+			job_bugged_warrior_priest_add = 2
+			job_bugged_war_forger_add = 2
+			job_manager_add = 2
+		}
+	}
+
+	# Priests desc?
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_bugged_advanced_cult = no
+			}
+		}
+		text = job_priest_effect_desc
+	}
+
+	# Death Priests and Mortal Initiates desc?
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_death_cult_empire = yes
+			}
+		}
+		text = jobs_death_priest_and_mortal_initiate_effect_desc
+	}
+
+	# Managers desc?
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_megacorp = yes
+			}
+		}
+		text = job_manager_effect_desc
+	}
+
+	triggered_desc = { # Bug Branch - Luminosity Priest
+		trigger = {
+			exists = owner
+			owner = {
+				is_bugged_luminosity_cult = yes
+			}
+		}
+		text = job_bugged_luminosity_priest_effect_desc
+	}
+
+	triggered_desc = { # Bug Branch - Warrior Priest
+		trigger = {
+			exists = owner
+			owner = {
+				is_bugged_war_cult = yes
+			}
+		}
+		text = job_bugged_warrior_priest_effect_desc
+	}
+	
+	triggered_desc = { # Bug Branch - War Mason
+		trigger = {
+			exists = owner
+			owner = {
+				is_bugged_war_cult = yes
+			}
+		}
+		text = job_bugged_war_forger_effect_desc
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_aspiration_3 }
+			owner = {
+				is_megacorp = no
+				is_death_cult_empire = no
+			}
+		}
+		modifier = {
+			# Megacorp NO, Death Cult NO.
+			job_priest_add = 3
+		}
+	}
+	
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_aspiration_3 }
+			owner = {
+				is_megacorp = yes
+				is_death_cult_empire = no
+			}
+		}
+		modifier = {
+			# Megacorp YES, Death Cult NO.
+			job_priest_add = 2
+			job_manager_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_aspiration_3 }
+			owner = {
+				is_megacorp = no
+				is_death_cult_empire = yes
+			}
+		}
+		modifier = {
+			# Megacorp NO, Death Cult YES.
+			job_death_priest_add = 2
+			job_mortal_initiate_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_aspiration_3 }
+			owner = {
+				is_megacorp = yes
+				is_death_cult_empire = yes
+			}
+		}
+		modifier = {
+			# Megacorp YES, Death Cult YES.
+			job_death_priest_add = 1
+			job_mortal_initiate_add = 1
+			job_manager_add = 1
+		}
+	}
+}
+
+## Planetary Diversity Trade
+# Bug Branch with some minor optimizations.
+district_arcology_pdtrade = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR= {
+			uses_district_set = pdecocity
+			uses_district_set = pdcorpoarc
+		}
+		from = {
+			is_regular_empire = yes
+		}
+	}
+
+	potential = {
+		OR= {
+			uses_district_set = pdecocity
+			uses_district_set = pdcorpoarc
+		}
+		owner = {
+			exists = owner
+			is_regular_empire = yes
+		}
+	}
+
+	conversion_ratio = 1
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 5
+			rare_crystals = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_merchant_add = 1 # Bug Branch 2 -> 1
+			job_bugged_trader_add = 2 # Bug Branch
+			job_clerk_add =  3 # Bug Branch 4 -> 3
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { NOT = { is_gestalt = yes } }
+		}
+		text = job_merchant_effect_desc
+	}
+
+	triggered_desc = { # Bug Branch
+		trigger = {
+			exists = owner
+			owner = { NOT = { is_gestalt = yes } }
+		}
+		text = job_bugged_trader_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { NOT = { is_gestalt = yes } }
+		}
+		text = job_clerk_effect_desc
+	}
+}

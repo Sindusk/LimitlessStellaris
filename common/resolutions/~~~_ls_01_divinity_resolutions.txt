@@ -31,3 +31,2342 @@
 ##################################################
 ## Divinity
 ##################################################
+
+## Divinity of Life - Comfort the Fallen
+# Merge between EED, MECR, NGS, StarTech, Scripted Trigger Undercoat
+resolution_divinity_comfort_the_fallen = {
+	icon = "GFX_resolution_robots_bad"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+	level = 1
+
+	modifier = {
+		resolution_divinity_comfort_the_fallen = 1
+	}
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_divinity_comfort_the_fallen_effect
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_global_flag = galactic_community_resolution_divinity_comfort_the_fallen
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_comfort_the_fallen }
+		}
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOR = {
+				is_active_resolution = "resolution_divinity_comfort_the_fallen"
+				is_active_resolution = "resolution_divinity_tithe_on_the_soulless"
+				is_active_resolution = "resolution_divinity_right_to_work"
+				is_active_resolution = "resolution_divinity_silence_the_soulless"
+				is_active_resolution = "resolution_divinity_a_defined_purpose"
+				is_active_resolution = "resolution_divinity_crusade_against_the_heretic" # NGS
+			}
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+
+		modifier = {
+			factor = 0.85
+			is_authoritarian = yes
+			is_spiritualist = no
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 0.85
+			is_capitalist = yes # STU
+			is_spiritualist = no
+			desc = auth_corporate
+		}
+
+		modifier = { # EED
+			factor = 0.8
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 0.8
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			is_egalitarian = no
+			desc = gal_com_opposing_civics
+		}
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_supporting_civics
+		}
+		modifier = {
+			factor = 0.5
+			is_materialist = yes
+			is_egalitarian = no # NGS
+			desc = ethic_materialist
+		}
+
+		modifier = {
+			factor = 1.1 # NGS 1.05 -> 1.1
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = { # EED
+			factor = 1.2
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+
+		modifier = {
+			factor = 0.5
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 0.25
+			is_synthetic_empire = yes
+			desc = synthetic_empire
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.5 -> 2
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_spiritualist
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 2
+			is_shared_burden_empire = yes # STU
+			desc = civic_shared_burden
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			count_owned_pop = {
+				limit = {
+					is_unemployed = yes
+				}
+				count > 5
+			}
+			desc = gal_com_unemployment
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			OR = {
+				has_ai_personality = decadent_technocracy
+				has_ai_personality = decadent_hierarchy
+			}
+			desc = gal_com_opposing_personality
+		}
+		
+		modifier = { # EED
+			factor = 3
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+	}
+}
+
+## Divinity of Life - Tithe on the Soulless
+# Merge between EED, MECR, NGS, StarTech, Scripted Trigger Undercoat
+resolution_divinity_tithe_on_the_soulless = {
+	icon = "GFX_resolution_robots_bad"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+	level = 2
+
+	modifier = {
+		resolution_divinity_comfort_the_fallen = 1
+		resolution_divinity_tithe_on_the_soulless = 1
+	}
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_technologist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_tithe_on_the_soulless }
+		}
+		is_active_resolution = "resolution_divinity_comfort_the_fallen"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # NGS
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_origin = origin_iron_despot
+			desc = origin_iron_despot
+		}
+		
+		modifier = { # EED
+			factor = 3
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+
+		modifier = {
+			factor = 0.5
+			has_ai_personality_behaviour = robot_exploiter
+			is_spiritualist = no # NGS
+			desc = personality_type_robot_exploiter
+		}
+
+		modifier = {
+			factor = 0.25
+			has_ai_personality_behaviour = robot_liberator
+			is_spiritualist = no # NGS
+			desc = personality_type_robot_liberator
+		}
+
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			desc = gal_com_opposing_civics
+		}
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_supporting_civics
+		}
+
+		modifier = {
+			factor = 0.8
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 0.2 # NGS 0 -> 0.2
+			is_synthetic_empire = yes
+			desc = synthetic_empire
+		}
+
+		modifier = {
+			factor = 1.25 # NGS 1.2 -> 1.25
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+			desc = gal_com_supporting_personality
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.5 -> 2
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_spiritualist
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_valid_civic = civic_machine_cult
+			desc = civic_machine_cult
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			
+			is_militarist = yes
+			desc = ethic_militarist
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ai_personality = decadent_technocracy
+			desc = gal_com_opposing_personality
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+	}
+}
+
+## Divinity of Life - Right to Work
+# Merge between EED, MECR, NGS, StarTech, Scripted Trigger Undercoat
+resolution_divinity_right_to_work = {
+	icon = "GFX_resolution_robots_bad"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	level = 3
+
+	modifier = {
+		resolution_divinity_comfort_the_fallen = 1
+		resolution_divinity_tithe_on_the_soulless = 1
+		resolution_divinity_right_to_work = 1
+	}
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_divinity_right_to_work_effect
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_divinity_right_to_work
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_technologist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_right_to_work }
+		}
+		is_active_resolution = "resolution_divinity_tithe_on_the_soulless"
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # NGS
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_origin = origin_iron_despot
+			desc = origin_iron_despot
+		}
+		
+		modifier = { # EED
+			factor = 3
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+
+		modifier = {
+			factor = 0.5
+			has_ai_personality_behaviour = robot_exploiter
+			is_spiritualist = no # NGS
+			desc = personality_type_robot_exploiter
+		}
+
+		modifier = {
+			factor = 0.25
+			has_ai_personality_behaviour = robot_liberator
+			is_spiritualist = no # NGS
+			desc = personality_type_robot_liberator
+		}
+
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			desc = gal_com_opposing_civics
+		}
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_supporting_civics
+		}
+
+		modifier = {
+			factor = 0.8
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 0.2 # NGS 0 -> 0.2
+			is_synthetic_empire = yes
+			desc = synthetic_empire
+		}
+
+		modifier = {
+			factor = 1.25 # NGS 1.2 -> 1.25
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+			desc = gal_com_supporting_personality
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.5 -> 2
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_spiritualist
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_valid_civic = civic_machine_cult
+			desc = civic_machine_cult
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_machine_empire = no
+			is_materialist = no
+			NOT = { has_ai_personality_behaviour = robot_liberator }
+			count_owned_pop = {
+				limit = {
+					is_robot_pop = no
+					is_unemployed = yes
+				}
+				count > 5
+			}
+			desc = gal_com_unemployment
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_materialist = no
+			NOT = { has_ai_personality_behaviour = robot_liberator }
+			is_shared_burden_empire = yes
+			desc = civic_shared_burden
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			
+			is_militarist = yes
+			desc = ethic_militarist
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ai_personality = decadent_technocracy
+			desc = gal_com_opposing_personality
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+	}
+}
+
+## Divinity of Life - Silence the Soulless
+# Merge between EED, MECR, NGS, StarTech, Scripted Trigger Undercoat
+resolution_divinity_silence_the_soulless = {
+	icon = "GFX_resolution_robots_bad"
+
+	potential = {
+		has_federations_dlc = yes
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+	level = 4
+
+	modifier = {
+		resolution_divinity_comfort_the_fallen = 1
+		resolution_divinity_tithe_on_the_soulless = 1
+		resolution_divinity_right_to_work = 1
+		resolution_divinity_silence_the_soulless = 1
+	}
+
+	triggered_modifier = { # NGS
+		potential = {
+			has_ethic = "ethic_materialist"
+			NOT = { has_ethic = "ethic_fanatic_materialist" }
+		}
+		modifier = {
+			reduced_diplo_weight_normal = 1
+		}
+	}
+
+	triggered_modifier = { # NGS
+		potential = {
+			has_ethic = "ethic_fanatic_materialist"
+		}
+		modifier = {
+			reduced_diplo_weight_fanatic = 1
+		}
+	}
+
+	triggered_modifier = {
+		potential = {
+			is_synthetic_empire = yes
+		}
+		modifier = {
+			resolution_divinity_silence_the_soulless_synthetic_empire_effect = 1
+		}
+	}
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_divinity_silence_the_soulless_effect
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_technologist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			set_global_flag = resolution_with_breach_effect_passed
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_silence_the_soulless }
+		}
+		is_active_resolution = "resolution_divinity_right_to_work"
+	}
+
+	breach = {
+		has_country_flag = resolution_breached_synthetic_evolution
+		NOT = { has_country_flag = constitutional_immunity }
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # NGS
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 3
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+
+		modifier = {
+			factor = 0.5
+			has_ai_personality_behaviour = robot_exploiter
+			is_spiritualist = no # NGS
+			desc = personality_type_robot_exploiter
+		}
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			desc = gal_com_opposing_civics
+		}
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_supporting_civics
+		}
+
+		modifier = {
+			factor = 0.25
+			has_ai_personality_behaviour = robot_liberator
+			is_spiritualist = no # NGS
+			desc = personality_type_robot_liberator
+		}
+
+		modifier = {
+			factor = 0.8
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 0.2 # NGS 0 -> 0.2
+			is_synthetic_empire = yes
+			desc = synthetic_empire
+		}
+		
+		modifier = { # EED
+			factor = 0
+			OR = {
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+				has_ascension_perk = ap_synthetic_evolution
+			}
+			desc = ap_the_flesh_is_weak
+		}
+
+		modifier = {
+			factor = 1.5 # NGS 1.2 -> 1.5
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+			desc = gal_com_supporting_personality
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.5 -> 2
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_spiritualist
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_valid_civic = civic_machine_cult
+			desc = civic_machine_cult
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			
+			is_militarist = yes
+			desc = ethic_militarist
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ai_personality = decadent_technocracy
+			desc = gal_com_opposing_personality
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+		modifier = { # NGS
+			factor = 0
+			in_breach_of = resolution_divinity_silence_the_soulless
+			NOT = { has_ethic = "ethic_fanatic_spiritualist" }
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+	}
+}
+
+## Divinity of Life - A Defined Purpose
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, Scripted Trigger Undercoat
+resolution_divinity_a_defined_purpose = {
+	icon = "GFX_resolution_robots_bad"
+
+	potential = {
+		has_federations_dlc = yes
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+	level = 5
+
+	modifier = {
+		resolution_divinity_comfort_the_fallen = 1
+		resolution_divinity_tithe_on_the_soulless = 1
+		resolution_divinity_right_to_work = 1
+		resolution_divinity_silence_the_soulless = 1
+		resolution_divinity_a_defined_purpose = 1
+	}
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_divinity_a_defined_purpose_effect
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_technologist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			every_playable_country = {
+				limit = {
+					is_galactic_community_member = yes
+					in_breach_of = resolution_divinity_a_defined_purpose
+				}
+				country_event = { id = federations.10340 }
+			}
+		}
+		if = { # EED
+			limit = { has_global_flag = resolution_ascension_cyborg_flag }
+			custom_tooltip = resolution_repeal_ascension_cyborg_effect_success
+			hidden_effect = {
+				remove_global_flag = resolution_ascension_cyborg_flag
+			}
+		}
+	}
+
+	triggered_modifier = { # NGS
+		potential = {
+			is_synthetic_empire = yes
+		}
+		modifier = {
+			resolution_divinity_silence_the_soulless_synthetic_empire_effect = 1
+		}
+	}
+
+	triggered_modifier = { # NGS
+		potential = {
+			has_ethic = "ethic_spiritualist"
+			NOT = { has_ethic = "ethic_fanatic_spiritualist" }
+		}
+		modifier = {
+			increased_diplo_weight_normal = 1
+		}
+	}
+
+	triggered_modifier = { # NGS
+		potential = {
+			has_ethic = "ethic_fanatic_spiritualist"
+		}
+		modifier = {
+			increased_diplo_weight_fanatic = 1
+		}
+	}
+
+	triggered_modifier = { # NGS
+		potential = {
+			has_ethic = "ethic_materialist"
+			NOT = { has_ethic = "ethic_fanatic_materialist" }
+		}
+		modifier = {
+			reduced_diplo_weight_normal = 1
+		}
+	}
+
+	triggered_modifier = { # NGS
+		potential = {
+			has_ethic = "ethic_fanatic_materialist"
+		}
+		modifier = {
+			reduced_diplo_weight_fanatic = 1
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_a_defined_purpose }
+		}
+		is_active_resolution = "resolution_divinity_silence_the_soulless"
+	}
+
+	breach = {
+		OR = {
+			has_country_flag = resolution_breached_synthetic_evolution # Ariphaos
+			AND = {
+				is_synthetic_empire = no # EED
+				has_policy_flag = ai_full_rights
+			}
+			AND = {
+				is_machine_empire = yes
+				NOT = { has_country_flag = synthetic_empire } # EED
+				NOT = { is_servitor_empire = yes } # STU
+			}
+			AND = { # EED
+				has_country_flag = synthetic_empire
+				OR = {
+					any_owned_species = {
+						is_sapient = yes
+						is_robotic = no
+						OR = {
+							has_living_standard = { type = living_standard_subsistence country = prev }
+							has_living_standard = { type = living_standard_stratified country = prev }
+							has_living_standard = { type = living_standard_dystopian_society country = prev }
+							has_living_standard = { type = living_standard_normal country = prev }
+							has_living_standard = { type = living_standard_academic_privilege country = prev }
+							has_living_standard = { type = living_standard_good country = prev }
+							has_living_standard = { type = living_standard_decadent country = prev }
+						}
+					}
+					any_owned_species = {
+						is_sapient = yes
+						is_robotic = no
+						has_citizenship_type = { type = citizenship_slavery country = prev }
+					}
+				}
+			}
+			any_owned_species = { # EED
+				is_sapient = yes
+				OR = {
+					has_living_standard = { type = living_standard_tech_assimilation country = prev }
+				}
+			}
+		}
+		NOT = { has_country_flag = constitutional_immunity }
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular # NGS disliked -> unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 0.625
+			BAD = 1.25
+			TERRIBLE = 1.4
+			TURTLER = 0.9
+			TURTLER2 = 0.9
+			RUSHER = 1.1
+			RUSHER2 = 1.1
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 3
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+
+		modifier = {
+			factor = 0.5
+			has_ai_personality_behaviour = robot_exploiter
+			NOT = { is_servitor_empire = yes } # STU
+			is_spiritualist = no # NGS
+			desc = personality_type_robot_exploiter
+		}
+
+		modifier = {
+			factor = 0.25
+			has_ai_personality_behaviour = robot_liberator
+			NOT = { is_servitor_empire = yes } # STU
+			is_spiritualist = no # NGS
+			desc = personality_type_robot_liberator
+		}
+
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			desc = gal_com_opposing_civics
+		}
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_supporting_civics
+		}
+
+		modifier = {
+			factor = 0.8
+			is_gestalt = yes
+			NOT = { is_servitor_empire = yes } # STU
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 0
+			is_synthetic_empire = yes
+			NOT = { is_servitor_empire = yes } # STU
+			desc = synthetic_empire
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				is_synthetic_empire = yes
+				NOT = { is_servitor_empire = yes }
+			}
+		}
+		
+		modifier = { # EED
+			factor = 0
+			OR = {
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+				has_ascension_perk = ap_synthetic_evolution
+			}
+			desc = ap_the_flesh_is_weak
+		}
+
+		modifier = {
+			factor = 1.5 # NGS 1.2 -> 1.5
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+			desc = gal_com_supporting_personality
+		}
+
+		modifier = { # EED
+			factor = 1.5
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+			is_civic_has_meritocracy = yes
+			desc = gal_com_meritocracy_civic
+		}
+
+		modifier = { # NGS
+			factor = 0.5
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = { # NGS
+			factor = 0
+			in_breach_of = resolution_divinity_a_defined_purpose
+			NOT = { has_ethic = "ethic_fanatic_spiritualist" }
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.5 -> 2
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_ethic = ethic_fanatic_spiritualist
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_valid_civic = civic_machine_cult
+			desc = civic_machine_cult
+		}
+
+		modifier = {
+			factor = 100
+			is_servitor_empire = yes # STU
+			desc = civic_machine_servitor
+		}
+		
+		modifier = { # EED
+			factor = 5
+			# Hates all the other resolutions, but likes this one
+			has_ai_personality = decadent_technocracy
+			desc = gal_com_opposing_personality
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			
+			is_militarist = yes
+			desc = ethic_militarist
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+	}
+}
+
+## Divinity of Life - Repeal 1
+# Merge between EED, MECR, NGS, StarTech, Scripted Trigger Undercoat
+resolution_divinity_repeal_1 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_divinity_repeal_1_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_divinity_comfort_the_fallen"
+			remove_global_flag = galactic_community_resolution_divinity_comfort_the_fallen
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity_repeal days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_traditionalist days = 7200 } # EED
+			if = { # EED
+				limit = { is_shared_burden_empire = yes }
+				set_timed_country_flag = { flag = galcom_resolution_passed_anti_progressive days = 7200 }
+			}
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_divinity_comfort_the_fallen"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_repeal_1 }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = {
+			factor = 1.15
+			is_authoritarian = yes
+			is_spiritualist = no
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 1.15
+			is_capitalist = yes # EED
+			is_spiritualist = no
+			desc = auth_corporate
+		}
+
+		modifier = { # EED
+			factor = 2
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			is_egalitarian = no
+			desc = gal_com_supporting_civics
+		}
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_opposing_civics
+		}
+
+		modifier = {
+			factor = 1.75 # NGS 1.25 -> 1.75
+			is_materialist = yes
+			is_egalitarian = no # NGS
+			desc = ethic_materialist
+		}
+
+		modifier = {
+			factor = 0.9 # NGS 0.95 -> 0.9
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = { # EED
+			factor = 0.85
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+
+		modifier = {
+			factor = 1.5
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 3 # EED 2 -> 3
+			is_synthetic_empire = yes
+			desc = ap_synthetic_evolution
+		}
+
+		modifier = {
+			factor = 0.5
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ethic = ethic_fanatic_spiritualist
+			desc = ethic_spiritualist
+		}
+
+		modifier = {
+			factor = 0.2 # NGS 0 -> 0.2
+			is_shared_burden_empire = yes # STU
+			desc = civic_shared_burden
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			count_owned_pop = {
+				limit = {
+					is_unemployed = yes
+				}
+				count > 5
+			}
+			desc = gal_com_unemployment
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			OR = {
+				has_ai_personality = decadent_technocracy
+				has_ai_personality = decadent_hierarchy
+			}
+			desc = gal_com_supporting_personality
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+	}
+}
+
+## Divinity of Life - Repeal 2
+# Merge between EED, MECR, NGS, StarTech, Scripted Trigger Undercoat
+resolution_divinity_repeal_2 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t2
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_divinity_repeal_2_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_divinity_tithe_on_the_soulless"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity_repeal days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_traditionalist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_divinity_tithe_on_the_soulless"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_repeal_2 }
+		}
+	}
+
+	modifier = {
+		resolution_divinity_comfort_the_fallen = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+
+		modifier = {
+			factor = 1.5
+			has_ai_personality_behaviour = robot_exploiter
+			desc = personality_type_robot_exploiter
+		}
+
+		modifier = {
+			factor = 1.75
+			has_ai_personality_behaviour = robot_liberator
+			desc = personality_type_robot_liberator
+		}
+
+		modifier = { # NGS
+			factor = 1.75
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			desc = gal_com_supporting_civics
+		}
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_opposing_civics
+		}
+
+		modifier = {
+			factor = 1.2
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 5 # EED 2 -> 5
+			is_synthetic_empire = yes
+			desc = ap_synthetic_evolution
+		}
+
+		modifier = {
+			factor = 0.8
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+			desc = gal_com_opposing_personality
+		}
+
+		modifier = {
+			factor = 0.5
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+			NOT = { has_valid_civic = civic_machine_cult }
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ethic = ethic_fanatic_spiritualist
+			desc = ethic_spiritualist
+			NOT = { has_valid_civic = civic_machine_cult }
+		}
+		
+		modifier = { # EED
+			factor = 10
+			has_valid_civic = civic_machine_cult
+			desc = civic_machine_cult
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			
+			is_militarist = yes
+			desc = ethic_militarist
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+		}
+		
+		modifier = { # EED
+			factor = 10
+			has_ai_personality = decadent_technocracy
+			desc = gal_com_supporting_personality
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+	}
+}
+
+## Divinity of Life - Repeal 3
+# Merge between EED, MECR, NGS, StarTech, Scripted Trigger Undercoat
+resolution_divinity_repeal_3 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_divinity_repeal_3_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_divinity_right_to_work"
+			remove_global_flag = galactic_community_resolution_divinity_right_to_work
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity_repeal days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_traditionalist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		is_active_resolution = "resolution_divinity_right_to_work"
+	}
+
+	modifier = {
+		resolution_divinity_comfort_the_fallen = 1
+		resolution_divinity_tithe_on_the_soulless = 1
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_repeal_3 }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal # NGS unpopular -> normal
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+
+		modifier = {
+			factor = 1.5
+			has_ai_personality_behaviour = robot_exploiter
+			desc = personality_type_robot_exploiter
+		}
+
+		modifier = {
+			factor = 1.75
+			has_ai_personality_behaviour = robot_liberator
+			desc = personality_type_robot_liberator
+		}
+
+		modifier = { # NGS
+			factor = 1.75
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			desc = gal_com_supporting_civics
+		}
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_opposing_civics
+		}
+
+		modifier = {
+			factor = 1.2
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 5 # EED 2 -> 5
+			is_synthetic_empire = yes
+			desc = ap_synthetic_evolution # EED
+		}
+
+		modifier = {
+			factor = 0.8
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+			desc = gal_com_opposing_personality
+		}
+
+		modifier = {
+			factor = 0.5
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+			NOT = { has_valid_civic = civic_machine_cult }
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ethic = ethic_fanatic_spiritualist
+			desc = ethic_spiritualist
+			NOT = { has_valid_civic = civic_machine_cult }
+		}
+		
+		modifier = { # EED
+			factor = 10
+			has_valid_civic = civic_machine_cult
+			desc = civic_machine_cult
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_machine_empire = no
+			is_materialist = no
+			NOT = { has_ai_personality_behaviour = robot_liberator }
+			count_owned_pop = {
+				limit = {
+					is_robot_pop = no
+					is_unemployed = yes
+				}
+				count > 5
+			}
+			desc = gal_com_unemployment
+		}
+		
+		modifier = { # EED
+			factor = 0.25
+			is_materialist = no
+			NOT = { has_ai_personality_behaviour = robot_liberator }
+			is_shared_burden_empire = yes
+			desc = civic_shared_burden
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			
+			is_militarist = yes
+			desc = ethic_militarist
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+		}
+		
+		modifier = { # EED
+			factor = 10
+			has_ai_personality = decadent_technocracy
+			desc = gal_com_supporting_personality
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+	}
+}
+
+## Divinity of Life - Repeal 4
+# Merge between EED, MECR, NGS, StarTech, Scripted Trigger Undercoat
+resolution_divinity_repeal_4 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_divinity_repeal_4_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_divinity_silence_the_soulless"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity_repeal days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_traditionalist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+		custom_tooltip = resolution_rulesofwar_independent_tribunals_tooltip
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		is_active_resolution = "resolution_divinity_silence_the_soulless"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_repeal_4 }
+		}
+	}
+
+	modifier = {
+		resolution_divinity_comfort_the_fallen = 1
+		resolution_divinity_tithe_on_the_soulless = 1
+		resolution_divinity_right_to_work = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular # NGS unpopular -> popular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_civic_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+
+		modifier = {
+			factor = 1.5
+			has_ai_personality_behaviour = robot_exploiter
+			desc = personality_type_robot_exploiter
+		}
+
+		modifier = {
+			factor = 1.75
+			has_ai_personality_behaviour = robot_liberator
+			desc = personality_type_robot_liberator
+		}
+
+		modifier = {
+			factor = 1.2
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 5 # EED 2 -> 5
+			is_synthetic_empire = yes
+			desc = ap_synthetic_evolution # EED
+		}
+		
+		modifier = { # EED
+			factor = 2
+			OR = {
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+				has_ascension_perk = ap_synthetic_evolution
+			}
+			desc = ap_the_flesh_is_weak
+		}
+
+		modifier = {
+			factor = 0.8
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+			desc = gal_com_opposing_personality
+		}
+
+		modifier = { # EED
+			factor = 0
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			
+			is_militarist = yes
+			desc = ethic_militarist
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+		}
+		
+		modifier = { # EED
+			factor = 10
+			has_ai_personality = decadent_technocracy
+			desc = gal_com_supporting_personality
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+
+		modifier = { # NGS
+			factor = 1.75
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			desc = gal_com_supporting_civics
+		}
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_opposing_civics
+		}
+
+		modifier = {
+			factor = 0.5
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+
+		modifier = { # NGS
+			factor = 5
+			in_breach_of = resolution_divinity_silence_the_soulless
+			NOT = { has_ethic = "ethic_fanatic_spiritualist" }
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+	}
+}
+
+## Divinity of Life - Repeal 5
+# Merge between EED, MECR, NGS, StarTech, Scripted Trigger Undercoat
+resolution_divinity_repeal_5 = {
+	icon = "GFX_repeal_blue"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+	fire_and_forget = yes
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_divinity_repeal_5_effect_success
+		hidden_effect = {
+			cancel_resolution = "resolution_divinity_a_defined_purpose"
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_divinity_repeal days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_traditionalist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+		custom_tooltip = resolution_rulesofwar_last_resort_doctrine_tooltip
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_divinity_repeal days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		is_active_resolution = "resolution_divinity_a_defined_purpose"
+	}
+	
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_divinity_repeal_5 }
+		}
+	}
+
+	modifier = {
+		resolution_divinity_comfort_the_fallen = 1
+		resolution_divinity_tithe_on_the_soulless = 1
+		resolution_divinity_right_to_work = 1
+		resolution_divinity_silence_the_soulless = 1
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular # NGS unpopular -> popular
+
+		inline_script = { # StarTech AI
+			script = "str_resolutions/str_resolutions_modifier"
+			DESC = str_resolution_modifier
+			SCORE_CAT = tech
+			NOTBAD = 1.4
+			BAD = 0.8
+			TERRIBLE = 0.625
+			TURTLER = 1.1
+			TURTLER2 = 1.1
+			RUSHER = 0.9
+			RUSHER2 = 0.9
+		}
+
+		modifier = { # EED
+			factor = 2
+			is_civic_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_origin = origin_shroud_pact
+			desc = origin_shroud_pact
+		}
+
+		modifier = {
+			factor = 1.5
+			has_ai_personality_behaviour = robot_exploiter
+			desc = personality_type_robot_exploiter
+		}
+
+		modifier = {
+			factor = 1.75
+			has_ai_personality_behaviour = robot_liberator
+			desc = personality_type_robot_liberator
+		}
+
+		modifier = {
+			factor = 1.2
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 10 # EED 2 -> 10
+			is_synthetic_empire = yes
+			desc = ap_synthetic_evolution # EED
+		}
+		
+		modifier = { # EED
+			factor = 2
+			OR = {
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+				has_ascension_perk = ap_synthetic_evolution
+			}
+			desc = ap_the_flesh_is_weak
+		}
+
+		modifier = {
+			factor = 0.8
+			NOR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+			desc = gal_com_opposing_personality
+		}
+
+		modifier = { # NGS
+			factor = 1.75
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_technocracy
+				has_valid_civic = civic_philosopher_king
+				has_valid_civic = civic_eager_explorers
+			}
+			desc = gal_com_supporting_civics
+		}
+		modifier = { # NGS
+			factor = 0.75
+			OR = {
+				has_valid_civic = civic_memorialist
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+				has_valid_civic = civic_exalted_priesthood
+				has_valid_civic = civic_imperial_cult
+				has_valid_civic = civic_ascensionists
+			}
+			desc = gal_com_opposing_civics
+		}
+
+		modifier = {
+			factor = 0.5
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+			NOT = { has_valid_civic = civic_machine_cult } # EED
+		}
+		
+		modifier = { # EED
+			factor = 10
+			has_valid_civic = civic_machine_cult
+			desc = civic_machine_cult
+		}
+
+		modifier = {
+			factor = 5 # NGS 10 -> 5
+			in_breach_of = resolution_divinity_a_defined_purpose
+			NOT = { has_ethic = "ethic_fanatic_spiritualist" } # NGS
+			desc = gal_com_in_breach_of_proposed_resolution
+		}
+		
+		modifier = { # EED
+			factor = 2
+			desc = gal_com_ally_in_breach_of_proposed_resolution
+			any_federation_ally = {
+				NOT = {
+					federation = { has_federation_type = hegemony_federation }
+				}
+				in_breach_of = resolution_divinity_a_defined_purpose
+			}
+		}
+
+		modifier = {
+			factor = 0.2 # NGS 0 -> 0.2
+			is_servitor_empire = yes # STU
+			desc = civic_machine_servitor
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			
+			is_militarist = yes
+			desc = ethic_militarist
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+			}
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			has_ai_personality = decadent_technocracy
+			desc = gal_com_opposing_personality
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			is_materialist = no
+			is_robot_empire = no
+			OR = {
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = ai_invasion_defeated
+			}
+			desc = gal_com_wary_of_contingency
+		}
+	}
+}
