@@ -669,13 +669,7 @@ resource_subsidies_research = {
 
 		modifier = { # MECR
 			set = @set_factor_1
-			agreement_preset = preset_prospectorium
-			has_active_specialization = specialist_prospectorium
-			OR = {
-				specialist_tier = 2
-				specialist_tier = 3
-			}
-
+			agreement_preset = preset_scholarium
 		}
 
 		modifier = {

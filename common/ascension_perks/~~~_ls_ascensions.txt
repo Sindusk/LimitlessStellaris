@@ -11,6 +11,7 @@
 ### OSA - Omega's Stellaris Additions
 ### UAP - Unique Ascension Perks
 ### WAP - Worthy Ascension Perks
+### SSL - Starbases Suck Less
 
 ##################################################
 ## Vanilla Ascension Perks
@@ -832,8 +833,8 @@ ap_enigmatic_engineering = {
 
 ### ap_eternal_vigilance
 ## Eternal Vigilance (Vanilla)
-# Merge between SAP, OSA, Utopian Dream, UAP, StarTech
-# Base from SAP, modifiers from OSA, change possible condition from Utopian Dream, minor improvements from UAP, adjustment to AI weight from StarTech
+# Merge between SAP, SSL, OSA, Utopian Dream, UAP, StarTech
+# Base from SAP, modifiers from SSL and OSA, change possible condition from Utopian Dream, minor improvements from UAP, adjustment to AI weight from StarTech
 ap_eternal_vigilance = {
 	possible = {
 		has_technology = tech_starbase_3 # Utopian Dream opens this up faster
@@ -878,11 +879,12 @@ ap_eternal_vigilance = {
 	
 	modifier = {
 		# Limitless Stellaris Merged Modifiers
+		country_starbase_capacity_add = 4	# SSL
 		shipclass_starbase_damage_mult = 0.5	# Utopian Dream
 		shipclass_starbase_hull_mult = 1		# Omega's Stellaris Additions
 		shipclass_military_station_damage_mult = 0.5	# Omega's Stellaris Additions
 		shipclass_military_station_hull_mult = 0.25		# Worthy Ascension Perks
-        starbase_defense_platform_capacity_add = 5		# Vanilla
+        starbase_defense_platform_capacity_add = 16		# SSL 5 -> 16
 		starbase_defensive_war_ship_build_speed_mult = 0.25 # Worthy Ascension Perks
 		ship_friendly_territory_fire_rate_mult = 0.25	# Utopian Dream
 		ship_sensor_range_add = 1		# Utopian Dream
@@ -906,11 +908,11 @@ ap_eternal_vigilance = {
 		# StarTech AI (actually disables it... but it is re-enabled with a lower factor since it's buffed now)
 		factor = 2
 		modifier = {
-			factor = 2
+			factor = 10 # SSL 2 -> 10
 			has_civic = civic_inwards_perfection
 		}
 		modifier = {
-			factor = 1.5
+			factor = 3 # SSL 1.5 -> 3
 			is_xenophobe = yes
 		}
 		modifier = {
