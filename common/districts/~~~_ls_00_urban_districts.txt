@@ -5,3 +5,1683 @@
 ##################################################
 ## Urban Districts
 ##################################################
+
+## City District
+# Merge between OSA, Bug Branch, Planetary Diversity, Lithoid Supremacy, StarTech, Subtle Polish, Ariphaos
+district_city = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	show_on_uncolonized = {
+		exists = from
+		from = { is_gestalt = no } # Merged
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+			uses_district_set = shattered_ring_world
+			uses_district_set = pdnecroplanet # Planetary Diversity
+			uses_district_set = pdscrapyard # Planetary Diversity
+		}
+		NOT = { has_deposit = d_crashed_slaver_ship } # Subtle Polish
+		exists = from # Subtle Polish
+		from = { # Subtle Polish
+			OR = {
+				is_regular_empire = yes
+				AND = {
+					is_country_type = primitive
+					is_hive_empire = no
+				}
+			}
+		}
+	}
+
+	potential = {
+		OR = {
+			NOT = { exists = owner } #this condition is needed for galaxy generation
+			AND = {
+				exists = owner
+				owner = {
+					OR = {
+						is_regular_empire = yes
+						AND = {
+							is_country_type = primitive
+							is_hive_empire = no
+						}
+					}
+				}
+			}
+		}
+		NOT = { has_deposit = d_crashed_slaver_ship }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+			uses_district_set = shattered_ring_world
+			uses_district_set = pdnecroplanet # Planetary Diversity
+			uses_district_set = pdscrapyard # Planetary Diversity
+		}
+		NOT = { # OSA
+			has_planet_flag = osa_military
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+		str_city_district_allow = yes # StarTech AI
+		OR = { # Ariphaos 
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				OR = {
+					owner = { is_ai = no }
+					AND = {
+						num_districts = { type = district_city value < 3 }
+					}
+					AND = {
+						num_districts = { type = district_city value < 6 }
+						is_capital = yes
+					}
+				}
+			}
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_arcology_housing
+		district_rw_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts_cities
+		cost = {
+			minerals = @city_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+		upkeep = { # Bug Branch
+			trigger = {
+				owner = {
+					is_bugged_government_intervention = yes
+				}
+			}
+			energy = 0.25
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		planet_max_buildings_add = 1
+		job_clerk_add = 1
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_governmental_anthropocentric = yes
+			}
+		}
+		modifier = {
+			planet_max_buildings_add = 0.5
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_valid_civic = civic_functional_architecture
+					has_valid_civic = civic_corporate_functional_architecture
+				}
+			}
+		}
+		modifier = {
+			planet_max_buildings_add = 0.25
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = { 
+					#If either AG or MC is picked, housing is reduced
+					is_bugged_agrarian_idyll = yes # Bug Branch
+					has_valid_civic = civic_mining_cities # Lithoid Supremacy
+				}
+			}
+		}
+		modifier = {
+			planet_housing_add = -1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					is_regular_empire = yes
+					has_origin = origin_fear_of_the_dark # Ariphaos
+				}
+			}
+			str_enable_clerks = yes # StarTech AI
+		}
+		modifier = {
+			job_clerk_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_2
+				NOR = { 
+					#If either AG or MC is picked, housing is reduced
+					is_bugged_agrarian_idyll = yes # Bug Branch
+					has_valid_civic = civic_mining_cities # Lithoid Supremacy
+				}
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = shattered_ring_world } # Subtle Polish
+			exists = owner
+			owner = { has_active_tradition = tr_mercantile_trickle_up_economics }
+			str_enable_clerks = yes # StarTech AI
+		}
+		modifier = {
+			job_clerk_add = 1
+		}
+	}
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			NOT = { uses_district_set = shattered_ring_world }
+			exists = owner
+			owner = {
+				OR = {
+					is_capitalist = yes
+					has_corporate_government = yes
+				}
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+		modifier = {
+			job_merchant_add = 0.25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_government_intervention = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_government_intervention = yes
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_bugged_rooftop_farmers
+				NAND = {
+					is_anglers_empire = yes
+					PREV = { planet = { is_wet = yes } }
+				}
+			}
+		}
+		modifier = {
+			job_clerk_add = -1
+			job_farmer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_anglers_empire = yes
+				has_valid_civic = civic_bugged_rooftop_farmers
+			}
+			planet = { is_wet = yes }
+		}
+		modifier = {
+			job_clerk_add = -1
+			job_angler_add = 1
+		}
+	}
+
+	triggered_desc = { # Bug Branch
+		trigger = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_bugged_rooftop_farmers
+				NAND = {
+					is_anglers_empire = yes
+					PREV = { planet = { is_wet = yes } }
+				}
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+
+	triggered_desc = { # Bug Branch
+		trigger = {
+			exists = owner
+			owner = {
+				is_anglers_empire = yes
+				has_valid_civic = civic_bugged_rooftop_farmers
+			}
+			planet = { is_wet = yes }
+		}
+		text = job_aqu_angler_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no # Merged
+				NOT = { has_valid_civic = civic_bugged_rooftop_farmers } # Bug Branch
+			}
+		}
+		text = job_clerk_effect_desc
+	}
+	triggered_desc = { # Subtle Polish
+		text = job_merchant_effect_desc
+		trigger = {
+			NOT = { uses_district_set = shattered_ring_world }
+			exists = owner
+			owner = {
+				OR = {
+					is_capitalist = yes
+					has_corporate_government = yes
+				}
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_ai = yes
+			}
+			str_force_city_district = yes
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		alloys = 10
+		trigger = {
+			free_housing < 25
+			num_pops > 15
+			free_building_slots = 0
+			nor = {
+				str_is_col_factory = yes #replaced because city is in tons of district sets
+				str_is_col_foundry = yes
+				str_is_col_industrial = yes
+			}
+			or = {
+				owner = {
+					used_naval_capacity_percent > 0.9
+					resource_stockpile_compare = {
+						resource = alloys
+						value > 1000
+					}
+					resource_income_compare = {
+						resource = alloys
+						value > 30
+					}
+				}
+				and = { is_capital = yes free_housing < 15 }
+			}
+		}
+	}
+	ai_resource_production = {
+		alloys = 30
+		trigger = {
+			str_force_city_district = yes
+		}
+	}
+
+	ai_resource_production = {
+		society_research = 50
+		trigger = {
+			str_force_city_district = yes
+		}
+	}
+
+
+	ai_resource_production = {
+		energy = 30
+		trigger = {
+			str_force_city_district = yes
+		}
+	}
+
+	ai_resource_production = {
+		alloys = 10
+		energy = 10
+		trigger = {
+			num_pops > 15
+			years_passed > 40
+			free_housing < 20
+			free_building_slots = 0
+			or = {
+				str_is_col_factory = yes
+				str_is_col_foundry = yes
+				str_is_col_industrial = yes
+			}
+			free_jobs > 0
+			owner = {
+				used_naval_capacity_percent > 0.9
+				resource_stockpile_compare = {
+					resource = alloys
+					value > 1000
+				}
+				resource_income_compare = {
+					resource = alloys
+					value > 30
+				}
+			}
+		}
+	}
+}
+
+## Hive District
+# Merge between OSA, Bug Branch, Planetary Diversity, Expanded Gestalts, StarTech, Subtle Polish, Ariphaos
+district_hive = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	show_on_uncolonized = {
+		from = { is_hive_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = pdbioforge # Planetary Diversity
+			uses_district_set = pdbiofort # Planetary Diversity
+			uses_district_set = pdfloraforge # Planetary Diversity
+			uses_district_set = pdflorafort # Planetary Diversity
+			uses_district_set = machine_world
+			uses_district_set = shattered_ring_world
+			uses_district_set = pdnecroplanet # Planetary Diversity
+			uses_district_set = pdscrapyard # Planetary Diversity
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = pdbioforge # Planetary Diversity
+			uses_district_set = pdbiofort # Planetary Diversity
+			uses_district_set = pdfloraforge # Planetary Diversity
+			uses_district_set = pdflorafort # Planetary Diversity
+			uses_district_set = machine_world
+			uses_district_set = shattered_ring_world
+			uses_district_set = pdnecroplanet # Planetary Diversity
+			uses_district_set = pdscrapyard # Planetary Diversity
+		}
+		NOT = { # OSA
+			has_planet_flag = osa_military
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		str_city_district_allow = yes # StarTech AI
+		OR = { # Ariphaos
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				OR = {
+					owner = { is_ai = no }
+					AND = {
+						num_districts = { type = district_hive value < 3 }
+					}
+					AND = {
+						num_districts = { type = district_hive value < 6 }
+						is_capital = yes
+					}
+				}
+			}
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_arcology_housing
+		district_rw_hive
+		district_nexus
+		district_city
+		district_hollow_housing # Expanded Gestalts
+	}
+
+	resources = {
+		category = planet_districts_cities
+		cost = {
+			minerals = @city_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 6
+		job_maintenance_drone_add = 3
+		planet_max_buildings_add = 1
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_hive_equilibrium_instinct }
+		}
+		modifier = {
+			planet_housing_add = 1
+			planet_max_buildings_add = 0.25
+			job_maintenance_drone_add = -3
+			job_osa_omni_drone_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_hive_world = yes # STU
+		}
+		modifier = {
+			planet_housing_add = 6
+			job_maintenance_drone_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_extended_hives }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_bugged_hive_burrows
+			}
+		}
+		planet_housing_add = 1
+		job_mining_drone_add = 1
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_bugged_hive_burrows
+			}
+			is_hive_world = yes # LS - PD Compat
+		}
+		planet_housing_add = 2
+		job_mining_drone_add = 2
+	}
+	triggered_desc = { # Bug Branch
+		text = job_maintenance_drone_effect_desc
+	}
+	triggered_desc = { # Bug Branch
+		trigger = {
+			exists = owner
+			owner = { has_valid_civic = civic_bugged_hive_burrows }
+		}
+		text = job_mining_drone_effect_desc
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_ai = yes
+			}
+			str_force_city_district = yes
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		alloys = 10
+			trigger = {
+				 str_force_city_district = yes
+			}
+	}
+
+	ai_resource_production = {
+		energy = 10
+			trigger = {
+				str_force_city_district = yes
+			}
+	}
+}
+
+## Nexus District
+# Merge between OSA, Planetary Diversity, Expanded Gestalts, StarTech, Ariphaos
+district_nexus = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	show_on_uncolonized = {
+		from = { is_machine_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+			uses_district_set = shattered_ring_world
+			uses_district_set = pdmachinefactory # Planetary Diversity
+			uses_district_set = pdmachinefort # Planetary Diversity
+			uses_district_set = pdnecroplanet # Planetary Diversity
+			uses_district_set = pdscrapyard # Planetary Diversity
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+			uses_district_set = shattered_ring_world
+			uses_district_set = pdmachinefactory # Planetary Diversity
+			uses_district_set = pdmachinefort # Planetary Diversity
+			uses_district_set = pdnecroplanet # Planetary Diversity
+			uses_district_set = pdscrapyard # Planetary Diversity
+		}
+		NOT = { # OSA
+			has_planet_flag = osa_military
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		str_nexus_district_allow = yes # StarTech AI
+		OR = { # Ariphaos
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				OR = {
+					owner = { is_ai = no }
+					AND = {
+						num_districts = { type = district_nexus value < 3 }
+					}
+					AND = {
+						num_districts = { type = district_nexus value < 6 }
+						is_capital = yes
+					}
+				}
+			}
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_arcology_housing
+		district_rw_nexus
+		district_city
+		district_hive
+		district_matryoshka_housing # Expanded Gestalts
+	}
+
+	resources = {
+		category = planet_districts_cities
+		cost = {
+			minerals = @city_cost
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_valid_civic = civic_machine_unified_nexus_processing
+				}
+			}
+			unity = 0.05
+			multiplier = owner.trigger:empire_size
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		job_maintenance_drone_add = 3
+		planet_max_buildings_add = 1
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_modular_depot
+			}
+		}
+		modifier = {
+			planet_max_buildings_add = 0.5
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_machine_unified_nexus_processing
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_machine_unified_nexus_processing
+			}
+		}
+		modifier = {
+			job_replicator_add = 0.2
+		}
+	}
+	
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_machine_builder
+			}
+		}
+		modifier = {
+			planet_max_buildings_add = 0.25
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_optimized_nexus }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+}
+
+## Industrial District
+# Merge between OSA, Planetary Diversity, Expanded Gestalts, Plentiful Traditions, StarTech, Subtle Polish, Ariphaos
+district_industrial = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+
+	prerequisites = {
+		tech_basic_industry
+	}
+
+	show_on_uncolonized = {
+		OR = {
+			uses_district_industrial = yes
+			uses_district_set = pdnecroplanet # Planetary Diversity
+			uses_district_set = pdscrapyard # Planetary Diversity
+		}
+	}
+
+	potential = {
+		OR = {
+			uses_district_industrial = yes
+			uses_district_set = pdnecroplanet # Planetary Diversity
+			uses_district_set = pdscrapyard # Planetary Diversity
+		}
+	}
+
+	allow = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+		str_industrial_district_allow = yes # StarTech AI
+		is_pd_planetary_megaproject = no # Planetary Diversity
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_arcology_arms_industry
+		district_subterranean_network # Expanded Gestalts
+		district_rw_industrial
+		district_corp_industrial # Planetary Diversity
+		district_bioforge_stomach # Planetary Diversity
+		district_mf_alloy # Planetary Diversity
+		district_techno_industrial # Planetary Diversity
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			minerals = @city_cost
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_valid_civic = civic_machine_ore_processing_heuristics
+				}
+			}
+			alloys = 0.02
+			multiplier = owner.trigger:empire_size
+		}
+		upkeep = {
+			energy = 2
+		}
+
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { has_edict = industrial_maintenance }
+			}
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = { 
+				has_valid_civic = civic_hive_alveare_mechanicus
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_brain_drone_add = 0.25
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_machine_ore_processing_heuristics
+			}
+		}
+		modifier = {
+			planet_max_buildings_add = 0.25
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_crafter_empire = yes }
+		}
+		modifier = {
+			planet_max_buildings_add = 0.25 # OSA 0.34 -> 0.25
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					is_regular_empire = yes
+					has_origin = origin_fear_of_the_dark
+				}
+				is_crafter_empire = no
+			}
+		}
+		modifier = {
+			job_artisan_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_crafter_empire = yes }
+		}
+		modifier = {
+			job_artificer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					is_regular_empire = yes
+					has_origin = origin_fear_of_the_dark
+				}
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_foundry_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_technician_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_alloy_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_fabricator_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_drone_add = 2
+		}
+	}
+
+	# Designation Job Changes
+	triggered_planet_modifier = {
+		potential = {
+			has_foundry_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_crafter_empire = no
+			}
+		}
+		modifier = {
+			job_artisan_add = -1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_foundry_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_crafter_empire = yes
+			}
+		}
+		modifier = {
+			job_artificer_add = -1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_foundry_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_foundry_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_foundry_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_technician_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_factory_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_crafter_empire = no
+			}
+		}
+		modifier = {
+			job_artisan_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_factory_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_crafter_empire = yes
+			}
+		}
+		modifier = {
+			job_artificer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_factory_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_foundry_add = -1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_factory_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_technician_add = -1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_factory_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				country_uses_consumer_goods = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_artisan_drone_add = 1
+			job_fabricator_add = -1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_factory_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				country_uses_consumer_goods = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_artisan_drone_add = 1
+			job_catalytic_drone_add = -1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			has_foundry_designation = no # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_crafter_empire = no
+			}
+		}
+		text = job_artisan_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			has_foundry_designation = no # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_crafter_empire = yes
+			}
+		}
+		text = job_artificer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			has_foundry_designation = no # Subtle Polish
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				country_uses_consumer_goods = yes
+			}
+		}
+		text = job_artisan_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			has_factory_designation = no # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_catalytic_empire = no
+			}
+		}
+		text = job_foundry_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			has_factory_designation = no # Subtle Polish
+			exists = owner
+			owner = {
+				OR = {
+					is_gestalt = no # Merged
+					has_origin = origin_fear_of_the_dark # Subtle Polish
+				}
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_technician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			has_factory_designation = no # Subtle Polish
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_fabricator_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			has_factory_designation = no # Subtle Polish
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_alloy_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			has_factory_designation = no # Subtle Polish
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_drone_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+	
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_affinity_finish }
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_alloy_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_affinity_finish }
+			owner = { is_machine_empire = yes }
+			owner = { country_uses_consumer_goods = no }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_fabricator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_affinity_finish }
+			owner = { is_machine_empire = yes }
+			owner = { country_uses_consumer_goods = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_artisan_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_affinity_finish }
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_artisan_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_industry_3 }
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_alloy_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_industry_3 }
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_fabricator_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Plentiful Traditions
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_plentiful_industry_3 }
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_foundry_add = 1
+		}
+	}
+
+	# StarTech AI Fake Job Manipulation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_ai = yes
+			}
+			str_force_district_industrial = yes
+		}
+		modifier = {
+			job_starnet_spice_melange_farmer_add = 1
+			job_starnet_spice_melange_antifarmer_add = -1
+		}
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		alloys = 3
+		trigger = {
+			planet = { str_is_col_factory = no } #replaced because industrial is in tons of district sets
+		}
+	}
+	ai_resource_production = {
+		alloys = 5
+		trigger = {
+			planet = { str_is_col_foundry = yes }
+		}
+	}
+
+	ai_resource_production = {
+		consumer_goods = 3
+		trigger = {
+			planet = { str_is_col_foundry = no }
+			owner = {
+				country_uses_consumer_goods = yes
+			}
+		}
+	}
+
+	ai_resource_production = {
+		consumer_goods = 5
+		trigger = {
+			planet = { str_is_col_factory = yes }
+			owner = {
+				country_uses_consumer_goods = yes
+			}
+		}
+	}
+}
+
+## Shattered Ring World Commercial District
+# Merge between StarTech, Subtle Polish, Ariphaos
+district_srw_commercial = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	min_for_deposits_on_planet = 3
+	max_for_deposits_on_planet = 15
+
+	show_on_uncolonized = {
+		exists = from
+		from = { is_gestalt = no } # Merged
+		uses_district_set = shattered_ring_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no } # Merged
+		uses_district_set = shattered_ring_world
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_generator_uncapped
+		district_rw_commercial
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @base_cost
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+		job_clerk_add = 1 # Subtle Polish
+		job_artisan_add = 1 # Subtle Polish
+	}
+
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			exists = owner
+			owner = { is_crafter_empire = yes }
+		}
+		modifier = {
+			job_artisan_add = -1
+			job_artificer_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_clerk_add = -1
+			job_manager_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			has_trade_designation = yes
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = no }
+		}
+		modifier = {
+			job_clerk_add = -1
+			job_merchant_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			has_trade_designation = yes
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_manager_add = -1
+			job_merchant_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_mercantile_trickle_up_economics # Subtle Polish
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_clerk_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_mercantile_trickle_up_economics # Subtle Polish
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+		modifier = {
+			job_manager_add = 1 # Subtle Polish 2 -> 1
+		}
+	}
+
+	triggered_planet_modifier = { # Subtle Polish
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_mercantile_commercial_enterprise }
+		}
+		modifier = {
+			job_merchant_add = 1
+		}
+	}
+	
+	# because there is only 1 clerk on this district by default, only offer an extra merchant swap
+	# to "commercial" empires and only when they have both the relevant prosperty and mercantile
+	# traditions, combined with the designating the colony a trade ring world
+	triggered_planet_modifier = {
+		potential = {
+			has_trade_designation = yes # Subtle Polish
+			exists = owner
+			owner = {
+				OR = { # Subtle Polish
+					is_capitalist = yes
+					has_corporate_government = yes
+				}
+				has_active_tradition = tr_mercantile_trickle_up_economics # Subtle Polish
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+		modifier = {
+			job_clerk_add = -1 # Subtle Polish
+			job_merchant_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_crafter_empire = no } # Subtle Polish
+		}
+		text = job_artisan_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_crafter_empire = yes } # Subtle Polish
+		}
+		text = job_artificer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			OR = {
+				NOT = { exists = owner }
+				owner = { is_fallen_empire_spiritualist = no }
+			}
+			OR = {
+				has_trade_designation = no
+				AND = {
+					exists = owner
+					owner = {
+						has_active_tradition = tr_mercantile_trickle_up_economics
+						NOT = { has_active_tradition = tr_mercantile_commercial_enterprise }
+					}
+				}
+			}
+		}
+		text = job_clerk_effect_desc
+	}
+	triggered_desc = { # Subtle Polish
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_manager_effect_desc
+	}
+	triggered_desc = { # Subtle Polish
+		trigger = {
+			OR = {
+				has_trade_designation = yes
+				AND = {
+					exists = owner
+					owner = { has_active_tradition = tr_mercantile_commercial_enterprise }
+				}
+			}
+		}
+		text = job_merchant_effect_desc
+	}
+
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		energy = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
