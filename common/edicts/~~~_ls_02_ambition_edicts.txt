@@ -1,0 +1,343 @@
+##########################################################################
+# Limitless Stellaris - Edicts
+##########################################################################
+
+## Vanilla Variables
+#@ambitionDuration = -1
+#@ambitionCost = 75
+#@ambitionUpkeep = 75
+
+## Bug Branch Variables
+@Edict1Cost = 10
+@Edict2Cost = 30
+@Edict3Cost = 50
+@Edict4Cost = 70
+@Edict5Cost = 90
+
+@EdictPerpetual = -1
+
+#@ambitionDuration = -1 # Vanilla Copy
+@EdictDuration = -1
+
+#@ambitionCost = 75 # Vanilla Copy
+#@ambitionUpkeep = 75 # Vanilla Copy
+
+# Sets the cost for all campaigns with this variable
+@campaignCost = 50
+@hiveFood = 50
+@campaignDuration = -1
+
+## OSA Adjusted Variables
+@ambitionDuration = -1
+@ambitionCost = 100
+@ambitionUpkeep = 100
+
+##################################################
+## Ambitions
+##################################################
+
+## Scientific Revolution
+# Merge between OSA, Bug Branch, StarTech
+scientific_revolution = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+
+		cost = {
+			unity = @ambitionCost
+			multiplier = value:edict_size_effect
+		}
+
+		upkeep = {
+			unity = @ambitionUpkeep
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		all_technology_research_speed = 0.20
+		num_tech_alternatives_add = 1
+	}
+
+	potential = {
+		has_technology = tech_ascension_theory
+		NOT = { has_valid_civic = civic_imperial_cult } # Bug Branch
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+	}
+}
+
+## Desperate Measures
+# Vanilla (Copied for Variables)
+desperate_measures = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+
+		cost = {
+			unity = @ambitionCost
+			multiplier = value:edict_size_effect
+		}
+
+		upkeep = {
+			unity = @ambitionUpkeep
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		starbase_defensive_war_ship_build_speed_mult = 1.00
+		ship_home_territory_fire_rate_mult = 0.40
+	}
+
+	potential = {
+		has_technology = tech_ascension_theory
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 1
+			is_at_war = yes
+		}
+	}
+}
+
+## Fortress Proclamation
+# Vanilla (Copied for Variables)
+fortress_proclamation = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+
+		cost = {
+			unity = @ambitionCost
+			multiplier = value:edict_size_effect
+		}
+
+		upkeep = {
+			unity = @ambitionUpkeep
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		starbase_upgrade_speed_mult = 1.00
+		shipsize_military_station_small_build_speed_mult = 1.00
+	}
+
+	potential = {
+		has_technology = tech_ascension_theory
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## Architectural Renaissance
+# Merge between Planetary Decision Build Speed, StarTech
+architectural_renaissance = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+
+		cost = {
+			unity = @ambitionCost
+			multiplier = value:edict_size_effect
+		}
+
+		upkeep = {
+			unity = @ambitionUpkeep
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		megastructure_build_speed_mult = 0.50
+		country_megastructure_build_cap_add = 1
+		planet_building_build_speed_mult = 1.00
+		planet_decision_enact_speed_mult = 1.00 # Planetary Decision Build Speed
+	}
+
+	potential = {
+		has_technology = tech_ascension_theory
+	}
+
+	allow = {
+		has_technology = tech_mega_engineering
+	}
+
+	ai_weight = {
+		weight = 2 # StarTech 1 -> 2
+	}
+}
+
+## Hearts and Minds
+# Vanilla (Copied for Variables)
+hearts_and_minds = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+
+		cost = {
+			unity = @ambitionCost
+			multiplier = value:edict_size_effect
+		}
+
+		upkeep = {
+			unity = @ambitionUpkeep
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		pop_government_ethic_attraction = 1.00
+		pop_ethics_shift_speed_mult = 1.00
+	}
+
+	potential = {
+		has_technology = tech_ascension_theory
+		is_gestalt = no # Merged
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## Omnifarious Acquisition
+# Merge between OSA, StarTech
+omnifarious_acquisition = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+
+		cost = {
+			unity = @ambitionCost
+			multiplier = value:edict_size_effect
+		}
+
+		upkeep = {
+			unity = @ambitionUpkeep
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		country_minerals_produces_mult = 0.35 # OSA 0.33 -> 0.35
+	}
+
+	potential = {
+		has_technology = tech_ascension_theory
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = { # StarTech AI
+			factor = 0
+			resource_income_compare = {
+				resource = minerals
+				value > 150
+			}
+			resource_stockpile_compare = {
+				resource = minerals
+				value > 23000
+			}
+		}
+	}
+}
+
+## Grand Fleet
+# Merge between OSA, StarTech
+grand_fleet = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+
+		cost = {
+			unity = @ambitionCost
+			multiplier = value:edict_size_effect
+		}
+
+		upkeep = {
+			unity = @ambitionUpkeep
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		country_naval_cap_mult = 0.50 # OSA 0.20 -> 0.50
+		starbase_shipyard_build_speed_mult = 0.25 # OSA
+		ships_upkeep_mult = -0.10 # OSA -0.20 -> -0.10
+	}
+
+	potential = {
+		has_technology = tech_ascension_theory
+	}
+
+	ai_weight = {
+		weight = 10 # StarTech 0 -> 10
+		modifier = { # StarTech AI
+			factor = 0
+			used_naval_capacity_percent < 0.6
+		}
+		#modifier = { # StarTech AI disables this modifier
+		#	weight = 1
+		#	is_at_war = yes
+		#}
+	}
+}
+
+## Will to Power
+# Using StarTech for AI weights
+will_to_power = {
+	length = @ambitionDuration
+	icon = "GFX_edict_type_time"
+
+	resources = {
+		category = edicts
+
+		cost = {
+			unity = @ambitionCost
+			multiplier = value:edict_size_effect
+		}
+
+		upkeep = {
+			unity = @ambitionUpkeep
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		country_ambition_influence_produces_add = 5
+	}
+
+	potential = {
+		has_technology = tech_ascension_theory
+	}
+
+	ai_weight = {
+		weight = 50 # StarTech 0 -> 50
+		#modifier = {
+		#	weight = 1
+		#	is_at_war = yes
+		#}
+	}
+}
