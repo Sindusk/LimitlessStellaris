@@ -1,0 +1,43 @@
+##########################################################################
+# Limitless Stellaris - Casako's Framework & Modmenu Events
+##########################################################################
+namespace = z_modmenu
+
+## Casako's Framework Intro
+# Disable the menu from showing, and automatically configure framework mod menu mode instead.
+country_event = {
+	id = z_modmenu.100
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		# FW_eft_glbl_FLG_INIT_modmenu_mode:
+		set_global_flag = FW_flg_glbl_WG_CB_disabled
+
+		remove_global_flag = FW_flg_glbl_DD_PB
+		remove_global_flag = FW_flg_glbl_DD_PTW
+		remove_global_flag = FW_flg_glbl_DD_SC
+		remove_global_flag = FW_flg_glbl_DD_SC_adpt_easy
+		set_global_flag = FW_flg_glbl_DD_SC_adpt_standard
+		remove_global_flag = FW_flg_glbl_DD_SC_adpt_hard
+		# RTS_eft_glbl_FLG_INIT:
+		remove_global_flag = z_fw_flg_glbl_battle_vl_0
+		remove_global_flag = z_fw_flg_glbl_battle_vl_1
+		remove_global_flag = z_fw_flg_glbl_battle_vl_2
+		if = {
+			limit = { has_global_flag = has_system_scale_mod }	#_<rss/rtss>
+			set_global_flag = z_fw_flg_glbl_battle_vl_1
+		}
+
+		# Disabled - Old effect to show the initial menu
+		#every_country = {
+		#	limit = { is_ai = no }
+		#	if = {
+		#		limit = { FW_trgr_cntr_HOST = yes }
+		#		#country_event = { id = z_modmenu.1200 }
+		#	}
+		#	else = {
+		#		country_event = { id = z_modmenu.1201 }
+		#	}
+		#}
+	}
+}
