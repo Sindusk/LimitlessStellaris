@@ -491,7 +491,7 @@ AAR_origin_ascended = {
 
 	max_once_global = yes
 	advanced_start = yes
-#	flags = { custom_start_screen first_contact_event Story7}
+	#flags = { custom_start_screen first_contact_event Story7}
 	
 	playable = {
 		always = no
@@ -502,20 +502,20 @@ AAR_origin_ascended = {
 	possible = {
 	}
 	
-#	starting_colony = pc_gaia
-#	initializers = { shattered_ring_start }
-#	habitability_preference = pc_gaia
-#	preferred_planet_class_neighbor = no
+	#starting_colony = pc_gaia
+	#initializers = { shattered_ring_start }
+	#habitability_preference = pc_gaia
+	#preferred_planet_class_neighbor = no
 
-#	has_secondary_species = {
-#		title = civic_syncretic_evolution_secondary_species
-#		traits = {
-#			trait = trait_syncretic_proles
-#		}
-#	}
-#	traits = {
-#		trait = trait_survivor
-#	}
+	#has_secondary_species = {
+	#	title = civic_syncretic_evolution_secondary_species
+	#	traits = {
+	#		trait = trait_syncretic_proles
+	#	}
+	#}
+	#traits = {
+	#	trait = trait_survivor
+	#}
 
 	random_weight = {
 		base = 5

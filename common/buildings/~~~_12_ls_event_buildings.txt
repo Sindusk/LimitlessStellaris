@@ -123,7 +123,7 @@ building_great_pyramid = {
 }
 
 ## Ministry of Culture (Tier 1)
-# Merge between Sort Building, Real Space: Planetary Stations
+# Merge between Sort Building, Spaceborne Civs Expanded, Real Space: Planetary Stations
 building_artist_patron = {
 	base_buildtime = @db2_time
 	can_demolish = yes
@@ -153,7 +153,7 @@ building_artist_patron = {
 			exists = owner
 			owner = { is_gestalt = no }
 		}
-		planet_jobs_unity_produces_mult = 0.15
+		planet_jobs_unity_produces_mult = 0.10 # Spaceborne Civs Expanded 0.15 -> 0.10
 		job_culture_worker_add = 3
 	}
 
@@ -162,8 +162,29 @@ building_artist_patron = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		planet_jobs_unity_produces_mult = 0.15
+		planet_jobs_unity_produces_mult = 0.10 # Spaceborne Civs Expanded 0.15 -> 0.10
 		job_evaluator_add = 3
+	}
+	
+	triggered_country_modifier = { # Spaceborne Civs Expanded
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		planet_jobs_unity_produces_mult = 0.05
+		pop_government_ethic_attraction = 0.10
+	}
+	triggered_country_modifier = { # Spaceborne Civs Expanded
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		planet_jobs_unity_produces_mult = 0.05
+		planet_crime_no_happiness_add = -0.10
 	}
 
 	resources = {
