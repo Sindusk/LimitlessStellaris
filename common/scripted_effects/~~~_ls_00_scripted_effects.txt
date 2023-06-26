@@ -2,6 +2,11 @@
 # Limitless Stellaris - Scripted Effects
 ####################################################################################################
 
+##################################################
+## Titanic Life Soldiers
+##################################################
+### Fix for Titanic Life Soldiers with Extra Origins Monster Tamers origin.
+
 ### increment_titanic_life_soldier_maximum
 # Merge between Subtle Polish and Extra Origins. Allows Monster Tamers to get 5 titanics per world instead.
 
