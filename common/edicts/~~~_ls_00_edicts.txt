@@ -1,0 +1,1807 @@
+##########################################################################
+# Limitless Stellaris - Edicts
+##########################################################################
+
+## Vanilla Variables
+#@Edict1Cost = 10
+#@Edict2Cost = 20
+#@Edict3Cost = 30
+#@EdictSpecialCost = 1
+
+#@EdictPerpetual = -1
+
+## OSA Variables
+@Edict1Cost = 15
+@Edict2Cost = 30
+@Edict3Cost = 45
+@EdictSpecialCost = 1
+
+@EdictPerpetual = -1
+
+##################################################
+## Generic Vanilla Edicts
+##################################################
+
+## Evacuation Protocols
+# Vanilla (Copied for Variables)
+evacuation_protocols = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_colony_development_speed_mult = 1.00
+		pop_resettlement_cost_mult = -0.50
+	}
+
+	potential = {
+		is_doomsday_empire = yes
+		any_owned_planet = {
+			is_doomsday_planet = yes
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "requires_doomsday_colony"
+			any_owned_planet = {
+				habitable_planet = yes
+				is_doomsday_planet = no
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 500
+	}
+}
+
+## Fortify the Border
+# Merge between OSA, StarTech
+fortify_the_border = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = fortify_the_border }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		starbase_upgrade_speed_mult = 0.50
+		country_starbase_capacity_add = 5 # OSA 2 -> 5
+		shipclass_starbase_hull_mult = 1 # OSA
+		empire_size_systems_mult = 0.10 # OSA
+	}
+
+	potential = {
+		or = { # StarTech AI
+			is_ai = no
+			has_edict = capacity_subsidies
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictHighPrio # StarTech AI
+		modifier = { # StarTech AI
+			factor = 0
+			or = {
+				not = { has_edict = capacity_subsidies }
+				and = {
+					not = { has_edict = mining_subsidies }
+					has_technology = tech_mineral_purification_1
+				}
+			}
+		}
+		#modifier = { # StarTech AI disables this modifier
+		#	factor = 0
+		#	NOT = { has_country_flag = has_encountered_other_empire }
+		#}
+	}
+}
+
+## Nutritional Plentitude
+# Merge between OSA, Bug Branch, StarTech
+nutritional_plenitude = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = nutritional_plenitude }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		pop_growth_speed = 0.10
+		biological_pop_happiness = 0.05
+		lithoid_pop_happiness = 0.05
+		empire_size_pops_mult = 0.10 # Bug Branch
+		planet_pops_organics_food_upkeep_mult = 0.25
+		planet_pops_organics_minerals_upkeep_mult = 0.25
+	}
+
+	potential = {
+		NOR = {
+			is_gestalt = yes # LS - merged and inverted for NOR
+			has_ethic = ethic_fanatic_competitive # Bug Branch
+		}
+		is_ai = no # StarTech AI
+	}
+
+	prerequisites = {
+		"tech_gene_crops"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI
+	}
+}
+
+## Nutritional Plentitude (Hive)
+# Merge between OSA, StarTech
+nutritional_plenitude_hive = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = nutritional_plenitude_hive }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		pop_growth_speed = 0.10
+		empire_size_pops_mult = 0.10 # OSA
+		planet_pops_organics_food_upkeep_mult = 0.25
+		planet_pops_organics_minerals_upkeep_mult = 0.25
+	}
+
+	potential = {
+		is_hive_empire = yes
+		is_ai = no # StarTech AI
+	}
+
+	prerequisites = {
+		"tech_gene_crops"
+	}
+
+	show_tech_unlock_if = {
+		is_hive_empire = yes
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+	}
+}
+
+## Expanded Breeding Program (Servitor)
+# Merge between OSA, StarTech, Scripted Trigger Undercoat
+expanded_breeding_program_servitor = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = expanded_breeding_program_servitor }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		pop_growth_speed = 0.20
+		biological_pop_happiness = 0.05
+		lithoid_pop_happiness = 0.05
+		empire_size_pops_mult = 0.10 # OSA
+		planet_pops_organics_food_upkeep_mult = 0.25
+		planet_pops_organics_minerals_upkeep_mult = 0.25
+	}
+
+	potential = {
+		is_servitor_empire = yes # STU
+		is_ai = no # StarTech AI disables
+	}
+
+	prerequisites = {
+		"tech_gene_crops"
+	}
+
+	show_tech_unlock_if = {
+		is_servitor_empire = yes # STU
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+	}
+}
+
+## Fleet Supremacy
+# Merge between OSA, StarTech
+fleet_supremacy = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = fleet_supremacy }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	prerequisites = {
+		"tech_doctrine_fleet_size_1"
+	}
+	potential = {
+		is_ai = no # StarTech AI disables
+	}
+
+	modifier = {
+		ship_starting_experience_add = 250 # OSA 100 -> 250
+		starbase_shipyard_build_speed_mult = 0.25 # OSA 0.10 -> 0.25
+		diplo_weight_naval_mult = 0.25 # OSA 0.10 -> 0.25
+		ships_upkeep_mult = 0.15 # OSA 0.10 -> 0.15
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+	}
+}
+
+## Diplomatic Grants
+# Merge between OSA, StarTech
+diplomatic_grants = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = diplomatic_grants }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		envoys_add = 2 # OSA 1 -> 2
+		diplo_weight_mult = 0.25 # OSA 0.10 -> 0.25
+	}
+
+	potential = {
+		has_tradition = tr_diplomacy_adopt
+		has_comms_with_alien_empire = yes
+		is_ai = no # StarTech AI disables
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## Enhanced Surveillance
+# Merge between OSA, StarTech
+enhanced_surveillance = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = enhanced_surveillance }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		envoys_add = 1
+		intel_encryption_add = 1
+		intel_decryption_add = 1 # OSA
+		pop_happiness = -0.10
+		pop_ethic_authoritarian_attraction_mult = 0.50 # OSA 0.25 -> 0.50
+	}
+
+	potential = {
+		has_active_tradition = tr_domination_judgment_corps
+		is_gestalt = no
+	}
+
+	allow = {
+		has_comms_with_alien_empire = yes
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+		modifier = {
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 0
+			is_egalitarian = yes
+		}
+	}
+}
+
+## Bureau of Espionage
+# Merge between OSA, StarTech
+bureau_of_espionage = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = bureau_of_espionage }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		envoys_add = 1
+		intel_decryption_add = 2
+		add_base_country_intel = 10
+		spy_network_levels_add = 10
+	}
+
+	potential = {
+		has_comms_with_alien_empire = yes
+		is_gestalt = no
+		is_ai = no # StarTech AI disables
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	prerequisites = {
+		tech_decryption_1
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+		modifier = {
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 0
+			is_egalitarian = yes
+		}
+	}
+}
+
+## Observation Instinct
+# Merge between OSA, StarTech
+observation_instinct = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = observation_instinct }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		envoys_add = 1
+		intel_decryption_add = 2
+		add_base_country_intel = 10
+		spy_network_levels_add = 10
+	}
+
+	potential = {
+		has_comms_with_alien_empire = yes
+		is_hive_empire = yes
+		is_ai = no # StarTech AI disables
+	}
+
+	show_tech_unlock_if = {
+		is_hive_empire = yes
+	}
+
+	prerequisites = {
+		tech_decryption_1
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+		modifier = {
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 0
+			is_egalitarian = yes
+		}
+	}
+}
+
+## Covert Analysis Algorithm
+# Merge between OSA, StarTech
+covert_analysis_algorithm = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = covert_analysis_algorithm }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		envoys_add = 1
+		intel_decryption_add = 2
+		add_base_country_intel = 10
+		spy_network_levels_add = 10
+	}
+
+	potential = {
+		has_comms_with_alien_empire = yes
+		is_machine_empire = yes
+		is_ai = no # StarTech AI disables
+	}
+
+	show_tech_unlock_if = {
+		is_machine_empire = yes
+	}
+
+	prerequisites = {
+		tech_decryption_1
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+		modifier = {
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 0
+			is_egalitarian = yes
+		}
+	}
+}
+
+## Tracking Implants
+# Merge between OSA, StarTech
+tracking_implants = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = tracking_implants }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		intel_encryption_add = 1
+		pop_happiness = -0.10
+		planet_crime_add = -10
+		planet_crime_mult = -0.5 # OSA
+		pop_ethic_authoritarian_attraction_mult = 0.25
+	}
+
+	potential = {
+		has_comms_with_alien_empire = yes
+		is_gestalt = no
+		is_ai = no # StarTech AI disables
+	}
+
+	prerequisites = {
+		tech_tracking_implants
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+		modifier = {
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 0
+			is_egalitarian = yes
+		}
+	}
+}
+
+## Thought Enforcement
+# Merge between OSA, StarTech
+thought_enforcement = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = thought_enforcement }
+			}
+			influence = 300
+		}
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		intel_encryption_add = 1
+		planet_jobs_produces_mult = 0.1 # OSA
+		pop_happiness = -0.10
+		pop_government_ethic_attraction = 0.50 # OSA 0.25 -> 0.50
+	}
+
+	potential = {
+		has_comms_with_alien_empire = yes # StarTech AI
+		is_gestalt = no
+	}
+
+	prerequisites = {
+		tech_thought_enforcement
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+		modifier = {
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 0
+			is_egalitarian = yes
+		}
+	}
+	modifier = { custom_tooltip = edict_thought_enforcement_effect }
+}
+
+## Extended Shifts
+# Merge between OSA, StarTech
+extended_shifts = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = thought_enforcement }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_jobs_worker_produces_mult = 0.25 # OSA 0.10 -> 0.25
+		planet_jobs_slave_produces_mult = 0.25 # OSA 0.10 -> 0.25
+		pop_cat_worker_happiness = -0.10
+		pop_cat_slave_happiness = -0.10
+	}
+
+	potential = {
+		has_active_tradition = tr_domination_workplace_motivators
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio # StarTech AI High -> Med
+		#modifier = { # StarTech AI removes this modifier
+		#	factor = 1.5
+		#	has_ethic = ethic_authoritarian
+		#}
+		#modifier = { # StarTech AI removes this modifier
+		#	factor = 2
+		#	has_ethic = ethic_fanatic_authoritarian
+		#}
+	}
+}
+
+## Synaptic Reinforcement
+# Merge between OSA, StarTech
+synaptic_reinforcement = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = synaptic_reinforcement }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	# Synapse Nodes provide an extra Maintenance Drone job
+	modifier = {
+		custom_tooltip = edict_synaptic_reinforcement_tooltip
+	}
+
+	potential = {
+		is_hive_empire = yes
+		is_ai = no # StarTech AI disables
+	}
+
+	prerequisites = {
+		"tech_hive_cluster"
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+	}
+}
+
+## Industrial Maintenance
+# Merge between OSA, StarTech
+industrial_maintenance = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = industrial_maintenance }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	# Industrial Districts also provide an extra Maintenance Drone job
+	modifier = {
+		custom_tooltip = edict_industrial_maintenance_tooltip
+	}
+
+	potential = {
+		is_machine_empire = yes
+		has_tradition = tr_synchronicity_finish
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech disables
+	}
+}
+
+## Drone Overdrive
+# Merge between OSA, StarTech
+drone_overdrive = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = drone_overdrive }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_jobs_simple_drone_produces_mult = 0.15 # OSA 0.10 -> 0.15
+		pop_amenities_usage_no_happiness_mult = 0.10
+	}
+
+	potential = {
+		is_gestalt = yes
+		has_active_tradition = tr_domination_drone_network
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio # StarTech AI High -> Med
+		#modifier = { # StarTech AI removes this modifier
+		#	factor = 1.5
+		#	has_ethic = ethic_authoritarian
+		#}
+		#modifier = { # StarTech AI removes this modifier
+		#	factor = 2
+		#	has_ethic = ethic_fanatic_authoritarian
+		#}
+	}
+}
+
+## Capacity Subsidies
+# Merge between OSA, MECR, StarTech
+capacity_subsidies = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = capacity_subsidies }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
+		}
+		upkeep = { # MECR
+			trigger = {
+				is_imperial_province = yes
+				any_agreement = { has_active_specialization = specialist_prospectorium }
+			}
+			unity = -10
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_technician_produces_mult = 0.75 # OSA 0.50 -> 0.75
+		planet_technician_minerals_upkeep_add = 0.5 # OSA energy -> minerals
+	}
+
+	prerequisites = {
+		"tech_power_hub_1"
+	}
+
+	ai_weight = {
+		weight = @EdictHighPrio
+		#modifier = { # StarTech AI disables this modifier
+		#	should_ai_focus_on_trade = yes
+		#	factor = 0 
+		#}
+	}
+}
+
+## Mining Subsidies
+# Merge between OSA, MECR, StarTech
+mining_subsidies = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = mining_subsidies }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
+		}
+		upkeep = { # MECR
+			trigger = {
+				is_imperial_province = yes
+				any_agreement = { has_active_specialization = specialist_prospectorium }
+			}
+			unity = -10
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_miners_produces_mult = 0.75 # OSA 0.50 -> 0.75; Note: Also affects organic special resource miners!
+		planet_miners_energy_upkeep_add = 0.5
+		planet_sr_miners_energy_upkeep_add = 0.5 #Note: _add modifiers don't apply to children, but _mult ones do, so this is necessary here
+	}
+
+	prerequisites = {
+		"tech_mineral_purification_1"
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio # StarTech AI High -> Med
+		modifier = { # StarTech AI
+			factor = 3
+			always = yes
+		}
+		modifier = { # StarTech AI
+			factor = 100
+			has_edict = capacity_subsidies
+			has_ascension_perk = ap_executive_vigor
+		}
+	}
+}
+
+## Farming Subsidies
+# Merge between OSA, MECR, StarTech
+farming_subsidies = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = farming_subsidies }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
+		}
+		upkeep = { # MECR
+			trigger = {
+				is_imperial_province = yes
+				any_agreement = { has_active_specialization = specialist_prospectorium }
+			}
+			unity = -10
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_farmers_produces_mult = 0.75 # OSA 0.50 -> 0.75
+		planet_farmers_energy_upkeep_add = 0.5
+	}
+
+	prerequisites = {
+		"tech_food_processing_1"
+	}
+
+	potential = {
+		or = { # StarTech AI
+			is_ai = no
+			and = { 
+				has_edict = capacity_subsidies
+				has_edict = mining_subsidies
+				has_edict = fortify_the_border
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = @EdictMedPrio # StarTech AI High -> Med
+		modifier = { # StarTech AI
+			factor = 0
+			or = {
+				country_uses_food = no
+				not = {
+					has_edict = capacity_subsidies
+				}
+				not = {
+					has_edict = mining_subsidies
+				}
+				not = {
+					has_edict = fortify_the_border
+				}
+			}
+		}
+	}
+}
+
+## Industrial Subsidies
+# Merge between OSA, MECR, StarTech
+industrial_subsidies = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = industrial_subsidies }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
+		}
+		upkeep = { # MECR
+			trigger = {
+				is_imperial_province = yes
+				any_agreement = { has_active_specialization = specialist_prospectorium }
+			}
+			unity = -10
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_artisans_produces_mult = 0.25 # OSA 0.10 -> 0.25
+		planet_artisans_minerals_upkeep_add = 4 # OSA
+		planet_artisans_energy_upkeep_add = 0.5 # OSA 1 -> 0.5
+	}
+
+	potential = {
+		country_uses_consumer_goods = yes
+		is_ai = no # StarTech AI disables
+	}
+
+	prerequisites = {
+		tech_global_production_strategy
+	}
+
+	show_tech_unlock_if = {
+		country_uses_consumer_goods = yes
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+	}
+}
+
+## Forge Subsidies
+# Merge between OSA, MECR, StarTech
+forge_subsidies = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = forge_subsidies }
+			}
+			influence = 200
+		}
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
+		}
+		upkeep = { # MECR
+			trigger = {
+				is_imperial_province = yes
+				any_agreement = { has_active_specialization = specialist_prospectorium }
+			}
+			unity = -10
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_metallurgists_produces_mult = 0.25 # OSA 0.10 -> 0.25
+		planet_metallurgists_minerals_upkeep_add = 4 # OSA
+		planet_metallurgists_energy_upkeep_add = 0.5 # OSA 1 -> 0.5
+	}
+
+	prerequisites = {
+		tech_global_production_strategy
+	}
+
+	ai_weight = {
+		weight = @EdictLowPrio
+		modifier = { # StarTech AI
+			factor = 0
+			or = {
+				not = {
+					has_edict = capacity_subsidies
+				}
+				not = {
+					has_edict = mining_subsidies
+				}
+				not = {
+					has_edict = fortify_the_border
+				}
+			}
+		}
+	}
+}
+
+## Research Subsidies
+# Merge between OSA, StarTech
+research_subsidies = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = research_subsidies }
+			}
+			influence = 250
+		}
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_researchers_produces_mult = 0.15 # OSA 0.10 -> 0.15
+		planet_researchers_energy_upkeep_add = 1
+		planet_researchers_upkeep_mult = 0.10 # OSA
+	}
+
+	potential = {
+		has_tradition = tr_discovery_databank_uplinks
+		is_ai = no # StarTech AI disables
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+	}
+}
+
+## Veneration of Saints
+# Merge between OSA, StarTech
+veneration_of_saints = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = veneration_of_saints }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_priests_produces_mult = 0.25 # OSA 0.20 -> 0.25
+		pop_ethic_spiritualist_attraction_mult = 1.0 # OSA 0.25 -> 1.0
+	}
+
+	potential = {
+		is_spiritualist = yes
+		is_ai = no # StarTech AI disables
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+	}
+}
+
+## Peace Festivals
+# Merge between OSA, StarTech
+peace_festivals = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = peace_festivals }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		pop_happiness = 0.25 # OSA 0.10 -> 0.25
+		pop_ethic_pacifist_attraction_mult = 1.0 # OSA 0.25 -> 1.0
+	}
+
+	potential = {
+		is_pacifist = yes
+		or = { # StarTech AI
+			is_ai = no
+			and = {
+				has_ascension_perk = ap_executive_vigor
+				is_difficulty < 3
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+	}
+}
+
+## Information Quarantine
+# Merge between OSA, StarTech
+information_quarantine = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = information_quarantine }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_stability_add = 5
+		pop_government_ethic_attraction = 0.5
+	}
+
+	potential = {
+		is_authoritarian = yes
+		or = { # StarTech AI
+			is_ai = no
+			and = {
+				has_ascension_perk = ap_executive_vigor
+				is_difficulty < 3
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = @EdictLowPrio
+		modifier = { # StarTech AI
+			factor = 0
+			not = {
+				has_edict = capacity_subsidies
+			}
+		}
+	}
+}
+
+## Encourage Free Thought
+# Merge between OSA, StarTech
+encourage_free_thought = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = encourage_free_thought }
+			}
+			influence = 100
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		pop_ethics_shift_speed_mult = 1
+	}
+
+	potential = {
+		is_egalitarian = yes
+		is_ai = no # StarTech AI disables
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## Map the Stars
+# Merge between OSA, StarTech
+map_the_stars = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = map_the_stars }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		science_ship_survey_speed = 0.25
+		ship_anomaly_generation_chance_mult = 0.25 # OSA 0.10 -> 0.25
+		ship_hyperlane_range_add = 1
+	}
+
+	potential = {
+		has_tradition = tr_discovery_adopt
+		is_ai = no # StarTech AI disables
+	}
+
+	ai_weight = {
+		weight = 0
+		#modifier = { # StarTech AI disables this modifier
+		#	weight = @EdictHighPrio
+		#	years_passed < 50
+		#}
+	}
+}
+
+## Land of Opportunity
+# Merge between OSA, StarTech
+land_of_opportunity = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = land_of_opportunity }
+			}
+			influence = 150
+		}
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_immigration_pull_mult = 1
+		pop_growth_from_immigration = 0.5 # OSA 0.25 -> 0.5
+	}
+
+	potential = {
+		is_xenophile = yes
+		has_comms_with_alien_empire = yes
+		is_ai = no # StarTech AI disables
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## Greater Than Ourselves
+# Merge between OSA, NGS, StarTech
+greater_than_ourselves = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		cost = { # OSA - Activation Cost
+			trigger = {
+				NOT = { has_edict = greater_than_ourselves }
+			}
+			influence = 100
+		}
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		pop_happiness = 0.05 # OSA
+		planet_resettlement_unemployed_mult = 2.00
+	}
+
+	potential = {
+		is_ai = no # StarTech AI disables
+		is_galactic_community_member = yes
+		OR = {
+			is_active_resolution = "resolution_greatergood_greater_than_ourselves"
+			is_active_resolution = "resolution_greatergood_balance_in_the_middle"
+			is_active_resolution = "resolution_greatergood_universal_prosperity_mandate"
+			is_active_resolution = "resolution_greatergood_6" # NGS
+		}
+	}
+
+	ai_weight = {
+		weight = 0 # StarTech AI disables
+	}
+}
+
+## Relay Network Dummy
+# Vanilla (Copied for Variables)
+relay_network_dummy = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		always = no
+	}
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+	}
+
+	modifier = {
+		custom_tooltip = edict_relay_network_dummy_tooltip
+	}
+	prerequisites = { "tech_hyper_relays" }
+
+	show_tech_unlock_if = { always = yes }
+}
+
+## Relay Network Stability
+# Resolutions Expanded version (for variables)
+relay_network_stability = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+		has_technology = tech_hyper_relays
+	}
+
+	allow = {
+		NOT = { has_deficit = exotic_gases }
+		exists = capital_scope
+		capital_scope = {
+			solar_system = {
+				OR = {
+					has_megastructure = hyper_relay
+					has_megastructure = hyper_relay_fast # Resolutions Expanded
+				}
+			}
+		}
+	}
+
+	prerequisites = {
+		"tech_galactic_bureaucracy"
+	}
+
+	modifier = {
+		megastructures_hyper_relay_exotic_gases_upkeep_add = 0.1
+	}
+
+	relay_network_modifier = {
+		relay_network_stability_edict_modifier = 1
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictHighPrio
+			has_monthly_income = { resource = exotic_gases value > 5 }
+		}
+	}
+}
+
+## Relay Network Movement
+# Resolutions Expanded version (for variables)
+relay_network_movement = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+		has_technology = tech_hyper_relays
+	}
+
+	allow = {
+		NOT = { has_deficit = volatile_motes }
+		exists = capital_scope
+		capital_scope = {
+			solar_system = {
+				OR = {
+					has_megastructure = hyper_relay
+					has_megastructure = hyper_relay_fast # Resolutions Expanded
+				}
+			}
+		}
+
+	}
+
+	prerequisites = {
+		"tech_hyper_drive_3"
+	}
+
+	modifier = {
+		megastructures_hyper_relay_volatile_motes_upkeep_add = 0.1
+	}
+
+	relay_network_modifier = {
+		relay_network_movement_edict_modifier = 1
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictMedPrio
+			has_monthly_income = { resource = volatile_motes value > 5 }
+		}
+	}
+}
+
+## Relay Network Amenities
+# Resolutions Expanded version (for variables)
+relay_network_amenities = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+		is_gestalt = no
+		has_technology = tech_hyper_relays
+	}
+
+	allow = {
+		NOT = { has_deficit = rare_crystals }
+		exists = capital_scope
+		capital_scope = {
+			solar_system = {
+				OR = {
+					has_megastructure = hyper_relay
+					has_megastructure = hyper_relay_fast # Resolutions Expanded
+				}
+			}
+		}
+	}
+
+	prerequisites = {
+		"tech_artificial_moral_codes"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	modifier = {
+		megastructures_hyper_relay_rare_crystals_upkeep_add = 0.1
+	}
+
+	relay_network_modifier = {
+		relay_network_amenities_edict_modifier = 1
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictMedPrio
+			has_monthly_income = { resource = rare_crystals value > 5 }
+		}
+	}
+}
+
+## Relay Network Amenities (Gestalt)
+# Resolutions Expanded version (for variables)
+relay_network_amenities_gestalt = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+		is_gestalt = yes
+		has_technology = tech_hyper_relays
+	}
+
+	allow = {
+		NOT = { has_deficit = rare_crystals }
+		exists = capital_scope
+		capital_scope = {
+			solar_system = {
+				OR = {
+					has_megastructure = hyper_relay
+					has_megastructure = hyper_relay_fast # Resolutions Expanded
+				}
+			}
+		}
+	}
+
+	prerequisites = {
+		"tech_unity_of_purpose"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = yes
+	}
+
+	modifier = {
+		megastructures_hyper_relay_rare_crystals_upkeep_add = 0.1
+	}
+
+	relay_network_modifier = {
+		relay_network_amenities_gestalt_edict_modifier = 1
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictMedPrio
+			has_monthly_income = { resource = rare_crystals value > 5 }
+		}
+	}
+}
+
+## Zro Crystal
+# Vanilla (Copied for Variables)
+zro_crystal = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			sr_zro = 0.2
+			multiplier = value:zro_crystal_leaders
+		}
+
+	}
+
+	potential = {
+		has_relic = r_zro_crystal
+		is_machine_empire = no
+	}
+
+	allow = {
+		NOT = {
+			resource_stockpile_compare = {
+				resource = sr_zro
+				value = 0
+			}
+		}
+	}
+
+	modifier = {
+		species_leader_exp_gain = 0.25
+		leader_age = 30
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictMedPrio
+			has_monthly_income = { resource = sr_zro value > 5 }
+		}
+	}
+}
+
+## Zro Crystal (Machine)
+# Vanilla (Copied for Variables)
+zro_crystal_machine = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			sr_zro = 0.2
+			multiplier = value:zro_crystal_leaders
+		}
+
+	}
+
+	potential = {
+		has_relic = r_zro_crystal
+		is_machine_empire = yes
+	}
+
+	allow = {
+		NOT = {
+			resource_stockpile_compare = {
+				resource = sr_zro
+				value = 0
+			}
+		}
+	}
+
+	modifier = {
+		species_leader_exp_gain = 0.25
+		custom_tooltip = edict_zro_crystal_machine_effect
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictMedPrio
+			has_monthly_income = { resource = sr_zro value > 5 }
+		}
+	}
+}
+
+## Damn the Consequences
+# Daemonic Incursion version (with variables returned)
+damn_the_consequences = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	edict_lock_in_months = 60
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @EdictSpecialCost
+			multiplier = value:consequences_cost
+		}
+	}
+
+	modifier = {
+		custom_tooltip = "edict_damn_the_consequences_effects"
+		show_only_custom_tooltip = no
+		planet_pops_organics_upkeep_mult = 1
+	}
+
+	potential = {
+		OR = { # Daemonic Incursion
+			has_origin = origin_overtuned
+			has_country_flag = decision_overtuned # Daemonic Incursion
+		}
+	}
+
+	allow = { }
+
+	ai_weight = {
+		weight = 0
+	}
+}
