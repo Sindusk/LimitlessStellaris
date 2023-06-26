@@ -3087,6 +3087,41 @@ ap_xeno_compatibility = {
 ## Modded Ascension Perks
 ##################################################
 
+## Artifact Hunter (Unique Ascension Perks)
+# Disabled. Allows players to find more than one precursor, which is redundant with Assorted Precursor Adjustments mod.
+ap_artifact_hunter = {
+	possible = {
+		custom_tooltip = { fail_text = "ap_artifact_hunter_req_1" has_ascension_perk = ap_deep_scanner }
+		custom_tooltip = { fail_text = "ap_artifact_hunter_req_2" has_technology = tech_physics_3 }
+		custom_tooltip = { fail_text = "ap_artifact_hunter_req_3" has_technology = tech_sensors_3 }
+		custom_tooltip = { fail_text = "ap_artifact_hunter_req_4" has_technology = tech_combat_computers_2 }
+		has_ancrel = yes
+	}
+	modifier = {
+		# v3.3 halved values
+		ship_archaeological_site_excavation_speed_mult = 0.5
+		category_archaeostudies_research_speed_mult = 0.15 # v.3.8
+		ship_archaeological_site_clues_add = 1
+	}
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = UniqueAscensionPerksEvents.450 }
+		}
+		custom_tooltip = "ap_artifact_hunter_tooltip"
+	}
+	potential = {
+		always = no # Disabled through potential
+		#NOT = { has_ascension_perk = ap_artifact_hunter }
+		#OR = {
+		#	is_ai = no
+		#	event_target:global_event_country = {
+		#		check_variable = { which = ap_artifact_hunter value > 0 }
+		#	}
+		#}		# because ai_weight doesn't work
+	}
+	ai_weight = { factor = event_target:global_event_country.ap_artifact_hunter }
+}
+
 ## Ascension Star (Tidy Traditions)
 # Disabled. Has no english language translation.
 ap_tt_ascension_star = {

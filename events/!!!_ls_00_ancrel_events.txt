@@ -1,0 +1,88 @@
+##########################################################################
+# Limitless Stellaris - Events
+##########################################################################
+
+namespace = ancrel
+
+##################################################
+## Ancient Relics Events
+##################################################
+
+## Ancrel 1 - Zroni Introduction
+# Merge between Assorted Precursor Adjustments, UAP, Ariphaos, Scripted Trigger Undercoat
+ship_event = {
+	id = ancrel.1
+	title = "ancrel.1.name"
+	desc = "ancrel.1.desc"
+	picture = GFX_evt_overgrown_city
+	location = from
+	show_sound = event_wind_ruins
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_ancrel = yes # STU - Host has Ancient Relics
+		owner = {
+			is_ai = no
+			NOT = {	has_country_flag = zroni_intro } # Assorted Precursor Adjustments
+		}
+		OR = { # Assorted Precursor Adjustments
+			owner = { is_gestalt = no }
+			is_multiplayer = no
+		}
+		solar_system = { has_star_flag = precursor_zroni_1 }
+		solar_system = { NOT = { is_same_value = root.owner.capital_scope.solar_system } }
+		NOT = { has_global_flag = zroni_started }
+		FROM = {
+			NOR = { # UAP flips the checks
+				has_global_flag = zroni_started
+				has_anomaly = yes
+				exists = archaeological_site
+				has_planet_flag = suppress_archaeological_sites # UAP
+			}
+			habitable_planet = yes
+			NOT = { has_modifier = holy_planet } # Ariphaos
+		}
+	}
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = @origin_shoulders_multiplier
+			owner = {
+				has_origin = origin_shoulders_of_giants
+				has_country_flag = origin_shoulders_closure
+			}
+		}
+	}
+
+	immediate = {
+		owner = { set_country_flag = zroni_intro }
+		set_global_flag = zroni_started
+		solar_system = { set_star_flag = first_zoroni_site@root.owner }
+		from = { prevent_anomaly = yes }
+	}
+
+	option = {
+		name = CURIOUS
+		hidden_effect = {
+			owner = { country_event = { id = story.5 days = 30 } }
+		}
+		from = {
+			create_archaeological_site = zroni_digsite_1
+			root.owner = {
+				set_country_flag = zroni_arc_chain_@prev
+			}
+			add_deposit = d_zro_deposit_2
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+}

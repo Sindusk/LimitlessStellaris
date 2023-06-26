@@ -1,0 +1,630 @@
+##########################################################################
+# Limitless Stellaris - Events
+##########################################################################
+
+namespace = action
+
+##################################################
+## Action Events
+##################################################
+
+## Action 64 - Assimilate Pops on Yearly Pulse
+# Merge between Bug Branch, All Ascension Paths, EMEX, Scripted Trigger Undercoat
+event = {
+	id = action.64
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_playable_country = {
+			num_unique_species > 1
+			any_owned_species = {
+				has_citizenship_type = {
+					type = citizenship_assimilation
+					country = prev
+				}
+                count_species_pop = { # EMEX optimization
+                    count > 0
+                }
+			}
+		}
+	}
+
+	immediate = {
+		log = "AAP action.64" # All Ascension Paths
+		set_update_modifiers_batch = begin
+		every_playable_country = {
+			limit = {
+				num_unique_species > 1
+				any_owned_species = {
+					has_citizenship_type = {
+						type = citizenship_assimilation
+						country = prev
+					}
+					count_species_pop = { # All Ascension Paths
+						count > 0
+					}
+				}
+			}
+			log = "action.64.epc"
+
+			if = { # ascended synths
+				limit = {
+					OR = { # All Ascension Paths
+						NOT = { has_country_flag = synthetic_empire }
+						OR = { # All Ascension Paths
+							has_policy_flag = synth_assimilation_bio
+							has_policy_flag = synth_assimilation_targeted
+						}
+					}
+				}
+				every_owned_species = {
+					limit = {
+						has_citizenship_type = {
+							type = citizenship_assimilation
+							country = prev
+						}
+						count_species_pop = { # EMEX optimization
+							count > 0
+						}
+					}
+					if = { # machines assimlating machines
+						limit = {
+							OR = {
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+							}
+							prev = {
+								is_machine_empire = yes
+								has_active_tradition = tr_synthetics_adopt_machine
+							}
+						}
+						# Deliberately do nothing here, see assimilation_effect
+						set_timed_species_flag = {
+							flag = assimilate_into_synths
+							days = 30
+						}
+					}
+					else_if = { # stop targetted bio ascension creating psionic robots
+						limit = { # All Ascension Paths
+							OR = {
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+							}
+							prev = {
+								has_country_flag = synthetic_empire
+							}
+						}
+						set_timed_species_flag = { # All Ascension Paths
+							flag = assimilate_into_synths
+							days = 30
+						}
+					}
+					else_if = { # bio trait targetted assimilation
+						limit = { # All Ascension Paths
+							ga_assimilation_event_suitable_species = yes
+						}
+						ga_tag_species = yes
+					}
+					else_if = { # you want to do targetted assimilation only.  We fell through the target block - aka there isn't a targetted sub species, so we need to turn them into synths
+						limit = { # All Ascension Paths
+							prev = {
+								has_policy_flag = synth_assimilation_targeted
+							}
+							OR = {
+								has_living_standard = {
+									type = living_standard_tech_assimilation
+									country = prev
+								}
+								has_living_standard = {
+									type = living_standard_cyborg_assimilation
+									country = prev
+								}
+								has_living_standard = {
+									type = living_standard_cyborg_assimilation_psionic
+									country = prev
+								}
+							}							
+						}
+						set_timed_species_flag = {
+							flag = assimilate_into_synths
+							days = 30
+						}
+					}
+					else_if = { # cyborg and psionic
+						limit = { # All Ascension Paths
+							prev = {
+								OR = {
+									AND = {
+										is_hive_empire = no
+										has_tradition = tr_cybernetics_transubstantiation_synthesis
+										has_tradition = tr_psionics_psionic_assimilation
+									}
+									AND = {
+										has_authority = auth_machine_intelligence
+										has_civic = civic_machine_assimilator
+										has_tradition = tr_psionics_psionic_assimilation
+									}
+								}
+							}
+						}
+						modify_species = { # All Ascension Paths
+							species = this
+							add_trait = trait_cybernetic
+							add_trait = trait_psionic
+							add_traits_at_start_of_list = yes
+							remove_trait = trait_hive_mind
+							remove_trait = trait_self_modified
+							remove_trait = trait_latent_psionic
+							change_scoped_species = no
+
+							effect = {
+								set_timed_species_flag = {
+									flag = assimilation_species_of_species@prev
+									days = 30
+								}
+								set_timed_species_flag = {
+									flag = assimilation_species_of_empire@prevprev
+									days = 30
+								}
+							}
+						}
+					}
+					else_if = { # assimilator empire or cyborg empire
+						limit = {
+							prev = {
+								OR = {
+									AND = {
+										is_hive_empire = no
+										has_tradition = tr_cybernetics_transubstantiation_synthesis
+									}
+									AND = {
+										is_machine_empire = yes
+										is_machine_assimilator = yes
+									}
+								}
+							}
+						}
+						modify_species = {
+							species = this
+							add_trait = trait_cybernetic
+							add_traits_at_start_of_list = yes
+							remove_trait = trait_hive_mind
+							remove_trait = trait_bugged_happy_hive # Bug Branch
+							remove_trait = trait_self_modified
+							remove_trait = trait_latent_psionic
+							remove_trait = trait_psionic
+							change_scoped_species = no
+
+							effect = {
+								set_timed_species_flag = {
+									flag = assimilation_species_of_species@prev
+									days = 30
+								}
+								set_timed_species_flag = {
+									flag = assimilation_species_of_empire@prevprev
+									days = 30
+								}
+							}
+						}
+					}
+					else_if = { # genetic and cybernetic hive mind
+						limit = { # All Ascension Paths
+							prev = {
+								has_authority = auth_hive_mind
+								OR = { # EMEX
+									has_tradition = tr_genetics_creation
+									has_civic = civic_hive_assimilators # EMEX
+								}
+								has_tradition = tr_cybernetics_transubstantiation_synthesis
+								NOT = {
+									has_civic = civic_hive_devouring_swarm
+								}
+							}
+						}
+						modify_species = { # All Ascension Paths
+							species = this
+							add_trait = trait_cybernetic
+							add_trait = trait_hive_mind							
+							remove_trait = trait_self_modified
+							remove_trait = trait_latent_psionic
+							remove_trait = trait_psionic
+							change_scoped_species = no
+
+							effect = {
+								set_timed_species_flag = {
+									flag = assimilation_species_of_species@prev
+									days = 30
+								}
+								set_timed_species_flag = {
+									flag = assimilation_species_of_empire@prevprev
+									days = 30
+								}
+							}
+						}
+					}
+					else_if = { # genetic hive mind
+						limit = { # Bug Branch
+							prev = {
+								has_authority = auth_hive_mind
+								OR = { # EMEX
+									has_tradition = tr_genetics_creation
+									has_civic = civic_hive_assimilators # EMEX
+								}
+								NOT = {
+									has_civic = civic_hive_devouring_swarm
+								}
+							}
+						}
+						if = { # Bug Branch
+							limit = {
+								prev = {
+									NAND = {
+										has_ethic = ethic_form_autonomous
+										has_ethic = ethic_form_affective
+									}
+								}
+							}
+							modify_species = {
+								species = this
+								add_trait = trait_hive_mind
+								remove_trait = trait_self_modified
+								remove_trait = trait_latent_psionic
+								remove_trait = trait_psionic
+								change_scoped_species = no
+	
+								effect = {
+									set_timed_species_flag = {
+										flag = assimilation_species_of_species@prev
+										days = 30
+									}
+									set_timed_species_flag = {
+										flag = assimilation_species_of_empire@prevprev
+										days = 30
+									}
+								}
+							}
+							else = { # Bug Branch
+								modify_species = {
+									species = this
+									add_trait = trait_bugged_happy_hive
+									remove_trait = trait_self_modified
+									remove_trait = trait_latent_psionic
+									remove_trait = trait_psionic
+									change_scoped_species = no
+		
+									effect = {
+										set_timed_species_flag = {
+											flag = assimilation_species_of_species@prev
+											days = 30
+										}
+										set_timed_species_flag = {
+											flag = assimilation_species_of_empire@prevprev
+											days = 30
+										}
+									}
+								}
+							}
+						}
+					}
+					else_if = { # cyborg hive mind
+						limit = { # Bug Branch
+							prev = {
+								is_hive_empire = yes
+								has_tradition = tr_cybernetics_transubstantiation_synthesis
+								NOT = {
+									has_civic = civic_hive_devouring_swarm
+								}
+							}
+						}
+						if = { # Bug Branch
+							limit = {
+								prev = {
+									NAND = {
+										has_ethic = ethic_form_autonomous
+										has_ethic = ethic_form_affective
+									}
+								}
+							}
+							modify_species = {
+								species = this
+								add_trait = trait_cybernetic
+								add_trait = trait_hive_mind
+								add_traits_at_start_of_list = yes
+								remove_trait = trait_self_modified
+								remove_trait = trait_latent_psionic
+								remove_trait = trait_psionic
+								remove_trait = trait_bugged_happy_hive
+								change_scoped_species = no
+	
+								effect = {
+									set_timed_species_flag = {
+										flag = assimilation_species_of_species@prev
+										days = 30
+									}
+									set_timed_species_flag = {
+										flag = assimilation_species_of_empire@prevprev
+										days = 30
+									}
+								}
+							}
+						}
+						else =  { # Bug Branch
+							modify_species = {
+								species = this
+								add_trait = trait_cybernetic
+								add_trait = trait_bugged_happy_hive
+								add_traits_at_start_of_list = yes
+								remove_trait = trait_self_modified
+								remove_trait = trait_latent_psionic
+								remove_trait = trait_psionic
+								remove_trait = trait_hive_mind
+								change_scoped_species = no
+	
+								effect = {
+									set_timed_species_flag = {
+										flag = assimilation_species_of_species@prev
+										days = 30
+									}
+									set_timed_species_flag = {
+										flag = assimilation_species_of_empire@prevprev
+										days = 30
+									}
+								}
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							prev = {
+								NOR = {
+									is_gestalt = yes
+									has_tradition = tr_cybernetics_transubstantiation_synthesis
+								}
+							}
+							OR = { # Bug Branch
+								has_trait = trait_hive_mind
+								has_trait = trait_bugged_happy_hive # Bug Branch
+							}
+						}
+						modify_species = {
+							species = this
+							remove_trait = trait_hive_mind
+							remove_trait = trait_bugged_happy_hive # Bug Branch
+							change_scoped_species = no
+
+							effect = {
+								set_timed_species_flag = {
+									flag = assimilation_species_of_species@prev
+									days = 30
+								}
+								set_timed_species_flag = {
+									flag = assimilation_species_of_empire@prevprev
+									days = 30
+								}
+							}
+						}
+					}
+					else_if = { #### Psionic Assimilation ADD OTHER RANDOM OPTIONS TOO
+						limit = {
+							prev = {
+								has_tradition = tr_psionics_psionic_assimilation
+							}
+						}
+						log = "in psi" # All Ascension Paths
+						modify_species = {
+							species = this
+							add_trait = trait_psionic
+							add_traits_at_start_of_list = yes
+							remove_trait = trait_latent_psionic
+							remove_trait = trait_cybernetic
+							remove_trait = trait_cyborg_power_drills
+							remove_trait = trait_cyborg_harvesters
+							remove_trait = trait_cyborg_superconductive
+							remove_trait = trait_cyborg_efficient_processors
+							remove_trait = trait_cyborg_logic_engines
+							remove_trait = trait_cyborg_loyalty_circuits
+							remove_trait = trait_cyborg_double_jointed
+							remove_trait = trait_cyborg_bulky
+							remove_trait = trait_cyborg_enhanced_memory
+							remove_trait = trait_cyborg_durable
+							remove_trait = trait_cyborg_high_maintenance
+							remove_trait = trait_cyborg_learning_algorithms
+							remove_trait = trait_cyborg_power_intensive
+							remove_trait = trait_cyborg_neural_limiters
+							remove_trait = trait_cyborg_streamlined_protocols
+							remove_trait = trait_cyborg_high_bandwidth
+							remove_trait = trait_cyborg_trading_algorithms
+							change_scoped_species = no
+
+							effect = {
+								set_timed_species_flag = {
+									flag = assimilation_species_of_species@prev
+									days = 30
+								}
+								set_timed_species_flag = {
+									flag = assimilation_species_of_empire@prevprev
+									days = 30
+								}
+							}
+						}
+					}
+				}
+			}
+
+			every_owned_planet = {
+				planet_event = { id = action.65 }
+			}
+		}
+		set_update_modifiers_batch = end
+	}
+}
+
+## Action 81 - Planet is turned into tomb world by special bombing stance
+# Merge between Planetary Diversity, Guilli's Planet Modifiers, Ariphaos
+planet_event = {
+	id = action.81
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_orbital_bombardment_stance = armageddon
+			has_orbital_bombardment_stance = pox
+			has_planet_flag = ariphaos_patch_flag_tomb_bombardment # Ariphaos
+		}
+		from = {
+			is_default_or_fallen = yes # STU
+		}
+		habitable_planet = yes
+	}
+
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					owner = {
+						is_at_war_with = from
+					}
+				}
+				add_static_war_exhaustion = {
+					attacker = from
+					location = root
+					value_for_planet_destruction = 0.5
+				}
+			}
+			if = {
+				limit = {
+					NAND = {
+						has_origin = origin_progenitor_hive
+						root = { is_capital = yes }
+					}
+				}
+				country_event = { id = action.82 }
+			}
+			else = {
+				country_event = { id = origin.3265 }
+			}
+		}
+		from = { country_event = { id = action.83 } }
+		if = { # Planetary Diversity
+			limit = { 
+				is_pd_cave = yes
+			}
+			change_pc = pc_nuked_cave
+		} 
+		if = { # Planetary Diversity
+			limit = { 
+				is_pd_superhab = yes
+			}
+			change_pc = pc_nuked_superhab
+		} 
+		if = { # Planetary Diversity
+			limit = { 
+				is_pd_tidally_locked = yes
+			}
+			change_pc = pc_nuked_tl
+		} 
+		if = { # Planetary Diversity
+			limit = { 
+				OR = {
+					is_planet_class = pc_city
+					is_planet_class = pc_relic
+					is_pd_arcology = yes
+				}
+			}
+			change_pc = pc_nuked_relic
+		} 
+		if = { # Planetary Diversity
+			limit = { 
+				OR = {
+					NOT = { is_planet_class = pc_city }
+					is_pd_arcology = no
+					is_pd_tidally_locked = no
+					is_pd_superhab = no
+				}
+			}
+			change_pc = pc_nuked
+		}
+		set_planet_flag = nuked_planet_anomalies_disabled
+		remove_all_buildings = yes
+		remove_all_districts = yes # Ariphaos
+		reroll_deposits = yes
+		remove_modifier = "natural_beauty"
+		remove_modifier = "atmospheric_aphrodisiac"
+		remove_modifier = "atmospheric_hallucinogen"
+		remove_modifier = "lush_planet"
+		remove_modifier = "dangerous_wildlife"
+		gpm_purge_all_planetary_modifiers = yes 	# GPM - remove other modifiers
+		gpm_random_modifier_crisis_purge = yes 		# GPM - roll tombworld modifiers
+		gpm_remove_planetary_features = yes 		# GPM - roll tombworld modifiers
+		gpm_roll_planetary_features = yes 			# GPM - up to X times planetary feature
+		set_planet_flag = armageddon_nuked
+	}
+}
+
+## Action 85 - Planets in mixed-ownership systems fall to starbase owner
+# Merge between Co-Op In Teams, Silfae's Portraits
+event = {
+	id = action.85
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			is_regular_empire = yes # Silfae's Portraits
+			NOT = { has_country_flag = is_peepboops } # Silfae's Portraits
+			any_owned_planet = {
+				exists = starbase
+				starbase = {
+					exists = owner # Silfae's Portraits
+					owner = {
+						NOR = {
+							is_country = prevprev.owner # Silfae's Portraits
+							is_at_war_with = prevprev.owner # Silfae's Portraits
+							and = { # Co-Op In Teams
+								has_country_flag = is_in_coop_with@prevprevprev
+								has_policy_flag = coop_colony_policy_yes
+								NOT = { has_global_flag = prevent_colony_outside }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		every_country = { # Silfae's Portraits changes completely
+			limit = {
+				is_regular_empire = yes
+				NOT = { has_country_flag = is_peepboops }
+			}
+			every_owned_planet = {
+				limit = {
+					exists = starbase
+					starbase = {
+						exists = owner
+						owner = {
+							NOR = {
+								is_country = prevprev.owner
+								is_at_war_with = prevprev.owner
+								and = { # Co-Op In Teams
+									has_country_flag = is_in_coop_with@prevprev.owner
+									has_policy_flag = coop_colony_policy_yes
+									NOT = { has_global_flag = prevent_colony_outside }
+								}
+							}
+							is_regular_empire = yes
+							NOT = { has_active_event = { preftl.180 } } # event to decide fate of pre-ftl civ
+						}
+					}
+				}
+				planet_event = {
+					id = action.86 # planet flips to starbase owner
+				}
+			}
+		}
+	}
+}
