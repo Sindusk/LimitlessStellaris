@@ -1,0 +1,89 @@
+####################################################################################################
+# Limitless Stellaris - StarTech Triggers
+####################################################################################################
+
+# These are primarily here for documentation efforts to understand how the AI thinks.
+# Modifications may come in the future.
+
+##################################################
+## Construction Triggers
+##################################################
+
+## City District Allow
+# Determines if an AI can build a city district.
+str_city_district_allow = {
+	hidden_trigger = {
+		str_city_allow_compatibility = yes
+		NAND = { # AI that are preparing to resettle will not construct
+			exists = owner
+			owner = { is_ai = yes }
+			str_prepare_unemployed_to_resettle = yes
+		}
+		NAND = { # AI with 8+ free housing and 1+ free building slots will not construct
+			exists = owner
+			owner = { is_ai = yes }
+			free_housing > 7
+			free_building_slots > 0
+		}
+		NAND = { # AI with 3+ free housing and 2+ free building slots will not construct
+			exists = owner
+			owner = { is_ai = yes }
+			free_housing > 2
+			free_building_slots > 1
+		}
+		OR = { # One of the following two conditions being false will prevent construction.
+			and = { # AI with 2 or more unemployed with over 25 pops while not in a raw ecocrisis will be permitted to construct
+				exists = owner
+				num_unemployed >= 2
+				num_pops > 25
+				owner = { str_raw_ecocrisis_level_0 = no }
+			}
+			and = { # All of these conditions must be true for the AI to be permitted to construct
+				NAND = { # AI with 27+ free housing and more than -2 amenities will not construct.
+					exists = owner
+					owner = { is_ai = yes }
+					free_housing > 26
+					free_amenities > -2
+				}
+				nand = { # AI with "cheesy resettlement" disabled will not construct.
+					exists = owner
+					owner = { is_ai = yes }
+					resettlement_cheesy_disable = yes
+				}
+				nand = { # AI with 1+ free building slots and either 16+ free housing or both (under 13 pops with 1+ free housing) will not construct.
+					exists = owner
+					owner = { is_ai = yes }
+					free_building_slots > 0
+					or = {
+						free_housing > 15
+						num_pops < 13
+					}
+					free_housing > 0
+				}
+				nand = {
+					exists = owner
+					owner = { is_ai = yes }
+					or = {
+						num_pops < 11
+						and = {
+							free_building_slots = 0
+							free_jobs < 1
+							free_housing > 20
+							free_amenities > -11
+						}
+					}
+				}
+				nand = {
+					exists = owner
+					owner = { is_ai = yes }
+					owner = {
+						str_raw_ecocrisis_level_1 = yes
+					}
+					free_district_slots > 0
+					free_amenities > -3
+					free_housing > 0
+				}
+			}
+		}
+	}
+}

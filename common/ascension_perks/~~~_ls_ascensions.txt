@@ -2697,7 +2697,7 @@ ap_transcendent_learning = {
 
 	potential = {
 		NOT = {
-			has_ethic = ethic_gestalt_consciousness
+			is_gestalt = yes # Merged
 			has_ascension_perk = ap_transcendent_learning
 			has_ascension_perk = ap_esap_gov_2
 		}

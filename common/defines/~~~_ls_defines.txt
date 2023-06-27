@@ -223,9 +223,8 @@
 		REQUIRED_POP_ASSEMBLY				= 150	# Required assembly to add a pop
 	}
 	NGameplay = {
-		### Temporary fix for Scripted Trigger Undercoat
-		PLANET_ARMIES_PROTECT_POPS				 = 2		# Each army present on a planet will protect this many pops from raids.
-		EMPIRE_SIZE_FLOOR						= 50	# Empire Size is never treated as under this
+		## Limitless Stellaris - Custom Defines
+		GOVERNMENT_CIVIC_POINTS_BASE		= 3		# Base amount of civic points (to "pay" for government civic costs)
 
 		# Planetary Ascension cost formula: ( Empire Sprawl * PLANET_ASCENSION_SPRAWL_SCALE) * ( 1 + ( Empire Wide Sum of Ascension Tiers * PLANET_ASCENSION_SUM_SCALE )
 		PLANET_ASCENSION_SPRAWL_SCALE		= 20.0  # Scaling factor for Planetary Ascension cost based on the empire Sprawl

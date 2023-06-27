@@ -74,7 +74,10 @@ district_city = {
 	allow = {
 		NOT = { has_modifier = resort_colony }
 		NOT = { has_modifier = slave_colony }
-		str_city_district_allow = yes # StarTech AI
+		OR = { # LS - StarTech being kind of dumb sometimes...
+			str_city_district_allow = yes # StarTech AI
+			free_housing < 2 # LS - Attempt to make AI suck a little less at decision making. City Districts are good.
+		}
 		OR = { # Ariphaos 
 			NOT = { exists = owner }
 			AND = {
@@ -120,7 +123,7 @@ district_city = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 5
+		planet_housing_add = 7 # LS 5 -> 7 [Balance]
 		planet_max_buildings_add = 1
 		job_clerk_add = 1
 	}
@@ -533,7 +536,7 @@ district_hive = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 6
+		planet_housing_add = 8 # LS 6 -> 8 [Balance]
 		job_maintenance_drone_add = 3
 		planet_max_buildings_add = 1
 	}
@@ -745,7 +748,7 @@ district_nexus = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 5
+		planet_housing_add = 7 # LS 5 -> 7 [Balance]
 		job_maintenance_drone_add = 3
 		planet_max_buildings_add = 1
 	}
@@ -905,7 +908,7 @@ district_industrial = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 2
+		planet_housing_add = 4 # LS 2 -> 4 [Balance]
 	}
 
 	triggered_planet_modifier = { # OSA
@@ -1518,7 +1521,7 @@ district_srw_commercial = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 2
+		planet_housing_add = 4 # LS 2 -> 4 [Balance]
 		job_clerk_add = 1 # Subtle Polish
 		job_artisan_add = 1 # Subtle Polish
 	}

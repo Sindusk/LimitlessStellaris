@@ -94,7 +94,7 @@ district_generator = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 2
+		planet_housing_add = 4 # LS 2 -> 4 [Balance]
 	}
 
 	triggered_planet_modifier = { # OSA
@@ -428,7 +428,7 @@ district_mining = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 2
+		planet_housing_add = 4 # LS 2 -> 4 [Balance]
 	}
 
 	triggered_planet_modifier = { # OSA
@@ -802,7 +802,7 @@ district_farming = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 2
+		planet_housing_add = 4 # LS 2 -> 4 [Balance]
 	}
 
 	triggered_planet_modifier = { # OSA
@@ -1186,7 +1186,7 @@ district_generator_uncapped = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 2
+		planet_housing_add = 4 # LS 2 -> 4 [Balance]
 	}
 
 	triggered_planet_modifier = { # OSA
@@ -1508,7 +1508,7 @@ district_mining_uncapped = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 2
+		planet_housing_add = 4 # LS 2 -> 4 [Balance]
 	}
 
 	triggered_planet_modifier = { # OSA
@@ -2012,7 +2012,7 @@ district_farming_uncapped = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 2
+		planet_housing_add = 4 # LS 2 -> 4 [Balance]
 	}
 
 	triggered_planet_modifier = { # OSA

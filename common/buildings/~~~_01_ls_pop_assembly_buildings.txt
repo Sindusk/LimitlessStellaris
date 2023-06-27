@@ -1706,8 +1706,8 @@ building_clone_vats = {
 		}
 	}
 	
-	prerequisites = { # Expanded Megastructures and Technology
-		"tech_cloning"
+	prerequisites = {
+		"tech_cloning" # Expanded Megastructures and Technology
 	}
 	
     upgrades = {
