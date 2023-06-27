@@ -1,0 +1,35 @@
+##########################################################################
+# Limitless Stellaris - UI Overhaul Events
+##########################################################################
+
+namespace = ui_overhaul_qhd_ascension
+### on_press_begin
+country_event = {
+	id = ui_overhaul_qhd_ascension.00
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_global_flag = ui_overhaul_qhd_ascension_tech_popup }
+		is_ai = no
+	}
+	immediate = {
+		#country_event = { id = ui_overhaul_qhd_ascension.10 } # Suppress the menu from being displayed
+		country_event = { id = ui_overhaul_qhd_ascension.1919 } # New event to set the variable properly.
+		every_country = {
+			country_event = { id = ui_overhaul_qhd_ascension.02 }
+		}
+	}
+}
+country_event = {
+	id = ui_overhaul_qhd_ascension.1919
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		event_target:global_event_country = { # Transferred from the menu event for the host to configure max setting.
+			set_variable = {
+				which = uiod_max_ascension_perk_slots
+				value = 92
+			}
+		}
+	}
+}
