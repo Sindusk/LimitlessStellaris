@@ -14,6 +14,7 @@ once = {
 	federation = {
 		trigger = {
 			has_federation = yes
+			is_bugged_universalism = no # Bug Branch
 		}
 		resources = {
 			category = federation

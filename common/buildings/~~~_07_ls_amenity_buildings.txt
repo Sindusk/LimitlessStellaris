@@ -45,6 +45,7 @@ building_luxury_residence = {
 		hidden_trigger = { # StarTech AI
 			OR = {
 				owner = { is_ai = no }
+				free_housing < 5 # Limitless Stellaris - They're good to build now for pop growth.
 				AND = {
 					NOR = {
 						has_building = building_luxury_residence
@@ -78,28 +79,29 @@ building_luxury_residence = {
 	destroy_trigger = {
 		exists = owner
 		OR = {
-			AND = {
-				free_building_slots = 0
-				free_jobs < -2 # StarTech AI
-				free_housing > 10
-				free_district_slots = 0 # StarTech AI
-				owner = {
-					is_ai = yes
-				}
-			}
-			AND = { # StarTech AI
-				owner = { lategame = no }
-				num_buildings = {
-					type = building_research_lab_1
-					value > 1	
-				}
-				free_jobs < 1
-				free_amenities > 6
-				free_building_slots = 0
-				owner = {
-					is_ai = yes
-				}
-			}
+			# Limitless Stellaris - StarTech triggers disabled since it's actually good now.
+			#AND = {
+			#	free_building_slots = 0
+			#	free_jobs < -2 # StarTech AI
+			#	free_housing > 10
+			#	free_district_slots = 0 # StarTech AI
+			#	owner = {
+			#		is_ai = yes
+			#	}
+			#}
+			#AND = { # StarTech AI
+			#	owner = { lategame = no }
+			#	num_buildings = {
+			#		type = building_research_lab_1
+			#		value > 1	
+			#	}
+			#	free_jobs < 1
+			#	free_amenities > 6
+			#	free_building_slots = 0
+			#	owner = {
+			#		is_ai = yes
+			#	}
+			#}
 			owner = { is_gestalt = yes }
 			owner = { 
 				OR = {
@@ -232,8 +234,9 @@ building_paradise_dome = {
 				}
 			}
 			has_modifier = slave_colony
-			owner = { is_ai = yes } # StarTech AI
-			buildings_no_crystals = yes # StarTech AI (redundant)
+			# Limitless Stellaris - No longer destroy them outright. They're actually good.
+			#owner = { is_ai = yes } # StarTech AI
+			buildings_no_crystals = yes # StarTech AI
 		}
 	}
 
@@ -384,6 +387,7 @@ building_communal_housing = {
 		hidden_trigger = { # StarTech AI
 			OR = {
 				owner = { is_ai = no }
+				free_housing < 5 # Limitless Stellaris - They're good to build now for pop growth.
 				AND = {
 					NOR = {
 						has_building = building_communal_housing
@@ -417,29 +421,29 @@ building_communal_housing = {
 	destroy_trigger = {
 		exists = owner
 		OR = {
-			AND = {
-				owner = { is_ai = yes }
-				free_building_slots = 0
-				free_jobs < -2 # StarTech AI
-				free_housing > 10
-				free_district_slots = 0 # StarTech AI
-				free_amenities > 2 # StarTech AI
-				
-			}
-			AND = { # StarTech AI
-				owner = {
-					is_ai = yes
-					lategame = no
-				}
-				num_buildings = {
-					type = building_research_lab_1
-					value > 1
-				}
-				free_jobs < 1
-				free_amenities > 6
-				free_building_slots = 0
-
-			}
+			# Limitless Stellaris - StarTech triggers disabled since it's actually good now.
+			#AND = {
+			#	owner = { is_ai = yes }
+			#	free_building_slots = 0
+			#	free_jobs < -2 # StarTech AI
+			#	free_housing > 10
+			#	free_district_slots = 0 # StarTech AI
+			#	free_amenities > 2 # StarTech AI
+			#	
+			#}
+			#AND = { # StarTech AI
+			#	owner = {
+			#		is_ai = yes
+			#		lategame = no
+			#	}
+			#	num_buildings = {
+			#		type = building_research_lab_1
+			#		value > 1
+			#	}
+			#	free_jobs < 1
+			#	free_amenities > 6
+			#	free_building_slots = 0
+			#}
 			AND = {
 				is_planet_class = pc_habitat
 				NOT = { has_planet_flag = advanced_habitat }
@@ -559,9 +563,10 @@ building_communal_housing_large = {
 
 	allow = {
 		has_upgraded_capital = yes
-		hidden_trigger = { # StarTech AI
-			owner = { is_ai = no }
-		}
+		# Limitless Stellaris - StarTech triggers disabled since it's actually good now.
+		#hidden_trigger = { # StarTech AI
+		#	owner = { is_ai = no }
+		#}
 	}
 
 	destroy_trigger = {
@@ -679,12 +684,10 @@ building_drone_storage = {
 	destroy_trigger = {
 		exists = owner
 		OR = {
-			AND = {
-				free_building_slots = 0
-				owner = {
-					is_ai = yes
-				}
-			}
+			#AND = {
+			#	free_building_slots = 0
+			#	owner = { is_ai = yes }
+			#}
 			NOR = {
 				owner = { is_machine_empire = yes }
 			}
@@ -693,9 +696,15 @@ building_drone_storage = {
 
 	allow = {
 		buildings_simple_allow = yes # StarTech AI
-		hidden_trigger = { # StarTech AI
+		exists = owner
+		OR = { # Limitless Stellaris - AI should only build when they are lacking housing.
 			owner = { is_ai = no }
+			free_housing < 5 # Limitless Stellaris - They're good to build now for pop growth.
 		}
+		# Limitless Stellaris - StarTech triggers disabled since it's actually good now.
+		#hidden_trigger = { # StarTech AI
+		#	owner = { is_ai = no }
+		#}
 	}
 
 	convert_to = {
@@ -820,27 +829,32 @@ building_hive_warren = {
 
 	allow = {
 		buildings_simple_allow = yes # StarTech AI
-		hidden_trigger = { # StarTech AI
-			OR = {
-				owner = { is_ai = no }
-				AND = {
-					free_jobs > 0
-					free_amenities < -2
-					free_amenities > -8
-					OR = {
-						#free_amenities > -10 PM: -11 is LESS than -8, so this will never be true due to earlier check for > -8
-						AND = {
-							num_pops > 13
-							free_housing < 15
-						}
-						AND = {
-							num_pops > 20
-							free_housing < 25
-						}
-					}
-				}
-			}
+		OR = { # Limitless Stellaris - AI should only build when they are lacking housing.
+			owner = { is_ai = no }
+			free_housing < 5 # Limitless Stellaris - They're good to build now for pop growth.
 		}
+		# Limitless Stellaris - StarTech triggers disabled since it's actually good now.
+		#hidden_trigger = { # StarTech AI
+		#	OR = {
+		#		owner = { is_ai = no }
+		#		AND = {
+		#			free_jobs > 0
+		#			free_amenities < -2
+		#			free_amenities > -8
+		#			OR = {
+		#				#free_amenities > -10 PM: -11 is LESS than -8, so this will never be true due to earlier check for > -8
+		#				AND = {
+		#					num_pops > 13
+		#					free_housing < 15
+		#				}
+		#				AND = {
+		#					num_pops > 20
+		#					free_housing < 25
+		#				}
+		#			}
+		#		}
+		#	}
+		#}
 	}
 
 	destroy_trigger = {
@@ -959,9 +973,10 @@ building_expanded_warren = {
 
 	allow = {
 		has_upgraded_capital = yes
-		hidden_trigger = { # StarTech AI disables construction
-			owner = { is_ai = no }
-		}
+		# Limitless Stellaris - StarTech triggers disabled since it's actually good now.
+		#hidden_trigger = { # StarTech AI disables construction
+		#	owner = { is_ai = no }
+		#}
 	}
 
 	show_tech_unlock_if = {

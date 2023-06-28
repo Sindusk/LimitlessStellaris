@@ -2,6 +2,11 @@
 # Limitless Stellaris - English Localisation (Replacements)
 ##########################################################################
 l_english:
+  ### Rise of Cosmic Industry
+  # Warn players to disable this because it can cause crashes.
+  roci_exploit: "(Leave Disabled) Space Exploitation"
+  roci_exploit_desc: "(Limitless Stellaris: This module can cause rare crashes. Leave it disabled.) The Space Exploitation module provides ['concept_minor_colony'], a mechanic you can use to build more resource production on uninhabitable planets for collection by Mining or Research stations. It has a Country level UI, accessible from an edict."
+
   # Advanced Policies
   AP_trial_by_fire: "Begin the Trial by Fire" # Fix capitalization
   planet_trial_by_fire: "Trial by Fire" # Fix capitalization

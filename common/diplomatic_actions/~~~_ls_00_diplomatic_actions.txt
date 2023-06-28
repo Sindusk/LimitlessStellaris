@@ -5,6 +5,121 @@
 ### Key:
 ### EED - Expanded Espionage and Diplomacy
 
+## Build Spy Network
+# Merge between Expanded Mods Base, Scripted Trigger Undercoat
+action_build_spy_network = {
+	icon = "GFX_envoy_action_build_spy_network"
+	auto_accepted = yes
+	require_envoy = yes
+	envoy_assignment = spy_network
+	requires_actor_independence = no
+	requires_recipient_independence = no
+	action_type = positive
+	sound = fc_ui_spy_network_button
+
+	potential = {
+		hidden_trigger = {
+			is_playable = yes
+			from = {
+				OR = {
+					is_playable = yes
+					is_country_type = primitive
+				}
+				NOR = {
+					has_country_flag = fotd_seperatist_country
+					AND = {
+						OR = { # Expanded Mods Base
+							has_country_flag = solarpunk_country
+							has_country_flag = primitives_fanatic_purifier # Expanded Mods Base
+						}
+						is_country_type = primitive
+					}
+				}
+			}
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "diplomacy_wrong_interference_policy"
+			OR = {
+				from = { is_playable = yes }
+				from = { is_fallen_empire = yes }
+				AND = {
+					from = { is_country_type = primitive }
+					NOT = { has_policy_flag = interference_not_allowed }
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "BLANK_STRING"
+			if = {
+				limit = {
+					from = {
+						is_primitive = no
+					}
+				}
+				from = { is_fallen_empire = no }
+			}
+		}
+	}
+}
+
+## Close Borders
+# Using Silfae's Portraits version.
+action_close_borders = {
+	icon = "GFX_diplomacy_status_closed_borders"
+	auto_accepted = yes
+	requires_actor_independence = no
+	requires_recipient_independence = no
+	should_show_auto_accept_message_recipient = yes
+	#should_notify_all_communications = yes
+	action_type = negative
+
+	possible = {
+		can_control_access_for = from
+
+		if = {
+			limit = {
+				from = { has_valid_civic = civic_pompous_purists }
+				NOT = { root = { is_overlord_to = from } }
+			}
+			if = {
+				limit = {
+					has_intel = {
+						who = from
+						intel = civics
+					}
+				}
+				custom_tooltip = {
+					fail_text = requires_recipient_not_pompous_borders
+					always = no
+				}
+			}
+			else = {
+				custom_tooltip = {
+					fail_text = diplo_action_no_low_intel
+					always = no
+				}
+			}
+		}
+		if = { # Silfae's Portraits
+			limit = { has_country_flag = abandoned_peepboops@from }
+			custom_tooltip = {
+				fail_text = requires_recipient_not_peepboops_close_borders
+				from = { NOT = { has_country_flag = is_peepboops@prev } }
+			}
+		}
+		else_if = { # Silfae's Portraits
+			limit = { has_country_flag = is_peepboops@from }
+			custom_tooltip = {
+				fail_text = requires_actor_not_peepboops_close_borders
+				from = { NOT = { has_country_flag = abandoned_peepboops@prev } }
+			}
+		}
+	}
+}
+
 ## Improve Relations
 # Merge between DarkSpace, EED, Ariphaos, Scripted Trigger Undercoat
 action_improve_relation = {

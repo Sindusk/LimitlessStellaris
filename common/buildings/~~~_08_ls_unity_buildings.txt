@@ -4631,7 +4631,8 @@ building_alpha_hub = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = @db2_upkeep
+			energy = 20 # OSA
+			minerals = 15 # OSA
 			rare_crystals = @db2_rare_upkeep
 		}
 		upkeep = {
