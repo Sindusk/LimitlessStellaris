@@ -95,7 +95,7 @@ ap_arcology_project = {
 
 ### ap_become_the_crisis
 ## Become The Crisis (Vanilla)
-# Merge between SAP, OSA, StarTech, and DarkSpace
+# Merge between SAP, OSA, Galactic Imperium Origins, StarTech, and DarkSpace
 ap_become_the_crisis = {
 	potential = {
 		has_nemesis = yes
@@ -120,7 +120,10 @@ ap_become_the_crisis = {
 	possible = {
 		custom_tooltip = {
 			fail_text = "requires_ascension_perks_5"
-			num_ascension_perks > 4
+			OR = { # Galactic Imperium Origin
+				num_ascension_perks > 4
+				has_origin = origin_galactic_nemesis # Galactic Imperium Origin
+			}
 		}
 		custom_tooltip = {
 			fail_text = "requires_independence"

@@ -22,6 +22,7 @@ country_event = {
 		# 	id = acemod_menu.1
 		# }
 		set_global_flag = acemod_menu_fired # Prevent the menu from automatically opening.
-		set_global_flag = acemod_crisis_manager_active # Enable the Crisis Manager.
+		# LS - Disable the ACE Crisis Manager now that we have Crisis Manager mods.
+		#set_global_flag = acemod_crisis_manager_active # Enable the Crisis Manager.
 	}
 }

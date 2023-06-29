@@ -10,7 +10,7 @@
 ##################################################
 
 ## Colonizer
-# Merge between Expanded Gestalts, StarTech
+# Merge between Nanite Machines, Expanded Gestalts, StarTech
 colonizer = {
 	max_speed = @speed_very_slow
 	acceleration = 0.3
@@ -73,10 +73,27 @@ colonizer = {
 		cost = {
 			trigger = {
 				from = {
+					NOR = { # Nanite Machines
+						has_origin = civic_harvester_nanites
+						has_origin = civic_gateway_pursuer
+					}
 					is_robot_empire = yes
 				}
 			}
 			alloys = 400
+		}
+		cost = { # Nanite Machines
+			trigger = {
+				from = {
+					OR = {
+						has_origin = civic_harvester_nanites
+						has_origin = civic_gateway_pursuer
+					}
+					is_robot_empire = yes
+				}
+			}
+			energy = 300
+			nanites = 20
 		}
 		cost = {
 			trigger = {
@@ -652,7 +669,7 @@ starbase_starport = {
 		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
 		ship_armor_add = 2000
 		ship_shield_add	= 2000 # OSA
-		starbase_module_capacity_add = 5 # More Starbase Slots 2 -> 5
+		starbase_module_capacity_add = 4 # LS 2 -> 4 [Balance]
 		starbase_building_capacity_add = 2 # More Starbase Slots 1 -> 2
 		starbase_defense_platform_capacity_add = 8 # OSA 6 -> 8
 		#trade system
@@ -810,7 +827,7 @@ starbase_starhold = {
 		ship_evasion_mult = -0.5 # -1 -> -0.5
 		ship_armor_add = 5000
 		ship_shield_add	= 5000 # OSA
-		starbase_module_capacity_add = 10 # More Starbase Slots 4 -> 10
+		starbase_module_capacity_add = 8 # LS 4 -> 8 [Balance]
 		starbase_building_capacity_add = 4 # More Starbase Slots 2 -> 4
 		starbase_defense_platform_capacity_add = 16 # OSA 9 -> 16
 		#trade system
@@ -967,7 +984,7 @@ starbase_starfortress = {
 		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
 		ship_armor_add = 20000 # OSA 10,000 -> 20,000
 		ship_shield_add	= 20000 # OSA
-		starbase_module_capacity_add = 15 # More Starbase Slots 6 -> 15
+		starbase_module_capacity_add = 12 # LS 6 -> 12 [Balance]
 		starbase_building_capacity_add = 6 # More Starbase Slots 3 -> 6
 		starbase_defense_platform_capacity_add = 24 # OSA 12 -> 24
 		#trade system
@@ -1124,8 +1141,8 @@ starbase_citadel = {
 		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
 		ship_armor_add = 40000 # OSA 20,000 -> 40,000
 		ship_shield_add	= 40000 # OSA
-		starbase_module_capacity_add = 20 # More Starbase Slots 6 -> 20
-		starbase_building_capacity_add = 9 # OSA 4 -> 9
+		starbase_module_capacity_add = 16 # LS 6 -> 16 [Balance]
+		starbase_building_capacity_add = 8 # LS 4 -> 8
 		starbase_defense_platform_capacity_add = 36 # OSA 15 -> 36
 		#trade system
 		starbase_trade_collection_range_add = 1
@@ -1281,11 +1298,12 @@ starbase_bastion = {
 	acceleration = 0.0
 	rotation_speed = 0.0
 	modifier = {
-		ship_evasion_mult = -1
-		ship_armor_add = 40000
-		starbase_module_capacity_add = 25 # More Starbase Slots 12 -> 25
+		ship_evasion_mult = -0.5 # LS -1.0 -> -0.5 (OSA extension)
+		ship_armor_add = 80000 # LS 40,000 -> 80,000 (OSA extension)
+		ship_shield_add	= 80000 # LS - OSA extension
+		starbase_module_capacity_add = 22 # LS 12 -> 22 [Balance]
 		starbase_building_capacity_add = 10 # More Starbase Slots 8 -> 10
-		starbase_defense_platform_capacity_add = 24
+		starbase_defense_platform_capacity_add = 48 # LS 24 -> 48 (OSA extension)
 		#trade system
 		starbase_trade_collection_range_add = 1
 		starbase_trade_protection_range_add = 1
@@ -1296,7 +1314,7 @@ starbase_bastion = {
 		ship_fire_rate_mult = 0.50
 		ship_weapon_range_mult = 0.20
 	}
-	max_hitpoints = 160000
+	max_hitpoints = 320000 # LS 160,000 -> 320,000 (OSA extension)
 	base_buildtime = 1800
 	resources = {
 		category = starbase_stations

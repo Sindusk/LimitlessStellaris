@@ -458,7 +458,7 @@ building_machine_assembly_plant = {
 }
 
 ## Machine Assembly Complex (Tier 2)
-# Merge between EUTAB, OSA, Real Space: Planetary Stations, StarTech AI
+# Merge between Nanite Machines, EUTAB, OSA, Real Space: Planetary Stations, StarTech AI
 building_machine_assembly_complex = {
 	base_buildtime = @db3_time
 	can_build = no
@@ -482,7 +482,7 @@ building_machine_assembly_complex = {
 				owner = { is_ai = no }
 				AND = {
 					num_buildings = { type = any value <= 10 }
-					NOT = { is_planet_class = pc_habitat }
+					merg_is_habitat = no # Merged
 				}
 			}
 		}
@@ -538,7 +538,8 @@ building_machine_assembly_complex = {
 
 	upgrades = {
 		building_eutab_automation_sector # EUTAB
-		building_avb_machine_assembly_plant_2 # Additional Vanilla Buildings
+		#building_avb_machine_assembly_plant_2 # Additional Vanilla Buildings
+		building_nanite_assembly_plant # Nanite Machines
 	}
 
 	prerequisites = {
@@ -547,6 +548,17 @@ building_machine_assembly_complex = {
 
 	triggered_desc = {
 		text = job_replicator_effect_desc
+	}
+
+	ai_weight = { # Nanite Machines
+		weight = 50000
+		modifier = {
+			factor = 0
+			OR = {
+				merg_is_habitat = yes
+				num_buildings = { type = any value >= 14 }
+			}
+		}
 	}
 	
 	# StarTech AI Fake Job Manipulation

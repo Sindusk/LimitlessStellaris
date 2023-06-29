@@ -1,0 +1,611 @@
+##########################################################################
+# Limitless Stellaris - Technology
+##########################################################################
+
+##################################################
+## Plentiful Traditions - Extra Perks
+##################################################
+# Disable all the ascension perk technologies since they are redundant with UI Overhaul Dynamic version.
+
+## 1 - 3
+tech_plentiful_traditions_perks_1 = {
+	area = society
+	cost = @tier2cost1
+	tier = 2
+	category = { statecraft }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_1" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_2" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_3" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_4" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_5" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_6" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_7" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_8" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_9" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 0
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+tech_plentiful_traditions_perks_2 = {
+	area = physics
+	cost = @tier2cost2
+	tier = 2
+	category = { field_manipulation }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_2" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_3" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_4" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_5" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_6" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_7" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_8" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_9" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 1
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+tech_plentiful_traditions_perks_3 = {
+	area = engineering
+	cost = @tier2cost3
+	tier = 2
+	category = { materials }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#has_technology = "tech_plentiful_traditions_perks_2"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_3" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_4" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_5" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_6" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_7" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_8" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_9" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 2
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+## 4 - 6
+tech_plentiful_traditions_perks_4 = {
+	area = society
+	cost = @tier3cost1
+	tier = 3
+	category = { new_worlds }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier2weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#has_technology = "tech_plentiful_traditions_perks_2"
+		#has_technology = "tech_plentiful_traditions_perks_3"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_4" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_5" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_6" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_7" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_8" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_9" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 3
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_new_worlds"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+tech_plentiful_traditions_perks_5 = {
+	area = physics
+	cost = @tier3cost2
+	tier = 3
+	category = { particles }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#has_technology = "tech_plentiful_traditions_perks_2"
+		#has_technology = "tech_plentiful_traditions_perks_3"
+		#has_technology = "tech_plentiful_traditions_perks_4"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_5" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_6" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_7" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_8" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_9" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 4
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_particles"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+tech_plentiful_traditions_perks_6 = {
+	area = engineering
+	cost = @tier3cost3
+	tier = 3
+	category = { propulsion }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		has_technology = "tech_plentiful_traditions_perks_1"
+		has_technology = "tech_plentiful_traditions_perks_2"
+		has_technology = "tech_plentiful_traditions_perks_3"
+		has_technology = "tech_plentiful_traditions_perks_4"
+		has_technology = "tech_plentiful_traditions_perks_5"
+		NOT = {	has_technology = "tech_plentiful_traditions_perks_6" }
+		NOT = {	has_technology = "tech_plentiful_traditions_perks_7" }
+		NOT = {	has_technology = "tech_plentiful_traditions_perks_8" }
+		NOT = {	has_technology = "tech_plentiful_traditions_perks_9" }
+		NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		check_variable = {
+			which = "num_of_traditions" 
+			value > 5
+		}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_propulsion"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+## 7 - 9
+tech_plentiful_traditions_perks_7 = {
+	area = society
+	cost = @tier4cost1
+	tier = 4
+	category = { military_theory }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#has_technology = "tech_plentiful_traditions_perks_2"
+		#has_technology = "tech_plentiful_traditions_perks_3"
+		#has_technology = "tech_plentiful_traditions_perks_4"
+		#has_technology = "tech_plentiful_traditions_perks_5"
+		#has_technology = "tech_plentiful_traditions_perks_6"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_7" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_8" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_9" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 6
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_military_theory"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+tech_plentiful_traditions_perks_8 = {
+	area = physics
+	cost = @tier4cost2
+	tier = 4
+	category = { computing }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#has_technology = "tech_plentiful_traditions_perks_2"
+		#has_technology = "tech_plentiful_traditions_perks_3"
+		#has_technology = "tech_plentiful_traditions_perks_4"
+		#has_technology = "tech_plentiful_traditions_perks_5"
+		#has_technology = "tech_plentiful_traditions_perks_6"
+		#has_technology = "tech_plentiful_traditions_perks_7"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_8" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_9" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 7
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_computing"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+tech_plentiful_traditions_perks_9 = {
+	area = engineering
+	cost = @tier4cost3
+	tier = 4
+	category = { industry }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#has_technology = "tech_plentiful_traditions_perks_2"
+		#has_technology = "tech_plentiful_traditions_perks_3"
+		#has_technology = "tech_plentiful_traditions_perks_4"
+		#has_technology = "tech_plentiful_traditions_perks_5"
+		#has_technology = "tech_plentiful_traditions_perks_6"
+		#has_technology = "tech_plentiful_traditions_perks_7"
+		#has_technology = "tech_plentiful_traditions_perks_8"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_9" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 8
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+## 10 - 12
+tech_plentiful_traditions_perks_10 = {
+	area = society
+	cost = @tier5cost1
+	tier = 5
+	category = { biology }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier2weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#has_technology = "tech_plentiful_traditions_perks_2"
+		#has_technology = "tech_plentiful_traditions_perks_3"
+		#has_technology = "tech_plentiful_traditions_perks_4"
+		#has_technology = "tech_plentiful_traditions_perks_5"
+		#has_technology = "tech_plentiful_traditions_perks_6"
+		#has_technology = "tech_plentiful_traditions_perks_7"
+		#has_technology = "tech_plentiful_traditions_perks_8"
+		#has_technology = "tech_plentiful_traditions_perks_9"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_10" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 9
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_biology"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+tech_plentiful_traditions_perks_11 = {
+	area = physics
+	cost = @tier5cost2
+	tier = 5
+	category = { psionics }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#has_technology = "tech_plentiful_traditions_perks_2"
+		#has_technology = "tech_plentiful_traditions_perks_3"
+		#has_technology = "tech_plentiful_traditions_perks_4"
+		#has_technology = "tech_plentiful_traditions_perks_5"
+		#has_technology = "tech_plentiful_traditions_perks_6"
+		#has_technology = "tech_plentiful_traditions_perks_7"
+		#has_technology = "tech_plentiful_traditions_perks_8"
+		#has_technology = "tech_plentiful_traditions_perks_9"
+		#has_technology = "tech_plentiful_traditions_perks_10"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_11" }
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 10
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_psionics"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}
+
+tech_plentiful_traditions_perks_12 = {
+	area = engineering
+	cost = @tier5cost3
+	tier = 5
+	category = { voidcraft }
+	ai_update_type = all
+	is_rare = yes
+	weight = @tier1weight2
+	
+	modifier = {
+		ascension_perks_add = 1
+	}
+	
+	potential = {
+		always = no # Disabled through potential.
+		#has_technology = "tech_plentiful_traditions_perks_1"
+		#has_technology = "tech_plentiful_traditions_perks_2"
+		#has_technology = "tech_plentiful_traditions_perks_3"
+		#has_technology = "tech_plentiful_traditions_perks_4"
+		#has_technology = "tech_plentiful_traditions_perks_5"
+		#has_technology = "tech_plentiful_traditions_perks_6"
+		#has_technology = "tech_plentiful_traditions_perks_7"
+		#has_technology = "tech_plentiful_traditions_perks_8"
+		#has_technology = "tech_plentiful_traditions_perks_9"
+		#has_technology = "tech_plentiful_traditions_perks_10"
+		#has_technology = "tech_plentiful_traditions_perks_11"
+		#NOT = {	has_technology = "tech_plentiful_traditions_perks_12" }
+		#check_variable = {
+		#	which = "num_of_traditions" 
+		#	value > 11
+		#}
+	}
+
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 5
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 9999
+	}
+}

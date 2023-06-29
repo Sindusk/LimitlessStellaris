@@ -1771,7 +1771,7 @@ zro_crystal_machine = {
 }
 
 ## Damn the Consequences
-# Daemonic Incursion version (with variables returned)
+# Merge between Daemonic Incursion, Galactic Imperium Origins
 damn_the_consequences = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
@@ -1796,6 +1796,7 @@ damn_the_consequences = {
 		OR = { # Daemonic Incursion
 			has_origin = origin_overtuned
 			has_country_flag = decision_overtuned # Daemonic Incursion
+			has_ascension_perk = ap_master_of_own_life # Galactic Imperium Origins
 		}
 	}
 

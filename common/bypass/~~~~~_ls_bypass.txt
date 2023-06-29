@@ -4,7 +4,7 @@
 
 ### lgate
 ## L-Gate Bypass Access
-# Merge between L-Cluster Access, Ariphaos
+# Merge between Ancient Empire, L-Cluster Access, Nanite Machines, Ariphaos
 # Base from L-Cluster Access, additional restrictions by Ariphaos
 lgate = {
 	name = LGATE_GALACTIC

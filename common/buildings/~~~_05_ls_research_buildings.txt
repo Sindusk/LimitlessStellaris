@@ -313,7 +313,7 @@ building_research_lab_3 = {
 ##################################################
 
 ## Research Institute (Tier 1)
-# Merge between Sort Buildings, EUTAB, OSA, Bug Branch, Real Space: Planetary Stations, MECR, StarTech
+# Merge between Sort Buildings, EUTAB, OSA, Bug Branch, Real Space: Planetary Stations, Orbital Ring Buildings, MECR, StarTech
 building_institute = {
 	base_buildtime = @db2_time
 	base_cap_amount = 1
@@ -390,10 +390,24 @@ building_institute = {
 			minerals = @db2_minerals
 			exotic_gases = @db2_rare_cost
 		}
+		cost = { # Orbital Ring Buildings
+		    trigger = {
+		        is_ringworld = yes
+		    }
+		    minerals = 1500
+		    exotic_gases = 600
+		}
 		upkeep = {
 			energy = 5
 			minerals = 5
 			exotic_gases = @db2_rare_upkeep
+		}
+		upkeep = { # Orbital Ring Buildings
+		    trigger = {
+		        is_ringworld = yes
+		    }
+		    energy = 15
+		    exotic_gases = 8
 		}
 		produces = { # OSA
 			trigger = {
@@ -455,6 +469,18 @@ building_institute = {
 		modifier = {
 			planet_jobs_unity_produces_mult = 0.05
 
+		}
+	}
+
+	triggered_planet_modifier = { # Orbital Ring Buildings
+	    potential = {
+	        is_ringworld = yes
+	    }
+		modifier = {
+			planet_researchers_physics_research_produces_add = 1
+			planet_researchers_engineering_research_produces_add = 1
+			planet_researchers_society_research_produces_add = 1
+			planet_researchers_consumer_goods_upkeep_add = 1
 		}
 	}
 
@@ -522,7 +548,7 @@ building_institute = {
 }
 
 ## Planetary Supercomputer (Tier 1)
-# Merge between Sort Buildings, EUTAB, OSA, Bug Branch, Real Space: Planetary Stations, MECR, StarTech
+# Merge between Sort Buildings, EUTAB, OSA, Bug Branch, Real Space: Planetary Stations, Orbital Ring Buildings, MECR, StarTech
 building_supercomputer = {
 	base_buildtime = @db2_time
 	base_cap_amount = 1
@@ -589,12 +615,34 @@ building_supercomputer = {
 	resources = {
 		category = planet_buildings
 		cost = {
+		    trigger = {
+		        is_ringworld = no
+		    }
 			minerals = @db2_minerals
+			exotic_gases = @db2_rare_cost
+		}
+		cost = { # Orbital Ring Buildings
+		    trigger = {
+		        is_ringworld = yes
+		    }
+		    minerals = 1500
+		    exotic_gases = 600
 		}
 		upkeep = {
+		    trigger = {
+		        is_ringworld = no
+		    }
 			energy = 5
 			minerals = 5
 			exotic_gases = @db2_rare_upkeep
+		}
+		upkeep = { # Orbital Ring Buildings
+		    trigger = {
+		        is_ringworld = yes
+		    }
+		    energy = 10
+			minerals = 10
+		    exotic_gases = 8
 		}
 		produces = { # OSA
 			trigger = {
@@ -653,6 +701,22 @@ building_supercomputer = {
 		}
 	}
 
+    triggered_planet_modifier = { # Orbital Ring Buildings
+		potential = {
+		    is_ringworld = yes
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			planet_researchers_physics_research_produces_add = 1
+			planet_researchers_engineering_research_produces_add = 1
+			planet_researchers_society_research_produces_add = 1
+			planet_researchers_minerals_upkeep_add = 3
+		}
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -671,6 +735,22 @@ building_supercomputer = {
 		modifier = {
 			job_bugged_examinatron_add = 1
 			#job_calculator_add = -1
+		}
+	}
+
+    triggered_planet_modifier = { # Orbital Ring Buildings
+		potential = {
+		    is_ringworld = yes
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			planet_researchers_physics_research_produces_add = 1
+			planet_researchers_engineering_research_produces_add = 1
+			planet_researchers_society_research_produces_add = 1
+			planet_researchers_energy_upkeep_add = 2
 		}
 	}
 

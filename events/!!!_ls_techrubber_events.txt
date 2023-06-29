@@ -30,13 +30,15 @@ country_event = {
 		set_variable = {
 			which = behind_limit
 			value = 200
-		}		
+		}
 		set_variable = {
 			which = ahead_limit
 			value = 200
 		}
+		set_global_flag = settings_initalized
 		country_event = {
 			# id = techrubber.12 # Disable showing the menu at the start.
+			id = techrubber.13
 		}	
 	}
 }
