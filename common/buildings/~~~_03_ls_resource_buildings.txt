@@ -931,7 +931,7 @@ building_food_processing_center = {
 	}
 	
 	upgrades = {
-		building_roci_nourishment_center_mod # Rise of Cosmic Industry
+		#building_roci_nourishment_center_mod # Rise of Cosmic Industry
 		building_food_processing_complex # OSA
 	}
 
@@ -1725,7 +1725,7 @@ building_mineral_purification_hub = {
 	}
 	
 	upgrades = {
-		building_roci_dimensional_fabricator_mod # Rise of Cosmic Industry
+		#building_roci_dimensional_fabricator_mod # Rise of Cosmic Industry
 		building_mineral_purification_complex # OSA
 	}
 
@@ -2328,7 +2328,7 @@ building_energy_nexus = {
 	}
 
 	upgrades = {
-		building_roci_class_4_singularity_mod # Rise of Cosmic Industry
+		#building_roci_class_4_singularity_mod # Rise of Cosmic Industry
 		building_energy_distribution_complex # OSA
 	}
 

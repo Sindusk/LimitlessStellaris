@@ -2,48 +2,48 @@
 # Limitless Stellaris - Rise of Cosmic Industry Events
 ##########################################################################
 
-namespace = roci_menu
-
-event = {
-	id = roci_menu.1
-	is_triggered_only = yes
-	hide_window = yes
-	
-	trigger = {
-		NOT = { has_global_flag = roci_has_host }
-	}
-
-	immediate = {
-		# Limitless Stellaris Settings:
-		#set_global_flag = no_orbital_infra		# Orbital Infrastructure
-		#set_global_flag = no_shipping			# Shipping
-		set_global_flag = no_trade_routes		# Trade Routes
-		set_global_flag = no_realdev			# Realistic Development
-		set_global_flag = no_exploit			# Exploitation
-		set_global_flag = no_autofab			# Auto Fabrication
-		
-		#Game Start flags
-		set_global_flag = roci_realdev_build_adjustment_medium_flag
-		set_global_flag = exploit_speed_difficulty
-		set_global_flag = orbital_ring_overwrite
-		#set_global_flag = no_shipping #Shipping is currently off by default
-		#set_global_flag = no_exploit #Exploit is disable until the crashes are fixed in vanilla
-		#set_global_flag = no_trade_routes #Cargo ships are currently disabled until they can be fixed.
-		event_target:global_event_country = {
-			#set_variable = { which = shipping_scale value = 1 }
-			set_variable = { which = shipping_scale value = 0.3 } # Reduce shipping effect.
-		}
-		every_country = {
-			set_variable = { which = roci_country_order value = 1 }
-		}
-		ordered_country = {
-			limit = { is_country_type = default is_ai = no }
-			position = 0
-			order_by = roci_country_order
-			set_global_flag = roci_has_host
-			set_country_flag = roci_host
-			log = "ROCI on game start mark host [This.GetRealName]"
-			country_event = { id = roci_menu.2 } # Disabling this will likely have negative effects on mod functionality. Will work on solution.
-		}
-	}
-}
+# namespace = roci_menu
+#
+#event = {
+#	id = roci_menu.1
+#	is_triggered_only = yes
+#	hide_window = yes
+#	
+#	trigger = {
+#		NOT = { has_global_flag = roci_has_host }
+#	}
+#
+#	immediate = {
+#		# Limitless Stellaris Settings:
+#		#set_global_flag = no_orbital_infra		# Orbital Infrastructure
+#		#set_global_flag = no_shipping			# Shipping
+#		set_global_flag = no_trade_routes		# Trade Routes
+#		set_global_flag = no_realdev			# Realistic Development
+#		set_global_flag = no_exploit			# Exploitation
+#		set_global_flag = no_autofab			# Auto Fabrication
+#		
+#		#Game Start flags
+#		set_global_flag = roci_realdev_build_adjustment_medium_flag
+#		set_global_flag = exploit_speed_difficulty
+#		set_global_flag = orbital_ring_overwrite
+#		#set_global_flag = no_shipping #Shipping is currently off by default
+#		#set_global_flag = no_exploit #Exploit is disable until the crashes are fixed in vanilla
+#		#set_global_flag = no_trade_routes #Cargo ships are currently disabled until they can be fixed.
+#		event_target:global_event_country = {
+#			#set_variable = { which = shipping_scale value = 1 }
+#			set_variable = { which = shipping_scale value = 0.3 } # Reduce shipping effect.
+#		}
+#		every_country = {
+#			set_variable = { which = roci_country_order value = 1 }
+#		}
+#		ordered_country = {
+#			limit = { is_country_type = default is_ai = no }
+#			position = 0
+#			order_by = roci_country_order
+#			set_global_flag = roci_has_host
+#			set_country_flag = roci_host
+#			log = "ROCI on game start mark host [This.GetRealName]"
+#			country_event = { id = roci_menu.2 } # Disabling this will likely have negative effects on mod functionality. Will work on solution.
+#		}
+#	}
+#}

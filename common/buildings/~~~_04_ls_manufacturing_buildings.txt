@@ -510,7 +510,7 @@ building_foundry_3 = {
 	}
 	
 	upgrades = {
-		building_roci_nano_forge_mod # Rise of Cosmic Industry
+		#building_roci_nano_forge_mod # Rise of Cosmic Industry
 	}
 
 	planet_modifier = {
@@ -1179,7 +1179,7 @@ building_factory_3 = {
 		tech_luxuries_2
 	}
 	upgrades = {
-		building_roci_affluence_center_mod # Rise of Cosmic Industry
+		#building_roci_affluence_center_mod # Rise of Cosmic Industry
 	}
 
 	# StarTech AI Fake Job Manipulation
