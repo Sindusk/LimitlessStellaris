@@ -1,0 +1,1133 @@
+##########################################################################
+# Limitless Stellaris - Civics
+##########################################################################
+
+##################################################
+## Hive Civics
+##################################################
+
+## Hive Subspace Ephase
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_subspace_ephapse = {
+	potential = { authority = { value = auth_hive_mind } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+		country_naval_cap_mult = 0.20 # OSA 0.15 -> 0.20
+		command_limit_add = 25 # OSA
+		ship_speed_mult = 0.20
+		ship_evasion_mult = 0.10 # EMEX
+	}
+
+	swap_type = {
+		name = civic_hive_subspace_ephapse_fircon
+
+		trigger = { #No scope in empire creation but still checked. Otherwise, country scope is valid and the latter condition is checked
+			has_first_contact_dlc = yes
+		}
+		description = "civic_tooltip_hive_subspace_ephapse_fircon_effects"
+	}
+}
+
+## Hive Natural Neural Network
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_natural_neural_network = {
+	potential = { authority = { value = auth_hive_mind } }
+	description = "civic_tooltip_natural_neural_network_effects"
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		num_tech_alternatives_add = 2 # OSA 1 -> 2
+		all_technology_research_speed = 0.05 # EMEX
+		country_society_tech_research_speed = 0.20 # OSA
+		leader_scientists_society_research_produces_add = 10 # OSA
+	}
+}
+
+## Hive Ascetic
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_ascetic = {
+	potential = { authority = { value = auth_hive_mind } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		pop_environment_tolerance = 0.10 # EMEX 0.05 -> 0.10
+		pop_amenities_usage_no_happiness_mult = -0.25 # EMEX -0.15 -> -0.25
+		planet_pops_organics_food_upkeep_mult = -0.1 # Bug Branch
+		planet_housing_add = 25 # OSA
+	}
+}
+
+## Hive One Mind
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_one_mind = {
+	description = "civic_hive_one_mind_effects"
+	potential = { authority = { value = auth_hive_mind } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = devouring_swarm
+			}
+		}
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		country_unity_produces_mult = 0.20 # OSA 0.15 -> 0.20
+		country_base_influence_produces_add = 0.5 # EMEX
+		negative_traits_country = -1
+	}
+}
+
+## Hive Divided Attention
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_divided_attention = {
+	potential = { authority = { value = auth_hive_mind } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		empire_size_colonies_mult = -0.20 # OSA -0.50 -> -0.20
+		country_edict_fund_mult = 0.50 # OSA
+		country_naval_cap_mult = 0.15 # EMEX
+		edicts_upkeep_mult = -0.10 # OSA
+		edicts_cost_mult = -0.10 # OSA
+	}
+}
+
+## Hive Strength of Legions
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_strength_of_legions = {
+	potential = { authority = { value = auth_hive_mind } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = devouring_swarm
+			}
+		}
+	}
+	description = "civic_tooltip_hive_strength_of_legions_effects"
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		planet_jobs_simple_drone_produces_mult = 0.15 # OSA
+		army_starting_experience_add = 100
+		army_damage_mult = 0.20
+		armies_upkeep_mult = -0.20
+	}
+}
+
+## Hive Subsumed Will
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_subsumed_will = {
+	potential = { authority = { value = auth_hive_mind } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+
+	description = "civic_hive_subsumed_will_effects"
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		country_power_projection_society_research_produces_add = 50 # OSA
+		empire_size_penalty_mult = -0.25 # OSA
+		empire_size_pops_mult = -0.20
+		country_edict_fund_add = 150 # OSA 25 -> 150
+		country_influence_produces_mult = 0.25 # EMEX
+		planet_stability_add = 5 # OSA
+	}
+}
+
+## Hive Pooled Knowledge
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_pooled_knowledge = {
+	potential = { authority = { value = auth_hive_mind } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = devouring_swarm
+			}
+		}
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		country_leader_cap_add = 2 # OSA 1 -> 2
+		species_leader_exp_gain = 0.25 # OSA 0.10 -> 0.25
+		planet_jobs_complex_drone_produces_mult = 0.05 # OSA
+		country_leader_pool_size = 2 # Bug Branch
+		intel_encryption_add = 1
+	}
+}
+
+## Hive Devouring Swarm
+# Merge between OSA, Bug Branch, EMEX, Extra Origins
+civic_hive_devouring_swarm = {
+	description = "civic_tooltip_devouring_swarm_effects"
+	modification = no
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+		origin = {
+			NOR = {
+				value = origin_common_ground
+				value = origin_hegemon
+				value = origin_tree_of_life
+				value = origin_next_generation # Extra Origins
+				value = origin_monster_tamers # Extra Origins
+			}
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+		country_starbase_influence_cost_mult = -0.5
+		ship_hull_mult = 0.25
+		ship_hull_regen_add_perc = 0.5 # EMEX 0.05 -> 0.50
+		ship_armor_regen_add_perc = 0.5 # EMEX 0.05 -> 0.50
+		army_damage_mult = 0.40
+		category_biology_research_speed_mult = 0.20
+		starbase_shipyard_build_cost_mult = -0.25
+		country_naval_cap_mult = 0.33
+	}
+
+	swap_type = {
+		name = civic_hive_devouring_swarm_lithoid
+		description = "civic_tooltip_devouring_swarm_lithoid_effects"
+
+		trigger = { #No scope in empire creation but still checked. Otherwise, country scope is valid and the latter condition is checked
+			OR = {
+				AND = {
+					is_scope_valid = no
+					local_human_species_class = LITHOID
+				}
+				AND = {
+					is_scope_valid = yes
+					is_lithoid_empire = yes
+				}
+			}
+		}
+	}
+}
+
+## Hive Empath
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_empath = {
+	playable = { host_has_dlc = "Federations" }
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_hive_devouring_swarm
+			}
+		}
+		origin = {
+			NOT = {
+				value = origin_necrophage
+			}
+		}
+	}
+	random_weight = {
+		base = @civic_default_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+
+	description = "civic_tooltip_empath_effects"
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		envoys_add = 2
+		diplo_weight_mult = 0.2 # EMEX 0.1 -> 0.2
+		diplomacy_upkeep_mult = -0.10 # EMEX
+		country_trust_cap_add = 100 # OSA
+	}
+}
+
+## Hive Memorialist
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_memorialist = {
+	playable = { host_has_dlc = "Necroids Species Pack" }
+	description = "civic_tooltip_memorialist_gestalt_effects"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	possible = {
+		civics = {
+			NOT = { value = civic_hive_devouring_swarm } #Includes Terravore
+		}
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		assist_research_mult = 0.25 # OSA
+		country_leader_cap_add = 2 # OSA
+	}
+}
+
+## Hive Catalytic Processing
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_catalytic_processing = {
+	playable = { host_has_dlc = "Plantoids Species Pack" }
+	ai_playable = { host_has_dlc = "Plantoids Species Pack" }
+	description = "civic_tooltip_hive_catalytic_processing_effects"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+		origin = {
+			NOT = {
+				value = origin_lithoid
+			}
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = 0			# Too dangerous to switch mid-game
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		planet_metallurgists_physics_research_produces_add = 2 # OSA
+		planet_metallurgists_unity_produces_add = 2 # OSA
+	}
+}
+
+## Hive Idyllic Bloom
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_idyllic_bloom = {
+	modification = no
+	playable = { host_has_dlc = "Plantoids Species Pack" }
+	ai_playable = { host_has_dlc = "Plantoids Species Pack" }
+	description = "civic_tooltip_idyllic_bloom_effects"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+		species_class = {
+			OR = {
+				value = FUN
+				value = PLANT
+			}
+		}
+		origin = {
+			NOR = { # Bug Branch
+				text = civic_tooltip_not_origin_non_standard_habitability_preference # Bug Branch
+				value = origin_life_seeded # Bug Branch
+				value = origin_void_dwellers
+				value = origin_shattered_ring # Bug Branch
+			}
+		}
+	}
+	random_weight = {
+		base = @civic_rare_random_weight
+	}
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		planet_pop_assembly_organic_mult = 0.10 # OSA
+		terraform_speed_mult = 0.25 # OSA
+	}
+}
+
+## Hive Toxic Baths
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_toxic_baths = {
+	playable = { has_toxoids = yes }
+	ai_playable = { has_toxoids = yes }
+	description = "civic_tooltip_hive_toxic_baths_effects"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+		origin = { NOT = { value = origin_life_seeded } }
+	}
+	random_weight = {
+		base = @civic_default_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		country_exotic_gases_produces_mult = 0.25 # OSA
+		leader_governors_exotic_gases_produces_add = 2 # OSA
+		planet_researchers_society_research_produces_add = 2 # OSA
+	}
+}
+
+## Hive Ascensionists
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_ascensionists = {
+	playable = { host_has_dlc = "Utopia" }
+	ai_playable = { host_has_dlc = "Utopia" }
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		planetary_ascension_effect_mult = 0.50 # OSA 0.25 -> 0.50
+		planetary_ascension_cost_mult = -0.50 # OSA -0.10 -> -0.50
+		tradition_cost_empire_size_mult = -0.25
+	}
+	random_weight = {
+		base = @civic_uncommon_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_uncommon_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = devouring_swarm
+			}
+		}
+	}
+}
+
+## Hive Cordyceptic Drones
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_cordyceptic_drones = {
+	playable = { has_necroids = yes }
+	ai_playable = { has_necroids = yes }
+	description = "civic_tooltip_cordyceptic_drones"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	random_weight = {
+		base = @civic_default_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+		weapon_type_space_fauna_weapon_damage_mult = 0.5
+		weapon_type_space_fauna_weapon_fire_rate_mult = 0.5
+		planet_pop_assembly_organic_mult = 0.10 # OSA
+		planet_colony_development_speed_mult = 0.25 # OSA
+	}
+}
+
+## Hive Stargazers
+# Vanilla
+civic_hive_stargazers = {
+	playable = {
+		has_first_contact_dlc = yes
+	}
+
+	ai_playable = {
+		has_first_contact_dlc = yes
+	}
+
+	description = "civic_hive_stargazers_effects"
+	modification = no
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+		ship_sensor_range_add = 1
+		ship_hyperlane_range_add = 2
+		country_starbase_influence_cost_distance_mult = -0.2
+	}
+
+	traits = {
+		trait = trait_stargazer
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+## Memory Vault (Hive)
+# Merge between OSA, Bug Branch, EMEX
+civic_memory_vault_hive = {
+	playable = { host_has_dlc = "Galactic Paragons" }
+	ai_playable = { host_has_dlc = "Galactic Paragons" }
+	random_weight = {
+		base = 4
+	}
+	description = "civic_tooltip_memory_vault_hive_effects"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate 
+		councilor_skill_add = 2 # OSA 1 -> 2
+		country_leader_cap_add = 2 # OSA
+	}
+}
+
+## Hive Upkeep Twister
+# Merge between OSA, Bug Branch, EMEX
+civic_hive_upkeep_twister = {
+	playable = { host_has_dlc = "Galactic Paragons" }
+	ai_playable = { host_has_dlc = "Galactic Paragons" }
+	random_weight = {
+		base = 4
+	}
+	description = "civic_tooltip_hive_upkeep_twister_effects"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		country_leader_cap_add = 2 # OSA 1 -> 2
+		country_leader_pool_size = 2 # OSA
+	}
+}
+
+##################################################
+## Machine Civics
+##################################################
+
+## Machine Servitor
+# Merge between OSA, Bug Branch, EMEX, Extra Origins
+civic_machine_servitor = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	possible = {
+		civics = {
+			NOR = {
+				text = civic_bugged_no_other_prime_directive # Bug Branch
+				value = civic_bugged_machine_researcher # Bug Branch
+				value = civic_machine_terminator
+				value = civic_machine_assimilator
+			}
+		}
+		origin = {
+			NOR = { # Extra Origins
+				value = origin_machine
+				value = origin_ai_uprising # Extra Origins
+			}
+		}
+	}
+	modification = no
+	random_weight = {
+		base = @civic_default_random_weight
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Synthetic Dawn Story Pack" }
+		}
+		modifier = {
+			# civic has no effect after galaxy generation, disable for random generation
+			factor = 0
+			has_global_flag = game_started
+		}
+	}
+	description = civic_tooltip_machine_servitor_effects
+	has_secondary_species = {	# see game_start.11
+		title = civic_machine_servitor_secondary_species
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		pop_growth_speed = 0.25 # OSA
+		pop_growth_speed_reduction = -0.25 # OSA
+	}
+}
+
+## Machine Terminator
+# Merge between OSA, Bug Branch, EMEX, Extra Origins
+civic_machine_terminator = {
+	potential = {
+		authority = {
+			OR = {
+				value = auth_ancient_machine_intelligence
+				value = auth_machine_intelligence
+			}
+		}
+	}
+	starting_colony = pc_nuked # Changes homeworld class regardless of what is picked for empire
+	possible = {
+		civics = {
+			NOR = {
+				text = civic_bugged_no_other_prime_directive
+				value = civic_bugged_machine_researcher
+				value = civic_machine_servitor
+				value = civic_machine_assimilator
+			}
+			NOR = {
+				value = civic_machine_memorialist
+				value = civic_machine_exploration_protocol
+			}
+		}
+		origin = {
+			NOR = {
+				value = origin_common_ground
+				value = origin_hegemon
+				value = origin_next_generation # Extra Origins
+				value = origin_ai_uprising # Extra Origins
+			}
+		}
+	}
+	modification = no
+	random_weight = {
+		base = @civic_default_random_weight
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Synthetic Dawn Story Pack" }
+		}
+	}
+	description = civic_tooltip_machine_terminator_effects
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+		country_starbase_influence_cost_mult = -0.25 # OSA -0.30 -> -0.25
+		ship_weapon_damage = 0.25
+		starbase_shipyard_build_cost_mult = -0.15
+		country_naval_cap_mult = 0.35 # OSA 0.33 -> 0.35
+	}
+}
+
+## Machine Assimilator
+# Merge between OSA, Bug Branch, EMEX, Extra Origins
+civic_machine_assimilator = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	possible = {
+		civics = {
+			NOR = { # Bug Branch
+				text = civic_bugged_no_other_prime_directive # Bug Branch
+				value = civic_bugged_machine_researcher # Bug Branch
+				value = civic_machine_servitor
+				value = civic_machine_terminator
+			}
+			NOR = {
+				value = civic_machine_memorialist
+				value = civic_machine_exploration_protocol
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_form_autonomous # Bug Branch
+			}
+		}
+		origin = {
+			NOT = {
+				value = origin_ai_uprising # Extra Origins
+			}
+		}
+	}
+	modification = no
+	random_weight = {
+		base = @civic_default_random_weight
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Synthetic Dawn Story Pack" }
+		}
+		modifier = {
+			# civic has no effect after galaxy generation, disable for random generation
+			factor = 0
+			has_global_flag = game_started
+		}
+	}
+	description = civic_tooltip_machine_assimilator_effects
+	has_secondary_species = {	# see game_start.11
+		title = civic_machine_assimilator_secondary_species
+		traits = {
+			trait = trait_cybernetic
+		}
+	}
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+	}
+}
+
+## Machine Builder
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_builder = {
+	#description = "civic_tooltip_functional_architecture_effects"
+	description = "civic_tooltip_building_civic_effects" # Bug Branch
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		planet_structures_cost_mult = -0.10 # OSA -0.15 -> -0.10
+		planet_structures_upkeep_mult = -0.10 # OSA
+		planet_building_build_speed_mult = 0.50 # OSA
+		building_time_mult = -0.10 # EMEX
+		planet_max_buildings_add = 2 # OSA 1 -> 2
+	}
+}
+
+## Machine Factory Overclock
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_factory_overclock = {
+	icon = "gfx/interface/icons/governments/civics/civic_machine_factory_overclock.dds"
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		country_leader_cap_add = 2 # OSA 1 -> 2
+		species_leader_exp_gain = 0.25 # OSA 0.10 -> 0.25
+		country_alloys_produces_mult = 0.15 # OSA
+	}
+}
+
+## Machine Unitary Cohesion
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_unitary_cohesion = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		country_unity_produces_mult = 0.20 # OSA 0.15 -> 0.20
+		leader_governors_influence_produces_add = 0.25 # OSA
+		leader_scientists_influence_produces_add = 0.25 # OSA
+	}
+}
+
+## Machine Rockbreakers
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_rockbreakers = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		planet_miners_minerals_produces_add = 2 # OSA 1 -> 2
+		planet_miners_unity_produces_add = 1 # OSA
+		planet_miners_alloys_produces_add = 0.5 # OSA
+		planet_district_mining_build_speed_mult = 0.25 # EMEX
+		category_materials_research_speed_mult = 0.15 # Bug Branch
+		job_mining_drone_per_pop = 0.066 # Bug Branch
+		district_mining_max = +1 # Bug Branch
+	}
+}
+
+## Machine Zero Waste Protocols
+# Merge between Ecology, OSA, Bug Branch, EMEX
+civic_machine_zero_waste_protocols = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		planet_pops_robotics_upkeep_mult = -0.15 # EMEX -0.10 -> -0.15
+		planet_pop_assembly_reduction = -0.10 # EMEX
+		planet_jobs_upkeep_mult = -0.15 # OSA
+		planet_stability_add = 5 # OSA
+		planet_waste_energy_produces_add = 1 # Ecology
+	}
+
+	swap_type = { # Ecology
+		trigger = {
+			has_toxoids = yes
+		}
+		description = "civic_scavengers_effects"
+	}
+}
+
+## Machine Built to Last
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_built_to_last = {
+	potential = {
+		authority = {
+			OR = {
+				value = auth_ancient_machine_intelligence # OSA
+				value = auth_machine_intelligence
+			}
+		}
+		#always = no # Bug Branch removes this civic.
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		pop_amenities_usage_no_happiness_mult = -0.45 # EMEX -0.15 -> -0.45
+		planet_crime_no_happiness_mult = -0.25 # OSA
+		planet_housing_add = 25 # OSA
+	}
+}
+
+## Machine OTA Updates
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_ota_updates = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	description = civic_machine_ota_updates_effect
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+		country_power_projection_physics_research_produces_add = 50 # OSA
+		empire_size_penalty_mult = -0.25 # OSA
+		empire_size_pops_mult = -0.25 # EMEX -0.20 -> -0.25
+		country_edict_fund_add = 150 # OSA 25 -> 150
+		planet_stability_add = 5 # OSA
+	}
+}
+
+## Machine Warbots
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_warbots = {
+	description = civic_tooltip_machine_warbots_effects
+	potential = {
+		authority = {
+			OR = {
+				value = auth_ancient_machine_intelligence
+				value = auth_machine_intelligence
+			}
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = exterminators
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = servitors
+			}
+		}
+	}
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+		ship_fire_rate_mult = 0.10 # OSA
+		army_damage_mult = 0.20
+		armies_upkeep_mult = -0.2
+		planet_army_build_speed_mult = 0.20 # OSA
+		planet_army_build_time_mult = -0.2 # EMEX
+	}
+}
+
+## Machine Introspective
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_introspective = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = exterminators
+			}
+		}
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		country_engineering_tech_research_speed = 0.20
+		leader_scientists_engineering_research_produces_add = 10 # OSA
+		intel_encryption_add = 1
+	}
+}
+
+## Machine Delegated Functions
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_delegated_functions = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = exterminators
+			}
+		}
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		leaders_upkeep_mult = -0.25
+		species_leader_exp_gain = 0.05 # EMEX
+		country_leader_pool_size = 2 # OSA 1 -> 2
+		envoys_add = 2 # OSA 1 -> 2
+		planet_jobs_complex_drone_produces_mult = 0.05 # OSA
+	}
+}
+
+## Machine Predictive Analysis
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_predictive_analysis = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		num_tech_alternatives_add = 2 # OSA 1 -> 2
+		all_technology_research_speed = 0.05 # EMEX
+		station_researchers_produces_mult = 0.20 # OSA
+		intel_decryption_add = 1
+	}
+}
+
+## Machine Replication
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_replication = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		planet_pop_assembly_mult = 0.20
+		empire_size_pops_mult = -0.20 # OSA
+		planet_housing_mult = 0.30 # EMEX
+	}
+}
+
+## Machine Maintenance Protocols
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_maintenance_protocols = {
+	potential = { authority = { value = auth_machine_intelligence } }
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+	}
+	description = civic_tooltip_machine_maintenance_protocols_effects
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		leader_governors_unity_produces_add = 10 # OSA
+		planet_pops_robotics_upkeep_mult = -0.05 # EMEX
+	}
+}
+
+## Machine Memorialist
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_memorialist = {
+	playable = { host_has_dlc = "Necroids Species Pack" }
+	description = "civic_tooltip_memorialist_gestalt_effects"
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight
+	}
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_machine_terminator
+				value = civic_machine_assimilator
+			}
+		}
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		assist_research_mult = 0.25 # OSA
+		country_leader_cap_add = 2 # OSA
+	}
+}
+
+## Machine Catalytic Processing
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_catalytic_processing = {
+	playable = { host_has_dlc = "Plantoids Species Pack" }
+	ai_playable = { host_has_dlc = "Plantoids Species Pack" }
+	description = "civic_tooltip_machine_catalytic_processing_effects"
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+	possible = {
+		origin = { NOT = { value = origin_machine } }
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = 0		# Too dangerous to switch mid-game
+	}
+	
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		planet_metallurgists_physics_research_produces_add = 2 # OSA
+		planet_metallurgists_unity_produces_add = 2 # OSA
+	}
+}
+
+## Machine Toxic Baths
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_toxic_baths = {
+	playable = { has_toxoids = yes }
+	ai_playable = { has_toxoids = yes }
+	description = "civic_tooltip_machine_toxic_baths_effects"
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+	possible = {
+		origin = { NOT = { value = origin_life_seeded } }
+	}
+	random_weight = {
+		base = @civic_uncommon_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_uncommon_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = servitors
+			}
+		}
+	}
+	modifier = {
+		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		country_exotic_gases_produces_mult = 0.25 # OSA
+		leader_governors_exotic_gases_produces_add = 2 # OSA
+		planet_researchers_society_research_produces_add = 2 # OSA
+	}
+}
+
+## Machine Ascensionists
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_ascensionists = {
+	playable = { host_has_dlc = "Utopia" }
+	ai_playable = { host_has_dlc = "Utopia" }
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		planetary_ascension_effect_mult = 0.50 # OSA 0.25 -> 0.50
+		planetary_ascension_cost_mult = -0.5 # OSA -0.1 -> -0.5
+		tradition_cost_empire_size_mult = -0.25
+	}
+	random_weight = {
+		base = @civic_uncommon_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_uncommon_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = exterminators
+			}
+		}
+	}
+}
+
+## Machine Exploration Protocol
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_exploration_protocol = {
+	playable = {
+		has_first_contact_dlc = yes
+	}
+
+	ai_playable = {
+		has_first_contact_dlc = yes
+	}
+
+	description = "civic_machine_exploration_protocol_effects"
+	modification = no
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_machine_terminator
+				value = civic_machine_assimilator
+			}
+		}
+	}
+
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+		first_contact_speed_mult = 0.2
+		station_observers_unity_produces_add = 25 # OSA 3 -> 25
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+## Memory Vault (Machine)
+# Merge between OSA, Bug Branch, EMEX
+civic_memory_vault_machine = {
+	playable = { host_has_dlc = "Galactic Paragons" }
+	ai_playable = { host_has_dlc = "Galactic Paragons" }
+	random_weight = {
+		base = 4
+	}
+	description = "civic_tooltip_memory_vault_machine_effects"
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+	possible = {
+	}
+	modifier = {
+		councilor_gestalt_scientist_exp_gain = @gestalt_civic_node_xp_rate
+		councilor_skill_add = 2 # OSA 1 -> 2
+		country_leader_cap_add = 2 # OSA
+	}
+}
+
+## Machine Upkeep Twister
+# Merge between OSA, Bug Branch, EMEX
+civic_machine_upkeep_twister = {
+	playable = { host_has_dlc = "Galactic Paragons" }
+	ai_playable = { host_has_dlc = "Galactic Paragons" }
+	random_weight = {
+		base = 4
+	}
+	description = "civic_tooltip_machine_upkeep_twister_effects"
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+	possible = {
+	}
+	modifier = {
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+		negative_traits_country = -1
+		country_leader_pool_size = 2 # OSA
+	}
+}
