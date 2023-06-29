@@ -1,0 +1,1611 @@
+##########################################################################
+# Limitless Stellaris - Civics
+##########################################################################
+
+##################################################
+## Corporate Civics
+##################################################
+
+## Franchising
+# Merge between OSA, Bug Branch, EMEX
+civic_franchising = {
+	potential = {
+        OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+            civics = { value = civic_galactic_sovereign_megacorp }
+        }
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = slaving_despots
+				has_ai_personality = federation_builders
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = xenophobic_isolationists
+			}
+		}
+	}
+	description = "civic_tooltip_franchising_effects"
+	modifier = {
+		country_civics_influence_produces_add = 1 # OSA
+		country_subject_power_penalty_mult = -0.33 # Bug Branch
+		empire_size_branch_office_mult = -0.25
+		planet_branch_offices_cost_mult = -0.15 # EMEX
+	}
+}
+
+## Trading Posts
+# Merge between OSA, Bug Branch, EMEX
+civic_trading_posts = {
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = hegemonic_imperialists
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = xenophobic_isolationists
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	modifier = {
+		commercial_pact_mult = 0.50 # OSA
+		country_starbase_capacity_add = 10 # OSA 4 -> 10
+		trade_value_mult = 0.15 # EMEX
+		station_gatherers_produces_mult = 0.20 # OSA
+		station_researchers_produces_mult = 0.20 # OSA
+		starbase_constructions_physics_research_produces_mult = 0.20 # OSA
+		starbase_constructions_society_research_produces_mult = 0.20 # OSA
+		starbase_constructions_engineering_research_produces_mult = 0.20 # OSA
+	}
+}
+
+## Media Conglomerate
+# Merge between OSA, Bug Branch, EMEX
+civic_media_conglomerate = {
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		civics = { NOT = { value = civic_idealistic_foundation } }
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	modifier = {
+		empire_size_penalty_mult = -0.25 # OSA
+		edicts_upkeep_mult = -0.10 # OSA
+		country_war_exhaustion_mult = -0.10 # EMEX -0.05 -> -0.10
+		country_unity_produces_mult = 0.10 # EMEX
+		pop_citizen_happiness = 0.10 # OSA 0.05 -> 0.10
+		pop_government_ethic_attraction = 0.1 # Bug Branch
+		pop_category_workers_unity_produces_add = 2 # OSA
+	}
+}
+
+## Naval Contractors
+# Merge between OSA, Bug Branch, EMEX
+civic_naval_contractors = {
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = decadent_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = xenophobic_isolationists
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = peaceful_traders
+				has_ai_personality = erudite_explorers
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+		}
+		civics = { NOT = { value = civic_citizen_service } }
+	}
+	modifier = {
+		country_naval_cap_mult = 0.20 # OSA 0.15 -> 0.20
+		ships_upkeep_mult = -0.05 # EMEX
+		leader_admirals_unity_produces_add = 10 # OSA
+		planet_soldiers_unity_produces_add = 2 # OSA
+	}
+	swap_type = {
+		trigger = {
+			host_has_dlc = "Overlord"
+		}
+
+		modifier = {
+			country_enclave_capacity_add = 2
+		}
+	}
+}
+
+## Free Traders
+# Merge between OSA, Bug Branch, EMEX
+civic_free_traders = {
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = peaceful_traders
+				has_ai_personality = federation_builders
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = democratic_crusaders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = xenophobic_isolationists
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	modifier = {
+		trade_value_mult = 0.15 # Bug Branch 0.10 -> 0.15
+		branch_office_value_mult = 0.15 # EMEX 0.10 -> 0.15
+		country_influence_produces_mult = 0.15 # EMEX
+		country_power_projection_consumer_goods_produces_add = 50 # OSA
+	}
+}
+
+## Private Prospectors
+# Merge between OSA, Bug Branch, EMEX
+civic_private_prospectors = {
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = peaceful_traders
+				has_ai_personality = slaving_despots
+				has_ai_personality = decadent_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = xenophobic_isolationists
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+			}
+		}
+	}
+	modifier = {
+		empire_size_penalty_mult = -0.15 # OSA
+		empire_size_systems_mult = -0.33
+		empire_size_colonies_mult = -0.33 # EMEX
+	}
+
+	# unlocks sponsored_colonizer ship size
+	description = "civic_tooltip_private_prospectors_effects"
+}
+
+## Gospel of the Masses
+# Merge between OSA, Bug Branch, EMEX
+civic_gospel_of_the_masses = {
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = spiritual_seekers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = xenophobic_isolationists
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = slaving_despots
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_spiritualist
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+			}
+		}
+	}
+	modifier = {
+		pop_ethic_spiritualist_attraction_mult = 1.0 # Bug Branch 0.5 -> 1.0
+		country_unity_produces_mult = 0.05 # Bug Branch
+		planet_priests_produces_mult = 0.10 # OSA
+		job_high_priest_per_pop = 0.04 # OSA
+	}
+
+	description = "civic_tooltip_gospel_of_the_masses_effects"
+}
+
+## Ruthless Competition
+# Merge between OSA, Bug Branch, EMEX
+civic_ruthless_competition = {
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		ethics = { # Bug Branch
+			OR = {
+				value = ethic_fanatic_competitive
+			}
+			NOR = {
+				value = ethic_fanatic_pluralist
+			}				
+		}
+		civics = { NOT = { value = civic_meritocracy } }
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = slaving_despots
+				has_ai_personality = decadent_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = peaceful_traders
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = federation_builders
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	modifier = {
+        councilor_skill_add = 2 # OSA
+		species_leader_exp_gain = 0.25 # Bug Branch 0.10 -> 0.25
+		intel_decryption_add = 1
+		country_leader_pool_size = 2 # OSA 1 -> 2
+	}
+
+	swap_type = {
+		trigger = {
+			has_paragon_dlc = yes
+		}
+
+		modifier = {
+			leader_trait_selection_options_add = 1
+		}
+	}
+}
+
+## Criminal Heritage
+# Merge between OSA, Bug Branch, EMEX
+civic_criminal_heritage = {
+	modification = no
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	modifier = {
+		country_civics_influence_produces_add = 1 # OSA
+		planet_branch_offices_cost_mult = -0.20
+		spy_network_daily_value_mult = 0.20
+		intel_decryption_add = 1
+	}
+
+	description = "civic_tooltip_criminal_heritage_effects"
+
+	swap_type = {
+		trigger = {
+			has_first_contact_dlc = yes
+		}
+		description = "civic_tooltip_criminal_heritage_effects"
+		modifier = {
+			ship_cloaking_strength_add = 1
+		}
+	}
+}
+
+## Private Military Companies
+# Merge between OSA, Bug Branch, EMEX
+civic_private_military_companies = {
+	description = "civic_tooltip_private_military_companies_effects"
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+		#always = no # Bug Branch disables this civic. Enabled again.
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = slaving_despots
+				has_ai_personality = decadent_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = peaceful_traders
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = federation_builders
+				has_ai_personality = xenophobic_isolationists
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+		}
+		civics = { NOT = { value = civic_warrior_culture } }
+	}
+	modifier = {
+		planet_soldiers_physics_research_produces_add = 2.5 # OSA
+		planet_soldiers_engineering_research_produces_add = 2.5 # OSA
+		country_power_projection_produces_mult = 0.5 # OSA
+		local_trade_protection_add = 2 # OSA
+		starbase_trade_collection_range_add = 2 # OSA
+		army_starting_experience_add = 100
+		army_damage_mult = 0.2
+		armies_upkeep_mult = -0.25 # EMEX -0.20 -> -0.25
+		planet_army_build_time_mult = -0.25 # EMEX
+	}
+	swap_type = {
+		description = "civic_tooltip_private_military_companies_effects"
+		trigger = {
+			host_has_dlc = "Overlord"
+		}
+
+		modifier = {
+			country_enclave_capacity_add = 2 # OSA 1 -> 2
+		}
+	}
+}
+
+## Indentured Assets
+# Merge between OSA, Bug Branch, EMEX, Extra Origins
+civic_indentured_assets = {
+	description = "civic_tooltip_indentured_assets_effects"
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = slaving_despots
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = peaceful_traders
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = democratic_crusaders
+			}
+		}
+	}
+	possible = {
+		origin = { NOT = { value = origin_infiltrators } } # Extra Origins
+		ethics = { # Bug Branch
+			NOR = {
+				value = ethic_fanatic_pluralist
+			}
+			OR = {
+				text = civic_tooltip_elitist
+				value = ethic_elitist
+				value = ethic_fanatic_elitist
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_corporate_hedonism
+				value = civic_slaver_guilds
+				value = civic_pleasure_seekers
+				value = civic_bugged_slaving_despots # Bug Branch
+				value = civic_bugged_slaving_despots_corpo # Bug Branch
+			}
+		}
+	}
+	modifier = {
+		pop_cat_ruler_political_power = 0.30 # EMEX
+		planet_jobs_slave_produces_mult = 0.20 # OSA 0.10 -> 0.20
+		slave_market_cost_mult = -0.25 # Bug Branch
+		country_pop_enslaved_mult = 0.40 # EMEX 0.35 -> 0.40
+	}
+}
+
+## Brand Loyalty
+# Merge between OSA, Bug Branch, EMEX
+civic_brand_loyalty = {
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		civics = { NOT = { value = civic_beacon_of_liberty } }
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = peaceful_traders
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = federation_builders
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+	}
+	modifier = {
+		country_unity_produces_mult = 0.20 # EMEX 0.15 -> 0.20
+		country_edict_fund_add = 150 # OSA 25 -> 150
+		intel_encryption_add = 1 # EMEX
+	}
+}
+
+## Public Relations Specialists
+# Merge between OSA, Bug Branch, EMEX
+civic_public_relations_specialists = {
+	playable = { host_has_dlc = "Federations" }
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		civics = { NOT = { value = civic_diplomatic_corps } }
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = peaceful_traders
+				has_ai_personality = federation_builders
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = slaving_despots
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = xenophobic_isolationists
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	modifier = {
+		envoys_add = 2
+		diplo_weight_mult = 0.20 # EMEX 0.10 -> 0.20
+		diplomacy_upkeep_mult = -0.10 # EMEX
+		country_trust_cap_add = 100 # OSA
+	}
+}
+
+## Death Cult (Corporate)
+# Merge between OSA, Bug Branch, EMEX
+civic_death_cult_corporate = {
+	description = "civic_tooltip_death_cult_corporate_effects" # Bug Branch
+	playable = { host_has_dlc = "Necroids Species Pack" }
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = slaving_despots
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = peaceful_traders
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = federation_builders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+	}
+	possible = {
+		origin = { NOT = { value = origin_necrophage } }
+		civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_inwards_perfection
+				value = civic_ancient_preservers # Bug Branch
+			}
+		}
+		civics = {
+			NOR = { # Bug Branch
+				text = civic_tooltip_not_cult
+				value = civic_bugged_luminosity_cult
+				value = civic_bugged_luminosity_cult_corpo
+				value = civic_death_cult # Vanilla
+				value = civic_bugged_war_cult
+				value = civic_bugged_war_cult_corpo
+
+				value = civic_bugged_gravity_cult
+				value = civic_bugged_gravity_cult_corpo
+				value = civic_bugged_life_cult
+				value = civic_bugged_life_cult_corpo
+				value = civic_bugged_machine_cult
+				value = civic_bugged_machine_cult_corpo
+			}
+		}
+		ethics = {
+			OR = {
+				text = civic_tooltip_spiritualist
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+			}
+		}
+	}
+	modifier = {
+		country_edict_fund_mult = 0.5 # OSA
+		planet_priests_unity_produces_add = 4 # OSA
+	}
+}
+
+## Corporate Catalytic Processing
+# Merge between OSA, Bug Branch, EMEX
+civic_corporate_catalytic_processing = {
+	playable = { host_has_dlc = "Plantoids Species Pack" }
+	ai_playable = { host_has_dlc = "Plantoids Species Pack" }
+	description = "civic_tooltip_catalytic_processing_corporate_effects"
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		origin = {
+			NOT = {
+				value = origin_lithoid
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_catalytic_processing
+			}
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = 0			# Too dangerous to switch mid-game
+	}
+
+	modifier = {
+		planet_metallurgists_physics_research_produces_add = 2 # OSA
+		planet_metallurgists_unity_produces_add = 2 # OSA
+	}
+}
+
+## Corporate Hedonism
+# Merge between OSA, Bug Branch, EMEX
+civic_corporate_hedonism = {
+	playable = { host_has_dlc = "Humanoids Species Pack" }
+	ai_playable = { host_has_dlc = "Humanoids Species Pack" }
+	description = "civic_tooltip_corporate_hedonism_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_pleasure_seekers
+				value = civic_indentured_assets
+				value = civic_slaver_guilds
+				value = civic_corporate_mercenary_contractors # OSA
+				value = civic_bugged_slaving_despots # Bug Branch
+				value = civic_bugged_slaving_despots_corpo # Bug Branch
+			}
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = peaceful_traders
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = slaving_despots
+				has_ai_personality = decadent_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	modifier = {
+		planet_jobs_ruler_produces_mult = 0.10 # OSA
+		job_entertainer_per_pop = 0.10 # OSA
+	}
+}
+
+## Corporate Anglers
+# Merge between OSA, Bug Branch, EMEX
+civic_corporate_anglers = {
+	modification = no
+	playable = { has_aquatics = yes }
+	ai_playable = { has_aquatics = yes }
+	description = "civic_tooltip_anglers_effects"
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		origin = {
+			NOR = {
+				value = origin_post_apocalyptic
+				value = origin_shattered_ring
+				value = origin_void_dwellers
+				value = origin_subterranean
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_agrarian_idyll # OSA
+				value = civic_anglers
+			}
+		}
+	}
+	traits = {
+		trait = trait_aquatic
+	}
+	random_weight = {
+		base = @civic_default_random_weight
+	}
+	modifier = {
+		planet_artisans_unity_produces_add = 2 # OSA
+		planet_farmers_unity_produces_add = 1 # OSA
+	}
+}
+
+## Corporate Crafters
+# Merge between OSA, Bug Branch, EMEX
+civic_corporate_crafters = {
+	playable = { host_has_dlc = "Humanoids Species Pack" }
+	ai_playable = { host_has_dlc = "Humanoids Species Pack" }
+	description = "civic_tooltip_crafters_effects"
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		civics = { NOT = { value = civic_crafters }	}
+	}
+	random_weight = {
+		base = @civic_uncommon_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_uncommon_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = peaceful_traders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = slaving_despots
+			}
+		}
+	}
+	modifier = {
+		planet_max_buildings_add = 1 # OSA
+	}
+}
+
+## Permanent Employment
+# Merge between OSA, Bug Branch, EMEX
+civic_permanent_employment = {
+	playable = { host_has_dlc = "Necroids Species Pack" }
+	ai_playable = { host_has_dlc = "Necroids Species Pack" }
+	description = "civic_tooltip_permanent_employment_effects"
+	potential = {
+		OR = {
+			authority = {
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		ethics = {
+			NOR = {
+				text = civic_tooltip_not_egalitarian
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+			}
+		}
+		origin = {
+			NOR = {
+				value = origin_necrophage
+				value = origin_mechanists
+				value = origin_clone_army
+			}
+		}
+	}
+	random_weight = { base = @civic_uncommon_random_weight }
+	ai_weight = { 
+		base = @ai_civic_uncommon_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = slaving_despots
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = peaceful_traders
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = democratic_crusaders
+			}
+		}
+	}
+}
+
+## Relentless Industrialists
+# Merge between OSA, Bug Branch, EMEX
+civic_corporate_relentless_industrialists = {
+	playable = { has_toxoids = yes }
+	ai_playable = { has_toxoids = yes }
+	description = "civic_tooltip_relentless_industrialists_effects"
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		ethics = { # Bug Branch
+			OR = {
+				text = civic_tooltip_competitive
+				 value = ethic_competitive
+				 value = ethic_fanatic_competitive
+			}
+			OR = {
+				text = civic_tooltip_anthropocentric
+				 value = ethic_anthropocentric
+				 value = ethic_fanatic_anthropocentric
+			}
+		}
+		origin = { NOT = { value = origin_life_seeded } }
+		civics = {
+			NOR = {
+				value = civic_environmentalist
+				value = civic_agrarian_idyll
+				value = civic_idyllic_bloom
+				value = civic_memorialist
+				value = civic_relentless_industrialists
+			}
+		}
+	}
+	random_weight = {
+		base = @civic_uncommon_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_uncommon_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = slaving_despots
+				has_ai_personality = decadent_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = peaceful_traders
+				has_ai_personality = federation_builders
+				has_ai_personality = xenophobic_isolationists
+				has_ai_personality = fanatic_befrienders
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = erudite_explorers
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = harmonious_hierarchy
+			}
+		}
+	}
+	modifier = {
+		country_alloys_produces_mult = 0.10 # OSA
+		country_consumer_goods_produces_mult = 0.10 # OSA
+        planet_jobs_alloys_produces_mult = 0.1 # Bug Branch
+		planet_jobs_consumer_goods_produces_mult = 0.1 # Bug Branch
+        planet_non_artificial_max_districts_add = 1 # Bug Branch
+		planet_clear_blocker_time_mult = -0.5 # Bug Branch
+		planet_building_build_speed_mult = 0.5 # Bug Branch
+		pop_environment_tolerance = -0.05 # Bug Branch
+		planet_structures_upkeep_mult = 0.1 # Bug Branch
+		deposit_blockers_cost_mult = 0.2 # Bug Branch
+	}
+}
+
+## Corporate Toxic Baths
+# Merge between OSA, Bug Branch, EMEX
+civic_corporate_toxic_baths = {
+	playable = { has_toxoids = yes }
+	ai_playable = { has_toxoids = yes }
+	description = "civic_tooltip_toxic_baths_effects"
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		origin = { NOT = { value = origin_life_seeded } }
+		civics = {
+			NOR = {
+				value = civic_toxic_baths
+				value = civic_bugged_life_cult # Bug Branch
+			}
+		}
+		ethics = {
+			NOR = { # Bug Branch
+				text = civic_tooltip_not_ecocentric
+				value = ethic_ecocentric
+				value = ethic_fanatic_ecocentric
+			}
+		}
+	}
+	random_weight = {
+		base = @civic_uncommon_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_uncommon_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = xenophobic_isolationists
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = slaving_despots
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = erudite_explorers
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = peaceful_traders
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = federation_builders
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+	}
+	modifier = {
+		country_exotic_gases_produces_mult = 0.25 # OSA
+		leader_governors_exotic_gases_produces_add = 2 # OSA
+		planet_researchers_society_research_produces_add = 2 # OSA
+	}
+}
+
+## Corporate Scavengers
+# Merge between Ecology, OSA, Bug Branch, EMEX
+civic_corporate_scavengers = {
+	description = "civic_corporate_scavengers_effects" # Ecology
+	playable = { has_toxoids = yes }
+	ai_playable = { has_toxoids = yes }
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_scavengers
+			}
+		}
+	}
+	random_weight = {
+		base = @civic_default_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_default_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = peaceful_traders
+				has_ai_personality = slaving_despots
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = xenophobic_isolationists
+			}
+		}
+	}
+	modifier = {
+		station_gatherers_produces_mult = 0.50 # OSA
+		salvage_chance_add = 0.15 # OSA
+	}
+}
+
+## Corporate Ascensionists
+# Merge between OSA, Bug Branch, EMEX
+civic_corporate_ascensionists = {
+	playable = { host_has_dlc = "Utopia" }
+	ai_playable = { host_has_dlc = "Utopia" }
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_spiritualist
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_ascensionists
+			}
+		}
+	}
+	random_weight = {
+		base = @civic_uncommon_random_weight
+	}
+	ai_weight = { 
+		base = @ai_civic_uncommon_base_weight 
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = xenophobic_isolationists
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = slaving_despots
+				has_ai_personality = federation_builders
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+	}
+	modifier = {
+		planetary_ascension_effect_mult = 0.50 # OSA 0.25 -> 0.50
+		planetary_ascension_cost_mult = -0.5 # OSA -0.1 -> -0.50
+		tradition_cost_empire_size_mult = -0.25
+	}
+}
+
+## Privatized Exploration
+# Merge between OSA, Bug Branch, EMEX
+civic_privatized_exploration = {
+	playable = { has_first_contact_dlc = yes }
+
+	description = "civic_privatized_exploration_effects"
+	
+	potential = {
+        OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+            civics = { value = civic_galactic_sovereign_megacorp }
+        }
+	}
+	modification = no
+	possible = {
+		origin = {
+			NOR = {
+				# No FC origins.
+				value = origin_payback
+				value = origin_broken_shackles
+				value = origin_fear_of_the_dark
+			}
+		}
+	}
+
+	modifier = {
+		starbase_building_build_speed_mult = 0.3
+		starbase_module_build_speed_mult = 0.3
+		starbase_upgrade_speed_mult = 0.3
+		stations_produces_mult = 0.25
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+## Crusader Spirit (Corporate)
+# Merge between OSA, Bug Branch, EMEX
+civic_crusader_spirit_corporate = {
+	description = "civic_tooltip_crusader_spirit_corporate_effects"
+	playable = { host_has_dlc = "Galactic Paragons" }
+	ai_playable = { host_has_dlc = "Galactic Paragons" }
+	random_weight = {
+		base = 4
+	}
+	description = "civic_tooltip_crusader_spirit_corporate_effects"
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_authoritarian_or_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+			}
+			NOR = {
+				text = civic_tooltip_not_pacifist
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+			}
+		}
+	}
+	modifier = {
+		local_trade_protection_add = 20
+		ships_upkeep_mult = -0.1
+	}
+	swap_type = {
+		trigger = {
+			host_has_dlc = "Overlord"
+		}
+		modifier = {
+			country_enclave_capacity_add = 1
+		}
+	}
+}
+
+## Task Delegation (Corporate)
+# Merge between OSA, Bug Branch, EMEX
+civic_task_delegation_corporate = {
+	playable = { host_has_dlc = "Galactic Paragons" }
+	ai_playable = { host_has_dlc = "Galactic Paragons" }
+	random_weight = {
+		base = 4
+	}
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+	}
+	modifier = {
+		council_agenda_progress_speed = 0.20 # OSA
+		country_leader_cap_add = 2 # OSA 1 -> 2
+		leaders_upkeep_mult = -0.2
+		negative_traits_country = -1
+	}
+}
+
+## Private Healthcare (Corporate)
+# Merge between OSA, Bug Branch, EMEX
+civic_private_healthcare_corporate = {
+	playable = { host_has_dlc = "Galactic Paragons" }
+	ai_playable = { host_has_dlc = "Galactic Paragons" }
+	random_weight = {
+		base = 4
+	}
+	description = "civic_tooltip_civic_private_healthcare_corporate_effects"
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		origin = {
+			NOR = {
+				value = origin_broken_shackles
+				value = origin_payback
+			}
+		}
+	}
+	possible = {
+	}
+	modifier = {
+		leader_age = 10
+	}
+}
+
+## Memory Vault (Corporate)
+# Merge between OSA, Bug Branch, EMEX
+civic_memory_vault_corporate = {
+	playable = { host_has_dlc = "Galactic Paragons" }
+	ai_playable = { host_has_dlc = "Galactic Paragons" }
+	random_weight = {
+		base = 4
+	}
+	description = "civic_tooltip_memory_vault_corporate_effects"
+	potential = {
+		OR = {
+			authority = { # Bug Branch
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_memory_vault
+			}
+		}
+	}
+	modifier = {
+		councilor_skill_add = 2 # OSA 1 -> 2
+		country_leader_cap_add = 2 # OSA
+	}
+}
