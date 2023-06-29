@@ -1,0 +1,781 @@
+##########################################################################
+# Limitless Stellaris - Civics
+##########################################################################
+
+##################################################
+## Bug Branch - Governmental Civics
+##################################################
+
+## Imperial Cult
+# Merge between OSA, Bug Branch, EMEX
+civic_imperial_cult = {
+	description = "civic_tooltip_imperial_cult_effects"
+	potential = {
+		authority = { # Bug Branch
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = { # Bug Branch
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		ethics = { # Bug Branch
+			value = ethic_fanatic_spiritualist
+		}
+		civics = { # Bug Branch
+			NOR = {
+				text = civic_bugged_no_other_governmental_civic 
+				#Materialist Governmental
+				value = civic_technocracy # Technocracy
+				value = civic_bugged_cyber_dictatorship
+				#Spiritualist Governmental
+				value = civic_exalted_priesthood # Theocracy
+				# value = civic_imperial_cult # Imperial Cult
+				#Militarist Governmental
+				value = civic_bugged_ordered_stratocracy
+				value = civic_bugged_warlord
+				#Pacifist Governmental
+				value = civic_bugged_enlightened_bureaucracy
+				value = civic_philosopher_king # Philosopher King
+				#Elitist Governmental
+				value = civic_aristocratic_elite
+				value = civic_bugged_highborn_sovereignty
+				#Pluralist Governmental
+				value = civic_meritocracy
+				value = civic_bugged_humble_cortege
+				#Competitive Governmental
+				value = civic_bugged_banking_corporation
+				value = civic_bugged_state_monopoly
+				#Cooperative Governmental
+				value = civic_bugged_worker_owned_corpo
+				value = civic_bugged_extended_family
+				#Anthropocentric Governmental
+				value = civic_bugged_industrial_firm
+				value = civic_bugged_production_potentateship
+				#Ecocentric Governmental
+				value = civic_bugged_bioeconomics_group
+				value = civic_bugged_lifes_shield
+			}
+		}
+		authority = { # Bug Branch
+			OR = { 
+				value = auth_dictatorial 
+				value = auth_imperial
+			}
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = peaceful_traders
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = erudite_explorers
+				has_ai_personality = harmonious_hierarchy
+			}
+		}
+	}
+	modifier = {
+		country_edict_fund_add = 250 # OSA 100 -> 250
+		country_base_influence_produces_add = 0.5 # EMEX
+		edicts_cost_mult = -0.25 # Bug Branch
+		country_power_projection_unity_produces_add = 50 # OSA
+		planet_soldiers_unity_produces_add = 4 # OSA
+	}
+}
+
+## Exalted Priesthood
+# Merge between OSA, Bug Branch, EMEX
+civic_exalted_priesthood = {
+	description = "civic_tooltip_exalted_priesthood_effects"
+	potential = {
+		authority = {
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_spiritualist
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+			}
+		}
+		civics = {
+			NOR = {
+				text = civic_bugged_no_other_governmental_civic
+				#Materialist Governmental
+				value = civic_technocracy # Technocracy
+				value = civic_bugged_cyber_democracy
+				value = civic_bugged_science_directorate
+				value = civic_bugged_cyber_dictatorship
+				#Spiritualist Governmental
+				#value = civic_exalted_priesthood # Theocracy
+				value = civic_bugged_theocratic_republic
+				value = civic_bugged_divine_council
+				value = civic_imperial_cult # Imperial Cult
+				#Militarist Governmental
+				value = civic_bugged_ordered_stratocracy
+				value = civic_citizen_service # Stratocratic Republic
+				value = civic_bugged_war_council
+				value = civic_bugged_warlord
+				#Pacifist Governmental
+				value = civic_bugged_enlightened_bureaucracy
+				value = civic_bugged_utopian_democracy
+				value = civic_bugged_philosophers_assembly
+				value = civic_philosopher_king # Philosopher King
+				#Elitist Governmental
+				value = civic_aristocratic_elite
+				value = civic_bugged_peerage_assembly
+				value = civic_bugged_patrician_court
+				value = civic_bugged_highborn_sovereignty
+				#Pluralist Governmental
+				value = civic_meritocracy
+				value = civic_bugged_cabinet_system
+				value = civic_bugged_peoples_committee
+				value = civic_bugged_humble_cortege
+				#Competitive Governmental
+				value = civic_bugged_banking_corporation
+				value = civic_bugged_stock_based_salary
+				value = civic_bugged_board_of_executives
+				value = civic_bugged_state_monopoly
+				#Cooperative Governmental
+				value = civic_bugged_worker_owned_corpo
+				value = civic_bugged_comprehensive_decision_making_structure
+				value = civic_bugged_department_of_prosperity
+				value = civic_bugged_extended_family
+				#Anthropocentric Governmental
+				value = civic_bugged_industrial_firm
+				value = civic_bugged_mutualistic_manufacturing
+				value = civic_bugged_magistrates_of_automation
+				value = civic_bugged_production_potentateship
+				#Ecocentric Governmental
+				value = civic_bugged_bioeconomics_group
+				value = civic_bugged_villatic_collective
+				value = civic_bugged_naturally_integrated_supply_chains
+				value = civic_bugged_lifes_shield
+			}
+		}
+	}
+	modifier = {
+		planet_amenities_mult = 0.15 # EMEX
+		planet_priests_produces_mult = 0.25 # OSA
+		planet_priests_unity_produces_add = 1
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = erudite_explorers
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = peaceful_traders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = slaving_despots
+			}
+		}
+	}
+}
+
+## Philosopher King
+# Merge between OSA, Bug Branch, EMEX
+civic_philosopher_king = {
+	description = "civic_tooltip_philosopher_king_effects" # Subtle Polish
+	potential = {
+		authority = { # Bug Branch
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = { # Bug Branch
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			value = ethic_fanatic_pacifist
+		}
+		civics = {
+			NOR = {
+				text = civic_bugged_no_other_governmental_civic
+			#Materialist Governmental
+			value = civic_technocracy # Technocracy
+			value = civic_bugged_cyber_dictatorship
+			#Spiritualist Governmental
+			value = civic_exalted_priesthood # Theocracy
+			value = civic_imperial_cult # Imperial Cult
+			#Militarist Governmental
+			value = civic_bugged_ordered_stratocracy
+			value = civic_bugged_warlord
+			#Pacifist Governmental
+			value = civic_bugged_enlightened_bureaucracy
+			# value = civic_philosopher_king # Philosopher King
+			#Elitist Governmental
+			value = civic_aristocratic_elite
+			value = civic_bugged_highborn_sovereignty
+			#Pluralist Governmental
+			value = civic_meritocracy
+			value = civic_bugged_humble_cortege
+			#Competitive Governmental
+			value = civic_bugged_banking_corporation
+			value = civic_bugged_state_monopoly
+			#Cooperative Governmental
+			value = civic_bugged_worker_owned_corpo
+			value = civic_bugged_extended_family
+			#Anthropocentric Governmental
+			value = civic_bugged_industrial_firm
+			value = civic_bugged_production_potentateship
+			#Ecocentric Governmental
+			value = civic_bugged_bioeconomics_group
+			value = civic_bugged_lifes_shield
+			}
+		}
+		authority = {
+			OR = {
+				value = auth_imperial
+				value = auth_dictatorial
+			}
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = harmonious_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = ruthless_capitalists
+				has_ai_personality = slaving_despots
+			}
+		}
+	}
+	modifier = {
+		ruler_skill_levels = 2 # Bug Branch
+		leader_age = 50 # Bug Branch
+		country_society_tech_research_speed = 0.15 # Bug Branch
+		rivalries_influence_produces_mult = -0.20 # Bug Branch
+		councilor_skill_add = 5 # OSA
+		councilor_exp_gain = 0.25 # EMEX
+		country_leader_cap_add = 1 # OSA
+		negative_traits_country = -1
+	}
+}
+
+## Meritocracy
+# Merge between OSA, Bug Branch, EMEX
+civic_meritocracy = {
+	description = "civic_tooltip_sophisticated_meritocracy_effects"
+	potential = {
+		authority = {
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_pluralist 
+				value = ethic_pluralist
+				value = ethic_fanatic_pluralist
+			}
+		}
+		civics = {
+			NOR = {
+				text = civic_bugged_no_other_governmental_civic
+				#Materialist Governmental
+				value = civic_technocracy # Technocracy
+				value = civic_bugged_cyber_democracy
+				value = civic_bugged_science_directorate
+				value = civic_bugged_cyber_dictatorship
+				#Spiritualist Governmental
+				value = civic_exalted_priesthood # Theocracy
+				value = civic_bugged_theocratic_republic
+				value = civic_bugged_divine_council
+				value = civic_imperial_cult # Imperial Cult
+				#Militarist Governmental
+				value = civic_bugged_ordered_stratocracy
+				value = civic_citizen_service # Stratocratic Republic
+				value = civic_bugged_war_council
+				value = civic_bugged_warlord
+				#Pacifist Governmental
+				value = civic_bugged_enlightened_bureaucracy
+				value = civic_bugged_utopian_democracy
+				value = civic_bugged_philosophers_assembly
+				value = civic_philosopher_king # Philosopher King
+				#Elitist Governmental
+				value = civic_aristocratic_elite
+				value = civic_bugged_peerage_assembly
+				value = civic_bugged_patrician_court
+				value = civic_bugged_highborn_sovereignty
+				#Pluralist Governmental
+				#value = civic_meritocracy
+				value = civic_bugged_cabinet_system
+				value = civic_bugged_peoples_committee
+				value = civic_bugged_humble_cortege
+				#Competitive Governmental
+				value = civic_bugged_banking_corporation
+				value = civic_bugged_stock_based_salary
+				value = civic_bugged_board_of_executives
+				value = civic_bugged_state_monopoly
+				#Cooperative Governmental
+				value = civic_bugged_worker_owned_corpo
+				value = civic_bugged_comprehensive_decision_making_structure
+				value = civic_bugged_department_of_prosperity
+				value = civic_bugged_extended_family
+				#Anthropocentric Governmental
+				value = civic_bugged_industrial_firm
+				value = civic_bugged_mutualistic_manufacturing
+				value = civic_bugged_magistrates_of_automation
+				value = civic_bugged_production_potentateship
+				#Ecocentric Governmental
+				value = civic_bugged_bioeconomics_group
+				value = civic_bugged_villatic_collective
+				value = civic_bugged_naturally_integrated_supply_chains
+				value = civic_bugged_lifes_shield
+			}
+		}
+		authority = {	
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = erudite_explorers
+				has_ai_personality = harmonious_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = fanatic_purifiers
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = slaving_despots
+				has_ai_personality = ruthless_capitalists
+			}
+		}
+	}
+	modifier = {
+		planet_jobs_specialist_produces_mult = 0.10
+		species_leader_exp_gain = 0.15 # EMEX
+	}
+
+	swap_type = {
+		trigger = {
+			has_paragon_dlc = yes
+		}
+
+		modifier = {
+			leader_trait_selection_options_add = 1
+			species_leader_exp_gain = 0.15 # EMEX
+		}
+	}
+}
+
+## Citizen Service
+# Merge between OSA, Bug Branch, EMEX
+civic_citizen_service = {
+	description = "civic_tooltip_citizen_service_effects"
+	potential = {
+		authority = {
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			value = ethic_fanatic_militarist
+		}
+		civics = {
+			NOR = {
+				text = civic_bugged_no_other_governmental_civic
+				#Materialist Governmental
+				value = civic_technocracy # Technocracy
+				value = civic_bugged_cyber_democracy
+				#Spiritualist Governmental
+				value = civic_exalted_priesthood # Theocracy
+				value = civic_bugged_theocratic_republic
+				#Militarist Governmental
+				value = civic_bugged_ordered_stratocracy
+				# value = civic_citizen_service # Stratocratic Republic
+				#Pacifist Governmental
+				value = civic_bugged_enlightened_bureaucracy
+				value = civic_bugged_utopian_democracy
+				#Elitist Governmental
+				value = civic_aristocratic_elite
+				value = civic_bugged_peerage_assembly
+				#Pluralist Governmental
+				value = civic_meritocracy
+				value = civic_bugged_cabinet_system
+				#Competitive Governmental
+				value = civic_bugged_banking_corporation
+				value = civic_bugged_stock_based_salary
+				#Cooperative Governmental
+				value = civic_bugged_worker_owned_corpo
+				value = civic_bugged_comprehensive_decision_making_structure
+				#Anthropocentric Governmental
+				value = civic_bugged_industrial_firm
+				value = civic_bugged_mutualistic_manufacturing
+				#Ecocentric Governmental
+				value = civic_bugged_bioeconomics_group
+				value = civic_bugged_villatic_collective
+			}
+		}
+		authority = {
+			OR = {
+				value = auth_democratic
+				value = auth_bugged_direct_democratic
+			}
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = honorbound_warriors
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = peaceful_traders
+				has_ai_personality = democratic_crusaders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = fanatic_befrienders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = slaving_despots
+			}
+		}
+	}
+	modifier = {
+		planet_army_build_speed_mult = 0.15 # EMEX
+		country_naval_cap_mult = 0.25 # OSA 0.15 -> 0.25
+		leader_admirals_unity_produces_add = 10 # OSA
+		planet_soldiers_unity_produces_add = 2
+		country_war_exhaustion_mult = -0.15 # Bug Branch
+		armies_upkeep_mult = 0.1 # Bug Branch
+	}
+}
+
+## Technocracy
+# Merge between OSA, Bug Branch, EMEX
+civic_technocracy = {
+	description = civic_tooltip_technocracy_effects
+	potential = {
+		authority = {
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_materialist
+				value = ethic_materialist
+				value = ethic_fanatic_materialist
+			}
+		}
+		civics = {
+			NOR = {
+				text = civic_bugged_no_other_governmental_civic
+				#Materialist Governmental
+				#value = civic_technocracy # Technocracy
+				value = civic_bugged_cyber_democracy
+				value = civic_bugged_science_directorate
+				value = civic_bugged_cyber_dictatorship
+				#Spiritualist Governmental
+				value = civic_exalted_priesthood # Theocracy
+				value = civic_bugged_theocratic_republic
+				value = civic_bugged_divine_council
+				value = civic_imperial_cult # Imperial Cult
+				#Militarist Governmental
+				value = civic_bugged_ordered_stratocracy
+				value = civic_citizen_service # Stratocratic Republic
+				value = civic_bugged_war_council
+				value = civic_bugged_warlord
+				#Pacifist Governmental
+				value = civic_bugged_enlightened_bureaucracy
+				value = civic_bugged_utopian_democracy
+				value = civic_bugged_philosophers_assembly
+				value = civic_philosopher_king # Philosopher King
+				#Elitist Governmental
+				value = civic_aristocratic_elite #Patrimonial Aristocracy
+				value = civic_bugged_peerage_assembly
+				value = civic_bugged_patrician_court
+				value = civic_bugged_highborn_sovereignty
+				#Pluralist Governmental
+				value = civic_meritocracy
+				value = civic_bugged_cabinet_system
+				value = civic_bugged_peoples_committee
+				value = civic_bugged_humble_cortege
+				#Competitive Governmental
+				value = civic_bugged_banking_corporation
+				value = civic_bugged_stock_based_salary
+				value = civic_bugged_board_of_executives
+				value = civic_bugged_state_monopoly
+				#Cooperative Governmental
+				value = civic_bugged_worker_owned_corpo
+				value = civic_bugged_comprehensive_decision_making_structure
+				value = civic_bugged_department_of_prosperity
+				value = civic_bugged_extended_family
+				#Anthropocentric Governmental
+				value = civic_bugged_industrial_firm
+				value = civic_bugged_mutualistic_manufacturing
+				value = civic_bugged_magistrates_of_automation
+				value = civic_bugged_production_potentateship
+				#Ecocentric Governmental
+				value = civic_bugged_bioeconomics_group
+				value = civic_bugged_villatic_collective
+				value = civic_bugged_naturally_integrated_supply_chains
+				value = civic_bugged_lifes_shield
+			}
+		}
+	}
+	modifier = {
+		num_tech_alternatives_add = 1
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = ruthless_capitalists
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = harmonious_hierarchy
+				has_ai_personality = democratic_crusaders
+				has_ai_personality = evangelising_zealots
+				has_ai_personality = spiritual_seekers
+			}
+		}
+	}
+}
+
+## Aristocratic Elite
+# Merge between OSA, Bug Branch, EMEX
+civic_aristocratic_elite = {
+	description = "civic_tooltip_aristocratic_elite_effects"
+	potential = {
+		authority = { # Bug Branch
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = { # Bug Branch
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	modifier = {
+		governor_exp_gain = 0.25 # OSA 0.20 -> 0.25
+		leader_governors_unity_produces_add = 10 # OSA
+		governor_skill_levels = 2 # EMEX
+		pop_cat_ruler_happiness = 0.15 # EMEX
+	}
+	possible = {
+		ethics = {
+            OR = {
+			    text = civic_tooltip_elitist
+				value = ethic_elitist
+				value = ethic_fanatic_elitist
+			}			
+		}
+		civics = {
+			NOR = {
+				text = civic_bugged_no_other_governmental_civic
+				#Materialist Governmental
+				value = civic_technocracy # Technocracy
+				value = civic_bugged_cyber_democracy
+				value = civic_bugged_science_directorate
+				value = civic_bugged_cyber_dictatorship
+				#Spiritualist Governmental
+				value = civic_exalted_priesthood # Theocracy
+				value = civic_bugged_theocratic_republic
+				value = civic_bugged_divine_council
+				value = civic_imperial_cult # Imperial Cult
+				#Militarist Governmental
+				value = civic_bugged_ordered_stratocracy
+				value = civic_citizen_service # Stratocratic Republic
+				value = civic_bugged_war_council
+				value = civic_bugged_warlord
+				#Pacifist Governmental
+				value = civic_bugged_enlightened_bureaucracy
+				value = civic_bugged_utopian_democracy
+				value = civic_bugged_philosophers_assembly
+				value = civic_philosopher_king # Philosopher King
+				#Elitist Governmental
+				#value = civic_aristocratic_elite
+				value = civic_bugged_peerage_assembly
+				value = civic_bugged_patrician_court
+				value = civic_bugged_highborn_sovereignty
+				#Pluralist Governmental
+				value = civic_meritocracy
+				value = civic_bugged_cabinet_system
+				value = civic_bugged_peoples_committee
+				value = civic_bugged_humble_cortege
+				#Competitive Governmental
+				value = civic_bugged_banking_corporation
+				value = civic_bugged_stock_based_salary
+				value = civic_bugged_board_of_executives
+				value = civic_bugged_state_monopoly
+				#Cooperative Governmental
+				value = civic_bugged_worker_owned_corpo
+				value = civic_bugged_comprehensive_decision_making_structure
+				value = civic_bugged_department_of_prosperity
+				value = civic_bugged_extended_family
+				#Anthropocentric Governmental
+				value = civic_bugged_industrial_firm
+				value = civic_bugged_mutualistic_manufacturing
+				value = civic_bugged_magistrates_of_automation
+				value = civic_bugged_production_potentateship
+				#Ecocentric Governmental
+				value = civic_bugged_bioeconomics_group
+				value = civic_bugged_villatic_collective
+				value = civic_bugged_naturally_integrated_supply_chains
+				value = civic_bugged_lifes_shield
+			}
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+		modifier = {
+			factor = @ai_civic_personality_match_factor
+			OR = {
+				has_ai_personality = hegemonic_imperialists
+				has_ai_personality = slaving_despots
+				has_ai_personality = decadent_hierarchy
+				has_ai_personality = harmonious_hierarchy
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_mismatch_factor
+			OR = {
+				has_ai_personality = erudite_explorers
+				has_ai_personality = spiritual_seekers
+				has_ai_personality = peaceful_traders
+				has_ai_personality = fanatic_befrienders
+				has_ai_personality = federation_builders
+			}
+		}
+		modifier = {
+			factor = @ai_civic_personality_forbid_factor
+			OR = {
+				has_ai_personality = democratic_crusaders
+			}
+		}
+	}
+}
