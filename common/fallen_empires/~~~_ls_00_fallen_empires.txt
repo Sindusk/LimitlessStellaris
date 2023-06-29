@@ -1,0 +1,488 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Capital
+##########################################################################
+
+## Materialist Fallen Empire
+# Merge between Bug Branch, ACOT
+fallen_empire_1 = {
+	graphical_culture = "fallen_empire_02"
+	initializer = "fallen_1"
+
+	weight_modifier = {
+		base = 100
+		modifier = {
+			factor = 99999
+			has_origin = origin_scion
+		}
+	}
+
+	create_country_effect = {
+		create_species = {
+			name = random
+			class = random_non_machine
+			portrait = random
+			traits = random
+			extra_trait_points = 6 # ACOT 3 -> 6
+			allow_negative_traits = no
+			effect = { save_global_event_target_as = fallen_1_species } # ACOT
+		}
+		create_country = {
+			name = random
+			type = fallen_empire
+			ignore_initial_colony_error = yes
+			authority = auth_oligarchic # ACOT imperial -> oligarchic
+			civics = {
+				civic = civic_lethargic_leadership
+				civic = civic_empire_in_decline
+			}
+			species = last_created_species
+			ethos = {
+				ethic = ethic_fanatic_materialist
+				ethic = ethic_focused # Bug Branch
+			}
+			flag = random
+			origin = "origin_fallen_empire"
+			effect = {
+				set_country_flag = fallen_empire_1
+				add_resource = { # ACOT increases dramatically
+					minerals = 1000000
+					energy = 1000000
+					food = 100000
+					influence = 1000
+					alloys = 10000
+					acot_sr_dark_energy = 10000
+					sr_dark_matter = 10000
+				}
+				# must initialize global designs here
+				add_global_ship_design = "NAME_Enforcer"
+				add_global_ship_design = "NAME_Savant"
+				add_global_ship_design = "NAME_Scholar"
+				add_global_ship_design = "NAME_Sage"
+				add_global_ship_design = "NAME_Cloaker"
+				add_global_ship_design = "NAME_Librarian"
+				add_global_ship_design = "NAME_Seeker"
+				# ACOT modifiers:
+				add_global_ship_design = "NAME_ACOT_FALLEN_STARBASE"
+				add_global_ship_design = "NAME_ACOT_FALLEN_OUTPOST"
+				add_global_ship_design = "NAME_ACOT_FALLEN_ORBITAL_RING"
+				set_country_flag = tier_dm_start
+				set_country_flag = custom_start_screen
+				set_country_flag = acot_finished_delta
+				copy_techs_from = {
+					target = event_target:acot_tier_dm_dummy_country
+					except = {
+						tech_akx_worm_1
+						tech_akx_worm_2
+						tech_akx_worm_3
+						tech_psionic_theory
+						tech_nanite_assemblers
+						tech_nanite_repair_system
+						tech_nanite_transmutation
+						null_void_beam
+						tech_acot_swarm_strike_craft
+						tech_swarm_strike_craft_1
+						tech_acot_scourge_missile
+						tech_scourge_missile_1
+						tech_acot_matter_disintegrator
+						tech_extradimensional_weapon_1
+						tech_energy_lance_edi
+						tech_energy_lance_contingency
+						tech_perdition_beam_contingency
+					}
+				}
+				# ACOT event:
+				country_event = { id = acot_test_event.0 } #Overwrites other stupid stuffs that prevent our grand ascension.
+			}
+		}
+	}
+}
+
+## Spiritualist Fallen Empire
+# Merge between Bug Branch, ACOT
+fallen_empire_2 = {
+	graphical_culture = "fallen_empire_01"
+	initializer = "fallen_2"
+
+	weight_modifier = {
+		base = 100
+		modifier = {
+			factor = 99999
+			has_origin = origin_scion
+		}
+	}
+
+	create_country_effect = {
+		create_species = {
+			name = random
+			class = random_non_machine
+			portrait = random
+			traits = random
+			extra_trait_points = 6 # ACOT 3 -> 6
+			allow_negative_traits = no
+			effect = { save_global_event_target_as = fallen_2_species } # ACOT
+		}
+		create_country = {
+			name = random
+			type = fallen_empire
+			ignore_initial_colony_error = yes
+			authority = auth_imperial
+			civics = {
+				civic = civic_lethargic_leadership
+				civic = civic_empire_in_decline
+			}
+			species = last_created_species
+			ethos = {
+				ethic = ethic_fanatic_spiritualist
+				ethic = ethic_focused # Bug Branch
+			}
+			flag = random
+			origin = "origin_fallen_empire"
+			effect = {
+				set_country_flag = fallen_empire_2
+				add_resource = { # ACOT Resources
+					minerals = 1000000
+					energy = 1000000
+					food = 100000
+					influence = 1000
+					alloys = 10000
+					acot_sr_dark_energy = 10000
+					sr_dark_matter = 10000
+				}
+				# must initialize global designs here
+				add_global_ship_design = "NAME_Cleanser"
+				add_global_ship_design = "NAME_Eternal"
+				add_global_ship_design = "NAME_Avatar"
+				add_global_ship_design = "NAME_Zealot"
+				add_global_ship_design = "NAME_Penitent"
+				add_global_ship_design = "NAME_Faith"
+				add_global_ship_design = "NAME_Pilgrim"
+				add_global_ship_design = "NAME_FE_Starbase"
+				# ACOT Modifiers:
+				add_global_ship_design = "NAME_ACOT_FALLEN_STARBASE"
+				add_global_ship_design = "NAME_ACOT_FALLEN_OUTPOST"
+				add_global_ship_design = "NAME_ACOT_FALLEN_ORBITAL_RING"
+				set_country_flag = tier_dm_start
+				set_country_flag = custom_start_screen
+				set_country_flag = acot_finished_delta
+				copy_techs_from = {
+					target = event_target:acot_tier_dm_dummy_country
+					except = {
+						tech_akx_worm_1
+						tech_akx_worm_2
+						tech_akx_worm_3
+						tech_psionic_theory
+						tech_nanite_assemblers
+						tech_nanite_repair_system
+						tech_nanite_transmutation
+						null_void_beam
+						tech_acot_swarm_strike_craft
+						tech_swarm_strike_craft_1
+						tech_acot_scourge_missile
+						tech_scourge_missile_1
+						tech_acot_matter_disintegrator
+						tech_extradimensional_weapon_1
+						tech_energy_lance_edi
+						tech_energy_lance_contingency
+						tech_perdition_beam_contingency
+					}
+				}
+				# ACOT Event:
+				country_event = { id = acot_test_event.0 } #Overwrites other stupid stuffs that prevent our grand ascension.
+			}
+		}
+	}
+}
+
+## Xenophile Fallen Empire
+# Merge between Bug Branch, ACOT
+fallen_empire_3 = {
+	graphical_culture = "fallen_empire_03"
+	initializer = "fallen_3"
+
+	weight_modifier = {
+		base = 100
+	}
+
+	create_country_effect = {
+		create_species = {
+			name = random
+			class = random_non_machine
+			portrait = random
+			traits = random
+			extra_trait_points = 6 # ACOT 5 -> 6
+			allow_negative_traits = no
+			effect = { save_global_event_target_as = fallen_3_species } # ACOT
+		}
+		create_country = {
+			name = random
+			type = fallen_empire
+			ignore_initial_colony_error = yes
+			authority = auth_democratic # ACOT imperial -> democratic
+			civics = {
+				civic = civic_lethargic_leadership
+				civic = civic_empire_in_decline
+			}
+			species = last_created_species
+			ethos = {
+				ethic = ethic_fanatic_xenophile
+				ethic = ethic_focused # Bug Branch
+			}			
+			flag = random
+			origin = "origin_fallen_empire"
+			effect = {
+				set_country_flag = fallen_empire_3
+				add_resource = { # ACOT Resources
+					minerals = 1000000
+					energy = 1000000
+					food = 100000
+					influence = 1000
+					alloys = 10000
+					acot_sr_dark_energy = 10000
+					sr_dark_matter = 10000
+				}						
+				# must initialize global designs here
+				add_global_ship_design = "NAME_Adjuster"
+				add_global_ship_design = "NAME_Keeper"
+				add_global_ship_design = "NAME_Custodian"
+				add_global_ship_design = "NAME_Warden" # ACOT Overseer -> Warden
+				add_global_ship_design = "NAME_Watcher"
+				add_global_ship_design = "NAME_Seeder"
+				add_global_ship_design = "NAME_Builder"
+				add_global_ship_design = "NAME_FE_Starbase"
+				# ACOT Modifiers:
+				add_global_ship_design = "NAME_ACOT_FALLEN_STARBASE"
+				add_global_ship_design = "NAME_ACOT_FALLEN_OUTPOST"
+				add_global_ship_design = "NAME_ACOT_FALLEN_ORBITAL_RING"
+				set_country_flag = tier_dm_start
+				set_country_flag = custom_start_screen
+				set_country_flag = acot_finished_delta
+				copy_techs_from = {
+					target = event_target:acot_tier_dm_dummy_country
+					except = {
+						tech_akx_worm_1
+						tech_akx_worm_2
+						tech_akx_worm_3
+						tech_psionic_theory
+						tech_nanite_assemblers
+						tech_nanite_repair_system
+						tech_nanite_transmutation
+						null_void_beam
+						tech_acot_swarm_strike_craft
+						tech_swarm_strike_craft_1
+						tech_acot_scourge_missile
+						tech_scourge_missile_1
+						tech_acot_matter_disintegrator
+						tech_extradimensional_weapon_1
+						tech_energy_lance_edi
+						tech_energy_lance_contingency
+						tech_perdition_beam_contingency
+					}
+				}
+				# ACOT Event:
+				country_event = { id = acot_test_event.0 } #Overwrites other stupid stuffs that prevent our grand ascension.
+			}
+		}
+	}
+}
+
+## Xenophobe Fallen Empire
+# Merge between Bug Branch, ACOT
+fallen_empire_4 = {
+	graphical_culture = "fallen_empire_04"
+	initializer = "fallen_4"
+
+	weight_modifier = {
+		base = 100
+	}
+
+	create_country_effect = {
+		create_species = {
+			name = random
+			class = random_non_machine
+			portrait = random
+			traits = random
+			extra_trait_points = 12 # ACOT 5 -> 12
+			allow_negative_traits = no
+			effect = { save_global_event_target_as = fallen_4_species }
+		}
+		create_country = {
+			name = random
+			type = fallen_empire
+			ignore_initial_colony_error = yes
+			authority = auth_dictatorial # ACOT imperial -> dictatorial
+			civics = {
+				civic = civic_lethargic_leadership
+				civic = civic_empire_in_decline
+			}
+			species = last_created_species
+			ethos = {
+				ethic = ethic_fanatic_xenophobe
+				ethic = ethic_focused # Bug Branch
+			}			
+			flag = random
+			origin = "origin_fallen_empire"
+			effect = {
+				set_country_flag = fallen_empire_4
+				add_resource = { # ACOT Resources
+					minerals = 1000000
+					energy = 1000000
+					food = 100000
+					influence = 1000
+					alloys = 10000
+					acot_sr_dark_energy = 10000
+					sr_dark_matter = 10000
+				}			
+				# must initialize global designs here
+				add_global_ship_design = "NAME_Reaper"
+				add_global_ship_design = "NAME_Imperium"
+				add_global_ship_design = "NAME_Supremacy"
+				add_global_ship_design = "NAME_Glory"
+				add_global_ship_design = "NAME_Devastator"
+				add_global_ship_design = "NAME_Servitor"
+				add_global_ship_design = "NAME_Destiny"
+				add_global_ship_design = "NAME_FE_Starbase"
+				# ACOT Modifiers:
+				add_global_ship_design = "NAME_ACOT_FALLEN_STARBASE"
+				add_global_ship_design = "NAME_ACOT_FALLEN_OUTPOST"
+				add_global_ship_design = "NAME_ACOT_FALLEN_ORBITAL_RING"
+				set_country_flag = tier_dm_start
+				set_country_flag = custom_start_screen
+				set_country_flag = acot_finished_delta
+				copy_techs_from = {
+					target = event_target:acot_tier_dm_dummy_country
+					except = {
+						tech_akx_worm_1
+						tech_akx_worm_2
+						tech_akx_worm_3
+						tech_psionic_theory
+						tech_nanite_assemblers
+						tech_nanite_repair_system
+						tech_nanite_transmutation
+						null_void_beam
+						tech_acot_swarm_strike_craft
+						tech_swarm_strike_craft_1
+						tech_acot_scourge_missile
+						tech_scourge_missile_1
+						tech_acot_matter_disintegrator
+						tech_extradimensional_weapon_1
+						tech_energy_lance_edi
+						tech_energy_lance_contingency
+						tech_perdition_beam_contingency
+					}
+				}
+				# ACOT Event:
+				country_event = { id = acot_test_event.0 } #Overwrites other stupid stuffs that prevent our grand ascension.
+			}
+		}
+	}
+}
+
+## Machine Fallen Empire
+# Merge between Bug Branch, ACOT
+fallen_machine_empire = {
+	graphical_culture = "fallen_machine_empire_01"
+	initializer = "fallen_machine"
+
+	weight_modifier = {
+		base = 100
+	}
+
+	possible = {
+		host_has_dlc = "Synthetic Dawn Story Pack"
+	}
+
+	create_country_effect = {
+		create_species = {
+			name = random
+			class = MACHINE
+			namelist = MACHINE3
+			portrait = random
+			traits = {
+				trait = trait_machine_unit
+				trait = random_traits
+			}
+			extra_trait_points = 3
+			allow_negative_traits = no
+			effect = { save_global_event_target_as = fallen_machine_species }
+		}
+		create_country = {
+			name = random
+			type = fallen_empire
+			ignore_initial_colony_error = yes
+			authority = auth_machine_intelligence
+			civics = {
+				civic = civic_machine_remnants
+				civic = civic_custodian_directives
+			}
+			species = last_created_species
+			ethos = {
+				ethic = ethic_gestalt_consciousness
+				ethic = ethic_form_convergent # Bug Branch
+				ethic = ethic_form_impassive # Bug Branch
+				ethic = ethic_form_introspective # Bug Branch
+				ethic = ethic_foci_convalescence # Bug Branch
+			}			
+			flag = random
+			origin = "origin_fallen_empire"
+			effect = {
+				set_country_flag = fallen_empire_machine
+				add_resource = { # ACOT Resources
+					minerals = 1000000
+					energy = 1000000
+					food = 100000
+					influence = 1000
+					alloys = 10000
+					acot_sr_dark_energy = 10000
+					sr_dark_matter = 10000
+				}		
+				if = {
+					limit = { host_has_dlc = "Apocalypse" }
+					give_technology = {
+						tech = tech_colossus
+						message = no
+					}
+				}
+				# must initialize global designs here
+				add_global_ship_design = "NAME_Omega"
+				add_global_ship_design = "NAME_Alpha"
+				add_global_ship_design = "NAME_Beta"
+				add_global_ship_design = "NAME_Gamma"
+				add_global_ship_design = "NAME_Theta"
+				add_global_ship_design = "NAME_Tau"
+				add_global_ship_design = "NAME_Sigma"
+				add_global_ship_design = "NAME_FE_Starbase"
+				# ACOT Modifiers:
+				add_global_ship_design = "NAME_ACOT_FALLEN_STARBASE"
+				add_global_ship_design = "NAME_ACOT_FALLEN_OUTPOST"
+				add_global_ship_design = "NAME_ACOT_FALLEN_ORBITAL_RING"
+				set_country_flag = tier_dm_start
+				set_country_flag = custom_start_screen
+				set_country_flag = acot_finished_delta
+				copy_techs_from = {
+					target = event_target:acot_tier_dm_dummy_country
+					except = {
+						tech_akx_worm_1
+						tech_akx_worm_2
+						tech_akx_worm_3
+						tech_psionic_theory
+						tech_nanite_assemblers
+						tech_nanite_repair_system
+						tech_nanite_transmutation
+						null_void_beam
+						tech_acot_swarm_strike_craft
+						tech_swarm_strike_craft_1
+						tech_acot_scourge_missile
+						tech_scourge_missile_1
+						tech_acot_matter_disintegrator
+						tech_extradimensional_weapon_1
+						tech_energy_lance_edi
+						tech_energy_lance_contingency
+						tech_perdition_beam_contingency
+					}
+				}
+				# ACOT Event:
+				country_event = { id = acot_test_event.0 } #Overwrites other stupid stuffs that prevent our grand ascension.
+			}
+		}
+	}
+}
