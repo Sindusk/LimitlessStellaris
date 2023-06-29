@@ -1,0 +1,287 @@
+##########################################################################
+# Limitless Stellaris - Federation Law Categories
+##########################################################################
+
+##################################################
+## Standard Laws
+##################################################
+
+## Centralization
+# Merge between VFE, MECR, EMEX
+law_category_centralization = {
+	potential = {
+		is_MECR_special_federation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	centralization = yes
+	laws = {
+		centralization_minimal
+		centralization_low
+		centralization_medium
+		centralization_high
+		centralization_very_high
+		centralization_imperial_loyalists # Event only
+	}
+}
+
+## Fleet Contribution
+# Merge between VFE, MECR, Tidy Tradition, EMEX
+law_category_fleet_contribution = {
+	potential = {
+		is_imperium_federation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	laws = {
+		fleet_contribution_none
+		fleet_contribution_low
+		fleet_contribution_low_trade
+		fleet_contribution_low_hegemony
+		fleet_contribution_low_research
+		fleet_contribution_low_martial
+		fleet_contribution_low_greatunion # Tidy Tradition
+		fleet_contribution_low_tt_communist # Tidy Tradition
+		fleet_contribution_low_confederation # MECR
+		fleet_contribution_low_rebel # MECR
+
+		fleet_contribution_medium
+		fleet_contribution_medium_unifed # MECR
+		fleet_contribution_medium_trade
+		fleet_contribution_medium_hegemony
+		fleet_contribution_medium_research
+		fleet_contribution_medium_martial
+		fleet_contribution_medium_greatunion # Tidy Tradition
+		fleet_contribution_medium_tt_communist # Tidy Tradition
+		fleet_contribution_medium_confederation # MECR
+		fleet_contribution_medium_rebel # MECR
+
+		fleet_contribution_high
+		fleet_contribution_high_unifed # MECR
+		fleet_contribution_high_trade
+		fleet_contribution_high_hegemony
+		fleet_contribution_high_martial
+		fleet_contribution_high_greatunion # Tidy Tradition
+		fleet_contribution_high_tt_communist # Tidy Tradition
+		fleet_contribution_high_confederation # MECR
+		fleet_contribution_high_rebel # MECR
+		
+		fleet_contribution_very_high_unifed # MECR
+		fleet_contribution_very_high_confederation # MECR
+		fleet_contribution_complete_unifed # MECR
+		#fleet_contribution_combined_fleet_confederation # MECR
+		
+		fleet_contribution_low_peacekeeper # EMEX
+		fleet_contribution_medium_peacekeeper # EMEX
+		fleet_contribution_high_peacekeeper # EMEX
+	}
+}
+
+## Succession Type
+# Merge between VFE, MECR, EMEX
+law_category_succession_type = {
+	potential = {
+		is_imperium_federation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	laws = {
+		succession_type_rotation
+		succession_type_random
+		succession_type_challenge
+		succession_type_strongest
+		succession_type_strongest_hegemony
+		succession_type_none # Event only
+		succession_type_custodian_confederation # MECR
+		succession_type_rotation_confederation # MECR
+		succession_type_rebel_leader_rebel # MECR
+		succession_type_strongest_rebel # MECR
+	}
+}
+
+## Succession Power
+# Merge between VFE, EMEX
+law_category_succession_power = {
+	potential = {
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+		OR = {
+			has_federation_law = succession_type_strongest
+			has_federation_law = succession_type_strongest_hegemony
+		}
+	}
+	laws = {
+		succession_power_economy
+		succession_power_diplomatic_weight
+		succession_power_tech
+		succession_power_fleet
+	}
+}
+
+## Succession Terms
+# Merge between VFE, MECR, EMEX
+law_category_succession_term = {
+	potential = {
+		is_imperium_federation = no # MECR
+		is_galactic_confederation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	show_succession_date = yes
+	laws = {
+		succession_term_years_10
+		succession_term_years_20
+		succession_term_years_30
+		succession_term_years_40
+		succession_term_status_change
+		succession_term_perpetual # Event only
+		succession_term_perpetual_rebel # MECR
+	}
+}
+
+## Challenge
+# Merge between VFE, MECR, EMEX
+law_category_challenge = {
+	potential = {
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+		or = {
+			has_federation_law = succession_type_challenge
+		}
+	}
+	laws = {
+		challenge_type_arena_combat
+		challenge_type_psionic_battle
+		challenge_type_bidding_war
+		challenge_type_thesis
+		challenge_type_conclave # EMEX
+	}
+}
+
+## Build Fleets
+# Merge between VFE, MECR, EMEX
+law_category_build_fleets = {
+	potential = {
+		is_imperium_federation = no # MECR
+		NOR = {
+			has_federation_law = fleet_contribution_none
+			has_federation_type = vf_ef_federation # VFE
+		}
+	}
+	laws = {
+		federation_build_fleets_everyone
+		federation_build_fleets_only_leader
+		federation_build_fleets_only_leader_unifed # MECR
+	}
+}
+
+## Allow Subjects to Join
+# Merge between VFE, MECR, EMEX
+law_category_allow_subjects_to_join = {
+	potential = {
+		is_MECR_special_federation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	laws = {
+		allow_subjects_to_join_no
+		allow_subjects_to_join_yes
+		allow_subjects_to_join_yes_imperial_loyalists # Event only
+	}
+}
+
+## Voting Weight
+# Merge between VFE, MECR, EMEX
+law_category_voting_weight = {
+	potential = {
+		is_imperium_federation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	laws = {
+		vote_weight_equal
+		vote_weight_diplomatic
+		vote_weight_diplomatic_imperial_loyalists # Event only
+		vote_weight_diplomatic_confederation # MECR
+		vote_weight_equal_confederation # MECR
+	}
+}
+
+## War Declaration Vote
+# Merge between VFE, MECR, EMEX
+law_category_war_declaration_vote = {
+	potential = {
+		is_imperium_federation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	laws = {
+		declare_war_unanimous_vote
+		declare_war_majority_vote
+		declare_war_majority_vote_hegemony
+		declare_war_president_vote
+		declare_war_president_vote_unifed # MECR
+		declare_war_president_vote_imperial_loyalists # Event only
+	}
+}
+
+## Invite Members Vote
+# Merge between VFE, MECR, EMEX
+law_category_invite_members_vote = {
+	potential = {
+		is_imperium_federation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	laws = {
+		invite_members_unanimous_vote
+		invite_members_majority_vote
+		invite_members_president_vote
+		invite_members_president_vote_hegemony
+		invite_members_president_vote_confederation # MECR
+		invite_members_president_vote_unifed # MECR
+		invite_members_president_vote_imperial_loyalists # Event only
+	}
+}
+
+## Kick Members Vote
+# Merge between VFE, MECR, EMEX
+law_category_kick_members_vote = {
+	potential = {
+		is_imperium_federation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	laws = {
+		kick_members_unanimous_vote_unifed # MECR
+		kick_members_majority_vote
+		kick_members_senate_confederation # MECR
+		kick_members_president_vote
+		kick_members_president_vote_hegemony
+		kick_members_president_vote_imperial_loyalists # Event only
+		kick_members_president_vote_confederation # MECR
+	}
+}
+
+## Free Migration
+# Merge between VFE, MECR, EMEX
+law_category_free_migration = {
+	potential = {
+		is_imperium_federation = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	laws = {
+		free_migration_no
+		free_migration_yes
+		free_migration_yes_confederation # MECR
+		free_migration_yes_rebel # MECR
+		free_migration_unifed # MECR
+	}
+}
+
+## Separate Treaties
+# Merge between VFE, MECR, EMEX
+law_category_separate_treaties = {
+	potential = {
+		is_imperium_federation = no # MECR
+		is_rebel_coalition = no # MECR
+		NOT = { has_federation_type = vf_ef_federation } # VFE
+	}
+	laws = {
+		treaties_separate_yes
+		treaties_separate_yes_confederation # MECR
+		treaties_separate_no
+		treaties_separate_unifed # MECR
+		treaties_separate_no_imperial_loyalists # Event only
+		treaties_separate_no_confederation # MECR
+	}
+}
