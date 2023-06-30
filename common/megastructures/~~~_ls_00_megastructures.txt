@@ -6,3 +6,1015 @@
 ## Adjusted Megastructures
 ##################################################
 
+## Gateway
+# Merge between AI Performance Optimization, Resolutions Expanded, MECR, A Deadly Tempest, Bypass Adjustments
+gateway_0 = {
+	entity = "deactivated_gateway_entity" # A Deadly Tempest
+	construction_entity = "deactivated_gateway_entity" # A Deadly Tempest
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	build_outside_gravity_well = yes						# indicates this will use "free" placement between the system's inner and outer ring
+															# if this option is active, the placement_rules will be completely ignored
+	show_galactic_map_icon = no
+	show_in_outliner = yes
+	overlord_can_upgrade = yes
+	build_time = 1080
+	resources = {
+		category = giga_kilostructures # Gigastructural Engineering
+		cost = {
+			alloys = 2500
+			influence = 100 # Bypass Adjustments 75 -> 100
+		}
+		upkeep = { # MECR
+			trigger = {
+				owner = { is_galactic_community_member = yes }
+				OR = {
+					is_active_resolution = resolution_custodian_webway_project
+					is_active_resolution = resolution_emperor_webway_project
+				}
+			}
+			energy = -10
+		}
+	}
+	construction_blocks_and_blocked_by = self_type
+	bypass_type = gateway # A Deadly Tempest
+
+	potential = {
+		#always = no # Gigastructural Engineering disables. Enabled for compatibility
+		NOT = { is_active_resolution = resolution_starbuild_railways } # Resolutions Expanded
+		has_technology = tech_gateway_construction
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border_or_subject"
+			OR = {
+				is_inside_border = from
+				AND = {
+					exists = owner
+					owner = {
+						is_subject = yes
+						overlord = { is_same_value = from }
+					}
+				}
+			}
+		}
+		custom_tooltip = { # Bypass Adjustments
+			fail_text = "ariphaos_requires_black_hole"
+			OR = {
+				is_star_class = sc_black_hole
+				any_system_planet = {
+					merg_is_dense_star = yes # LS - Changed to dense stars for versatility
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system" # or is in my subject's territory
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_surveyed = {
+							who = prev.from
+							status = no
+						}
+					}
+				}
+				AND = {
+					exists = owner
+					owner = {
+						is_subject = yes
+						overlord = { is_same_value = from }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_gateway"
+			NOR = {
+				has_megastructure = gateway_0
+				has_megastructure = gateway_0_fast # Resolutions Expanded
+				has_megastructure = gateway_ruined
+				has_megastructure = gateway_restored
+				has_megastructure = gateway_final_fast # Resolutions Expanded
+				has_megastructure = gateway_final
+				has_megastructure = lgate_base # Bypass Adjustments
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_gateway_construction"
+			from = { has_technology = tech_gateway_construction }
+		}
+	}
+
+	placement_rules = {
+		# Those would be ignored since the gateway is being "free-placed" between the inner and outer radius of the system
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15 # Bypass Adjustments 5 -> 15
+
+		modifier = {
+			factor = 0
+			starbase = {
+				NOT = { has_starbase_size >= starbase_starfortress }
+			}
+		}
+
+		modifier = { # Bypass Adjustments
+			factor = 0
+			NOT = { is_star_class = sc_black_hole }
+		}
+
+		modifier = {
+			factor = 0
+			any_neighbor_system = {
+				OR = {
+					has_megastructure = gateway_0
+					has_megastructure = gateway_0_fast # Resolutions Expanded
+					has_megastructure = gateway_ruined
+					has_megastructure = gateway_restored
+					has_megastructure = gateway_final_fast # Resolutions Expanded
+					has_megastructure = gateway_final
+					has_megastructure = lgate_base # Bypass Adjustments
+				}
+			}
+		}
+
+		modifier = { # AI Performance Optimization
+			factor = 0
+			from = {
+				has_country_flag = ai_gateway_construction_fix_flag
+			}
+		}
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {
+		from = {
+			country_event = { id = apoc.14 }
+
+			if = { # AI Performance Optimization
+				limit = {
+					is_ai = yes
+					has_global_flag = ai_gateway_construction_flag
+				}
+				switch = {
+					trigger = num_active_gateways
+
+					2 = {
+						set_timed_country_flag = {
+							flag = ai_gateway_construction_fix_flag years = 100
+						}
+					}
+					4 = {
+						set_timed_country_flag = {
+							flag = ai_gateway_construction_fix_flag years = 100
+						}
+					}
+					6 = {
+						set_timed_country_flag = {
+							flag = ai_gateway_construction_fix_flag years = 100
+						}
+					}
+					8 = {
+						set_timed_country_flag = {
+							flag = ai_gateway_construction_fix_flag years = 100
+						}
+					}
+					default = {
+						
+					}
+				}
+			}
+		}
+	}
+}
+
+## Gateway (Final)
+# Merge between Gigastructural Engineering, Resolutions Expanded, MECR, A Deadly Tempest
+gateway_final = {
+	entity = "reactivated_gateway_entity"
+	construction_entity = "gateway_portal_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	# build_outside_gravity_well = yes
+	show_galactic_map_icon = no
+	overlord_can_upgrade = yes # Gigastructural Engineering
+	show_in_outliner = no
+	potential = {
+		has_technology = tech_gateway_activation
+	}
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_gateway_construction"
+			from = { has_technology = tech_gateway_construction }
+		}
+		exists = starbase
+		custom_tooltip = { # Gigastructural Engineering
+			fail_text = "requires_inside_border_or_subject"
+			OR = {
+				is_inside_border = from
+				AND = {
+					exists = owner
+					owner = {
+						is_subject = yes
+						overlord = { is_same_value = from }
+					}
+				}
+			}
+		}
+		custom_tooltip = { # Gigastructural Engineering
+			fail_text = "requires_surveyed_system" # or is in my subject's territory
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_surveyed = {
+							who = prev.from
+							status = no
+						}
+					}
+				}
+				AND = {
+					exists = owner
+					owner = {
+						is_subject = yes
+						overlord = { is_same_value = from }
+					}
+				}
+			}
+		}
+		custom_tooltip = { # Gigastructural Engineering
+			fail_text = "requires_no_existing_gateway"
+			NOR = {
+				has_megastructure = gateway_0
+				has_megastructure = gateway_ruined
+				has_megastructure = gateway_restored
+				has_megastructure = gateway_final
+			}
+		}
+	}
+	upgrade_from = {
+		gateway_0
+	}
+	build_time = 2880 # Gigastructural Engineering
+	resources = {
+		category = giga_kilostructures # Gigastructural Engineering
+		cost = { # Gigastructural Engineering
+			alloys = 5000
+			energy = 6000
+			influence = 75
+		}
+		upkeep = { # MECR
+			trigger = {
+				has_megastructure_flag = imperial_gateway
+				owner = { is_galactic_community_member = yes }
+				OR = {
+					is_active_resolution = resolution_custodian_webway_project
+					is_active_resolution = resolution_emperor_webway_project
+				}
+			}
+			energy = -10
+		}
+	}
+	construction_blocks_and_blocked_by = self_type
+	bypass_type = gateway
+	on_build_complete = {
+		activate_gateway = fromfrom
+		if = {
+			limit = { num_active_gateways = 1 }
+			random_megastructure = {
+				limit = { is_megastructure_type = gateway_ruined }
+				if = {
+					limit = { exists = solar_system.starbase }
+					solar_system.starbase.owner = { set_country_flag = did_not_repair_gateway }
+				}
+				upgrade_megastructure_to = gateway_restored
+				finish_upgrade = yes
+			}
+		}
+		from = {
+			country_event = { id = apoc.13 }
+			country_event = { id = apoc.11 }
+		}
+	}
+
+	ai_weight = { # Gigastructural Engineering
+		#factor = 5
+		factor = value:giga_ai_base_kilo
+
+		modifier = {
+			event_target:global_event_country =  {
+				check_variable_arithmetic = {
+				which = giga_one
+				multiply = from.value:giga_ai_gateway_fraction
+				value < 0.2
+			}
+		}
+			factor = 200
+		}
+		
+		modifier = { factor = 0		starbase = { NOT = { has_starbase_size >= starbase_starfortress } } }
+		modifier = {
+			factor = 0
+			any_neighbor_system = {
+				OR = {
+					has_megastructure = gateway_0
+					has_megastructure = gateway_ruined
+					has_megastructure = gateway_restored
+					has_megastructure = gateway_final
+				}
+			}
+		}
+	}
+}
+
+## Gateway (Restored)
+# Merge between Gigastructural Engineering, MECR, A Deadly Tempest
+gateway_restored = {
+	entity = "reactivated_gateway_entity"
+	construction_entity = "gateway_portal_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	# build_outside_gravity_well = yes
+	show_galactic_map_icon = no
+	show_in_outliner = no
+
+	potential = {
+		has_technology = tech_gateway_activation
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_gateway_activation"
+			from = { has_technology = tech_gateway_activation }
+		}
+	}
+	upgrade_from = {
+		gateway_ruined
+	}
+	build_time = 720
+	resources = {
+		category = giga_kilostructures # Gigastructural Engineering
+		cost = {
+			alloys = 2500
+			energy = 6000
+		}
+		upkeep = { # MECR
+			trigger = {
+				has_megastructure_flag = imperial_gateway
+				owner = { is_galactic_community_member = yes }
+				OR = {
+					is_active_resolution = resolution_custodian_webway_project
+					is_active_resolution = resolution_emperor_webway_project
+				}
+			}
+			energy = -10
+		}
+	}
+	construction_blocks_and_blocked_by = self_type
+	bypass_type = gateway
+	on_build_complete = {
+		activate_gateway = fromfrom
+		if = {
+			limit = { num_active_gateways = 1 }
+			random_megastructure = {
+				limit = { is_megastructure_type = gateway_ruined }
+				if = {
+					limit = { exists = solar_system.starbase }
+					solar_system.starbase.owner = { set_country_flag = did_not_repair_gateway }
+				}
+				upgrade_megastructure_to = gateway_restored
+				finish_upgrade = yes
+			}
+		}
+		if = {
+			limit = { exists = from }			# Does not always exist when upgraded from script via "finish_upgrade = yes"
+			from = {
+				country_event = { id = origin.1050 }
+				random_list = {
+					20 = { # spawn chance
+						set_country_flag = sharpbeak_known
+						prev = { set_star_flag = sharpbeak_starsystem }
+						fromfrom = {
+							save_global_event_target_as = paragon_gateway_dude_homegate
+							set_megastructure_flag = paragon_gateway_dude_homegate_flag
+						}
+						country_event = { id = paragon.3000 }
+						set_global_flag = gateway_dude_found
+						set_global_flag = sharpbeak_recruit_phase
+						modifier = {
+							factor = 0
+							OR = {
+								has_paragon_dlc = no
+								is_ai = yes
+								has_global_flag = gateway_dude_found
+								NOR = {
+									has_country_flag = gateway_reactivated
+									has_country_flag = gateway_built
+								}
+							}
+						}
+					}
+					80 = {} # no luck
+				}
+				country_event = { id = apoc.12 }
+				country_event = { id = apoc.10 }
+			}
+		}
+	}
+}
+
+## Habitat
+# Merge between AI Performance Optimization, Habitat Harm Reduction, Gigastructural Engineering, EMT, Ariphaos
+habitat_0 = {
+	entity = ""
+	construction_entity = "habitat_phase_01_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	show_galactic_map_icon = no
+	show_in_outliner = no
+	entity_offset = { x = -7 y = -7 }
+	build_time = 1800
+
+	resources = {
+		category = megastructures_habitat
+		cost = {
+			alloys = 1500
+			influence = 150
+		}
+	}
+	construction_blocks_and_blocked_by = none
+
+	potential = {
+		NOT = { has_global_flag = giga_habitats_disabled } # Gigastructural Engineering
+		is_giga_one_planet_origin = no # Gigastructural Engineering
+		OR = {
+			has_technology = tech_habitat_1
+			has_civic = civic_diadochi
+			has_civic = civic_great_khans_legacy
+			has_country_flag = democratic_khanate_flag
+		}
+		OR = { # Ariphaos
+			is_ai = no
+			NOT = { any_planet_within_border = {
+				is_planet_class = pc_habitat
+				is_colony = no
+			} }
+		}
+		OR = { # Ariphaos
+			has_origin = origin_void_dwellers
+			is_ai = no
+			NOT = { has_global_flag = ariphaos_block_ai_habitats }
+		}
+		OR = { # EMT
+			is_ai = no
+			NOT = {
+				any_owned_planet = {
+					is_habitat = yes
+					num_pops > 20
+				}
+			}
+		}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = { # Habitat Harm Reduction
+			fail_text = "only_one_hab_per_system"
+			OR = {
+				NOT = {
+					any_system_planet = {
+						has_planet_flag = habitat		# construction will fail if there's already one in this system 
+					}
+				}
+				# unless we have the AP, or one of these origins, etc.
+				from = { has_ascension_perk = ap_voidborn }
+				from = { has_origin = origin_void_dwellers }
+				from = { has_origin = origin_toxic_knights }
+				from = { has_civic = civic_great_khans_legacy }
+				from = { has_civic = civic_diadochi }
+				from = { has_country_flag = democratic_khanate_flag }
+			}
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				has_anomaly = no # Gigastructural Engineering
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				planet_has_no_megastructure = yes # Gigastructural Engineering
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_orbital_debris"
+				NOR = {
+					has_planet_flag = has_orbital_debris
+				}
+			}
+
+			# balance for habitats
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				is_asteroid = no # Gigastructural Engineering
+				is_moon = no # Gigastructural Engineering
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+			custom_tooltip = { # Gigastructural Engineering
+				fail_text = "requires_more_pops"
+				OR = {
+					has_global_flag = giga_habitats_system_3
+					has_global_flag = giga_habitats_system_10
+					has_global_flag = giga_habitats_system_25
+					has_global_flag = giga_habitats_unlimited
+					AND = {
+						OR = {
+							has_global_flag = giga_habitats_pop_25
+							has_global_flag = giga_habitats_pop_50
+							has_global_flag = giga_habitats_pop_100
+						}
+						from = { check_variable = { which = habitat_count value < allowed_habitats } }
+					}
+				}
+			}
+			custom_tooltip = { # Gigastructural Engineering
+				fail_text = "requires_more_systems"
+				OR = {
+					has_global_flag = giga_habitats_pop_25
+					has_global_flag = giga_habitats_pop_50
+					has_global_flag = giga_habitats_pop_100
+					has_global_flag = giga_habitats_unlimited
+					AND = {
+						OR = {
+							has_global_flag = giga_habitats_system_3
+							has_global_flag = giga_habitats_system_10
+							has_global_flag = giga_habitats_system_25
+						}
+						from = { check_variable = { which = habitat_count value < allowed_habitats } }
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_solarpunk"
+				NOT = {
+					solar_system = {
+						has_star_flag = solarpunk_system_02
+					}
+				}
+			}
+			if = {
+				limit = {
+					from = { is_ai = yes }
+				}
+				or = {
+					has_deposit_for = shipclass_mining_station
+					has_deposit_for = shipclass_research_station
+				}
+				NOR = { # Ariphaos
+					has_modifier = terraforming_candidate
+					has_modifier = frozen_terraforming_candidate
+					has_modifier = toxic_terraforming_candidate
+					is_planet_class = "pc_gray_goo"
+					colonizable_planet = yes
+				}
+			}
+		} # use these for all non-star megastructures
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 5
+
+		modifier = { # Gigastructural Engineering
+			factor = 0.00
+			from = {
+				has_country_flag = has_recently_built_habitat
+			}
+		}
+
+		modifier = {
+			factor = 0
+			starbase = { NOT = { has_starbase_size >= starbase_starport } }
+		}
+
+		modifier = {
+			factor = 0
+			any_system_planet = {
+				is_habitat = yes # Merged
+				is_colony = no
+			}
+		}
+
+		modifier = {
+			factor = 3
+			solar_system = {
+				exists = owner
+				is_same_value = owner.capital_scope.solar_system
+			}
+		}
+		modifier = {
+			factor = 2
+			exists = sector
+			sector = { has_sector_type = core_sector }
+		}
+
+		modifier = { # EMT
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				owner = { NOT = { is_same_value = from } }
+			}
+		}
+
+		modifier = { # AI Performance Optimization
+			factor = 0
+			from = {
+				has_global_flag = ai_habitat_construction_flag
+				NOT = {
+					has_origin = origin_void_dwellers
+				}
+				count_owned_megastructure = {
+					count > 6
+				}
+			}
+		}
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+
+	on_build_complete = {
+		fromfrom.planet = { # Gigastructural Engineering
+			giga_set_has_mega_flag = yes
+			save_event_target_as = habitat_planet
+			if = { limit = { has_orbital_station = yes } orbital_station = { dismantle = yes } }
+		}
+		spawn_planet = {
+			class = "pc_habitat"
+			location = fromfrom.planet
+			orbit_location = yes
+			orbit_angle_offset = 45
+			orbit_distance_offset = 9.899
+			size = 4
+			has_ring = no
+
+			init_effect = {
+				set_name = {
+					key = HABITAT_PLANET_NAME
+					variable_string = "[FROM.from.planet.GetName]"
+				}
+				set_planet_entity = { # Gigastructural Engineering
+					entity = "habitat_phase_01_entity"
+					graphical_culture = root.from
+				}
+				#set_planet_entity = { # Vanilla version disabled by Gigas
+				#	entity = "habitat_phase_01_entity"
+				#	graphical_culture = fromfrom
+				#}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = FROM
+				}
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				set_planet_flag = forbid_guillis_planet_modifiers # Gigastructual Engineering
+
+				set_planet_flag = megastructure
+				set_planet_flag = habitat
+
+				giga_start_ai_colony_if_safe = yes # Gigastructural Engineering
+
+				if = { # Gigastructural Engineering determines deposits
+					# we specifically want to avoid doing this to habitable planets because it can do wonky things...
+					# not that any of them should've been picked up normally, but it turns out it reads habitable planet deposits
+					# which directly produce resources... found by someone getting 20 supertensile mines from Edge of Eternity's ST cache
+					limit = {
+						fromfrom.planet = {
+							is_colony = no
+							habitable_planet = no
+						}
+					}
+
+					# trade
+					if = { limit = { fromfrom.planet = { has_trade_deposit = yes } } set_planet_flag = commercial_habitat }
+
+					# energy
+					if = { limit = { fromfrom.planet = { has_resource = { type = energy amount > 0 } } } set_planet_flag = energy_habitat }
+
+					# minerals
+					if = { limit = { fromfrom.planet = { has_resource = { type = minerals amount > 0 } } } set_planet_flag = mining_habitat }
+
+					# alloys
+					if = { limit = { fromfrom.planet = { has_resource = { type = alloys amount > 0 } } } set_planet_flag = mining_habitat }
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|alloys| add_deposit = d_hab_alloy_1 }
+
+					# science
+					if = { limit = { fromfrom.planet = { has_deposit_for = shipclass_research_station } } set_planet_flag = research_habitat }
+
+					# exotic gases
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|exotic_gases| add_deposit = d_hab_gas_1 }
+
+					# rare crystals
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|rare_crystals| add_deposit = d_hab_crystal_1 }
+
+					# volatile motes
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|volatile_motes| add_deposit = d_hab_mote_1 }
+
+					# zro
+					if = { limit = { fromfrom.planet = { has_resource = { type = sr_zro amount > 0 } } } set_planet_flag = research_habitat }
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|sr_zro| add_deposit = d_hab_zro_1 }
+
+					# dark matter
+					if = { limit = { fromfrom.planet = { has_resource = { type = sr_dark_matter amount > 0 } } } set_planet_flag = research_habitat }
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|sr_dark_matter| add_deposit = d_hab_dark_matter_1 }
+
+					# living metal
+					if = { limit = { fromfrom.planet = { has_resource = { type = sr_living_metal amount > 0 } } } set_planet_flag = research_habitat }
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|sr_living_metal| add_deposit = d_hab_living_metal_1 }
+
+					# nanites
+					if = { limit = { fromfrom.planet = { has_resource = { type = nanites amount > 0 } } } set_planet_flag = research_habitat }
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|nanites| add_deposit = d_hab_nanites_1 }
+
+					# iodizium
+					if = { limit = { fromfrom.planet = { has_resource = { type = sr_iodizium amount > 0 } } } set_planet_flag = mining_habitat }
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|sr_iodizium| add_deposit = d_giga_hab_iodizium_1 }
+
+					# supertensiles
+					if = { limit = { fromfrom.planet = { has_resource = { type = giga_sr_amb_megaconstruction amount > 0 } } } set_planet_flag = mining_habitat }
+					while = { count = fromfrom.planet.value:giga_count_resource|resource|giga_sr_amb_megaconstruction| add_deposit = d_giga_hab_supertensiles_1 }
+
+					# minor artifacts
+					if = {
+						limit = {
+							has_ancrel = yes
+						}
+						if = { limit = { fromfrom.planet = { has_resource = { type = minor_artifacts amount > 0 } } } set_planet_flag = research_habitat }
+						while = { count = fromfrom.planet.value:giga_count_resource|resource|minor_artifacts| add_deposit = d_artifacts_planet_1 }
+					}
+				}
+				# Gigastructural Engineering Event:
+				planet_event = { id = giga_mega.1000 } # apply locale modifiers
+			}
+		}
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			save_event_target_as = habitat_planet
+
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+		from = {
+			country_event =  { id = utopia.61 }
+			change_variable = { which = habitat_count value = 1 } # Gigastructural Engineering
+			set_timed_country_flag = { flag = has_recently_built_habitat years = 20 } # Gigastructural Engineering
+		}
+	}
+}
+
+## Hyper Relay
+# Merge between AI Performance Optimization, Shrimp AI, Utopian Dream, Gigastructural Engineering, Resolutions Expanded, Ariphaos
+hyper_relay = {
+	entity = "hyper_relay_entity"
+	construction_entity = "hyper_relay_entity"
+	portrait = "GFX_megastructure_hyper_relay_background"
+	place_entity_on_planet_plane = no
+	build_outside_gravity_well = yes
+	show_galactic_map_icon = no
+	show_in_outliner = no
+	build_time = 360
+	resources = {
+		category = megastructures_hyper_relay
+		cost = { # Utopian Dream
+			alloys = 250
+			influence = 15
+		}
+		
+		cost = { # Utopian Dream
+			trigger = {
+				exists = owner
+				owner = { not =  { has_ascension_perk = ap_grasp_the_void }}
+			}
+			alloys = 250
+			rare_crystals = 100
+			influence = 10
+		}
+
+		upkeep = {
+			trigger = { # Utopian Dream
+				exists = owner
+				owner = { not =  { has_ascension_perk = ap_grasp_the_void }}
+			}
+			energy = 2
+		}
+	}
+	construction_blocks_and_blocked_by = self_type
+
+	potential = {
+		is_active_resolution = resolution_starbuild_railways # Resolutions Expanded
+		has_technology = tech_hyper_relays
+		custom_tooltip = { # AI Performance Optimization
+			fail_text = "requires_some_ai_fixes_on_players_disabled"
+			if = {
+				limit = {
+					has_global_flag = ai_hyper_relay_construction_flag
+					has_global_flag = ai_and_player_flag
+				}
+				always = no
+			}
+		}
+	}
+
+	possible = {
+		# exists = starbase # Shrimp AI disables - sparsity / wild space support
+		custom_tooltip = {
+			fail_text = "requires_inside_border_or_subject"
+			OR = {
+				mmghyper_is_starless = yes # Shrimp AI - sparsity / wild space support
+				is_inside_border = from
+				AND = {
+					exists = owner
+					owner = {
+						is_subject = yes
+						overlord = { is_same_value = from }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system" # or is in my subject's territory
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_surveyed = {
+							who = prev.from
+							status = no
+						}
+					}
+				}
+				AND = {
+					exists = owner
+					owner = {
+						is_subject = yes
+						overlord = { is_same_value = from }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_hyper_relay"
+			NOR = {
+				has_megastructure = hyper_relay
+				has_megastructure = hyper_relay_fast # Resolutions Expanded
+				has_megastructure = hyper_relay_ruined
+				has_megastructure = hyper_relay_restored
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_hyper_relays"
+			from = { has_technology = tech_hyper_relays }
+		}
+		custom_tooltip = {
+			fail_text = "requires_hyperlane"
+			count_neighbor_system = {
+				count > 0
+			}
+		}
+		OR = { # Ariphaos
+			AND = {
+				exists = from
+				from = { is_ai = no }
+			}
+			any_system_planet = { is_colony = yes }
+			is_bottleneck_system = yes
+			has_natural_wormhole = yes
+			has_megastructure = gateway_restored
+			has_megastructure = gateway_final
+			has_megastructure = gateway_derelict
+			has_megastructure = lgate_base
+			has_megastructure = quantum_catapult_restored
+			has_megastructure = quantum_catapult_1
+			has_megastructure = quantum_catapult_2
+			has_megastructure = quantum_catapult_3
+			has_megastructure = quantum_catapult_restored_slingshot
+			has_megastructure = quantum_catapult_improved_slingshot
+			has_megastructure = mega_shipyard_restored
+			has_megastructure = mega_shipyard_1
+			has_megastructure = mega_shipyard_2
+			has_megastructure = mega_shipyard_3
+			count_neighbor_system = {
+				count > 1
+				limit = {
+					OR = {
+						has_megastructure = hyper_relay
+						has_megastructure = hyper_relay_restored
+					}
+				}
+			}
+		}
+	}
+
+	placement_rules = {			# those would be ignored since the hyper relay is being "free-placed" between the inner and outer radius of the system
+	}
+
+	# root = system
+	# from = country
+	ai_weight = { # Shrimp AI - OVERWRITE entire AI weight for main functionality of mod
+		# double base factor
+		factor = 10
+
+		# get started in capital very quickly
+		modifier = { # Shrimp AI
+			factor = 10
+			is_capital_system = yes
+		}
+
+		# then expand quickly into capital sector
+		modifier = { # Shrimp AI
+			factor = 5
+			exists = sector
+			sector.sector_capital = {
+				is_capital = yes
+			}
+		}
+
+		# then prioritize paths to other sectors
+		modifier = { # Shrimp AI
+			factor = 3
+			has_star_flag = mmghyper_path_to_capital@FROM
+		}
+
+		# then paths within sector
+		modifier = { # Shrimp AI
+			factor = 2
+			has_star_flag = mmghyper_path_to_sector_capital@FROM
+		}
+
+		# small boost for connecting planets to network
+		modifier = { # Shrimp AI
+			factor = 1.5
+			any_system_planet = {
+				is_colony = yes
+			}
+		}
+
+		# don't build if not target (on path, etc)
+		modifier = { # Shrimp AI
+			factor = 0
+			NOT = {
+				mmghyper_is_ai_build_target = { COUNTRY = from }
+			}
+		}
+
+		modifier = { # AI Performance Optimization
+			factor = 0
+			from = {
+				has_global_flag = ai_hyper_relay_construction_flag
+			}
+		}
+	}
+
+	bypass_type = relay_bypass
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {
+		if = { # Shrimp AI - from won't always exist like it does in vanilla
+			limit = { exists = from }
+			from = {
+				country_event = { id = tutorial.2131 }
+			}
+		}
+		solar_system = { # Shrimp AI
+			system_event = {
+				id = mmghyper.11 # convert starless hyper relay to unowned
+				days = 1 # doing this immediately doesn't seem to work
+			}
+		}
+	}
+}
