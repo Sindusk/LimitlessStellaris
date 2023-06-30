@@ -1,0 +1,25 @@
+##########################################################################
+# Limitless Stellaris - Custom Events
+##########################################################################
+# Events custom made specifically for the collection.
+
+## ls_mod.1: Adds a bonus to resource production modifier to all AI default empires.
+country_event = {
+	id = ls_mod.1 # Limitless Stellaris Mod 1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { always = yes } # Always allow it to trigger
+	immediate = {
+		hidden_effect = {
+			every_country = { # All countries
+				limit = { # Limit to AI who are default
+					is_ai = yes
+					is_country_type = default
+				}
+				add_modifier = { # Add the modifier, designated in Static Modifiers.
+					modifier = ls_ai_boost
+				}
+			}	
+		}	
+	}
+}

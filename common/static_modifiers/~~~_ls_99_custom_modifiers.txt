@@ -1,0 +1,36 @@
+##########################################################################
+# Limitless Stellaris - Static Modifiers
+##########################################################################
+
+## ls_ai_boost: Provides a multiplicative output boost for the country.
+# Inspired by ACOT's AI resource boosts.
+ls_ai_boost = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_arcology_project.dds"
+	# Influence
+	country_influence_produces_mult = 0.50 # 50% increase on Influence
+	# Basic Resources
+	country_energy_produces_mult = 0.50 # 50% increase on Energy
+	country_minerals_produces_mult = 0.50 # 50% increase on Minerals
+	country_food_produces_mult = 0.50 # 50% increase on Food
+	# Research
+	country_physics_research_produces_mult = 0.50 # 50% increase on Physics Research
+	country_society_research_produces_mult = 0.50 # 50% increase on Society Research
+	country_engineering_research_produces_mult = 0.50 # 50% increase on Engineering research
+	# Other Resources
+	country_unity_produces_mult = 0.50 # 50% increase on Unity
+	country_consumer_goods_produces_mult = 0.50 # 50% increase on Consumer Goods
+	country_alloys_produces_mult = 0.50 # 50% increase on Alloys
+	# Strategic Resources
+	country_volatile_motes_produces_mult = 0.50 # 50% increase on Volatile Motes
+	country_exotic_gases_produces_mult = 0.50 # 50% increase on Exotic Gases
+	country_rare_crystals_produces_mult = 0.50 # 50% increase on Rare Crystals
+	country_sr_living_metal_produces_mult = 0.50 # 50% increase on Living Metal
+	country_sr_zro_produces_mult = 0.50 # 50% increase on Zro
+	country_sr_dark_matter_produces_mult = 0.50 # 50% increase on Dark Matter
+	country_nanites_produces_mult = 0.50 # 50% increase on Nanites
+	country_minor_artifacts_produces_mult = 0.50 # 50% increase on Minor Artifacts
+	# ACOT Resources
+	country_acot_sr_dark_energy_produces_mult = 0.50 # 50% increase on Dark Energy
+	country_acot_sr_stellarite_produces_mult = 0.50 # 50% increase on Stellarite
+	country_acot_sr_light_matter_produces_mult = 0.50 # 50% increase on Light Matter
+}
