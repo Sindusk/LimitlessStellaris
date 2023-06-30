@@ -14,8 +14,9 @@ country_event = {
 	}
 
 	immediate = {
-		country_event = {
+		remove_global_flag = ai_population_count_control_flag
+		#country_event = {
 		#	id = fix_ai_actions.2 # This removes the settings menu.
-		}
+		#}
 	}
 }

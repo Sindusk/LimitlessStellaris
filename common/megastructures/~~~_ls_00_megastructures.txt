@@ -125,7 +125,7 @@ gateway_0 = {
 
 		modifier = { # Bypass Adjustments
 			factor = 0
-			NOT = { is_star_class = sc_black_hole }
+			NOT = { merg_is_dense_star = yes }
 		}
 
 		modifier = {
@@ -458,27 +458,28 @@ habitat_0 = {
 			has_civic = civic_great_khans_legacy
 			has_country_flag = democratic_khanate_flag
 		}
-		OR = { # Ariphaos
-			is_ai = no
-			NOT = { any_planet_within_border = {
-				is_planet_class = pc_habitat
-				is_colony = no
-			} }
-		}
-		OR = { # Ariphaos
-			has_origin = origin_void_dwellers
-			is_ai = no
-			NOT = { has_global_flag = ariphaos_block_ai_habitats }
-		}
-		OR = { # EMT
-			is_ai = no
-			NOT = {
-				any_owned_planet = {
-					is_habitat = yes
-					num_pops > 20
-				}
-			}
-		}
+		# LS - Disable the rest of the checks since they don't make much sense.
+		#OR = { # Ariphaos
+		#	is_ai = no
+		#	NOT = { any_planet_within_border = {
+		#		is_planet_class = pc_habitat
+		#		is_colony = no
+		#	} }
+		#}
+		#OR = { # Ariphaos
+		#	has_origin = origin_void_dwellers
+		#	is_ai = no
+		#	NOT = { has_global_flag = ariphaos_block_ai_habitats }
+		#}
+		#OR = { # EMT
+		#	is_ai = no
+		#	NOT = {
+		#		any_owned_planet = {
+		#			is_habitat = yes
+		#			num_pops > 20
+		#		}
+		#	}
+		#}
 	}
 
 	possible = {
@@ -492,7 +493,7 @@ habitat_0 = {
 			OR = {
 				NOT = {
 					any_system_planet = {
-						has_planet_flag = habitat		# construction will fail if there's already one in this system 
+						is_habitat = yes # Merged - construction will fail if there's already one in this system 
 					}
 				}
 				# unless we have the AP, or one of these origins, etc.
