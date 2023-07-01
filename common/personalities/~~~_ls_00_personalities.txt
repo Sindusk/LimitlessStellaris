@@ -1,0 +1,2094 @@
+####################################################################################################
+# Limitless Stellaris - Personalities
+####################################################################################################
+
+
+## Honorbound Warriors
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+honorbound_warriors = {
+	aggressiveness = 1.75
+	trade_willingness = 0.7
+	bravery = 1.0 # StarTech AI 1.5 -> 1.0
+	combat_bravery = 2.0	# rarely ever retreat in battle
+
+	military_spending = 1.2
+	colony_spending = 0.9
+
+	federation_acceptance = -10 # StarTech AI 0 -> -10
+	nap_acceptance = -50 # Bug Branch -100 -> -50
+	commercial_pact_acceptance = -20
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = 20
+	migration_pact_acceptance = -30 # Bug Branch 0 -> -30
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 50 # StarTech AI 75 -> 50
+
+	weapon_preferences = weapon_type_explosive # StarTech AI strike_craft -> explosive
+	armor_ratio = 0.1 # StarTech AI 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech AI 0.4 -> 0.2
+	hull_ratio = 0.7 # StarTech AI 0.2 -> 0.7
+
+	threat_modifier = 0.75
+	threat_others_modifier = 0.5
+	friction_modifier = 1.0
+	claims_modifier = 2.0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no # StarTech AI yes -> no
+		liberator = no
+		opportunist = no
+		slaver = no
+		uplifter = no # StarTech AI yes -> no
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = yes # StarTech AI no -> yes
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+	}
+
+	allow = {
+		OR = {
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		OR = {
+			AND = {
+				has_ethic = "ethic_fanatic_militarist"
+				OR = {
+					has_ethic = "ethic_spiritualist"
+					has_ethic = "ethic_fanatic_spiritualist" # Bug Branch
+					has_ethic = "ethic_egalitarian"
+					has_ethic = "ethic_fanatic_egalitarian" # Bug Branch
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile" # Bug Branch
+				}
+			}
+			AND = {
+				has_ethic = "ethic_fanatic_xenophile"
+				has_ethic = "ethic_militarist"
+			}
+			is_bugged_war_cult = yes # Bug Branch
+		}
+	}
+
+	weight_modifier = {
+		weight = 50
+	}
+}
+
+## Evangelising Zealots
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+evangelising_zealots = {
+	aggressiveness = 1.55 # StarTech AI 1.25 -> 1.55
+	trade_willingness = 0.75
+	bravery = 1.0
+	combat_bravery = 1.0
+
+	military_spending = 1.1
+	colony_spending = 1.1
+
+	federation_acceptance = -20 # StarTech AI 0 -> -20
+	nap_acceptance = -20 # StarTech AI 0 -> -20
+	commercial_pact_acceptance = -20
+	research_agreement_acceptance = -20
+	defensive_pact_acceptance = 0
+	migration_pact_acceptance = 0
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 50
+
+	weapon_preferences = weapon_type_energy # StarTech AI kinetic -> energy
+	hull_ratio = 0.7 # StarTech AI 0.1 -> 0.7
+	armor_ratio = 0.1 # StarTech AI 0.5 -> 0.1
+	shields_ratio = 0.2 # StarTech AI 0.4 -> 0.2
+
+	threat_modifier = 0.9
+	threat_others_modifier = 0.66
+	friction_modifier = 1.2
+	claims_modifier = 1.5
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = yes
+		uplifter = no
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = yes
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		crisis_fighter = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" }
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		NOT = {
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+		}
+		OR = {
+			has_ethic = "ethic_authoritarian"
+			has_ethic = "ethic_fanatic_authoritarian"
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+			has_ethic = "ethic_fanatic_militarist"
+			has_ethic = "ethic_militarist"
+			has_ethic = "ethic_fanatic_elitist" # Bug Branch
+			has_ethic = "ethic_elitist"	# Bug Branch
+			
+		}
+		OR = {
+			has_ethic = "ethic_spiritualist"
+			has_ethic = "ethic_fanatic_spiritualist"
+		}
+	}
+
+	weight_modifier = {
+		weight = 10
+		
+		modifier = { # Bug Branch
+			add = 0
+			is_bugged_machine_cult = yes
+		}	
+		
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_spiritualist"
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_authoritarian"
+		}
+		
+		modifier = { # Bug Branch
+			add = 2
+			is_bugged_militant_zealots = yes
+		}		
+		modifier = {
+			add = 1
+			ariphaos_patch_is_conformist = yes # Ariphaos
+		}
+		modifier = {
+			add = 1
+			has_trait = "trait_charismatic"
+		}
+		modifier = { # Ariphaos
+			add = 1
+			has_trait = "trait_traditional"
+		}
+		modifier = {
+			add = -1 # StarTech AI -2 -> -1
+			has_trait = "trait_repugnant"
+		}
+	}
+}
+
+## Erudite Explorers
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+erudite_explorers = {
+	aggressiveness = 1.15 # StarTech 0.75 -> 1.15
+	trade_willingness = 0.9
+	bravery = 0.75
+	combat_bravery = 1.0
+
+	military_spending = 0.9
+	colony_spending = 1.0
+
+	federation_acceptance = 0
+	nap_acceptance = 5
+	commercial_pact_acceptance = 10
+	research_agreement_acceptance = 50
+	defensive_pact_acceptance = 5
+	migration_pact_acceptance = 0
+	loyalty_acceptance = 2.0
+
+	advanced_start_chance = 80 # StarTech 25 -> 80
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.1 # StarTech 0.3 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.7 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.0 -> 0.7
+
+	threat_modifier = 1.2
+	threat_others_modifier = 0.8
+	friction_modifier = 0.5
+	claims_modifier = 1.0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = yes
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		infiltrator = no # StarTech yes -> no
+		dominator = yes # StarTech no -> yes
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		sneak_attacker = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech AI
+	}
+
+	ship_roles = {
+		frigate = explosive_stealth
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		NOR = {
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+			has_ethic = "ethic_militarist"
+			has_ethic = "ethic_fanatic_militarist"
+		}
+		OR = {
+			has_ethic = "ethic_materialist"
+			has_ethic = "ethic_fanatic_materialist"
+		}
+	}
+
+	weight_modifier = {
+		weight = 10
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_materialist"
+		}
+		modifier = {
+			add = 2
+			has_trait = "trait_intelligent"
+		}
+		modifier = {
+			add = 1
+			has_trait = "trait_natural_engineers"
+		}
+		modifier = {
+			add = 1
+			has_trait = "trait_natural_physicists"
+		}
+		modifier = {
+			add = 1
+			has_trait = "trait_industrious"
+		}
+		modifier = {
+			add = 2
+			OR = {
+				has_government = gov_science_directorate
+				has_government = gov_illuminated_autocracy
+			}
+		}
+		modifier = { # Bug Branch
+			add = 2
+			is_bugged_star_seekers = yes
+		}		
+		modifier = {
+			add = -2
+			has_election_type = none
+		}
+	}
+}
+
+## Spiritual Seekers
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+spiritual_seekers = {
+	aggressiveness = 0.4 # StarTech 0.25 -> 0.4
+	trade_willingness = 0.9
+	bravery = 1.0 # StarTech 0.75 -> 1.0
+	combat_bravery = 1.0
+
+	military_spending = 0.8
+	colony_spending = 1.0
+
+	federation_acceptance = 10 # StarTech 0 -> 10
+	nap_acceptance = 20
+	commercial_pact_acceptance = 10
+	research_agreement_acceptance = 10
+	defensive_pact_acceptance = 10
+	migration_pact_acceptance = 20
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 50 # StarTech 10 -> 50
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.1 # StarTech 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.4 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.2 -> 0.7
+
+	threat_modifier = 1.1
+	threat_others_modifier = 1.0
+	friction_modifier = 0.25
+	claims_modifier = 1.0
+
+	behaviour = {
+		conqueror = yes # StarTech no -> yes
+		subjugator = no
+		liberator = yes
+		opportunist = no
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		infiltrator = no # StarTech yes -> no
+		dominator = yes # StarTech no -> yes
+		robot_exploiter = yes
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		NOT = {
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+			has_ethic = "ethic_militarist"
+			has_ethic = "ethic_fanatic_militarist"
+			has_ethic = "ethic_materialist" # Bug Branch
+			has_ethic = "ethic_fanatic_materialist" # Bug Branch	
+			is_bugged_machine_cult = yes # Bug Branch
+		}
+		OR = {
+			has_ethic = "ethic_egalitarian"
+			has_ethic = "ethic_fanatic_egalitarian"
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+			has_ethic = "ethic_xenophile"
+			has_ethic = "ethic_fanatic_xenophile"
+			has_ethic = "ethic_pluralist" # Bug Branch
+			has_ethic = "ethic_fanatic_pluralist" # Bug Branch
+			has_ethic = "ethic_cooperative" # Bug Branch
+			has_ethic = "ethic_fanatic_cooperative" # Bug Branch
+		}
+		OR = {
+			has_ethic = "ethic_spiritualist"
+			has_ethic = "ethic_fanatic_spiritualist"
+			has_ethic = "ethic_ecocentric" # Bug Branch
+			has_ethic = "ethic_fanatic_ecocentric" # Bug Branch		
+		}
+	}
+
+	weight_modifier = {
+		weight = 10
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_pacifist"
+		}
+		modifier = {
+			add = 2
+			has_ethic = "ethic_fanatic_xenophile"
+		}
+		modifier = {
+			add = 1
+			has_trait = "trait_adaptive"
+		}
+		modifier = {
+			add = -1
+			has_trait = "trait_nonadaptive"
+		}
+		modifier = {
+			add = 2
+			has_trait = "trait_extremely_adaptive"
+		}
+		modifier = {
+			add = 1
+			has_election_type = democratic
+		}
+		modifier = { # Bug Branch
+			add = 2
+			is_bugged_spiritual_seekers = yes
+		}		
+	}
+}
+
+## Ruthless Capitalists
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+ruthless_capitalists = {
+	aggressiveness = 1.3 # StarTech 1.0 -> 1.3
+	trade_willingness = 1.0
+	bravery = 1.0 # StarTech 0.5 -> 1.0
+	combat_bravery = 1.0
+
+	military_spending = 1.0
+	colony_spending = 1.1
+
+	federation_acceptance = -10 # StarTech 0 -> -10
+	nap_acceptance = -10
+	commercial_pact_acceptance = 20
+	research_agreement_acceptance = 10
+	defensive_pact_acceptance = 0
+	migration_pact_acceptance = 0
+	#loyalty_acceptance = 0.5 # StarTech removes this
+
+	advanced_start_chance = 20 # StarTech 25 -> 20
+
+	weapon_preferences = weapon_type_explosive # StarTech kinetic -> explosive
+	armor_ratio = 0.1 # StarTech 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.5 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.1 -> 0.7
+
+	threat_modifier = 1.0
+	threat_others_modifier = 0.75
+	friction_modifier = 0.5
+	claims_modifier = 1.5
+
+	behaviour = {
+		conqueror = yes
+		subjugator = yes
+		liberator = no
+		opportunist = yes
+		slaver = yes
+		uplifter = no
+		purger = no
+		displacer = no
+		infiltrator = no # StarTech yes -> no
+		dominator = yes # StarTech no -> yes
+		robot_exploiter = yes
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		wants_tribute = yes
+		sneak_attacker = yes
+	}
+
+	ship_roles = {
+		frigate = explosive_stealth
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		NOR = {
+			#has_ethic = "ethic_pacifist" # Bug Branch removes this
+			has_ethic = "ethic_fanatic_pacifist"
+			has_ethic = "ethic_cooperative" # Bug Branch
+			has_ethic = "ethic_fanatic_cooperative" # Bug Branch	
+		}
+		
+		OR = { # Bug Branch
+		    has_ethic = "ethic_competitive"
+			has_ethic = "ethic_fanatic_competitive"			
+		}
+		
+		OR = { # Bug Branch
+		    has_ethic = "ethic_anthropocentric"
+			has_ethic = "ethic_fanatic_anthropocentric"	
+		    has_ethic = "ethic_elitist"
+			has_ethic = "ethic_fanatic_elitist"				
+		}
+		OR = {
+			is_megacorp = yes
+			has_valid_civic = civic_corporate_dominion
+			has_trait = "trait_thrifty"
+		}
+	}
+
+	weight_modifier = {
+		weight = 300 # Bug Branch 100 -> 300
+
+		modifier = { # Bug Branch
+			add = 10
+			is_bugged_industrial_mechanization = yes
+		}
+		
+		modifier = { # Bug Branch
+			add = 10
+			is_bugged_ruthless_industrialism = yes
+		}
+
+		modifier = { # Bug Branch
+			add = 50
+			has_valid_civic = civic_merchant_guilds
+		}			
+		
+		modifier = { # Bug Branch
+			add = 1
+			has_trait = "trait_thrifty"
+		}
+		modifier = { # Bug Branch
+			add = 1
+			has_trait = "trait_industrious"
+		}
+		modifier = { # Bug Branch
+			add = 1
+			has_election_type = oligarchic
+		}
+	}
+}
+
+## Peaceful Traders
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+peaceful_traders = {
+	aggressiveness = 0.4 # StarTech 0.5 -> 0.4
+	trade_willingness = 1.0
+	bravery = 0.9 # StarTech 0.5 -> 0.9
+	combat_bravery = 1.0
+
+	military_spending = 0.9
+	colony_spending = 1.1
+
+	federation_acceptance = 10 # StarTech 0 -> 10
+	nap_acceptance = 20
+	commercial_pact_acceptance = 20
+	research_agreement_acceptance = 10
+	defensive_pact_acceptance = 0
+	migration_pact_acceptance = 20
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 20 # StarTech 10 -> 20
+
+	weapon_preferences = weapon_type_explosive # StarTech strike_craft -> explosive
+	armor_ratio = 0.1 # StarTech 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.5 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.1 -> 0.7
+
+	threat_modifier = 1.3
+	threat_others_modifier = 1.0
+	friction_modifier = 0.25
+	claims_modifier = 1.0
+
+	behaviour = {
+		conqueror = yes # StarTech no -> yes
+		subjugator = no
+		liberator = yes
+		opportunist = yes
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = yes # StarTech no -> yes
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		wants_tribute = yes
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		OR = { # Bug Branch
+			has_ethic = "ethic_competitive"
+			has_ethic = "ethic_fanatic_competitive"
+			has_ethic = "ethic_egalitarian"
+			has_ethic = "ethic_fanatic_egalitarian"
+		    has_ethic = "ethic_anthropocentric"
+			has_ethic = "ethic_fanatic_anthropocentric"			
+		}		
+		
+		NOR = { # Bug Branch
+			has_ethic = "ethic_militarist"
+			has_ethic = "ethic_fanatic_militarist"
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+			has_ethic = "ethic_fanatic_cooperative"				
+		}
+		OR = {
+			is_megacorp = yes
+			has_valid_civic = civic_corporate_dominion
+			has_trait = "trait_thrifty"
+		}
+	}
+
+	weight_modifier = {
+		weight = 100
+	}
+}
+
+## Hegemonic Imperialists
+# Merge between OSA, Bug Branch, RS:NF, Great Khan Expanded, StarTech, Scripted Trigger Undercoat
+hegemonic_imperialists = {
+	aggressiveness = 2.0 # Great Khan Expanded 1.5 -> 2.0
+	trade_willingness = 0.8
+	bravery = 1.5 # Great Khan Expanded 1.0 -> 1.5
+	combat_bravery = 2.0 # Great Khan Expanded 1.0 -> 2.0
+
+	military_spending = 1.1
+	colony_spending = 1.0
+
+	federation_acceptance = -20 # StarTech 0 -> -20
+	nap_acceptance = -10
+	commercial_pact_acceptance = -10
+	research_agreement_acceptance = -10
+	defensive_pact_acceptance = 10
+	migration_pact_acceptance = -50
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 200 # StarTech 50 -> 200
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.1 # StarTech 0.5 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.5 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.0 -> 0.7
+
+	threat_modifier = 1.0
+	threat_others_modifier = 0.66
+	friction_modifier = 1.5
+	claims_modifier = 1.5
+
+	behaviour = {
+		conqueror = yes
+		subjugator = yes
+		liberator = no
+		opportunist = yes
+		slaver = yes
+		uplifter = no
+		purger = no
+		displacer = no
+		dominator = yes
+		infiltrator = no
+		robot_exploiter = yes
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		crisis_fighter = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech
+	}
+
+
+	allow = {
+		OR = { # Great Khan Expanded
+			is_ai = no
+			is_country_type = awakened_marauders # Great Khan Expanded
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		is_pacifist = no # Great Khan Expanded
+		NOR = { # Great Khan Expanded
+			has_ethic = "ethic_fanatic_socialism"
+			has_valid_civic = "civic_xeno_militarist"
+		}
+		OR = {
+			has_ethic = "ethic_militarist"
+			has_ethic = "ethic_fanatic_militarist"
+			has_ethic = "ethic_authoritarian"
+			has_ethic = "ethic_fanatic_authoritarian"
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+		}
+	}
+
+	weight_modifier = {
+		weight = 5 # very common, so lower weight
+		modifier = {
+			weight = 1000
+			OR = { # Great Khan Expanded
+				has_civic = civic_barbaric_despoilers
+				has_civic = civic_great_khans_vision # Great Khan Expanded
+				has_valid_civic = civic_nationalistic_zeal # Great Khan Expanded
+			}
+		}
+		modifier = { add = 1 has_ethic = "ethic_fanatic_authoritarian" } # Great Khan Expanded
+		modifier = { add = 4 has_ethic = "ethic_fanatic_militarist" } # Great Khan Expanded
+	}
+}
+
+## Slaving Despots
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+slaving_despots = {
+	aggressiveness = 1.5
+	trade_willingness = 0.8
+	bravery = 1.0 # StarTech 0.5 -> 1.0
+	combat_bravery = 1.0
+
+	military_spending = 1.1
+	colony_spending = 0.9
+
+	federation_acceptance = -10 # StarTech 0 -> -10
+	nap_acceptance = -20
+	commercial_pact_acceptance = 0
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = 0
+	migration_pact_acceptance = -100
+	loyalty_acceptance = 0.25
+
+	advanced_start_chance = 200 # StarTech 50 -> 200
+
+	weapon_preferences = weapon_type_energy # StarTech explosive -> energy
+	armor_ratio = 0.1 # StarTech 0.3 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.4 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.3 -> 0.7
+
+	threat_modifier = 1.0
+	threat_others_modifier = 0.5
+	friction_modifier = 1.0
+	claims_modifier = 2.0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = yes
+		liberator = no
+		opportunist = yes
+		slaver = yes
+		uplifter = no
+		purger = no
+		displacer = no
+		dominator = yes
+		infiltrator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		crisis_fighter = yes
+		sneak_attacker = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = attack_neutrals OPERATOR = "=" VALUE = "yes" } # StarTech
+	}
+
+	ship_roles = {
+		frigate = explosive_stealth
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		has_valid_civic = civic_slaver_guilds
+		OR = { # Bug Branch
+			has_ethic = "ethic_authoritarian"
+			has_ethic = "ethic_fanatic_authoritarian"
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+			has_ethic = "ethic_competitive"
+			has_ethic = "ethic_fanatic_competitive"	
+			has_ethic = "ethic_elitist"
+			has_ethic = "ethic_fanatic_elitist"				
+		}
+		NOR = {
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+			has_ethic = "ethic_xenophile"
+			has_ethic = "ethic_fanatic_xenophile"
+		}
+		NOR = { # Bug Branch
+			has_ethic = "ethic_egalitarian"
+			has_ethic = "ethic_fanatic_egalitarian"
+		}
+	}
+
+	weight_modifier = {
+		weight = 200
+		
+		modifier = { # Bug Branch
+			weight = 1000
+			is_bugged_slaving_despots = yes
+		}		
+	}
+}
+
+## Decadent Hierarchy
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+decadent_hierarchy = {
+	aggressiveness = 0.7 # StarTech 0.5 -> 0.7
+	trade_willingness = 0.9
+	bravery = 1.1 # StarTech 0.5 -> 1.1
+	combat_bravery = 1.0
+
+	military_spending = 1.1
+	colony_spending = 0.9
+
+	federation_acceptance = -30 # StarTech 0 -> -30
+	nap_acceptance = 20
+	commercial_pact_acceptance = 0
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = -10
+	migration_pact_acceptance = -100
+	loyalty_acceptance = 0.5
+
+	advanced_start_chance = 20 # StarTech 10 -> 20
+
+	weapon_preferences = weapon_type_energy # StarTech kinetic -> energy
+	armor_ratio = 0.1 # StarTech 0.3 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.5 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.2 -> 0.7
+
+	threat_modifier = 1.1
+	threat_others_modifier = 0.75
+	friction_modifier = 0.75
+	claims_modifier = 1.5
+
+	behaviour = {
+		conqueror = yes # StarTech no -> yes
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = yes
+		uplifter = no
+		purger = no
+		displacer = no
+		dominator = yes # StarTech no -> yes
+		infiltrator = no # StarTech yes -> no
+		robot_exploiter = yes
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		crisis_fighter = yes
+		sneak_attacker = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech
+	}
+
+	ship_roles = {
+		frigate = explosive_stealth
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		OR = { # Bug Branch
+			has_ethic = "ethic_authoritarian"
+			has_ethic = "ethic_fanatic_authoritarian"
+			has_ethic = "ethic_competitive"
+			has_ethic = "ethic_fanatic_competitive"	
+			has_ethic = "ethic_elitist"
+			has_ethic = "ethic_fanatic_elitist"				
+		}
+		OR = {
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+			has_ethic = "ethic_xenophile"
+			has_ethic = "ethic_fanatic_xenophile"
+		}		
+		OR = { # Bug Branch
+			has_trait = "trait_decadent"
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"			
+		}
+		NOR = { # Bug Branch
+			has_ethic = "ethic_egalitarian"
+			has_ethic = "ethic_fanatic_egalitarian"
+			has_ethic = "ethic_cooperative"
+			has_ethic = "ethic_fanatic_cooperative"				
+		}		
+	}
+
+	weight_modifier = {
+		weight = 200
+	}
+}
+
+## Democratic Crusaders
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+democratic_crusaders = {
+	aggressiveness = 1.5 # StarTech 1.0 -> 1.5
+	trade_willingness = 0.9
+	bravery = 1.25
+	combat_bravery = 1.0
+
+	military_spending = 1.2
+	colony_spending = 1.0
+
+	federation_acceptance = 10 # StarTech 0 -> 10
+	nap_acceptance = 0
+	commercial_pact_acceptance = 0
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = 20
+	migration_pact_acceptance = 0
+	loyalty_acceptance = 2.0
+
+	advanced_start_chance = 300 # StarTech 50 -> 300
+
+	weapon_preferences = weapon_type_explosive # StarTech kinetic -> explosive
+	armor_ratio = 0.1 # StarTech 0.5 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.4 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.1 -> 0.7
+
+	threat_modifier = 1.1
+	friction_modifier = 0.75
+	claims_modifier = 0.75
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = yes
+		opportunist = no
+		slaver = no
+		uplifter = no # StarTech yes -> no
+		purger = no
+		displacer = no
+		dominator = yes # StarTech no -> yes
+		infiltrator = no # StarTech yes -> no
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+	}
+
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		OR = {
+			has_ethic = "ethic_fanatic_egalitarian"
+			has_ethic = "ethic_egalitarian"
+			has_ethic = "ethic_fanatic_pluralist" # Bug Branch
+			has_ethic = "ethic_pluralist" # Bug Branch
+		}
+		OR = {
+			has_ethic = "ethic_militarist"
+			has_ethic = "ethic_fanatic_militarist"
+		}
+		NOR = {
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+		}
+		has_election_type = democratic
+	}
+
+	weight_modifier = {
+		weight = 100
+	}
+}
+
+## Harmonious Hierarchy
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+harmonious_hierarchy = {
+	aggressiveness = 1.2 # StarTech 0.5 -> 1.2
+	trade_willingness = 0.9
+	bravery = 1.25 # StarTech 0.75 -> 1.25
+	combat_bravery = 1.0
+
+	military_spending = 0.8
+	colony_spending = 1.1
+
+	federation_acceptance = 0
+	nap_acceptance = 20
+	commercial_pact_acceptance = 10
+	research_agreement_acceptance = 10
+	defensive_pact_acceptance = 0
+	migration_pact_acceptance = -10
+	loyalty_acceptance = 2.0
+
+	advanced_start_chance = 30 # StarTech 10 -> 30
+
+	weapon_preferences = weapon_type_energy # StarTech explosive -> energy
+	armor_ratio = 0.1 # StarTech 0.6 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.4 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.0 -> 0.7
+
+	threat_modifier = 0.75
+	threat_others_modifier = 0.9
+	friction_modifier = 0.5
+	claims_modifier = 0.75
+
+	behaviour = {
+		conqueror = yes # StarTech no -> yes
+		subjugator = no
+		liberator = no
+		opportunist = no
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		dominator = yes # StarTech no -> yes
+		infiltrator = no # StarTech yes -> no
+		robot_exploiter = yes
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		NOR = {
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+			has_ethic = "ethic_militarist"
+			has_ethic = "ethic_fanatic_militarist"
+		}
+		OR = {
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+			has_ethic = "ethic_spiritualist" # Bug Branch
+			has_ethic = "ethic_fanatic_spiritualist" # Bug Branch
+		}
+		OR = {
+			has_ethic = "ethic_authoritarian"
+			has_ethic = "ethic_fanatic_authoritarian"
+			has_ethic = "ethic_elitist" # Bug Branch
+			has_ethic = "ethic_fanatic_elitist"	# Bug Branch	
+		}
+	}
+
+	weight_modifier = {
+		weight = 10
+		modifier = {
+			add = 1
+			has_trait = "trait_conformists"
+		}
+		modifier = {
+			add = 1
+			has_election_type = none
+		}
+		modifier = { # Bug Branch
+			add = 2
+			has_valid_civic = "civic_bugged_immutable_hierarchy"
+		}		
+	}
+}
+
+## Federation Builders
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+federation_builders = {
+	aggressiveness = 1.00 # StarTech 0.75 -> 1.00
+	trade_willingness = 0.95
+	bravery = 0.9 # StarTech 1.25 -> 0.9
+	combat_bravery = 1.0
+
+	military_spending = 1.0
+	colony_spending = 1.0
+
+	federation_acceptance = 20 # StarTech 0 -> 20
+	nap_acceptance = 25
+	commercial_pact_acceptance = 15
+	research_agreement_acceptance = 15
+	defensive_pact_acceptance = 25
+	migration_pact_acceptance = 10
+	loyalty_acceptance = 2.0
+
+	advanced_start_chance = 30 # StarTech 25 -> 30
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.1 # StarTech 0.3 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.6 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.1 -> 0.7
+
+	threat_modifier = 1.2
+	threat_others_modifier = 0.9
+	friction_modifier = 0.25
+	claims_modifier = 0.75
+
+	behaviour = {
+		conqueror = yes # StarTech no -> yes
+		subjugator = no
+		liberator = yes
+		opportunist = yes
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		dominator = yes # StarTech no -> yes
+		infiltrator = no
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		NOR = {
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+			has_ethic = "ethic_authoritarian"
+			has_ethic = "ethic_fanatic_authoritarian"
+			has_ethic = "ethic_militarist"
+			has_ethic = "ethic_fanatic_militarist"
+		}
+		OR = {
+			has_ethic = "ethic_fanatic_xenophile"
+			has_ethic = "ethic_fanatic_egalitarian"
+			AND = {
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+				OR = {
+					has_ethic = "ethic_egalitarian"
+					has_ethic = "ethic_fanatic_egalitarian"
+				}
+			}
+			AND = {
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+				OR = {
+					has_ethic = "ethic_materialist"
+					has_ethic = "ethic_fanatic_materialist"
+				}
+			}
+			AND = {
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+				OR = {
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile"
+				}
+			}
+			AND = {
+				OR = {
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile"
+				}
+				OR = {
+					has_ethic = "ethic_egalitarian"
+					has_ethic = "ethic_fanatic_egalitarian"
+				}
+			}
+			AND = { # Bug Branch
+				OR = {
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile"
+				}
+				OR = {
+					has_ethic = "ethic_pluralist"
+					has_ethic = "ethic_fanatic_pluralist"
+				}
+			}
+			AND = { # Bug Branch
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+				OR = {
+					has_ethic = "ethic_pluralist"
+					has_ethic = "ethic_fanatic_pluralist"
+				}
+			}			
+		}
+	}
+
+	weight_modifier = {
+		weight = 5 # very common, so lower weight
+	}
+}
+
+## Xenophobic Isolationists
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+xenophobic_isolationists = {
+	aggressiveness = 0.02 # StarTech 0.5 -> 0.02
+	trade_willingness = 0.5
+	bravery = 0.75
+	combat_bravery = 1.0
+
+	military_spending = 1.2
+	colony_spending = 1.0
+
+	federation_acceptance = -50 # StarTech 0 -> -50
+	nap_acceptance = 20
+	commercial_pact_acceptance = -20
+	research_agreement_acceptance = -20
+	defensive_pact_acceptance = -20
+	migration_pact_acceptance = -100
+	loyalty_acceptance = 0.25
+
+	advanced_start_chance = 10
+
+	weapon_preferences = weapon_type_explosive
+	armor_ratio = 0.1 # StarTech 0.3 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.6 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.1 -> 0.7
+
+	threat_modifier = 0.75
+	threat_others_modifier = 0.75
+	friction_modifier = 2.0
+	claims_modifier = 5.0
+
+	behaviour = {
+		conqueror = yes # StarTech no -> yes
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = no
+		purger = no
+		displacer = yes
+		dominator = yes # StarTech no -> yes
+		infiltrator = no
+		robot_exploiter = yes
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		isolationist = yes
+		crisis_fighter = yes
+		wants_tribute = no # StarTech yes -> no
+		sneak_attacker = yes
+	}
+
+	ship_roles = {
+		frigate = explosive_stealth
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		OR = {
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+		}
+		OR = {
+			has_ethic = "ethic_xenophobe"
+			has_ethic = "ethic_fanatic_xenophobe"
+		}
+	}
+
+	weight_modifier = {
+		weight = 10
+		modifier = {
+			add = -2
+			NOT = {
+				has_ethic = "ethic_pacifist"
+				has_ethic = "ethic_fanatic_pacifist"
+			}
+		}
+		modifier = {
+			add = 2
+			OR = {
+				has_ethic = "ethic_pacifist"
+				has_ethic = "ethic_fanatic_pacifist"
+			}
+		}
+		modifier = {
+			add = 1
+			has_trait = "trait_repugnant"
+		}
+		modifier = {
+			add = 1
+			has_trait = "trait_sedentary"
+		}
+		modifier = {
+			add = -1
+			has_trait = "trait_nomadic"
+		}
+		modifier = {
+			add = -1
+			has_trait = "trait_charismatic"
+		}
+		modifier = {
+			add = 10 # Bug Branch 1,000 -> 10
+			is_inwards_perfection_empire = yes # STU
+		}
+	}
+}
+
+## Fanatic Purifiers
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+fanatic_purifiers = {
+	aggressiveness = 2.0
+	trade_willingness = 0.5
+	bravery = 1.5 # StarTech 1.0 -> 1.5
+	combat_bravery = 1.25
+
+	military_spending = 1.2
+	colony_spending = 1.2
+
+	federation_acceptance = -1000
+	migration_pact_acceptance = -1000
+	loyalty_acceptance = 0.25
+
+	advanced_start_chance = 400 # StarTech 100 -> 400
+
+	weapon_preferences = weapon_type_explosive # StarTech kinetic -> explosive
+	armor_ratio = 0.1 # StarTech 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.5 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.1 -> 0.7
+
+	threat_modifier = 0
+	threat_others_modifier = 0
+	friction_modifier = 0
+	claims_modifier = 0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = yes
+		uplifter = no
+		purger = yes
+		displacer = no
+		dominator = yes
+		infiltrator = no
+		robot_exploiter = yes
+		robot_liberator = no
+		propagator = no
+		multispecies = no #lol
+		crisis_fighter = no
+		attack_neutrals = yes
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		OR = {
+			AND = {
+				NOT = { host_has_dlc = "Utopia" }
+				has_ethic = "ethic_militarist"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+			AND = {
+				host_has_dlc = "Utopia"
+				has_valid_civic = "civic_fanatic_purifiers"
+			}
+		}
+	}
+
+	weight_modifier = {
+		weight = 1000
+	}
+}
+
+## Hive Mind
+# Merge between OSA, Bug Branch, RS:NF, Expanded Gestalts, StarTech, Scripted Trigger Undercoat
+hive_mind = {
+	aggressiveness = 2.0	# only attack if they can't expand peacefully
+	trade_willingness = 0.7
+	bravery = 1.5 # StarTech 1.0 -> 1.5
+	combat_bravery = 1.0
+
+	military_spending = 1.0
+	colony_spending = 1.2
+
+	federation_acceptance = -50 # StarTech 0 -> -50
+	nap_acceptance = -10
+	commercial_pact_acceptance = 0
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = -10
+	migration_pact_acceptance = -100
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 30 # StarTech 75 -> 30
+
+	weapon_preferences = weapon_type_explosive # StarTech kinetic -> explosive
+	armor_ratio = 0.1 # StarTech 0.2 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.4 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.4 -> 0.7
+
+	threat_modifier = 0.75
+	threat_others_modifier = 0.5
+	friction_modifier = 1.5
+	claims_modifier = 1.5
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = yes
+		uplifter = no
+		purger = no
+		displacer = yes
+		dominator = yes # StarTech no -> yes
+		infiltrator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = yes
+		multispecies = no
+		crisis_fighter = yes
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		is_hive_empire = yes # STU
+		NOR = { # Expanded Gestalts
+			has_valid_civic = civic_hive_devouring_swarm 
+			has_valid_civic = civic_hive_parasitic # Expanded Gestalts
+		}
+	}
+
+	weight_modifier = {
+		weight = 1000
+	}
+}
+
+## Devouring Swarm
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+devouring_swarm = {
+	aggressiveness = 3.0
+	trade_willingness = 0.0
+	bravery = 1.4 # StarTech 1.1 -> 1.4
+	combat_bravery = 1.25
+
+	military_spending = 1.2
+	colony_spending = 1.2
+
+	federation_acceptance = -1000
+	nap_acceptance = -1000
+	commercial_pact_acceptance = -1000
+	research_agreement_acceptance = -1000
+	defensive_pact_acceptance = -1000
+	migration_pact_acceptance = -1000
+	loyalty_acceptance = 0.25
+
+	advanced_start_chance = 400 # StarTech 100 -> 400
+
+	weapon_preferences = weapon_type_strike_craft
+	armor_ratio = 0.1 # StarTech 0.2 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.4 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.4 -> 0.7
+
+	threat_modifier = 0
+	threat_others_modifier = 0
+	friction_modifier = 0
+	claims_modifier = 0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = no
+		purger = yes
+		displacer = no
+		dominator = yes
+		infiltrator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		crisis_fighter = no
+		attack_neutrals = yes
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		is_hive_empire = yes # STU
+		has_valid_civic = civic_hive_devouring_swarm
+	}
+
+	weight_modifier = {
+		weight = 1000
+	}
+}
+
+## Migrating Flock
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Ariphaos, Scripted Trigger Undercoat
+migrating_flock = {
+	aggressiveness = 0.15 # StarTech 0.25 -> 0.15
+	trade_willingness = 1.1
+	bravery = 0.5
+	combat_bravery = 1.0
+
+	military_spending = 0.8
+	colony_spending = 1.2
+
+	federation_acceptance = 20 # StarTech 0 -> 20
+
+	advanced_start_chance = 10
+	nap_acceptance = 20
+	commercial_pact_acceptance = 20
+	research_agreement_acceptance = 20
+	defensive_pact_acceptance = 0
+	migration_pact_acceptance = 100
+	loyalty_acceptance = 0.5
+
+	weapon_preferences = weapon_type_strike_craft
+	armor_ratio = 0.1 # StarTech 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.4 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.2 -> 0.7
+
+	threat_modifier = 1.1
+	threat_others_modifier = 1.1
+	friction_modifier = 0
+	claims_modifier = 0.5
+
+	behaviour = {
+		conqueror = yes # StarTech no -> yes
+		subjugator = no
+		liberator = no
+		opportunist = no
+		slaver = no
+		uplifter = no # StarTech yes -> no
+		purger = no
+		displacer = no
+		dominator = yes # StarTech no -> yes
+		infiltrator = no # StarTech yes -> no
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		sneak_attacker = yes
+	}
+
+	ship_roles = {
+		frigate = explosive_stealth
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		OR = {
+			has_ethic = "ethic_xenophile"
+			has_ethic = "ethic_fanatic_xenophile"
+		}
+		OR = {
+			has_ethic = "ethic_pacifist"
+			has_ethic = "ethic_fanatic_pacifist"
+		}
+		OR = {
+			ariphaos_patch_is_rapid_breeder = yes # Ariphaos
+			ariphaos_patch_is_nomadic = yes # Ariphaos
+		}
+	}
+
+	weight_modifier = {
+		weight = 50
+	}
+}
+
+## Metalhead
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Ariphaos, Scripted Trigger Undercoat
+metalhead = {
+	aggressiveness = 10.0
+	trade_willingness = 0.0
+	bravery = 10.0
+	combat_bravery = 10.0
+
+	military_spending = 1.2
+	colony_spending = 1.2
+
+	federation_acceptance = -1000
+	nap_acceptance = -1000
+	commercial_pact_acceptance = -1000
+	research_agreement_acceptance = -1000
+	defensive_pact_acceptance = -1000
+	migration_pact_acceptance = -1000
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 20 # StarTech 100 -> 20
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.1 # StarTech 0.5 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.0 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.5 -> 0.7
+
+	threat_modifier = 0
+	threat_others_modifier = 0
+	friction_modifier = 0
+	claims_modifier = 0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = no
+		slaver = no
+		opportunist = yes
+		uplifter = no
+		purger = yes
+		displacer = no
+		dominator = yes
+		infiltrator = no
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = no
+		multispecies = no
+		crisis_fighter = no
+		attack_neutrals = yes
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		has_ethic = "ethic_militarist"
+		has_ethic = "ethic_materialist"
+		has_ethic = "ethic_xenophobe"
+		ariphaos_patch_is_industrious = yes # Ariphaos
+		ariphaos_patch_is_strong = yes # Ariphaos
+		OR = { # Ariphaos
+			is_megacorp = no # LS - merged and inverted
+			has_valid_civic = civic_criminal_heritage
+		}
+	}
+
+	weight_modifier = {
+		weight = 1000
+	}
+}
+
+## Machine Intelligence
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+machine_intelligence = {
+	aggressiveness = 1.5 # StarTech 1.0 -> 1.5
+	trade_willingness = 0.8
+	bravery = 1.5 # StarTech 1.0 -> 1.5
+	combat_bravery = 1.0
+
+	military_spending = 1.0
+	colony_spending = 1.2
+
+	federation_acceptance = -30 # StarTech 0 -> -30
+	nap_acceptance = 0
+	commercial_pact_acceptance = 0
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = 0
+	loyalty_acceptance = 1.0
+
+	advanced_start_chance = 20 # StarTech 50 -> 20
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.1 # StarTech 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.4 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.2 -> 0.7
+
+	threat_modifier = 0.75
+	threat_others_modifier = 0.5
+	friction_modifier = 1.25
+	claims_modifier = 1.25
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = yes
+		uplifter = no
+		purger = no
+		displacer = yes
+		dominator = yes # StarTech no -> yes
+		infiltrator = no # StarTech yes -> no
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = no
+		multispecies = no
+		crisis_fighter = yes
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		is_machine_empire = yes # STU
+		NOR = {
+			is_servitor_empire = yes # STU
+			is_machine_assimilator = yes # STU
+			has_valid_civic = "civic_machine_terminator"
+		}
+	}
+
+	weight_modifier = {
+		weight = 1000
+	}
+}
+
+## Assimilators
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+assimilators = {
+	aggressiveness = 2.0	# only attack if they can't expand peacefully
+	trade_willingness = 0.5
+	bravery = 1.4 # StarTech 0.8 -> 1.4
+	combat_bravery = 1.0
+
+	military_spending = 1.2
+	colony_spending = 1.2
+
+	federation_acceptance = -50 # StarTech 0 -> -50
+	#loyalty_acceptance = 1.0 # StarTech removes this
+
+	advanced_start_chance = 400 # StarTech 100 -> 400
+
+	weapon_preferences = weapon_type_explosive # kinetic -> explosive
+	armor_ratio = 0.1 # StarTech 0.5 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.3 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.2 -> 0.7
+
+	threat_modifier = 0.75
+	threat_others_modifier = 0.5
+	friction_modifier = 1.25
+	claims_modifier = 2.0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = no
+		purger = no
+		displacer = no
+		dominator = yes
+		infiltrator = no
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = yes
+		multispecies = no
+		crisis_fighter = yes
+		sneak_attacker = yes
+	}
+
+	ship_roles = {
+		frigate = explosive_stealth
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		AND = {
+			host_has_dlc = "Synthetic Dawn Story Pack"
+			is_machine_assimilator = yes # STU
+		}
+	}
+
+	weight_modifier = {
+		weight = 1000
+	}
+}
+
+## Exterminators
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+exterminators = {
+	aggressiveness = 2.0
+	trade_willingness = 1.0	# But only with fellow machines
+	bravery = 1.5 # StarTech 1.0 -> 1.5
+	combat_bravery = 1.5
+
+	military_spending = 1.2
+	colony_spending = 1.2
+
+	advanced_start_chance = 40 # StarTech 100 -> 40
+
+	loyalty_acceptance = 0.25
+
+	weapon_preferences = weapon_type_explosive
+	armor_ratio = 0.1 # StarTech 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.5 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.1 -> 0.7
+
+	threat_modifier = 0
+	threat_others_modifier = 0
+	friction_modifier = 0
+	claims_modifier = 0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = no
+		purger = yes
+		displacer = no
+		dominator = yes
+		infiltrator = no
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = no
+		multispecies = no
+		crisis_fighter = no
+		attack_neutrals = yes
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		AND = {
+			host_has_dlc = "Synthetic Dawn Story Pack"
+			has_valid_civic = "civic_machine_terminator"
+		}
+	}
+
+	weight_modifier = {
+		weight = 1000
+	}
+}
+
+## Servitors
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+servitors = {
+	aggressiveness = 0.75
+	trade_willingness = 0.9
+	bravery = 1.25
+	combat_bravery = 1.0
+
+	military_spending = 1.1
+	colony_spending = 1.1
+
+	federation_acceptance = 0
+	nap_acceptance = 0
+	commercial_pact_acceptance = 0
+	research_agreement_acceptance = 0
+	defensive_pact_acceptance = 0
+	loyalty_acceptance = 2.0
+
+	advanced_start_chance = 30 # StarTech 25 -> 30
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.4
+	shields_ratio = 0.6
+	hull_ratio = 0.0
+
+	threat_modifier = 0.75
+	threat_others_modifier = 0.75
+	friction_modifier = 0
+	claims_modifier = 0.75
+
+	behaviour = {
+		conqueror = yes
+		subjugator = yes
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		dominator = yes # StarTech no -> yes
+		infiltrator = yes
+		robot_exploiter = no
+		robot_liberator = yes
+		propagator = no
+		multispecies = no
+		crisis_fighter = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		AND = {
+			host_has_dlc = "Synthetic Dawn Story Pack"
+			is_servitor_empire = yes # STU
+		}
+	}
+
+	weight_modifier = {
+		weight = 100
+	}
+}
+
+## Fanatic Befrienders
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+fanatic_befrienders = {
+	aggressiveness = 2.0
+	trade_willingness = 1.0
+	bravery = 1.5
+	combat_bravery = 1.0
+
+	military_spending = 1.2
+	colony_spending = 1.0
+
+	federation_acceptance = 50 # StarTech 0 -> 50
+	nap_acceptance = 50
+	commercial_pact_acceptance = 50
+	research_agreement_acceptance = 50
+	defensive_pact_acceptance = 50
+	migration_pact_acceptance = 50
+	loyalty_acceptance = 2.0
+
+	advanced_start_chance = 30 # StarTech 25 -> 30
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.1 # StarTech 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.5 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.1 -> 0.7
+
+	threat_modifier = 0.5
+	threat_others_modifier = 0.75
+	friction_modifier = 0
+	claims_modifier = 0.25
+
+	behaviour = {
+		conqueror = yes
+		subjugator = yes
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = yes
+		purger = no
+		displacer = no
+		dominator = yes # StarTech no -> yes
+		infiltrator = no # StarTech yes -> no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech
+	}
+
+	allow = {
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		has_ethic = "ethic_militarist"
+		has_ethic = "ethic_fanatic_xenophile"
+		has_trait = "trait_repugnant"
+		has_trait = "trait_solitary"
+		has_trait = "trait_venerable"
+	}
+
+	weight_modifier = {
+		weight = 100
+	}
+}
+
+## Became the Crisis
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+became_the_crisis = {
+	aggressiveness = 2.0
+	trade_willingness = 0.5
+	bravery = 1.0
+	combat_bravery = 2.0
+
+	military_spending = 2.0
+	colony_spending = 0.5
+
+	advanced_start_chance = 100
+
+	loyalty_acceptance = 0.25
+
+	weapon_preferences = weapon_type_energy # StarTech explosive -> energy
+	armor_ratio = 0.1 # StarTech 0.4 -> 0.1
+	shields_ratio = 0.2 # StarTech 0.5 -> 0.2
+	hull_ratio = 0.7 # StarTech 0.1 -> 0.7
+
+	threat_modifier = 0
+	threat_others_modifier = 0
+	friction_modifier = 0
+	claims_modifier = 0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = yes
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = no
+		purger = yes
+		displacer = no
+		dominator = yes
+		infiltrator = no
+		robot_exploiter = yes
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		crisis_fighter = no
+		attack_neutrals = yes
+	}
+
+	allow = {
+		has_nemesis = yes
+		OR = { # RS:NF
+			is_playable = yes # STU
+			is_country_type = ark # RS:NF
+		}
+		has_ascension_perk = "ap_become_the_crisis"
+	}
+
+	weight_modifier = {
+		weight = 10000
+	}
+
+	ai_module_overrides = {
+		player_crisis_foreign_minister_module
+		player_crisis_military_minister_module
+	}
+}
+
+## Imperial Origin Overlord (AI)
+# Merge between OSA, Bug Branch, RS:NF, StarTech, Scripted Trigger Undercoat
+imperial_origin_overlord_ai = {
+	aggressiveness = 0.1
+	trade_willingness = 0.25
+	bravery = 0.5
+	combat_bravery = 0.5
+
+	military_spending = 1.0
+	colony_spending = 0.5
+
+	loyalty_acceptance = 0.5
+
+	behaviour = {
+		conqueror = no
+		subjugator = no
+		liberator = no
+		opportunist = no
+		slaver = no
+		uplifter = no
+		purger = no
+		displacer = no
+		dominator = yes # StarTech no -> yes
+		infiltrator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = no
+		crisis_fighter = yes
+		crisis_leader = no
+		attack_neutrals = no
+		inline_script = { script = "str_universal/str_universal_insert_operation" PROPERTY = wants_tribute OPERATOR = "=" VALUE = "yes" } # StarTech
+	}
+
+	allow = {
+		is_vassal_origin_overlord = yes # STU
+	}
+
+	weight_modifier = {
+		weight = 10000
+	}
+}
