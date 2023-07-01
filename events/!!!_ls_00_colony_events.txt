@@ -1,0 +1,144 @@
+##########################################################################
+# Limitless Stellaris - Events
+##########################################################################
+
+namespace = colony
+
+##################################################
+## Colony Events
+##################################################
+
+## Colony 180 - Asteroid Sighted Starting Event
+# Merge between Rapid Evolution, Ariphaos, Scripted Trigger Undercoat.
+# Intentionally left all pre-triggers since this event was interfering with AI heavily, since they do not send fleets at the asteroid.
+planet_event = {
+	id = colony.180
+	title = "colony.180.name"
+	desc = "colony.180.desc"
+	picture = GFX_evt_asteroid_approaching_planet
+	show_sound = event_air_raid_siren
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		num_pops > 0
+		years_passed < 50
+		NOR = {
+			is_artificial = yes # STU
+			has_planet_flag = asteroid_sighted
+			has_planet_flag = asteroid_collision
+			has_global_flag = asteroid_sighted_global
+			owner = { has_country_flag = asteroid_sighted_country }
+		}
+		OR = { # Rapid Evolution
+			has_planet_flag = re_trigger_asteroid_events
+			NOR = {
+				is_homeworld = yes
+				original_owner = no
+				owner = { is_ai = yes }
+				is_capital = yes
+				has_planet_flag = asteroid_collision
+				has_global_flag = asteroid_sighted_global
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			set_country_flag = asteroid_sighted_country
+		}
+		set_global_flag = asteroid_sighted_global
+		set_planet_flag = asteroid_sighted
+		create_country = {
+			name = "NAME_Incoming_Asteroid"
+			type = faction
+			auto_delete = no
+			flag = {
+				icon = {
+					category = "zoological"
+					file = "flag_zoological_1.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "new_dawn.dds"
+				}
+				colors={
+					"black"
+					"black"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				establish_communications_no_message = root.owner
+			}
+		}
+		last_created_country = {
+			set_country_flag = incoming_asteroid
+			create_fleet = {
+				name = "NAME_Asteroid"
+				effect = {
+					set_aggro_range = 0
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_owner = PREV
+					set_fleet_flag = asteroid_fleet
+					save_event_target_as = asteroid_fleet_target
+					create_ship = {
+						name = "NAME_Asteroid"
+						design = "NAME_Asteroid"
+					}
+					set_location = {
+						target = ROOT
+						distance = 75
+						angle = random
+					}
+					queue_actions = {
+						move_to = ROOT
+						effect = {
+							id = "colony.180.effect.1.re" # Rapid Evolution
+							ROOT = {
+								planet_event = { id = colony.183 }
+							}
+						}
+					}
+				}
+			}
+			set_relation_flag = {
+				who = root.owner
+				flag = asteroid_enemy
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			owner = { is_machine_empire = no }
+		}
+		name = colony.180.a
+		begin_event_chain = {
+			event_chain = "asteroid_sighted_chain"
+			target = root.owner
+		}
+	}
+
+	option = {
+		trigger = { owner = { is_machine_empire = yes } }
+		name = colony.180.b
+		begin_event_chain = {
+			event_chain = "asteroid_sighted_chain"
+			target = root.owner
+		}
+	}
+}
