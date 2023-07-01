@@ -1,0 +1,440 @@
+##########################################################################
+# Limitless Stellaris - Static Modifiers
+##########################################################################
+
+##################################################
+## Empire Modifiers
+##################################################
+
+## Empire Base
+# Vanilla version with some minor adjustments.
+empire_base = {
+	max_rivalries = 3
+	country_occupation_armies_add = 3
+	local_trade_protection_add = 2
+	country_power_projection_influence_produces_add = 2
+	country_edict_fund_add = 30 # LS 10 -> 30 [Balance] - Edicts are generally more expensive, so we compensate with a base increase to funds.
+	COUNTRY_NAVAL_COVERAGE_MULT = 1
+}
+
+## Empire Size
+# Using OSA version.
+empire_size = {
+	planet_structures_energy_upkeep_mult = 0.0015
+	planet_structures_minerals_upkeep_mult = 0.0015
+	planet_structures_food_upkeep_mult = 0.0015
+	leaders_upkeep_mult = 0.0005
+	planet_pops_upkeep_mult = 0.0005
+}
+
+## Navy Coverage Shortage (1 - NavySize / Sprawl), clamped 0-1.
+# Using OSA version.
+navy_coverage_shortage = {
+	country_power_projection_unity_produces_mult = -1.5
+	country_power_projection_influence_produces_mult = -1.5
+	country_power_projection_physics_research_produces_mult = -1.5
+	country_power_projection_society_research_produces_mult = -1.5
+	country_power_projection_engineering_research_produces_mult = -1.5
+	country_power_projection_consumer_goods_produces_mult = -1.5
+}
+
+## Fallen Empire Base
+# Using ACOT Defines version.
+fallen_empire_base = {
+	starbases_upkeep_mult = -0.5
+	ships_upkeep_mult = -0.5
+	country_naval_cap_add = 1000 # ACOT 100 -> 1,000
+	country_resource_max_add = 100000
+	country_occupation_armies_add = 10 # ACOT 3 -> 10
+	add_base_country_intel = 20 #50 total with tech bonuses
+}
+
+##################################################
+## Generated Planet Modifiers
+##################################################
+
+## Asteroid Belt
+# Merge between GPM, Subtle Polish
+asteroid_belt = {
+	planet_miners_produces_mult = 0.10 # Subtle Polish
+	planet_jobs_minerals_produces_mult = 0.20 # GPM 0.10 -> 0.20
+	district_mining_max = 3
+	station_gatherers_produces_mult = 0.10 # Subtle Polish
+	icon = "gfx/interface/icons/planet_modifiers/pm_asteroid_belt.dds"
+	icon_frame = 1
+}
+
+## Asteroid Impacts
+# Using Subtle Polish version.
+asteroid_impacts = {
+	pop_environment_tolerance = -0.05
+	planet_miners_produces_mult = 0.05 # Subtle Polish
+	planet_jobs_minerals_produces_mult = 0.05
+	station_gatherers_produces_mult = 0.05 # Subtle Polish
+	district_mining_max = 2
+
+	icon = "gfx/interface/icons/planet_modifiers/pm_asteroid_impacts.dds"
+	icon_frame = 2
+}
+
+## Carbon World
+# Merge between GPM, Subtle Polish
+carbon_world = {
+	planet_jobs_minerals_produces_mult = 0.15
+	planet_miners_produces_mult = 0.15 # Subtle Polish
+	station_gatherers_produces_mult = 0.15 # Subtle Polish
+	district_mining_max = 2 # GPM
+	icon = "gfx/interface/icons/planet_modifiers/pm_carbon_world.dds"
+	icon_frame = 1
+}
+
+## Coreless Planet
+# Using Real Space: New Frontiers version.
+# Ignoring Gigastructural Engineering one which has a different icon and no modifiers.
+coreless_planet = {
+	planet_jobs_minerals_produces_mult = -0.50 # Real Space: New Frontiers
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_coreless_planet.dds"
+	icon_frame = 3
+}
+
+## Death World
+# Merge between Real Space: New Frontiers, Extra Origins
+death_world = {
+	#pop_environment_tolerance = -0.25 # Extra Origins
+	pop_environment_tolerance = -0.10 # Real Space: New Frontiers
+	army_starting_experience_add = 250 # Extra Origins
+	planet_jobs_society_research_produces_mult = 0.10 # Extra Origins
+	pop_growth_speed = -0.50 # Real Space: New Frontiers
+	planet_immigration_pull_mult = -0.30 # Real Space: New Frontiers
+	planet_pops_robotics_upkeep_mult = 0.30 # Real Space: New Frontiers
+	planet_jobs_robotic_produces_mult = -0.30 # Real Space: New Frontiers
+
+	# Real Space: New Frontiers Icon
+	icon = "gfx/interface/icons/planet_modifiers/pm_death_world.dds"
+	icon_frame = 3
+}
+
+## Exofungus
+# Using Planetary Decision Build Speed version.
+exofungus = {
+	planet_building_build_speed_mult = -0.20
+	planet_decision_enact_speed_mult = -0.20 # Planetary Decision Build Speed
+	pop_environment_tolerance = -0.10
+	planet_jobs_society_research_produces_mult = 0.33
+	icon = "gfx/interface/icons/planet_modifiers/pm_unstable_tectonics.dds"
+	icon_frame = 3
+}
+
+## Extensive Moon System
+# Added Subtle Polish modifier to Vanilla version.
+extensive_moon_system = {
+	planet_jobs_minerals_produces_mult = 0.10 # Vanilla
+	station_gatherers_produces_mult = 0.10 # Subtle Polish
+	district_mining_max = 2 # Vanilla
+
+	icon = "gfx/interface/icons/planet_modifiers/pm_extensive_moon_system.dds"
+	icon_frame = 1
+}
+
+## Hazardous Weather
+# Using GPM version with some adjustments.
+hazardous_weather = {
+	pop_environment_tolerance = -0.10
+	#pop_happiness = -0.05 # GPM removes this modifier
+	planet_jobs_energy_produces_mult = 0.20
+	district_generator_max = 4 # Vanilla, GPM uses 2 but is being ignored
+
+	icon = "gfx/interface/icons/planet_modifiers/pm_hazardous_weather.dds"
+	icon_frame = 2
+}
+
+## High Gravity
+# Using GPM version with some adjustments.
+high_gravity = {
+	planet_jobs_alloys_produces_mult = 0.05 # GPM
+	planet_buildings_cost_mult = 0.1 # Vanilla
+	planet_districts_cost_mult = 0.1 # Vanilla
+	pop_environment_tolerance = -0.05 # Vanilla, GPM changes to -0.10 but is being ignored
+	planet_max_districts_add = 2 # Vanilla
+	district_mining_max = -2 # GPM
+
+	icon = "gfx/interface/icons/planet_modifiers/pm_high_gravity.dds"
+	icon_frame = 2
+}
+
+## Living Sea
+# Merge between Planetary Decision Build Speed, Real Space: New Frontiers
+living_sea = {
+	pop_environment_tolerance = 0.25
+	planet_jobs_society_research_produces_mult = 0.10
+	planet_jobs_physics_research_produces_mult = 0.10
+	planet_jobs_engineering_research_produces_mult = 0.10
+	pop_government_ethic_attraction = -0.25
+	planet_building_build_speed_mult = -0.25
+	planet_decision_enact_speed_mult = -0.25 # Planetary Decision Build Speed
+
+	# Real Space: New Frontiers Icon
+	icon = "gfx/interface/icons/planet_modifiers/pm_living_sea.dds"
+	icon_frame = 2
+}
+
+## Low Gravity
+# Using GPM version.
+low_gravity = {
+	planet_buildings_cost_mult = -0.1
+	planet_jobs_minerals_produces_mult = 0.05 # GPM
+	#pop_environment_tolerance = -0.05 # GPM removes this
+	district_mining_max = 2 # GPM
+
+	icon = "gfx/interface/icons/planet_modifiers/pm_low_gravity.dds"
+	icon_frame = 1 # GPM 2 -> 1
+}
+
+## Mastery of Nature
+# Use Masters of Nature version with vanilla districts returned.
+mastery_of_nature = {
+	pop_environment_tolerance = 0.1 # Masters of Nature
+	planet_max_districts_add = 2 # Vanilla
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_mastery_of_nature.dds"
+	icon_frame = 1
+}
+
+## Mineral Poor
+# Merge between GPM, Subtle Polish
+mineral_poor = {
+	planet_miners_produces_mult = -0.25 # Subtle Polish
+	planet_jobs_minerals_produces_mult = -0.25
+	planet_miners_minerals_produces_add = -1 # GPM
+	station_gatherers_produces_mult = -0.25 # Subtle Polish
+	district_mining_max = -3
+
+	icon = "gfx/interface/icons/planet_modifiers/pm_mineral_poor.dds"
+	icon_frame = 3
+}
+
+## Mineral Rich
+# Merge between GPM, Subtle Polish
+mineral_rich = {
+	planet_miners_produces_mult = 0.15 # Subtle Polish
+	planet_jobs_minerals_produces_mult = 0.15
+	planet_miners_minerals_produces_add = 1 # GPM
+	station_gatherers_produces_mult = 0.15 # Subtle Polish
+	district_mining_max = 4 # Vanilla. GPM changes to 2, but is being ignored
+
+	icon = "gfx/interface/icons/planet_modifiers/pm_mineral_rich.dds"
+	icon_frame = 1
+}
+
+## Ultra Rich
+# Merge between GPM, Subtle Polish
+ultra_rich = {
+	planet_miners_produces_mult = 0.25 # Subtle Polish
+	planet_miners_minerals_produces_add = 2 # GPM
+	planet_jobs_minerals_produces_mult = 0.25
+	station_gatherers_produces_mult = 0.25 # Subtle Polish
+	district_mining_max = 8 # GPM reduces to 4, but it's being ignored
+
+	icon = "gfx/interface/icons/planet_modifiers/pm_ultra_rich.dds"
+	icon_frame = 1
+}
+
+##################################################
+## Leader Skill Modifiers
+##################################################
+
+## Admiral Skill
+# Merge between ACOT, Plentiful Perks
+skill_admiral = {
+	ship_fire_rate_mult = 0.02 # ACOT 0.03 -> 0.02
+	ship_weapon_damage = 0.02 # ACOT
+	command_limit_add = 10 # Plentiful Perks
+	ship_disengage_opportunities_add = 0.2
+}
+
+## General Skill
+# Using ACOT version
+skill_general = {
+	army_damage_mult = 0.10 # ACOT 0.05 -> 0.10
+	army_health = 0.1 # ACOT
+	army_morale = 0.1 # ACOT
+	army_morale_damage_mult = 0.1 # ACOT
+}
+
+## Scientist Skill
+# Using ACOT version
+skill_scientist = {
+	all_technology_research_speed = 0.02 # ACOT
+	science_ship_survey_speed = 0.05 # ACOT 0.10 -> 0.05
+	ship_archaeological_site_clues_add = 1
+	ship_evasion_add = 2.5 # ACOT
+}
+
+## Governor Skill
+# Using ACOT version
+skill_governor = {
+	planet_jobs_produces_mult = 0.025 # ACOT 0.02 -> 0.025
+	species_empire_size_mult = -0.025 # ACOT 0.02 -> 0.025
+	planet_crime_add = -5 # ACOT -3 -> -5
+	planet_amenities_add = 5 # ACOT
+}
+
+## Ruler Skill
+# Using OSA version
+skill_ruler = {
+	country_edict_fund_add = 10
+	country_unity_produces_mult = 0.03
+}
+
+##################################################
+## Difficulty Modifiers
+##################################################
+
+## OSA difficulty modifiers. They're overwritten by another mod, so I'm replacing them here so they take priority.
+# For playable empires
+difficulty_grand_admiral = {
+	stations_produces_mult = 1
+	country_unity_produces_mult = 2.5
+	country_power_projection_produces_mult = 2.5
+	country_engineering_research_produces_mult = 2.5
+	country_society_research_produces_mult = 2.5
+	country_physics_research_produces_mult = 2.5
+	planet_pop_assembly_mult  = 0.5
+	planet_pop_assembly_organic_mult = 0.5
+	pop_growth_speed = 0.5
+	planet_jobs_produces_mult = 1
+	country_naval_cap_mult = 0.6
+	ships_upkeep_mult = -0.4
+	starbase_shipyard_build_cost_mult = -0.4
+	pop_resettlement_cost_mult = -1.0
+	planet_stability_add = 20
+	trade_value_mult = 1.0
+	difficulty_modifier_mult = 1.0 # Only active with Difficulty Adjusted AI Modifiers setting
+}
+
+difficulty_admiral = {
+	stations_produces_mult = 0.75
+	country_unity_produces_mult = 1.5
+	country_power_projection_produces_mult = 1.5
+	country_engineering_research_produces_mult = 1.5
+	country_society_research_produces_mult = 1.5
+	country_physics_research_produces_mult = 1.5
+	planet_pop_assembly_mult  = 0.4
+	planet_pop_assembly_organic_mult = 0.4
+	pop_growth_speed = 0.4
+	planet_jobs_produces_mult = 0.75
+	country_naval_cap_mult = 0.45
+	ships_upkeep_mult = -0.3
+	starbase_shipyard_build_cost_mult = -0.3
+	pop_resettlement_cost_mult = -0.75
+	planet_stability_add = 15
+	trade_value_mult = 0.75
+	difficulty_modifier_mult = 0.75 # Only active with Difficulty Adjusted AI Modifiers setting
+}
+
+difficulty_commodore = {
+	stations_produces_mult = 0.5
+	country_unity_produces_mult = 1
+	country_power_projection_produces_mult = 1
+	country_engineering_research_produces_mult = 1
+	country_society_research_produces_mult = 1
+	country_physics_research_produces_mult = 1
+	planet_pop_assembly_mult  = 0.3
+	planet_pop_assembly_organic_mult = 0.3
+	pop_growth_speed = 0.3
+	planet_jobs_produces_mult = 0.5
+	country_naval_cap_mult = 0.3
+	ships_upkeep_mult = -0.2
+	starbase_shipyard_build_cost_mult = -0.2
+	pop_resettlement_cost_mult = -0.50
+	planet_stability_add = 10
+	trade_value_mult = 0.5
+	difficulty_modifier_mult = 0.5 # Only active with Difficulty Adjusted AI Modifiers setting
+}
+
+difficulty_captain = {
+	stations_produces_mult = 0.25
+	country_unity_produces_mult = 0.5
+	country_power_projection_produces_mult = 0.5
+	country_engineering_research_produces_mult = 0.5
+	country_society_research_produces_mult = 0.5
+	country_physics_research_produces_mult = 0.5
+	planet_pop_assembly_mult  = 0.2
+	planet_pop_assembly_organic_mult = 0.2
+	pop_growth_speed = 0.2
+	planet_jobs_produces_mult = 0.25
+	country_naval_cap_mult = 0.15
+	ships_upkeep_mult = -0.1
+	starbase_shipyard_build_cost_mult = -0.1
+	pop_resettlement_cost_mult = -0.25
+	planet_stability_add = 5
+	trade_value_mult = 0.25
+	difficulty_modifier_mult = 0.25 # Only active with Difficulty Adjusted AI Modifiers setting
+}
+
+difficulty_ensign = {
+}
+
+##################################################
+## Army Modifiers
+##################################################
+
+## Experienced
+# Using ACOT version.
+army_rank_experienced = {
+	army_health = 0.5 # ACOT
+	army_damage_mult = 0.5 # ACOT 0.1 -> 0.5
+	army_morale = 0.1 # Vanilla
+}
+
+## Veteran
+# Using ACOT version.
+army_rank_veteran = {
+	army_health = 1.0 # ACOT 0.1 -> 1.0
+	army_damage_mult = 1.0 # ACOT 0.2 -> 1.0
+	army_morale = 1.0 # ACOT 0.2 -> 1.0
+	army_morale_damage_mult = 1.0 # ACOT
+}
+
+## Elite
+# Using ACOT version.
+army_rank_elite = {
+	army_health = 2.0 # ACOT 0.2 -> 2.0
+	army_damage_mult = 2.0 # ACOT 0.4 -> 2.0
+	army_morale = 2.0 # ACOT 0.4 -> 2.0
+	army_morale_damage_mult = 2.0 # ACOT
+}
+
+##################################################
+## Ship Modifiers
+##################################################
+
+## Experienced
+# Using ACOT version.
+ship_rank_experienced = {
+    ship_weapon_damage = 0.10
+    ship_fire_rate_mult = 0.10 # ACOT
+}
+
+# Veteran
+# Using ACOT version with hull from Vanilla.
+ship_rank_veteran = {
+    ship_weapon_damage = 0.25 # ACOT 0.20 -> 0.25
+	ship_hull_mult = 0.05 # Vanilla
+    ship_fire_rate_mult = 0.25 # ACOT
+    ship_evasion_mult = 0.25 # ACOT 0.05 -> 0.25
+    ship_accuracy_mult = 0.25 # ACOT
+    ship_tracking_mult = 0.25 # ACOT
+}
+
+## Elite
+# Using ACOT version with hull from Vanilla.
+ship_rank_elite = {
+    ship_weapon_damage = 0.5 # ACOT 0.4 -> 0.5
+	ship_hull_mult = 0.10 # Vanilla
+    ship_fire_rate_mult = 0.5 # ACOT
+    ship_evasion_mult = 0.5 # ACOT 0.1 -> 0.5
+    ship_accuracy_mult = 0.5 # ACOT
+    ship_tracking_mult = 0.5 # ACOT
+}

@@ -8,7 +8,10 @@ country_event = {
 	id = ls_mod.1 # Limitless Stellaris Mod 1
 	hide_window = yes
 	is_triggered_only = yes
+	fire_only_once = yes
+
 	trigger = { always = yes } # Always allow it to trigger
+	
 	immediate = {
 		hidden_effect = {
 			every_country = { # All countries
