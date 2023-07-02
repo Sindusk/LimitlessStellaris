@@ -1,0 +1,555 @@
+##########################################################################
+# Limitless Stellaris - Pop Categories
+##########################################################################
+
+##################################################
+## Gestalt Categories
+##################################################
+
+## Complex Drone
+# Merge between OSA, Lithoid Supremacy, Plentiful Perks, Scripted Trigger Undercoat
+complex_drone = {
+	rank = 0
+	clothes_texture_index = 2
+
+	change_job_threshold = 1.25
+
+	# Undercoat - Blank by default
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	weight = {
+		weight = 2
+	}
+
+	pop_modifier = {
+		pop_housing_usage_base = 1
+		pop_amenities_usage_no_happiness_base = 1
+	}
+
+	triggered_pop_modifier = { # Plentiful Perks
+		potential = {
+			is_robotic_species = yes
+			owner = { has_ascension_perk = ap_plentiful_traditions_mechanical_alternative }
+		}
+		pop_housing_usage_mult = -0.25
+	}
+	
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = yes
+	}
+
+	resettlement_cost = {
+		energy = 100
+	}
+
+	resettlement_cost = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_valid_civic = civic_machine_ota_updates
+					has_valid_civic = civic_hive_subsumed_will
+				}
+			}
+		}
+		influence = 10 # OSA unity -> influence
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_budding_pop = yes
+		}
+		planet_pop_assembly_organic_add = @plantoid_budding_rate
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_tiyanki_pop = yes
+		}
+		planet_pop_assembly_organic_add = @tiyanki_budding_rate
+	}
+
+	unemployment_resources = {
+		category = unemployment_resources
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			can_assemble_pearl_born_pop = yes
+		}
+		planet_pop_assembly_organic_add = @plantoid_budding_rate
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			has_trait = trait_fractal_crystalisation
+		}
+		planet_pop_assembly_organic_add = @lithoid_super_budding
+	}
+
+	resources = {
+		category = pop_category_drones
+
+		# Regular food, mineral and energy upkeep.
+		inline_script = "pop_categories/regular_upkeep"
+
+		# Additional energy upkeep for cyborgs.
+		inline_script = "pop_categories/cyborg_upkeep"
+
+		# Exotic Metabolism Upkeep
+		upkeep = {
+			trigger = {
+				is_organic_species = yes
+				has_trait = trait_exotic_metabolism
+			}
+			exotic_gases = @exotic_metabolism
+		}
+
+		# Resource Production
+
+		produces = { # OSA
+			trigger = {
+				has_trait = trait_hive_mind
+			}
+			influence = 0.0075
+		}
+		
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_ascension_perk = ap_concerted_effort
+				}
+			}
+			physics_research = 0.5
+			society_research = 0.5
+			engineering_research = 0.5
+			unity = 1
+		}
+
+		# Lithoid Trait Output
+		inline_script = "pop_categories/trait_production"
+
+		#Dune Born
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_dune_born
+				planet = {
+					is_planet_class = pc_desert
+				}
+			}
+			volatile_motes = @lithoid_trait_dune_born
+		}
+
+		#Fragmented Riches
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_fragmented_riches
+				exists = owner
+				owner = { NOT = { has_edict = damn_the_consequences } }	#INACTIVE
+			}
+			volatile_motes = @lithoid_over_res_inactive
+			exotic_gases = @lithoid_over_res_inactive
+			rare_crystals = @lithoid_over_res_inactive
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_fragmented_riches
+				exists = owner
+				owner = { has_edict = damn_the_consequences }			#ACTIVE
+			}
+			volatile_motes = @lithoid_over_res_inactive
+			exotic_gases = @lithoid_over_res_inactive
+			rare_crystals = @lithoid_over_res_inactive
+		}
+
+		#T2 Lithoid Traits
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_scintillating_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_gaseous_byproducts_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_volatile_excretions_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+
+		#Mossy Symbiosis
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_mossy_symbiosis
+			}
+			minerals = -0.25
+			food = 0.25
+		}
+
+		#Pearl Born Royal
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_pearl_born_royal
+			}
+			minerals = -0.1
+			food = 0.1
+		}
+
+		#Chroma Stones
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_chroma_stones
+			}
+			rare_crystals = 0.01
+		}
+
+		#Internal Ballistics
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_internal_ballistics
+			}
+			volatile_motes = 0.01
+		}
+
+		#Crystal Plating
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_robot_pop = yes
+				has_trait = trait_robot_fractal_crystal_plating
+			}
+			rare_crystals = 0.01
+		}
+
+		#Zro Infused
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_zro_infused
+			}
+			sr_zro = @lithoid_zro_infused_cost
+		}
+
+		produces = {
+			trigger = {
+				is_organic_species = yes
+				has_trait = trait_inorganic_breath
+			}
+			exotic_gases = @inorganic_breath
+		}
+
+		produces = {
+			trigger = {
+				has_trait = trait_drake_scaled
+			}
+			alloys = @drake_scaled_trait_resource_production
+		}
+	}
+}
+
+## Simple Drone
+# Merge between OSA, Lithoid Supremacy, Plentiful Perks, Scripted Trigger Undercoat
+simple_drone = {
+	rank = 0
+	clothes_texture_index = 2
+
+	change_job_threshold = 1.15
+
+	# Undercoat - Blank by default
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	# This is called whenever a Pop is created, moved to a different planet, or gets a new owner
+	assign_to_pop = {
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	weight = {
+		weight = 1
+	}
+
+	pop_modifier = {
+		pop_housing_usage_base = 1
+		pop_amenities_usage_no_happiness_base = 1
+	}
+
+	triggered_pop_modifier = { # Plentiful Perks
+		potential = {
+			is_robotic_species = yes
+			owner = { has_ascension_perk = ap_plentiful_traditions_mechanical_alternative }
+		}
+		pop_housing_usage_mult = -0.25
+	}
+	
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = yes
+	}
+
+	resettlement_cost = {
+		energy = 100
+	}
+
+	resettlement_cost = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_valid_civic = civic_machine_ota_updates
+					has_valid_civic = civic_hive_subsumed_will
+				}
+			}
+		}
+		influence = 10 # OSA unity -> influence
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_budding_pop = yes
+		}
+		planet_pop_assembly_organic_add = @plantoid_budding_rate
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_tiyanki_pop = yes
+		}
+		planet_pop_assembly_organic_add = @tiyanki_budding_rate
+	}
+
+	unemployment_resources = {
+		category = unemployment_resources
+		produces = {
+			trigger = {
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			minerals = 1
+		}
+		produces = {
+			trigger = {
+				owner = {
+					is_hive_empire = yes
+					has_civic = civic_hive_natural_neural_network
+				}
+			}
+			physics_research = 1
+			engineering_research = 1
+			society_research = 1.5
+		}
+		upkeep = {
+		}
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			can_assemble_pearl_born_pop = yes
+		}
+		planet_pop_assembly_organic_add = @plantoid_budding_rate
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			has_trait = trait_fractal_crystalisation
+		}
+		planet_pop_assembly_organic_add = @lithoid_super_budding
+	}
+
+	resources = {
+		category = pop_category_drones
+
+		# Regular food, mineral and energy upkeep.
+		inline_script = "pop_categories/regular_upkeep"
+
+		# Additional energy upkeep for cyborgs.
+		inline_script = "pop_categories/cyborg_upkeep"
+
+		# Exotic Metabolism Upkeep
+		upkeep = {
+			trigger = {
+				is_organic_species = yes
+				has_trait = trait_exotic_metabolism
+			}
+			exotic_gases = @exotic_metabolism
+		}
+
+		# Resource Production
+
+		produces = { # OSA
+			trigger = {
+				has_trait = trait_hive_mind
+			}
+			influence = 0.005
+		}
+
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_ascension_perk = ap_concerted_effort
+				}
+			}
+			physics_research = 0.5
+			society_research = 0.5
+			engineering_research = 0.5
+			unity = 1
+		}
+		
+		# Lithoid Trait Output
+		inline_script = "pop_categories/trait_production"
+
+		#Dune Born
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_dune_born
+				planet = {
+					is_planet_class = pc_desert
+				}
+			}
+			volatile_motes = @lithoid_trait_dune_born
+		}
+
+		#Fragmented Riches
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_fragmented_riches
+				exists = owner
+				owner = { NOT = { has_edict = damn_the_consequences } }	#INACTIVE
+			}
+			volatile_motes = @lithoid_over_res_inactive
+			exotic_gases = @lithoid_over_res_inactive
+			rare_crystals = @lithoid_over_res_inactive
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_fragmented_riches
+				exists = owner
+				owner = { has_edict = damn_the_consequences }			#ACTIVE
+			}
+			volatile_motes = @lithoid_over_res_inactive
+			exotic_gases = @lithoid_over_res_inactive
+			rare_crystals = @lithoid_over_res_inactive
+		}
+
+		#T2 Lithoid Traits
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_scintillating_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_gaseous_byproducts_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_volatile_excretions_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+
+		#Mossy Symbiosis
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_mossy_symbiosis
+			}
+			minerals = -0.25
+			food = 0.25
+		}
+
+		#Pearl Born Royal
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_pearl_born_royal
+			}
+			minerals = -0.1
+			food = 0.1
+		}
+
+		#Chroma Stones
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_chroma_stones
+			}
+			rare_crystals = 0.01
+		}
+
+		#Internal Ballistics
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_internal_ballistics
+			}
+			volatile_motes = 0.01
+		}
+
+		#Crystal Plating
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_robot_pop = yes
+				has_trait = trait_robot_fractal_crystal_plating
+			}
+			rare_crystals = 0.01
+		}
+
+		#Zro Infused
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_zro_infused
+			}
+			sr_zro = @lithoid_zro_infused_cost
+		}
+
+		produces = {
+			trigger = {
+				is_organic_species = yes
+				has_trait = trait_inorganic_breath
+			}
+			exotic_gases = @inorganic_breath
+		}
+
+		produces = {
+			trigger = {
+				has_trait = trait_drake_scaled
+			}
+			alloys = @drake_scaled_trait_resource_production
+		}
+	}
+}
