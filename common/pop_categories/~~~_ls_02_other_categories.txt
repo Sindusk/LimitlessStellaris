@@ -1,0 +1,1236 @@
+##########################################################################
+# Limitless Stellaris - Pop Categories
+##########################################################################
+
+##################################################
+## Other Categories
+##################################################
+
+## Purge
+# Vanilla + STU blank script
+purge = {
+	rank = 0
+	clothes_texture_index = 2
+
+	# Undercoat - Blank by default
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	assign_to_pop = {
+		OR = {
+			is_being_purged = yes
+			has_pop_flag = event_purge
+			AND = { # controlled by crisis
+				has_global_flag = galactic_crisis_happened
+				exists = planet
+				planet = {
+					exists = controller
+					controller = {
+						OR = {
+							is_country_type = ai_empire
+							is_country_type = swarm
+						}
+					}
+				}
+				OR = { # contingency won't purge itself
+					NOT = { exists = event_target:custodian_bot }
+					AND = {
+						exists = event_target:custodian_bot
+						NOT = { species = { is_same_value = event_target:custodian_bot } }
+					}
+				}
+			}
+		}
+	}
+
+	weight = {
+		weight = 20
+	}
+
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = yes
+	}
+
+	resettlement_cost = {
+		energy = 100
+	}
+
+	pop_modifier = {
+		pop_political_power = -1
+	}
+	resources = {
+		category = pop_category_purge
+	}
+}
+
+## Robot Servant
+# Plentiful Perks version + STU blank script
+robot_servant = {
+	rank = 0
+	display_category = worker
+
+	change_job_threshold = 1.15
+
+	# Undercoat - Blank by default
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	pop_modifier = {
+		pop_political_power = -1
+		pop_housing_usage_base = 0.5
+		pop_amenities_usage_base = 0.5
+	}
+
+	triggered_pop_modifier = { # Plentiful Perks
+		potential = {
+			#is_robotic_species = yes
+			owner = { has_ascension_perk = ap_plentiful_traditions_mechanical_alternative }
+		}
+		pop_housing_usage_mult = -0.25
+	}
+
+	assign_to_pop = {
+		OR = {
+			is_shackled_robot = yes
+			is_non_sapient_robot = yes
+		}
+		NAND = {
+			exists = planet
+			planet = {
+				exists = owner
+				owner = { is_gestalt = yes }
+			}
+		}
+	}
+	weight = {
+		weight = 15
+	}
+
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = yes
+	}
+
+	resettlement_cost = {
+		energy = 100
+	}
+
+	resources = {
+		category = pop_category_robot
+		upkeep = {
+			energy = @living_standard_energy_normal
+		}
+	}
+}
+
+## Slave
+# Merge between Lithoid Supremacy, Plentiful Perks, Scripted Trigger Undercoat
+slave = {
+	rank = 0
+	clothes_texture_index = 2
+	display_category = worker
+
+	change_job_threshold = 1.15
+
+	# Undercoat - Blank by default
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	assign_to_pop = {
+		is_enslaved = yes
+	}
+	weight = {
+		weight = 10
+	}
+
+	pop_modifier = {
+		pop_political_power = -0.75
+		pop_housing_usage_base = 0.75
+		pop_amenities_usage_base = 0.75
+	}
+
+	triggered_pop_modifier = { # Plentiful Perks
+		potential = {
+			owner = { has_ascension_perk = ap_plentiful_traditions_slave_housing }
+		}
+		pop_housing_usage_mult = -0.25
+	}
+	
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = yes
+	}
+
+	resettlement_cost = {
+		energy = 50
+	}
+
+	triggered_planet_modifier = { # Plentiful Perks
+		potential = {
+			can_assemble_budding_pop = yes
+		}
+		planet_pop_assembly_organic_add = @plantoid_budding_rate
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			NOT = { has_trait = trait_noxious }
+		}
+		key = trait_noxious
+		pop_happiness = 1
+		mult = modifier:pop_non_noxious_happiness
+	}
+	
+	triggered_pop_modifier = {
+		potential = {
+			owner = {
+				has_councilor = { COUNCILOR = "councilor_barbaric_despoilers" } 
+			}
+		}
+		species_empire_size_mult = 1
+		mult = value:empire_size_councilor_barbaric_despoilers
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_dystopian_society }
+		}
+		planet_crime_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_budding_pop = yes
+		}
+		planet_pop_assembly_organic_add = @plantoid_budding_rate
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_tiyanki_pop = yes
+		}
+		planet_pop_assembly_organic_add = @tiyanki_budding_rate
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_trait = trait_noxious
+		}
+		key = trait_noxious
+		pop_non_noxious_happiness = @noxious_happiness_penalty
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_councilor = { COUNCILOR = "councilor_indentured_assets" } 
+			}
+		}
+
+		trade_value_add = @councilor_indentured_assets_trade_value
+		mult = value:councilor_level|TYPE|councilor_indentured_assets|
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			can_assemble_pearl_born_pop = yes
+		}
+		planet_pop_assembly_organic_add = @plantoid_budding_rate
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			has_trait = trait_fractal_crystalisation
+		}
+		planet_pop_assembly_organic_add = @lithoid_super_budding
+	}
+
+	resources = {
+		category = pop_category_slave
+
+		# Regular food, mineral and energy upkeep.
+		inline_script = "pop_categories/regular_upkeep"
+
+		# Additional energy upkeep for cyborgs.
+		inline_script = "pop_categories/cyborg_upkeep"
+
+		# Exotic Metabolism Upkeep
+		upkeep = {
+			trigger = {
+				is_organic_species = yes
+				has_trait = trait_exotic_metabolism
+			}
+			exotic_gases = @exotic_metabolism
+		}
+
+		# Resource Production
+
+		# Lithoid Trait Output
+		inline_script = "pop_categories/trait_production"
+
+		#Dune Born
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_dune_born
+				planet = {
+					is_planet_class = pc_desert
+				}
+			}
+			volatile_motes = @lithoid_trait_dune_born
+		}
+
+		#Fragmented Riches
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_fragmented_riches
+				exists = owner
+				owner = { NOT = { has_edict = damn_the_consequences } }	#INACTIVE
+			}
+			volatile_motes = @lithoid_over_res_inactive
+			exotic_gases = @lithoid_over_res_inactive
+			rare_crystals = @lithoid_over_res_inactive
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_fragmented_riches
+				exists = owner
+				owner = { has_edict = damn_the_consequences }			#ACTIVE
+			}
+			volatile_motes = @lithoid_over_res_inactive
+			exotic_gases = @lithoid_over_res_inactive
+			rare_crystals = @lithoid_over_res_inactive
+		}
+
+		#T2 Lithoid Traits
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_scintillating_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_gaseous_byproducts_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_volatile_excretions_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+
+		#Mossy Symbiosis
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_mossy_symbiosis
+			}
+			minerals = -0.25
+			food = 0.25
+		}
+
+		#Pearl Born Royal
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_pearl_born_royal
+			}
+			minerals = -0.1
+			food = 0.1
+		}
+
+		#Chroma Stones
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_chroma_stones
+			}
+			rare_crystals = 0.01
+		}
+
+		#Internal Ballistics
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_internal_ballistics
+			}
+			volatile_motes = 0.01
+		}
+
+		#Crystal Plating
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_robot_pop = yes
+				has_trait = trait_robot_fractal_crystal_plating
+			}
+			rare_crystals = 0.01
+		}
+
+		#Zro Infused
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_zro_infused
+			}
+			sr_zro = @lithoid_zro_infused_cost
+		}
+
+		produces = {
+			trigger = {
+				is_organic_species = yes
+				has_trait = trait_inorganic_breath
+			}
+			exotic_gases = @inorganic_breath
+		}
+
+		produces = {
+			trigger = {
+				has_trait = trait_drake_scaled
+			}
+			alloys = @drake_scaled_trait_resource_production
+		}
+	}
+}
+
+## Bio-Trophy
+# Lithoid Supremacy version + STU blank script
+bio_trophy = {
+	rank = 0
+	clothes_texture_index = 1
+
+	change_job_threshold = 1.25
+
+	# Undercoat - Blank by default
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	assign_to_pop = {
+		exists = owner
+		has_citizenship_type = { type = citizenship_organic_trophy country = owner }
+	}
+	weight = {
+		weight = 5
+	}
+
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = yes
+	}
+
+	resettlement_cost = {
+		energy = 100
+		unity = 25
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			NOT = { has_trait = trait_noxious }
+		}
+		key = trait_noxious
+		pop_happiness = 1
+		mult = modifier:pop_non_noxious_happiness
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_trait = trait_noxious
+		}
+		key = trait_noxious
+		pop_non_noxious_happiness = @noxious_happiness_penalty
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_budding_pop = yes
+		}
+		planet_pop_assembly_organic_add = @plantoid_budding_rate
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			can_assemble_tiyanki_pop = yes
+		}
+		planet_pop_assembly_organic_add = @tiyanki_budding_rate
+	}
+
+	pop_modifier = {
+		pop_political_power = 10
+		pop_housing_usage_base = 1
+		pop_amenities_usage_no_happiness_base = 1
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			can_assemble_pearl_born_pop = yes
+		}
+		planet_pop_assembly_organic_add = @plantoid_budding_rate
+	}
+
+	triggered_planet_modifier = { # Lithoid Supremacy
+		potential = {
+			has_trait = trait_fractal_crystalisation
+		}
+		planet_pop_assembly_organic_add = @lithoid_super_budding
+	}
+
+	resources = {
+		category = pop_category_bio_trophy
+
+		# Regular food, mineral and energy upkeep.
+		inline_script = "pop_categories/regular_upkeep"
+
+		# Additional energy upkeep for cyborgs.
+		inline_script = "pop_categories/cyborg_upkeep"
+
+		# Exotic Metabolism Upkeep
+		upkeep = {
+			trigger = {
+				is_organic_species = yes
+				has_trait = trait_exotic_metabolism
+			}
+			exotic_gases = @exotic_metabolism
+		}
+
+		# Resource Production 
+		
+		# Lithoid Trait Output
+		inline_script = "pop_categories/trait_production"
+
+		#Dune Born
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_dune_born
+				planet = {
+					is_planet_class = pc_desert
+				}
+			}
+			volatile_motes = @lithoid_trait_dune_born
+		}
+
+		#Fragmented Riches
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_fragmented_riches
+				exists = owner
+				owner = { NOT = { has_edict = damn_the_consequences } }	#INACTIVE
+			}
+			volatile_motes = @lithoid_over_res_inactive
+			exotic_gases = @lithoid_over_res_inactive
+			rare_crystals = @lithoid_over_res_inactive
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_fragmented_riches
+				exists = owner
+				owner = { has_edict = damn_the_consequences }			#ACTIVE
+			}
+			volatile_motes = @lithoid_over_res_inactive
+			exotic_gases = @lithoid_over_res_inactive
+			rare_crystals = @lithoid_over_res_inactive
+		}
+
+		#T2 Lithoid Traits
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_scintillating_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_gaseous_byproducts_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+		produces = { # Lithoid Supremacy
+			trigger = {
+				is_lithoid = yes
+				has_trait = trait_lithoid_volatile_excretions_upgraded
+			}
+			rare_crystals = @lithoid_t2_trait_res
+		}
+
+		#Mossy Symbiosis
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_mossy_symbiosis
+			}
+			minerals = -0.25
+			food = 0.25
+		}
+
+		#Pearl Born Royal
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_pearl_born_royal
+			}
+			minerals = -0.1
+			food = 0.1
+		}
+
+		#Chroma Stones
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_chroma_stones
+			}
+			rare_crystals = 0.01
+		}
+
+		#Internal Ballistics
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_internal_ballistics
+			}
+			volatile_motes = 0.01
+		}
+
+		#Crystal Plating
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_robot_pop = yes
+				has_trait = trait_robot_fractal_crystal_plating
+			}
+			rare_crystals = 0.01
+		}
+
+		#Zro Infused
+		upkeep = { # Lithoid Supremacy
+			trigger = {
+				is_organic_species = yes
+				is_lithoid = yes
+				has_trait = trait_zro_infused
+			}
+			sr_zro = @lithoid_zro_infused_cost
+		}
+
+		produces = {
+			trigger = {
+				is_organic_species = yes
+				has_trait = trait_inorganic_breath
+			}
+			exotic_gases = @inorganic_breath
+		}
+
+		produces = {
+			trigger = {
+				has_trait = trait_drake_scaled
+			}
+			alloys = @drake_scaled_trait_resource_production
+		}
+	}
+
+	unemployment_penalties = {
+		pop_happiness = -0.80
+	}
+	triggered_pop_modifier = {
+		potential = {
+			has_global_flag = galactic_community_resolution_divinity_comfort_the_fallen
+			is_unemployed = yes
+			NOR = {
+				has_very_high_living_standard_type = yes
+				has_high_living_standard_type = yes
+				has_shared_burden_living_standard_type = yes
+			}
+			owner = {
+				is_galactic_community_member = yes
+			}
+		}
+
+		pop_happiness = 0.10
+	}
+}
+
+## Criminal
+# Merge between Ariphaos, Scripted Trigger Undercoat
+criminal = {
+	rank = 1
+	clothes_texture_index = 2
+	change_job_threshold = 2
+
+	demotion_time = 0
+	display_unemployment = no
+
+	# Undercoat - Blank by default
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			has_shared_burden_living_standard_type = yes
+		}
+		trade_value_add = @trade_value_shared_burden
+		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			OR = { # Ariphaos
+				has_decadent_living_standard_type = yes # Ariphaos
+				has_very_high_living_standard_type = yes
+			}
+		}
+		trade_value_add = @trade_value_very_high
+		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			has_high_living_standard_type = yes
+		}
+		trade_value_add = @trade_value_high
+		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			OR = {
+				has_normal_living_standard_type = yes
+				has_academic_living_standard_type = yes
+			}
+		}
+		trade_value_add = @trade_value_normal
+		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			has_stratified_living_standard_type = yes
+		}
+		trade_value_add = @trade_value_low
+		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			has_low_living_standard_type = yes
+		}
+		trade_value_add = @trade_value_very_low
+		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_dystopian_society }
+			planet = {
+				OR = {
+					has_branch_office = no
+					branch_office_owner = {
+						is_criminal_syndicate = no
+					}
+				}
+			}
+		}
+		planet_crime_add = 2
+		planet_stability_add = -2
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			NOT = { has_trait = trait_noxious }
+		}
+		key = trait_noxious
+		pop_happiness = 1
+		mult = modifier:pop_non_noxious_happiness
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_trait = trait_noxious
+		}
+		key = trait_noxious
+		pop_non_noxious_happiness = @noxious_happiness_penalty
+	}
+
+	should_apply_unemployment_penalties = {
+		NOR = {
+			has_very_high_living_standard_type = yes
+			has_high_living_standard_type = yes
+		}
+	}
+
+	pop_modifier = {
+		pop_housing_usage_base = 1
+		pop_amenities_usage_base = 1
+	}
+
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = no
+	}
+
+	resources = {
+		category = pop_category_workers
+
+		# Regular food, mineral and energy upkeep.
+		inline_script = "pop_categories/regular_upkeep"
+
+		# Additional energy upkeep for cyborgs.
+		inline_script = "pop_categories/cyborg_upkeep"
+	}
+}
+
+## Assimilation
+# Vanilla + STU blank script
+assimilation = {
+	rank = 0
+
+	# Undercoat - Blank by default
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	assign_to_pop = {
+		is_being_assimilated = yes
+	}
+
+	weight = {
+		weight = 15
+	}
+
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = yes
+	}
+
+	resettlement_cost = {
+		energy = 100
+	}
+
+	pop_modifier = {
+		pop_political_power = -1
+	}
+
+	resources = {
+		category = pop_category_assimilation
+	}
+}
+
+## Deviant Drone
+# Merge between Ariphaos, Scripted Trigger Undercoat
+deviant_drone = {
+	rank = 2
+	clothes_texture_index = 2
+	change_job_threshold = 2
+
+	demotion_time = 0
+
+	# Undercoat - Blank by default
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	should_apply_unemployment_penalties = {
+		always = yes # Ariphaos
+	}
+
+	pop_modifier = {
+		pop_housing_usage_base = 1
+		pop_amenities_usage_base = 1
+	}
+
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = no
+	}
+
+	resources = {
+		category = pop_category_workers
+
+		# Regular food, mineral and energy upkeep.
+		inline_script = "pop_categories/regular_upkeep"
+
+		# Additional energy upkeep for cyborgs.
+		inline_script = "pop_categories/cyborg_upkeep"
+	}
+}
+
+## Corrupt Drone
+# Vanilla + STU blank script
+corrupt_drone = {
+	rank = 2
+	clothes_texture_index = 2
+	change_job_threshold = 2
+
+	demotion_time = 0
+
+	# Undercoat
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			has_shared_burden_living_standard_type = yes
+		}
+		trade_value_add = @trade_value_shared_burden
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			has_very_high_living_standard_type = yes
+		}
+		trade_value_add = @trade_value_very_high
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			has_high_living_standard_type = yes
+		}
+		trade_value_add = @trade_value_high
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			OR = {
+				has_normal_living_standard_type = yes
+				has_academic_living_standard_type = yes
+			}
+		}
+		trade_value_add = @trade_value_normal
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			has_stratified_living_standard_type = yes
+		}
+		trade_value_add = @trade_value_low
+	}
+	triggered_planet_modifier = {
+		potential = {
+			can_generate_trade_value = yes
+			has_low_living_standard_type = yes
+		}
+		trade_value_add = @trade_value_very_low
+	}
+
+	should_apply_unemployment_penalties = {
+		NOR = {
+			has_very_high_living_standard_type = yes
+			has_high_living_standard_type = yes
+		}
+	}
+
+	pop_modifier = {
+		pop_housing_usage_base = 1
+		pop_amenities_usage_base = 1
+	}
+
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = no
+	}
+
+	resources = {
+		category = pop_category_workers
+
+		# Regular food, mineral and energy upkeep.
+		inline_script = "pop_categories/regular_upkeep"
+
+		# Additional energy upkeep for cyborgs.
+		inline_script = "pop_categories/cyborg_upkeep"
+	}
+}
+
+## Precursor
+# Vanilla + STU blank script and merged FE trigger
+precursor = {
+	rank = 3
+	clothes_texture_index = 1
+	change_job_threshold = 2
+
+	demotion_time = 5
+
+	# Undercoat
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	assign_to_pop = {
+		exists = owner
+		owner = {
+			is_fallen_empire = yes # STU
+		}
+		OR = {
+			is_same_species = owner
+			owner = {
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+	}
+	weight = {
+		weight = 100
+
+		# crisis purge
+		modifier = {
+			factor = 0.01
+			exists = planet
+			exists = planet.controller
+			planet.controller = {
+				OR = {
+					is_country_type = swarm
+					is_country_type = ai_empire
+				}
+			}
+		}
+		modifier = {
+			factor = 0.01
+			is_unemployed = yes
+		}
+	}
+
+	pop_modifier = {
+		pop_political_power = 9
+		pop_housing_usage_base = 2
+		pop_amenities_usage_base = 2
+	}
+
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = yes
+	}
+
+	resettlement_cost = {
+		energy = 100
+	}
+
+	resources = {
+		category = pop_category_precursor
+
+		# Consumer Goods Upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_spiritualist = no
+				}
+			}
+			consumer_goods = 2.0
+		}
+
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_spiritualist = yes
+				}
+			}
+			consumer_goods = 1.0
+		}
+		
+		# Food Upkeep
+		upkeep = {
+			trigger = {
+				has_food_upkeep = yes
+				is_phototrophic = no
+				exists = owner
+				owner = {
+					is_spiritualist = no
+				}
+			}
+			food = 2.0
+		}
+		upkeep = {
+			trigger = {
+				has_food_upkeep = yes
+				is_phototrophic = no
+				exists = owner
+				owner = {
+					is_spiritualist = yes
+				}
+			}
+			food = 1.0
+		}
+		upkeep = {
+			trigger = {
+				has_food_upkeep = yes
+				is_phototrophic = yes
+				exists = owner
+				owner = {
+					is_spiritualist = no
+				}
+			}
+			food = 1.0
+		}
+		upkeep = {
+			trigger = {
+				has_food_upkeep = yes
+				is_phototrophic = yes
+				exists = owner
+				owner = {
+					is_spiritualist = yes
+				}
+			}
+			food = 0.5
+		}
+
+		# Mineral Upkeep
+		upkeep = {
+			trigger = {
+				has_mineral_upkeep = yes
+				is_phototrophic = no
+				exists = owner
+				owner = {
+					is_spiritualist = no
+				}
+			}
+			minerals = 2.0
+		}
+		upkeep = {
+			trigger = {
+				has_mineral_upkeep = yes
+				is_phototrophic = no
+				exists = owner
+				owner = {
+					is_spiritualist = yes
+				}
+			}
+			minerals = 1.0
+		}
+		upkeep = {
+			trigger = {
+				has_mineral_upkeep = yes
+				is_phototrophic = yes
+				exists = owner
+				owner = {
+					is_spiritualist = no
+				}
+			}
+			minerals = 1.0
+		}
+		upkeep = {
+			trigger = {
+				has_mineral_upkeep = yes
+				is_phototrophic = yes
+				exists = owner
+				owner = {
+					is_spiritualist = yes
+				}
+			}
+			minerals = 0.5
+		}
+
+		# Energy Upkeep
+		upkeep = {
+			trigger = {
+				has_phototrophic_energy_upkeep = yes
+				exists = owner
+				owner = {
+					is_spiritualist = no
+				}
+			}
+			energy = 1.0
+		}
+				upkeep = {
+			trigger = {
+				has_phototrophic_energy_upkeep = yes
+				exists = owner
+				owner = {
+					is_spiritualist = yes
+				}
+			}
+			energy = 0.5
+		}
+		upkeep = {
+			trigger = {
+				is_robotic_species =yes
+			}
+			energy = @living_standard_energy_normal
+		}
+		upkeep = {
+			trigger = {
+				is_organic_species = yes
+				has_energy_upkeep = yes
+				exists = owner
+				owner = {
+					is_spiritualist = yes
+				}
+			}
+			energy = 1.0
+		}
+		upkeep = {
+			trigger = {
+				is_organic_species = yes
+				has_energy_upkeep = yes
+				exists = owner
+				owner = {
+					is_spiritualist = no
+				}
+			}
+			energy = 2.0
+		}
+	}
+}
+
+## Xeno Ward
+# Vanilla + STU blank script
+xeno_ward = {
+	rank = 0
+	clothes_texture_index = 3
+	change_job_threshold = 2
+
+	# Undercoat
+	inline_script = "pop_categories/standard_pop_modifiers"
+
+	pop_modifier = {
+		pop_political_power = -1
+		pop_housing_usage_base = 1
+		pop_amenities_usage_base = 1
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			NOT = { has_trait = trait_noxious }
+		}
+		key = trait_noxious
+		pop_happiness = 1
+		mult = modifier:pop_non_noxious_happiness
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_trait = trait_noxious
+		}
+		key = trait_noxious
+		pop_non_noxious_happiness = @noxious_happiness_penalty
+	}
+
+	# scope: pop to be resettled
+	allow_resettlement = {
+		always = no
+	}
+
+	resources = {
+		category = pop_category_xeno_ward
+
+		# Consumer Goods Upkeep
+		upkeep = {
+			trigger = {
+				is_robotic_species = no
+			}
+			consumer_goods = @living_standard_luxuries_very_high
+		}
+
+		# Regular food, mineral and energy upkeep.
+		inline_script = "pop_categories/regular_upkeep"
+
+		# Additional energy upkeep for cyborgs.
+		inline_script = "pop_categories/cyborg_upkeep"
+	}
+}
