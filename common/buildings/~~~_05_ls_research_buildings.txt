@@ -310,7 +310,7 @@ building_research_lab_3 = {
 }
 
 ##################################################
-## Research - Unique
+## Research - Education
 ##################################################
 
 ## Education Compound (Tier 1) [Advanced Policies]
@@ -830,6 +830,10 @@ building_supercomputer = {
 		engineering_research = 3
 	}
 }
+
+##################################################
+## Research - Unique
+##################################################
 
 ## Faculty of Archaeostudies (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Planetary Diversity, Real Space: Planetary Stations, Guilli's Planet Modifiers
