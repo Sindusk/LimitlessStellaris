@@ -6,7 +6,8 @@
 ## Gestalt Ethics
 ##################################################
 
-## Autonomous (Edited)
+## Autonomous
+# Added -5% Empire Size from Pops for balance.
 ethic_form_autonomous = {
 	playable = {
 		OR = {

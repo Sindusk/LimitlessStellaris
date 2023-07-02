@@ -1,0 +1,32 @@
+##########################################################################
+# Limitless Stellaris - Daemonic Incursion Events
+##########################################################################
+namespace = demonic_incursion_settings
+
+# Popup at start to determine spawn chance (on_game_start_country)
+country_event = {
+	id = demonic_incursion_settings.11
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		NOR = {
+			is_ai = yes
+			has_global_flag = demonic_incursion_mod_set
+			has_global_flag = active_demonic_incursion
+			has_country_flag = demonic_incursion_host
+		}
+		has_toxoids = yes
+	}
+	immediate = {
+		set_global_flag = demonic_incursion_mod_set
+		set_country_flag = demonic_incursion_host
+		#country_event = { id = demonic_incursion_settings.12 } # Suppress the menu pop-up
+		hidden_effect = { # Mimic the event for setting the doorway chance to 100%.
+			event_target:global_event_country = { set_country_flag = door_100 }
+			#country_event = { id = demonic_incursion_settings.1 } # Suppress the follow-up menu.
+			country_event = { id = demonic_incursion_settings.3 } # Instead skip to the event to reset modifiers that occurs when closing the menu.
+		}
+		# country_event = { id = toxoids_decision.100 days = 3 }
+	}
+}
