@@ -301,27 +301,30 @@ l_english:
 ##################
 
   ### Basic
-  building_research_lab_1: "Research Labs"
+  building_research_lab_1: "Research Labs" # Vanilla
   building_research_lab_1_tt: "§MResearch§! - §BTier 1§! - §EBasic§!"
   building_research_lab_1_desc: "Research Labs provide the basic facilities for general research."
-  building_research_lab_2: "Research Complexes"
+  building_research_lab_2: "Research Complexes" # Vanilla
   building_research_lab_2_tt: "§MResearch§! - §BTier 2§! - §EBasic§!"
   building_research_lab_2_desc: "Upgraded research facilities with a very large staff capacity."
-  building_research_lab_3: "Advanced Research Complexes"
+  building_research_lab_3: "Advanced Research Complexes" # Vanilla
   building_research_lab_3_tt: "§MResearch§! - §BTier 3§! - §EBasic§!"
   building_research_lab_3_desc: "These advanced research facilities have the very latest science equipment along with an extremely large staff capacity."
 
   ### Unique
-  building_institute: "§PResearch Institute§!"
-  building_institute_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
+  building_AP_education_school: "§PEducation Compound§!" # Advanced Policies
+  building_AP_education_school_tt: "§MResearch§! - §BTier 1§! - §EEducation§!"
+  building_AP_education_school_desc: "This compound is the nerve center for any organized education on the planet."
+  building_institute: "§PResearch Institute§!" # Vanilla
+  building_institute_tt: "§MResearch§! - §BTier 1§! - §EEducation§!"
   building_institute_desc: "The Research Institute is a massive complex, gathering the cutting edges of disparate fields together for unprecedented synergy, improving the research output of the whole planet."
-  building_supercomputer: "§PPlanetary Supercomputer§!"
+  building_supercomputer: "§PPlanetary Supercomputer§!" # Vanilla
   building_supercomputer_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
   building_supercomputer_desc: "A single colossal supercomputer which can carry out incredibly complex calculations, improving the research output of the whole planet."
-  building_archaeostudies_faculty: "§PFaculty of Archaeostudies§!"
+  building_archaeostudies_faculty: "§PFaculty of Archaeostudies§!" # Vanilla
   building_archaeostudies_faculty_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
   building_archaeostudies_faculty_desc: "A series of laboratories dedicated to the studies of technological applications of minor artifacts retrieved from elder empires."
-  building_vultaum_reality_computer: "§PVultaum Reality Computer§!"
+  building_vultaum_reality_computer: "§PVultaum Reality Computer§!" # Vanilla
   building_vultaum_reality_computer_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
   building_vultaum_reality_computer_desc: "$tech_secrets_vultaum_desc$"
 

@@ -1,0 +1,51 @@
+## Advanced Policies Educators
+# Worker Educator
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_policy_flag = AP_education_privledge_all }
+	}
+	job_worker_educator_add = $count$
+}
+# Specialist Educator
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_policy_flag = AP_education_privledge_citizen }
+	}
+	job_specialist_educator_add = $count$
+}
+# Ruler Educator
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_policy_flag = AP_education_privledge_elite }
+	}
+	job_ruler_educator_add = $count$
+}
+
+## Triggered Descriptions
+# Worker Educator - Might need localization
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { has_policy_flag = AP_education_privledge_all }
+	}
+	text = job_worker_educator_effect_desc
+}
+# Specialist Educator - Might need localization
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { has_policy_flag = AP_education_privledge_citizen }
+	}
+	text = job_specialist_educator_effect_desc
+}
+# Ruler Educator - Might need localization
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { has_policy_flag = AP_education_privledge_elite }
+	}
+	text = job_ruler_educator_effect_desc
+}

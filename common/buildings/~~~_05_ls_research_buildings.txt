@@ -9,11 +9,12 @@
 ## Research - Basic
 ##################################################
 
-## Research Labs (Tier 1)
+## Research Labs (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Real Space: Plantary Stations, StarTech, Ariphaos
 # Has custom inline script.
 building_research_lab_1 = {
 	base_buildtime = @db1_time
+	base_cap_amount = 5 # LS - Cap to 5 like other resources
 	position_priority = 4051000 # Sort Buildings
 
 	exempt_from_ai_planet_specialization = no
@@ -89,7 +90,7 @@ building_research_lab_1 = {
 	}
 }
 
-## Research Complexes (Tier 2)
+## Research Complexes (Tier 2) [Vanilla]
 # Merge between OSA, StarTech.
 # Has custom inline script.
 building_research_lab_2 = {
@@ -175,7 +176,7 @@ building_research_lab_2 = {
 	}
 }
 
-## Advanced Research Complexes (Tier 3)
+## Advanced Research Complexes (Tier 3) [Vanilla]
 # Merge between OSA, New Galactic System, StarTech, Ariphaos
 # Has custom inline script.
 building_research_lab_3 = {
@@ -312,12 +313,114 @@ building_research_lab_3 = {
 ## Research - Unique
 ##################################################
 
-## Research Institute (Tier 1)
+## Education Compound (Tier 1) [Advanced Policies]
+# Custom version
+building_AP_education_school = {
+	base_buildtime = @db1_time
+	category = research
+	icon = building_virtual_entertainment_studios
+	base_cap_amount = 1
+	#position_priority = 75
+	position_priority = 2052000 # Sort Buildings
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_AP_education_school_tt
+    }
+
+	potential = {
+		ls_potential_education_building = yes # LS building check
+	}
+	destroy_trigger = {
+		ls_potential_education_building = no # LS building check
+	}
+
+	convert_to = {
+		building_supercomputer # LS - Vanilla variation of Institute, might need an alternative
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	upgrades = {
+		building_institute # LS - Vanilla Building
+	}
+
+	planet_modifier = {
+		planet_researchers_produces_mult = 0.05 # LS
+	}
+
+	inline_script = { # Adds educator jobs and descriptions
+		script = buildings/research/education/educator_jobs
+		count = 2
+	}
+
+	inline_script = { # Grants bonuses to unique research buildings
+		script = buildings/research/unique_triggered_modifiers
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = { # LS
+			minerals = @db1_minerals
+		}
+		cost = { # LS - Orbital Ring Buildings
+		    trigger = {
+		        is_ringworld = yes
+		    }
+		    minerals = @db1_minerals
+		}
+		upkeep = { # LS
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+		upkeep = { # LS - Orbital Ring Buildings
+		    trigger = {
+		        is_ringworld = yes
+		    }
+		    energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+		produces = { # OSA
+			trigger = {
+				owner = {
+					has_active_tradition = tr_insight_3
+				}
+			}
+			physics_research = 20
+		}
+	}
+
+	ai_weight = { # This is very good for AI to build
+		weight = 100 # LS 10 -> 100
+		modifier = {
+			factor = 100
+			owner = {
+				OR = {
+					has_valid_civic = civic_AP_good_education
+					has_valid_civic = civic_AP_good_education_corporate
+				}
+			}
+		}
+	}
+
+	# LS AI Resource Production
+	ai_resource_production = {
+		trigger = { always = yes }
+		physics_research = 3
+		society_research = 3
+		engineering_research = 3
+	}
+}
+
+## Research Institute (Tier 2) [ Vanilla]
 # Merge between Sort Buildings, EUTAB, OSA, Bug Branch, Real Space: Planetary Stations, Orbital Ring Buildings, MECR, StarTech
 building_institute = {
 	base_buildtime = @db2_time
-	base_cap_amount = 1
+	#base_cap_amount = 1 # LS - Now an upgrade
 	position_priority = 2052000 # Sort Buildings
+	can_build = no # LS - Now an upgrade
 
 	category = research
 
@@ -327,14 +430,8 @@ building_institute = {
     }
 
 	potential = {
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-			has_modifier = crucible_colony
-			has_planet_flag = planetary_station # Real Space: Planetary Stations
-		}
+		ls_potential_education_building = yes # LS building check
 		exists = owner
-		owner = { is_gestalt = no }
 		owner = { # StarTech AI
 			OR = {
 				is_ai = no
@@ -344,12 +441,9 @@ building_institute = {
 	}
 
 	destroy_trigger = {
+		ls_potential_education_building = no # LS building check
 		exists = owner
 		OR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-			has_modifier = crucible_colony
-			owner = { is_regular_empire = no }
 			buildings_no_exotic_gases = yes # StarTech AI
 			str_research_destroy = yes # StarTech AI
 		}
@@ -394,20 +488,20 @@ building_institute = {
 		    trigger = {
 		        is_ringworld = yes
 		    }
-		    minerals = 1500
-		    exotic_gases = 600
+		    minerals = @db2_minerals # LS 1500 -> db2
+		    exotic_gases = @db2_rare_cost # LS 600 -> db2
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
+			energy = @db2_upkeep # LS 5 -> db2
+			minerals = @db2_upkeep # LS 5 -> db2
 			exotic_gases = @db2_rare_upkeep
 		}
 		upkeep = { # Orbital Ring Buildings
 		    trigger = {
 		        is_ringworld = yes
 		    }
-		    energy = 15
-		    exotic_gases = 8
+		    energy = @db2_upkeep # LS 15 -> db2
+		    exotic_gases = @db2_rare_upkeep # LS 8 -> db2
 		}
 		produces = { # OSA
 			trigger = {
@@ -431,57 +525,13 @@ building_institute = {
 		job_head_researcher_add = 1
 	}
 	
-	triggered_planet_modifier = { # MECR
-		potential = {
-			is_active_resolution = resolution_custodian_galactic_academy_of_sciences
-			owner = {
-				has_federation = yes
-				federation = {
-					has_federation_perk = galactic_confederation_passive
-					has_federation_perk = research_galconfed_specialization_bonus_1
-				}
-			}
-		}
-		planet_researchers_physics_research_produces_add = 0.4
-		planet_researchers_society_research_produces_add = 0.4
-		planet_researchers_engineering_research_produces_add = 0.4
-		mult = owner.value:building_institute_galactic_academy_of_sciences_galconfed_specialization
-	}
-	
-	triggered_planet_modifier = { # MECR
-		potential = {
-			is_active_resolution = resolution_custodian_galactic_academy_of_sciences
-			has_modifier = assist_research
-		}
-		planet_researchers_physics_research_produces_add = 0.2
-		planet_researchers_society_research_produces_add = 0.2
-		planet_researchers_engineering_research_produces_add = 0.2
-		mult = value:building_institute_galactic_academy_of_sciences_assist_research
+	inline_script = { # Adds educator jobs and descriptions
+		script = buildings/research/education/educator_jobs
+		count = 3
 	}
 
-	triggered_planet_modifier = { # Bug Branch
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_bugged_research_cooperatives
-			}
-		}
-		modifier = {
-			planet_jobs_unity_produces_mult = 0.05
-
-		}
-	}
-
-	triggered_planet_modifier = { # Orbital Ring Buildings
-	    potential = {
-	        is_ringworld = yes
-	    }
-		modifier = {
-			planet_researchers_physics_research_produces_add = 1
-			planet_researchers_engineering_research_produces_add = 1
-			planet_researchers_society_research_produces_add = 1
-			planet_researchers_consumer_goods_upkeep_add = 1
-		}
+	inline_script = { # Grants bonuses to unique research buildings
+		script = buildings/research/unique_triggered_modifiers
 	}
 
 	prerequisites = {
@@ -547,7 +597,7 @@ building_institute = {
 	}
 }
 
-## Planetary Supercomputer (Tier 1)
+## Planetary Supercomputer (Tier 1) [Vanilla]
 # Merge between Sort Buildings, EUTAB, OSA, Bug Branch, Real Space: Planetary Stations, Orbital Ring Buildings, MECR, StarTech
 building_supercomputer = {
 	base_buildtime = @db2_time
@@ -663,34 +713,10 @@ building_supercomputer = {
 		planet_researchers_produces_mult = 0.15
 	}
 	
-	triggered_planet_modifier = { # MECR
-		potential = {
-			is_active_resolution = resolution_custodian_galactic_academy_of_sciences
-			owner = {
-				has_federation = yes
-				federation = {
-					has_federation_perk = galactic_confederation_passive
-					has_federation_perk = research_galconfed_specialization_bonus_1
-				}
-			}
-		}
-		planet_researchers_physics_research_produces_add = 0.4
-		planet_researchers_society_research_produces_add = 0.4
-		planet_researchers_engineering_research_produces_add = 0.4
-		mult = owner.value:building_institute_galactic_academy_of_sciences_galconfed_specialization
+	inline_script = { # Grants bonuses to unique research buildings
+		script = buildings/research/unique_triggered_modifiers
 	}
 	
-	triggered_planet_modifier = { # MECR
-		potential = {
-			is_active_resolution = resolution_custodian_galactic_academy_of_sciences
-			has_modifier = assist_research
-		}
-		planet_researchers_physics_research_produces_add = 0.2
-		planet_researchers_society_research_produces_add = 0.2
-		planet_researchers_engineering_research_produces_add = 0.2
-		mult = value:building_institute_galactic_academy_of_sciences_assist_research
-	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -698,22 +724,6 @@ building_supercomputer = {
 		}
 		modifier = {
 			job_brain_drone_add = 1
-		}
-	}
-
-    triggered_planet_modifier = { # Orbital Ring Buildings
-		potential = {
-		    is_ringworld = yes
-			exists = owner
-			owner = {
-				is_hive_empire = yes
-			}
-		}
-		modifier = {
-			planet_researchers_physics_research_produces_add = 1
-			planet_researchers_engineering_research_produces_add = 1
-			planet_researchers_society_research_produces_add = 1
-			planet_researchers_minerals_upkeep_add = 3
 		}
 	}
 
@@ -735,22 +745,6 @@ building_supercomputer = {
 		modifier = {
 			job_bugged_examinatron_add = 1
 			#job_calculator_add = -1
-		}
-	}
-
-    triggered_planet_modifier = { # Orbital Ring Buildings
-		potential = {
-		    is_ringworld = yes
-			exists = owner
-			owner = {
-				is_machine_empire = yes
-			}
-		}
-		modifier = {
-			planet_researchers_physics_research_produces_add = 1
-			planet_researchers_engineering_research_produces_add = 1
-			planet_researchers_society_research_produces_add = 1
-			planet_researchers_energy_upkeep_add = 2
 		}
 	}
 
@@ -837,7 +831,7 @@ building_supercomputer = {
 	}
 }
 
-## Faculty of Archaeostudies (Tier 1)
+## Faculty of Archaeostudies (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Planetary Diversity, Real Space: Planetary Stations, Guilli's Planet Modifiers
 building_archaeostudies_faculty = {
 	base_buildtime = @db2_time
@@ -1044,7 +1038,7 @@ building_archaeostudies_faculty = {
 	}
 }
 
-## Vultaum Reality Computer (Tier 1)
+## Vultaum Reality Computer (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Real Space: Planetary Stations
 building_vultaum_reality_computer = {
 	base_buildtime = @db2_time

@@ -3,7 +3,9 @@
 ##########################################################################
 # Events custom made specifically for the collection.
 
-## ls_mod.1: Adds a bonus to resource production modifier to all AI default empires.
+namespace = ls_mod
+
+## ls_mod.1: Event triggers at game start.
 country_event = {
 	id = ls_mod.1 # Limitless Stellaris Mod 1
 	hide_window = yes
@@ -17,11 +19,12 @@ country_event = {
 			every_country = { # All countries
 				limit = { # Limit to AI who are default
 					is_ai = yes
-					is_country_type = default
+					is_playable = yes
 				}
-				add_modifier = { # Add the modifier, designated in Static Modifiers.
-					modifier = ls_ai_boost
-				}
+				# LS - Disabled the AI boost since we can use difficulty modifiers instead.
+				#add_modifier = { # Add the modifier, designated in Static Modifiers.
+				#	modifier = ls_ai_boost
+				#}
 			}	
 		}	
 	}

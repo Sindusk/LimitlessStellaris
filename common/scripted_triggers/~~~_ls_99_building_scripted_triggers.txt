@@ -1,0 +1,27 @@
+##########################################################################
+# Limitless Stellaris - Building Scripted Triggers
+##########################################################################
+
+##################################################
+## Research
+##################################################
+
+# Whether they can build an Education Unique building
+# Scope: Planet
+ls_potential_education_building = {
+	NOR = { # Generic building checks
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+		has_modifier = crucible_colony
+		has_planet_flag = planetary_station # Real Space: Planetary Stations
+	}
+	exists = owner
+	owner = {
+		is_gestalt = no # Cannot be gestalt
+		OR = { # Must have one of these policies active
+			has_policy_flag = AP_education_privledge_all
+			has_policy_flag = AP_education_privledge_citizen
+			has_policy_flag = AP_education_privledge_elite
+		}
+	}
+}

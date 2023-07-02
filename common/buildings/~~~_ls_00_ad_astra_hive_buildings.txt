@@ -1,0 +1,1310 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Ad Astra Hive
+##########################################################################
+
+##################################################
+## Later Buildings (Not Yet Modified)
+##################################################
+
+
+
+
+
+
+
+#############
+# AD ASTRA HIVE BUILDINGS
+#############
+########### CYNOSURAL BUILDINGS ###########
+# Deep Research Hives
+building_deep_research_hives = {
+	base_buildtime = 1200
+	base_cap_amount = 1
+	icon = building_grand_academy
+	category = research
+	potential = {
+		merg_is_habitat = no
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_cynosural_singularity }
+	}
+	convert_to = {
+		building_grand_academy
+		building_omni_network_nodes
+		building_cynosural_singularity
+	}
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = {
+		planet_housing_add = 9
+		job_technician_drone_add = 2
+		job_patrol_drone_add = 1
+		job_brain_drone_add = 6
+		planet_researchers_produces_mult = 0.1
+		planet_technician_energy_produces_mult = 0.1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_the_infinity_network_hive }
+		}
+		job_cynosural_drone_hive_mind_add = 1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 50
+			exotic_gases = 50
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 7
+			exotic_gases = 1
+			rare_crystals = 1
+			alloys = 1
+		}
+	}
+	upgrades = {
+		"building_cynosural_link"
+		"building_cynosural_nexus"
+	}
+	prerequisites = { "tech_unified_research_hives" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#############################################################################################################
+# Cynosural Nexus (Hive World)
+building_cynosural_nexus = {
+	base_buildtime = 2400
+	can_build = no
+	icon = building_cynosural_beacon
+	category = research
+	potential = {
+		merg_is_habitat = no
+		OR = {
+			is_planet_class = pc_hive
+			merg_is_arcology = yes
+		}
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_cynosural_singularity }
+	}
+	convert_to = {
+		building_grand_academy
+		building_omni_network_nodes
+		building_cynosural_singularity
+	}
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = {
+		planet_housing_add = 14
+		job_cynosural_drone_hive_mind_add = 1
+		job_technician_drone_add = 2
+		job_maintenance_drone_add = 3
+		job_patrol_drone_add = 2
+		job_brain_drone_add = 7
+		job_synapse_drone_add = 1
+		planet_researchers_produces_mult = 0.15
+		planet_technician_energy_produces_mult = 0.15
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		upkeep = {
+			energy = 10
+			sr_dark_matter = 1
+			rare_crystals = 2
+			alloys = 2
+		}
+	}
+	prerequisites = { "tech_the_infinity_network_hive" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#############################################################################################################
+# Cynosural Link (Ringworld)
+building_cynosural_link = {
+	base_buildtime = 2400
+	can_build = no
+	icon = building_cynosural_lighthouse
+	category = research
+	potential = {
+		is_artificial = yes
+		merg_is_habitat = no
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_cynosural_singularity }
+	}
+	convert_to = {
+		building_grand_academy
+		building_omni_network_nodes
+		building_cynosural_singularity
+	}
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = {
+		planet_housing_add = 16
+		job_cynosural_drone_hive_mind_add = 1
+		job_technician_drone_add = 2
+		job_maintenance_drone_add = 3
+		job_patrol_drone_add = 2
+		job_brain_drone_add = 7
+		job_synapse_drone_add = 1
+		planet_researchers_produces_mult = 0.2
+		planet_technician_energy_produces_mult = 0.2
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 700
+			alloys = 400
+			volatile_motes = 150
+			exotic_gases = 150
+			rare_crystals = 150
+		}
+		upkeep = {
+			energy = 10
+			sr_dark_matter = 1
+			rare_crystals = 2
+			alloys = 2
+		}
+	}
+	prerequisites = { "tech_the_infinity_network_hive" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#############################################################################################################
+#############################################################################################################
+#############################################################################################################
+########### STARLIFT BUILDINGS ###########
+# Tectonic Hive (Base)
+building_tectonic_hive = {
+	base_buildtime = 1200
+	base_cap_amount = 1
+	icon = building_tectonic_foundry
+	category = resource
+	potential = {
+		is_artificial = no
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_atomic_forge }
+	}
+	convert_to = {
+		building_tectonic_forge
+		building_tectonic_foundry
+		building_atomic_forge
+	}
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = {
+		planet_housing_add = 5
+		job_mining_drone_add = 2
+		job_alloy_drone_add = 3
+		job_brain_drone_add = 4
+		job_synapse_drone_add = 1
+		job_patrol_drone_add = 1
+		planet_miners_minerals_produces_mult = 0.1
+		planet_metallurgists_produces_mult = 0.1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_starlift_operations_hive }
+		}
+		job_starlift_drone_add = 1
+	}
+	country_modifier = { country_resource_max_add = 500 }
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 50
+			exotic_gases = 50
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 7
+			volatile_motes = 1
+			rare_crystals = 1
+			alloys = 1
+		}
+	}
+	upgrades = { "building_starlift_foundry_hive" }
+	prerequisites = { "tech_streamlined_megaproduction_hive" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#############################################################################################################
+# Starlift Foundry Hive (Hive World)
+building_starlift_foundry_hive = {
+	base_buildtime = 2400
+	can_build = no
+	icon = building_starlift_foundry
+	category = resource
+	potential = {
+		merg_is_habitat = no
+		OR = {
+			is_planet_class = pc_hive
+			merg_is_arcology = yes
+		}
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_atomic_forge }
+	}
+	convert_to = {
+		building_tectonic_forge
+		building_tectonic_foundry
+		building_atomic_forge
+	}
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = {
+		planet_housing_add = 9
+		job_starlift_drone_add = 1
+		job_mining_drone_add = 4
+		job_alloy_drone_add = 3
+		job_brain_drone_add = 4
+		job_synapse_drone_add = 1
+		job_maintenance_drone_add = 2
+		job_patrol_drone_add = 2
+		planet_miners_minerals_produces_mult = 0.15
+		planet_metallurgists_produces_mult = 0.15
+	}
+	country_modifier = { country_resource_max_add = 1500 }
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		upkeep = {
+			energy = 10
+			volatile_motes = 2
+			rare_crystals = 2
+			alloys = 2
+		}
+	}
+	prerequisites = { "tech_starlift_operations_hive" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#############################################################################################################
+#############################################################################################################
+# Stellar Foundry Hive (Ringworld, Stand-Alone)
+building_stellar_foundry_hive = {
+	base_buildtime = 3600
+	base_cap_amount = 1
+	icon = building_stellar_foundry
+	category = resource
+	potential = {
+		is_artificial = yes
+		merg_is_habitat = no
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_atomic_forge }
+	}
+	allow = { has_upgraded_capital = yes }
+	convert_to = {
+		building_stellar_foundry
+		building_stellar_forge
+		building_atomic_forge
+	}
+	planet_modifier = {
+		planet_housing_add = 11
+		job_starlift_drone_add = 1
+		job_mining_drone_add = 4
+		job_alloy_drone_add = 3
+		job_brain_drone_add = 4
+		job_synapse_drone_add = 1
+		job_maintenance_drone_add = 2
+		job_patrol_drone_add = 2
+		planet_miners_minerals_produces_mult = 0.15
+		planet_metallurgists_produces_mult = 0.15
+	}
+	country_modifier = { country_resource_max_add = 1500 }
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1200
+			alloys = 700
+			volatile_motes = 250
+			exotic_gases = 250
+			rare_crystals = 250
+		}
+		upkeep = {
+			energy = 10
+			volatile_motes = 2
+			rare_crystals = 2
+			alloys = 2
+		}
+	}
+	prerequisites = { "tech_starlift_operations_hive" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#############################################################################################################
+#############################################################################################################
+########### COLONIAL AGENCY BUILDINGS ###########
+# Adaptation Hive
+building_adaptation_hive = {
+	base_buildtime = 1200
+	base_cap_amount = 1
+	icon = building_colonial_agency_headquarters
+	category = resource
+	potential = {
+		merg_is_habitat = no
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_world_engine }
+	}
+	convert_to = {
+		building_bio_analysis_core
+		building_colonial_agency_headquarters
+		building_world_engine
+	}
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = {
+		planet_housing_add = 5
+		job_macro_synapse_drone_add = 1
+		job_agri_drone_add = 2
+		job_synapse_drone_add = 1
+		job_spawning_drone_add = 1
+		job_brain_drone_add = 2
+		job_patrol_drone_add = 2
+		planet_farmers_food_produces_mult = 0.1
+		planet_pops_organics_food_upkeep_mult = -0.1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 50
+			exotic_gases = 50
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 7
+			exotic_gases = 1
+			rare_crystals = 1
+			alloys = 1
+		}
+	}
+	upgrades = {
+		"building_evolutionary_forge"
+		"building_hive_garden"
+	}
+	prerequisites = { "tech_adaptive_hive_networks" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+####################################################################################
+# Evolutionary Forge (Hive World)
+building_evolutionary_forge = {
+	base_buildtime = 2400
+	can_build = no
+	icon = building_evolutionary_spire
+	category = resource
+	potential = {
+		merg_is_habitat = no
+		OR = {
+			is_planet_class = pc_hive
+			merg_is_arcology = yes
+		}
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_world_engine }
+	}
+	convert_to = {
+		building_bio_analysis_core
+		building_colonial_agency_headquarters
+		building_world_engine
+	}
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = {
+		planet_housing_add = 9
+		job_macro_synapse_drone_add = 1
+		job_agri_drone_add = 6
+		job_synapse_drone_add = 2
+		job_spawning_drone_add = 1
+		job_brain_drone_add = 4
+		job_patrol_drone_add = 3
+		planet_farmers_food_produces_mult = 0.15
+		planet_pops_organics_food_upkeep_mult = -0.15
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		upkeep = {
+			energy = 10
+			exotic_gases = 2
+			rare_crystals = 2
+			alloys = 2
+		}
+	}
+	prerequisites = { "tech_adaptive_hive_cores" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+####################################################################################
+# Hive Garden
+building_hive_garden = {
+	base_buildtime = 2400
+	can_build = no
+	icon = building_arcadian_garden
+	category = resource
+	potential = {
+		is_artificial = yes
+		merg_is_habitat = no
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_world_engine }
+	}
+	convert_to = {
+		building_bio_analysis_core
+		building_colonial_agency_headquarters
+		building_world_engine
+	}
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = {
+		planet_housing_add = 11
+		job_macro_synapse_drone_add = 1
+		job_agri_drone_add = 6
+		job_synapse_drone_add = 2
+		job_spawning_drone_add = 1
+		job_brain_drone_add = 4
+		job_patrol_drone_add = 3
+		planet_farmers_food_produces_mult = 0.2
+		planet_pops_organics_food_upkeep_mult = -0.2
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 700
+			alloys = 400
+			volatile_motes = 150
+			exotic_gases = 150
+			rare_crystals = 150
+		}
+		upkeep = {
+			energy = 10
+			exotic_gases = 2
+			rare_crystals = 2
+			alloys = 2
+		}
+	}
+	prerequisites = { "tech_adaptive_hive_cores" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#############################################################################################################
+#############################################################################################################
+########### PLANETARY FORUM BUILDINGS ###########
+# Synaptic Link
+building_synaptic_link = {
+	base_buildtime = 1200
+	base_cap_amount = 1
+	category = unity
+	convert_to = {
+		building_planetary_forum
+		building_temple_city
+		building_corporate_megaforum
+		building_signal_mirror_core
+		building_celestial_paradise
+	}
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOR = {
+			merg_is_habitat = yes
+			has_building = building_celestial_paradise
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		upkeep = {
+			energy = 7
+			exotic_gases = 1
+			rare_crystals = 1
+			alloys = 1
+		}
+	}
+	planet_modifier = {
+		planet_housing_add = 10
+		job_maintenance_drone_add = 4
+		job_synapse_drone_add = 6
+		job_patrol_drone_add = 1
+		planet_jobs_unity_produces_mult = 0.1
+		pop_amenities_usage_no_happiness_mult = -0.1
+	}
+	prerequisites = { "tech_synaptic_beacons" }
+	upgrades = {
+		"building_synaptic_nexus"
+		"building_uni_link_hive"
+	}
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { factor = 500 }
+}
+
+################################################################################
+# Synaptic Nexus
+building_synaptic_nexus = {
+	base_buildtime = 2400
+	can_build = no
+	category = unity
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		OR = {
+			is_planet_class = pc_hive
+			merg_is_arcology = yes
+		}
+		NOT = { has_building = building_celestial_paradise }
+	}
+	convert_to = {
+		building_planetary_forum
+		building_temple_city
+		building_corporate_megaforum
+		building_signal_mirror_core
+		building_celestial_paradise
+	}
+	allow = { has_upgraded_capital = yes }
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		upkeep = {
+			energy = 10
+			exotic_gases = 2
+			rare_crystals = 2
+			alloys = 2
+		}
+	}
+	planet_modifier = {
+		planet_housing_add = 15
+		job_maintenance_drone_add = 7
+		job_synapse_drone_add = 7
+		job_patrol_drone_add = 4
+		planet_jobs_unity_produces_mult = 0.15
+		pop_amenities_usage_no_happiness_mult = -0.15
+	}
+	prerequisites = { "tech_synaptic_hive_core" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { factor = 500 }
+}
+
+################################################################################
+# Uni-Link Hive
+building_uni_link_hive = {
+	base_buildtime = 2400
+	can_build = no
+	category = unity
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		is_artificial = yes
+		NOT = { has_building = building_celestial_paradise }
+	}
+	convert_to = {
+		building_planetary_forum
+		building_temple_city
+		building_corporate_megaforum
+		building_signal_mirror_core
+		building_celestial_paradise
+	}
+	allow = { has_upgraded_capital = yes }
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 700
+			alloys = 400
+			volatile_motes = 150
+			exotic_gases = 150
+			rare_crystals = 150
+		}
+		upkeep = {
+			energy = 10
+			exotic_gases = 2
+			rare_crystals = 2
+			alloys = 2
+		}
+	}
+	planet_modifier = {
+		planet_housing_add = 15
+		job_maintenance_drone_add = 7
+		job_synapse_drone_add = 7
+		job_patrol_drone_add = 4
+		planet_jobs_unity_produces_mult = 0.2
+		pop_amenities_usage_no_happiness_mult = -0.2
+	}
+	prerequisites = { "tech_synaptic_hive_core" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { factor = 500 }
+}
+
+################################################################################
+##################################################################################
+################################################################################
+########### FORTRESS CITIES ###########
+# Greater Warrior Hive
+building_greater_warrior_hive = {
+	base_buildtime = 1200
+	base_cap_amount = 1
+	planetary_ftl_inhibitor = yes
+	icon = building_fortress_city
+	category = army
+	potential = {
+		merg_is_habitat = no
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_aegis_forge }
+	}
+	allow = { has_upgraded_capital = yes }
+	convert_to = {
+		building_adaptive_defence_core
+		building_fortress_city
+		building_aegis_forge
+	}
+	planet_modifier = {
+		planet_housing_add = 9
+		job_warmind_drone_add = 1
+		job_maintenance_drone_add = 2
+		job_patrol_drone_add = 2
+		job_warrior_drone_add = 5
+		planet_orbital_bombardment_damage = -0.05
+	}
+	army_modifier = {
+		army_defense_health_mult = 0.1
+		army_defense_damage_mult = 0.1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 50
+			exotic_gases = 50
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 7
+			volatile_motes = 1
+			rare_crystals = 1
+			alloys = 1
+		}
+	}
+	upgrades = {
+		"building_warrior_core"
+		"building_swarm_core"
+	}
+	prerequisites = { "tech_war_hives" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#############################################################################################################
+# Warrior Core (Hive World)
+building_warrior_core = {
+	base_buildtime = 2400
+	can_build = no
+	planetary_ftl_inhibitor = yes
+	icon = building_planetary_citadel
+	category = army
+	potential = {
+		merg_is_habitat = no
+		OR = {
+			is_planet_class = pc_hive
+			merg_is_arcology = yes
+		}
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_aegis_forge }
+	}
+	allow = { has_upgraded_capital = yes }
+	convert_to = {
+		building_adaptive_defence_core
+		building_fortress_city
+		building_aegis_forge
+	}
+	planet_modifier = {
+		planet_housing_add = 14
+		job_warmind_drone_add = 1
+		job_maintenance_drone_add = 2
+		job_patrol_drone_add = 4
+		job_warrior_drone_add = 6
+		planet_orbital_bombardment_damage = -0.1
+	}
+	army_modifier = {
+		army_defense_health_mult = 0.15
+		army_defense_damage_mult = 0.15
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		upkeep = {
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 1
+			rare_crystals = 1
+			alloys = 2
+		}
+	}
+	prerequisites = { "tech_adaptive_war_hives" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#############################################################################################################
+# Swarm Core (Ringworld)
+building_swarm_core = {
+	base_buildtime = 2400
+	can_build = no
+	planetary_ftl_inhibitor = yes
+	icon = building_aegis_city
+	category = army
+	potential = {
+		is_artificial = yes
+		merg_is_habitat = no
+		exists = owner
+		owner = { is_hive_empire = yes }
+		NOT = { has_building = building_aegis_forge }
+	}
+	allow = { has_upgraded_capital = yes }
+	convert_to = {
+		building_adaptive_defence_core
+		building_fortress_city
+		building_aegis_forge
+	}
+	planet_modifier = {
+		planet_housing_add = 14
+		job_warmind_drone_add = 1
+		job_maintenance_drone_add = 2
+		job_patrol_drone_add = 4
+		job_warrior_drone_add = 6
+		planet_orbital_bombardment_damage = -0.1
+	}
+	army_modifier = {
+		army_defense_health_mult = 0.2
+		army_defense_damage_mult = 0.2
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 700
+			alloys = 400
+			volatile_motes = 150
+			exotic_gases = 150
+			rare_crystals = 150
+		}
+		upkeep = {
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 1
+			rare_crystals = 1
+			alloys = 2
+		}
+	}
+	prerequisites = { "tech_world_scale_war_hives" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+###############################################################################################################################
+# Orbital War Hive
+building_orbital_war_hive = {
+	base_buildtime = 800
+	base_cap_amount = 1
+	planetary_ftl_inhibitor = yes
+	icon = building_orbital_command_district
+	category = army
+	potential = {
+		merg_is_habitat = yes
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	allow = { has_upgraded_capital = yes }
+	convert_to = {
+		building_orbital_command_node
+		building_orbital_command_district
+	}
+	planet_modifier = {
+		planet_housing_add = 7
+		job_warmind_drone_add = 1
+		job_patrol_drone_add = 3
+		job_warrior_drone_add = 4
+		planet_orbital_bombardment_damage = -0.05
+	}
+	army_modifier = {
+		army_defense_health_mult = 0.1
+		army_defense_damage_mult = 0.1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 300
+			alloys = 100
+			volatile_motes = 50
+			exotic_gases = 50
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 5
+			alloys = 2
+		}
+	}
+	prerequisites = { "tech_orbital_war_hives" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+###############################################################################################################################
+# Gene-Forge Spire
+building_forced_evolution_spires = {
+	base_buildtime = 1200
+	base_cap_amount = 1
+	planetary_ftl_inhibitor = yes
+	icon = building_gene_forge_spires
+	category = army
+	potential = {
+		merg_is_habitat = no
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			has_technology = tech_bio_war_mastery
+		}
+	}
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = {
+		planet_housing_add = 9
+		job_warmind_drone_add = 1
+		job_patrol_drone_add = 5
+		job_warrior_drone_add = 4
+		planet_orbital_bombardment_damage = -0.05
+	}
+	army_modifier = {
+		army_defense_health_mult = 0.1
+		army_defense_damage_mult = 0.1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+			alloys = 300
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		upkeep = {
+			energy = 5
+			volatile_motes = 1
+			rare_crystals = 1
+			alloys = 1
+			exotic_gases = 2
+		}
+	}
+	prerequisites = { "tech_dread_hive_mutations" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+########### UNIQUE ##############
+# Hybrid Spawn Spire
+building_wyrmguard_citadel_hive = {
+	base_buildtime = 3600
+	base_cap_amount = 1
+	planetary_ftl_inhibitor = yes
+	icon = building_wyrmguard_citadel
+	category = army
+	potential = {
+		merg_is_habitat = no
+		is_capital = yes
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			has_technology = tech_wyrmguard
+		}
+	}
+	allow = {
+		has_major_upgraded_capital = yes
+		is_capital = yes
+	}
+	destroy_trigger = { is_capital = no }
+	planet_modifier = {
+		planet_housing_add = 18
+		job_warmind_drone_add = 1
+		job_alloy_drone_add = 2
+		job_spawning_drone_add = 1
+		job_brain_drone_add = 2
+		job_patrol_drone_add = 4
+		job_warrior_drone_add = 7
+		planet_orbital_bombardment_damage = -0.1
+	}
+	country_modifier = {
+		army_health = 0.1
+		army_damage_mult = 0.1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 700
+			alloys = 400
+			volatile_motes = 150
+			exotic_gases = 300
+			rare_crystals = 150
+		}
+		upkeep = {
+			energy = 10
+			volatile_motes = 2
+			exotic_gases = 2
+			rare_crystals = 2
+			alloys = 2
+			sr_dark_matter = 1
+		}
+	}
+	prerequisites = { "tech_xenodraconian_mutations" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 1000 }
+}
+
+# PERSONAL NOTE: The buildings will be hilariously powerful. The massive upkeep and long build-time might halt the worst of it until
+#####		   I find a more permanent solution.
+##############################################################################################
+############################	HABITAT 2.3+	  ############################################
+##############################################################################################
+# Orbital Research Hive
+building_orbital_research_hive = {
+	base_buildtime = 600
+	base_cap_amount = 1
+	icon = building_academy_district
+	category = research
+	potential = {
+		merg_is_habitat = yes
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	convert_to = {
+		building_academy_district
+		building_orbital_research_uplink
+	}
+	planet_modifier = {
+		planet_housing_add = 4
+		job_cynosural_drone_hive_mind_add = 1
+		job_technician_drone_add = 1
+		job_patrol_drone_add = 1
+		job_brain_drone_add = 3
+		planet_researchers_produces_mult = 0.1
+		planet_technician_energy_produces_mult = 0.1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_the_infinity_network_hive }
+		}
+		job_cynosural_drone_hive_mind_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_voidborn
+				has_technology = tech_unified_research_hives
+			}
+		}
+		modifier = { planet_housing_add = 2 job_brain_drone_add = 2 }
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 250
+			alloys = 150
+			volatile_motes = 25
+			exotic_gases = 25
+			rare_crystals = 25
+		}
+		upkeep = {
+			energy = 4
+			exotic_gases = 0.5
+			rare_crystals = 0.5
+			alloys = 0.5
+		}
+	}
+	prerequisites = { "tech_unified_research_hives" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+########################################################################################
+# Foundry Hive
+building_foundry_hive = {
+	base_buildtime = 600
+	base_cap_amount = 1
+	icon = building_foundry_district
+	category = resource
+	potential = {
+		merg_is_habitat = yes
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	convert_to = {
+		building_foundry_district
+		building_foundry_unit
+	}
+	planet_modifier = {
+		planet_housing_add = 3
+		job_mining_drone_add = 1
+		job_alloy_drone_add = 1
+		job_brain_drone_add = 2
+		job_synapse_drone_add = 1
+		job_patrol_drone_add = 1
+		planet_miners_minerals_produces_mult = 0.1
+		planet_metallurgists_produces_mult = 0.1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_starlift_operations_hive }
+		}
+		job_starlift_drone_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_voidborn
+				has_technology = tech_streamlined_megaproduction_hive
+			}
+		}
+		modifier = { planet_housing_add = 2 job_mining_drone_add = 1 job_alloy_drone_add = 1 }
+	}
+	country_modifier = { country_resource_max_add = 250 }
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 250
+			alloys = 150
+			volatile_motes = 25
+			exotic_gases = 25
+			rare_crystals = 25
+		}
+		upkeep = {
+			energy = 4
+			volatile_motes = 0.5
+			rare_crystals = 0.5
+			alloys = 0.5
+		}
+	}
+	prerequisites = { "tech_streamlined_megaproduction_hive" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+##################################################################################################
+# Orbital Mutation Hive
+building_orbital_mutation_hive = {
+	base_buildtime = 600
+	base_cap_amount = 1
+	icon = building_agency_operations_district
+	category = resource
+	potential = {
+		merg_is_habitat = yes
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	convert_to = {
+		building_orbital_bio_analysis_unit
+		building_agency_operations_district
+	}
+	planet_modifier = {
+		planet_housing_add = 3
+		job_macro_synapse_drone_add = 1
+		job_agri_drone_add = 1
+		job_synapse_drone_add = 1
+		job_spawning_drone_add = 1
+		job_brain_drone_add = 1
+		job_patrol_drone_add = 1
+		planet_farmers_food_produces_mult = 0.1
+		planet_pops_organics_food_upkeep_mult = -0.1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_voidborn
+				has_technology = tech_adaptive_hive_networks
+			}
+		}
+		modifier = { planet_housing_add = 2 job_agri_drone_add = 1 job_synapse_drone_add = 1 }
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 250
+			alloys = 150
+			volatile_motes = 25
+			exotic_gases = 25
+			rare_crystals = 25
+		}
+		upkeep = {
+			energy = 4
+			exotic_gases = 0.5
+			rare_crystals = 0.5
+			alloys = 0.5
+		}
+	}
+	prerequisites = { "tech_adaptive_hive_networks" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { weight = 500 }
+}
+
+#################################################################################################
+# Orbital Synaptic Nexus
+building_orbital_synaptic_nexus = {
+	base_buildtime = 600
+	base_cap_amount = 1
+	icon = building_synaptic_link
+	category = unity
+	destroy_trigger = {
+		NAND = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+	}
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		merg_is_habitat = yes
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 250
+			alloys = 150
+			volatile_motes = 50
+			exotic_gases = 50
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 4
+			exotic_gases = 0.5
+			rare_crystals = 0.5
+			alloys = 0.5
+		}
+	}
+	planet_modifier = {
+		planet_housing_add = 5
+		job_maintenance_drone_add = 2
+		job_synapse_drone_add = 3
+		job_patrol_drone_add = 1
+		planet_jobs_unity_produces_mult = 0.1
+		pop_amenities_usage_no_happiness_mult = -0.1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_voidborn
+				has_technology = tech_synaptic_beacons
+			}
+		}
+		modifier = { planet_housing_add = 2 job_maintenance_drone_add = 1 job_synapse_drone_add = 1 }
+	}
+	prerequisites = { "tech_synaptic_beacons" }
+	show_tech_unlock_if = { is_hive_empire = yes }
+	# ai_weight = { factor = 500 }
+}
+
+########### RELIC WORLD (Gestalt) ############
+# Expedition Vault
+building_expedition_vault = {
+	base_buildtime = 480
+	base_cap_amount = 1
+	icon = building_expedition_headquarters
+	category = research
+	potential = {
+		merg_is_habitat = no
+		exists = owner
+		owner = { is_gestalt = yes }
+		OR = {
+			is_planet_class = pc_relic
+			has_deposit = d_former_relic_world
+		}
+	}
+	convert_to = { building_expedition_headquarters }
+	allow = { has_upgraded_capital = yes }
+	planet_modifier = { job_patrol_drone_add = 1 }
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_deep_space_expeditions }
+			owner = { is_hive_empire = yes }
+		}
+		modifier = { job_brain_drone_add = 5 job_archeologist_hive_mind_add = 2 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_deep_space_expeditions
+				is_machine_empire = yes
+			}
+		}
+		modifier = { job_calculator_add = 5 job_archeologist_machine_intelligence_add = 2 }
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 600
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 5
+			exotic_gases = 1
+		}
+	}
+	prerequisites = { "tech_deep_space_expeditions" }
+	show_tech_unlock_if = { is_gestalt = yes }
+	# ai_weight = { weight = 500 }
+}

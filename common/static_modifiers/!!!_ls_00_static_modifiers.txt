@@ -290,9 +290,10 @@ skill_ruler = {
 ##################################################
 ## Difficulty Modifiers
 ##################################################
+# OSA difficulty modifiers. They're overwritten by another mod, so I'm replacing them here so they take priority.
 
-## OSA difficulty modifiers. They're overwritten by another mod, so I'm replacing them here so they take priority.
-# For playable empires
+## Grand Admiral
+# OSA version
 difficulty_grand_admiral = {
 	stations_produces_mult = 1
 	country_unity_produces_mult = 2.5
@@ -313,6 +314,8 @@ difficulty_grand_admiral = {
 	difficulty_modifier_mult = 1.0 # Only active with Difficulty Adjusted AI Modifiers setting
 }
 
+## Admiral
+# OSA version
 difficulty_admiral = {
 	stations_produces_mult = 0.75
 	country_unity_produces_mult = 1.5
@@ -333,6 +336,8 @@ difficulty_admiral = {
 	difficulty_modifier_mult = 0.75 # Only active with Difficulty Adjusted AI Modifiers setting
 }
 
+## Commodore
+# OSA version
 difficulty_commodore = {
 	stations_produces_mult = 0.5
 	country_unity_produces_mult = 1
@@ -353,6 +358,8 @@ difficulty_commodore = {
 	difficulty_modifier_mult = 0.5 # Only active with Difficulty Adjusted AI Modifiers setting
 }
 
+## Captain
+# OSA version
 difficulty_captain = {
 	stations_produces_mult = 0.25
 	country_unity_produces_mult = 0.5
@@ -373,7 +380,19 @@ difficulty_captain = {
 	difficulty_modifier_mult = 0.25 # Only active with Difficulty Adjusted AI Modifiers setting
 }
 
+## Ensign
+# Vanilla
 difficulty_ensign = {
+}
+
+## Cadet (Player Bonuses)
+# Vanilla
+difficulty_cadet_player = {
+	stations_produces_mult = 0.5
+	planet_jobs_produces_mult = 0.5
+	country_naval_cap_mult = 0.5
+	planet_stability_add = 10
+	trade_value_mult = 0.5
 }
 
 ##################################################

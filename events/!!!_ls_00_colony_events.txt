@@ -30,26 +30,27 @@ planet_event = {
 	}
 
 	trigger = {
-		num_pops > 0
-		years_passed < 50
-		NOR = {
-			is_artificial = yes # STU
-			has_planet_flag = asteroid_sighted
-			has_planet_flag = asteroid_collision
-			has_global_flag = asteroid_sighted_global
-			owner = { has_country_flag = asteroid_sighted_country }
-		}
-		OR = { # Rapid Evolution
-			has_planet_flag = re_trigger_asteroid_events
-			NOR = {
-				is_homeworld = yes
-				original_owner = no
-				owner = { is_ai = yes }
-				is_capital = yes
-				has_planet_flag = asteroid_collision
-				has_global_flag = asteroid_sighted_global
-			}
-		}
+		# LS - Disabling this event entirely since it causes lagg, is very buggy, and generally not very exciting.
+		#num_pops > 0
+		#years_passed < 50
+		#NOR = {
+		#	is_artificial = yes # STU
+		#	has_planet_flag = asteroid_sighted
+		#	has_planet_flag = asteroid_collision
+		#	has_global_flag = asteroid_sighted_global
+		#	owner = { has_country_flag = asteroid_sighted_country }
+		#}
+		#OR = { # Rapid Evolution
+		#	has_planet_flag = re_trigger_asteroid_events
+		#	NOR = {
+		#		is_homeworld = yes
+		#		original_owner = no
+		#		owner = { is_ai = yes }
+		#		is_capital = yes
+		#		has_planet_flag = asteroid_collision
+		#		has_global_flag = asteroid_sighted_global
+		#	}
+		#}
 	}
 
 	is_triggered_only = yes

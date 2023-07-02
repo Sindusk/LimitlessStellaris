@@ -1,0 +1,94 @@
+##########################################################################
+# Limitless Stellaris - Unique Triggered Modifiers Inline
+##########################################################################
+## An inline for some triggered modifiers meant to trigger on all unique buildings.
+
+### Triggered Planet Modifiers
+## MECR - Academy of Sciences Resolution Bonuses
+# Grants additional researcher production when the resolution is active and you are in a proper federation.
+triggered_planet_modifier = {
+	potential = {
+		is_active_resolution = resolution_custodian_galactic_academy_of_sciences
+		owner = {
+			has_federation = yes
+			federation = {
+				has_federation_perk = galactic_confederation_passive
+				has_federation_perk = research_galconfed_specialization_bonus_1
+			}
+		}
+	}
+	planet_researchers_physics_research_produces_add = 0.4
+	planet_researchers_society_research_produces_add = 0.4
+	planet_researchers_engineering_research_produces_add = 0.4
+	mult = owner.value:building_institute_galactic_academy_of_sciences_galconfed_specialization
+}
+## MECR - Academy of Sciences Resolution Bonuses
+# Grants additional researcher output when a planet has assisted research while the resolution is active.
+triggered_planet_modifier = {
+	potential = {
+		is_active_resolution = resolution_custodian_galactic_academy_of_sciences
+		has_modifier = assist_research
+	}
+	planet_researchers_physics_research_produces_add = 0.2
+	planet_researchers_society_research_produces_add = 0.2
+	planet_researchers_engineering_research_produces_add = 0.2
+	mult = value:building_institute_galactic_academy_of_sciences_assist_research
+}
+## Bug Branch - Research Cooperatives Civic
+# Grants additional unity from jobs for each unique research building.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_civic = civic_bugged_research_cooperatives
+		}
+	}
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.05
+	}
+}
+## Orbital Ring Buildings - Ringworld Bonuses (Standard)
+# Grants additional researcher output at the expense of upkeep on ringworlds.
+triggered_planet_modifier = { # Orbital Ring Buildings
+	potential = {
+		is_ringworld = yes
+		exists = owner
+		owner = { is_gestalt = no } # LS condition
+	}
+	modifier = {
+		planet_researchers_physics_research_produces_add = 1
+		planet_researchers_engineering_research_produces_add = 1
+		planet_researchers_society_research_produces_add = 1
+		planet_researchers_consumer_goods_upkeep_add = 1
+	}
+}
+## Orbital Ring Buildings - Ringworld Bonuses (Hive)
+# Grants additional researcher output at the expense of upkeep on ringworlds.
+triggered_planet_modifier = {
+	potential = {
+		is_ringworld = yes
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	modifier = {
+		planet_researchers_physics_research_produces_add = 1
+		planet_researchers_engineering_research_produces_add = 1
+		planet_researchers_society_research_produces_add = 1
+		planet_researchers_minerals_upkeep_add = 3
+	}
+}
+## Orbital Ring Buildings - Ringworld Bonuses (Machine)
+# Grants additional researcher output at the expense of upkeep on ringworlds.
+triggered_planet_modifier = {
+	potential = {
+		is_ringworld = yes
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+	modifier = {
+		planet_researchers_physics_research_produces_add = 1
+		planet_researchers_engineering_research_produces_add = 1
+		planet_researchers_society_research_produces_add = 1
+		planet_researchers_energy_upkeep_add = 2
+	}
+}

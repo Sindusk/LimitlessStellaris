@@ -1,0 +1,515 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Ad Astra Fallen Empire
+##########################################################################
+
+##################################################
+## Later Buildings (Not Yet Modified)
+##################################################
+
+
+
+
+
+
+#############
+# AD ASTRA FALLEN EMPIRE BUILDINGS
+#############
+# Aegis Forge
+building_aegis_forge = {
+	base_buildtime = 360
+	planetary_ftl_inhibitor = yes
+	base_cap_amount = 1
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			merg_is_habitat = yes
+		}
+		exists = owner
+		owner = { is_fallen_empire = yes }
+	}
+	planet_modifier = {
+		planet_housing_add = 20
+		planet_orbital_bombardment_damage = -0.2
+	}
+	army_modifier = { army_defense_health_mult = 0.2 army_defense_damage_mult = 0.2 army_starting_experience_add = 200 }
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		job_fe_protector_add = 5
+		planet_orbital_bombardment_damage = -0.1
+	}
+	# Regular
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_omni_fortress_engineering }
+			owner = { is_fallen_empire = no }
+		}
+		job_strategic_command_add = 1
+		job_clerk_add = 1
+		job_healthcare_add = 1
+		job_enforcer_add = 4
+		job_soldier_add = 6
+	}
+	# Hive Mind
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_world_scale_war_hives }
+			owner = { is_fallen_empire = no }
+		}
+		job_warmind_drone_add = 1
+		job_maintenance_drone_add = 2
+		job_patrol_drone_add = 4
+		job_warrior_drone_add = 6
+	}
+	# Machine Intelligence
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_omni_force_command }
+			owner = { is_fallen_empire = no }
+		}
+		job_warmind_drone_add = 1
+		job_maintenance_drone_add = 1
+		job_technician_drone_add = 1
+		job_patrol_drone_add = 4
+		job_warrior_drone_add = 6
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			alloys = 600
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+	}
+	prerequisites = { "tech_aegis_forge" }
+	show_tech_unlock_if = { is_fallen_empire = yes }
+	# ai_weight = { weight = 1000 }
+}
+
+###################################################################################
+# Atomic Forge
+building_atomic_forge = {
+	base_buildtime = 360
+	base_cap_amount = 1
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			merg_is_habitat = yes
+		}
+		owner = { is_fallen_empire = yes }
+	}
+	planet_modifier = {
+		planet_housing_add = 20
+		planet_pops_consumer_goods_upkeep_mult = -0.2
+		planet_metallurgists_produces_mult = 0.25
+		planet_miners_minerals_produces_mult = 0.25
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		planet_pops_consumer_goods_upkeep_mult = -0.1
+		planet_metallurgists_produces_mult = 0.15
+		planet_miners_minerals_produces_mult = 0.15
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			alloys = 600
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		produces = {
+			alloys = 75
+			minerals = 150
+			consumer_goods = 50
+			rare_crystals = 2
+			exotic_gases = 2
+			volatile_motes = 2
+		}
+	}
+	# Regular
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_starlift_operations }
+			owner = { is_fallen_empire = no }
+		}
+		job_starlift_specialist_add = 1
+		job_miner_add = 4
+		job_foundry_add = 3
+		job_artisan_add = 3
+		job_researcher_add = 4
+		job_enforcer_add = 2
+	}
+	# Hive Mind
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_starlift_operations_hive }
+			owner = { is_fallen_empire = no }
+		}
+		job_starlift_drone_add = 1
+		job_mining_drone_add = 4
+		job_alloy_drone_add = 3
+		job_brain_drone_add = 4
+		job_synapse_drone_add = 1
+		job_maintenance_drone_add = 2
+		job_patrol_drone_add = 2
+	}
+	# Machine Intelligence
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_starlift_operations_synthetic }
+			owner = { is_fallen_empire = no }
+		}
+		job_starlift_drone_add = 1
+		job_mining_drone_add = 5
+		job_calculator_add = 4
+		job_patrol_drone_add = 2
+		job_fabricator_add = 4
+		job_replicator_add = 1
+		planet_pop_assembly_mult = 0.1
+	}
+	prerequisites = { "tech_atomic_forge" }
+	show_tech_unlock_if = { is_fallen_empire = yes }
+	# ai_weight = { weight = 1000 }
+}
+
+###################################################################################
+# Celestial Paradise
+building_celestial_paradise = {
+	base_buildtime = 360
+	base_cap_amount = 1
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			merg_is_habitat = yes
+		}
+		exists = owner
+		owner = { is_fallen_empire = yes }
+	}
+	planet_modifier = { planet_housing_add = 30 planet_amenities_add = 30 planet_jobs_unity_produces_mult = 0.2 }
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		planet_amenities_add = 10
+		planet_jobs_unity_produces_mult = 0.15
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			alloys = 600
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = no }
+		}
+		modifier = { job_fe_overseer_add = 1 job_fe_protector_add = 2 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = { job_fe_sky_cardinal_add = 1 job_fe_protector_add = 2 }
+	}
+	# Regular
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_universal_forum }
+			owner = { is_spiritualist = no }
+			owner = { is_megacorp = no }
+			owner = { is_fallen_empire = no }
+		}
+		job_clerk_add = 4
+		job_entertainer_add = 5
+		job_merchant_add = 4
+		job_culture_worker_add = 7
+		job_enforcer_add = 2
+	}
+	# Regular (Spiritualist)
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_the_celestial_beacons }
+			owner = { is_spiritualist = yes }
+			owner = { is_megacorp = no }
+			owner = { is_fallen_empire = no }
+		}
+		job_priest_add = 14
+		job_healthcare_add = 2
+		job_enforcer_add = 2
+	}
+	# Regular (Spiritualist Megacorp)
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_the_celestial_beacons }
+			owner = { is_spiritualist = yes }
+			owner = { is_megacorp = yes }
+			owner = { is_fallen_empire = no }
+		}
+		job_priest_add = 14
+		job_healthcare_add = 2
+		job_enforcer_add = 2
+	}
+	# Regular (Megacorp)
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_galactic_megacorp_forums }
+			owner = { is_spiritualist = no }
+			owner = { is_megacorp = yes }
+			owner = { is_fallen_empire = no }
+		}
+		job_entertainer_add = 2
+		job_merchant_add = 2
+		job_manager_add = 6
+		job_enforcer_add = 1
+	}
+	# Hive Mind
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_synaptic_hive_core }
+			owner = { is_fallen_empire = no }
+		}
+		job_maintenance_drone_add = 7
+		job_synapse_drone_add = 7
+		job_patrol_drone_add = 4
+		pop_amenities_usage_no_happiness_mult = -0.2
+	}
+	# Machine Intelligence
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_quantum_ftl_entanglement }
+			owner = { is_fallen_empire = no }
+		}
+		job_technician_drone_add = 3
+		job_evaluator_add = 7
+		job_maintenance_drone_add = 7
+		job_patrol_drone_add = 5
+		pop_amenities_usage_no_happiness_mult = -0.2
+	}
+	prerequisites = { "tech_celestial_paradise" }
+	show_tech_unlock_if = { is_fallen_empire = yes }
+	# ai_weight = { weight = 1000 }
+}
+
+###################################################################################
+# Cynosural Singularity
+building_cynosural_singularity = {
+	base_buildtime = 360
+	base_cap_amount = 1
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			merg_is_habitat = yes
+		}
+		owner = { is_fallen_empire = yes }
+	}
+	planet_modifier = { planet_housing_add = 21 planet_researchers_produces_mult = 0.2 planet_technician_energy_produces_mult = 0.2 }
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			alloys = 600
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		produces = {
+			energy = 250
+			physics_research = 80
+			society_research = 80
+			engineering_research = 80
+			sr_dark_matter = 3
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		planet_researchers_produces_mult = 0.1
+		planet_technician_energy_produces_mult = 0.1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		job_fe_protector_add = 3
+	}
+	# Regular
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_the_infinity_network }
+			owner = { is_fallen_empire = no }
+		}
+		job_cynosural_researcher_add = 1
+		job_clerk_add = 2
+		job_technician_add = 2
+		job_merchant_add = 1
+		job_head_researcher_add = 1
+		job_researcher_add = 7
+		job_enforcer_add = 2
+	}
+	# Hive Mind
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_the_infinity_network_hive }
+			owner = { is_fallen_empire = no }
+		}
+		job_cynosural_drone_hive_mind_add = 1
+		job_technician_drone_add = 2
+		job_maintenance_drone_add = 3
+		job_patrol_drone_add = 2
+		job_brain_drone_add = 7
+		job_synapse_drone_add = 1
+	}
+	# Machine Intelligence
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_the_infinity_network_synthetic }
+			owner = { is_fallen_empire = no }
+		}
+		job_cynosural_drone_machine_intelligence_add = 1
+		job_patrol_drone_add = 2
+		job_technician_drone_add = 2
+		job_maintenance_drone_add = 2
+		job_evaluator_add = 1
+		job_calculator_add = 8
+	}
+	prerequisites = { "tech_cynosural_singularity" }
+	show_tech_unlock_if = { is_fallen_empire = yes }
+	# ai_weight = { weight = 1000 }
+}
+
+###################################################################################
+# World Engine
+building_world_engine = {
+	base_buildtime = 360
+	base_cap_amount = 1
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			merg_is_habitat = yes
+		}
+		exists = owner
+		owner = { is_fallen_empire = yes }
+	}
+	planet_modifier = { planet_housing_add = 20 planet_farmers_food_produces_mult = 0.25 pop_environment_tolerance = 1 }
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+		planet_farmers_food_produces_mult = 0.15
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			alloys = 600
+			volatile_motes = 100
+			exotic_gases = 100
+			rare_crystals = 100
+		}
+		produces = {
+			food = 100
+			physics_research = 50
+			society_research = 100
+			engineering_research = 50
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = no }
+		}
+		modifier = { job_fe_overseer_add = 1 job_fe_protector_add = 4 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = { job_fe_sky_cardinal_add = 1 job_fe_protector_add = 4 }
+	}
+	# Regular
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_colonial_agency_megahubs }
+			owner = { is_fallen_empire = no }
+		}
+		job_colonial_agent_add = 1
+		job_farmer_add = 4
+		job_healthcare_add = 4
+		job_researcher_add = 4
+		job_enforcer_add = 1
+		job_soldier_add = 1
+	}
+	# Hive Mind
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_adaptive_hive_cores }
+			owner = { is_fallen_empire = no }
+		}
+		job_macro_synapse_drone_add = 1
+		job_agri_drone_add = 6
+		job_synapse_drone_add = 2
+		job_spawning_drone_add = 1
+		job_brain_drone_add = 4
+		job_patrol_drone_add = 3
+	}
+	# Machine Intelligence
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_bio_codexing }
+			owner = { is_fallen_empire = no }
+		}
+		job_macro_core_drone_add = 1
+		job_agri_drone_add = 4
+		job_evaluator_add = 4
+		job_calculator_add = 4
+		job_patrol_drone_add = 2
+		job_warrior_drone_add = 2
+	}
+	prerequisites = { "tech_world_engine" }
+	show_tech_unlock_if = { is_fallen_empire = yes }
+	# ai_weight = { weight = 1000 }
+}
