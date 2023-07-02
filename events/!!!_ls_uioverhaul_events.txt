@@ -25,6 +25,7 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
+		set_global_flag = ui_overhaul_qhd_ascension_tech_popup # Prevent the menu from appearing on load.
 		event_target:global_event_country = { # Transferred from the menu event for the host to configure max setting.
 			set_variable = {
 				which = uiod_max_ascension_perk_slots
