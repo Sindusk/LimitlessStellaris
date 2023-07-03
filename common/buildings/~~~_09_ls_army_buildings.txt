@@ -7,7 +7,7 @@
 ##################################################
 
 ## Military Academy (Tier 1)
-# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, StarTech
+# Merge between Sort Buildings, Roma Invicta, OSA, EUTAB, Bug Branch, Real Space: Planetary Stations, StarTech
 building_military_academy = {
 	base_buildtime = @db2_time
 	base_cap_amount = 1
@@ -77,10 +77,47 @@ building_military_academy = {
 				NOT = {
 					has_active_tradition = tr_defense_4
 				}
+				NOR = { # LS - optimized NOR for Roma Invicta
+					has_origin = origin_spqr # Roma Invicta
+					has_origin = origin_legio # Roma Invicta
+					has_origin = origin_orbis # Roma Invicta
+				}
 			}
 		}
 		modifier = {
 			job_soldier_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+			owner = { has_origin = origin_spqr}
+		}
+		modifier = {
+			job_legionary_add = 2
+		}
+	}
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+			owner = { has_origin = origin_legio}
+		}
+		modifier = {
+			job_praetor_add = 2
+		}
+	}
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+			owner = { has_origin = origin_orbis}
+		}
+		modifier = {
+			job_limitanei_add = 1
+			job_comitatenses_add = 1
 		}
 	}
 
@@ -306,7 +343,7 @@ building_dread_encampment = {
 }
 
 ## Stronghold (Tier 1)
-# Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
+# Merge between Sort Buildings, Roma Invicta, OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_stronghold = {
 	base_buildtime = 240
 	position_priority = 4091000 # Sort Buildings
@@ -365,12 +402,49 @@ building_stronghold = {
 		potential = {
 			exists = owner
 			owner = {
-			   is_gestalt = no
-			   not = { has_civic = civic_private_militaries has_civic = civic_private_militaries_corpo }
-			   }
+				is_gestalt = no
+				not = { has_civic = civic_private_militaries has_civic = civic_private_militaries_corpo }
+				NOR = { # LS - optimized NOR for Roma Invicta
+					has_origin = origin_spqr # Roma Invicta
+					has_origin = origin_legio # Roma Invicta
+					has_origin = origin_orbis # Roma Invicta
+				}
+			}
 		}
 		modifier = {
 			job_soldier_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+			owner = { has_origin = origin_spqr }
+		}
+		modifier = {
+			job_legionary_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+			owner = { has_origin = origin_legio }
+		}
+		modifier = {
+			job_praetor_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_orbis }
+		}
+		modifier = {
+			job_limitanei_add = 2
 		}
 	}
 
@@ -563,7 +637,7 @@ building_stronghold = {
 }
 
 ## Fortress (Tier 2)
-# Merge between OSA, Bug Branch, Real Space: Planetary Stations, StarTech
+# Merge between Roma Invicta, OSA, Bug Branch, Real Space: Planetary Stations, StarTech
 building_fortress = {
 	base_buildtime = @db1_time
 	can_build = no
@@ -604,9 +678,14 @@ building_fortress = {
 	triggered_planet_modifier = { # OSA
 		potential = {
 			owner = {
-			   is_gestalt = no
-			   not = { has_civic = civic_private_militaries has_civic = civic_private_militaries_corpo }
-			   }
+				is_gestalt = no
+				not = { has_civic = civic_private_militaries has_civic = civic_private_militaries_corpo }
+				NOR = { # LS - optimized NOR for Roma Invicta
+					has_origin = origin_spqr # Roma Invicta
+					has_origin = origin_legio # Roma Invicta
+					has_origin = origin_orbis # Roma Invicta
+				}
+			}
 		}
 		modifier = {
 			job_soldier_add = 2
@@ -705,6 +784,38 @@ building_fortress = {
 		}
 		modifier = {
 			job_warrior_drone_add = @b2_jobs
+		}
+	}
+	
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+			owner = { has_origin = origin_spqr }
+		}
+		modifier = {
+			job_legionary_add = 4
+		}
+	}
+
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+			owner = { has_origin = origin_legio }
+		}
+		modifier = {
+			job_praetor_add = 4
+		}
+	}
+
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_orbis }
+		}
+		modifier = {
+			job_limitanei_add = 4
 		}
 	}
 

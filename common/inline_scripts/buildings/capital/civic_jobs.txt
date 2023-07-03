@@ -121,6 +121,27 @@ triggered_planet_modifier = {
 		job_politician_add = -$count$
 	}
 }
+# Roma Invicta - Noble Politician Removal
+# Lose additional politician for having one of the origins.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_exalted_priesthood = { allow_invalid = yes } # Scripted Trigger Undercoat
+				is_bugged_governmental_spiritualist = yes # Bug Branch
+			}
+			OR = { # Roma Invicta
+				has_origin = origin_spqr
+				has_origin = origin_legio
+				has_origin = origin_orbis
+			}
+		}
+	}
+	modifier = {
+		job_politician_add = -1
+	}
+}
 # Limitless Stellaris - Noble Jobs
 triggered_planet_modifier = {
 	potential = {
@@ -136,6 +157,28 @@ triggered_planet_modifier = {
 	modifier = {
 		job_noble_add = $count$
 		job_politician_add = -$count$
+	}
+}
+# Roma Invicta - Noble Politician Removal
+# Lose additional politician for having one of the origins.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_aristocratic_empire = { allow_invalid = yes } # Scripted Trigger Undercoat
+				is_bugged_governmental_elitist = yes # Bug Branch
+			}
+			OR = { # Roma Invicta
+				has_origin = origin_spqr
+				has_origin = origin_legio
+				has_origin = origin_orbis
+			}
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat } # Bug Branch restriction
+	}
+	modifier = {
+		job_politician_add = -1
 	}
 }
 # Limitless Stellaris - Head Researcher Jobs
@@ -155,6 +198,68 @@ triggered_planet_modifier = {
 		job_politician_add = -$count$
 	}
 }
+# Roma Invicta - Head Researcher Politician Removal
+# Lose additional politician for having one of the origins.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_technocracy = { allow_invalid = yes } # Scripted Trigger Undercoat
+				is_bugged_governmental_materialist = yes # Bug Branch
+			}
+			OR = { # Roma Invicta
+				has_origin = origin_spqr
+				has_origin = origin_legio
+				has_origin = origin_orbis
+			}
+		}
+		NOT = { has_planet_flag = toxic_knights_habitat } # Bug Branch restriction
+	}
+	modifier = {
+		job_politician_add = -1
+	}
+}
+
+# Roma Invicta - Tribune + Senator Jobs
+# Added for origin.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_origin = origin_spqr }
+	}
+	modifier = {
+		job_tribune_add = $count$
+		job_senator_add = $count$
+	}
+}
+
+## Roma Invicta - Proconsul + Legate Jobs
+# Added for origin.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_origin = origin_legio }
+	}
+	modifier = {
+		job_proconsul_add = $count$
+		job_legate_add = $count$
+	}
+}
+
+## Roma Invicta - Vicarius + Comitatenses Jobs
+# Added for origin.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_origin = origin_orbis }
+	}
+	modifier = {
+		job_vicarius_add = $count$
+		job_comitatenses_add = $count$
+	}
+}
+
 # Scripted Trigger Undercoat - Merchant Guilds Jobs
 triggered_planet_modifier = {
 	potential = {

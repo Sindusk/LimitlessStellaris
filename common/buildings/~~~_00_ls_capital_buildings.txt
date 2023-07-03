@@ -26,7 +26,7 @@
 ##################################################
 
 ## Colony (Tier 1)
-# Merge between OSA, StarTech AI, Ariphaos
+# Merge between Roma Invicta, OSA, StarTech AI, Ariphaos
 building_colony_shelter = {
 	capital = yes
 	can_build = no
@@ -99,11 +99,17 @@ building_colony_shelter = {
 		}
 	}
 
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { NOT = { has_active_tradition = tr_synthetics_finish } }
+			owner = {
+				NOT = { has_active_tradition = tr_synthetics_finish }
+				NOR = { # LS - optimized NOR for Roma Invicta
+					has_origin = origin_legio # Roma Invicta
+					has_origin = origin_spqr # Roma Invicta
+					has_origin = origin_orbis # Roma Invicta
+				}
+			}
 		}
 		job_colonist_add = 2
 	}
@@ -115,6 +121,37 @@ building_colony_shelter = {
 		}
 		job_roboticist_add = 1
 		job_colonist_add = 1 # OSA
+	}
+
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_spqr }
+		}
+		modifier = {
+			job_tribune_add = 1
+			job_colonist_add = 1
+		}
+	}
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_legio }
+		}
+		modifier = {
+			job_proconsul_add = 1
+			job_colonist_add = 1
+		}
+	}
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_orbis }
+		}
+		modifier = {
+			job_limitanei_add = 1
+			job_colonist_add = 1
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -2789,7 +2826,7 @@ building_imperial_hive_capital = {
 ##################################################
 
 ## Habitat Administration (Tier 1)
-# Merge between OSA, Bug Branch
+# Merge between Roma Invicta, OSA, Bug Branch
 building_hab_capital = {
 	capital = yes
 	can_build = no
@@ -3001,6 +3038,30 @@ building_hab_capital = {
 		job_roboticist_add = 1
 	}
 
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_spqr }
+		}
+		job_senator_add = 1
+	}
+
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_legio }
+		}
+		job_proconsul_add = 1
+	}
+
+	triggered_planet_modifier = { # Roma Invicta
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_orbis }
+		}
+		job_vicarius_add = 1
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -3009,6 +3070,9 @@ building_hab_capital = {
 				is_regular_empire = yes
 				NOT = {
 					has_origin = origin_void_dwellers
+					has_origin = origin_spqr # Roma Invicta
+					has_origin = origin_legio # Roma Invicta
+					has_origin = origin_orbis # Roma Invicta
 				}
 			}
 		}
