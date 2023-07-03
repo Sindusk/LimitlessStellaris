@@ -1,0 +1,343 @@
+### Modded Buildings ###
+# Spawning Vats
+building_spawning_pool_2 = {
+
+	base_buildtime = @b2_time
+	category = pop_assembly
+	can_build = no
+	potential = {
+		has_building = building_spawning_pool
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+	
+	destroy_trigger = {
+		exists = owner
+		owner = { 
+			OR = {
+				is_hive_empire = no
+				has_origin = origin_progenitor_hive
+			}
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_origin = origin_hive_queen }
+			}					
+		}
+		modifier = {
+			job_spawning_drone_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_hive_queen
+			}					
+		}
+		modifier = {
+			job_hive_queen_add = 2
+			planet_pop_assembly_organic_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_cybernetics_modular_cybernetics_hive }
+		}
+		modifier = {
+			job_cyber_drone_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_hive
+			exists = owner
+			owner = {
+				NOT = { has_origin = origin_hive_queen }
+			}					
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_hive
+			exists = owner
+			owner = {
+				has_origin = origin_hive_queen
+			}					
+		}
+		modifier = {
+			job_hive_queen_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			minerals = @b2_minerals
+			exotic_gases = @b2_rare_cost
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				owner = {
+					NOT = { has_valid_civic = civic_integrated_bioarchitecture } is_lithoid_empire = no
+				}
+			}
+			minerals = @b2_hive_minerals
+			food = @b2_hive_food
+			exotic_gases = @b2_rare_cost
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				owner = { has_valid_civic = civic_integrated_bioarchitecture is_lithoid_empire = no }
+			}
+			food = @b2_minerals
+			exotic_gases = @b2_rare_cost
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = no
+				}
+			}
+			energy = @b2_upkeep_hive
+			food = @b2_upkeep_food
+			exotic_gases = @b2_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			energy = @b2_upkeep
+			exotic_gases = @b2_rare_upkeep
+		}
+	}
+	
+	prerequisites = {
+		"tech_spawning_pool_2" 
+	}
+	
+	show_tech_unlock_if = {
+		owner = {
+			owner = { NOT = { has_origin = origin_progenitor_hive } }
+		}
+	}
+	
+	triggered_desc = {
+		trigger = {
+			NAND = {
+				exists = owner
+				OR = {
+					owner = { is_current_or_former_necrophage_empire = yes }
+					owner = { has_origin = origin_hive_queen }
+				}
+				exists = growing_species
+				growing_species = {
+					NOT = { has_trait = trait_hive_mind }
+				}
+			}
+		}
+		text = job_spawning_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_current_or_former_necrophage_empire = yes }
+			exists = growing_species
+			growing_species = {
+				NOT = { has_trait = trait_hive_mind }
+			}
+		}
+		text = job_spawning_drone_necrophage_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_origin = origin_hive_queen
+			}
+		}
+		text = job_hive_queen_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_cybernetics_modular_cybernetics_hive
+			}
+		}
+		text = job_cyber_drone_effect_desc
+	}
+	
+	ai_resource_production = {
+		unity = 15
+		trigger = { 
+			num_pops > 10
+		}
+	}
+}
+
+building_offspring_warren = {
+	base_buildtime = @b1_time
+	category = pop_assembly
+	can_build = no
+
+	potential = {
+		has_building = building_offspring_nest
+		owner = { has_origin = origin_progenitor_hive }
+		or = {
+			num_buildings = { type = any value < 15 }
+			owner = { is_ai = no }
+		}
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { NOT = { has_origin = origin_progenitor_hive } }
+	}
+
+	#ruined_trigger = {
+	#	has_planet_flag = offspring_defeated
+	#}
+
+	planet_modifier = {
+		job_offspring_drone_add = 2
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_cybernetics_modular_cybernetics_hive }
+		}
+		modifier = {
+			job_cyber_drone_add = 2
+		}
+	}
+	convert_to = {
+		building_spawning_pool_2
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			minerals = @b2_minerals
+			exotic_gases = @b2_rare_cost
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				owner = {
+					NOT = { has_valid_civic = civic_integrated_bioarchitecture } is_lithoid_empire = no
+				}
+			}
+			minerals = @b2_hive_minerals
+			food = @b2_hive_food
+			exotic_gases = @b2_rare_cost
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				owner = { has_valid_civic = civic_integrated_bioarchitecture is_lithoid_empire = no }
+			}
+			food = @b2_minerals
+			exotic_gases = @b2_rare_cost
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = no
+				}
+			}
+			energy = @b2_upkeep_hive
+			food = @b2_upkeep_food
+			exotic_gases = @b2_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_lithoid_empire = yes
+				}
+			}
+			energy = @b2_upkeep
+			exotic_gases = @b2_rare_upkeep
+		}
+	}
+	
+	prerequisites = {
+		"tech_spawning_pool_2" 
+	}
+	
+	show_tech_unlock_if = {
+		owner = {
+			owner = { has_origin = origin_progenitor_hive }
+		}
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_origin = origin_progenitor_hive }
+			exists = growing_species
+			growing_species = {
+				has_trait = trait_hive_mind
+			}
+		}
+		text = job_offspring_drone_effect_desc
+	}
+	triggered_desc = {
+		text = offspring_nest_tooltip
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_cybernetics_modular_cybernetics_hive
+			}
+		}
+		text = job_cyber_drone_effect_desc
+	}
+	
+	ai_resource_production = {
+		unity = 15
+		trigger = { 
+			num_pops > 10
+		}
+	}
+}

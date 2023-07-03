@@ -1064,6 +1064,7 @@ building_expanded_warren = {
 # Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_holo_theatres = {
 	base_buildtime = @db1_time
+	base_cap_amount = 5 # LS
 	position_priority = 4072000 # Sort Buildings
 
 	category = amenity
@@ -1133,6 +1134,10 @@ building_holo_theatres = {
 				years_passed > 25
 			}
 		}
+	}
+
+	planet_modifier = {
+		planet_amenities_mult = 0.05 # LS - Added since it now has a build cap.
 	}
 
 	triggered_planet_modifier = {
@@ -1281,6 +1286,10 @@ building_hyper_entertainment_forum = {
 				years_passed > 25
 			}
 		}
+	}
+
+	planet_modifier = {
+		planet_amenities_mult = 0.10 # LS - Added since it now has a build cap.
 	}
 
 	triggered_planet_modifier = {

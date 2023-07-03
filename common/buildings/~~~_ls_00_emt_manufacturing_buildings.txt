@@ -1,0 +1,309 @@
+#############
+# Manufacuring buildings
+#############
+
+### Modded ###
+building_zro_plant = {
+	base_buildtime = @b2_time
+	position_priority = 140
+	category = manufacturing
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }	
+		NOT = { has_modifier = slave_colony }
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			owner = { is_gestalt = yes }
+			AND = {
+				free_building_slots = 0
+				exists = owner
+				owner = {
+					is_ai = yes
+					has_monthly_income = {
+						resource = sr_zro
+						value > 9
+					}
+				}
+			}
+		}
+	}
+	
+	planet_modifier = {
+		job_zro_syphon_add = 1
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			exotic_gases = @b2_rare_cost
+		}	
+		upkeep = {
+			energy = 3
+		}
+	}	
+	
+	prerequisites = {
+		"tech_zro_plant"
+	}
+	
+	triggered_desc = {
+		text = job_zro_syphon_effect_desc
+	}
+
+	ai_resource_production = {
+		sr_zro = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_dark_matter_plant = {
+	base_buildtime = @b2_time
+	position_priority = 141
+	category = manufacturing
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }	
+		NOT = { has_modifier = slave_colony }
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+		has_building = building_research_lab_3
+	}
+
+	destroy_trigger = {
+		OR = {
+			AND = {
+				free_building_slots = 0
+				exists = owner
+				owner = {
+					is_ai = yes
+					has_monthly_income = {
+						resource = sr_dark_matter
+						value > 9
+					}
+				}
+			}
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }					
+		}
+		modifier = {
+			job_dark_matter_tech_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }					
+		}
+		modifier = {
+			job_dark_matter_tech_drone_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			rare_crystals = @b2_rare_cost
+		}	
+		upkeep = {
+			energy = 3
+		}
+	}	
+	
+	prerequisites = {
+		"tech_dark_matter_plant"
+	}
+	
+	triggered_desc = {
+		text = job_dark_matter_tech_effect_desc
+	}
+
+	ai_resource_production = {
+		sr_dark_matter = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_living_metal_plant = {
+	base_buildtime = @b2_time
+	position_priority = 142
+	category = manufacturing
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }	
+		NOT = { has_modifier = slave_colony }
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			AND = {
+				free_building_slots = 0
+				exists = owner
+				owner = {
+					is_ai = yes
+					has_monthly_income = {
+						resource = sr_living_metal
+						value > 9
+					}
+				}
+			}
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }					
+		}
+		modifier = {
+			job_living_metal_farmer_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }					
+		}
+		modifier = {
+			job_living_metal_farmer_drone_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			volatile_motes = 40
+			sr_living_metal = 1
+		}	
+		upkeep = {
+			energy = 3
+		}
+	}	
+	
+	prerequisites = {
+		"tech_living_metal_plant"
+	}
+	
+	triggered_desc = {
+		text = job_living_metal_farmer_effect_desc
+	}
+
+	ai_resource_production = {
+		sr_living_metal = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+building_nanite_plant = {
+	base_buildtime = @b2_time
+	position_priority = 143
+	category = manufacturing
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }	
+		NOT = { has_modifier = slave_colony }
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				is_ai = yes
+				has_deficit = sr_living_metal
+				resource_stockpile_compare = { #can buy on market
+					resource = energy
+					value < 1500
+				}
+			}
+			AND = {
+				free_building_slots = 0
+				owner = {
+					is_ai = yes
+					has_monthly_income = {
+						resource = nanites
+						value > 9
+					}
+				}
+			}
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }					
+		}
+		modifier = {
+			job_nanite_builder_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }					
+		}
+		modifier = {
+			job_nanite_builder_drone_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			sr_living_metal = 5
+		}	
+		upkeep = {
+			energy = 3
+		}
+	}	
+	
+	prerequisites = {
+		"tech_nanite_plant"
+	}
+	
+	triggered_desc = {
+		text = job_nanite_builder_effect_desc
+	}
+
+	ai_resource_production = {
+		nanites = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
