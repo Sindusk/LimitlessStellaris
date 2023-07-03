@@ -1589,7 +1589,7 @@ building_clone_vats = {
 # Custom version as an upgrade of Clone Vats.
 building_clone_birth_labs = {
 	icon = building_illicit_research_labs
-	base_buildtime = @b1_time
+	base_buildtime = @db3_time
 	#base_cap_amount = 1 # LS - Changed to upgrade
 	can_build = no # LS - Changed to upgrade
 
@@ -1637,11 +1637,209 @@ building_clone_birth_labs = {
 
 	resources = {
 		category = planet_buildings
+
+		# Base cost
 		cost = {
-			minerals = @b1_minerals
+			trigger = {
+				exists = owner
+				exists = planet
+				owner = { is_lithoid_empire = no }
+				NAND = {
+					owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+					planet = {
+						OR = {
+							has_building = building_plentiful_traditions_advanced_slave_processing
+							has_building = building_slave_processing
+						}
+					}
+				}
+			}
+			minerals = 1000
+			food = 1000
+		}
+		# Org/Lith cost
+		cost = {
+			trigger = {
+				exists = owner
+				exists = planet
+				owner = { is_lithoid_empire = yes }
+				NAND = {
+					owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+					planet = {
+						OR = {
+							has_building = building_plentiful_traditions_advanced_slave_processing
+							has_building = building_slave_processing
+						}
+					}
+				}
+			}
+			minerals = 2000
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				exists = planet
+				owner = { is_lithoid_empire = no }
+				owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+				planet = {
+					OR = {
+						has_building = building_plentiful_traditions_advanced_slave_processing
+						has_building = building_slave_processing
+					}
+				}
+			}
+			minerals = 200
+			food = 200
+		}
+		cost = {
+			trigger = {
+				exists = owner
+				exists = planet
+				owner = { is_lithoid_empire = yes }
+				owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+				planet = {
+					OR = {
+						has_building = building_plentiful_traditions_advanced_slave_processing
+						has_building = building_slave_processing
+					}
+				}
+			}
+			minerals = 400
+		}
+
+		# Base upkeep
+		upkeep = {
+			energy = 10 # OSA
+			minerals = 10 # OSA
+		}
+		# Org/Lith upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = no }
+				}
+				owner = { has_tradition = tr_genetics_adopt }
+				NAND = {
+					owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+					planet = {
+						OR = {
+							has_building = building_plentiful_traditions_advanced_slave_processing
+							has_building = building_slave_processing
+						}
+					}
+				}
+			}
+			food = 40
 		}
 		upkeep = {
-			energy = @b1_upkeep
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = no }
+				}
+				owner = { has_tradition = tr_genetics_adopt }
+				owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+				planet = {
+					OR = {
+						has_building = building_plentiful_traditions_advanced_slave_processing
+						has_building = building_slave_processing
+					}
+				}
+			}
+			food = 20
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = no }
+				}
+				owner = { has_technology = tech_adv_cloning }
+			}
+			food = 20
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = no }
+				}
+				owner = { has_modifier = genesis_cloning_vats }
+			}
+			food = 20
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = yes }
+				}
+				owner = { has_tradition = tr_genetics_adopt }
+				NAND = {
+					owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+					planet = {
+						OR = {
+							has_building = building_plentiful_traditions_advanced_slave_processing
+							has_building = building_slave_processing
+						}
+					}
+				}
+			}
+			minerals = 40
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = yes }
+				}
+				owner = { has_tradition = tr_genetics_adopt }
+				owner = { has_ascension_perk = ap_plentiful_traditions_vast_slave_procreation }
+				planet = {
+					OR = {
+						has_building = building_plentiful_traditions_advanced_slave_processing
+						has_building = building_slave_processing
+					}
+				}
+			}
+			minerals = 20
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = yes }
+				}
+				owner = { has_technology = tech_adv_cloning }
+			}
+			minerals = 20
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					exists = assembling_species
+					assembling_species = { is_lithoid = yes }
+				}
+				owner = { has_modifier = genesis_cloning_vats }
+			}
+			minerals = 20
 		}
 	}
 
