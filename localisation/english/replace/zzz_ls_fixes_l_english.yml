@@ -4,8 +4,141 @@
 l_english:
   ### Rise of Cosmic Industry
   # Warn players to disable this because it can cause crashes.
-  roci_exploit: "(Leave Disabled) Space Exploitation"
-  roci_exploit_desc: "(Limitless Stellaris: This module can cause rare crashes. Leave it disabled.) The Space Exploitation module provides ['concept_minor_colony'], a mechanic you can use to build more resource production on uninhabitable planets for collection by Mining or Research stations. It has a Country level UI, accessible from an edict."
+  #roci_exploit: "(Leave Disabled) Space Exploitation"
+  #roci_exploit_desc: "(Limitless Stellaris: This module can cause rare crashes. Leave it disabled.) The Space Exploitation module provides ['concept_minor_colony'], a mechanic you can use to build more resource production on uninhabitable planets for collection by Mining or Research stations. It has a Country level UI, accessible from an edict."
+
+  ### Vanilla - Trade Policies
+  ## Added flair to show what resources it produces.
+  # Wealth Creation
+  trade_policy_default: "£energy£ Wealth Creation"
+  trade_policy_default_name: "$trade_policy_default$"
+  trade_policy_default_desc: "The purpose of trade is to generate profits for individuals and revenue for the state. We should focus our trade efforts fully on this creation of wealth.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y1§!§!"
+  # Consumer Benefits
+  trade_policy_consumer_goods: "£consumer_goods£ Consumer Benefits"
+  trade_conversion_consumer_goods_name: "$trade_policy_consumer_goods$"
+  trade_policy_consumer_goods_desc: "Profits and taxes must take second place to improving the lives of our citizens. We should focus our trade efforts towards the manufacture and distribution of everyday necessities.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§! and £consumer_goods£ §Y0.25§!§!"
+  # Marketplace of Ideas
+  trade_policy_unity: "£unity£ Marketplace of Ideas"
+  trade_conversion_unity_name: "$trade_policy_unity$"
+  trade_policy_unity_desc: "Trade can be used not only to move goods around, but also to facilitate the spread of ideas. We should focus our trade efforts towards ensuring that the message of our government is heard on all planets where we do business.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§! and £unity£ §Y0.25§!§!"
+  # Trade League
+  trade_policy_trade_league: "£trade_value£ Trade League"
+  trade_conversion_trade_league_name: "$trade_policy_trade_league$"
+  trade_policy_trade_league_desc: "By banding together in a trade league, we are able to prosper and secure profits on a whole new level.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§!, £unity£ §Y0.2§! and £consumer_goods£ §Y0.2§!§!"
+  # Holy Covenant
+  trade_policy_holy_covenant: "£unity£ Holy Covenant"
+  trade_conversion_holy_covenant_name: "$trade_policy_holy_covenant$"
+  trade_policy_holy_covenant_desc: "By banding together in a holy covenant, we may bask in the collective glory of our divine purpose.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§! and £unity£ §Y0.5§!§!"
+
+  ### Bug Branch
+  ## Add flairs to the trade policies to show the resource they grant.
+  # Civilian Marketplace
+  trade_policy_bugged_consumer_goods_league: "£consumer_goods£ Civilian Marketplace"
+  trade_conversion_bugged_consumer_goods_league_name: "$trade_policy_bugged_consumer_goods_league$"
+  trade_policy_bugged_consumer_goods_league_desc: "Taking advantage of our connections as part of a trade league, we are now able to supply our citizens with a never-before-seen variety of personal effects.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.75§!, £consumer_goods£ §Y0.25§!"
+  trade_policy_bugged_consumer_goods_league_level_2: "£consumer_goods£ Civilian Marketplace"
+  trade_conversion_bugged_consumer_goods_league_level_2_name: "$trade_policy_bugged_consumer_goods_league$"
+  trade_policy_bugged_consumer_goods_league_level_2_desc: "Taking advantage of our connections as part of a trade league, we are now able to supply our citizens with a never-before-seen variety of personal effects.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.75§!, £consumer_goods£ §Y0.375§!"
+  trade_policy_bugged_consumer_goods_league_level_3: "£consumer_goods£ Civilian Marketplace"
+  trade_conversion_bugged_consumer_goods_league_level_3_name: "$trade_policy_bugged_consumer_goods_league$"
+  trade_policy_bugged_consumer_goods_league_level_3_desc: "Taking advantage of our connections as part of a trade league, we are now able to supply our citizens with a never-before-seen variety of personal effects.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y1§!, £consumer_goods£ §Y0.5§!"
+  # Cultural Exchange Marketplace
+  trade_policy_bugged_social_development_league: "£unity£ Cultural Exchange Marketplace"
+  trade_conversion_bugged_social_development_league_name: "$trade_policy_bugged_social_development_league$"
+  trade_policy_bugged_social_development_league_desc: "With our newfound position as a member of a inter-societal trade alliance, we can now expand our exchange-based models to scales that would have been impossible previously.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.75§! and £unity£ §Y0.25§!§!"
+  trade_policy_bugged_social_development_league_level_2: "£unity£ Cultural Exchange Marketplace"
+  trade_conversion_bugged_social_development_league_level_2_name: "$trade_policy_bugged_social_development_league$"
+  trade_policy_bugged_social_development_league_level_2_desc: "With our newfound position as a member of a inter-societal trade alliance, we can now expand our exchange-based models to scales that would have been impossible previously.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.75§! and £unity£ §Y0.375§!§!"
+  trade_policy_bugged_social_development_league_level_3: "£unity£ Cultural Exchange Marketplace"
+  trade_conversion_bugged_social_development_league_level_3_name: "$trade_policy_bugged_social_development_league$"
+  trade_policy_bugged_social_development_league_level_3_desc: "With our newfound position as a member of a inter-societal trade alliance, we can now expand our exchange-based models to scales that would have been impossible previously.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y1§! and £unity£ §Y0.5§!§!"
+  # Growth and Construction
+  trade_policy_bugged_growth_construction: "£food£ Growth and Construction £minerals£"
+  trade_conversion_bugged_growth_construction_name: "$trade_policy_bugged_growth_construction$"
+  trade_policy_bugged_growth_construction_desc: "The most important purpose of a government is to use its resources to better both itself and the lives of its citizens. We should focus our trade efforts on the collection of the raw materials required for continued governance.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £food£ §Y0.5§! and £minerals£ §Y0.5§!§!"
+  # Innovation and Progress
+  trade_policy_bugged_innovative_economy: "£physics£ Innovation and Progress £engineering£"
+  trade_conversion_bugged_innovative_economy_name: "$trade_policy_bugged_innovative_economy$"
+  trade_policy_bugged_innovative_economy_desc: "Trade can be used not only to gain material wealth, but also to gain deeper knowledge of the universe. We should focus our trade efforts on scientific research and so we may reap the rewards that comes of it.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £physics£ §Y0.1§! and £engineering£ §Y0.1§!§!"
+  concept_bugged_innovation_and_progress: "£physics£ Innovation and Progress £engineering£"
+  concept_bugged_innovation_and_progress_desc: "§YTrade Policy§!\n\nEach collected £trade_value£ §YTrade Value§! earns us £physics£ §Y0.1§! and £engineering£ §Y0.1§!\n\n§LTrade can be used not only to gain material wealth, but also to gain deeper knowledge of the universe. We should focus our trade efforts on scientific research and so we may reap the rewards that comes of it.§!"
+  # Mining Subsidies (Deprecated)
+  trade_policy_bugged_mining: "£minerals£ Mining Subsidies"
+  trade_conversion_bugged_mining_name: "$trade_policy_bugged_mining$"
+  trade_policy_bugged_mining_desc: "Infrastructure fails, metals need to be forged, and buildings need to be built, the need for raw materials is a neverending struggle that effects all societies. We should focus our trade efforts on the acquisition of all the building materials we will need for continued growth.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.25§! and £minerals£ §Y0.375§!§!"
+  # Social Development
+  trade_policy_bugged_social_development: "£society£ Social Development"
+  trade_conversion_bugged_social_development_name: "$trade_policy_bugged_social_development$"
+  trade_policy_bugged_social_development_desc: "In every exchange of goods between two individuals, there is an opportunity for a better understanding of what drives people to do what they do. We should focus our trade efforts on anything that allows us to better grasp on what makes us tick.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.75§! and £society£ §Y0.1§!§!"
+  # Supra-Agri Marketplace
+  trade_policy_bugged_agriculture_league: "£food£ Supra-Agri Marketplace"
+  trade_conversion_bugged_agriculture_league_name: "$trade_policy_bugged_agriculture_league$"
+  trade_policy_bugged_agriculture_league_desc: "As part of the trade league, we are able to more easily cooperate with our allies to find out which of our empire's native foods are consumable by the primary species of each constituent nation.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§! and £food£ §Y0.75§!§!"
+  trade_policy_bugged_agriculture_league_level_2: "£food£ Supra-Agri Marketplace"
+  trade_conversion_bugged_agriculture_league_level_2_name: "$trade_policy_bugged_agriculture_league$"
+  trade_policy_bugged_agriculture_league_level_2_desc: "As part of the trade league, we are able to more easily cooperate with our allies to find out which of our empire's native foods are consumable by the primary species of each constituent nation.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.75§! and £food£ §Y0.75§!§!"
+  trade_policy_bugged_agriculture_league_level_3: "£food£ Supra-Agri Marketplace"
+  trade_conversion_bugged_agriculture_league_level_3_name: "$trade_policy_bugged_agriculture_league$"
+  trade_policy_bugged_agriculture_league_level_3_desc: "As part of the trade league, we are able to more easily cooperate with our allies to find out which of our empire's native foods are consumable by the primary species of each constituent nation.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y1§! and £food£ §Y1§!§!"
+  # Supra-Mining Marketplace
+  trade_policy_bugged_mining_league: "£minerals£ Supra-Mining Marketplace"
+  trade_conversion_bugged_mining_league_name: "$trade_policy_bugged_mining_league$"
+  trade_policy_bugged_mining_league_desc: "By cooperating with our partners in the trade league, we are able to more effectively capture mineral-rich asteroids that float in interstellar space, allowing for a wealth of rare materials to be gained.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§! and £minerals£ §Y0.75§!§!"
+  trade_policy_bugged_mining_league_level_2: "£minerals£ Supra-Mining Marketplace"
+  trade_conversion_bugged_mining_league_level_2_name: "$trade_policy_bugged_mining_league$"
+  trade_policy_bugged_mining_league_level_2_desc: "By cooperating with our partners in the trade league, we are able to more effectively capture mineral-rich asteroids that float in interstellar space, allowing for a wealth of rare materials to be gained.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.75§! and £minerals£ §Y0.75§!§!"
+  trade_policy_bugged_mining_league_level_3: "£minerals£ Supra-Mining Marketplace"
+  trade_conversion_bugged_mining_league_level_3_name: "$trade_policy_bugged_mining_league$"
+  trade_policy_bugged_mining_league_level_3_desc: "By cooperating with our partners in the trade league, we are able to more effectively capture mineral-rich asteroids that float in interstellar space, allowing for a wealth of rare materials to be gained.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y1§! and £minerals£ §Y1§!§!"
+  # Technofocus Marketplace
+  trade_policy_bugged_innovative_economy_league: "£job_researcher£ Technofocus Marketplace"
+  trade_conversion_bugged_innovative_economy_league_name: "$trade_policy_bugged_innovative_economy_league$"
+  trade_policy_bugged_innovative_economy_league_desc: "Being in a trade league allows for the brightest of each species to focus on the scientific fields that they most naturally excel in.\n\n§EEach collected £trade_value£ §YTrade Value§ earns us £physics£ §Y0.1§!, £society£ §Y0.1§!, and £engineering£ §Y0.1§!"
+  trade_policy_bugged_innovative_economy_league_level_2: "£job_researcher£ Technofocus Marketplace"
+  trade_conversion_bugged_innovative_economy_league_level_2_name: "$trade_policy_bugged_innovative_economy_league$"
+  trade_policy_bugged_innovative_economy_league_level_2_desc: "Being in a trade league allows for the brightest of each species to focus on the scientific fields that they most naturally excel in.\n\n§EEach collected £trade_value£ §YTrade Value§ earns us £physics£ §Y0.125§!, £society£ §Y0.1§!, and £engineering£ §Y0.125§!"
+  trade_policy_bugged_innovative_economy_league_level_3: "£job_researcher£ Technofocus Marketplace"
+  trade_conversion_bugged_innovative_economy_league_level_3_name: "$trade_policy_bugged_innovative_economy_league$"
+  trade_policy_bugged_innovative_economy_league_level_3_desc: "Being in a trade league allows for the brightest of each species to focus on the scientific fields that they most naturally excel in.\n\n§EEach collected £trade_value£ §YTrade Value§ earns us £physics£ §Y0.16§!, £society£ §Y0.16§!, and £engineering£ §Y0.16§!"
+  # Wealth Creation
+  trade_conversion_default_name: "£energy£ Wealth Creation"
+  # Wealth Marketplace
+  trade_policy_bugged_basic_league: "£energy£ Wealth Marketplace"
+  trade_conversion_bugged_basic_league_name: "$trade_policy_bugged_basic_league$"
+  trade_policy_bugged_basic_league_desc: "By banding together in a trade league, we are able to prosper and secure profits on a whole new level.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y1.25§!§!"
+  trade_policy_bugged_basic_league_level_2: "£energy£ Wealth Marketplace"
+  trade_conversion_bugged_basic_league_level_2_name: "$trade_policy_bugged_basic_league$"
+  trade_policy_bugged_basic_league_level_2_desc: "By banding together in a trade league, we are able to prosper and secure profits on a whole new level.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y1.5§!§!"
+  trade_policy_bugged_basic_league_level_3: "£energy£ Wealth Marketplace"
+  trade_conversion_bugged_basic_league_level_3_name: "$trade_policy_bugged_basic_league$"
+  trade_policy_bugged_basic_league_level_3_desc: "By banding together in a trade league, we are able to prosper and secure profits on a whole new level.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y2§!§!"
+
+  ### Unique Ascension Perks
+  ## Trade policies were adjusted to new values, and the blue color which was out of place is removed. The resource is now displayed in the front, and values have been updated.
+  # Stagnant Mastery
+  trade_policy_adv_conversion_energy_name: "£energy£ Stagnant Mastery"
+  trade_policy_adv_conversion_energy_name_desc: "The additional money coming from our improved trade strategies will be collected and partially reinvested into promising low-risk civilian projects to simply maximize profits without any other benefits.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y1.8§!§!"
+  ## Mineral Purity Standards
+  trade_policy_adv_conversion_minerals_name: "£minerals£ Mineral Purity Standards"
+  trade_policy_adv_conversion_minerals_name_desc: "The additional money coming from our improved trade strategies will be used to establish a mandatory heightened mineral purity standard throughout our empire that ensures that all mining operations have empire-financed on-site mineral purification complexes and highest-quality mining equipment to ensure maximum mineral quality.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.8§! and £minerals£ §Y1§!§!"
+  ## Agriculture Projects
+  trade_policy_adv_conversion_food_name: "£food£ Agriculture Projects"
+  trade_policy_adv_conversion_food_name_desc: "The additional money coming from our improved trade strategies will be used to finance high-quality agricultural equipment and universal efficiency and fairness standards for our farmers while additionally investing into independent farming projects to ensure maximum food production.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.8§! and £food£ §Y1§!§!"
+  ## Forge Investments (Disabled)
+  #trade_policy_adv_conversion_alloys_name: "£alloys£ Forge Investments"
+  #trade_policy_adv_conversion_alloys_name_desc: "The additional money coming from our improved trade strategies will be used to ensure that all our forges can use the highest-quality equipment, expand their complexes as they wish and that all our metallurgists are taught under the best possible conditions to ensure maximum alloy prodution efficiency.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.15§! and £alloys£ §Y0.50§!§!"
+  ## Civilian Expenses
+  trade_policy_adv_conversion_consumer_goods_name: "£consumer_goods£ Civilian Expenses"
+  trade_policy_adv_conversion_consumer_goods_name_desc: "The additional money coming from our improved trade strategies will be used to provide for our citizens consumer needs. By granting monthly consumer good budgets to our citizens according to their living standards and transfering all expenses within these budgets to the empire, our civilians will never have to pay for the common luxuries again.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.3§! and £consumer_goods£ §Y0.8§!§!"
+  ## Public Institution Financing
+  trade_policy_adv_conversion_unity_name: "£unity£ Public Institution Financing"
+  trade_policy_adv_conversion_unity_name_desc: "The additional money coming from our improved trade strategies will be used to fully finance all public institutions if they were not free already and additionally heavily invest into both existing and new ones thto assure that all citizens enjoy maximum government-provided service, while additionally helping us to administrate our empire better.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.25§! and £unity£ §Y0.8§!§!"
+  ## Universal Research Financing
+  trade_policy_adv_conversion_research_name: "£job_researcher£ Universal Research Financing"
+  trade_policy_adv_conversion_research_name_desc: "The additional money coming from our improved trade strategies will be used to grant our research institutes near-unlimited financing while setting high yet reasonable minimum and maximum wages for their staff. This allows our scientists to finance any promising project regardless of its costs, ensuring that no scientific opportunity is missed and all research avenues are explored to the end.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.10§! and £physics£ £society£ £engineering£ §Y0.125§!§!"
+  ## Economical Ascension
+  trade_policy_adv_conversion_trade_league_name: "£trade_value£ Economical Ascension"
+  trade_policy_adv_conversion_trade_league_name_desc: "The combination of our economical mastery and the advancement of our trade league will allow us to extract resources from all our trades in ways none thought possible. No opportunities missed, no potential resources lost and maximum efficiency achieved, yet no unfair deal struck and none unethically exploited. Our mastery over all economical interactions will be unrivaled and we can be sure that our empire is as prosperous as it can be. Many say that we have §BEconomically Ascended§!, and we see no reason to disagree.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§!, £minerals£ §Y0.25§!, £food£ §Y0.25§!, £consumer_goods£ §Y0.25§!, £unity£ §Y0.25§! and £physics£ £society£ £engineering£ §Y0.05§!§!"
 
   # Advanced Policies
   AP_trial_by_fire: "Begin the Trial by Fire" # Fix capitalization
@@ -112,4 +245,4 @@ l_english:
   tr_tt_artifacts_4_delayed: "The study of ancient civilizations' space defense structures and star bases has increased the efficiency of our space construction."
   tr_tt_artifacts_5: "Artifacts Research"
   tr_tt_artifacts_5_delayed: "Some special and unique artifacts have huge differences in appearance and use from other common artifacts, and they can bring us greater benefits, so artifacts are also the focus of our research."
-  tr_tt_artifacts_5_desc:0 "$relics$£unity£$unity$ cost: §G-25%§!\nAn additional §Y50§!£unity£ cohesion artifact per §Y$relics$§!"
+  tr_tt_artifacts_5_desc: "$relics$£unity£$unity$ cost: §G-25%§!\nAn additional §Y50§!£unity£ cohesion artifact per §Y$relics$§!"

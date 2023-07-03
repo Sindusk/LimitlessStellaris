@@ -1,0 +1,96 @@
+##########################################################################
+# Limitless Stellaris - Trade Conversions - Unique Ascension Perks
+##########################################################################
+
+##################################################
+## Economic Prosperity Ascension Perk
+##################################################
+
+## Stagnant Mastery (Slightly Nerfed)
+# Reduced from 2.0 energy credits to 1.8
+trade_adv_energy ={
+	potential = { has_policy_flag = trade_policy_adv_conversion_energy }
+	weight = { weight = 10 }
+	conversion_rate = { energy = 1.8 }
+	economic_category = trade_routes
+}
+
+## Mineral Purity Standards (Buffed)
+# Increased from 0.25 energy credits to 0.8
+trade_adv_mining ={
+	potential = { has_policy_flag = trade_policy_adv_conversion_minerals }
+	weight = { weight = 10 }
+	conversion_rate = { energy = 0.8 minerals = 1 }
+	economic_category = trade_routes
+}
+
+## Agriculture Projects (Adjusted Buff)
+# Increased from 0.25 energy credits to 0.8
+# Reduced from 1.25 food to 1.0
+trade_adv_food ={
+	potential = { has_policy_flag = trade_policy_adv_conversion_food }
+	weight = { weight = 10 }
+	conversion_rate = { energy = 0.8 food = 1.0 }
+	economic_category = trade_routes
+}
+
+## Civilian Expenses (Slightly Buffed)
+# Increased from 0.15 energy credits to 0.3
+trade_adv_consumers ={
+	potential = { has_policy_flag = trade_policy_adv_conversion_consumer_goods }
+	weight = { weight = 10 }
+	conversion_rate = { energy = 0.3 consumer_goods = 0.80 }
+	economic_category = trade_routes
+}
+
+## Forge Investments (Disabled)
+# Disabled in policies file.
+trade_adv_alloys ={
+	potential = { has_policy_flag = trade_policy_adv_conversion_alloys }
+	weight = { weight = 10 }
+	conversion_rate = { energy = 0.15 alloys = 0.50 }
+	economic_category = trade_routes
+}
+
+## Public Institution Financing (Slightly Nerfed)
+# Reduced from 1.0 unity to 0.8
+trade_adv_unity = {
+	potential = { has_policy_flag = trade_policy_adv_conversion_unity }
+	weight = { weight = 10 }
+	conversion_rate = { energy = 0.25 unity = 0.8 }
+	economic_category = trade_routes
+}
+
+## Universal Research Financing (Heavily Nerfed)
+# Reduced from 0.3 of every research to 0.125
+trade_adv_research = {
+	potential = { has_policy_flag = trade_policy_adv_conversion_research }
+	weight = { weight = 10 }
+	conversion_rate = { energy = 0.10 physics_research = 0.125 society_research = 0.125 engineering_research = 0.125 }
+	economic_category = trade_routes
+}
+
+## Economical Ascension (Massively Nerfed)
+# Reduced from 1.0 energy to 0.5
+# Reduced from 0.75 minerals to 0.25
+# Reduced from 1.0 food to 0.25
+# Reduced from 0.5 consumer goods to 0.25
+# Removed alloy production
+# Reduced from 0.75 unity to 0.25
+# Reduced from 0.25 of every research to 0.05
+trade_adv_trade_league = {
+	potential = { has_policy_flag = trade_policy_adv_conversion_trade_league }
+	weight = { weight = 15 }
+	conversion_rate = {
+		energy = 0.5
+		minerals = 0.25
+		food = 0.25
+		consumer_goods = 0.25
+		#alloys = 0.3 # LS - Removed
+		unity = 0.25
+		physics_research = 0.05
+		society_research = 0.05
+		engineering_research = 0.05
+	}
+	economic_category = trade_routes
+}

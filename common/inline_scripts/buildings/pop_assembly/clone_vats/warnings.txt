@@ -1,0 +1,56 @@
+## Vanilla - Warning about artificial assembly.
+# Triggered when the player is assembling a robot.
+triggered_desc = {
+	trigger = {
+		OR = {
+			has_building = building_robot_assembly_plant
+			AND = {
+				exists = assembling_species
+				assembling_species = { is_robotic_species = yes }
+			}
+		}
+	}
+	text = tooltip_organic_and_artificial_assembly_warning
+}
+## Expanded Megastructures and Technology - Clone Army Description
+# Not sure what this does, related to Clone Army origin.
+triggered_desc = { # Expanded Megastructures and Technology
+	trigger = {
+		exists = owner
+		exists = planet
+		owner = { is_clone_army_empire = yes }
+		owner = { NOT = { has_technology = tech_adv_cloning } }
+		owner = { NOT = { has_ascension_perk = ap_engineered_evolution } }
+	}
+	text = building_clone_vats_clone_army_effects_desc
+}
+## Expanded Megastructures and Technology - Clone Army Description
+# Not sure what this does, related to Clone Army origin.
+triggered_desc = { # Expanded Megastructures and Technology
+	trigger = {
+		exists = owner
+		exists = planet
+		owner = { is_clone_army_empire = yes }
+		OR = {
+			owner = { has_technology = tech_adv_cloning }
+			owner = { has_tradition = tr_genetics_adopt }
+		}
+		NAND = {
+			owner = { has_technology = tech_adv_cloning }
+			owner = { has_tradition = tr_genetics_adopt }
+		}
+	}
+	text = building_clone_vats_adv_clone_army_effects_desc
+}
+## Expanded Megastructures and Technology - Clone Army Description
+# Not sure what this does, related to Clone Army origin.
+triggered_desc = { # Expanded Megastructures and Technology
+	trigger = {
+		exists = owner
+		exists = planet
+		owner = { is_clone_army_empire = yes }
+		owner = { has_technology = tech_adv_cloning }
+		owner = { has_tradition = tr_genetics_adopt }
+	}
+	text = building_clone_vats_very_adv_clone_army_effects_desc
+}

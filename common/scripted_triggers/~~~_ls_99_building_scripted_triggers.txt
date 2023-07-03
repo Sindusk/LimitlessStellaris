@@ -2,6 +2,92 @@
 # Limitless Stellaris - Building Scripted Triggers
 ##########################################################################
 
+## Whether they can build a Clone Vats building
+# Scope: Planet
+LS_potential_clone_vats_building = {
+	NOT = { has_modifier = resort_colony }
+	NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	exists = owner
+	OR = { # Expanded Megastructures and Technology
+		owner = { has_origin = origin_clones }
+		owner = { is_clone_army_empire = yes }
+		owner = { has_tradition = tr_genetics_adopt } # LS - Allow genetics adopters to use Clone Vats.
+	}
+	OR = { # StarTech AI
+		owner = { is_ai = no }
+		and = {
+			free_building_slots > 0
+			owner = { is_ai = yes num_pops < 1000 }
+		}
+	}
+	OR = {
+		owner = { is_ai = no }
+		NOT = { exists = assembling_species }
+		assembling_species = { is_organic_species = yes }
+	}
+	OR = {
+		owner = { is_ai = no }
+		NAND = {
+			free_district_slots = 0
+			free_building_slots <= 1
+			free_housing <= 0
+			free_jobs <= 0
+		}
+	}
+}
+
+## Determines if the Clone Vats building should be allowed to be constructed
+# Scope: Planet
+LS_allow_clone_vats_building = {
+	custom_tooltip = {
+		fail_text = "requires_not_basic_clone_army"
+		exists = owner
+		exists = planet
+		OR = {
+			owner = { NOT = { is_clone_army_empire = yes } }
+			owner = { has_country_flag = clone_army_full_potential }
+			owner = { has_country_flag = clone_army_fertility_unlocked }
+			owner = { has_tradition = tr_genetics_adopt }
+			planet = {
+				any_owned_pop = {
+					OR = {
+						has_trait = trait_clone_soldier_infertile_full_potential
+						has_trait = trait_clone_soldier_fertile
+					}
+				}
+			}
+		}
+	}
+}
+
+## Determines if the Clone Vats building should be destroyed/converted.
+# Scope: Planet
+LS_destroy_clone_vats_building = {
+	exists = owner
+	exists = planet
+	AND = {
+		owner = { is_ai = yes }
+		owner = { num_pops > 1000 } # StarTech
+		free_district_slots = 0
+		free_building_slots = 0
+		free_housing <= 0
+		free_jobs <= 0
+	}
+	NOR = {
+		owner = { has_country_flag = clone_army_full_potential }
+		owner = { has_country_flag = clone_army_fertility_unlocked }
+		owner = { has_tradition = tr_genetics_adopt }
+		planet = {
+			any_owned_pop = {
+				OR = {
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile
+				}
+			}
+		}
+	}
+}
+
 ##################################################
 ## Research
 ##################################################

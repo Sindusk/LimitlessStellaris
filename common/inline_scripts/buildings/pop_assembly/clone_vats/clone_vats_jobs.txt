@@ -1,0 +1,40 @@
+### Triggered Planet Modifiers
+## Expanded Megastructures and Technology - Cloning Technician (Standard)
+# Only for non-gestalt empires.
+triggered_planet_modifier = { # Expanded Megastructures and Technology
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	modifier = {
+		job_cloning_tech_add = $count$
+	}
+}
+## Expanded Megastructures and Technology - Cloning Drone (Gestalt)
+# Only for gestalt empires.
+triggered_planet_modifier = { # Expanded Megastructures and Technology
+	potential = {
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	modifier = {
+		job_cloning_drone_add = $count$
+	}
+}
+### Triggered Descriptions
+## LS - Cloning Technician (Standard)
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	text = job_cloning_tech_effect_desc
+}
+## LS - Cloning Drone (Standard)
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	text = job_cloning_drone_effect_desc
+}

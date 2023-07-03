@@ -1316,7 +1316,7 @@ building_necrophage_house_of_apotheosis = {
 ## Pop Assembly - Biological
 ##################################################
 
-## Clone Vats (Tier 1)
+## Clone Vats (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, EUTAB, Bug Branch, Real Space: Planetary Stations, Expanded Megastructures and Technology, StarTech
 building_clone_vats = {
 	base_buildtime = @db1_time
@@ -1326,188 +1326,39 @@ building_clone_vats = {
 
 	base_cap_amount = 1
 
-	potential = {
-		exists = owner
-		NOT = { has_modifier = resort_colony }
-		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
-		OR = { # Expanded Megastructures and Technology
-			owner = { has_origin = origin_clones }
-			owner = { is_clone_army_empire = yes }
-			owner = { has_tradition = tr_genetics_adopt } # Limitless Stellaris: Allow genetics adopters to use Clone Vats.
-		}
-		OR = { # StarTech AI
-			owner = { is_ai = no }
-			and = {
-				free_building_slots > 0
-				owner = { is_ai = yes num_pops < 1000 }
-			}
-		}
-		OR = {
-			owner = { is_ai = no }
-			NOT = { exists = assembling_species }
-			assembling_species = { is_organic_species = yes }
-		}
-		OR = {
-			owner = { is_ai = no }
-			NAND = {
-				free_district_slots = 0
-				free_building_slots <= 1
-				free_housing <= 0
-				free_jobs <= 0
-			}
-		}
-	}
-	
-	allow = { # Expanded Megastructures and Technology
-		custom_tooltip = {
-			fail_text = "requires_not_basic_clone_army"
-			exists = owner
-			exists = planet
-			OR = {
-				owner = { NOT = { is_clone_army_empire = yes } }
-				owner = { has_country_flag = clone_army_full_potential }
-				owner = { has_country_flag = clone_army_fertility_unlocked }
-				owner = { has_tradition = tr_genetics_adopt }
-				planet = {
-					any_owned_pop = {
-						OR = {
-							has_trait = trait_clone_soldier_infertile_full_potential
-							has_trait = trait_clone_soldier_fertile
-						}
-					}
-				}
-			}
-		}
-	}
-
-	destroy_trigger = { # Expanded Megastructures and Technology
-		exists = owner
-		exists = planet
-		AND = {
-			owner = { is_ai = yes }
-			owner = { num_pops > 1000 } # StarTech
-			free_district_slots = 0
-			free_building_slots = 0
-			free_housing <= 0
-			free_jobs <= 0
-		}
-		NOR = {
-			owner = { has_country_flag = clone_army_full_potential }
-			owner = { has_country_flag = clone_army_fertility_unlocked }
-			owner = { has_tradition = tr_genetics_adopt }
-			planet = {
-				any_owned_pop = {
-					OR = {
-						has_trait = trait_clone_soldier_infertile_full_potential
-						has_trait = trait_clone_soldier_fertile
-					}
-				}
-			}
-		}
-	}
-	
-	planet_modifier = {
-		planet_pop_assembly_organic_add = 2.5 # OSA
-	}
-	
     # Building Tooltip
     triggered_desc = {
         text = building_clone_vats_tt
     }
 
-	triggered_planet_modifier = { # Expanded Megastructures and Technology
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_cloning_tech_add = 1
-		}
+	potential = {
+		LS_potential_clone_vats_building = yes # LS - Custom trigger to determine potential.
 	}
 	
-	triggered_planet_modifier = { # Expanded Megastructures and Technology
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		modifier = {
-			job_cloning_drone_add = 1
-		}
-	}
-	
-	triggered_planet_modifier = { # Expanded Megastructures and Technology
-		potential = {
-			exists = owner
-			owner = {
-				has_ascension_perk = ap_engineered_evolution
-			}
-		}
-		planet_pop_assembly_organic_add = 2
-	}
-	
-	triggered_planet_modifier = { # Expanded Megastructures and Technology
-		potential = {
-			exists = owner
-			owner = {
-				has_technology = tech_adv_cloning
-			}
-		}
-		planet_pop_assembly_organic_add = 1
+	allow = {
+		LS_allow_clone_vats_building = yes # LS - Custom trigger to determine allow.
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_tradition = tr_genetics_efficient_cloning }
-		}
-		modifier = {
-			planet_pop_assembly_organic_add = 1.5
-		}
+	destroy_trigger = {
+		LS_destroy_clone_vats_building = yes # LS - Custom trigger to determine destroy trigger.
 	}
 	
-	triggered_planet_modifier = { # Expanded Megastructures and Technology
-		potential = {
-			exists = owner
-			owner = {
-				has_ascension_perk = ap_xeno_compatibility
-			}
-		}
-		planet_pop_assembly_organic_add = 1
-	}
-	
-	triggered_planet_modifier = { # Expanded Megastructures and Technology
-		potential = {
-			exists = owner
-			owner = {
-				has_modifier = genesis_cloning_vats
-			}
-		}
-		planet_pop_assembly_organic_add = 1
-	}
-	
-	triggered_planet_modifier = { # Expanded Megastructures and Technology
-		potential = {
-			exists = owner
-			owner = {
-				has_ascension_perk = ap_total_assimilation
-			}
-		}
-		modifier = {
-			planet_pop_assembly_organic_add = 1
-		}
+	convert_to = { # LS - Might need to change this
+		building_spawning_pool
+		building_offspring_nest
 	}
 
-	triggered_planet_modifier = { # Bug Branch
-		potential = {
-			exists = owner
-			owner = {
-				is_bugged_evolutionary_architects = yes
-			}
-		}
-		modifier = {
-			planet_jobs_unity_produces_mult = 0.2
-
-		}
+	planet_modifier = {
+		planet_pop_assembly_organic_add = 1.0 # OSA # LS 2.5 -> 1.0 [Balance]
+	}
+	
+	inline_script = { # LS - Custom inline to add cloning tech or drone jobs.
+		script = buildings/pop_assembly/clone_vats/clone_vats_jobs
+		count = 1
+	}
+	
+	inline_script = { # LS - Custom inline to add other modifiers, such as more organic pop assembly from techs and ascension perks.
+		script = buildings/pop_assembly/clone_vats/other_modifiers
 	}
 
 	resources = {
@@ -1718,63 +1569,92 @@ building_clone_vats = {
 		}
 	}
 	
-	prerequisites = {
-		"tech_cloning" # Expanded Megastructures and Technology
-	}
+	# LS - Remove cloning pre-requisite, and instead allow anyone with Genetics to use the Clone Vats.
+	#prerequisites = {
+	#	"tech_cloning" # Expanded Megastructures and Technology
+	#}
 	
     upgrades = {
-		building_eutab_adv_clone_vats # EUTAB
-		building_avb_clone_vats_2 # Additional Vanilla Buildings
+		building_clone_birth_labs # LS
+		#building_eutab_adv_clone_vats # EUTAB # LS - Moved to upgrade of Clone Birth-Labs instead
+		#building_avb_clone_vats_2 # Additional Vanilla Buildings # LS - Not installed
 	}
 
-	triggered_desc = {
-		trigger = {
-			OR = {
-				has_building = building_robot_assembly_plant
-				AND = {
-					exists = assembling_species
-					assembling_species = { is_robotic_species = yes }
-				}
-			}
-		}
-		text = tooltip_organic_and_artificial_assembly_warning
+	inline_script = { # LS - Custom inline for warnings about the Clone Vats
+		script = buildings/pop_assembly/clone_vats/warnings
+	}
+}
+
+## Clone Birth-Labs (Tier 2) [Organic Zealots]
+# Custom version as an upgrade of Clone Vats.
+building_clone_birth_labs = {
+	icon = building_illicit_research_labs
+	base_buildtime = @b1_time
+	#base_cap_amount = 1 # LS - Changed to upgrade
+	can_build = no # LS - Changed to upgrade
+
+	category = pop_assembly
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_clone_birth_labs_tt
+    }
+
+	show_tech_unlock_if = {
+		is_machine_empire = no # LS - machine empires cannot obtain the tradition
+	}
+
+	potential = {
+		LS_potential_clone_vats_building = yes # LS - Custom trigger to determine potential.
 	}
 	
-	triggered_desc = { # Expanded Megastructures and Technology
-		text = building_clone_vats_clone_army_effects_desc
-		trigger = {
-			exists = owner
-			exists = planet
-			owner = { is_clone_army_empire = yes }
-			owner = { NOT = { has_technology = tech_adv_cloning } }
-			owner = { NOT = { has_ascension_perk = ap_engineered_evolution } }
+	allow = {
+		LS_allow_clone_vats_building = yes # LS - Custom trigger to determine allow.
+	}
+
+	destroy_trigger = {
+		LS_destroy_clone_vats_building = yes # LS - Custom trigger to determine destroy trigger.
+	}
+
+	convert_to = {
+		building_spawning_pool
+		building_offspring_nest
+	}
+
+	planet_modifier = {
+		planet_pop_assembly_organic_add = 2.0 # LS - Upgrade from Clone Vats
+		#job_cloning_technician_add = 1 # LS - Remove technician because it's now an upgrade. Using inline instead.
+	}
+
+	inline_script = { # LS - Custom inline to add cloning tech or drone jobs.
+		script = buildings/pop_assembly/clone_vats/clone_vats_jobs
+		count = 2
+	}
+	
+	inline_script = { # LS - Custom inline to add other modifiers, such as more organic pop assembly from techs and ascension perks.
+		script = buildings/pop_assembly/clone_vats/other_modifiers
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = @b1_upkeep
 		}
 	}
-	triggered_desc = { # Expanded Megastructures and Technology
-		text = building_clone_vats_adv_clone_army_effects_desc
-		trigger = {
-			exists = owner
-			exists = planet
-			owner = { is_clone_army_empire = yes }
-			OR = {
-				owner = { has_technology = tech_adv_cloning }
-				owner = { has_tradition = tr_genetics_adopt }
-			}
-			NAND = {
-				owner = { has_technology = tech_adv_cloning }
-				owner = { has_tradition = tr_genetics_adopt }
-			}
-		}
+
+	upgrades = {
+		building_eutab_adv_clone_vats # EUTAB # LS - Moved from Clone Vats
 	}
-	triggered_desc = { # Expanded Megastructures and Technology
-		text = building_clone_vats_very_adv_clone_army_effects_desc
-		trigger = {
-			exists = owner
-			exists = planet
-			owner = { is_clone_army_empire = yes }
-			owner = { has_technology = tech_adv_cloning }
-			owner = { has_tradition = tr_genetics_adopt }
-		}
+
+	inline_script = { # LS - Custom inline for warnings about the Clone Vats
+		script = buildings/pop_assembly/clone_vats/warnings
+	}
+
+	prerequisites = {
+		tech_cloning
 	}
 }
 

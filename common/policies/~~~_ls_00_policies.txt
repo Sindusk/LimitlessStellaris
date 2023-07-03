@@ -3885,6 +3885,16 @@ trade_policy = {
 			NOT = {
 				has_active_tradition = tr_commerce_finish # OSA
 			}
+			NAND = { # LS - Inverted condition for Bug Branch Wealth Marketplace, which is better.
+				has_federation = yes
+				federation = {
+					has_federation_perk = trade_federation_passive
+					NOR = {
+						has_federation_perk = trade_value_2
+						has_federation_perk = trade_value_3
+					}
+				}
+			}
 		}
 
 		AI_weight = {
@@ -4803,21 +4813,22 @@ trade_policy = {
 		modifier = {}
 		AI_weight = { factor = 0 }
 	}
-	option = { # UAP
-		name = "trade_policy_adv_conversion_alloys_name"
-		policy_flags = { trade_policy_adv_conversion_alloys }
-		potential = {
-			OR = {
-				has_ascension_perk = ap_economic_prospertity
-				AND = {
-					mid_game_years_passed > 0
-					is_trade_league_federation = no
-				}
-			}
-		}
-		modifier = {}
-		AI_weight = { factor = 0 }
-	}
+	# LS - Forge Investments option disabled [Balance]
+	#option = { # UAP
+	#	name = "trade_policy_adv_conversion_alloys_name"
+	#	policy_flags = { trade_policy_adv_conversion_alloys }
+	#	potential = {
+	#		OR = {
+	#			has_ascension_perk = ap_economic_prospertity
+	#			AND = {
+	#				mid_game_years_passed > 0
+	#				is_trade_league_federation = no
+	#			}
+	#		}
+	#	}
+	#	modifier = {}
+	#	AI_weight = { factor = 0 }
+	#}
 	option = { # UAP
 		name = "trade_policy_adv_conversion_unity_name"
 		policy_flags = { trade_policy_adv_conversion_unity }

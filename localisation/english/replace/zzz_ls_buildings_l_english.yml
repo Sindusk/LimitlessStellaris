@@ -117,10 +117,13 @@ l_english:
   building_necrophage_house_of_apotheosis_desc: "A house of untold splendor where those awaiting their apotheosis as [This.Owner.GetSpeciesNamePlural] can spend their final days in their original forms in comfort."
   building_necrophage_house_of_apotheosis_desc_hive: "A house of untold splendor where we have gone to great lengths to ensure that those awaiting their transformation into [This.Owner.GetAdj] drones can spend their final days outside the Hive in comfort."
  
-  ### Biological
+  ### Organic
   building_clone_vats: "§PClone Vats§!"
-  building_clone_vats_tt: "§MAssembly§! - §BTier 1§! - §EBiological§!"
+  building_clone_vats_tt: "§MAssembly§! - §BTier 1§! - §EOrganic§!"
   building_clone_vats_desc: "Clone Vats break down simple materials to generate Organic Pop Assembly."
+  building_clone_birth_labs: "§PClone Birth-Labs§!"
+  building_clone_birth_labs_tt: "§MAssembly§! - §BTier 2§! - §EOrganic§!"
+  building_clone_birth_labs_desc: "State-of-the-art bio-engineering laboratories where $job_cloning_technician_plural$ oversee the accelerated maturation of clones and ensure that each clone is flash-imprinted with necessary skills for its predetermined job."
 
   ### Clone Army
   building_clone_army_clone_vat: "§PAncient Clone Vat§!"

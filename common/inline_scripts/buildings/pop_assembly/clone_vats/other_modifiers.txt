@@ -1,0 +1,90 @@
+### Triggered Planet Modifiers
+## Expanded Megastructures and Technology - Engineered Evolution
+# Additional organic pop assembly for Engineered Evolution ascension perk.
+triggered_planet_modifier = { # Expanded Megastructures and Technology
+	potential = {
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_engineered_evolution
+		}
+	}
+	modifier = {
+		planet_pop_assembly_organic_add = 1 # LS 2 -> 1 [Balance]
+	}
+}
+## Expanded Megastructures and Technology - Advanced Cloning
+# Additional organic pop assembly for Advanced Cloning technology.
+triggered_planet_modifier = { # Expanded Megastructures and Technology
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_adv_cloning
+		}
+	}
+	modifier = {
+		planet_pop_assembly_organic_add = 1
+	}
+}
+## Vanilla - Genetics Efficient Cloning
+# Additional organic pop assembly for the Genetics tradition Efficient Cloning node.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_tradition = tr_genetics_efficient_cloning }
+	}
+	modifier = {
+		planet_pop_assembly_organic_add = 1.5
+	}
+}
+## Expanded Megastructures and Technology - Xeno-Compatiblity
+# Additional organic pop assembly for Xeno-Compatibility ascension perk.
+triggered_planet_modifier = { # Expanded Megastructures and Technology
+	potential = {
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_xeno_compatibility
+		}
+	}
+	modifier = {
+		planet_pop_assembly_organic_add = 1
+	}
+}
+## Expanded Megastructures and Technology - Genesis
+# Additional organic pop assembly for the Genesis modifier.
+triggered_planet_modifier = { # Expanded Megastructures and Technology
+	potential = {
+		exists = owner
+		owner = {
+			has_modifier = genesis_cloning_vats
+		}
+	}
+	modifier = {
+		planet_pop_assembly_organic_add = 1
+	}
+}
+## Expanded Megastructures and Technology - Total Assimilation
+# Additional organic pop assembly for the Total Assimilation ascension perk.
+triggered_planet_modifier = { # Expanded Megastructures and Technology
+	potential = {
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_total_assimilation
+		}
+	}
+	modifier = {
+		planet_pop_assembly_organic_add = 1
+	}
+}
+## Bug Branch - Evolutionary Architects
+# Additional unity from jobs if the owner is Evolutionary Architects.
+triggered_planet_modifier = { # Bug Branch
+	potential = {
+		exists = owner
+		owner = {
+			is_bugged_evolutionary_architects = yes
+		}
+	}
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.2
+	}
+}

@@ -1449,7 +1449,7 @@ building_clinic = {
 
 	planet_modifier = {
 		planet_housing_add = 5 # OSA
-		planet_pop_assembly_organic_add = 1 # OSA
+		#planet_pop_assembly_organic_add = 1 # OSA # LS - Removed [Balance]
 		job_healthcare_add = 2
 	}
 
@@ -1667,7 +1667,7 @@ building_hospital = {
 
 	planet_modifier = {
 		planet_housing_add = 5 # OSA
-		planet_pop_assembly_organic_add = 2 # OSA
+		#planet_pop_assembly_organic_add = 2 # OSA # LS - Removed [Balance]
 		job_healthcare_add = @b2_jobs
 	}
 
