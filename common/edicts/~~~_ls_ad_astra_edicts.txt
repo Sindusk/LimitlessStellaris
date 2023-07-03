@@ -1,0 +1,506 @@
+##########################################################################
+# Limitless Stellaris - Edicts - Ad Astra
+##########################################################################
+
+## OSA Variables
+@Edict1Cost = 15
+@Edict2Cost = 30
+@Edict3Cost = 45
+@EdictSpecialCost = 1
+
+@EdictPerpetual = -1
+
+@Edict1Cost = 25
+@Edict2Cost = 30
+@Edict3Cost = 35
+
+@EdictDuration = -1
+
+# Sets the cost for all campaigns with this variable
+@campaignCost = 15
+@campaignInitialCost = 2000
+@hiveFood = 15
+@campaignDuration = -1
+
+##################################################
+## Population Growth
+##################################################
+## Subsidized General Medical Care
+subsidized_general_medical_care = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = @campaignCost
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_growth_speed = 0.05
+		job_healthcare_per_pop = 0.02
+	}
+	potential = {
+		has_technology = tech_frontier_health
+		is_gestalt = no
+		is_mechanical_empire = no
+	}
+	ai_weight = { weight = 1 }
+}
+
+##############
+# Subsidized General Assembly Units (Regular)
+subsidized_general_assembly_units_regular = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = @campaignCost
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		planet_pop_assembly_mult = 0.05
+		job_roboticist_per_pop = 0.02
+	}
+	potential = {
+		has_technology = tech_robotic_workers
+		NOR = {
+			is_gestalt = yes
+			has_policy_flag = robots_outlawed
+		}
+	}
+	ai_weight = { weight = 1 }
+}
+
+################################################################################
+# Subsidized General Assembly Units (Machine Empire)
+subsidized_general_assembly_units_machine = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = @campaignCost
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		planet_pop_assembly_mult = 0.05
+		job_replicator_per_pop = 0.02
+	}
+	potential = {
+		has_technology = tech_micro_replicators
+		is_machine_empire = yes
+	}
+	ai_weight = { weight = 1 }
+}
+
+################################################################################
+# Enhanced Drone Spawns
+enhanced_drone_spawns = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = @campaignCost
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		pop_growth_speed = 0.05
+		job_spawning_drone_per_pop = 0.02
+	}
+	potential = {
+		has_technology = tech_vitality_boosters
+		is_hive_empire = yes
+	}
+	ai_weight = { weight = 1 }
+}
+
+#################
+# Strategic Resource Boosters
+#################
+# Mote-Enhanced Energy Systems
+mote_enhanced_energy_systems = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = rare_edicts
+		cost = { volatile_motes = 75 }
+		upkeep = { # LS
+			volatile_motes = 1
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = { planet_technician_energy_produces_mult = 0.1 }
+	potential = { has_technology = tech_mine_volatile_motes }
+	ai_weight = { weight = 1 }
+}
+
+# Standardized Rare Crystal Integration
+standardized_rare_crystal_integration = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = rare_edicts
+		cost = { rare_crystals = 75 }
+		upkeep = { # LS
+			rare_crystals = 1
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		planet_buildings_upkeep_mult = -0.1
+		planet_districts_upkeep_mult = -0.1
+	}
+	potential = { has_technology = tech_mine_rare_crystals }
+	ai_weight = { weight = 1 }
+}
+
+# Living Metal Architecture
+living_metal_architecture = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = rare_edicts
+		cost = { sr_living_metal = 75 }
+		upkeep = { # LS
+			sr_living_metal = 1
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		planet_buildings_upkeep_mult = -0.1
+		planet_districts_upkeep_mult = -0.1
+		planet_building_build_speed_mult = 0.1
+	}
+	potential = { has_technology = tech_mine_living_metal }
+	ai_weight = { weight = 1 }
+}
+
+# Living Metal Robotics
+living_metal_robotics = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = rare_edicts
+		cost = { sr_living_metal = 75 }
+		upkeep = { # LS
+			sr_living_metal = 1
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		planet_pop_assembly_mult = 0.1
+		planet_pop_assemblers_upkeep_mult = -0.1
+		planet_pops_robotics_upkeep_mult = -0.1
+	}
+	potential = {
+		has_technology = tech_mine_living_metal
+		OR = {
+			NOT = { has_policy_flag = robots_outlawed }
+			is_machine_empire = yes
+		}
+	}
+	ai_weight = { weight = 1 }
+}
+
+#################
+# Worldbreaker Ordnance
+#################
+deploy_worldbreaker_ordnance_campaign = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		ship_orbital_bombardment_mult = 0.5
+		ships_upkeep_mult = 0.1
+	}
+	potential = { has_policy_flag = orbital_bombardment_armageddon }
+	ai_weight = { weight = 1 }
+}
+
+#################
+# Research Boosts
+#################
+# Physics
+research_boost_physics_campaign = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = { planet_jobs_physics_research_produces_mult = 0.2 }
+	potential = { has_technology = tech_physics_3 }
+	ai_weight = { weight = 1 }
+}
+
+# Society
+research_boost_society_campaign = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = { planet_jobs_society_research_produces_mult = 0.2 }
+	potential = { has_technology = tech_society_3 }
+	ai_weight = { weight = 1 }
+}
+
+# Engineering
+research_boost_engineering_campaign = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = { planet_jobs_engineering_research_produces_mult = 0.2 }
+	potential = { has_technology = tech_engineering_3 }
+	ai_weight = { weight = 1 }
+}
+
+#################
+# Army Boosts
+#################
+# Volatile Arsenal Reinforcement
+volatile_arsenal_reinforcement = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = rare_edicts
+		cost = { volatile_motes = 50 }
+		upkeep = { # LS
+			volatile_motes = 0.75
+			multiplier = value:edict_size_effect
+		}
+	}
+	potential = { has_technology = tech_mine_volatile_motes }
+	modifier = {
+		army_health = 0.1
+		army_damage_mult = 0.1
+		armies_upkeep_mult = 0.1
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictHighPrio
+			is_at_war = yes
+		}
+	}
+}
+
+# Exotic Arsenal Reinforcement
+exotic_arsenal_reinforcement = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = rare_edicts
+		cost = { exotic_gases = 50 }
+		upkeep = { # LS
+			exotic_gases = 0.75
+			multiplier = value:edict_size_effect
+		}
+	}
+	potential = { has_technology = tech_mine_exotic_gases }
+	modifier = {
+		army_health = 0.1
+		army_damage_mult = 0.1
+		armies_upkeep_mult = 0.1
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictHighPrio
+			is_at_war = yes
+		}
+	}
+}
+
+# Crystalline Arsenal Reinforcement
+crystalline_arsenal_reinforcement = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = rare_edicts
+		cost = { rare_crystals = 50 }
+		upkeep = { # LS
+			rare_crystals = 0.75
+			multiplier = value:edict_size_effect
+		}
+	}
+	potential = { has_technology = tech_mine_rare_crystals }
+	modifier = {
+		army_health = 0.1
+		army_damage_mult = 0.1
+		armies_upkeep_mult = 0.1
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictHighPrio
+			is_at_war = yes
+		}
+	}
+}
+
+# Living Metal Arsenal Reinforcement
+living_metal_arsenal_reinforcement = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = rare_edicts
+		cost = { sr_living_metal = 50 }
+		upkeep = { # LS
+			sr_living_metal = 0.75
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		army_health = 0.1
+		army_damage_mult = 0.1
+		armies_upkeep_mult = 0.1
+	}
+	potential = { has_technology = tech_mine_living_metal }
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictHighPrio
+			is_at_war = yes
+		}
+	}
+}
+
+# Psi-Forged Arsenal Reinforcement
+psi_forged_arsenal_reinforcement = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = rare_edicts
+		cost = { sr_zro = 50 }
+		upkeep = { # LS
+			sr_zro = 0.75
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		army_health = 0.1
+		army_damage_mult = 0.1
+		armies_upkeep_mult = 0.1
+	}
+	potential = { has_technology = tech_psi_forge_technologies }
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictHighPrio
+			is_at_war = yes
+		}
+	}
+}
+
+#################
+# General Edicts
+#################
+# Subsidized Deep Space Transport Networks
+subsidized_deep_space_transport_networks = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		trade_value_mult = 0.05
+		pop_growth_from_immigration = 0.05
+		pop_resettlement_cost_mult = 0.05
+		pop_ethic_spiritualist_attraction_mult = 0.001
+	}
+	potential = {
+		has_technology = tech_galactic_markets
+		is_gestalt = no
+	}
+	ai_weight = { weight = 1 }
+}
+
+# Enhanced Deep Space Transport Networks
+enhanced_deep_space_transport_networks = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		country_unity_produces_mult = 0.05 # country_admin_cap_add = 5
+		pop_growth_from_immigration = 0.05
+		pop_resettlement_cost_mult = 0.05
+	}
+	potential = {
+		has_technology = tech_autonomous_agents
+		is_gestalt = yes
+	}
+	ai_weight = { weight = 1 }
+}
+
+# Millennium Projects
+millennium_projects = {
+	length = @campaignDuration
+	icon = "GFX_edict_type_policy"
+	resources = {
+		category = campaigns
+		cost = { energy = 1500 }
+		upkeep = { # LS
+			energy = 20
+			multiplier = value:edict_size_effect
+		}
+	}
+	modifier = {
+		planet_building_build_speed_mult = 0.2
+		country_megastructure_build_cap_add = 1
+	}
+	potential = {
+		OR = {
+			has_ascension_perk = ap_galactic_wonders_utopia
+			has_ascension_perk = ap_galactic_wonders_megacorp
+			has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+			has_ascension_perk = ap_master_builders
+		}
+	}
+	ai_weight = { weight = 1 }
+}
