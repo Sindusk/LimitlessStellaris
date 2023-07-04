@@ -310,7 +310,7 @@ building_research_lab_3 = {
 }
 
 ##################################################
-## Research - Education
+## Research - Education (Unique)
 ##################################################
 
 ## Education Compound (Tier 1) [Advanced Policies]
@@ -828,6 +828,376 @@ building_supercomputer = {
 		physics_research = 3
 		society_research = 3
 		engineering_research = 3
+	}
+}
+
+##################################################
+## Research - Productivity (Unique)
+##################################################
+
+## Planetary Research Archive (Tier 1) [More Standard Districts]
+# Base version with slight variable changes.
+building_research_support_1 = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 1052000 # LS - Sorted on top tier.
+	exempt_from_ai_planet_specialization = no
+	category = research
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_research_support_1_tt
+    }
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = crucible_colony
+		}
+		OR = {
+			AND = {
+				exists = owner
+				owner = { is_ai = no }
+			}
+			msd_has_any_science_district_or_buildings = yes
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = { is_ai = yes }
+				msd_has_any_science_district_or_buildings = no
+			}
+		}
+	}
+
+	planet_modifier = { # LS - Add some productivity bonuses to make it more appealing early on.
+		planet_researchers_physics_research_produces_add = 0.5
+		planet_researchers_society_research_produces_add = 0.5
+		planet_researchers_engineering_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = @db1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = @db1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = @db1_jobs
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+	}
+
+	upgrades = {
+		"building_research_support_2"
+	}
+
+	prerequisites = {
+		"tech_basic_science_lab_1"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+}
+
+## Planetary Research Catalogue (Tier 2) [More Standard Districts]
+# Base version with slight variable changes.
+building_research_support_2 = {
+	base_buildtime = @db2_time
+	can_build = no
+	category = research
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_research_support_2_tt
+    }
+
+	potential = {
+		OR = {
+			AND = {
+				exists = owner
+				owner = { is_ai = no }
+			}
+			msd_has_any_science_district_or_buildings = yes
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = { is_ai = yes }
+				msd_has_any_science_district_or_buildings = no
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			exotic_gases = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			minerals = @db2_upkeep
+			exotic_gases = @db2_rare_upkeep
+		}
+	}
+
+	upgrades = {
+		"building_research_support_3"
+	}
+
+	prerequisites = {
+		"tech_basic_science_lab_2"
+	}
+
+	planet_modifier = {
+		planet_researchers_physics_research_produces_add = 1
+		planet_researchers_society_research_produces_add = 1
+		planet_researchers_engineering_research_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = @db2_jobs
+			planet_researchers_consumer_goods_upkeep_add = 0.5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = @db2_jobs
+			planet_researchers_minerals_upkeep_add = 1.5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = @db2_jobs
+			planet_researchers_energy_upkeep_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+}
+
+## System Research Locus (Tier 3) [More Standard Districts]
+# Base version with slight variable changes.
+building_research_support_3 = {
+	base_buildtime = @db3_time
+	can_build = no
+	category = research
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_research_support_3_tt
+    }
+
+	potential = {
+		OR = {
+			AND = {
+				exists = owner
+				owner = { is_ai = no }
+			}
+			msd_has_any_science_district_or_buildings = yes
+		}
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = { is_ai = yes }
+				msd_has_any_science_district_or_buildings = no
+			}
+		}
+	}
+
+	resources = { # LS - Added entire resources section. Seems like it was an oversight.
+		category = planet_buildings
+		cost = {
+			minerals = @db3_minerals
+			exotic_gases = @db3_rare_cost
+		}
+		upkeep = {
+			energy = @db3_upkeep
+			minerals = @db3_upkeep
+			exotic_gases = @db3_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_basic_science_lab_3"
+	}
+
+	planet_modifier = {
+		planet_researchers_physics_research_produces_add = 2
+		planet_researchers_society_research_produces_add = 2
+		planet_researchers_engineering_research_produces_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = @db3_jobs
+			planet_researchers_consumer_goods_upkeep_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = @db3_jobs
+			planet_researchers_minerals_upkeep_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = @db3_jobs
+			planet_researchers_energy_upkeep_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
 	}
 }
 

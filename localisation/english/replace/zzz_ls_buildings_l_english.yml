@@ -316,7 +316,7 @@ l_english:
   building_research_lab_3: "§VAdvanced Research Complexes§!" # Vanilla
   building_research_lab_3_tt: "§MResearch§! - §BTier 3§! - §EBasic§!"
   building_research_lab_3_desc: "These advanced research facilities have the very latest science equipment along with an extremely large staff capacity."
-  ## Education
+  ## Education - Unique
   building_AP_education_school: "§PEducation Compound§!" # Advanced Policies
   building_AP_education_school_tt: "§MResearch§! - §BTier 1§! - §EEducation§!"
   building_AP_education_school_desc: "This compound is the nerve center for any organized education on the planet."
@@ -326,7 +326,17 @@ l_english:
   building_supercomputer: "§PPlanetary Supercomputer§!" # Vanilla
   building_supercomputer_tt: "§MResearch§! - §BTier 1§! - §EEducation§!"
   building_supercomputer_desc: "A single colossal supercomputer which can carry out incredibly complex calculations, improving the research output of the whole planet."
-  
+  ## Productivity - Unique
+  building_research_support_1: "§PPlanetary Research Archive§!" # More Standard Districts
+  building_research_support_1_tt: "§MResearch§! - §BTier 1§! - §EProductivity§!"
+  building_research_support_1_desc: "Existing scientific knowledge from across the empire is archived here, where teams of archivists re-analyze it in context of local research efforts."
+  building_research_support_2: "§PPlanetary Research Catalogue§!" # More Standard Districts
+  building_research_support_2_tt: "§MResearch§! - §BTier 2§! - §EProductivity§!"
+  building_research_support_2_desc: "In addition to housing an archive of existing scientific knowledge, this facility also creates and houses real-time backups for all research actively underway on the planet. Although this increases the up-front costs associated with research, it pays dividends by ensuring no progress goes unrecorded."
+  building_research_support_3: "§PSystem Research Locus§!" # More Standard Districts
+  building_research_support_3_tt: "§MResearch§! - §BTier 3§! - §EProductivity§!"
+  building_research_support_3_desc: "This facility is much more than just an archive or backup: teams of researcher-cataloguers perform experiments in parallel for promising projects, independently testing theories and providing huge experimental datasets on behalf of scientists conducting original research."
+
   ### Artifacts
   ## Unique
   building_archaeostudies_faculty: "§PFaculty of Archaeostudies§!" # Vanilla
