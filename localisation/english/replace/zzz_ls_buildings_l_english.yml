@@ -364,10 +364,21 @@ l_english:
   building_galactic_stock_exchange_desc: "By engaging in free trade of goods and services we allow for a more specialized economy, where an individual can excel in a narrow field and trade for their needs."
 
   ### Civics
-  ## Banking Clans
+  ## Mercantile Complex (Banking Clans)
   building_bank_office: "§PMercantile Complex§!" # Venture Politics
   building_bank_office_tt: "§MTrade§! - §BTier 1§! - §EBanking Clans§!"
   building_bank_office_desc: "Vast sums of wealth are directed by the merchants who work in this complex of offices and plazas."
+  ## Omni Police Station
+  building_am_civics_omni_police_station: "Omni Police Station" # Amazing Civics - Megacorp
+  building_am_civics_omni_police_station_desc: "A Police Station that operates a mechanized Police Force. The Megacorporation receives a monthly payment for their services."
+  ## Social Media Hub
+  building_am_civics_social_media_hub: "Social Media Hub" # Amazing Civics - Megacorp
+  building_am_civics_social_media_hub_desc: "A dedicated Government Facility that centralizes the planet-wide Social Media Network."
+  ## Stellar Banking Institute (Banking Giant)
+  building_am_civics_stellar_banking_institute: "§PStellar Banking Institute§!" # Amazing Civics - Megacorp
+  building_am_civics_stellar_banking_institute_tt: "§MTrade§! - §BTier 1§! - §EBanking Giant§!"
+  building_am_civics_stellar_banking_institute_desc: "A giant, centralized banking complex where money is invested to generate profits. Automated trading systems handle most transitions and sell and buy stock at a rapid pace."
+  building_am_civics_stellar_banking_institute_summary: "Generates §Y$TRADE_VALUE$§! based on the amount of £energy£ §YEnergy§! in our stockpile, at an annual interest rate of §Y6%§!.\n\nThe £trade_value£ §Y$TRADE_VALUE$§! is applied as a §YPlanet Modifier§!.\n\n§YCan only be constructed in the Capital.§!\n  "
 
 ##################
 # Amenities

@@ -5,6 +5,10 @@
 ### Key:
 ### PD-RS:NF - Planetary Diversity & Real Space: New Frontiers Compatibility
 
+# Vanilla Variables
+@blocker_high = 10
+@blocker_low = 5
+
 ## Mountain Range
 # Merge between PD-RS:NF, Bug Branch
 d_mountain_range = {
