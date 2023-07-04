@@ -713,10 +713,11 @@ district_rw_commercial = {
 			is_gestalt = no
 			is_fallen_empire = no
 		}
-		OR = { # Gigastructural Engineering
-			is_planet_class = pc_squareworld_habitable
-			is_planet_class = pc_ringworld_habitable
-		}
+		# LS - District set is checked instead by Subtle Polish.
+		#OR = { # Gigastructural Engineering
+		#	is_planet_class = pc_squareworld_habitable
+		#	is_planet_class = pc_ringworld_habitable
+		#}
 		NOT = { # Gigastructural Engineering
 			has_modifier = ringworld_upgrade_timer
 		}
