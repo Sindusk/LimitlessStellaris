@@ -537,3 +537,97 @@ building_galactic_stock_exchange = {
 		}
 	}
 }
+
+##################################################
+## Civics
+##################################################
+
+## Mercantile Complex (Tier 1) [Venture Politics]
+# Requires Banking Clans Civic.
+# Base version with variable changes.
+building_bank_office = {
+	base_buildtime = @db2_time
+	icon = building_bank_office
+	position_priority = 2062000 # LS - Sort on second row
+	base_cap_amount = 1
+
+	category = trade
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_bank_office_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { has_valid_civic = civic_bancorp }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+		#has_major_upgraded_capital = yes
+		#buildings_simple_allow = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = { has_civic = civic_bancorp }
+		}
+	}
+
+	planet_modifier = {
+		job_merchant_per_pop = 0.01 # LS - Added because this building is boring without something like it.
+		job_merchant_add = 1
+		job_executive_add = 1
+		
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+		modifier = {
+			job_merchant_add = 1
+			job_executive_add = -1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			#rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			minerals = @db2_upkeep
+			#rare_crystals = @db2_rare_upkeep
+		}
+	}
+
+	triggered_desc = {
+		text = job_merchant_effect_desc
+		
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { NOT = { has_active_tradition = tr_mercantile_commercial_enterprise } }
+		}
+		text = job_executive_effect_desc
+		
+	}
+	
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			buildings_build_building = no
+		}
+	}
+}
