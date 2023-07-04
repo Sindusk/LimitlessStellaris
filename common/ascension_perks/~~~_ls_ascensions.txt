@@ -3138,6 +3138,45 @@ ap_xeno_compatibility = {
 ## Modded Ascension Perks
 ##################################################
 
+## Economical Mastery
+# Removed other mods disabling this Ascension Perk. It now functions properly.
+ap_economic_prospertity = {
+	possible = {
+		custom_tooltip = { fail_text = "ap_economic_prospertity_req_1" tradition_prosperity_finish = yes }
+		custom_tooltip = { fail_text = "ap_economic_prospertity_req_2" OR = { has_technology = tech_galactic_markets is_megacorp = yes } }
+		#custom_tooltip = { fail_text = "ap_economic_prospertity_req_3" NOT = { has_global_flag = emex_version_rejuvenation } } # 'Empires Expanded'
+		#custom_tooltip = { fail_text = "ap_economic_prospertity_req_4" NAND = { has_global_flag = bug_branch_active has_bug_branch = yes } } # Ethics and Civics - Bug Branch
+	}
+	modifier = {
+		country_trade_fee = -0.1
+		trade_value_mult = 0.15
+		country_energy_produces_mult = 0.05
+		country_resource_max_energy_add = 10000
+		# branch_office_value_mult = 0.75
+	}
+	on_enabled = {
+		custom_tooltip = "ap_economic_prospertity_tooltip"
+		hidden_effect = {
+			country_event = { id = UniqueAscensionPerksEvents.54 }
+		}
+		add_resource = { energy = 10000 }
+	}
+	potential = {
+		NOT = { has_ascension_perk = ap_economic_prospertity }
+		is_gestalt = no
+		OR = {
+			is_ai = no
+			event_target:global_event_country = {
+				check_variable = { which = ap_economic_prospertity value > 0 }
+			}
+		}		# because ai_weight doesn't work
+	}
+	ai_weight = {
+		factor = event_target:global_event_country.ap_economic_prospertity
+		modifier = { factor = 5 is_megacorp = yes }
+	}
+}
+
 ## Artifact Hunter (Unique Ascension Perks)
 # Disabled. Allows players to find more than one precursor, which is redundant with Assorted Precursor Adjustments mod.
 ap_artifact_hunter = {

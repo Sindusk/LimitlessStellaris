@@ -841,6 +841,13 @@ building_factory_1 = {
 			consumer_goods = 5
 		}
 	}
+	
+	show_tech_unlock_if = { # Unique Ascension Perks
+		OR = {
+			country_uses_consumer_goods = yes
+			is_fear_of_the_dark_empire = yes
+		}
+	}
 
 	prerequisites = {
 		tech_basic_industry
@@ -988,6 +995,13 @@ building_factory_2 = {
 				}
 			}
 			consumer_goods = 10
+		}
+	}
+	
+	show_tech_unlock_if = { # Unique Ascension Perks
+		OR = {
+			country_uses_consumer_goods = yes
+			is_fear_of_the_dark_empire = yes
 		}
 	}
 
@@ -1174,10 +1188,18 @@ building_factory_3 = {
 			consumer_goods = 20
 		}
 	}
+	
+	show_tech_unlock_if = { # Unique Ascension Perks
+		OR = {
+			country_uses_consumer_goods = yes
+			is_fear_of_the_dark_empire = yes
+		}
+	}
 
 	prerequisites = {
 		tech_luxuries_2
 	}
+
 	upgrades = {
 		#building_roci_affluence_center_mod # Rise of Cosmic Industry
 	}
