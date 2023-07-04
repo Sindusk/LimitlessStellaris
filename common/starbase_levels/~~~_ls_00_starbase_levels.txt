@@ -1,0 +1,68 @@
+##########################################################################
+# Limitless Stellaris - Starbase Levels
+##########################################################################
+
+##################################################
+## Normal
+##################################################
+
+## Outpost (Tier 0) [Vanilla]
+# Vanilla
+starbase_level_outpost = {
+	ship_size = starbase_outpost
+	next_level = starbase_level_starport
+	show_in_outliner = no
+	display_map_icon = no
+	collects_trade = no
+	level_weight = 0
+	ai_weight = { weight = 1 }
+}
+
+## Starport (Tier 1) [Vanilla]
+# Vanilla
+starbase_level_starport = {
+	ship_size = starbase_starport
+	next_level = starbase_level_starhold
+	level_weight = 1
+	ai_weight = { weight = 2 }
+	potential_home_base = yes
+}
+
+## Starhold (Tier 2) [Vanilla]
+# Vanilla
+starbase_level_starhold = {
+	ship_size = starbase_starhold
+	next_level = starbase_level_starfortress
+	level_weight = 2
+	ai_weight = { weight = 3 }
+	potential_home_base = yes
+}
+
+## Star Fortress (Tier 3) [Vanilla]
+# Vanilla
+starbase_level_starfortress = {
+	ship_size = starbase_starfortress
+	next_level = starbase_level_citadel
+	level_weight = 3
+	ai_weight = { weight = 4 }
+	potential_home_base = yes
+}
+
+## Citadel (Tier 4) [Vanilla]
+# Vanilla
+starbase_level_citadel = {
+	ship_size = starbase_citadel
+	#next_level = starbase_level_bastion # LS - Disabled until the cause of the issues is identified.
+	level_weight = 4
+	ai_weight = { weight = 5 }
+	potential_home_base = yes
+}
+
+## Stellar Bastion (Tier 5) [Expanded Starbases]
+# Base version
+starbase_level_bastion = {
+	ship_size = starbase_bastion
+	level_weight = 5
+	ai_weight = { weight = 6 }
+	potential_home_base = yes
+}

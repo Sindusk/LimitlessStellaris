@@ -385,7 +385,7 @@ priest = {
 			always = yes
 		}
 		planet_amenities_add = 3 # OSA 2 -> 3
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+		#mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 		mult = value:bugged_priest_amenities # Bug Branch
 	}
 
@@ -396,7 +396,7 @@ priest = {
 			}
 		}
 		planet_amenities_add = 1
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+		#mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 		mult = value:bugged_priest_amenities # Bug Branch
 	}
 
@@ -519,7 +519,7 @@ death_priest = {
 			always = yes
 		}
 		planet_amenities_add = 2
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+		#mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 		mult = value:bugged_priest_amenities # Bug Branch
 	}
 
@@ -530,7 +530,7 @@ death_priest = {
 			}
 		}
 		planet_amenities_add = 1
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+		#mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 		mult = value:bugged_priest_amenities # Bug Branch
 	}
 
@@ -3117,8 +3117,8 @@ pearl_diver = {
 		}
 
 		trade_value_add = @councilor_corporate_anglers_pearl_diver_trade_value_bonus
-		mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_trade_mult|TYPE|councilor_corporate_anglers|
-		mult = value:trade_value_corporate_angler_councilor_mult
+		#mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_trade_mult|TYPE|councilor_corporate_anglers|
+		mult = value:trade_value_corporate_angler_councilor_mult # Bug Branch
 	}
 
 	overlord_resources = {

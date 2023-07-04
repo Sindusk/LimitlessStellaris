@@ -1618,8 +1618,8 @@ angler = {
 		}
 
 		trade_value_add = @councilor_corporate_anglers_angler_trade_value_bonus
-		mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_trade_mult|TYPE|councilor_corporate_anglers|
-		mult = value:trade_value_corporate_angler_councilor_mult
+		#mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_trade_mult|TYPE|councilor_corporate_anglers| # Vanilla
+		mult = value:trade_value_corporate_angler_councilor_mult # Bug Branch
 	}
 
 	triggered_planet_modifier = {
