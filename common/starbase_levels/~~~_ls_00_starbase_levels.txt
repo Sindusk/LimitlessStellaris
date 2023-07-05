@@ -19,42 +19,50 @@ starbase_level_outpost = {
 }
 
 ## Starport (Tier 1) [Vanilla]
-# Vanilla
+# StarTech AI weight added
 starbase_level_starport = {
 	ship_size = starbase_starport
 	next_level = starbase_level_starhold
 	level_weight = 1
-	ai_weight = { weight = 2 }
+	ai_weight = {
+		weight = 10 # StarTech AI 2 -> 10
+	}
 	potential_home_base = yes
 }
 
 ## Starhold (Tier 2) [Vanilla]
-# Vanilla
+# StarTech AI weight added
 starbase_level_starhold = {
 	ship_size = starbase_starhold
 	next_level = starbase_level_starfortress
 	level_weight = 2
-	ai_weight = { weight = 3 }
+	ai_weight = {
+		weight = 80 # StarTech AI 3 -> 80
+	}
 	potential_home_base = yes
 }
 
 ## Star Fortress (Tier 3) [Vanilla]
-# Vanilla
+# StarTech AI weight added
 starbase_level_starfortress = {
 	ship_size = starbase_starfortress
 	next_level = starbase_level_citadel
 	level_weight = 3
-	ai_weight = { weight = 4 }
+	ai_weight = {
+		weight = 90 # StarTech AI 4 -> 90
+	}
 	potential_home_base = yes
 }
 
 ## Citadel (Tier 4) [Vanilla]
-# Vanilla
+# StarTech AI weight added
 starbase_level_citadel = {
 	ship_size = starbase_citadel
 	#next_level = starbase_level_bastion # LS - Disabled until the cause of the issues is identified.
 	level_weight = 4
-	ai_weight = { weight = 5 }
+	ai_weight = {
+		weight = 91 # StarTech AI 5 -> 91
+	}
 	potential_home_base = yes
 }
 
@@ -63,6 +71,8 @@ starbase_level_citadel = {
 starbase_level_bastion = {
 	ship_size = starbase_bastion
 	level_weight = 5
-	ai_weight = { weight = 6 }
+	ai_weight = {
+		weight = 100 # LS 6 -> 100
+	}
 	potential_home_base = yes
 }
