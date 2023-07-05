@@ -210,6 +210,7 @@ resolution_community_champions = {
 	triggered_modifier = {
 		potential = {
 			is_galactic_custodian = yes
+			is_galactic_president = no # EED
 		}
 		modifier = {
 			community_champion_custodian = 1

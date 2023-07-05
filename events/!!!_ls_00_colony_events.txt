@@ -30,6 +30,7 @@ planet_event = {
 	}
 
 	trigger = {
+		always = no
 		# LS - Disabling this event entirely since it causes lagg, is very buggy, and generally not very exciting.
 		#num_pops > 0
 		#years_passed < 50
