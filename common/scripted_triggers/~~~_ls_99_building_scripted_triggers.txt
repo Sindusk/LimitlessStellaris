@@ -94,7 +94,7 @@ LS_destroy_clone_vats_building = {
 
 # Whether they can build an Education Unique building
 # Scope: Planet
-ls_potential_education_building = {
+LS_potential_education_building = {
 	NOR = { # Generic building checks
 		has_modifier = resort_colony
 		has_modifier = slave_colony
@@ -104,10 +104,32 @@ ls_potential_education_building = {
 	exists = owner
 	owner = {
 		is_gestalt = no # Cannot be gestalt
-		OR = { # Must have one of these policies active
+		OR = { # Advancd Policies check
 			has_policy_flag = AP_education_privledge_all
 			has_policy_flag = AP_education_privledge_citizen
 			has_policy_flag = AP_education_privledge_elite
+		}
+	}
+}
+
+# Whether they can build a Processing Unique building
+# Scope: Planet
+LS_potential_processing_building = {
+	NOR = { # Generic building checks
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+		has_modifier = crucible_colony
+		has_planet_flag = planetary_station # Real Space: Planetary Stations
+	}
+	exists = owner
+	owner = {
+		is_gestalt = yes # Must be gestalt
+		OR = { # Advanced Policies check
+			has_policy_flag = AP_instinctive_knowledge_all
+			has_policy_flag = AP_instinctive_knowledge_most
+			has_policy_flag = AP_instinctive_knowledge_some
+			has_policy_flag = AP_instinctive_knowledge_few
+			has_policy_flag = AP_instinctive_knowledge_none
 		}
 	}
 }

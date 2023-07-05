@@ -1,5 +1,5 @@
 ####################################################################################################
-# Limitless Stellaris - Origins
+# Limitless Stellaris - Origins - Disabled
 ####################################################################################################
 
 ##################################################
@@ -522,3 +522,29 @@ AAR_origin_ascended = {
 	}
 }
 
+## Next Generation (Extra Origins)
+# Disabled. Boring.
+origin_next_generation = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_next_generation.dds"
+	picture = GFX_origin_next_generation
+
+	playable = {
+	}
+
+	possible = {
+		always = no # Disabled through potential
+	}
+
+	description = "origin_tooltip_next_generation_effects"
+
+	modifier = {
+		category_biology_research_speed_mult = 0.2
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 10
+	}
+}

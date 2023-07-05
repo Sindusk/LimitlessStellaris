@@ -314,7 +314,7 @@ building_research_lab_3 = {
 ##################################################
 
 ## Education Compound (Tier 1) [Advanced Policies]
-# Custom version
+# Redesigned as a predecessor to the Institute.
 building_AP_education_school = {
 	base_buildtime = @db1_time
 	category = research
@@ -329,14 +329,14 @@ building_AP_education_school = {
     }
 
 	potential = {
-		ls_potential_education_building = yes # LS building check
+		LS_potential_education_building = yes # LS building check
 	}
 	destroy_trigger = {
-		ls_potential_education_building = no # LS building check
+		LS_potential_education_building = no # LS building check
 	}
 
 	convert_to = {
-		building_supercomputer # LS - Vanilla variation of Institute, might need an alternative
+		building_AP_mind_controler # LS - Gestalt version
 	}
 
 	allow = {
@@ -441,9 +441,9 @@ building_institute = {
 	}
 
 	destroy_trigger = {
-		ls_potential_education_building = no # LS building check
 		exists = owner
 		OR = {
+			ls_potential_education_building = no # LS building check
 			buildings_no_exotic_gases = yes # StarTech AI
 			str_research_destroy = yes # StarTech AI
 		}
@@ -597,13 +597,126 @@ building_institute = {
 	}
 }
 
-## Planetary Supercomputer (Tier 1) [Vanilla]
+##################################################
+## Research - Processing (Unique)
+##################################################
+
+## Knowledge Hub (Tier 1) [Advanced Policies]
+# Redesigned as a predecessor to the Supercomputer.
+building_AP_mind_controler = {
+	base_buildtime = @b2_time
+	category = research
+	icon = building_fe_xeno_zoo
+	base_cap_amount = 1
+	#position_priority = 75
+	position_priority = 2052000 # Sort Buildings
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_AP_mind_controler_tt
+    }
+
+	potential = {
+		LS_potential_processing_building = yes # LS - Custom Trigger
+	}
+
+	destroy_trigger = {
+		LS_potential_processing_building = no # LS - Custom Trigger
+	}
+
+	convert_to = {
+		building_AP_education_school # LS - Non-gestalt version
+	}
+
+	upgrades = {
+		building_supercomputer # LS - Vanilla Building
+	}
+
+	planet_modifier = {
+		planet_researchers_produces_mult = 0.05 # LS
+	}
+
+	inline_script = { # Adds processing jobs and descriptions
+		script = buildings/research/processing/processing_jobs
+		count = 2
+	}
+
+	inline_script = { # Grants bonuses to unique research buildings
+		script = buildings/research/unique_triggered_modifiers
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_bugged_machine_researcher }
+		}
+		modifier = {
+			job_bugged_examinatron_add = 1
+			#job_calculator_add = -1
+		}
+	}
+
+	triggered_desc = { # Bug Branch
+		trigger = {
+			exists = owner
+			owner = { has_civic = civic_bugged_machine_researcher }
+		}
+		text = job_bugged_examinatron_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = { # LS
+			minerals = @db1_minerals
+		}
+		cost = { # LS - Orbital Ring Buildings
+		    trigger = {
+		        is_ringworld = yes
+		    }
+		    minerals = @db1_minerals
+		}
+		upkeep = { # LS - OSA integration
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+		upkeep = { # Orbital Ring Buildings
+		    trigger = {
+		        is_ringworld = yes
+		    }
+		    energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+		produces = { # LS - OSA integration
+			trigger = {
+				owner = {
+					has_active_tradition = tr_insight_3
+				}
+			}
+			physics_research = 20
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+
+	# LS AI Resource Production
+	ai_resource_production = {
+		trigger = { always = yes }
+		physics_research = 3
+		society_research = 3
+		engineering_research = 3
+	}
+}
+
+## Planetary Supercomputer (Tier 2) [Vanilla]
 # Merge between Sort Buildings, EUTAB, OSA, Bug Branch, Real Space: Planetary Stations, Orbital Ring Buildings, MECR, StarTech
 building_supercomputer = {
 	base_buildtime = @db2_time
-	base_cap_amount = 1
+	#base_cap_amount = 1 # LS - Now an upgrade
 	icon = building_institute
-	position_priority = 2052000 # Sort Buildings
+	#position_priority = 2052000 # Sort Buildings # LS - now an upgrade
+	can_build = no # LS - Now an upgrade
 
 	category = research
 
@@ -613,14 +726,7 @@ building_supercomputer = {
     }
 
 	potential = {
-		exists = owner
-		owner = { is_gestalt = yes }
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-			has_modifier = crucible_colony
-			has_planet_flag = planetary_station # Real Space: Planetary Stations
-		}
+		LS_potential_processing_building = yes # LS - Custom Trigger
 	}
 
 	allow = {
@@ -650,10 +756,8 @@ building_supercomputer = {
 	destroy_trigger = {
 		exists = owner
 		OR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-			has_modifier = crucible_colony
-			owner = { is_regular_empire = yes }
+			LS_potential_processing_building = yes # LS - Custom Trigger
+			buildings_no_exotic_gases = yes # StarTech AI
 			str_research_destroy = yes # StarTech AI
 		}
 	}
@@ -665,9 +769,6 @@ building_supercomputer = {
 	resources = {
 		category = planet_buildings
 		cost = {
-		    trigger = {
-		        is_ringworld = no
-		    }
 			minerals = @db2_minerals
 			exotic_gases = @db2_rare_cost
 		}
@@ -675,24 +776,21 @@ building_supercomputer = {
 		    trigger = {
 		        is_ringworld = yes
 		    }
-		    minerals = 1500
-		    exotic_gases = 600
+		    minerals = @db2_minerals
+		    exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-		    trigger = {
-		        is_ringworld = no
-		    }
-			energy = 5
-			minerals = 5
+			energy = @db2_upkeep
+			minerals = @db2_upkeep
 			exotic_gases = @db2_rare_upkeep
 		}
 		upkeep = { # Orbital Ring Buildings
 		    trigger = {
 		        is_ringworld = yes
 		    }
-		    energy = 10
-			minerals = 10
-		    exotic_gases = 8
+		    energy = @db2_upkeep
+			minerals = @db2_upkeep
+		    exotic_gases = @db2_rare_upkeep
 		}
 		produces = { # OSA
 			trigger = {
@@ -706,37 +804,22 @@ building_supercomputer = {
 
 	upgrades = {
 		building_eutab_hypercomputing_complex # EUTAB
-		building_avb_supercomputer_2 # Additional Vanilla Buildings
+		#building_avb_supercomputer_2 # Additional Vanilla Buildings # LS - Not Installed
 	}
 
 	planet_modifier = {
 		planet_researchers_produces_mult = 0.15
 	}
 	
+	inline_script = { # Adds processing jobs and descriptions
+		script = buildings/research/processing/processing_jobs
+		count = 3
+	}
+
 	inline_script = { # Grants bonuses to unique research buildings
 		script = buildings/research/unique_triggered_modifiers
 	}
 	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_brain_drone_add = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_calculator_add = 1
-		}
-	}
-
 	triggered_planet_modifier = { # Bug Branch
 		potential = {
 			exists = owner
@@ -750,22 +833,6 @@ building_supercomputer = {
 
 	prerequisites = {
 		"tech_global_research_initiative"
-	}
-
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		text = job_brain_drone_effect_desc
-	}
-
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		text = job_calculator_effect_desc
 	}
 
 	triggered_desc = { # Bug Branch

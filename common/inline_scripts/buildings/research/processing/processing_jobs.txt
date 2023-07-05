@@ -1,0 +1,19 @@
+### Triggered Planet Modifier
+## Advanced Policies - Mind Melder Jobs
+triggered_planet_modifier = {
+	potential = {
+		owner = {
+			is_gestalt = yes
+		}
+	}
+	job_drone_mind_melder_add = $count$
+}
+### Triggered Descriptions
+# Knowledge Melder - Might need localization
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { has_policy_flag = AP_education_privledge_all }
+	}
+	text = job_drone_mind_melder_effect_desc
+}
