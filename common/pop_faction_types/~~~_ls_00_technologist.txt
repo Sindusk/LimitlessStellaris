@@ -17,7 +17,8 @@ technologist = {
 		}
 		produces = { # OSA
 			trigger = {
-				is_ai = yes
+				exists = owner
+				owner = { is_ai = yes }
 			}
 			physics_research = 0.5
 			society_research = 0.5

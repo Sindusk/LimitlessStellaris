@@ -28,7 +28,7 @@ complex_drone = {
 
 	triggered_pop_modifier = { # Plentiful Perks
 		potential = {
-			is_robotic_species = yes
+			is_robotic_pop = yes # LS species -> pop to fix a scoping error.
 			owner = { has_ascension_perk = ap_plentiful_traditions_mechanical_alternative }
 		}
 		pop_housing_usage_mult = -0.25
