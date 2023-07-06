@@ -1211,3 +1211,1314 @@ asteroid_impact_pre_ftl_effect = {
 		}
 	}
 }
+
+## Generate Start Pops
+# Merge between Bug Branch, Expanded Gestalts, Scripted Trigger Undercoat
+generate_start_pops = {
+	optimize_memory
+	if = {
+		limit = {
+			owner = {
+				OR = { # LS - Using an OR for redundancy if secondary species check fails
+					has_secondary_species = yes # STU
+					is_bugged_evolutionary_architects = yes # Bug Branch
+					is_bugged_slave_race = yes # Bug Branch
+				}
+			}
+		}
+
+		if = { limit = { last_created_species = { is_species_class = MACHINE } }
+			modify_species = {
+				species = last_created_species
+				add_trait = trait_machine_unit
+				add_traits_at_start_of_list = yes
+			}
+			last_created_species = { save_event_target_as = last_created_species }
+		}
+
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						has_origin = origin_syncretic_evolution
+						has_origin = origin_necrophage
+                        is_bugged_evolutionary_architects = yes # Bug Branch
+						is_bugged_slave_race = yes # Bug Branch
+					}
+				}
+			}
+
+			last_created_species = {
+				set_species_flag = syncretic_species@root.owner
+				if = {
+					limit = {
+						prev.owner = {
+							has_origin = origin_syncretic_evolution
+                            is_bugged_evolutionary_architects = yes # Bug Branch
+							is_bugged_slave_race = yes # Bug Branch
+						}
+					}
+					set_citizenship_type = {
+						country = root.owner
+						type = citizenship_slavery
+					}
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						has_origin = origin_necrophage
+						OR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							is_gestalt = yes
+						}
+					}
+				}
+				while = {
+					count = 6
+					create_pop = {
+						species = last_created_species
+						ethos = random
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					owner = {
+						has_origin = origin_necrophage
+						is_gestalt = yes
+					}
+				}
+				while = {
+					count = 9
+					create_pop = {
+						species = last_created_species
+						ethos = random
+					}
+				}
+			}
+			else = {
+				while = {
+					count = 12
+					create_pop = {
+						species = last_created_species
+						ethos = random
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				owner = { has_valid_civic = civic_machine_servitor }
+			}
+			last_created_species = {
+				if = {
+					limit = {
+						ROOT = { is_planet_class = pc_shattered_ring_habitable }
+					}
+					modify_species = {
+						species = this
+						ideal_planet_class = home_planet
+					}
+				}
+				set_citizenship_type = {
+					country = root.owner
+					type = citizenship_limited
+				}
+				set_living_standard = {
+					country = root.owner
+					type = living_standard_organic_trophy
+				}
+			}
+			while = {
+				count = 5
+				create_pop = {
+					species = last_created_species
+					ethos = random
+				}
+				last_created_pop = {
+					clear_ethos = yes
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				owner = { has_valid_civic = civic_machine_assimilator }
+			}
+			last_created_species = {
+				if = {
+					limit = {
+						ROOT = { is_planet_class = pc_shattered_ring_habitable }
+					}
+					modify_species = {
+						species = this
+						ideal_planet_class = home_planet
+					}
+				}
+				set_citizenship_type = {
+					country = root.owner
+					type = citizenship_full_machine
+				}
+				set_living_standard = {
+					country = root.owner
+					type = living_standard_hive_mind
+				}
+			}
+			while = {
+				count = 10
+				create_pop = {
+					species = last_created_species
+					ethos = random
+				}
+				last_created_pop = {
+					clear_ethos = yes
+				}
+			}
+			owner = {
+				country_event = {
+					id = syndaw.1
+					days = 1
+				}
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			owner = {
+				OR = {
+	 				has_origin = origin_mechanists
+	 				is_bugged_industrial_mechanization = yes # Bug Branch
+	 			}
+			}
+		}
+		owner = {
+			create_built_robot_species = yes
+		}
+		while = {
+			count = 8
+			create_pop = {
+				species = last_created_species
+			}
+		}
+		every_owned_pop = {
+			limit = {
+				has_job = miner
+				is_robotic_species = yes
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_robot_power_drills
+				add_trait = trait_robot_bulky
+				add_trait = trait_robot_high_maintenance
+				add_traits_at_start_of_list = yes
+			}
+		}
+		every_owned_pop = {
+			limit = {
+				has_job = farmer
+				is_robotic_species = yes
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_robot_harvesters
+				add_trait = trait_robot_bulky
+				add_trait = trait_robot_high_maintenance
+				add_traits_at_start_of_list = yes
+			}
+		}
+		every_owned_pop = {
+			limit = {
+				has_job = technician
+				is_robotic_species = yes
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_robot_superconductive
+				add_trait = trait_robot_bulky
+				add_trait = trait_robot_high_maintenance
+				add_traits_at_start_of_list = yes
+			}
+		}
+
+		add_building = building_robot_assembly_plant
+		add_district_and_planet_size_if_needed_effect = {
+			district = district_generator
+		}
+		while = {
+			limit = { num_pops < 27 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = { # Bug Branch - Entire IF
+		limit = {
+			owner = {
+				is_bugged_machine_cult = yes
+			}
+		}
+		owner = {
+			create_built_robot_species = yes
+		}
+		while = {
+			count = 4
+			create_pop = {
+				species = last_created_species
+			}
+		}
+		every_owned_pop = {
+			limit = {
+				has_job = miner
+				is_robotic_species = yes
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_robot_power_drills
+				add_trait = trait_robot_bulky
+				add_trait = trait_robot_high_maintenance
+				add_traits_at_start_of_list = yes
+			}
+		}
+		every_owned_pop = {
+			limit = {
+				has_job = farmer
+				is_robotic_species = yes
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_robot_harvesters
+				add_trait = trait_robot_bulky
+				add_trait = trait_robot_high_maintenance
+				add_traits_at_start_of_list = yes
+			}
+		}
+		every_owned_pop = {
+			limit = {
+				has_job = technician
+				is_robotic_species = yes
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_robot_superconductive
+				add_trait = trait_robot_bulky
+				add_trait = trait_robot_high_maintenance
+				add_traits_at_start_of_list = yes
+			}
+		}
+
+		add_district_and_planet_size_if_needed_effect = {
+			district = district_generator
+		}
+		while = {
+			limit = { num_pops < 27 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				is_necrophage_empire = yes # STU
+				NOR = { #purges them instead
+					has_civic = civic_fanatic_purifiers
+					has_civic = civic_hive_devouring_swarm
+				}
+			}
+		}
+		if = {
+			limit = {
+				owner = { has_valid_civic = civic_agrarian_idyll } # Needs an extra building slot
+			}
+			add_district_and_planet_size_if_needed_effect = {
+				district = district_city
+			}
+		}
+
+		add_building = building_necrophage_elevation_chamber
+	}
+	if = {
+		limit = {
+			owner = {
+				is_necrophage_empire = yes # STU
+				has_valid_civic = civic_hive_devouring_swarm #purges them instead
+				is_lithoid_empire = no
+			}
+		}
+		add_building = building_spawning_pool
+	}
+	if = {
+		limit = {
+			owner = {
+				is_necrophage_empire = yes # STU
+				has_valid_civic = civic_hive_devouring_swarm
+				is_lithoid_empire = yes
+			}
+		}
+		add_district_and_planet_size_if_needed_effect = { district = district_mining }
+	}
+	if = {
+		limit = {
+			owner = {
+				is_clone_army_empire = yes # STU
+			}
+		}
+		add_building = building_clone_army_clone_vat
+		add_building = building_clone_army_clone_vat
+		planet_event = { id = clones.10 days = 1095 random = 730 }
+	}
+	if = {
+		limit = {
+			owner = {
+				is_hive_empire = yes
+				NOT = { has_origin = origin_hive_overmind } # Expanded Gestalts
+			}
+		}
+		while = {
+			limit = { num_pops < 33 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = { # Expanded Gestalts
+		limit = { owner = { has_origin = origin_hive_overmind } }
+		
+		last_created_species = {
+			if = {
+				limit = { is_lithoid = yes }
+				root = { owner = { set_country_flag = lithoid_overminded_species } }
+			}
+			else = { root = { owner = { set_country_flag = organic_overminded_species } } }
+			}
+		while = {
+			limit = { num_pops < 33 }
+			create_pop = {
+				species = last_created_species
+				ethos = random
+			}
+		}
+	}
+	if = { # Expanded Gestalts
+		limit = { owner = { has_valid_civic = civic_machine_replicators } }
+		last_created_species = {
+			save_event_target_as = replicate
+		}
+		create_replica = yes
+		event_target:new_replica = {
+			set_species_flag = replicated_species@root.owner
+		}
+		while = {
+			count = 29
+			create_pop = {
+				species = event_target:new_replica
+			}
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = origin_default
+				}
+			}
+			while = {
+				count = 4
+				create_pop = {
+					species = event_target:new_replica
+				}
+			}
+		}
+		owner = {
+			change_dominant_species  = { species = event_target:replicate change_all = yes } #for some reason i need this, else colonization rights will bug
+			country_event = { id = cx_machine_replicators.0 days = 1 }
+			every_owned_leader = {
+				change_species = event_target:new_replica
+				change_leader_portrait = species
+			}
+		}
+	}
+	if = {
+		limit = { owner = { has_valid_civic = civic_machine_servitor } }
+		while = {
+			limit = { num_pops < 33 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = { owner = { is_machine_empire = yes } }
+		while = {
+			limit = { num_pops < 29 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				is_megacorp = yes
+				has_reduced_pop_origin = no
+			}
+		}
+		while = {
+			limit = { num_pops < 28 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = { has_origin = origin_broken_shackles }
+			num_pops < 6
+		}
+
+		while = {
+			limit = { num_pops < 6 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				is_regular_empire = yes
+				has_reduced_pop_origin = no
+			}
+		}
+		while = {
+			limit = { num_pops < 28 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = { has_origin = origin_payback }
+			num_pops < 18
+		}
+		while = {
+			limit = { num_pops < 18 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = { has_origin = origin_fear_of_the_dark }
+		}
+		while = {
+			count = 20
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = { #homicidal necrophages lose 1/4 of their necrophytes to fleeing
+			owner = {
+				has_origin = origin_necrophage
+				is_homicidal = yes
+			}
+		}
+		while = {
+			count = 2
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_default
+				NOT = { has_valid_civic = civic_machine_replicators } # Expanded Gestalts
+			}
+		}
+		while = {
+			count = 4
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				is_eager_explorer_empire = yes
+			}
+		}
+		while = {
+			count = 10
+			random_owned_pop = {
+				limit = {
+					is_same_species = root.owner.species
+				}
+				kill_pop = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			owner = {
+				has_civic = civic_permanent_employment
+			}
+		}
+		while = {
+			count = 4
+			random_owned_pop = {
+				limit = {
+					OR = {
+						has_job = clerk
+						has_job = technician
+						has_job = miner
+						has_job = farmer
+					}
+					is_robotic_species = no
+				}
+				modify_species = {
+					species = this
+					add_trait = trait_zombie
+					add_traits_at_start_of_list = yes
+				}
+				if = {
+					limit = {
+						has_trait = trait_syncretic_proles
+					}
+					modify_species = {
+						species = this
+						remove_trait = trait_syncretic_proles
+					}
+				}
+			}
+		}
+	}
+}
+
+## Setup Pre-FTL Planet
+# Merge between More Primitives, Origins of Civilization, Scripted Trigger Undercoat
+setup_pre_ftl_planet = {
+	set_owner = $country|last_created_country$ # Origins of Civilization
+	set_capital = yes
+
+	remove_building = building_colony_shelter
+	$country|last_created_country$ = { # Origins of Civilization
+		switch = {
+			trigger = has_country_flag
+			stone_age = {
+				prev = {
+					add_building = building_crude_huts
+					remove_building = building_colony_shelter
+					while = {
+						count = @stone_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 2
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+			}
+			bronze_age = {
+				prev = {
+					add_building = building_primitive_dwellings
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @bronze_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 4
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+			}
+			iron_age = {
+				prev = {
+					add_building = building_primitive_dwellings
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @iron_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 4
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+			}
+			late_medieval_age = {
+				prev = {
+					add_building = building_primitive_dwellings
+					add_building = building_primitive_dwellings
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @late_medieval_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 5
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+			}
+			renaissance_age = {
+				prev = {
+					add_building = building_primitive_dwellings
+					add_building = building_primitive_dwellings
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @renaissance_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 6
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+			}
+			philosophy_age = { # More Primitives
+				prev = {
+					add_building = building_mp_primitive_philosophers_palace
+					add_building = building_mp_primitive_academy
+					add_building = building_mp_primitive_academy
+					add_building = building_primitive_dwellings
+					remove_building = building_colony_shelter
+					while = {
+						count = @renaissance_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			steam_age = {
+				prev = {
+					add_building = building_urban_dwellings
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_stone_palace
+					remove_building = building_colony_shelter
+					while = {
+						count = @steam_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 8
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+			}
+			industrial_age = {
+				prev = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+					remove_building = building_colony_shelter
+					while = {
+						count = @industrial_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 11
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+				if = {
+					limit = {
+						has_origin = origin_mechanists
+					}
+					create_built_robot_species = yes
+					last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+					set_country_flag = created_robots
+					prev = {
+						while = {
+							count = 2
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+			machine_age = {
+				prev = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+					remove_building = building_colony_shelter
+					while = {
+						count = @machine_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 12
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+				if = {
+					limit = {
+						has_origin = origin_mechanists
+					}
+					create_built_robot_species = yes
+					last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+					set_country_flag = created_robots
+					prev = {
+						while = {
+							count = 4
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+			atomic_age = {
+				prev = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+					remove_building = building_colony_shelter
+					while = {
+						count = @atomic_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 12
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+				if = {
+					limit = {
+						has_origin = origin_mechanists
+					}
+					create_built_robot_species = yes
+					last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+					set_country_flag = created_robots
+					prev = {
+						while = {
+							count = 6
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+			early_space_age = {
+				prev = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+					remove_building = building_colony_shelter
+					while = {
+						count = @early_space_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+				if = { # Origins of Civilization
+					limit = {
+						is_syncretic_evolution_empire = yes
+					}
+					prev = {
+						mpo_create_syncretic_species = yes
+						last_created_species = {
+							save_event_target_as = syncretic_species
+							set_species_flag = syncretic_species@$country|last_created_country$
+						}
+						while = {
+							count = 12
+							random_owned_pop = {
+								limit = { is_same_species = $country|last_created_country$ }
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:syncretic_species
+							}
+						}
+					}
+					event_target:syncretic_species = { set_species_flag = syncretic_species@prev }
+				}
+				if = {
+					limit = {
+						has_origin = origin_mechanists
+					}
+					create_built_robot_species = yes
+					last_created_species = { save_global_event_target_as = pre_ftl_mechanist_robot }
+					set_country_flag = created_robots
+					prev = {
+						while = {
+							count = 8
+							random_owned_pop = {
+								limit = {
+									is_robotic_species = no
+								}
+								kill_pop = yes
+							}
+							create_pop = {
+								species = event_target:pre_ftl_mechanist_robot
+							}
+						}
+					}
+				}
+			}
+			purifying_age = { # More Primitives
+				prev = {
+					add_building = building_primitive_dwellings
+					add_building = building_primitive_farm
+					add_building = building_primitive_mine
+					add_building = building_mp_primitive_hunting_grounds
+					remove_building = building_colony_shelter
+					while = {
+						count = @industrial_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			late_purifying_age = { # More Primitives
+				prev = {
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+					add_building = building_mp_primitive_hunting_grounds
+					add_building = building_mp_primitive_military_academy
+					add_building = building_mp_primitive_test_site
+					remove_building = building_colony_shelter
+					while = {
+						count = @early_space_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			apocalyptic_age = { # More Primitives
+				prev = {
+					change_pc = pc_nuked
+					add_building = building_urban_dwellings
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					ruin_building = building_urban_dwellings
+					ruin_building = building_primitive_factory
+					ruin_building = building_primitive_mine
+					remove_building = building_colony_shelter
+					while = {
+						count = @steam_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+			regression_age = { # More Primitives
+				prev = {
+					add_building = building_urban_dwellings
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					remove_building = building_colony_shelter
+					while = {
+						count = @steam_age_pops
+						create_pop = {
+							species = last_created_species
+						}
+					}
+				}
+			}
+		}
+		switch = { # Origins of Civilization
+			trigger = has_origin
+			origin_post_apocalyptic = {
+				random_owned_pop = {
+					limit = { is_exact_same_species = prev }
+					create_nuked_species_mod = yes
+					species = { save_event_target_as = new_main_species }
+				}
+				change_dominant_species = { species = event_target:new_main_species }
+				prev = {
+					change_pc = pc_nuked
+					reroll_planet = yes
+					add_deposit = d_metal_boneyard
+					set_planet_flag = nuked_planet_anomalies_disabled
+				}
+			}
+			origin_remnants = {
+				prev = {
+					change_pc = pc_relic
+					reroll_planet = yes
+					while = {
+						count = 6
+						random_deposit = {
+							limit = { is_blocker = yes }
+							clear_blocker = yes
+						}
+					}
+					while = {
+						count = 6
+						add_deposit = d_ruined_arcology
+					}
+				}
+			}
+		}
+	}
+
+	if = { # Origins of Civilization
+		limit = { has_planet_flag = pre_ftl_necrophage }
+		$country|last_created_country$ = {
+			save_event_target_as = old_owner
+			set_variable = {
+				which = necrophage_emergence
+				value = 0
+			}
+			set_variable_to_random_value = {
+				which = necrophage_emergence
+				min = -80
+				max = 960
+			}
+			switch = {
+				trigger = has_country_flag
+				stone_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 0
+					}
+				}
+				bronze_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 160
+					}
+				}
+				iron_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 320
+					}
+				}
+				late_medieval_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 480
+					}
+				}
+				renaissance_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 600
+					}
+				}
+				steam_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 680
+					}
+				}
+				industrial_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 760
+					}
+				}
+				machine_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 840
+					}
+				}
+				atomic_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 900
+					}
+				}
+				early_space_age = {
+					subtract_variable = {
+						which = necrophage_emergence
+						value = 940
+					}
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						which = necrophage_emergence
+						value <= 0
+					}
+				}
+				prev = {
+					mpo_create_necrophage_species = yes
+					mpo_create_primitive_necrophage_country = yes
+					last_created_country = {
+						mpo_copy_primitive_age_and_awareness = { target = event_target:old_owner }
+					}
+					owner.species = { set_species_flag = syncretic_species@last_created_country }
+					mpo_necrophage_takeover_replace_pops = yes
+					set_owner = last_created_country
+					set_capital = yes
+				}
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			$country|last_created_country$ = { # Origins of Civilization
+				OR = {
+					has_country_flag = machine_age
+					has_country_flag = atomic_age
+					has_country_flag = early_space_age
+				}
+			}
+		}
+		create_pre_ftl_blockers = yes
+	}
+}
