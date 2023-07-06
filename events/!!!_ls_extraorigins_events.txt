@@ -1,0 +1,36 @@
+##########################################################################
+# Limitless Stellaris - Extra Origins Events
+##########################################################################
+namespace = eo_war_of_the_worlds
+
+## EO War of the Worlds 3
+# Minor fix for error log spam when from is not available.
+country_event = {
+	id = eo_war_of_the_worlds.3
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = from # LS - Added to prevent error.
+		from = {
+			NOT = { has_country_flag = forgave_invader }
+			has_origin = origin_war_of_the_worlds
+		}
+		this = {
+			has_country_flag = invader_of_@from
+		}
+	}
+
+	immediate = {
+		this = {
+			save_event_target_as = invader_empire
+			capital_scope = {
+				save_event_target_as = conquered_capital
+			}
+		}
+		from = {
+			country_event = { id = eo_war_of_the_worlds.4 }
+		}
+	}
+}
