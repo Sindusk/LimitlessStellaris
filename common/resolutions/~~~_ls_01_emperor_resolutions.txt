@@ -1398,3 +1398,803 @@ resolution_emperor_disband_ina = {
 		}
 	}
 }
+
+## Emperor - Expand Imperial Armada
+# Merge between EED, MECR, NGS
+resolution_emperor_expand_ia = {
+	icon = "GFX_resolution_expand_armada"
+
+	resources = {
+		category = resolutions
+		cost = {
+			trigger = { NOT = { is_active_resolution = "resolution_emperor_imperial_ministry_of_defence" } } # MECR
+			influence = @resolution_cost_t1 # MECR t3 -> t1
+		}
+		cost = { # MECR
+			trigger = { is_active_resolution = "resolution_emperor_imperial_ministry_of_defence" }
+			influence = @resolution_cost_t1_half
+		}
+	}
+	target = no
+
+	allow = {
+		imperial_authority >= 100 # MECR
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = "resolution_emperor_expand_ia" }
+		}
+	}
+
+	modifier = {
+		resolution_emperor_ia_2 = 1 # MECR
+		resolution_custodian_gdf_2 = 1
+		country_community_gdf_naval_capacity = 1000 # EED 400 -> 1,000
+	}
+	triggered_modifier = { # MECR
+		potential = {
+			NOT = {
+				galactic_emperor = {
+					has_federation = yes
+					federation = { has_federation_law = imperial_ministry_of_defence_joint_headquarter }
+				}
+			}
+		}
+		modifier = {
+			country_community_gdf_naval_capacity = 400
+		}
+	}
+	triggered_modifier = { # MECR
+		potential = {
+			galactic_emperor = {
+				has_federation = yes
+				federation = { has_federation_law = imperial_ministry_of_defence_joint_headquarter }
+			}
+		}
+		modifier = {
+			country_community_gdf_naval_capacity = 500
+		}
+	}
+	triggered_modifier = { # MECR
+		potential = { is_galactic_emperor = yes }
+		modifier = { imperial_governance_usage_naval = 100 }
+	}
+
+	effect = {
+		pass_resolution_modifier = yes # MECR
+	}
+
+	fail_effects = {
+		fail_resolution_modifier = yes # MECR
+	}
+
+	potential = {
+		has_nemesis = yes
+		OR = { # MECR
+			is_galactic_emperor = yes
+			and = { # MECR
+				has_galactic_emperor = yes
+				is_part_of_galactic_council = yes
+				is_active_resolution = "resolution_emperor_expand_power_of_council"
+			}
+			is_country_type = imperial_senator # MECR
+		}
+		is_active_resolution = "resolution_emperor_imperial_armada"
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular # NGS disliked -> unpopular
+
+		modifier = {
+			factor = 0.6
+			is_pacifist = yes
+			NOT = {
+				any_neighbor_country = { is_crisis_faction = yes }
+			}
+			desc = ethic_pacifist
+		}
+
+		modifier = {
+			factor = 0.6
+			is_xenophobe = yes
+			NOT = {
+				any_neighbor_country = { is_crisis_faction = yes }
+			}
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 1.2
+			OR = { is_militarist = yes is_civic_militarist = yes } # EED
+			desc = ethic_militarist
+		}
+
+		modifier = {
+			factor = 2
+			any_country = { is_crisis_faction = yes }
+			desc = gal_com_someone_is_revealed_crisis
+		}
+
+		modifier = {
+			factor = 12
+			any_neighbor_country = { is_crisis_faction = yes }
+			desc = gal_com_neighboring_crisis_empire
+		}
+
+		modifier = {
+			factor = 4
+			has_crisis_stage_1 = yes
+			desc = gal_com_crisis_stage_1
+		}
+
+		modifier = {
+			factor = 6
+			has_crisis_stage_2 = yes
+			desc = gal_com_crisis_stage_2
+		}
+
+		modifier = {
+			factor = 8
+			has_crisis_stage_3 = yes
+			desc = gal_com_crisis_stage_3
+		}
+
+		modifier = {
+			factor = 20
+			has_crisis_stage_4 = yes
+			desc = gal_com_crisis_stage_4
+		}
+
+		modifier = {
+			factor = 20
+			any_playable_country = { has_country_flag = crisis_sphere_revealed }
+			desc = gal_com_crisis_sphere_revealed
+		}
+
+		modifier = {
+			factor = 8
+			any_playable_country = { has_been_declared_crisis = yes }
+			desc = gal_com_someone_declared_crisis
+		}
+
+		modifier = {
+			factor = 8
+			has_global_flag = gray_goo_crisis_active
+			desc = gal_com_someone_is_revealed_crisis
+		}
+
+		modifier = {
+			factor = 8
+			has_global_flag = marauder_crisis_ongoing
+			desc = gal_com_someone_is_revealed_crisis
+		}
+
+		modifier = { # MECR
+			factor = 20
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+		modifier = {
+			factor = 5 # MECR 1.4 -> 5
+			is_galactic_emperor = no # MECR
+			is_part_of_galactic_council = yes
+			desc = gal_com_on_galatic_council
+		}
+		modifier = { # MECR
+			factor = 5
+			is_subject = yes
+			overlord = { is_galactic_emperor = yes }
+			desc = gal_com_emperors_subject
+		}
+
+		modifier = {
+			factor = 20
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+
+		modifier = {
+			factor = 10
+			any_country = { is_country_type = awakened_fallen_empire }
+			desc = gal_com_exists_awakened_fallen_empire
+		}
+
+		modifier = {
+			factor = 20
+			has_global_flag = war_in_heaven_ongoing
+			desc = gal_com_ongoing_war_in_heaven
+		}
+		modifier = { # EED
+			factor = 2
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = { # EED
+			factor = 1.5
+			is_civic_machine_servitor = yes
+			desc = civic_machine_servitor
+		}
+		modifier = { # EED
+			factor = 1.25
+			is_civic_police_state = yes
+			desc = gal_com_police_civic
+		}
+	}
+}
+
+## Emperor - Galactic Mobilization
+# Merge between EED, MECR
+resolution_emperor_galactic_mobilization = {
+	icon = "GFX_resolution_galactic_mobilization" # MECR
+
+	resources = {
+		category = resolutions
+		cost = {
+			trigger = { NOT = { is_active_resolution = "resolution_emperor_imperial_ministry_of_defence" } } # MECR
+			influence = @resolution_cost_t3
+		}
+		cost = { # MECR
+			trigger = { is_active_resolution = "resolution_emperor_imperial_ministry_of_defence" }
+			influence = @resolution_cost_t3_half
+		}
+	}
+	target = no
+
+	triggered_modifier = {
+		potential = {
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+		}
+		modifier = {
+			resolution_custodian_galactic_mobilization = 1
+		}
+	}
+	triggered_modifier = {
+		potential = {
+			is_gestalt = yes # Merged
+		}
+		modifier = {
+			resolution_custodian_galactic_mobilization_gestalt = 1
+		}
+	}
+
+	effect = {
+		pass_resolution_modifier = yes # MECR
+	}
+
+	fail_effects = {
+		fail_resolution_modifier = yes # MECR
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = resolution_emperor_galactic_mobilization }
+		}
+		custom_tooltip = { # MECR
+			fail_text = "galaxy_must_be_in_danger"
+			galaxy_is_peace = no
+		}
+		custom_tooltip = { # EED
+			fail_text = "resolution_must_have_crisis"
+			OR = {
+				has_global_flag = ongoing_prethoryn_invasion
+				has_global_flag = ai_invasion_ongoing
+				has_global_flag = gray_goo_crisis_active
+				has_global_flag = war_in_heaven_ongoing
+				has_global_flag = marauder_crisis_ongoing
+				AND = {
+					has_global_flag = extradimensional_invasion_happened
+					NOT = { has_global_flag = extradimensional_invasion_defeated }
+				}
+				any_country = { has_been_declared_crisis = yes }
+			}
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		OR = {
+			is_galactic_custodian = yes # EED
+			is_galactic_emperor = yes
+			and = { # MECR
+				has_galactic_emperor = yes
+				is_part_of_galactic_council = yes
+				is_active_resolution = "resolution_emperor_expand_power_of_council"
+			}
+			is_country_type = imperial_senator # MECR
+			AND = { # MECR
+				is_galactic_custodian = yes
+				has_global_flag = galactic_republic_formed	#Expanded Diplomacy and Espionage mod
+			}
+		}
+		OR = { # EED
+			has_galactic_republic = yes
+			has_galactic_emperor = yes
+		}
+	}
+
+	active = {
+		OR = {
+			has_galactic_republic = yes # EED
+			has_galactic_emperor = yes
+			has_global_flag = galactic_republic_formed		#Expanded Diplomacy and Espionage mod
+		}
+		galaxy_is_peace = no
+		OR = { # EED
+			has_global_flag = ongoing_prethoryn_invasion
+			has_global_flag = ai_invasion_ongoing
+			has_global_flag = gray_goo_crisis_active
+			has_global_flag = war_in_heaven_ongoing
+			has_global_flag = marauder_crisis_ongoing
+			AND = {
+				has_global_flag = extradimensional_invasion_happened
+				NOT = { has_global_flag = extradimensional_invasion_defeated }
+			}
+			any_country = { has_been_declared_crisis = yes }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_hated
+
+		modifier = {
+			factor = 1.6
+			is_militarist = yes # Merged
+			desc = ethic_militarist
+		}
+		modifier = {
+			factor = 0.6
+			is_pacifist = yes
+			NOT = {
+				any_neighbor_country = { is_crisis_faction = yes }
+			}
+			desc = ethic_pacifist
+		}
+		modifier = {
+			factor = 12
+			any_neighbor_country = { is_crisis_faction = yes }
+			desc = gal_com_neighboring_crisis_empire
+		}
+		modifier = {
+			factor = 4
+			has_crisis_stage_1 = yes
+			desc = gal_com_crisis_stage_1
+		}
+		modifier = {
+			factor = 6
+			has_crisis_stage_2 = yes
+			desc = gal_com_crisis_stage_2
+		}
+		modifier = {
+			factor = 8
+			has_crisis_stage_3 = yes
+			desc = gal_com_crisis_stage_3
+		}
+		modifier = {
+			factor = 20
+			has_crisis_stage_4 = yes
+			desc = gal_com_crisis_stage_4
+		}
+		modifier = {
+			factor = 20
+			any_playable_country = { has_country_flag = crisis_sphere_revealed }
+			desc = gal_com_crisis_sphere_revealed
+		}
+		modifier = {
+			factor = 8
+			any_playable_country = { has_been_declared_crisis = yes }
+			desc = gal_com_someone_declared_crisis
+		}
+		modifier = {
+			factor = 8
+			has_global_flag = gray_goo_crisis_active
+			desc = gal_com_someone_is_revealed_crisis
+		}
+		modifier = {
+			factor = 8
+			has_global_flag = marauder_crisis_ongoing
+			desc = gal_com_someone_is_revealed_crisis
+		}
+		modifier = { # EED
+			factor = 0
+			has_ascension_perk = ap_become_the_crisis
+			desc = ap_become_the_crisis
+		}
+		modifier = { # EED
+			factor = 4
+			is_galactic_custodian = yes
+			desc = gal_com_is_the_custodian
+		}
+		modifier = { # MECR
+			factor = 0
+			 has_ascension_perk = ap_become_the_crisis
+			 desc = gal_com_we_have_crisis_perk
+		}
+		modifier = {
+			factor = 4
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+		modifier = { # EED
+			factor = 20
+			OR = {
+				is_militarist = yes
+				is_civic_militarist = yes
+			}
+			is_galactic_custodian = yes
+			desc = gal_com_militarist_custodian
+		}
+		modifier = { # EED
+			factor = 20
+			OR = {
+				is_militarist = yes
+				is_civic_militarist = yes
+			}
+			is_galactic_emperor = yes
+			desc = gal_com_militarist_emperor
+		}
+		modifier = { # MECR
+			factor = 20
+			is_militarist = yes
+			is_galactic_emperor = yes
+			desc = militarist_galactic_emperor
+		}
+		modifier = {
+			factor = 0
+			is_subject = yes
+			overlord = {
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+			desc = gal_com_subject_of_fallen_empire
+		}
+		modifier = {
+			factor = 10
+			any_country = { is_country_type = awakened_fallen_empire }
+			desc = gal_com_exists_awakened_fallen_empire
+		}
+		modifier = {
+			factor = 20
+			has_global_flag = war_in_heaven_ongoing
+			desc = gal_com_ongoing_war_in_heaven
+		}
+		modifier = { # EED
+			factor = 0.9
+			is_capitalist = yes
+			desc = auth_corporate # reduces trade value
+		}
+	}
+}
+
+## Emperor - Galactic Standard
+# Merge between EED, MECR
+resolution_emperor_galactic_standard = {
+	icon = "GFX_resolution_emperor_galactic_standard"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+		resolution_custodian_galactic_standard = 1
+	}
+	triggered_modifier = { # MECR
+		potential = {
+			has_global_flag = flag_galactic_standard_set_timer
+		}
+		modifier = { resolution_custodian_galactic_standard_price = 1 }
+	}
+
+	effect = {
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_isolationist days = 7200 } # EED
+		set_timed_country_flag = { flag = galcom_resolution_passed_anti_supremacist days = 7200 } # EED
+		hidden_effect = { # MECR
+			set_timed_country_flag = { flag = faction_xenophobe_isolationist_outraged_gc days = 7200 }	#Expanded Diplomacy and Espionage mod
+			set_timed_country_flag = { flag = faction_xenophobe_supremacist_outraged_gc days = 7200 }	#Expanded Diplomacy and Espionage mod
+			if = {
+				limit = { NOT = { has_global_flag = flag_galactic_standard_set } }
+				custom_tooltip = "resolution_custodian_galactic_standard_price_effect"
+				set_global_flag = flag_galactic_standard_set
+				set_timed_global_flag = {
+					flag = flag_galactic_standard_set_timer
+					years = 25
+				}
+				event_target:global_event_country = {
+					set_saved_date = {
+						key = galactic_standard_set_timer
+						days_from_present = 9000
+						expires = 9000
+					}
+				}
+			}
+			else_if = {
+				limit = { has_global_flag = flag_galactic_standard_set_timer }
+				custom_tooltip = "resolution_custodian_galactic_standard_price_effect_active"
+			}
+		}
+		pass_resolution_modifier = yes # MECR
+	}
+
+	fail_effects = {
+		fail_resolution_modifier = yes # MECR
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = "resolution_emperor_galactic_standard" }
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		OR = {
+			is_galactic_custodian = yes # EED
+			is_galactic_emperor = yes
+			AND = {
+				has_galactic_emperor = yes
+				is_part_of_galactic_council = yes
+				is_active_resolution = "resolution_emperor_expand_power_of_council"
+			}
+			AND = {
+				is_galactic_custodian = yes
+				has_global_flag = galactic_republic_formed	#Expanded Diplomacy and Espionage mod
+			}
+		}
+		OR = { # EED
+			has_galactic_republic = yes
+			has_galactic_emperor = yes
+		}
+	}
+
+	active = {
+		OR = {
+			has_galactic_emperor = yes
+			has_galactic_republic = yes # EED
+			has_global_flag = galactic_republic_formed		#Expanded Diplomacy and Espionage mod
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved
+
+		modifier = { # EED
+			factor = 5
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = {
+			factor = 2
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 1.25
+			is_civic_efficient_bureaucracy = yes
+			desc = gal_com_efficient_civic
+		}
+		modifier = {
+			factor = 1.25
+			OR = {
+				has_ai_personality = peaceful_traders
+				has_ai_personality = ruthless_capitalists # MECR
+			}
+			desc = gal_com_trader_ai_personality
+		}
+		modifier = { # EED
+			factor = 1.25
+			is_capitalist = yes
+			desc = auth_corporate # should include ruthless capitalists
+		}
+		modifier = { # EED
+			factor = 1.1
+			is_civic_has_meritocracy = yes
+			desc = gal_com_meritocracy_civic
+		}
+		modifier = { # EED
+			factor = 1.1
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+		modifier = { # EED
+			factor = 0.9
+			has_valid_civic = civic_byzantine_bureaucracy
+			desc = civic_byzantine_bureaucracy # dislikes anything that makes bureaucracy easier
+		}
+		modifier = { # EED
+			factor = 0.9
+			is_authoritarian  = yes
+			desc = ethic_authoritarian
+		}
+		modifier = { # EED
+			factor = 0.8
+			is_civic_has_elite  = yes
+			desc = gal_com_elite_civic
+		}
+		modifier = { # EED
+			factor = 0.8
+			is_civic_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		modifier = {
+			factor = 0.5
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		modifier = {
+			factor = 0.5
+			is_xenophobic_isolationists = yes # EED
+			desc = personality_xenophobic_isolationists
+		}
+		modifier = { # EED
+			factor = 0
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+		modifier = { # EED
+			factor = 4
+			is_galactic_custodian = yes
+			desc = gal_com_is_the_custodian
+		}
+		modifier = {
+			factor = 4
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+		modifier = { # MECR
+			factor = 2
+			is_galactic_emperor = no
+			is_part_of_galactic_council = yes
+			desc = gal_com_on_galatic_council
+		}
+		modifier = { # EED
+			factor = 0.1
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+			is_civic_machine_servitor = no
+		}
+	}
+}
+
+## Emperor - Galactic Trade Organization
+# Merge between EED, MECR, NGS, Ariphaos
+resolution_emperor_gto = {
+	icon = "GFX_resolution_form_gto"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+		resolution_emperor_gto = 1 # MECR
+	}
+	triggered_modifier = { # MECR
+		potential = { is_active_resolution = resolution_emperor_imperial_bank }
+		modifier = {
+			resolution_emperor_gto_enhanced = 1
+		}
+	}
+	triggered_modifier = { # MECR
+		potential = { is_galactic_emperor = yes }
+		modifier = { imperial_governance_usage = 75 }
+	}
+
+	effect = {
+		hidden_effect = { pass_resolution_no_cooldown = resolution_category_imperial_institutions_reset_cooldown } # MECR
+		pass_resolution_modifier = yes # MECR
+		galactic_emperor = { # EED
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_isolationist days = 7200 }
+		}
+	}
+
+	fail_effects = {
+		fail_resolution_modifier = yes # MECR
+	}
+
+	potential = {
+		has_nemesis = yes
+		OR = { # MECR
+			is_galactic_emperor = yes
+			and = { # MECR
+				has_galactic_emperor = yes
+				is_part_of_galactic_council = yes
+				is_active_resolution = "resolution_emperor_expand_power_of_council"
+			}
+			is_country_type = imperial_senator # MECR
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = resolution_emperor_gto }
+		}
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal
+
+		modifier = {
+			factor = 1.5
+			is_megacorp = yes # Merged
+			desc = auth_corporate
+		}
+
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_ai_personality = peaceful_traders
+				has_ai_personality = ruthless_capitalists
+			}
+			desc = gal_com_trader_ai_personality
+		}
+
+		modifier = {
+			factor = 0.7
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 0.5
+			is_xenophobic_isolationists = yes # EED
+			desc = gal_com_isolationist_civic # EED
+		}
+
+		modifier = {
+			factor = 0.2
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 4
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+		modifier = { # MECR
+			factor = 2
+			is_galactic_emperor = no
+			is_part_of_galactic_council = yes
+			desc = gal_com_on_galatic_council
+		}
+		modifier = { # MECR
+			factor = 2
+			is_subject = yes
+			overlord = { is_galactic_emperor = yes }
+			desc = gal_com_emperors_subject
+		}
+		modifier = { # EED
+			factor = 3
+			is_civic_free_traders = yes
+			desc = gal_com_trade_civic
+		}
+		modifier = { # EED
+			factor = 2
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = { # EED
+			factor = 0.5
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+	}
+}
