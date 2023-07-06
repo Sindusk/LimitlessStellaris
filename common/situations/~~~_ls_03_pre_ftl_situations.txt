@@ -1,0 +1,455 @@
+##########################################################################
+# Limitless Stellaris - Situations
+##########################################################################
+
+# Vanilla Variables
+# Monthly Technological Progress of pre-FTL civilizations.
+@stone_age_progress_rate	= 0.1	# 1600 years to tech up.
+@iron_age_progress_rate		= 0.4	# 400 years to tech up.
+@early_progress_rate		= 1		# 160 years to tech up.
+@mid_progress_rate			= 2		# 80 years to tech up.
+@late_progress_rate			= 4		# 40 years to tech up.
+@low_awareness				= 0.5
+@partial_awareness			= 1.0
+@high_awareness				= 1.5
+@full_awareness				= 2
+
+##################################################
+## Pre-FTL
+##################################################
+
+## Pre-FTL Tech Progress Situation
+# Merge between EED, Origins of Civilization, Scripted Trigger Undercoat
+pre_ftl_tech_progress_situation = { # This situation's name-key is used in pre-FTL tech level UI code, do not change without code support!
+	picture = GFX_evt_acquire_asset
+	complete_icon_frame = GFX_situation_outcome_frame_blue
+	complete_icon = GFX_situation_outcome_meh
+
+	on_progress_complete = {
+		# Tech up and start the situation again!
+		custom_tooltip = situation_unknown_outcome_approach
+		owner = {
+			country_event = { id = preftl.0 }
+		}
+	}
+
+	on_abort = {
+		#Effects when Situation is cancelled via abort_trigger trigger
+		owner = {
+			country_event = { id = preftl.0 }
+		} #Allows situation to be aborted to 'force' technological progress
+	}
+
+	abort_trigger = {
+		owner = {
+			is_primitive = no
+		}
+	}
+
+	on_fail = {
+		log_error = "pre_ftl_tech_progress_situation situation failed, this is not meant to happen"
+		# Restart the situation
+		# if we don't do this, the game crashes to desktop when you try to open the diplomacy screen
+		custom_tooltip = situation_unknown_outcome_approach
+		owner = {
+			start_situation = {
+				type = pre_ftl_tech_progress_situation
+			}
+		}
+	}
+
+	on_monthly = {
+		random_events = {
+			95 = 0
+			5 = preftl.50	# Random event gatekeeper
+			1 = prim_orig.10 # Origins of Civilization - become mechanists (if marked for such)
+			3 = prim_orig.10 # Origins of Civilization - necrophage emergence
+		}
+		events = {
+			preftl.5		# Technological progress & setback gatekeeper
+			preftl.20		# Societal Enlightenment gatekeeper
+			awareness.200	# Awareness Decay
+		}
+	}
+
+	stages = {
+		high_level = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 1920
+		}
+	}
+
+	monthly_progress = {
+		# Total: 1920
+		base = 0
+		modifier = { # EED
+			add = @stone_age_progress_rate
+			desc = early_age
+			owner = {
+				has_country_flag = stone_age
+			}
+		}
+		modifier = { # EED
+			add = @iron_age_progress_rate
+			desc = early_age
+			owner = {
+				has_country_flag = bronze_age
+			}
+		}
+		modifier = { # EED
+			add = @iron_age_progress_rate
+			desc = early_age
+			owner = {
+				has_country_flag = iron_age
+			}
+		}
+		modifier = {
+			add = @early_progress_rate
+			desc = early_age
+			owner = {
+				OR = {
+					has_country_flag = stone_age
+					has_country_flag = bronze_age
+					has_country_flag = iron_age
+					has_country_flag = late_medieval_age
+				}
+			}
+		}
+		modifier = { # EED
+			add = @early_progress_rate
+			desc = mid_age
+			owner = {
+				has_country_flag = renaissance_age
+			}
+		}
+		modifier = {
+			add = @mid_progress_rate
+			desc = mid_age
+			owner = {
+				OR = {
+					has_country_flag = renaissance_age
+					has_country_flag = steam_age
+					has_country_flag = industrial_age
+					has_country_flag = machine_age
+				}
+			}
+		}
+		modifier = {
+			add = @late_progress_rate
+			desc = late_age
+			owner = {
+				OR = {
+					has_country_flag = atomic_age
+					has_country_flag = early_space_age
+				}
+			}
+		}
+		modifier = { # EED
+			add = @mid_progress_rate
+			desc = late_age
+			owner = {
+				has_country_flag = early_space_age
+			}
+		}
+		modifier = {
+			add = @low_awareness
+			desc = awareness_low
+			owner = {
+				current_awareness_level = low
+			}
+		}
+		modifier = {
+			add = @partial_awareness
+			desc = awareness_partial
+			owner = {
+				current_awareness_level = medium
+			}
+		}
+		modifier = {
+			add = @high_awareness
+			desc = awareness_high
+			owner = {
+				current_awareness_level = high
+			}
+		}
+		modifier = {
+			add = @full_awareness
+			desc = awareness_full
+			owner = {
+				current_awareness_level = full
+			}
+		}
+		modifier = {
+			mult = 1.5
+			desc = acquired_tech
+			owner = {
+				has_country_flag = acquired_tech
+			}
+		}
+		modifier = { # EED
+			mult = 0.75
+			desc = planet_features
+			owner = {
+				is_lithoid_empire = no
+				capital_scope = { has_modifier = bleak_planet }
+			}
+		}
+		modifier = { # EED
+			mult = 1.5
+			desc = planet_features
+			owner = {
+				is_lithoid_empire = no
+				capital_scope = { has_modifier = lush_planet }
+			}
+		}
+		modifier = { # EED
+			mult = 0.75
+			desc = planet_features
+			owner = {
+				OR = {
+					is_lithoid_empire = yes
+					has_country_flag = stone_age
+					has_country_flag = bronze_age
+					has_country_flag = iron_age
+					has_country_flag = steam_age
+					has_country_flag = industrial_age
+					has_country_flag = machine_age
+				}
+				capital_scope = { has_modifier = mineral_poor }
+			}
+		}
+		modifier = { # EED
+			mult = 1.5
+			desc = planet_features
+			owner = {
+				OR = {
+					is_lithoid_empire = yes
+					has_country_flag = stone_age
+					has_country_flag = bronze_age
+					has_country_flag = iron_age
+					has_country_flag = steam_age
+					has_country_flag = industrial_age
+					has_country_flag = machine_age
+				}
+				capital_scope = { has_modifier = mineral_rich }
+			}
+		}
+		modifier = { # EED
+			mult = 2
+			desc = planet_features
+			owner = {
+				OR = {
+					is_lithoid_empire = yes
+					has_country_flag = stone_age
+					has_country_flag = bronze_age
+					has_country_flag = iron_age
+					has_country_flag = steam_age
+					has_country_flag = industrial_age
+					has_country_flag = machine_age
+				}
+				capital_scope = { has_modifier = ultra_rich }
+			}
+		}
+		modifier = {
+			mult = 2
+			desc = technological_breakthrough
+			has_situation_flag = technological_breakthrough
+		}
+		modifier = {
+			mult = 1.25
+			desc = technological_breakthrough
+			has_situation_flag = belives_the_great_gestalt
+		}
+		modifier = {
+			mult = 1.25
+			desc = technological_breakthrough
+			has_situation_flag = successful_asteroid_interception
+		}
+		modifier = {
+			mult = 0.25
+			desc = technological_setback
+			has_situation_flag = technological_setback
+		}
+		modifier = {
+			mult = 0
+			desc = tech_frozen
+			owner = { has_country_flag = tech_frozen }
+		}
+		modifier = { # Origins of Civilization
+			mult = 1.1
+			desc = trait_intelligent
+			owner = {
+				any_owned_species = { has_trait = trait_intelligent }
+				NOT = { has_country_flag = open_technological_enlightenment_pact } # these countries get an event instead
+			}
+		}
+		modifier = { # Origins of Civilization
+			mult = 1.1
+			desc = trait_robot_logic_engines
+			owner = {
+				any_owned_species = { has_trait = trait_robot_logic_engines }
+			}
+		}
+		modifier = { # Origins of Civilization
+			mult = 1.05
+			desc = natural_scientists
+			owner = {
+				any_owned_species = {
+					OR = {
+						has_trait = trait_natural_physicists
+						has_trait = trait_natural_sociologists
+						has_trait = trait_natural_engineers
+					}
+				}
+				NOT = { has_country_flag = open_technological_enlightenment_pact } # these countries get an event instead
+			}
+		}
+		modifier = { # Origins of Civilization
+			mult = 1.05
+			desc = ethic_materialist
+			owner = { has_ethic = ethic_materialist }
+		}
+		modifier = { # Origins of Civilization
+			mult = 1.10
+			desc = ethic_fanatic_materialist
+			owner = { has_ethic = ethic_fanatic_materialist }
+		}
+		modifier = {
+			mult = 3
+			desc = open_technological_enlightenment
+			owner = {
+				has_country_flag = open_technological_enlightenment_pact
+				capital_scope = {
+					has_observation_outpost = yes
+					observation_outpost_owner = {
+						if = {
+							limit = {
+								is_galactic_community_formed = yes
+								is_galactic_community_member = yes
+							}
+							NOT = { is_active_resolution = resolution_pre_ftl_stances_equal_standing }
+						}
+						else = {
+							always = yes
+						}
+					}
+				}
+			}
+		}
+		modifier = {
+			mult = 4.5
+			desc = open_technological_enlightenment
+			owner = {
+				has_country_flag = open_technological_enlightenment_pact
+				capital_scope = {
+					has_observation_outpost = yes
+					observation_outpost_owner = {
+						is_galactic_community_formed = yes
+						is_galactic_community_member = yes
+						is_active_resolution = resolution_pre_ftl_stances_equal_standing
+					}
+				}
+			}
+		}
+		modifier = {
+			mult = 1.5
+			desc = good_trade
+			owner = { 
+				capital_scope = {
+					has_modifier = fruitful_coop_planet_mod
+				}
+			}
+		}
+		modifier = {
+			mult = 1.25
+			desc = payback_student
+			owner = {
+				has_country_flag = open_technological_enlightenment_pact
+				capital_scope = {
+					has_observation_outpost = yes
+					observation_outpost_owner = {
+						has_modifier = payback_student
+					}
+				}
+			}
+		}
+
+		# Events
+
+		modifier = { # EED
+			add = 5
+			desc = metal_experiments
+			owner = {
+				has_country_flag = stone_age
+				has_country_flag = primitives_metal_experiments
+			}
+		}
+		modifier = { # EED
+			add = 10
+			desc = primitive_monoliths
+			owner = {
+				has_country_flag = stone_age
+				has_country_flag = primitive_monoliths
+			}
+		}
+		modifier = { # EED
+			mult = 3
+			desc = acquired_tech
+			owner = {
+				has_country_flag = steam_age
+				has_country_flag = primitives_betharian
+			}
+		}
+		modifier = { # EED
+			mult = 1.25
+			desc = acquired_tech
+			owner = {
+				NOT = { has_country_flag = steam_age }
+				has_country_flag = primitives_betharian
+			}
+		}
+		modifier = { # EED
+			mult = 1.25
+			desc = acquired_tech
+			owner = {
+				has_country_flag = cold_war_technologies
+			}
+		}
+		modifier = { # EED
+			mult = 1.25
+			desc = acquired_tech
+			owner = {
+				has_origin = origin_post_apocalyptic
+			}
+		}
+		modifier = { # EED
+			mult = 3
+			desc = acquired_tech
+			owner = {
+				has_origin = origin_post_apocalyptic
+				OR = {
+					has_country_flag = stone_age
+					has_country_flag = bronze_age
+					has_country_flag = iron_age
+				}
+			}
+		}
+		modifier = { # EED
+			mult = 2
+			desc = acquired_tech
+			owner = {
+				has_country_flag = dead_god_advancement
+			}
+		}
+	}
+	approach = {
+		name = approach_revolt_do_nothing
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+	}
+}
