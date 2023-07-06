@@ -1,0 +1,224 @@
+####################################################################################################
+# Limitless Stellaris - Empires Expanded Events
+####################################################################################################
+
+namespace = plasoc
+
+# Vaccine Testing researched
+country_event = {
+	id = plasoc.100
+	title = "plasoc.100.name"
+	desc = "plasoc.100.desc"
+	picture = GFX_evt_genetic_modification
+	#show_sound = event_default_02
+	
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_pandemic
+	#} # LS - Fix to ensure proper origin when triggering
+	#
+	#trigger = {
+		has_technology = tech_vaccine_tests
+		NOT = {
+			has_country_flag = test_1
+		}
+	}
+	
+	immediate = {
+		set_country_flag = test_1
+	}
+	
+	option = {
+		name = plasoc.100.a
+		capital_scope = {
+			enable_special_project = {
+				name = "TESTS_I"
+				location = this
+				owner = root.owner
+			}
+		}
+	}
+}
+
+# Effect Regulations + Volunteering Program researched
+country_event = {
+	id = plasoc.101
+	title = "plasoc.101.name"
+	desc = "plasoc.101.desc"
+	picture = GFX_evt_voting
+	#show_sound = event_default_03
+	
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_pandemic
+	#} # LS - Fix to ensure proper origin when triggering
+	#
+	#trigger = {
+		AND = {
+			has_technology = tech_vaccine_regulations
+			has_technology = tech_vaccine_volunteering
+		}
+		NOT = {
+			has_country_flag = test_2
+		}
+	}
+	
+	immediate = {
+		set_country_flag = test_2
+	}
+	
+	option = {
+		name = plasoc.101.a
+		capital_scope = {
+			enable_special_project = {
+				name = "TESTS_II"
+				location = this
+				owner = root.owner
+			}
+		}
+	}
+}
+
+# Extensive Effect Analysis researched
+country_event = {
+	id = plasoc.102
+	title = "plasoc.102.name"
+	desc = "plasoc.102.desc"
+	picture = GFX_evt_microscopic_life
+	#show_sound = event_default_04
+	
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_pandemic
+	#} # LS - Fix to ensure proper origin when triggering
+	#
+	#trigger = {
+		has_technology = tech_extensive_analysis
+		NOT = {
+			has_country_flag = test_3
+		}
+	}
+	
+	immediate = {
+		set_country_flag = test_3
+	}
+	
+	option = {
+		name = plasoc.102.a
+		capital_scope = {
+			enable_special_project = {
+				name = "TESTS_III"
+				location = this
+				owner = root.owner
+			}
+		}
+	}
+}
+
+# Atmospheric Cleansing researched
+country_event = {
+	id = plasoc.103
+	title = "plasoc.103.name"
+	desc = "plasoc.103.desc"
+	picture = GFX_evt_animal_wildlife
+	#show_sound = event_default_04
+	
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_pandemic
+	#} # LS - Fix to ensure proper origin when triggering
+	#
+	#trigger = {
+		has_technology = tech_atmospheric_cleansing
+		NOT = {
+			has_country_flag = atmospheric_cleansing_project
+		}
+	}
+	
+	immediate = {
+		set_country_flag = atmospheric_cleansing_project
+	}
+	
+	option = {
+		name = plasoc.103.a
+		capital_scope = {
+			enable_special_project = {
+				name = "ATMOSPHERIC_CLEANSING"
+				location = this
+				owner = root.owner
+			}
+		}
+	}
+}
+
+# Survivor Healing researched
+country_event = {
+	id = plasoc.104
+	title = "plasoc.104.name"
+	desc = "plasoc.104.desc"
+	picture = GFX_evt_in_the_dark
+	#show_sound = event_default_04
+	
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_pandemic
+	#} # LS - Fix to ensure proper origin when triggering
+	#
+	#trigger = {
+		has_technology = tech_survivor_healing
+		NOT = {
+			has_country_flag = survivor_healing_project
+		}
+	}
+	
+	immediate = {
+		set_country_flag = survivor_healing_project
+	}
+	
+	option = {
+		name = plasoc.104.a
+		capital_scope = {
+			enable_special_project = {
+				name = "SURVIVOR_HEALING"
+				location = this
+				owner = root.owner
+			}
+		}
+	}
+}
+
+# Surface Purification researched
+country_event = {
+	id = plasoc.105
+	title = "plasoc.105.name"
+	desc = "plasoc.105.desc"
+	picture = GFX_evt_alien_nature
+	#show_sound = event_default_04
+	is_triggered_only = yes
+	
+	trigger = {
+		has_origin = origin_pandemic
+	#} # LS - Fix to ensure proper origin when triggering
+	#
+	#trigger = {
+		has_technology = tech_surface_purification
+		NOT = {
+			has_country_flag = surface_purification_project
+		}
+	}
+	
+	immediate = {
+		set_country_flag = surface_purification_project
+	}
+	
+	option = {
+		name = plasoc.105.a
+		capital_scope = {
+			enable_special_project = {
+				name = "SURFACE_PURIFICATION"
+				location = this
+				owner = root.owner
+			}
+		}
+	}
+}

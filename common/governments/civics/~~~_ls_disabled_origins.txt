@@ -384,6 +384,68 @@ origin_space_stone = {
 ## Miscellaneous Origins
 ##################################################
 
+## Born of Knowledge [Empires Expanded]
+# Disabled. Has many bugs and the effects of the origin are extremely lackluster.
+# The new worlds it adds uses copies of vanilla districts which make them strictly worse and poor for mod compatibility.
+origin_born_of_knowledge = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_born_of_knowledge.dds"
+	picture = GFX_origin_born_of_knowledge
+	
+	max_once_global = yes
+
+	potential = {
+		always = no # Disabled through potential
+	}
+
+	possible = {
+		always = no # Disabled through potential
+	}
+	
+	initializers = { bok_start_system }
+	modifier = {	
+		colony_start_num_pops_add = 2
+		planet_researchers_produces_mult = 0.20 #calculator
+		planet_jobs_upkeep_mult = 0.10
+		#planet_pop_assembly_mult = -0.05
+	}
+
+	description = "origin_tooltip_born_of_knowledge_effects"
+	flags = { custom_start_screen }
+
+	random_weight = {
+		base = 0
+	}
+}
+
+## Next Generation (Extra Origins)
+# Disabled. Boring.
+origin_next_generation = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_next_generation.dds"
+	picture = GFX_origin_next_generation
+
+	potential = {
+		always = no # Disabled through potential
+	}
+
+	possible = {
+		always = no # Disabled through potential
+	}
+
+	description = "origin_tooltip_next_generation_effects"
+
+	modifier = {
+		category_biology_research_speed_mult = 0.2
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 10
+	}
+}
+
 ## Birch World (Gigastructural Engineering)
 # Interferes with the Aeternum owning the galactic center.
 origin_birch = {
@@ -519,32 +581,5 @@ AAR_origin_ascended = {
 
 	random_weight = {
 		base = 5
-	}
-}
-
-## Next Generation (Extra Origins)
-# Disabled. Boring.
-origin_next_generation = {
-	is_origin = yes
-	icon = "gfx/interface/icons/origins/origin_next_generation.dds"
-	picture = GFX_origin_next_generation
-
-	playable = {
-	}
-
-	possible = {
-		always = no # Disabled through potential
-	}
-
-	description = "origin_tooltip_next_generation_effects"
-
-	modifier = {
-		category_biology_research_speed_mult = 0.2
-	}
-
-	advanced_start = yes
-
-	random_weight = {
-		base = 10
 	}
 }
