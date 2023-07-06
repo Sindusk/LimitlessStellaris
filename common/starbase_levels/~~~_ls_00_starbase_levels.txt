@@ -58,7 +58,7 @@ starbase_level_starfortress = {
 # StarTech AI weight added
 starbase_level_citadel = {
 	ship_size = starbase_citadel
-	#next_level = starbase_level_bastion # LS - Disabled until the cause of the issues is identified.
+	next_level = starbase_level_bastion
 	level_weight = 4
 	ai_weight = {
 		weight = 91 # StarTech AI 5 -> 91

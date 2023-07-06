@@ -89,7 +89,7 @@
 # 0 = INFINITE
 # 1 / 2 / 3 = RESPECTIVE NUMBER
 # 4 = SUPERTENSILES
-@giga_preset_build_cap = 1
+@giga_preset_build_cap = 4
 
 # MEGASTRUCTuRE INFLUENCE UPKEEP
 # 0 = DISABLED
