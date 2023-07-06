@@ -8,8 +8,114 @@ namespace = colony
 ## Colony Events
 ##################################################
 
+## Colony 50 - Seismic Disturbances Event
+# Merge between Rapid Evolution, Even More Origins, Ariphaos, Scripted Trigger Undercoat
+# Planet classes are merged and conditions are improved.
+planet_event = {
+	id = colony.50
+	title = "colony.50.name"
+	desc = {
+		trigger = {
+			NOT = {
+				owner = { is_subterranean_empire = yes } # STU
+			}
+		}
+		text = "colony.50.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_subterranean_empire = yes } # STU
+		}
+		text = "colony.50.desc.subterranean"
+	}
+
+	picture = GFX_evt_in_the_dark
+	show_sound = event_air_raid_siren
+	location = ROOT
+	trackable = yes
+
+	pre_triggers = {
+		is_ai = no
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		#owner = { is_gestalt = no } # STU
+		num_pops > 0
+		NOR = {
+			has_global_flag = seismic_disturbance_global
+			has_planet_flag = colony_event
+			is_nuked_world = yes # STU
+			is_artificial = yes # STU
+			is_city_world = yes # STU
+			is_relic_world = yes # STU
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = { save_event_target_as = subterranean_planet_owner }
+		set_global_flag = seismic_disturbance_global
+		set_planet_flag = seismic_disturbance
+		set_planet_flag = colony_event
+		add_deposit = d_underground_farm_blocked
+		add_deposit = d_underground_mine_blocked
+		add_deposit = d_underground_generator_blocked
+		create_subterranean_nation = { FLAG = subterranean_nation }
+	}
+
+	option = {
+		name = colony.50.a
+		begin_event_chain = {
+			event_chain = "subterranean_civilization_chain"
+			target = ROOT
+		}
+		enable_special_project = {
+			name = "SEISMIC_DISTURBANCE_1_PROJECT" #Establish Communications
+			location = this
+			owner = root
+		}
+		enable_special_project = {
+			name = "SEISMIC_DISTURBANCE_2_PROJECT" #Preemptive Strike
+			location = this
+			owner = root
+		}
+
+	}
+	option = {
+		name = distar.216.a.exter
+		exclusive_trigger = { # Even More Origins
+			OR = {
+				# Neither of these knows what to do with Trade Value
+				owner = {
+					is_homicidal = yes
+				}
+				owner = {
+					has_ethic = ethic_gestalt_consciousness
+				}
+			}
+		}
+		begin_event_chain = {
+			event_chain = "subterranean_civilization_chain"
+			target = ROOT
+		}
+		enable_special_project = {
+			name = "SEISMIC_DISTURBANCE_2_PROJECT" #Preemptive Strike
+			location = this
+			owner = root
+		}
+
+	}
+}
+
 ## Colony 180 - Asteroid Sighted Starting Event
-# Merge between Rapid Evolution, Ariphaos, Scripted Trigger Undercoat.
+# Merge between Rapid Evolution, Ariphaos, Scripted Trigger Undercoat
 # Intentionally left all pre-triggers since this event was interfering with AI heavily, since they do not send fleets at the asteroid.
 planet_event = {
 	id = colony.180

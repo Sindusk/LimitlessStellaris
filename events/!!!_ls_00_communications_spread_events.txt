@@ -1,0 +1,312 @@
+##########################################################################
+# Limitless Stellaris - Communications Spread Events
+##########################################################################
+
+namespace = communications_spread
+
+## Communications Spread 1 - Communications (Neighbor)
+# Merge between EED, Ariphaos, Scripted Trigger Undercoat
+country_event = {
+	id = communications_spread.1
+	title = "communications_spread.1.name"
+	desc = "communications_spread.1.desc"
+	picture = GFX_evt_star_chart
+	show_sound = event_alien_signal
+
+	trigger = {
+		is_playable = yes # STU
+		NOT = { has_country_flag = starting_event }
+		is_homicidal = no # Ariphaos
+		NOT = { has_valid_civic = civic_inwards_perfection } # Ariphaos
+		any_neighbor_country = {
+			is_playable = yes # STU
+			NOT = { is_country = ROOT }
+			has_communications = ROOT
+			is_homicidal = no # Ariphaos
+			is_ai = yes # Ariphaos
+			NOT = { has_valid_civic = civic_inwards_perfection } # Ariphaos
+			any_neighbor_country = {
+				OR = {
+					is_playable = yes # STU
+					is_country_type = fallen_empire
+				}
+				NOT = { is_country = ROOT }
+				has_communications = PREV
+				NOT = { has_communications = ROOT }
+			}
+		}
+	}
+
+	immediate = {
+		random_neighbor_country = {
+			limit = {
+				is_playable = yes # STU
+				NOT = { is_country = ROOT }
+				has_communications = ROOT
+				is_homicidal = no # Ariphaos
+				is_ai = yes # Ariphaos
+				NOT = { has_valid_civic = civic_inwards_perfection } # Ariphaos
+				any_neighbor_country = {
+					OR = {
+						is_playable = yes # STU
+						is_country_type = fallen_empire
+					}
+					NOT = { is_country = ROOT }
+					has_communications = PREV
+					NOT = { has_communications = ROOT }
+				}
+			}
+			save_event_target_as = CommSpreader
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						is_playable = yes # STU
+						is_country_type = fallen_empire
+					}
+					NOT = { is_country = ROOT }
+					has_communications = PREV
+					NOT = { has_communications = ROOT }
+				}
+				save_event_target_as = contact_empire
+				establish_communications_no_message = root
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 240 # EED 120 -> 240
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			check_modifier_value = {
+				modifier = intel_decryption_add
+				value >= 4
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 2
+			check_modifier_value = {
+				modifier = intel_decryption_add
+				value < 2
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = { # Ariphaos
+			factor = 2
+			is_xenophobe = yes
+		}
+		modifier = { # Ariphaos
+			factor = 0.5
+			is_xenophile = yes
+		}
+		modifier = { # Ariphaos
+			factor = 2
+			is_gestalt = yes
+			NOT = { has_civic = civic_machine_servitor }
+			NOT = { has_civic = civic_hive_empath }
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				is_xenophile = yes
+				has_civic = civic_machine_servitor
+				has_civic = civic_hive_empath
+			}
+		}
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			years_passed > 40
+		}
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			years_passed > 70
+		}
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			years_passed > 100
+		}
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			years_passed > 120
+		}
+	}
+
+	option = {
+		name = "communications_spread.1.a"
+		custom_tooltip = communications_spread.1.tooltip
+		hidden_effect = {
+			country_event = { id = action.1 }
+			event_target:contact_empire = {
+				country_event = { id = communications_spread.2 }
+			}
+		}
+	}
+}
+
+## Communications Spread 3 - Communications (Any)
+# Merge between EED, Ariphaos, Scripted Trigger Undercoat
+country_event = {
+	id = communications_spread.3
+	title = "communications_spread.1.name"
+	desc = "communications_spread.1.desc"
+	picture = GFX_evt_star_chart
+	show_sound = event_alien_signal
+
+	trigger = {
+		is_playable = yes # STU
+		NOT = { has_country_flag = starting_event }
+		is_homicidal = no # Ariphaos
+		NOT = { has_ethic = ethic_fanatic_xenophobe } # Ariphaos
+		NOT = { has_valid_civic = civic_inwards_perfection } # Ariphaos
+		any_relation = {
+			is_playable = yes # STU
+			is_homicidal = no # Ariphaos
+			is_ai = yes # Ariphaos
+			OR = { # Ariphaos
+				is_gestalt = no
+				has_civic = civic_machine_servitor
+				has_civic = civic_hive_empath
+			}
+			NOT = { has_ethic = ethic_fanatic_xenophobe } # Ariphaos
+			NOT = { has_valid_civic = civic_inwards_perfection } # Ariphaos
+			NOT = { is_country = ROOT }
+			has_communications = ROOT
+			OR = { # stops Scions spreading knowledge across the galaxy quite so much (FE can be anywhere, if you establish comms with the FE then you get them with the Scion, then you soon find out about the whole opposite side of the galaxy)
+				NOT = { has_origin = origin_scion }
+				any_neighbor_country = {
+					has_communications = root
+				}
+			}
+			any_neighbor_country = {
+				OR = {
+					is_playable = yes # STU
+					is_country_type = fallen_empire
+				}
+				NOT = { is_country = ROOT }
+				has_communications = PREV
+				NOT = { has_communications = ROOT }
+			}
+		}
+	}
+
+	immediate = {
+		random_relation = {
+			limit = {
+				is_playable = yes # STU
+				is_homicidal = no # Ariphaos
+				is_ai = yes # Ariphaos
+				OR = { # Ariphaos
+					is_gestalt = no
+					has_civic = civic_machine_servitor
+					has_civic = civic_hive_empath
+				}
+				NOT = { has_ethic = ethic_fanatic_xenophobe } # Ariphaos
+				NOT = { has_valid_civic = civic_inwards_perfection } # Ariphaos
+				NOT = { is_country = ROOT }
+				has_communications = ROOT
+				OR = { # stops Scions spreading knowledge across the galaxy quite so much (FE can be anywhere, if you establish comms with the FE then you get them with the Scion, then you soon find out about the whole opposite side of the galaxy)
+					NOT = { has_origin = origin_scion }
+					any_neighbor_country = {
+						has_communications = root
+					}
+				}
+				any_neighbor_country = {
+					OR = {
+						is_playable = yes # STU
+						is_country_type = fallen_empire
+					}
+					NOT = { is_country = ROOT }
+					has_communications = PREV
+					NOT = { has_communications = ROOT }
+				}
+			}
+			save_event_target_as = CommSpreader
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						is_playable = yes # STU
+						is_country_type = fallen_empire
+					}
+					NOT = { is_country = ROOT }
+					has_communications = PREV
+					NOT = { has_communications = ROOT }
+				}
+				save_event_target_as = contact_empire
+				establish_communications_no_message = root
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 480 # EED 240 -> 480
+		modifier = { # Ariphaos
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = { # Ariphaos
+			factor = 2
+			is_xenophobe = yes
+		}
+		modifier = { # Ariphaos
+			factor = 0.5
+			is_xenophile = yes
+		}
+		modifier = { # Ariphaos
+			factor = 2
+			is_gestalt = yes
+			NOT = { has_civic = civic_machine_servitor }
+			NOT = { has_civic = civic_hive_empath }
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				is_xenophile = yes
+				has_civic = civic_machine_servitor
+				has_civic = civic_hive_empath
+			}
+		}
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			years_passed > 40
+		}
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			years_passed > 70
+		}
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			years_passed > 100
+		}
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			years_passed > 120
+		}
+		modifier = {
+			factor = 0.75 # EED 0.5 -> 0.75
+			check_modifier_value = {
+				modifier = intel_decryption_add
+				value >= 4
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 2
+			check_modifier_value = {
+				modifier = intel_decryption_add
+				value < 2
+			}
+		}
+	}
+
+	option = {
+		name = "communications_spread.1.a"
+		custom_tooltip = communications_spread.1.tooltip
+		hidden_effect = {
+			country_event = { id = action.1 }
+			event_target:contact_empire = {
+				country_event = { id = communications_spread.2 }
+			}
+		}
+	}
+}
