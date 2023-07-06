@@ -1,0 +1,1400 @@
+##########################################################################
+# Limitless Stellaris - Resolutions
+##########################################################################
+
+# Vanilla Variables
+#@resolution_weight_hated = 3
+#@resolution_weight_disliked = 4
+#@resolution_weight_unpopular = 5
+#@resolution_weight_normal = 6
+#@resolution_weight_popular = 6.5
+#@resolution_weight_loved = 7
+#@resolution_weight_fever = 10 # MECR
+#
+#@resolution_cost_t1 = 100
+#@resolution_cost_t2 = 150
+#@resolution_cost_t3 = 200
+#@resolution_cost_t4 = 250
+#@resolution_cost_t5 = 300
+#@resolution_cost_denounce = 25
+#
+#@resolution_flag_timer = 360
+#
+# MECR Variables
+#@resolution_cost_t1_half = 50
+#@resolution_cost_t2_half = 75
+#@resolution_cost_t3_half = 100
+#@resolution_cost_t4_half = 125
+#@resolution_cost_t5_half = 150
+#@resolution_cost_denounce_half = 12.5
+
+##################################################
+## Emperor Resolutions
+##################################################
+
+## Emperor - Abolish Council
+# Merge between EED, MECR, NGS, Ariphaos
+resolution_emperor_abolish_council = {
+	icon = "GFX_resolution_abolish_imperial_council"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		custom_tooltip = resolution_emperor_abolish_council_tooltip
+		hidden_effect = {
+			set_council_size = 0
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		is_galactic_emperor = yes
+		is_galactic_council_established = yes
+		NOT = { has_global_flag = imperial_unification_start } # MECR
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_disliked # NGS hated -> disliked
+
+		modifier = {
+			factor = 0
+			is_part_of_galactic_council = yes
+			is_galactic_emperor = no
+			desc = gal_com_on_galatic_council
+		}
+
+		modifier = {
+			factor = 0.5
+			is_subject = yes
+			overlord = {
+				opinion_level = { who = prev level >= neutral }
+				is_part_of_galactic_council = yes
+				is_galactic_emperor = no
+			}
+			desc = gal_com_support_overlord_on_galatic_council
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_egalitarian = yes
+			desc = ethic_egalitarian # closest thing to democracy the imperium has
+		}
+		modifier = { # EED
+			factor = 0
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+		modifier = { # EED
+			factor = 0
+			is_democratic_crusaders = yes
+			desc = personality_democratic_crusaders
+		}
+		modifier = { # EED
+			factor = 1.5
+			is_authoritarian  = yes
+			desc = ethic_authoritarian
+		}
+		modifier = { # EED
+			factor = 1.5
+			is_civic_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		modifier = { # EED
+			factor = 0.5
+			OR = {
+				is_civic_diplomatic_corps = yes
+				is_civic_machine_servitor = yes
+			}
+			desc = gal_com_opposing_civics
+		}
+		modifier = { # EED
+			factor = 0.8
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 0.8
+			has_ethic = ethic_fanatic_xenophile
+			desc = ethic_xenophile
+		}
+		modifier = { # EED
+			factor = 0.8
+			is_open_gestalt = yes
+			desc = gal_com_open_gestalt
+		}
+		modifier = { # NGS
+			factor = 2
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+	}
+}
+
+## Emperor - By Appointment
+# Merge between EED, MECR, NGS
+resolution_emperor_by_appointment = {
+	icon = "GFX_resolution_imperial_council_appointment"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		custom_tooltip = resolution_emperor_by_appointment_tooltip
+		hidden_effect = {
+			every_playable_country = {
+				limit = {
+					is_galactic_community_member = yes
+					is_part_of_galactic_council = yes
+					is_galactic_emperor = no
+				}
+				add_permanent_councillor = yes
+			}
+			set_emperor_can_change_council_members = yes
+			if = {
+				limit = { is_active_resolution = "resolution_emperor_trial_of_advancement" }
+				cancel_resolution = "resolution_emperor_trial_of_advancement"
+			}
+			else_if = {
+				limit = { is_active_resolution = "resolution_emperor_by_election" }
+				cancel_resolution = "resolution_emperor_by_election"
+			}
+		}
+	}
+
+	fail_effects = {
+	}
+
+	potential = {
+		has_nemesis = yes
+		is_galactic_emperor = yes
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = "resolution_emperor_by_appointment" }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular # NGS hated -> unpopular
+		modifier = { # NGS
+			factor = 1.5
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		modifier = { # EED
+			weight = 2
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		modifier = { # EED
+			weight = 0
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = { # EED
+			weight = 3
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+	}
+}
+
+## Emperor - By Election
+# Merge between EED, MECR, NGS, Ariphaos
+resolution_emperor_by_election = {
+	icon = "GFX_resolution_imperial_council_diplomatic_weight"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		custom_tooltip = resolution_emperor_by_election_tooltip
+		hidden_effect = {
+			# Restore Council Elections
+			every_playable_country = {
+				limit = {
+					is_galactic_community_member = yes
+					is_part_of_galactic_council = yes
+					is_galactic_emperor = no
+					is_permanent_councillor = yes
+				}
+				remove_permanent_councillor = yes
+			}
+			if = {
+				limit = { is_active_resolution = "resolution_emperor_trial_of_advancement" }
+				cancel_resolution = "resolution_emperor_trial_of_advancement"
+			}
+			else_if = {
+				limit = { is_active_resolution = "resolution_emperor_by_appointment" }
+				cancel_resolution = "resolution_emperor_by_appointment"
+			}
+		}
+	}
+
+	fail_effects = {
+	}
+
+	potential = {
+		has_nemesis = yes
+		is_galactic_emperor = yes
+		NOT = { has_global_flag = imperial_unification_start } # MECR
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = "resolution_emperor_by_election" }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular # NGS disliked -> unpopular
+
+		modifier = {
+			factor = 10
+			num_council_positions = 1
+			galactic_community_rank = 1
+			is_part_of_galactic_council = no
+			desc = gal_com_empire_council_candidate
+		}
+
+		modifier = {
+			factor = 10
+			num_council_positions = 2
+			galactic_community_rank = 2
+			is_part_of_galactic_council = no
+			desc = gal_com_empire_council_candidate
+		}
+
+		modifier = {
+			factor = 10
+			num_council_positions = 3
+			galactic_community_rank = 3
+			is_part_of_galactic_council = no
+			desc = gal_com_empire_council_candidate
+		}
+
+		modifier = {
+			factor = 10
+			num_council_positions = 4
+			galactic_community_rank = 4
+			is_part_of_galactic_council = no
+			desc = gal_com_empire_council_candidate
+		}
+
+		modifier = {
+			factor = 10
+			num_council_positions = 5
+			galactic_community_rank = 5
+			is_part_of_galactic_council = no
+			desc = gal_com_empire_council_candidate
+		}
+
+		modifier = {
+			factor = 0
+			galactic_community_rank <= 2
+			is_part_of_galactic_council = no
+			desc = gal_com_top_two_rank
+		}
+		
+		modifier = { # EED
+			factor = 0
+			num_council_positions = 1
+			galactic_community_rank > 1
+			is_egalitarian = no
+			is_civic_diplomatic_corps = no
+			desc = gal_com_top_two_rank
+		}
+		modifier = { # EED
+			factor = 0
+			num_council_positions = 2
+			galactic_community_rank > 2
+			is_egalitarian = no
+			is_civic_diplomatic_corps = no
+			desc = gal_com_top_two_rank
+		}
+		modifier = { # EED
+			factor = 0.5
+			num_council_positions = 3
+			galactic_community_rank > 3
+			is_egalitarian = no
+			is_civic_diplomatic_corps = no
+			desc = gal_com_empire_or_overlord_unlikely_council_candidate
+		}
+		modifier = { # EED
+			factor = 0.5
+			num_council_positions = 4
+			galactic_community_rank > 4
+			is_egalitarian = no
+			is_civic_diplomatic_corps = no
+			desc = gal_com_empire_or_overlord_unlikely_council_candidate
+		}
+		modifier = { # EED
+			factor = 0.5
+			num_council_positions = 5
+			galactic_community_rank > 5
+			is_egalitarian = no
+			is_civic_diplomatic_corps = no
+			desc = gal_com_empire_or_overlord_unlikely_council_candidate
+		}
+		
+		modifier = { # EED
+			weight = 5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		modifier = { # EED
+			weight = 5
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+		modifier = { # EED
+			weight = 0.5
+			is_authoritarian  = yes
+			desc = ethic_authoritarian
+		}
+		modifier = { # EED
+			weight = 0.5
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		modifier = { # EED
+			weight = 5
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+	}
+}
+
+## Emperor - Council Size 1
+# Merge between EED, NGS, Ariphaos
+resolution_emperor_council_size_1 = {
+	icon = "GFX_resolution_imperial_council_size"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		set_council_size = 1
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		is_galactic_emperor = yes
+		is_galactic_council_established = yes
+		num_council_positions = 2
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_disliked # NGS hated -> disliked
+
+		modifier = {
+			factor = 3
+			OR = {
+				galactic_community_rank = 1
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank = 1
+					}
+				}
+			}
+			desc = gal_com_wants_to_reduce_council_size
+		}
+
+		modifier = {
+			factor = 0
+			galactic_community_rank = 2
+			desc = gal_com_second_rank
+		}
+
+		modifier = {
+			factor = 0.5 # NGS 0.8 -> 0.5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.2 -> 2
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+	}
+}
+
+## Emperor - Council Size 2
+# Merge between EED, NGS, Ariphaos
+resolution_emperor_council_size_2 = {
+	icon = "GFX_resolution_imperial_council_size"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		set_council_size = 2
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		is_galactic_emperor = yes
+		is_galactic_council_established = yes
+		OR = {
+			num_council_positions = 1
+			num_council_positions = 3
+		}
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular # NGS disliked -> unpopular
+
+		modifier = { # raising the number of slots is more popular than lowering it
+			factor = 1.25
+			num_council_positions = 1
+			desc = gal_com_increase_council_size_positive
+		}
+
+		modifier = {
+			factor = 0
+
+			num_council_positions = 3
+			OR = {
+				galactic_community_rank = 3
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank = 3
+					}
+				}
+			}
+			desc = gal_com_they_or_overlord_would_be_removed_from_council
+		}
+
+		modifier = {
+			factor = 0
+			
+			num_council_positions = 1
+			OR = {
+				galactic_community_rank = 1
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank = 1
+					}
+				}
+			}
+			desc = gal_com_alone_on_council_or_overlord
+		}
+
+
+		modifier = {
+			factor = 3
+			
+			num_council_positions = 3
+			OR = {
+				galactic_community_rank <= 2
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank <= 2
+					}
+				}
+			}
+			desc = gal_com_wants_to_reduce_council_size
+		}
+
+		modifier = {
+			factor = 3
+			num_council_positions = 1
+			OR = {
+				galactic_community_rank = 2
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank = 2
+					}
+				}
+			}
+			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+
+		modifier = {
+			factor = 0.5 # NGS 0.8 -> 0.5
+			num_council_positions = 3
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+
+		modifier = {
+			factor = 0.5 # NGS 0.8 -> 0.5
+			num_council_positions = 1
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.2 -> 2
+			num_council_positions = 3
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.2 -> 2
+			num_council_positions = 1
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+	}
+}
+
+## Emperor - Council Size 3
+# Merge between EED, NGS, Ariphaos
+resolution_emperor_council_size_3 = {
+	icon = "GFX_resolution_imperial_council_size"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		set_council_size = 3
+		set_global_flag = galactic_council_formed
+
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		is_galactic_emperor = yes
+		is_galactic_council_established = yes
+		OR = {
+			num_council_positions = 2
+			num_council_positions = 4
+		}
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal # NGS unpopular -> normal
+
+		modifier = { # raising the number of slots is more popular than lowering it
+			factor = 1.25
+			num_council_positions = 2
+			desc = gal_com_increase_council_size_positive
+		}
+
+		modifier = {
+			factor = 0
+
+			num_council_positions = 4
+			OR = {
+				galactic_community_rank = 4
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank = 4
+					}
+				}
+			}
+			desc = gal_com_they_or_overlord_would_be_removed_from_council
+		}
+
+		modifier = {
+			factor = 0
+
+			num_council_positions = 2
+			OR = {
+				galactic_community_rank <= 2
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank <= 2
+					}
+				}
+			}
+			desc = gal_com_dont_let_others_in_on_the_council
+		}
+
+		modifier = {
+			factor = 3
+
+			num_council_positions = 4
+			OR = {
+				galactic_community_rank <= 3
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank <= 3
+					}
+				}
+			}
+			desc = gal_com_wants_to_reduce_council_size
+		}
+
+		modifier = {
+			factor = 3
+			AND = {
+				num_council_positions = 2
+				OR = {
+					galactic_community_rank = 3
+					AND = {
+						is_subject = yes
+						overlord = {
+							opinion_level = { who = prev level >= neutral }
+							galactic_community_rank = 3
+						}
+					}
+				}
+			}
+			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+		
+		modifier = { # EED
+			factor = 10
+			num_council_positions = 4
+			galactic_community_rank <= 3
+			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+		
+		modifier = { # EED
+			factor = 10
+			num_council_positions = 2
+			galactic_community_rank = 3
+			desc = gal_com_wants_to_reduce_council_size
+		}
+
+		modifier = {
+			factor = 0.5 # NGS 0.8 -> 0.5
+			num_council_positions = 2
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 0.5 # NGS 0.8 -> 0.5
+			num_council_positions = 4
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.2 -> 2
+			num_council_positions = 2
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.2 -> 2
+			num_council_positions = 4
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			num_council_positions = 4
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			num_council_positions = 2
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+	}
+}
+
+## Emperor - Council Size 4
+# Merge between EED, NGS, Ariphaos
+resolution_emperor_council_size_4 = {
+	icon = "GFX_resolution_imperial_council_size"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		set_council_size = 4
+		set_global_flag = galactic_council_formed
+
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		is_galactic_emperor = yes
+		is_galactic_council_established = yes
+		OR = {
+			num_council_positions = 3
+			num_council_positions = 5
+		}
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal
+
+		modifier = { # raising the number of slots is more popular than lowering it
+			factor = 1.25
+			num_council_positions = 3
+			desc = gal_com_increase_council_size_positive
+		}
+
+		modifier = {
+			factor = 0
+			
+			num_council_positions = 5
+			OR = {
+				galactic_community_rank = 5
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank = 5
+					}
+				}
+			}
+			desc = gal_com_they_or_overlord_would_be_removed_from_council
+		}
+
+		modifier = {
+			factor = 0
+
+			num_council_positions = 3
+			OR = {
+				galactic_community_rank <= 3
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank <= 3
+					}
+				}
+			}
+			desc = gal_com_dont_let_others_in_on_the_council
+		}
+
+		modifier = {
+			factor = 3
+			
+			num_council_positions = 5
+			OR = {
+				galactic_community_rank <= 4
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank <= 4
+					}
+				}
+			}
+			desc = gal_com_wants_to_reduce_council_size
+		}
+
+		modifier = {
+			factor = 3
+			
+			num_council_positions = 3
+			OR = {
+				galactic_community_rank = 4
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank = 4
+					}
+				}
+			}
+			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+		
+		modifier = { # EED
+			factor = 10
+			num_council_positions = 5
+			galactic_community_rank <= 4
+			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+		
+		modifier = { # EED
+			factor = 10
+			num_council_positions = 3
+			galactic_community_rank = 4
+			desc = gal_com_wants_to_reduce_council_size
+		}
+
+		modifier = { # EED
+			factor = 0.5
+			OR = {
+				AND = {
+					num_council_positions = 5
+					is_egalitarian = yes
+				}
+				AND = {
+					num_council_positions = 3
+					is_authoritarian = yes
+				}
+			}
+			desc = gal_com_opposing_ethics
+		}
+
+
+		modifier = {
+			factor = 0.5 # NGS 0.8 -> 0.5
+			num_council_positions = 5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+
+		modifier = {
+			factor = 0.5 # NGS 0.8 -> 0.5
+			num_council_positions = 3
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.2 -> 2
+			num_council_positions = 5
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.2 -> 2
+			num_council_positions = 3
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			num_council_positions = 5
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			num_council_positions = 3
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+	}
+}
+
+## Emperor - Council Size 5
+# Merge between EED, NGS, Ariphaos
+resolution_emperor_council_size_5 = {
+	icon = "GFX_resolution_imperial_council_size"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		set_council_size = 5
+		set_global_flag = galactic_council_formed
+
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		is_galactic_emperor = yes
+		is_galactic_council_established = yes
+		num_council_positions = 4
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular
+
+		modifier = {
+			factor = 3
+			num_council_positions = 4
+			OR = {
+				galactic_community_rank = 5
+				AND = {
+					is_subject = yes
+					overlord = {
+						opinion_level = { who = prev level >= neutral }
+						galactic_community_rank = 5
+					}
+				}
+			}
+			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+		
+		modifier = { # EED
+			factor = 10
+			num_council_positions = 4
+			galactic_community_rank = 5
+			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+
+		modifier = {
+			factor = 0.8
+			is_part_of_galactic_council = yes
+			is_egalitarian = no # EED
+			desc = gal_com_negative_sentiment # EED
+		}
+
+		modifier = {
+			factor = 0.5 # NGS 0.8 -> 0.5
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.2 -> 2
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			has_ethic = ethic_fanatic_egalitarian
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+	}
+}
+
+## Emperor - Disband Galactic Trade Organization
+# Merge between EED, MECR, NGS, Ariphaos
+resolution_emperor_disband_gto = {
+	icon = "GFX_resolution_council_size"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	fire_and_forget = yes # MECR
+
+	modifier = {
+	}
+
+	effect = {
+		cancel_resolution = "resolution_emperor_gto"
+		galactic_emperor = { # EED
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_prosperity days = 7200 }
+		}
+		hidden_effect = { cancel_resolution = "resolution_custodian_gto" } # MECR
+		hidden_effect = { pass_resolution_no_cooldown = resolution_category_imperial_institutions_reset_cooldown } # MECR
+		pass_resolution_modifier = yes # MECR
+	}
+
+	fail_effects = {
+		fail_resolution_modifier = yes # MECR
+	}
+
+	potential = {
+		has_nemesis = yes
+		OR = { # MECR
+			is_galactic_emperor = yes
+			and = { # MECR
+				has_galactic_emperor = yes
+				is_part_of_galactic_council = yes
+				is_active_resolution = "resolution_emperor_expand_power_of_council"
+			}
+			is_country_type = imperial_senator # MECR
+		}
+		is_active_resolution = "resolution_emperor_gto"
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_disliked
+
+		modifier = {
+			factor = 0.6
+			is_megacorp = yes # Merged
+			desc = auth_corporate
+		}
+
+		modifier = {
+			factor = 0.6
+			OR = {
+				has_ai_personality = peaceful_traders
+				has_ai_personality = ruthless_capitalists
+			}
+			desc = gal_com_trader_ai_personality
+		}
+
+		modifier = {
+			factor = 1.3
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 1.8
+			is_xenophobic_isolationists = yes # EED
+			desc = gal_com_isolationist_civic # EED
+		}
+
+		modifier = {
+			factor = 2
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = {
+			factor = 0
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+		modifier = { # MECR
+			factor = 0.4
+			is_galactic_emperor = no
+			is_part_of_galactic_council = yes
+			desc = gal_com_on_galatic_council
+		}
+		modifier = { # EED
+			factor = 0.25
+			is_civic_free_traders = yes
+			desc = gal_com_trade_civic
+		}
+		modifier = { # EED
+			factor = 0.5
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = { # EED
+			factor = 2
+			is_anti_corp = yes
+			desc = gal_com_anti_corp_civic
+		}
+	}
+}
+
+## Emperor - Disband Interstellar Navigation Agency
+# Merge between EED, MECR, NGS
+resolution_emperor_disband_ina = {
+	icon = "GFX_resolution_council_size"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+	fire_and_forget = yes # MECR
+
+	modifier = {
+	}
+
+	effect = {
+		cancel_resolution = "resolution_emperor_ina"
+		hidden_effect = { cancel_resolution = "resolution_custodian_ina" } # MECR
+		hidden_effect = { pass_resolution_no_cooldown = resolution_category_imperial_institutions_reset_cooldown } # MECR
+		pass_resolution_modifier = yes # MECR
+	}
+
+	fail_effects = {
+		fail_resolution_modifier = yes # MECR
+	}
+
+	potential = {
+		has_nemesis = yes
+		OR = { # MECR
+			is_galactic_emperor = yes
+			and = { # MECR
+				has_galactic_emperor = yes
+				is_part_of_galactic_council = yes
+				is_active_resolution = "resolution_emperor_expand_power_of_council"
+			}
+			is_country_type = imperial_senator # MECR
+		}
+		is_active_resolution = "resolution_emperor_ina"
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_disliked
+
+		modifier = {
+			factor = 1.2
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 2
+			is_xenophobic_isolationists = yes # EED
+			desc = gal_com_isolationist_civic # EED
+		}
+
+		modifier = {
+			factor = 0.8
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+
+		modifier = {
+			factor = 0.4
+			is_erudite_explorers = yes # EED
+			desc = personality_erudite_explorers
+		}
+
+		modifier = {
+			factor = 0
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+		modifier = { # MECR
+			factor = 0.4
+			is_galactic_emperor = no
+			is_part_of_galactic_council = yes
+			desc = gal_com_on_galatic_council
+		}
+		modifier = { # EED
+			factor = 0.5
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = { # EED
+			factor = 0.75
+			OR = { is_militarist = yes is_civic_militarist = yes }
+			desc = ethic_militarist
+		}
+		modifier = { # EED
+			factor = 1.25
+			has_monthly_income = { resource = energy  value < 20 }
+			desc = gal_com_energy_income
+		}
+		modifier = { # EED
+			factor = 1.5
+			has_deficit = energy
+			desc = gal_com_energy_income
+		}
+	}
+}

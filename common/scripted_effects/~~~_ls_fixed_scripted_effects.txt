@@ -1,0 +1,180 @@
+####################################################################################################
+# Limitless Stellaris - Scripted Effects
+####################################################################################################
+
+##################################################
+## Titanic Life Soldiers
+##################################################
+### Fix for Titanic Life Soldiers with Extra Origins Monster Tamers origin.
+
+### increment_titanic_life_soldier_maximum
+# Merge between Subtle Polish and Extra Origins. Allows Monster Tamers to get 5 titanics per world instead.
+
+# invoke this effect when a country gains a planet with Titanic Life
+# this = country
+increment_titanic_life_soldier_maximum = {
+    optimize_memory
+    if = {
+        limit = { NOT = { has_origin = origin_monster_tamers } }
+        change_variable = {
+            which = titanic_life_soldier_maximum
+            value = @titanic_life_soldier_per_planet_maximum
+        }
+    }
+    else = {
+         check_variable = {
+            which = titanic_life_soldier_maximum
+            value = 5
+        }
+    }
+}
+
+### decrement_titanic_life_soldier_maximum
+# Merge between Subtle Polish and Extra Origins. Allows Monster Tamers to get 5 titanics per world instead.
+
+# invoke this effect when a country loses a planet with Titanic Life
+# this = country
+decrement_titanic_life_soldier_maximum = {
+    optimize_memory
+    if = {
+        limit = { NOT = { has_origin = origin_monster_tamers } }
+        subtract_variable = {
+            which = titanic_life_soldier_maximum
+            value = @titanic_life_soldier_per_planet_maximum
+        }
+    }
+    else = {
+        subtract_variable = {
+            which = titanic_life_soldier_maximum
+            value = 5
+        }
+    }
+}
+
+##################################################
+## Social Decline
+##################################################
+# Fix for scoping error in the trigger, single line with "is_materialist"
+
+#Add a random Amenity blocker
+socdec_amenity_blocker = {
+	random_list = {
+		50 = {
+			modifier = {
+				factor = 0.1
+				has_deposit = d_socdec_underground_brothels
+			}
+			modifier = {
+				factor = 0.3
+				owner = {
+					any_owned_planet = {
+						has_deposit = d_socdec_underground_brothels
+					}
+				}
+			}
+			add_deposit = d_socdec_underground_brothels
+		}
+		50 = {
+			modifier = {
+				factor = 0.1
+				has_deposit = d_socdec_drug_houses
+			}
+			modifier = {
+				factor = 0.3
+				owner = {
+					any_owned_planet = {
+						has_deposit = d_socdec_drug_houses
+					}
+				}
+			}
+			add_deposit = d_socdec_drug_houses
+		}
+		50 = {
+			modifier = {
+				factor = 0
+				owner = {
+					OR = {
+						any_owned_planet = {
+							has_deposit = d_socdec_gas_dens
+						}
+						has_monthly_income = { resource = exotic_gases value = 0 }
+					}
+				}
+			}
+			add_deposit = d_socdec_gas_dens
+		}
+		25 = {
+			modifier = {
+				factor = 0.1
+				has_deposit = d_socdec_vr_parlours
+			}
+			modifier = {
+				factor = 0.3
+				owner = {
+					any_owned_planet = {
+						has_deposit = d_socdec_vr_parlours
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1
+				owner = {
+                    is_materialist = yes
+                }
+			}
+			add_deposit = d_socdec_vr_parlours
+		}
+		50 = {
+			modifier = {
+				factor = 0.1
+				has_deposit = d_socdec_grey_markets
+			}
+			modifier = {
+				factor = 0.3
+				owner = {
+					any_owned_planet = {
+						has_deposit = d_socdec_grey_markets
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				owner = {
+					is_megacorp = yes
+					is_egalitarian = yes
+				}
+			}
+			add_deposit = d_socdec_grey_markets
+		}
+		50 = {
+			modifier = {
+				factor = 0.1
+				has_deposit = d_socdec_counterfeit_electronics
+			}
+			modifier = {
+				factor = 0.3
+				owner = {
+					any_owned_planet = {
+						has_deposit = d_socdec_counterfeit_electronics
+					}
+				}
+			}
+			add_deposit = d_socdec_counterfeit_electronics
+		}
+		25 = {
+			modifier = {
+				factor = 0.1
+				has_deposit = d_socdec_illegal_junkyards
+			}
+			modifier = {
+				factor = 0.3
+				owner = {
+					any_owned_planet = {
+						has_deposit = d_socdec_illegal_junkyards
+					}
+				}
+			}
+			add_deposit = d_socdec_illegal_junkyards
+		}
+	}
+}

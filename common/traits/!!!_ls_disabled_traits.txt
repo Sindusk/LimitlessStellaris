@@ -2,8 +2,12 @@
 # Limitless Stellaris - Traits
 ##########################################################################
 
+##################################################
+## Leader Traits
+##################################################
+
 ## Archaeologist Trait (Expanded Stellaris Traditions)
-# Bugged trait with bad localisation and way more powerful than the vanilla trait which does the same thing.
+# Disabled. Bugged trait with bad localisation and way more powerful than the vanilla trait which does the same thing.
 leader_trait_archaeologist_ancrel_est_2 = {
 	cost = 1
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_archaeologist.dds"
@@ -25,5 +29,128 @@ leader_trait_archaeologist_ancrel_est_2 = {
 
 	ai_weight = {
 		weight = 100
+	}
+}
+
+##################################################
+## Species Traits
+##################################################
+
+## Gaia [Trait Diversity]
+# Disabled. Has too much in a single direction, and would be difficult to balance.
+trait_td_gaia = {
+	cost = 5
+	potential_crossbreeding_chance = 1.00
+
+	species_potential_add = { always = no } # Disable the trait
+	species_possible_remove = { always = no } # Disable the trait
+
+	opposites = {
+		"trait_td_air_swimming"
+		"trait_td_gigantic"
+		"trait_td_big"
+		"trait_td_small"
+		"trait_td_tiny"
+		"trait_td_nanoorganisms"
+	}
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT }
+	slave_cost = { energy = 200 }
+
+	modifier = {
+		army_damage_mult = 0.60
+		army_health = 0.30
+		planet_jobs_worker_produces_mult = 0.075
+		planet_livestock_food_produces_add = 1.5
+		planet_pops_food_upkeep_mult = 0.15
+		planet_pops_consumer_goods_upkeep_mult = 0.075
+		pop_housing_usage_mult = 0.125
+		pop_resettlement_cost_mult = 0.20
+	}
+}
+
+## Gaia (Lithoid)
+# Disabled. Has too much in a single direction, and would be difficult to balance.
+trait_td_lith_gaia = {
+	cost = 5
+	potential_crossbreeding_chance = 1.00
+	icon = "gfx/interface/icons/traits/trait_td_gaia.dds"
+
+	species_potential_add = { always = no } # Disable the trait
+	species_possible_remove = { always = no } # Disable the trait
+
+	opposites = {
+		"trait_td_air_swimming"
+		"trait_td_lith_gigantic"
+		"trait_td_lith_big"
+		"trait_td_lith_small"
+		"trait_td_lith_tiny"
+		"trait_td_lith_nanoorganisms"
+	}
+	allowed_archetypes = { LITHOID }
+	slave_cost = { energy = 200 }
+
+	modifier = {
+		army_damage_mult = 0.60
+		army_health = 0.30
+		planet_jobs_worker_produces_mult = 0.075
+		planet_livestock_minerals_produces_add = 0.75
+		planet_pops_minerals_upkeep_mult = 0.15
+		planet_pops_consumer_goods_upkeep_mult = 0.075
+		pop_housing_usage_mult = 0.125
+		pop_resettlement_cost_mult = 0.20
+	}
+}
+
+## Nano-Organisms
+# Disabled. Has too much in a single direction, and would be difficult to balance.
+trait_td_nanoorganisms = {
+	cost = -4
+	potential_crossbreeding_chance = 1.00
+
+	species_potential_add = { always = no } # Disable the trait
+	species_possible_remove = { always = no } # Disable the trait
+
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT }
+	slave_cost = { energy = -250 }
+	ai_weight = { weight = 0 }
+
+	modifier = {
+		army_damage_mult = -0.40
+		army_health = -0.15
+		planet_jobs_worker_produces_mult = -0.10
+		planet_livestock_food_produces_add = -1.5
+		planet_pops_food_upkeep_mult = -0.075
+		planet_pops_consumer_goods_upkeep_mult = -0.075
+		pop_housing_usage_mult = -0.15
+		pop_resettlement_cost_mult = -0.20
+	}
+}
+
+## Nano-Organisms (Lithoid)
+# Disabled. Has too much in a single direction, and would be difficult to balance.
+trait_td_lith_nanoorganisms = {
+	cost = -4
+	potential_crossbreeding_chance = 1.00
+	icon = "gfx/interface/icons/traits/trait_td_nanoorganisms.dds"
+
+	species_potential_add = { always = no } # Disable the trait
+	species_possible_remove = { always = no } # Disable the trait
+	
+	opposites = {
+		"trait_td_lith_meteor_strike"
+	}
+	allowed_archetypes = { LITHOID }
+	slave_cost = { energy = -250 }
+	ai_weight = { weight = 0 }
+
+	modifier = {
+		army_damage_mult = -0.40
+		army_health = -0.30
+		planet_jobs_worker_produces_mult = -0.10
+		planet_livestock_minerals_produces_add = -0.75
+		planet_pops_minerals_upkeep_mult = -0.075
+		planet_pops_consumer_goods_upkeep_mult = -0.075
+		pop_housing_usage_mult = -0.15
+		pop_resettlement_cost_mult = -0.20
 	}
 }

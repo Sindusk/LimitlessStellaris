@@ -581,6 +581,460 @@ resolution_council_denouncement = {
 	}
 }
 
+## Declare Crisis
+# Merge between EED, Daemonic Incursion, Ariphaos, Scripted Trigger Undercoat
+resolution_declare_crisis = {
+	icon = "GFX_resolution_declare_crisis"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t5
+		}
+	}
+
+	target = yes
+	harmful = yes
+
+	valid_target = {
+		NOT = { is_same_value = from }
+		OR = {
+			is_playable = yes # STU
+			AND = {
+				is_fallen_empire = yes
+				NOT = { has_global_flag = war_in_heaven_ongoing }
+			}
+		}
+		NOT = { has_country_flag = declared_crisis }
+	}
+
+	modifier = {
+		starbase_shipyard_build_speed_mult = 0.20
+		ships_upkeep_mult = -0.1
+	}
+
+	effect = {
+		custom_tooltip = resolution_declare_crisis_tooltip
+		from = { # EED
+			custom_tooltip = resolution_declare_crisis_menace_tooltip
+		}
+		hidden_effect = {
+			if = {
+				limit = { is_galactic_community_member = yes }
+				remove_from_galactic_community = yes
+			}
+			if = {
+				limit = {
+					is_galactic_council_established = yes
+					is_part_of_galactic_council = yes
+				}
+				remove_from_galactic_council = yes
+			}
+			every_subject = {
+				if = {
+					limit = { is_galactic_community_member = yes }
+					remove_from_galactic_community = yes
+				}
+				if = {
+					limit = {
+						is_galactic_council_established = yes
+						is_part_of_galactic_council = yes
+					}
+					remove_from_galactic_council = yes
+				}
+			}
+			set_country_flag = declared_crisis
+			save_event_target_as = new_crisis
+			country_event = { id = crisis.4105 }
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					NOT = { is_same_value = prev }
+				}
+				country_event = { id = crisis.4100 }
+			}
+			if = {
+				limit = { has_galactic_custodian = yes }
+				galactic_custodian = {
+					save_event_target_as = community_war_leader
+					if = {
+						limit = { is_in_federation_with = event_target:new_crisis }
+						event_target:new_crisis = {
+							leave_alliance = { override_requirements = yes }
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { has_galactic_emperor = yes }
+				galactic_emperor = {
+					save_event_target_as = community_war_leader
+				}
+			}
+			else = {
+				random_playable_country = {
+					limit = {
+						is_galactic_community_member = yes
+						NOT = { is_in_federation_with = event_target:new_crisis }
+					}
+					weights = {
+						base = 1
+						modifier = {
+							add = 10000
+							galactic_community_rank = 1
+						}
+						modifier = {
+							add = 1000
+							galactic_community_rank = 2
+						}
+						modifier = {
+							add = 100
+							galactic_community_rank = 3
+						}
+						modifier = {
+							add = 10
+							is_galactic_council_established = yes
+							is_part_of_galactic_council = yes
+						}
+					}
+					save_event_target_as = community_war_leader
+				}
+			}
+			if = { # EED
+				limit = {
+					from = { has_ascension_perk = ap_become_the_crisis }
+					NOR = {
+						is_homicidal = yes
+						has_ascension_perk = ap_become_the_crisis
+						AND = {
+							is_fallen_empire = yes
+							NOT = { has_global_flag = war_in_heaven_ongoing }
+						}
+
+					}
+				}
+				from = { complete_crisis_objective = crisobj_perform_upsetting_operations }
+			}
+
+			declare_crisis_war_effect = yes
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		has_galactic_emperor = no
+		is_part_of_galactic_council = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_hated
+
+		modifier = { # Daemonic Incursion
+			factor = 10
+			from = {
+				has_country_flag = newgen_danger1
+			}
+			desc = newgen_com_desc_2
+		}
+		modifier = { # Daemonic Incursion
+			factor = 40
+			exists = event_target:demonic_incursion_country
+			from = {
+				is_same_value = event_target:demonic_incursion_country
+				galaxy_percentage > 0.1
+			}
+			desc = newgen_com_desc_2
+		}
+		modifier = { # Daemonic Incursion
+			factor = 30
+			from = {
+				has_country_flag = chosen_empire
+				galaxy_percentage > 0.15
+			}
+			desc = newgen_com_desc_2
+		}
+		modifier = { # Daemonic Incursion
+			factor = 20
+			from = {
+				has_country_flag = newgen_danger2
+			}
+			desc = newgen_com_desc_4
+		}
+		modifier = { # Daemonic Incursion
+			factor = 40
+			from = {
+				has_country_flag = newgen_danger3
+			}
+			desc = newgen_com_desc_3
+		}
+		# Should almost always declare on Crisis countries in end game
+		modifier = {
+			factor = 50
+			from = {
+				has_country_flag = crisis_sphere_revealed
+			}
+			desc = gal_com_crisis_sphere_revealed
+		}
+
+		# More likely to declare on very powerful homicidal empires
+		modifier = {
+			factor = 10
+			from = {
+				is_homicidal = yes
+				relative_power = {
+					who = prev
+					category = fleet
+					value = overwhelming
+				}
+			}
+			desc = gal_com_target_is_very_strong_homicidal_empire
+		}
+		# More likely to declare on very powerful homicidal empires
+		modifier = {
+			factor = 5
+			from = {
+				is_homicidal = yes
+				relative_power = {
+					who = prev
+					category = fleet
+					value = superior
+				}
+			}
+			desc = gal_com_target_is_strong_homicidal_empire
+		}
+		
+		# More likely to declare on very powerful assimilator empires
+		modifier = { # EED
+			factor = 8
+			from = {
+				is_civic_machine_assimilator = yes
+				is_pacifist = no
+				relative_power = {
+					who = prev
+					category = fleet
+					value = overwhelming
+				}
+			}
+			desc = gal_com_target_is_very_strong_assimilator_empire
+		}
+		# More likely to declare on very powerful assimilator empires
+		modifier = { # EED
+			factor = 4
+			from = {
+				is_civic_machine_assimilator = yes
+				is_pacifist = no
+				relative_power = {
+					who = prev
+					category = fleet
+					value = superior
+				}
+			}
+			desc = gal_com_target_is_strong_assimilator_empire
+		}
+
+		# More likely to declare on rivals
+		modifier = {
+			factor = 5 # EED 2 -> 5
+			is_rival = from
+			desc = gal_com_target_is_rival
+		}
+		modifier = { # EED
+			factor = 5
+			is_at_war_with = from
+			desc = gal_com_target_is_rival
+		}
+		
+		# Never on your ally
+		modifier = { # Ariphaos
+			factor = 0
+			is_in_federation_with = from
+			desc = ariphaos_patch_gal_com_share_federation
+		}
+
+		# Never on yourself
+		modifier = {
+			factor = 0
+			is_same_value = from
+			desc = gal_com_target_is_me
+		}
+
+		# More likely to declare on a crisis country that has started cracking stars
+		modifier = {
+			factor = 6
+			from = { has_country_flag = cracked_first_star }
+			desc = gal_com_target_has_cracked_stars
+		}
+
+		# Should be reluctant to use on normal countries
+		modifier = {
+			factor = 0.2
+			from = { # EED
+				NOR = { 
+					is_homicidal = yes
+					has_country_flag = crisis_sphere_revealed
+					has_country_flag = cracked_first_star
+					AND = {
+						is_civic_machine_assimilator = yes
+						is_pacifist = no
+					}
+				}
+			}
+			desc = gal_com_target_is_a_normal_empire
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_civic_machine_assimilator = yes
+			from = { is_civic_machine_assimilator = yes }
+			desc = gal_com_assimilator_civic
+		}
+
+		# Very unlikely to use on Custodian
+		modifier = {
+			factor = 0.1 # EED 0.2 -> 0.1
+			from = { is_galactic_custodian = yes }
+			NOR = { has_ascension_perk = ap_become_the_crisis }
+			desc = gal_com_target_is_the_custodian
+		}
+		
+		# Crisis will want to remove the Custodian as a threat
+		modifier = { # EED
+			factor = 5
+			from = { is_galactic_custodian = yes }
+			has_ascension_perk = ap_become_the_crisis
+			desc = gal_com_target_is_the_custodian
+		}
+
+		# Unlikely to use on scary Fallen Empire
+		modifier = {
+			factor = 0.2
+			from = {
+				is_fallen_empire = yes
+				relative_power = {
+					who = prev
+					category = fleet
+					value = overwhelming
+				}
+			}
+			desc = gal_com_target_is_powerful_fallen_empire
+		}
+
+		modifier = {
+			factor = 0.5
+			from = {
+				NOT = { has_ascension_perk = ap_become_the_crisis }
+			}
+			desc = gal_com_target_does_not_have_crisis_perk
+		}
+
+		modifier = {
+			factor = 3 # EED 2 -> 3
+			from = {
+				has_crisis_level = crisis_level_3
+			}
+			has_intel_level = {
+				who = from
+				category = government
+				level >= 2
+			}
+			desc = gal_com_crisis_level_3
+		}
+
+		modifier = {
+			factor = 5 # EED 2 -> 5
+			from = {
+				has_crisis_level = crisis_level_4
+			}
+			has_intel_level = { # EED
+				who = from
+				category = government
+				level >= 2
+			}
+			desc = gal_com_crisis_level_4
+		}
+
+		modifier = {
+			factor = 10 # EED 5 -> 10
+			from = {
+				has_crisis_level = crisis_level_5
+			}
+			has_intel_level = { # EED
+				who = from
+				category = government
+				level >= 2
+			}
+			desc = gal_com_crisis_level_5
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+			from = {
+				NOR = {
+					has_ascension_perk = ap_become_the_crisis
+					is_homicidal = yes
+					AND = {
+						is_fallen_empire = yes
+						NOT = { has_global_flag = war_in_heaven_ongoing }
+					}
+				}
+			}
+		}
+		
+		modifier = { # EED
+			factor = 3
+			OR = {
+				is_militarist = yes
+				is_civic_militarist = yes
+			}
+			desc = ethic_militarist
+		}
+		modifier = { # EED
+			factor = 0.75
+			OR = {
+				has_ethic = ethic_pacifist
+				has_valid_civic = civic_harm_hive
+				has_valid_civic = civic_harm_machine
+				has_ai_personality = closed_hive_mind
+				has_ai_personality = closed_machine_intelligence
+			}
+			from = {
+				NOT = { has_country_flag = crisis_sphere_revealed }
+			}
+			desc = ethic_pacifist
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_ethic = ethic_fanatic_pacifist
+			from = {
+				NOT = { has_country_flag = crisis_sphere_revealed }
+			}
+			desc = ethic_pacifist
+		}
+		modifier = { # EED
+			factor = 10
+			has_ascension_perk = ap_defender_of_the_galaxy
+			from = {
+				OR = {
+					has_crisis_level = crisis_level_3
+					is_homicidal = yes
+				}
+			}
+			desc = ap_defender_of_the_galaxy
+		}
+
+		modifier = { # Daemonic Incursion
+			factor = 0.1
+			from = {
+				has_country_flag = newgen_prescripted_country
+				is_ai = yes
+			}
+			desc = newgen_com_desc_2
+		}
+	}
+}
+
 ## Declare Crisis - Empire
 # Merge between EED, MECR, Ariphaos
 resolution_declare_crisis_empire = {
@@ -683,6 +1137,11 @@ resolution_declare_crisis_empire = {
 				from = { complete_crisis_objective = crisobj_perform_upsetting_operations }
 			}
 		}
+		from_pass_resolution_modifier = yes # MECR
+	}
+
+	fail_effects = {
+		from_fail_resolution_modifier = yes # MECR
 	}
 
 	potential = {
@@ -1084,6 +1543,8 @@ resolution_development_aides = {
 		}
 	}
 }
+
+
 
 ##################################################
 ## Copied Resolutions

@@ -1,52 +1,1213 @@
-####################################################################################################
+##########################################################################
 # Limitless Stellaris - Scripted Effects
-####################################################################################################
+##########################################################################
 
 ##################################################
-## Titanic Life Soldiers
+## Pre-FTL
 ##################################################
-### Fix for Titanic Life Soldiers with Extra Origins Monster Tamers origin.
 
-### increment_titanic_life_soldier_maximum
-# Merge between Subtle Polish and Extra Origins. Allows Monster Tamers to get 5 titanics per world instead.
+## Achieve FTL Effect
+# Merge between More Primitives, EED, Origins of Civilization, Scripted Trigger Undercoat
+achieve_ftl_effect = {
+	country_event = { id = game_start.8 }
+	remove_country_flag = early_space_age
+	set_country_flag = primitives_can_into_space
+	set_country_type = default
+	set_species_graphical_culture = yes
+	if = {
+		limit = {
+			is_gestalt = no
+			has_country_flag = human_primitive
+		}
+		change_government = {
+			authority = auth_democratic
+			civics = random
+		}
+	}
+	else_if = { # Origins of Civilization
+		limit = { # Origins of Civilization
+			OR = { # Origins of Civilization
+				has_civic = civic_secret_of_fire
+				has_civic = civic_hive_secret_of_fire
+				has_civic = civic_flat_world_theory
+				has_civic = civic_hive_flat_world_theory
+				has_civic = civic_atmospheric_pollution
+				has_civic = civic_hive_atmospheric_pollution
+			}
+		}
+		change_country_flag = random
+		change_government = {
+			authority = random
+			civics = random
+		}
+	}
+	### --- EED Block Begins --- ###
+	# Governments Done
+	#primitives_death_cult
+	#primitives_imperial_cult
+	#primitives_fanatic_purifier
+	#primitives_slave_revolt
+	#primitives_military_unification
+	#primitives_agrarian_idyll
+	#primitives_corporate_dominion
+	#primitives_exalted_priesthood
+	#primitives_idealistic_foundation
+	#primitives_warrior_culture
+	#primitives_feudal_elite
+	#primitives_technocracy
+	#primitives_shared_burden
+	#primitives_slavers_guild
+	#primitives_overtuned
+	#primitives_catalytic
+	#primitives_bloom
+	#primitives_biological_engineering
+	if = {
+		limit = { has_country_flag = primitives_robot_progress }
+		give_technology = { tech = tech_powered_exoskeletons }
+	}
+	if = {
+		limit = {
+			has_country_flag = primitives_mechanist
+			is_gestalt = no
+		}
+		give_technology = { tech = tech_robotic_workers }
+		set_policy = {
+			policy = robot_pop_policy
+			option = robot_pops_allowed
+			cooldown = yes
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = primitives_overtuned
+			is_gestalt = no
+		}
+		give_technology = { tech = tech_gene_tailoring }
+	}
+	if = {
+		limit = { is_gestalt = no }
+		switch = {
+			trigger = has_country_flag
+			primitives_fanatic_purifier = {
+				if = {
+					limit = {
+						has_ethic = ethic_fanatic_xenophobe
+						OR = {
+							has_ethic = ethic_militarist
+							has_ethic = ethic_spiritualist
+						}
+					}
+					if = {
+						limit = {
+							is_megacorp = yes
+						}
+						change_government = {
+							authority = auth_oligarchic
+						}
+					}
+					change_government = {
+						civics = {
+							civic = civic_fanatic_purifiers
+							civic = random
+						}
+					}
+					add_resource = { minerals = 3000 }
+					add_resource = { energy = 3000 }
+					add_resource = { alloys = 3000 }
+					create_fleet = {
+						set_take_point = yes
+						effect = {
+							set_owner = prev
+							
+							while = {
+								count = 9
+								create_ship = {
+									name = random
+									random_existing_design = corvette
+								}
+							}
+							
+							set_location = prev.capital_star
+						}
+					}
+				}
+			}
+			primitives_slave_revolt = {
+				if = {
+					limit = {
+						OR = {
+							has_ethic = ethic_xenophile
+							has_ethic = ethic_fanatic_xenophile
+						}
+					}
+					change_government = {
+						authority = auth_democratic
+						civics = {
+							civic = civic_beacon_of_liberty
+							civic = civic_free_haven
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_ethic = ethic_xenophobe
+							has_ethic = ethic_fanatic_xenophobe
+						}
+					}
+					change_government = {
+						authority = auth_democratic
+						civics = {
+							civic = civic_idealistic_foundation
+							civic = random
+						}
+					}
+				}
+				else = {
+					change_government = {
+						authority = auth_democratic
+						civics = {
+							civic = civic_beacon_of_liberty
+							civic = random
+						}
+					}
+				}
+			}
+			primitives_military_unification = {
+				change_government = {
+					authority = auth_dictatorial
+					civics = {
+						civic = civic_police_state
+						civic = random
+					}
+				}
+				if = {
+					limit = {
+						is_militarist = yes
+						has_global_flag = expanded_pops_active
+					}
+					set_origin = origin_militarist
+				}
+			}
+			primitives_death_cult = {
+				if = {
+					limit = {
+						OR = {
+							has_ethic = ethic_spiritualist
+							has_ethic = ethic_fanatic_spiritualist
+						}
+						NOT = { has_ethic = ethic_fanatic_egalitarian }
+						OR = {
+							NOT = { has_global_flag = expanded_pops_active }
+							NOT = { has_authority = auth_cooperative }
+						}
+					}
+					if = {
+						limit = {
+							is_megacorp = yes
+						}
+						change_government = {
+							civics = {
+								civic = civic_death_cult_corporate
+								civic = random
+							}
+						}
+					}
+					change_government = {
+						civics = {
+							civic = civic_death_cult
+							civic = random
+						}
+					}
+				}
+			}
+			primitives_imperial_cult = {
+				if = {
+					limit = {
+						OR = {
+							has_ethic = ethic_authoritarian
+							has_ethic = ethic_fanatic_authoritarian
+						}
+						OR = {
+							has_ethic = ethic_spiritualist
+							has_ethic = ethic_fanatic_spiritualist
+						}
+					}
+					random_list = {
+						55 = {
+							change_government = {
+								authority = auth_imperial
+								civics = {
+									civic = civic_imperial_cult
+									civic = random
+								}
+							}
+						}
+						25 = {
+							change_government = {
+								authority = auth_imperial
+								civics = {
+									civic = civic_imperial_cult
+									civic = civic_aristocratic_elite
+								}
+							}
+						}
+						20 = {
+							change_government = {
+								authority = auth_imperial
+								civics = {
+									civic = civic_imperial_cult
+									civic = civic_feudal_realm
+								}
+							}
+						}
+					}
+				}
+			}
+			primitives_agrarian_idyll = {
+				if = {
+					limit = {
+						OR = {
+							has_ethic = ethic_pacifist
+							has_ethic = ethic_fanatic_pacifist
+						}
+					}
+					if = {
+						limit = { capital_scope = { is_ocean_world = yes } }
+						if = {
+							limit = {
+								is_megacorp = yes
+								has_global_flag = expanded_pops_active
+							}
+							change_government = {
+								civics = {
+									civic = civic_agribusiness
+									civic = civic_corporate_anglers
+								}
+							}
+						}
+						else_if = {
+							limit = {
+								is_megacorp = yes
+								NOT = { has_global_flag = expanded_pops_active }
+							}
+							change_government = {
+								authority = auth_oligarchic
+								civics = {
+									civic = civic_agrarian_idyll
+									civic = civic_anglers
+								}
+							}
+						}
+						else = {
+							change_government = {
+								civics = {
+									civic = civic_agrarian_idyll
+									civic = civic_anglers
+								}
+							}
+						}
+					}
+					else = {
+						if = {
+							limit = {
+								is_megacorp = yes
+								has_global_flag = expanded_pops_active
+							}
+							change_government = {
+								civics = {
+									civic = civic_agribusiness
+									civic = random
+								}
+							}
+						}
+						else_if = {
+							limit = {
+								is_megacorp = yes
+								NOT = { has_global_flag = expanded_pops_active }
+							}
+							change_government = {
+								authority = auth_oligarchic
+								civics = {
+									civic = civic_agrarian_idyll
+									civic = random
+								}
+							}
+						}
+						else = {
+							change_government = {
+								civics = {
+									civic = civic_agrarian_idyll
+									civic = random
+								}
+							}
+						}
+					}
+				}
+			}
+			primitives_corporate_dominion = {
+				if = {
+					limit = {
+						has_megacorp = yes
+						OR = {
+							has_ethic = ethic_fanatic_authoritarian
+							has_ethic = ethic_fanatic_egalitarian
+							has_ethic = ethic_fanatic_xenophobe
+						}
+					}
+					if = {
+						limit = {
+							has_global_flag = expanded_pops_active
+							has_ethic = ethic_fanatic_egalitarian
+						}
+						change_government = {
+							authority = auth_cooperative
+							civics = {
+								civic = random
+								civic = random
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							has_global_flag = expanded_pops_active
+							has_ethic = ethic_fanatic_authoritarian
+						}
+						change_government = {
+							authority = auth_private
+							civics = {
+								civic = random
+								civic = random
+							}
+						}
+					}
+					else = {
+						change_government = {
+							civics = {
+								civic = civic_merchant_guilds
+								civic = random
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = { has_megacorp = no }
+					change_government = {
+						authority = auth_oligarchic
+						civics = {
+							civic = civic_corporate_dominion
+							civic = random
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						has_megacorp = yes
+						has_global_flag = expanded_pops_active
+						has_ethic = ethic_egalitarian
+					}
+					change_government = {
+						authority = auth_cooperative
+						civics = {
+							civic = random
+							civic = random
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						has_megacorp = yes
+						has_global_flag = expanded_pops_active
+						has_ethic = ethic_authoritarian
+					}
+					change_government = {
+						authority = auth_private
+						civics = {
+							civic = random
+							civic = random
+						}
+					}
+				}
+				else_if = {
+					limit = { has_megacorp = yes }
+					change_government = {
+						authority = auth_corporate
+						civics = {
+							civic = random
+							civic = random
+						}
+					}
+				}
+			}
+			primitives_exalted_priesthood = {
+				if = {
+					limit = {
+						OR = {
+							has_ethic = ethic_spiritualist
+							has_ethic = ethic_fanatic_spiritualist
+						}
+						NOT = {	has_ethic = ethic_fanatic_egalitarian }
+					}
+					if = {
+						limit = { is_megacorp = yes }
+						change_government = {
+							authority = auth_corporate
+							civics = {
+								civic = civic_gospel_of_the_masses
+								civic = random
+							}
+						}
+					}
+					else = {
+						random_list = {
+							80 = {
+								modifier = {
+									factor = 0
+									has_ethic = ethic_fanatic_authoritarian
+								}
+								change_government = {
+									authority = auth_oligarchic
+									civics = {
+										civic = civic_exalted_priesthood
+										civic = random
+									}
+								}
+							}
+							80 = {
+								modifier = {
+									factor = 0
+									has_ethic = ethic_egalitarian
+								}
+								change_government = {
+									authority = auth_dictatorial
+									civics = {
+										civic = civic_exalted_priesthood
+										civic = random
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			primitives_idealistic_foundation = {
+				if = {
+					limit = {
+						is_egalitarian = yes
+					}
+					change_government = {
+						authority = auth_democratic
+						civics = {
+							civic = civic_idealistic_foundation
+							civic = random
+						}
+					}
+				}
+				else_if = {
+					limit = { is_authoritarian = no }
+					change_government = {
+						authority = auth_democratic
+					}
+				}
+			}
+			primitives_warrior_culture = {
+				if = {
+					limit = {
+						OR = {
+							has_ethic = ethic_militarist
+							has_ethic = ethic_fanatic_militarist
+						}
+					}
+					if = {
+						limit = {
+							is_megacorp = yes
+						}
+						change_government = {
+							civics = {
+								civic = civic_private_military_companies
+								civic = random
+							}
+						}
+					}
+					else = {
+						change_government = {
+							civics = {
+								civic = civic_warrior_culture
+								civic = random
+							}
+						}
+					}
+				}
+			}
+			primitives_feudal_elite = {
+				if = {
+					limit = {
+						NOR = {
+							has_ethic = ethic_egalitarian
+							has_ethic = ethic_fanatic_egalitarian
+						}
+					}
+					change_government = {
+						authority = auth_imperial
+						civics = {
+							civic = civic_aristocratic_elite
+							civic = civic_feudal_realm
+						}
+					}
+				}
+			}
+			primitives_technocracy = {
+				if = {
+					limit = {
+						has_ethic = ethic_fanatic_materialist
+					}
+					if = {
+						limit = {
+							is_megacorp = yes
+							has_global_flag = expanded_pops_active
+						}
+						change_government = {
+							civics = {
+								civic = civic_technocracy_corp
+								civic = random
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							is_megacorp = yes
+							NOT = { has_global_flag = expanded_pops_active }
+						}
+						change_government = {
+							authority = auth_oligarchic
+							civics = {
+								civic = civic_technocracy
+								civic = random
+							}
+						}
+					}
+					else = {
+						change_government = {
+							civics = {
+								civic = civic_technocracy
+								civic = random
+							}
+						}
+					}
+				}
+			}
+			primitives_shared_burden = {
+				if = {
+					limit = {
+						has_ethic = ethic_fanatic_egalitarian
+						is_xenophobe = no
+					}
+					if = {
+						limit = { has_authority = auth_democratic }
+						change_government = {
+							civics = {
+								civic = civic_shared_burden
+								civic = random
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							has_global_flag = expanded_pops_active
+							has_authority = auth_cooperative
+						}
+						change_government = {
+							civics = {
+								civic = civic_worker_coop
+								civic = random
+							}
+						}
+					}
+				}
+			}
+			primitives_slavers_guild = {
+				if = {
+					limit = {
+						is_authoritarian = yes
+					}
+					if = {
+						limit = {
+							is_megacorp = yes
+						}
+						change_government = {
+							civics = {
+								civic = civic_indentured_assets
+								civic = random
+							}
+						}
+					}
+					else = {
+						change_government = {
+							civics = {
+								civic = civic_slaver_guilds
+								civic = random
+							}
+						}
+					}
+				}
+			}
+			primitives_catalytic = {
+				if = {
+					limit = {
+						is_megacorp = yes
+					}
+					change_government = {
+						civics = {
+							civic = civic_corporate_catalytic_processing
+							civic = random
+						}
+					}
+				}
+				else = {
+					change_government = {
+						civics = {
+							civic = civic_catalytic_processing
+							civic = random
+						}
+					}
+				}
+			}
+			primitives_bloom = {
+				if = {
+					limit = {
+						is_megacorp = yes
+					}
+					if = {
+						limit = { is_egalitarian = yes }
+						change_government = {
+							authority = auth_democratic
+							civics = {
+								civic = civic_idyllic_bloom
+								civic = civic_merchant_guilds
+							}
+						}
+					}
+					else_if = {
+						limit = { is_authoritarian = yes }
+						change_government = {
+							authority = auth_dictatorial
+							civics = {
+								civic = civic_idyllic_bloom
+								civic = civic_merchant_guilds
+							}
+						}
+					}
+					else = {
+						change_government = {
+							authority = auth_oligarchic
+							civics = {
+								civic = civic_idyllic_bloom
+								civic = civic_merchant_guilds
+							}
+						}
+					}
+				}
+				else = {
+					change_government = {
+						civics = {
+							civic = civic_idyllic_bloom
+							civic = random
+						}
+					}
+				}
+			}
+			primitives_biological_engineering = {
+				if = {
+					limit = {
+						is_megacorp = yes
+						change_government = {
+							civics = {
+								civic = civic_private_healthcare_corporate
+								civic = random
+							}
+						}
+					}
+				}
+				else = {
+					change_government = {
+						civics = {
+							civic = civic_biological_engineering
+							civic = random
+						}
+					}
+				}
+			}
+		}
+	}
+	### --- EED Block Finished --- ###
+	set_name = random
 
-# invoke this effect when a country gains a planet with Titanic Life
-# this = country
-increment_titanic_life_soldier_maximum = {
-    optimize_memory
-    if = {
-        limit = { NOT = { has_origin = origin_monster_tamers } }
-        change_variable = {
-            which = titanic_life_soldier_maximum
-            value = @titanic_life_soldier_per_planet_maximum
-        }
-    }
-    else = {
-         check_variable = {
-            which = titanic_life_soldier_maximum
-            value = 5
-        }
-    }
+	if = {
+		limit = {
+			has_country_flag = was_enlightened
+			has_origin = origin_default_pre_ftl
+		}
+		set_origin = origin_enlightened
+	}
+
+	if = {
+		limit = {
+			has_origin = origin_default_pre_ftl
+		}
+		set_origin = origin_default
+		if = {
+			limit = {
+				is_gestalt = no
+			}
+			capital_scope = {
+				add_modifier = { modifier = prosp_uni_mod days = 7200 }
+			}
+		}
+		else = {
+			capital_scope = {
+				add_modifier = { modifier = prosp_uni_mod_gestalt days = 7200 }
+			}
+		}
+		capital_scope = {
+			while = {
+				count = 4
+				create_pop = {
+					species = owner
+				}
+			}
+		}
+	}
+
+	add_resource = {
+		energy = 500
+		minerals = 500
+		alloys = 125
+		influence = 50
+		unity = 250
+		volatile_motes = 50
+		exotic_gases = 50
+		rare_crystals = 50
+		mult = trigger:years_passed
+	}
+	if = {
+		limit = {
+			is_hive_empire = no # STU
+		}
+		add_resource = {
+			consumer_goods = 250
+			mult = trigger:years_passed
+		}
+	}
+	if = {
+		limit = {
+			is_lithoid_empire = no
+		}
+		add_resource = {
+			food = 500
+			mult = trigger:years_passed
+		}
+	}
+	else = {
+		add_resource = {
+			minerals = 500
+			mult = trigger:years_passed
+		}
+	}
+
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+
+			set_fleet_stance = evasive
+			set_location = prev.capital_scope.star
+
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
+
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = prev.capital_star
+		}
+	}
+
+	while = {
+		count = 3
+		create_leader = {
+			class = scientist
+			name = random
+			species = owner_main_species
+		}
+	}
+
+	create_leader = {
+		class = governor
+		name = random
+		species = owner_main_species
+	}
+
+	capital_scope = {
+		clear_blockers = yes
+		remove_all_buildings = yes
+		if = {
+			limit = {
+				NOT = {
+					is_habitat = yes # STU
+				}
+			}
+			generate_start_buildings_and_districts = yes
+		}
+		else_if = {
+			limit = {
+				is_habitat = yes # STU
+			}
+			owner = {
+				give_technology = {
+					tech = tech_habitat_1
+					message = no
+				}
+				add_research_option = tech_habitat_2
+				if = {
+					limit = {
+						OR = {
+							is_lithoid_empire = no
+							is_catalytic_empire = yes
+						}
+					}
+					give_technology = {
+						tech = tech_eco_simulation
+						message = no
+					}
+					give_technology = {
+						tech = tech_hydroponics
+						message = no
+					}
+				}
+				else = {
+					give_technology = {
+						tech = tech_powered_exoskeletons
+						message = no
+					}
+					give_technology = {
+						tech = tech_space_mining_1
+						message = no
+					}
+				}
+			}
+			add_building = building_hab_major_capital
+			# 2 jobs
+			if = {
+				limit = {
+					owner = {
+						is_lithoid_empire = no
+					}
+				}
+				add_building = building_hydroponics_farm
+			}
+			# 2 jobs
+			add_district = district_hab_science
+			# 3 jobs
+			add_district = district_hab_commercial
+			# 2 jobs
+			if = {
+				limit = { owner = { is_spiritualist = no } }
+				add_building = building_bureaucratic_1
+			}
+			# 2 jobs
+			if = {
+				limit = {
+					owner = {
+						is_spiritualist = yes
+						is_death_cult_empire = yes # STU
+					}
+				}
+				add_building = building_sacrificial_temple_1
+			}
+			# 2 jobs
+			if = {
+				limit = {
+					owner = {
+						is_spiritualist = yes
+						is_death_cult_empire = no # STU
+					}
+				}
+				add_building = building_temple
+			}
+		}
+
+		while = {
+			limit = {
+				num_pops < 8
+				#free_housing > 0
+			}
+			create_pop = {
+				species = owner
+			}
+		}
+		if = {
+			limit = {
+				is_desert_world = yes # STU
+			}
+			set_planet_flag = tasty_desert
+		}
+		remove_all_armies = yes
+		solar_system = {
+			save_event_target_as = enlightened_system
+			if = {
+				limit = {
+					exists = owner
+				}
+				owner = {
+					save_event_target_as = previous_system_owner
+				}
+			}
+			if = {
+				limit = {
+					NOT = { exists = starbase }
+				}
+				create_starbase = {
+					size = starbase_starport
+					module = shipyard
+					module = shipyard
+					owner = root
+				}
+			}
+		}
+	}
+	random_controlled_ship = {
+		limit = { is_ship_size = primitive_space_station }
+		fleet = { destroy_fleet = THIS }
+	}
+	# countries with intel on this system get a notification and establish communications
+	every_country = {
+		limit = {
+			is_country_type_with_subjects = yes
+			NOR = {
+				AND = {
+					exists = event_target:previous_system_owner
+					is_same_value = event_target:previous_system_owner
+				}
+				is_same_value = $OWNER$
+			}
+			intel_level = {
+				level > medium
+				system = event_target:enlightened_system
+			}
+		}
+		country_event = { id = preftl.1111 days = 1 scopes = { from = $PRE_FTL$ } }
+	}
+	if = {
+		limit  = {
+			exists = event_target:previous_system_owner
+		}
+		establish_communications_no_message = event_target:previous_system_owner
+	}
 }
 
-### decrement_titanic_life_soldier_maximum
-# Merge between Subtle Polish and Extra Origins. Allows Monster Tamers to get 5 titanics per world instead.
+## Assimilation Effect
+# Merge between All Ascension Paths, Subtle Polish, Ariphaos, Scripted Trigger Undercoat
+assimilation_effect = {
+	optimize_memory # Subtle Polish
+	random_owned_pop = {
+		limit = {
+			has_citizenship_type = {
+				type = citizenship_assimilation
+				country = owner # Subtle Polish root.owner -> owner
+			}
+		}
+		if = { # Has Synth Assimilation
+			limit = {
+				has_living_standard = { # Subtle Polish
+					type = living_standard_tech_assimilation
+					country = prev
+				}
+				OR = {
+					owner = { # Subtle Polish root.owner -> owner
+						has_country_flag = synth_assimilation
+						NOR = { # All Ascension Paths
+							has_policy_flag = synth_assimilation_bio
+							has_policy_flag = synth_assimilation_targeted
+						}
+					}
+					AND = {
+						is_robot_pop = yes # Subtle Polish
+						owner = { # Subtle Polish root.owner -> owner
+							is_machine_empire = yes # STU
+							has_active_tradition = tr_synthetics_adopt_machine
+						}
+					}
+					# we have set targetted assimilation to organics, but there were no targets
+					species = { # All Ascension Paths
+						has_species_flag = assimilate_into_synths
+					}
+				}
+			}
+			#kill_pop = yes # Subtle Polish removes this
+			change_species = owner_main_species # Subtle Polish
+			owner = { # Subtle Polish removes create_pop section
+				if = {
+					limit = { has_ascension_perk = ap_become_the_crisis }
+					complete_crisis_objective = crisobj_purge_pops
+				}
+			}
+		}
+		else = {
+			species = { save_event_target_as = old_species } # Subtle Polish moves this up
+			random_galaxy_species = {
+				limit = {
+					has_species_flag = assimilation_species_of_species@prev.species
+					has_species_flag = assimilation_species_of_empire@prev.owner # Subtle Polish root -> prev
+				}
+				save_event_target_as = convert_to_species
+			}
+			if = {
+				limit = {
+					exists = event_target:convert_to_species #should always exist
+				}
+				# Subtle Polish removes everything commented below
+				#change_species = event_target:convert_to_species
+				#owner = {
+				#	if = {
+				#		limit = { has_ascension_perk = ap_become_the_crisis }
+				#		complete_crisis_objective = crisobj_purge_pops
+				#	}
+				#}
+				#root = {
+					#change_variable = {
+					#	which = assimilation_counter
+					#	value = -1
+					#}
+				prev = { # Subtle Polish
+					while = { #to avoid doing the random_galaxy_species thing too many times
+						limit = {
+							exists = event_target:old_species
+							check_variable = {
+								which = assimilation_counter
+								value > 0
+							}
+							any_owned_pop = {
+								is_same_value = event_target:old_species
+							}
+						}
+						random_owned_pop = {
+							limit = {
+								is_exact_same_species = event_target:old_species
+							}
+							change_species = event_target:convert_to_species
+							apply_post_assimilation_effects = yes
+						}
+						owner = {
+							if = {
+								limit = { has_ascension_perk = ap_become_the_crisis }
+								complete_crisis_objective = crisobj_purge_pops
+							}
+						}
+						change_variable = { # Subtle Polish moves down
+							which = assimilation_counter
+							value = -1
+						}
+					}
+				}
+				#apply_post_assimilation_effects = yes # Subtle Polish removes this
+			}
+			else = {
+				log_error = "No species found for \\[This.Species.GetName] pop owned by \\[This.Owner.GetName] on \\[This.Planet.GetName] to assimilate to"
+			}
+		}
+	}
+}
 
-# invoke this effect when a country loses a planet with Titanic Life
-# this = country
-decrement_titanic_life_soldier_maximum = {
-    optimize_memory
-    if = {
-        limit = { NOT = { has_origin = origin_monster_tamers } }
-        subtract_variable = {
-            which = titanic_life_soldier_maximum
-            value = @titanic_life_soldier_per_planet_maximum
-        }
-    }
-    else = {
-        subtract_variable = {
-            which = titanic_life_soldier_maximum
-            value = 5
-        }
-    }
+## Asteroid Impact Pre-FTL Effect
+# Merge between EED, Rapid Evolution, Ariphaos
+asteroid_impact_pre_ftl_effect = {
+	add_deposit = d_impact_crater
+	while = {
+		count = 8 # EED
+		if = {
+			limit = { num_pops > 2 }
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+	owner = {
+		switch = {
+			trigger = has_pre_ftl_age
+			stone_age = { }
+			bronze_age = {
+				set_pre_ftl_age_effect = {
+					PRE_FTL_AGE = stone_age
+				}
+			}
+			iron_age = {
+				set_pre_ftl_age_effect = {
+					PRE_FTL_AGE = stone_age # EED bronze -> stone
+				}
+			}
+			late_medieval_age = {
+				set_pre_ftl_age_effect = {
+					PRE_FTL_AGE = stone_age # EED iron -> stone
+				}
+			}
+			renaissance_age = {
+				set_pre_ftl_age_effect = {
+					PRE_FTL_AGE = stone_age # EED late_medieval -> stone
+				}
+			}
+			steam_age = {
+				set_pre_ftl_age_effect = {
+					PRE_FTL_AGE = bronze_age # EED renaissance -> bronze
+				}
+			}
+			industrial_age = {
+				set_pre_ftl_age_effect = {
+					PRE_FTL_AGE = iron_age # EED steam -> iron
+				}
+			}
+			machine_age = {
+				set_pre_ftl_age_effect = {
+					PRE_FTL_AGE = late_medieval_age # EED industrial -> late_medieval
+				}
+			}
+			atomic_age = {
+				set_pre_ftl_age_effect = {
+					PRE_FTL_AGE = renaissance_age # EED machine -> renaissance
+				}
+			}
+			early_space_age = {
+				set_pre_ftl_age_effect = {
+					PRE_FTL_AGE = renaissance_age # EED atomic -> renaissance
+				}
+			}
+		}
+	}
+	if = { # Rapid Evolution
+		limit = { has_planet_flag = re_lithoid_asteroid }
+		remove_planet_flag = re_lithoid_asteroid
+		planet_event = {
+			id = rapid_evolution.230
+			days = 15
+		}
+	}
 }
