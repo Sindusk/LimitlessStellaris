@@ -42,8 +42,9 @@ trait_td_gaia = {
 	cost = 5
 	potential_crossbreeding_chance = 1.00
 
-	species_potential_add = { always = no } # Disable the trait
-	species_possible_remove = { always = no } # Disable the trait
+	initial = no # Disable trait from species creation
+	species_potential_add = { always = no } # Disable the trait from genemodding
+	species_possible_remove = { always = no } # Disable the trait from genemodding
 
 	opposites = {
 		"trait_td_air_swimming"
@@ -68,15 +69,16 @@ trait_td_gaia = {
 	}
 }
 
-## Gaia (Lithoid)
+## Gaia (Lithoid) [Trait Diversity]
 # Disabled. Has too much in a single direction, and would be difficult to balance.
 trait_td_lith_gaia = {
 	cost = 5
 	potential_crossbreeding_chance = 1.00
 	icon = "gfx/interface/icons/traits/trait_td_gaia.dds"
 
-	species_potential_add = { always = no } # Disable the trait
-	species_possible_remove = { always = no } # Disable the trait
+	initial = no # Disable trait from species creation
+	species_potential_add = { always = no } # Disable the trait from genemodding
+	species_possible_remove = { always = no } # Disable the trait from genemodding
 
 	opposites = {
 		"trait_td_air_swimming"
@@ -101,14 +103,15 @@ trait_td_lith_gaia = {
 	}
 }
 
-## Nano-Organisms
+## Nano-Organisms [Trait Diversity]
 # Disabled. Has too much in a single direction, and would be difficult to balance.
 trait_td_nanoorganisms = {
 	cost = -4
 	potential_crossbreeding_chance = 1.00
 
-	species_potential_add = { always = no } # Disable the trait
-	species_possible_remove = { always = no } # Disable the trait
+	initial = no # Disable trait from species creation
+	species_potential_add = { always = no } # Disable the trait from genemodding
+	species_possible_remove = { always = no } # Disable the trait from genemodding
 
 	allowed_archetypes = { BIOLOGICAL PRESAPIENT }
 	slave_cost = { energy = -250 }
@@ -126,15 +129,16 @@ trait_td_nanoorganisms = {
 	}
 }
 
-## Nano-Organisms (Lithoid)
+## Nano-Organisms (Lithoid) [Trait Diversity]
 # Disabled. Has too much in a single direction, and would be difficult to balance.
 trait_td_lith_nanoorganisms = {
 	cost = -4
 	potential_crossbreeding_chance = 1.00
 	icon = "gfx/interface/icons/traits/trait_td_nanoorganisms.dds"
 
-	species_potential_add = { always = no } # Disable the trait
-	species_possible_remove = { always = no } # Disable the trait
+	initial = no # Disable trait from species creation
+	species_potential_add = { always = no } # Disable the trait from genemodding
+	species_possible_remove = { always = no } # Disable the trait from genemodding
 	
 	opposites = {
 		"trait_td_lith_meteor_strike"
