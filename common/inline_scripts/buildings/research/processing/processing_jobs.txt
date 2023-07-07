@@ -13,7 +13,7 @@ triggered_planet_modifier = {
 triggered_desc = {
 	trigger = {
 		exists = owner
-		owner = { has_policy_flag = AP_education_privledge_all }
+		owner = { is_gestalt = yes }
 	}
 	text = job_drone_mind_melder_effect_desc
 }

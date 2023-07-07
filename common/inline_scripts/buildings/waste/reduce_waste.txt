@@ -1,0 +1,32 @@
+## Ls - Reduction to non-gestalt waste.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	modifier = {
+		pop_category_rulers_waste_produces_add = $per_pop$
+		pop_category_specialists_waste_produces_add = $per_pop$
+		pop_category_workers_waste_produces_add = $per_pop$
+	}
+}
+## LS - Reduction to hive waste.
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	modifier = {
+		pop_category_drones_waste_produces_add = $per_pop$
+	}
+}
+## LS - Reduction to machine waste
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+	modifier = {
+		pop_category_robot_waste_produces_add = $per_pop$
+	}
+}

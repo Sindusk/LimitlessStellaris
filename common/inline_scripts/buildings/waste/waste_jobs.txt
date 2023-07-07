@@ -1,0 +1,39 @@
+## Ecology - Waste Drone (Gestalt)
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	modifier = {
+		job_waste_overseer_add = $overseers$
+		job_waste_drone_add = $workers$
+	}
+}
+## Ecology - Waste Handler (Non-Gestalt)
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	modifier = {
+		job_waste_manager_add = $overseers$
+		job_waste_handler_add = $workers$
+	}
+}
+
+## Ecology - Waste Effect (Non-Gestalt)
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_gestalt = no } 
+	}
+	text = eco_building_waste_effect
+}
+## Ecology - Waste Effect (Gestalt)
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_gestalt = yes } 
+	}
+	text = eco_building_waste_gestalt_effect
+}

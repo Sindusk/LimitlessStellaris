@@ -2419,7 +2419,7 @@ building_energy_nexus = {
 ## Storage - Unique
 ##################################################
 
-## Resource Silo (Tier 1)
+## Resource Silo (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Extra Buildings, Real Space: Planetary Stations, StarTech, Ariphaos
 building_resource_silo = {
 	base_buildtime = @db2_time # LS 180 -> db2
@@ -2548,7 +2548,7 @@ building_resource_silo = {
 	}
 }
 
-## Bio Reactor (Tier 1)
+## Bio Reactor (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech, Ariphaos
 building_bio_reactor = {
 	base_buildtime = 240
@@ -2645,5 +2645,371 @@ building_bio_reactor = {
 				owner = { set_timed_country_flag = { flag = buildings_new_reactor_building days = 510 } }
 			}
 		}
+	}
+}
+
+##################################################
+## Waste - Basic
+##################################################
+
+## Waste Recovery Plant (Tier 1) [Ecology]
+# Custom version using inlines.
+eco_building_waste_recovery = {
+	base_buildtime = @db1_time
+	base_cap_amount = 3 # LS - Somewhat Unique
+	position_priority = 4012000 # LS - Sort Buildings
+	category = amenity
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = eco_building_waste_recovery_tt
+    }
+
+	inline_script = { # Reduces waste usage from pops on the planet
+		script = buildings/waste/reduce_waste
+		per_pop = -0.25
+	}
+	
+	inline_script = { # Adds waste management jobs
+		script = buildings/waste/waste_jobs
+		overseers = 0
+		workers = 2
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+	}
+	
+	upgrades = {
+		eco_building_industrial_symbiosis
+	}
+	
+	prerequisites = {
+		eco_tech_waste_processing_0
+	}
+	
+	on_built = {
+		set_planet_flag = eco_built_waste_building
+	}
+
+	on_destroy = {
+		remove_planet_flag = eco_built_waste_building
+	}
+	
+	ai_resource_production = {
+		food = 1
+		minerals = 1
+		energy = 1
+		alloys = 1
+		trigger = {
+			exists = owner
+			owner = { is_civic_environmentalist = yes }
+		}
+	}
+	ai_resource_production = {
+		food = 1
+		minerals = 1
+		energy = 1
+		alloys = 1
+		trigger = {
+			has_modifier = eco_moderate
+		}
+	}
+	ai_resource_production = {
+		food = 2
+		minerals = 2
+		energy = 2
+		alloys = 2
+		trigger = {
+			has_modifier = eco_heavy
+		}
+	}
+	ai_resource_production = {
+		food = 3
+		minerals = 3
+		energy = 3
+		alloys = 3
+		trigger = {
+			has_modifier = eco_extreme
+		}
+	}
+	ai_resource_production = {
+		food = 5
+		minerals = 5
+		energy = 5
+		alloys = 5
+		trigger = {
+			has_modifier = eco_catastrophic
+		}
+	}
+}
+
+## Industrial Symbiosis Center (Tier 2) [Ecology]
+# Custom version using inlines.
+eco_building_industrial_symbiosis = {
+	base_buildtime = @db2_time
+	#position_priority = 170 # LS - redundant
+	can_build = no
+
+	category = amenity
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = eco_building_industrial_symbiosis_tt
+    }
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	inline_script = { # Reduces waste usage from pops on the planet
+		script = buildings/waste/reduce_waste
+		per_pop = -0.5
+	}
+	
+	inline_script = { # Adds waste management jobs
+		script = buildings/waste/waste_jobs
+		overseers = 1
+		workers = 3
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			volatile_motes = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			minerals = @db2_upkeep
+			volatile_motes = @db2_rare_upkeep
+		}
+	}
+	
+	upgrades = {
+		eco_building_industrial_metabolism
+	}
+
+	prerequisites = {
+		eco_tech_waste_processing_1
+	}
+
+	on_built = {
+		set_planet_flag = eco_built_waste_building
+	}
+
+	on_destroy = {
+		remove_planet_flag = eco_built_waste_building
+	}
+}
+
+## Industrial Metabolism Center (Tier 3) [Ecology]
+# Custom version using inlines.
+eco_building_industrial_metabolism = {
+	base_buildtime = @db3_time
+	#position_priority = 170 # LS - Redundant
+	can_build = no
+
+	category = amenity
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = eco_building_industrial_metabolism_tt
+    }
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	inline_script = { # Reduces waste usage from pops on the planet
+		script = buildings/waste/reduce_waste
+		per_pop = -0.75
+	}
+	
+	inline_script = { # Adds waste management jobs
+		script = buildings/waste/waste_jobs
+		overseers = 1
+		workers = 5
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db3_minerals
+			volatile_motes = @db2_rare_cost
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db3_upkeep
+			minerals = @db3_upkeep
+			volatile_motes = @db2_rare_upkeep
+			rare_crystals = @db2_rare_upkeep
+		}
+	}
+	
+	upgrades = {
+		eco_building_zero_waste
+	}
+
+	prerequisites = {
+		eco_tech_waste_processing_2
+	}	
+	
+	on_built = {
+		set_planet_flag = eco_built_waste_building
+	}
+
+	on_destroy = {
+		remove_planet_flag = eco_built_waste_building
+	}
+}
+
+## Zero Waste Facility (Tier 4) [Ecology]
+# Custom version using inlines.
+eco_building_zero_waste = {
+	base_buildtime = @db4_time
+	#position_priority = 170 # LS - Redundant
+	can_build = no
+
+	category = amenity
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = eco_building_zero_waste_tt
+    }
+
+	allow = {
+		has_fully_upgraded_capital = yes
+	}
+
+	inline_script = { # Reduces waste usage from pops on the planet
+		script = buildings/waste/reduce_waste
+		per_pop = -1
+	}
+	
+	inline_script = { # Adds waste management jobs
+		script = buildings/waste/waste_jobs
+		overseers = 2
+		workers = 6
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db4_minerals
+			rare_crystals = @db3_rare_cost
+			volatile_motes = @db3_rare_cost
+			exotic_gases = @db3_rare_cost
+		}
+		upkeep = {
+			energy = @db4_upkeep
+			minerals = @db4_upkeep
+			rare_crystals = @db3_rare_upkeep
+			volatile_motes = @db3_rare_upkeep
+			exotic_gases = @db3_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		eco_tech_waste_processing_3
+	}	
+	
+	on_built = {
+		set_planet_flag = eco_built_waste_building
+	}
+
+	on_destroy = {
+		remove_planet_flag = eco_built_waste_building
+	}
+}
+
+## - Not Yet Streamlined - ##
+building_waste_reprocessing_center = {
+	icon = building_bio_reprocessing_facilities
+	base_buildtime = @b2_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	
+	category = amenity
+	
+	potential = {
+		owner = { has_country_flag = bought_waste_reprocessing_center }
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_waste_overseer_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_waste_overseer_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_waste_manager_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		produces = {
+			minerals = 10
+			energy = 10
+		}	
+	}
+		
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+			owner = { is_regular_empire = yes } 
+		}
+		text = job_waste_manager_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+			owner = { is_hive_empire = yes } 
+		}
+		text = job_waste_overseer_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+			owner = { is_machine_empire = yes } 
+		}
+		text = job_waste_overseer_effect_desc
 	}
 }
