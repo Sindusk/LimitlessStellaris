@@ -112,6 +112,11 @@
 @building_influence_t3 = 0.15
 @building_influence_t4 = 0.20
 
+### Limitless Stellaris Building Variables ###
+@db1_basic_output = 0.1
+@db2_basic_output = 0.2
+@db3_basic_output = 0.3
+
 ### Doge Building Variables ###
 # Tier 0 (First building) [Deprecated]
 @db0_time = 360 	    # Tier 0 build time

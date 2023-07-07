@@ -98,7 +98,7 @@ building_hydroponics_farm = {
 	}
 
 	planet_modifier = {
-		planet_farmers_food_produces_add = 0.25 # OSA # LS 0.5 -> 0.25 [Streamlining]
+		planet_farmers_food_produces_add = @db1_basic_output # OSA # LS 0.5 -> db1 [Streamlining]
 	}
 
 	triggered_planet_modifier = {

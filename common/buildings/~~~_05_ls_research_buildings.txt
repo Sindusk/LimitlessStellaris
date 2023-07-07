@@ -48,9 +48,9 @@ building_research_lab_1 = {
 	}
 
 	planet_modifier = { # LS - Add standard basic productivity bonus
-		planet_researchers_physics_research_produces_add = 0.25
-		planet_researchers_society_research_produces_add = 0.25
-		planet_researchers_engineering_research_produces_add = 0.25
+		planet_researchers_physics_research_produces_add = @db1_basic_output
+		planet_researchers_society_research_produces_add = @db1_basic_output
+		planet_researchers_engineering_research_produces_add = @db1_basic_output
 	}
 
 	inline_script = { # Adds the researcher jobs based on proper conditions.
@@ -146,9 +146,9 @@ building_research_lab_2 = {
 	}
 
 	planet_modifier = { # LS - Add standard basic productivity bonus
-		planet_researchers_physics_research_produces_add = 0.5
-		planet_researchers_society_research_produces_add = 0.5
-		planet_researchers_engineering_research_produces_add = 0.5
+		planet_researchers_physics_research_produces_add = @db2_basic_output
+		planet_researchers_society_research_produces_add = @db2_basic_output
+		planet_researchers_engineering_research_produces_add = @db2_basic_output
 	}
 
 	inline_script = { # Adds the researcher jobs based on proper conditions.
@@ -238,9 +238,9 @@ building_research_lab_3 = {
 	}
 
 	planet_modifier = { # LS - Add standard basic productivity bonus
-		planet_researchers_physics_research_produces_add = 0.75
-		planet_researchers_society_research_produces_add = 0.75
-		planet_researchers_engineering_research_produces_add = 0.75
+		planet_researchers_physics_research_produces_add = @db3_basic_output
+		planet_researchers_society_research_produces_add = @db3_basic_output
+		planet_researchers_engineering_research_produces_add = @db3_basic_output
 	}
 
 	inline_script = { # Adds the researcher jobs based on proper conditions.
