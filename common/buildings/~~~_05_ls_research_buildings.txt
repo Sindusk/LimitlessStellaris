@@ -927,6 +927,7 @@ building_research_support_1 = {
 	base_cap_amount = 1
 	position_priority = 1052000 # LS - Sorted on top tier.
 	exempt_from_ai_planet_specialization = no
+	icon = building_research_support # LS - Use an unused Ancient Empire research icon.
 	category = research
 
     # Building Tooltip
@@ -1047,6 +1048,7 @@ building_research_support_1 = {
 building_research_support_2 = {
 	base_buildtime = @db2_time
 	can_build = no
+	icon = building_research_support # LS - Use an unused Ancient Empire research icon.
 	category = research
 
     # Building Tooltip
@@ -1171,6 +1173,7 @@ building_research_support_2 = {
 building_research_support_3 = {
 	base_buildtime = @db3_time
 	can_build = no
+	icon = building_research_support # LS - Use an unused Ancient Empire research icon.
 	category = research
 
     # Building Tooltip
