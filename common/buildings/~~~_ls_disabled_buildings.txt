@@ -3,6 +3,688 @@
 ##########################################################################
 
 ##################################################
+## Advanced Policies
+##################################################
+
+## Parliamentary Assembly [Advanced Policies]
+# Disabled. Does not fit the streamlining at the moment. Not compatible with Bug Branch.
+building_AP_democratic_parliment = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	icon = building_subversive_shrine
+	category = government
+	position_priority = 50
+	potential = {
+		always = no
+		#owner = {
+		#	has_authority = auth_democratic
+		#	is_fallen_empire = no
+		#}
+		#is_capital = yes
+	}
+	allow = {
+		has_upgraded_capital = yes
+	}
+	planet_modifier = {
+		job_politician_add = 3
+		planet_stability_add = 5
+	}
+	convert_to = {
+		building_AP_imperial_palace
+		building_AP_dictators_palace
+		building_AP_oligarcy_assembly
+		building_AP_executive
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			NOT = {
+				owner = {
+					has_authority = auth_democratic
+				}
+			}
+			planet = {
+				is_capital = NO
+			}
+		}
+	}
+	# Spiritualist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_spiritualist = yes
+			}
+		}
+		job_politician_add = -1
+		job_high_priest_add = 1
+	}
+	# Materialist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_materialist = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Pacifist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_pacifist = yes
+			}
+		}
+		job_politician_add = -1
+		job_merchant_add = 1
+	}
+	# Militarist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_militarist = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophile jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophile = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophobe jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophobe = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	ai_weight = {
+		weight = 5
+	}
+}
+
+## Oligarcical Assembly [Advanced Policies]
+# Disabled. Does not fit the streamlining at the moment. Not compatible with Bug Branch.
+building_AP_oligarcy_assembly = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	icon = building_public_relations_office
+	category = government
+	position_priority = 50
+	potential = {
+		always = no
+		#owner = {
+		#	has_authority = auth_oligarchic
+		#	is_fallen_empire = no
+		#}
+		#is_capital = yes
+	}
+	allow = {
+		has_upgraded_capital = yes
+	}
+	planet_modifier = {
+		job_politician_add = 3
+		planet_stability_add = 5
+	}
+	convert_to = {
+		building_AP_imperial_palace
+		building_AP_dictators_palace
+		building_AP_democratic_parliment
+		building_AP_executive
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			NOT = {
+				owner = {
+					has_authority = auth_oligarchic
+				}
+			}
+			planet = {
+				is_capital = NO
+			}
+		}
+	}
+	# Spiritualist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_spiritualist = yes
+			}
+		}
+		job_politician_add = -1
+		job_high_priest_add = 1
+	}
+	# Materialist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_materialist = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Pacifist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_pacifist = yes
+			}
+		}
+		job_politician_add = -1
+		job_merchant_add = 1
+	}
+	# Militarist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_militarist = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophile jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophile = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophobe jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophobe = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+## Dictators Palace [Advanced Policies]
+# Disabled. Does not fit the streamlining at the moment. Not compatible with Bug Branch.
+building_AP_dictators_palace = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	icon = building_syndicate_outreach_office
+	category = government
+	position_priority = 50
+	potential = {
+		always = no
+		#owner = {
+		#	has_authority = auth_dictatorial
+		#	is_fallen_empire = no
+		#}
+		#is_capital = yes
+	}
+	allow = {
+		has_upgraded_capital = yes
+	}
+	planet_modifier = {
+		job_politician_add = 3
+		planet_stability_add = 5
+	}
+	convert_to = {
+		building_AP_imperial_palace
+		building_AP_oligarcy_assembly
+		building_AP_democratic_parliment
+		building_AP_executive
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			NOT = {
+				owner = {
+					has_authority = auth_dictatorial
+				}
+			}
+			planet = {
+				is_capital = NO
+			}
+		}
+	}
+	# Spiritualist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_spiritualist = yes
+			}
+		}
+		job_politician_add = -1
+		job_high_priest_add = 1
+	}
+	# Materialist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_materialist = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Pacifist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_pacifist = yes
+			}
+		}
+		job_politician_add = -1
+		job_merchant_add = 1
+	}
+	# Militarist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_militarist = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophile jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophile = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophobe jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophobe = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+## Imperial Palace [Advanced Policies]
+# Disabled. Does not fit the streamlining at the moment. Not compatible with Bug Branch.
+building_AP_imperial_palace = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	icon = building_temple_of_prosperity
+	category = government
+	position_priority = 50
+	potential = {
+		always = no
+		#owner = {
+		#	has_authority = auth_imperial
+		#	is_fallen_empire = no
+		#}
+		#is_capital = yes
+	}
+	allow = {
+		has_upgraded_capital = yes
+	}
+	planet_modifier = {
+		job_politician_add = 3
+		planet_stability_add = 5
+	}
+	convert_to = {
+		building_AP_dictators_palace
+		building_AP_oligarcy_assembly
+		building_AP_democratic_parliment
+		building_AP_executive
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			NOT = {
+				owner = {
+					has_authority = auth_imperial
+				}
+			}
+			planet = {
+				is_capital = NO
+			}
+		}
+	}
+	# Spiritualist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_spiritualist = yes
+			}
+		}
+		job_politician_add = -1
+		job_high_priest_add = 1
+	}
+	# Materialist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_materialist = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Pacifist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_pacifist = yes
+			}
+		}
+		job_politician_add = -1
+		job_merchant_add = 1
+	}
+	# Militarist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_militarist = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophile jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophile = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophobe jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophobe = yes
+			}
+		}
+		job_politician_add = -1
+		job_head_researcher_add = 1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+## Executive HQ [Advanced Policies]
+# Disabled. Does not fit the streamlining at the moment. Not compatible with Bug Branch.
+building_AP_executive = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	icon = building_corporate_embassy
+	category = government
+	position_priority = 50
+	potential = {
+		always = no
+		#owner = {
+		#	has_authority = auth_corporate
+		#	is_fallen_empire = no
+		#}
+		#is_capital = yes
+	}
+	allow = {
+		has_upgraded_capital = yes
+	}
+	convert_to = {
+		building_AP_imperial_palace
+		building_AP_dictators_palace
+		building_AP_oligarcy_assembly
+		building_AP_democratic_parliment
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			NOT = {
+				owner = {
+					has_authority = auth_corporate
+				}
+			}
+			planet = {
+				is_capital = NO
+			}
+		}
+	}
+	planet_modifier = {
+		job_executive_add = 3
+		planet_stability_add = 5
+	}
+	# Spiritualist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_spiritualist = yes
+			}
+		}
+		job_executive_add = -1
+		job_high_priest_add = 1
+	}
+	# Materialist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_materialist = yes
+			}
+		}
+		job_executive_add = -1
+		job_head_researcher_add = 1
+	}
+	# Pacifist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_pacifist = yes
+			}
+		}
+		job_executive_add = -1
+		job_merchant_add = 1
+	}
+	# Militarist jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_militarist = yes
+			}
+		}
+		job_executive_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophile jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophile = yes
+			}
+		}
+		job_executive_add = -1
+		job_head_researcher_add = 1
+	}
+	# Xenophobe jobs
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_xenophobe = yes
+			}
+		}
+		job_executive_add = -1
+		job_head_researcher_add = 1
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+## Central Processing Unit [Advanced Policies]
+# Disabled. Does not fit the streamlining at the moment.
+building_AP_gestalt_mech = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	icon = building_disinformation_center
+	category = government
+	position_priority = 50
+	potential = {
+		always = no
+		#owner = {
+		#	has_authority = auth_machine_intelligence
+		#}
+		#is_capital = yes
+	}
+	allow = {
+		has_upgraded_capital = yes
+	}
+	destroy_trigger = {
+		NOT = {
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+			planet = {
+				is_capital = YES
+			}
+		}
+	}
+	planet_modifier = {
+		job_patrol_drone_add = 2
+		job_coordinator_add = 2
+		job_evaluator_add = 2
+		planet_orbital_bombardment_damage = -0.33
+		planet_housing_add = +6
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+## Central Synapse Node [Advanced Policies]
+# Disabled. Does not fit the streamlining at the moment.
+building_AP_gestalt_hive = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	icon = building_imperial_hive_capital
+	category = government
+	position_priority = 50
+	potential = {
+		always = no
+		#owner = {
+		#	has_authority = auth_hive_mind
+		#}
+		#is_capital = yes
+	}
+	allow = {
+		has_upgraded_capital = yes
+	}
+	destroy_trigger = {
+		NOT = {
+			owner = {
+				has_authority = auth_hive_mind
+			}
+			planet = {
+				is_capital = YES
+			}
+		}
+	}
+	planet_modifier = {
+		job_patrol_drone_add = 2
+		job_spawning_drone_add = 1
+		job_synapse_drone_add = 3
+		planet_orbital_bombardment_damage = -0.33
+		planet_housing_add = 6
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+
+##################################################
 ## Expanded Megastructures and Technology
 ##################################################
 
