@@ -11,6 +11,9 @@
 default_conversion = {
 	potential = {
 		has_policy_flag = trade_conversion_default
+		NOT = { # OSA
+			has_active_tradition = tr_commerce_finish
+		}
 	}
 	
 	weight = {
@@ -29,6 +32,9 @@ default_conversion = {
 consumer_goods_conversion = {
 	potential = {
 		has_policy_flag = trade_conversion_consumer_goods
+		NOT = { # OSA
+			has_active_tradition = tr_commerce_finish
+		}
 	}
 	
 	weight = {
@@ -45,10 +51,12 @@ consumer_goods_conversion = {
 
 #Marketplace Of Ideas
 #Unity
-unity_conversion =
-{
+unity_conversion = {
 	potential = {
 		has_policy_flag = trade_conversion_unity
+		NOT = { # OSA
+			has_active_tradition = tr_commerce_finish
+		}
 	}
 	
 	weight = {
