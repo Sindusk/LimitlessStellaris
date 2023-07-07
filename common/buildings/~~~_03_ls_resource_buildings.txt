@@ -3,7 +3,7 @@
 ##########################################################################
 
 ##################################################
-## Resource Buildings
+## Food - Basic
 ##################################################
 
 ## Hydroponics Farm (Tier 1)
@@ -98,7 +98,7 @@ building_hydroponics_farm = {
 	}
 
 	planet_modifier = {
-		planet_farmers_food_produces_add = 0.5 # OSA
+		planet_farmers_food_produces_add = 0.25 # OSA # LS 0.5 -> 0.25 [Streamlining]
 	}
 
 	triggered_planet_modifier = {
@@ -349,6 +349,10 @@ building_hydroponics_farm = {
 		}
 	}
 }
+
+##################################################
+## Food - Productivity (Unique)
+##################################################
 
 ## Food Processing Facility (Tier 1)
 # Merge between Sort Buildings, Bug Branch, OSA, Real Space: Planetary Stations, StarTech, Ariphaos, Scripted Trigger Undercoat
@@ -1143,6 +1147,10 @@ building_baol_organic_plant = {
 	}
 }
 
+##################################################
+## Minerals - Productivity (Unique)
+##################################################
+
 ## Mineral Purification Plant (Tier 1)
 # Merge between Sort Buildings, OSA, Bug Branch, StarTech, Ariphaos, Scripted Trigger Undercoat
 building_mineral_purification_plant = {
@@ -1820,6 +1828,10 @@ building_mineral_purification_hub = {
 	}
 }
 
+##################################################
+## Energy - Productivity (Unique)
+##################################################
+
 ## Energy Grid (Tier 1)
 # Merge between Sort Buildings, Nanite Machines, OSA, Bug Branch, StarTech, Ariphaos, Scripted Trigger Undercoat
 building_energy_grid = {
@@ -2403,12 +2415,16 @@ building_energy_nexus = {
 	}
 }
 
+##################################################
+## Storage - Unique
+##################################################
+
 ## Resource Silo (Tier 1)
 # Merge between Sort Buildings, OSA, Extra Buildings, Real Space: Planetary Stations, StarTech, Ariphaos
 building_resource_silo = {
-	base_buildtime = 180
-	base_cap_amount = 3 # OSA limits to 3
-	position_priority = 4033000 # Sort Buildings
+	base_buildtime = @db2_time # LS 180 -> db2
+	base_cap_amount = 1 # OSA limits to 3 # LS 3 -> 1 fully unique now
+	position_priority = 1033000 # Sort Buildings # LS 4th row -> 1st row (unique now)
 	
     # Building Tooltip
     triggered_desc = {
@@ -2418,56 +2434,56 @@ building_resource_silo = {
 	category = resource
 
 	potential = {
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = slave_colony
-			has_modifier = crucible_colony
-		}
-		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+		LS_potential_resource_silo_building = yes # LS - Custom Trigger
 	}
 
 	allow = {
 		exists = owner
 		hidden_trigger = {
-			exists = owner
-			owner = { is_ai = no } # StarTech disables AI from building
+			OR = {
+				owner = { is_ai = no } # Players can always build it
+				num_pops > 10 # AI should build it when they have more than 10 pops on the planet working jobs.
+			}
 		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-		modifier = {
-			job_politician_add = 1 # OSA
-			job_clerk_add = 2 # OSA 1 -> 2
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		modifier = {
-			job_patrol_drone_add = 1 # OSA
-			job_maintenance_drone_add = 2 # OSA 1 -> 2
-		}
+		# It's good now, so StarTech doesn't need to disable.
+		#hidden_trigger = {
+		#	exists = owner
+		#	owner = { is_ai = no } # StarTech disables AI from building
+		#}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500 # OSA 200 -> 500
+			minerals = @db2_minerals # OSA 200 -> 500 # LS 500 -> db2
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @db2_upkeep # LS 2.5 -> db2
+			minerals = @db2_upkeep # LS 2.5 -> db2
 		}
 	}
 
 	country_modifier = {
-		country_resource_max_add = 5000
+		country_resource_max_add = 10000 # LS 5,000 -> 10,000
+	}
+
+	triggered_planet_modifier = { # LS
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			planet_jobs_worker_produces_mult = 0.10 # LS
+		}
+	}
+	triggered_planet_modifier = { # LS
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			planet_jobs_simple_drone_produces_mult = 0.10 # LS
+		}
 	}
 
 	triggered_country_modifier = {
@@ -2477,7 +2493,7 @@ building_resource_silo = {
 				has_technology = tech_global_production_strategy # Change from Construction Templates by Extra Buildings
 			}
 		}
-		country_resource_max_add = 5000
+		country_resource_max_add = 10000 # LS 5,000 -> 10,000
 	}
 
 	upgrades = {
@@ -2518,6 +2534,17 @@ building_resource_silo = {
 			owner = { is_gestalt = no }
 		}
 		text = job_clerk_effect_desc
+	}
+
+	# LS AI Resource Production
+	ai_resource_production = { # AI should really build this when their colony is reasonably sized, it's good now
+		trigger = {
+			num_pops > 10
+		}
+		energy = 10
+		minerals = 10
+		food = 10
+		alloys = 10
 	}
 }
 

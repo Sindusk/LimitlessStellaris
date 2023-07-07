@@ -47,6 +47,12 @@ building_research_lab_1 = {
 		str_research_allow = yes # StarTech AI
 	}
 
+	planet_modifier = { # LS - Add standard basic productivity bonus
+		planet_researchers_physics_research_produces_add = 0.25
+		planet_researchers_society_research_produces_add = 0.25
+		planet_researchers_engineering_research_produces_add = 0.25
+	}
+
 	inline_script = { # Adds the researcher jobs based on proper conditions.
 		script = buildings/research/research_jobs
 		basic = @db1_jobs
@@ -139,6 +145,12 @@ building_research_lab_2 = {
 		}
 	}
 
+	planet_modifier = { # LS - Add standard basic productivity bonus
+		planet_researchers_physics_research_produces_add = 0.5
+		planet_researchers_society_research_produces_add = 0.5
+		planet_researchers_engineering_research_produces_add = 0.5
+	}
+
 	inline_script = { # Adds the researcher jobs based on proper conditions.
 		script = buildings/research/research_jobs
 		basic = @db2_jobs
@@ -223,6 +235,12 @@ building_research_lab_3 = {
 			}
 			str_research_destroy = yes # StarTech AI
 		}
+	}
+
+	planet_modifier = { # LS - Add standard basic productivity bonus
+		planet_researchers_physics_research_produces_add = 0.75
+		planet_researchers_society_research_produces_add = 0.75
+		planet_researchers_engineering_research_produces_add = 0.75
 	}
 
 	inline_script = { # Adds the researcher jobs based on proper conditions.

@@ -227,6 +227,7 @@ building_slave_processing = {
 # Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech, Ariphaos
 building_precinct_house = {
 	base_buildtime = @db1_time
+	base_cap_amount = 5 # LS - Basic building
 	position_priority = 4021000 # Sort Buildings
 	
     # Building Tooltip
@@ -380,6 +381,7 @@ building_hall_judgment = {
 # Merge between Sort Buildings, OSA, Real Space: Planetary Stations, More Emperor and Galactic Custodian Resolutions, StarTech
 building_sentinel_posts = {
 	base_buildtime = @db1_time
+	base_cap_amount = 5 # LS - Basic building
 	position_priority = 4021000 # Sort Buildings
 	
     # Building Tooltip
@@ -630,6 +632,7 @@ building_order_castle = {
 # Merge between Sort Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_psi_corps = {
 	base_buildtime = @db2_time
+	base_cap_amount = 1
 	position_priority = 2024000 # Sort Buildings
 
     # Building Tooltip
@@ -638,8 +641,6 @@ building_psi_corps = {
     }
 
 	category = government
-
-	base_cap_amount = 1
 
 	potential = {
 		host_has_dlc = "Utopia"

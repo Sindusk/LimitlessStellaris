@@ -398,7 +398,7 @@ building_bugged_planetary_stock_exchange = {
 	}
 }
 
-## Galactic Stock Exchange (Tier 2)
+## Galactic Stock Exchange (Tier 2) [Vanilla]
 # Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
 building_galactic_stock_exchange = {
 	base_buildtime = @db2_time

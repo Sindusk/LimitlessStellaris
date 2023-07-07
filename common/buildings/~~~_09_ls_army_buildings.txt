@@ -346,6 +346,7 @@ building_dread_encampment = {
 # Merge between Sort Buildings, Roma Invicta, OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_stronghold = {
 	base_buildtime = 240
+	base_cap_amount = 5 # LS - Basic Building
 	position_priority = 4091000 # Sort Buildings
 	can_be_ruined = no
 	category = army

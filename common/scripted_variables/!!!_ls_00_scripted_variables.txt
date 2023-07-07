@@ -156,7 +156,7 @@
 @db4_upkeep = 14	    # Tier 4 upkeep
 @db4_rare_upkeep = 4    # Tier 4 rare upkeep
 @db4_jobs = 2 		    # Tier 4 jobs
-@db4_adv_jobs = 4 	    # Tier 4 adv jobs
+@db4_adv_jobs = 2 	    # Tier 4 adv jobs
 @db4_dm_jobs = 0		# Tier 4 dark matter jobs
 
 # Tier 5 [Extra Buildings]
@@ -166,7 +166,7 @@
 @db5_upkeep = 25	    # Tier 5 upkeep
 @db5_rare_upkeep = 6    # Tier 5 rare upkeep
 @db5_jobs = 0 		    # Tier 5 jobs [phased out]
-@db5_adv_jobs = 6 	    # Tier 5 adv jobs
+@db5_adv_jobs = 4 	    # Tier 5 adv jobs
 @db5_dm_jobs = 0		# Tier 5 dark matter jobs
 
 # Tier 6 [ACOT Delta]
@@ -178,7 +178,7 @@
 @db6_rare_upkeep = 8	# Tier 6 rare upkeep
 @db6_dark_upkeep = 1    # Tier 6 dark energy upkeep
 @db6_jobs = 0           # Tier 6 jobs [phased out]
-@db6_adv_jobs = 4       # Tier 6 adv jobs
+@db6_adv_jobs = 2       # Tier 6 adv jobs
 @db6_dm_jobs = 2		# Tier 6 dark matter jobs
 
 # Tier 7 [ACOT Alpha]
@@ -190,5 +190,5 @@
 @db7_rare_upkeep = 15	# Tier 7 rare upkeep
 @db7_dark_upkeep = 3	# Tier 7 dark upkeep
 @db7_jobs = 0			# Tier 7 jobs [phased out]
-@db7_adv_jobs = 2		# Tier 7 adv jobs
+@db7_adv_jobs = 0		# Tier 7 adv jobs
 @db7_dm_jobs = 4		# Tier 7 dark jobs

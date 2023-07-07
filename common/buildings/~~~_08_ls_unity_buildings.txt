@@ -447,6 +447,10 @@ building_bureaucratic_1 = {
 		}
 	}
 
+	planet_modifier = {
+		planet_administrators_unity_produces_add = 0.25 # LS - Basic resource production
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -593,6 +597,10 @@ building_bureaucratic_2 = {
 		}
 	}
 
+	planet_modifier = {
+		planet_administrators_unity_produces_add = 0.5 # LS - Basic resource production
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -737,6 +745,10 @@ building_bureaucratic_3 = {
 			}
 			unity = 20
 		}
+	}
+
+	planet_modifier = {
+		planet_administrators_unity_produces_add = 0.75 # LS - Basic resource production
 	}
 
 	triggered_planet_modifier = {
@@ -925,6 +937,7 @@ building_temple = {
 	}
 
 	planet_modifier = {
+		planet_priests_unity_produces_add = 0.25 # LS - Basic resource production
 		job_priest_add = 1
 		pop_ethic_spiritualist_attraction_mult = 0.10 # OSA 0.05 -> 0.1
 	}
@@ -1105,6 +1118,7 @@ building_holotemple = {
 	}
 
 	planet_modifier = {
+		planet_priests_unity_produces_add = 0.5 # LS - Basic resource production
 		job_priest_add = 2
 		pop_ethic_spiritualist_attraction_mult = 0.20 # OSA 0.1 -> 0.2
 	}
@@ -1285,6 +1299,7 @@ building_sacred_nexus = {
 	}
 
 	planet_modifier = {
+		planet_priests_unity_produces_add = 0.75 # LS - Basic resource production
 		job_priest_add = 3
 		pop_ethic_spiritualist_attraction_mult = 0.30 # OSA 0.15 -> 0.30
 	}
@@ -1493,6 +1508,11 @@ building_uplink_node = {
 		}
 	}
 
+	planet_modifier = {
+		planet_administrators_unity_produces_add = 0.25 # LS - Basic Resource Production
+		job_coordinator_add = @b1_jobs
+	}
+
 	triggered_planet_modifier = { # Plentiful Traditions
 		potential = {
 			exists = owner
@@ -1504,10 +1524,6 @@ building_uplink_node = {
 		modifier = {
 			job_coordinator_add = 2
 		}
-	}
-
-	planet_modifier = {
-		job_coordinator_add = @b1_jobs
 	}
 
 	triggered_desc = {
@@ -1603,7 +1619,12 @@ building_network_junction = {
 			unity = 10
 		}
 	}
-	
+
+	planet_modifier = {
+		planet_administrators_unity_produces_add = 0.5 # LS - Basic Resource Production
+		job_coordinator_add = @b2_jobs
+	}
+
 	triggered_planet_modifier = { # Plentiful Traditions
 		potential = {
 			exists = owner
@@ -1615,10 +1636,6 @@ building_network_junction = {
 		modifier = {
 			job_coordinator_add = 3
 		}
-	}
-
-	planet_modifier = {
-		job_coordinator_add = @b2_jobs
 	}
 
 	triggered_desc = {
@@ -1715,6 +1732,11 @@ building_system_conflux = {
 		}
 	}
 
+	planet_modifier = {
+		planet_administrators_unity_produces_add = 0.75 # LS - Basic Resource Production
+		job_coordinator_add = @b3_jobs
+	}
+
 	triggered_planet_modifier = { # Plentiful Traditions
 		potential = {
 			exists = owner
@@ -1726,10 +1748,6 @@ building_system_conflux = {
 		modifier = {
 			job_coordinator_add = 4
 		}
-	}
-
-	planet_modifier = {
-		job_coordinator_add = @b3_jobs
 	}
 
 	triggered_desc = {
@@ -1821,6 +1839,7 @@ building_hive_node = {
 	}
 
 	planet_modifier = {
+		planet_administrators_unity_produces_add = 0.25 # LS - Basic Resource Production
 		job_synapse_drone_add = @b1_jobs
 	}
 
@@ -1966,6 +1985,7 @@ building_hive_cluster = {
 	}
 
 	planet_modifier = {
+		planet_administrators_unity_produces_add = 0.5 # LS - Basic Resource Production
 		job_synapse_drone_add = @b2_jobs
 	}
 
@@ -2112,6 +2132,7 @@ building_hive_confluence = {
 	}
 
 	planet_modifier = {
+		planet_administrators_unity_produces_add = 0.75 # LS - Basic Resource Production
 		job_synapse_drone_add = @b3_jobs
 	}
 

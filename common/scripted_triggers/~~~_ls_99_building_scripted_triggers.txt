@@ -2,11 +2,24 @@
 # Limitless Stellaris - Building Scripted Triggers
 ##########################################################################
 
+## Script for some generic building checks to ensure it's not being built on a specialized planet.
+LS_generic_building_checks = {
+	NOR = {
+		has_modifier = resort_colony
+		has_modifier = slave_colony
+		has_modifier = crucible_colony
+		has_planet_flag = planetary_station # Real Space: Planetary Stations
+	}
+}
+
+##################################################
+## Clone Vats
+##################################################
+
 ## Whether they can build a Clone Vats building
 # Scope: Planet
 LS_potential_clone_vats_building = {
-	NOT = { has_modifier = resort_colony }
-	NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	LS_generic_building_checks = yes # Generic Check
 	exists = owner
 	OR = { # Expanded Megastructures and Technology
 		owner = { has_origin = origin_clones }
@@ -89,18 +102,21 @@ LS_destroy_clone_vats_building = {
 }
 
 ##################################################
+## Resources
+##################################################
+
+LS_potential_resource_silo_building = {
+	LS_generic_building_checks = yes # Generic Check
+}
+
+##################################################
 ## Research
 ##################################################
 
 # Whether they can build an Education Unique building
 # Scope: Planet
 LS_potential_education_building = {
-	NOR = { # Generic building checks
-		has_modifier = resort_colony
-		has_modifier = slave_colony
-		has_modifier = crucible_colony
-		has_planet_flag = planetary_station # Real Space: Planetary Stations
-	}
+	LS_generic_building_checks = yes # Generic Check
 	exists = owner
 	owner = {
 		is_gestalt = no # Cannot be gestalt
@@ -115,12 +131,7 @@ LS_potential_education_building = {
 # Whether they can build a Processing Unique building
 # Scope: Planet
 LS_potential_processing_building = {
-	NOR = { # Generic building checks
-		has_modifier = resort_colony
-		has_modifier = slave_colony
-		has_modifier = crucible_colony
-		has_planet_flag = planetary_station # Real Space: Planetary Stations
-	}
+	LS_generic_building_checks = yes # Generic Check
 	exists = owner
 	owner = {
 		is_gestalt = yes # Must be gestalt

@@ -1789,14 +1789,14 @@ building_hospital = {
 }
 
 ##################################################
-## Amenities - Gestalt Maintenance
+## Amenities - Basic Gestalt
 ##################################################
 
 ## Maintenance Depots (Tier 1)
 # Merge between EUTAB, OSA, Real Space: Planetary Stations
 building_maintenance_depot = {
 	base_buildtime = 240
-	base_cap_amount = 3 # OSA limits to 3
+	base_cap_amount = 5 # OSA limits to 3 # LS 3 -> 5 (Basic)
 	can_build = yes # OSA no -> yes
 
 	category = amenity
@@ -1824,7 +1824,7 @@ building_maintenance_depot = {
 	}
 
 	planet_modifier = {
-		planet_jobs_simple_drone_produces_mult = 0.1 # OSA
+		planet_jobs_simple_drone_produces_mult = 0.05 # OSA # LS 0.10 -> 0.05 [Balance]
 	}
 		
 	triggered_planet_modifier = { # OSA
@@ -1835,7 +1835,7 @@ building_maintenance_depot = {
 			}
 		}
 		modifier = {
-			job_maintenance_drone_add = 5
+			job_maintenance_drone_add = 2 # LS 5 -> 2
 		}
 	}
 		
@@ -1847,7 +1847,7 @@ building_maintenance_depot = {
 			}
 		}
 		modifier = {
-			job_evaluator_add = 5
+			job_evaluator_add = 2 # LS 5 -> 2
 		}
 	}
 
