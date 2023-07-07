@@ -95,20 +95,20 @@ ap_arcology_project = {
 
 ### ap_become_the_crisis
 ## Become The Crisis (Vanilla)
-# Merge between SAP, OSA, Galactic Imperium Origins, StarTech, and DarkSpace
+# Merge between SAP, OSA, Galactic Imperium Origins, StarTech
 ap_become_the_crisis = {
 	potential = {
 		has_nemesis = yes
 		NOR = {
 			# Dark Space Origins
-			has_origin = origin_spectrals_cluster
-			has_origin = origin_certast_cluster
-			has_origin = origin_gray_tempest
-			has_origin = origin_ds_nomads
-			has_origin = origin_halo
+			#has_origin = origin_spectrals_cluster
+			#has_origin = origin_certast_cluster
+			#has_origin = origin_gray_tempest
+			#has_origin = origin_ds_nomads
+			#has_origin = origin_halo
 			# Dark Space Ascensions
-			has_ascension_perk = ap_halo_crisis
-			has_ascension_perk = ap_gray_salvation
+			#has_ascension_perk = ap_halo_crisis
+			#has_ascension_perk = ap_gray_salvation
 			# Omega's Stellaris Additions
 			has_origin = origin_slavers
 			# Normal checks
@@ -3237,22 +3237,6 @@ ap_tt_ascension_star = {
 	ai_weight = {
 		factor = 15
 	}
-}
-
-## Darkmatter Ripper (DarkSpace)
-# Disabled. Bad mechanics.
-ap_darkmatter_ripper = {
-	potential = {
-		always = no
-	}
-	possible = {
-		always = no
-	}
-	on_enabled = { 
-		add_research_option = tech_darkmatter_ripper
-		country_event = { id = dsDMR.1 }
-	}
-	ai_weight = { factor = 0 }
 }
 
 ## Slow Learner (Unique Ascension Perks)

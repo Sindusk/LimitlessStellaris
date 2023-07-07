@@ -121,7 +121,7 @@ action_close_borders = {
 }
 
 ## Improve Relations
-# Merge between DarkSpace, EED, Ariphaos, Scripted Trigger Undercoat
+# Merge between EED, Ariphaos, Scripted Trigger Undercoat
 action_improve_relation = {
 	icon = "GFX_diplomacy_improve_relation"
 	auto_accepted = yes
@@ -135,12 +135,12 @@ action_improve_relation = {
 		hidden_trigger = {
 			OR = {
 				is_country_type = default
-				is_country_type = ds_nomads # DarkSpace
+				#is_country_type = ds_nomads # DarkSpace
 			}
 			from = {
 				OR = {
 					is_country_type = default
-					is_country_type = ds_nomads # DarkSpace
+					#is_country_type = ds_nomads # DarkSpace
 					AND = {
 						is_primitive = yes # Undercoat
 						NOR = { 
