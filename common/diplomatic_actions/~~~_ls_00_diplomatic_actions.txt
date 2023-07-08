@@ -1421,13 +1421,6 @@ action_kick_from_federation = {
 	requires_recipient_independence = no # Viable Feudalism yes -> no
 
 	potential = {
-		custom_tooltip = { # Co-Op In Teams
-			fail_text = "cannot_kick_coop_partner"
-			OR = {
-				has_global_flag = you_can_leave_federations
-				from = { NOT = { has_country_flag = has_chosen_federation } }	
-			}
-        }
 		hidden_trigger = {
 			NAND = {
 				is_subject = yes
@@ -1444,6 +1437,13 @@ action_kick_from_federation = {
 				}
 			}
 		}
+		custom_tooltip = { # Co-Op In Teams
+			fail_text = "cannot_kick_coop_partner"
+			OR = {
+				has_global_flag = you_can_leave_federations
+				from = { NOT = { has_country_flag = has_chosen_federation } }	
+			}
+        }
 	}
 
 	proposable = {
