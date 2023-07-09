@@ -1,0 +1,120 @@
+####################################################################################################
+# Limitless Stellaris - AI Budget
+####################################################################################################
+
+##################################################
+## Unity Expenditures
+##################################################
+
+## Unity Expenditure - Edicts
+# StarTech AI version
+unity_expenditure_edicts = {
+	resource = unity
+	type = expenditure
+	category = edicts
+
+	potential = {
+		str_ai_budget_potential_unity_expenditure_edicts = yes
+		has_technology = tech_ascension_theory
+	}
+
+	weight = {
+		weight = 0.2
+	}
+}
+
+## Unity Expenditure - Megastructures
+# StarTech AI version
+unity_expenditure_megastructures = {
+	resource = unity
+	type = expenditure
+	category = megastructures
+
+	potential = {
+		str_ai_budget_potential_unity_expenditure_megastructures = yes
+		is_at_war = no
+		can_build_unity_megastructures = yes
+
+		has_resource = {
+			type = unity
+			amount > 7500
+		}
+	}
+
+	weight = {
+		weight = 0.1
+	}
+
+
+	desired_max = {
+		base = 7500
+	}
+}
+
+## Unity Expenditure - Leaders
+# StarTech AI version
+unity_expenditure_leaders = {
+	resource = unity
+	type = expenditure
+	category = leaders
+
+	potential = {
+		str_ai_budget_potential_unity_expenditure_leaders = yes # StarTech AI
+	}
+
+	weight = {
+		weight = 0.4
+	}
+}
+
+##################################################
+## Unity Upkeep
+##################################################
+
+## Unity Upkeep - Leaders
+# StarTech AI version
+unity_upkeep_leaders = {
+	resource = unity
+	type = upkeep
+	category = leaders
+
+	potential = {
+		str_ai_budget_potential_unity_upkeep_leaders = yes
+	}
+
+	weight = {
+		weight = 0.3
+		modifier = {
+			# factor = 1.25
+			# OR = {
+			# 	scientist_count < 4
+			#
+			# 	NOT = {
+			# 		research_leader = {
+			# 			area = physics
+			# 		}
+			# 	}
+			# 	NOT = {
+			# 		research_leader = {
+			# 			area = society
+			# 		}
+			# 	}
+			# 	NOT = {
+			# 		research_leader = {
+			# 			area = engineering
+			# 		}
+			# 	}
+			# }
+			add = 1
+			years_passed < 5	# Important for scientists
+		}
+	}
+
+	desired_min = {
+		base = 30
+	}
+
+	desired_max = {
+		base = 50
+	}
+}

@@ -5,6 +5,110 @@
 ### Key:
 ### EED - Expanded Espionage and Diplomacy
 
+## Ask to Become Subjugated
+# Merge between Organic Zealots, We Require Borders, Ariphaos, EMB, STU
+action_ask_to_become_subjugated = {
+	icon = "GFX_diplomacy_status_has_vassal"
+	requires_actor_peace = yes
+	requires_recipient_peace = yes
+	diplo_view_acceptance_icon = no
+	should_notify_all_communications = yes
+	AI_acceptance_base_value = -100 # Ariphaos -50 -> -100
+	action_type = positive
+
+	should_ai_propose = { # Expanded Mods Base
+		weight = 1
+		modifier = {
+			factor = 0
+			exists = from
+			opinion_level = { who = from level < excellent }
+		}
+		modifier = {
+			factor = 0
+			exists = from
+			relative_power = { who = from value >= pathetic }
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				is_militarist = yes
+				is_civic_militarist = yes
+				is_authoritarian = yes
+				is_civic_authoritarian = yes
+				is_xenophobe = yes
+				is_xenophobic_isolationists = yes
+			}
+		}
+	}
+
+	potential = {
+		hidden_trigger = {
+			is_subject = no
+		}
+	}
+
+	possible = {
+		diplomacy_is_not_homicidal = yes # Organic Zealots
+		custom_tooltip = {
+			fail_text = "federation_actor_no_separate_treaties"
+			NOT = {
+				AND = {
+					has_federation = yes
+					federation = { has_federation_law = treaties_separate_no }
+					NOT = { federation = { any_member = { is_same_value = root.from } } }
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "federation_recipient_no_separate_treaties"
+			from = {
+				NOT = {
+					AND = {
+						has_federation = yes
+						federation = {
+							has_federation_law = treaties_separate_no
+						}
+						NOT = { federation = { any_member = { is_same_value = root } } }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_not_in_galactic_empire"
+			OR = {
+				NAND = {
+					has_galactic_emperor = yes
+					is_galactic_community_member = no
+					from = { is_galactic_community_member = yes }
+				}
+				NAND = {
+					has_galactic_emperor = yes
+					is_galactic_community_member = yes
+					from = { is_galactic_community_member = no }
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_recipient_not_custodian"
+			is_galactic_custodian = no
+		}
+		custom_tooltip = {
+			fail_text = "requires_recipient_not_gal_emperor"
+			is_galactic_emperor = no
+		}
+		custom_tooltip = {
+			fail_text = "requires_recipient_not_btc"
+			has_been_declared_crisis = no
+		}
+		custom_tooltip = {
+			fail_text = "requires_actor_not_pompous"
+			NOT = { has_valid_civic = civic_pompous_purists	}
+		}
+		# Shared Borders
+		get_border_test = yes # We Require Borders
+	}
+}
+
 ## Build Spy Network
 # Merge between Expanded Mods Base, Scripted Trigger Undercoat
 action_build_spy_network = {
@@ -185,9 +289,26 @@ action_demand_subjugation = {
 
 	ai_acceptance = { # EMB
 		modifier = {
-			add = -75
+			add = -50
+			OR = {
+				is_militarist = yes
+				is_civic_militarist = yes
+				is_authoritarian = yes
+				is_civic_authoritarian = yes
+				is_xenophobe = yes
+				is_xenophobic_isolationists = yes
+			}
+			desc = not_good_ethics
+		}
+		modifier = {
+			add = -200
 			opinion_level = { who = from level < excellent }
 			desc = not_excellent_relations
+		}
+		modifier = {
+			add = -500
+			relative_power = { who = from value >= pathetic }
+			desc = not_overwhelming_strength
 		}
 	}
 }

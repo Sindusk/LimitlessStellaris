@@ -1689,6 +1689,12 @@ war_philosophy = {
 			liberation_wars
 		}
 
+		in_breach_of = { # NGS
+			{
+				key = resolution_rulesofwar_6
+			}
+		}
+
 		potential = {
 			is_gestalt = no
 		}
@@ -1735,6 +1741,11 @@ war_philosophy = {
 					has_ai_personality_behaviour = subjugator
 					has_ai_personality_behaviour = liberator
 				}
+			}
+			modifier = { # NGS
+				factor = 0.1
+				is_galactic_community_member = yes
+				is_active_resolution = resolution_rulesofwar_6
 			}
 			modifier = { # Ariphaos
 				factor = 10
@@ -1793,11 +1804,17 @@ war_philosophy = {
 		}
 
 		valid = {
-			NOR = {
-				has_ethic = "ethic_fanatic_militarist"
-				is_homicidal = yes # STU
-				has_civic = "civic_crusader_spirit"
-				has_valid_civic = "civic_crusader_spirit_corporate" # Organic Zealots
+			OR = { # NGS
+				NOR = {
+					has_ethic = "ethic_fanatic_militarist"
+					is_homicidal = yes # STU
+					has_civic = "civic_crusader_spirit"
+					has_valid_civic = "civic_crusader_spirit_corporate" # Organic Zealots
+				}
+				AND = { # NGS
+					is_galactic_community_member = yes
+					is_active_resolution = resolution_rulesofwar_6
+				}
 			}
 		}
 
@@ -1806,9 +1823,17 @@ war_philosophy = {
 				factor = 5
 				has_ethic = "ethic_fanatic_pacifist"
 			}
+			modifier = { # NGS
+				factor = 5
+				is_active_resolution = resolution_rulesofwar_6
+				is_galactic_community_member = yes
+			}
 			modifier = {
 				factor = 0
-				NOT = { has_ethic = "ethic_fanatic_pacifist" }
+				NOR = { # NGS
+					has_ethic = "ethic_fanatic_pacifist"
+					is_active_resolution = resolution_rulesofwar_6 # NGS
+				}
 			}
 		}
 	}

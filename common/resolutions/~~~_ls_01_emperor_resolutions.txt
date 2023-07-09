@@ -217,9 +217,9 @@ resolution_emperor_by_appointment = {
 	}
 
 	ai_weight = {
-		base = @resolution_weight_unpopular # NGS hated -> unpopular
+		base = @resolution_weight_normal # NGS hated -> normal
 		modifier = { # NGS
-			factor = 1.5
+			factor = 2
 			is_authoritarian = yes
 			desc = ethic_authoritarian
 		}
@@ -229,7 +229,7 @@ resolution_emperor_by_appointment = {
 			desc = ethic_authoritarian
 		}
 		modifier = { # EED
-			weight = 0
+			weight = 0.5 # NGS 0 -> 0.5
 			is_egalitarian = yes
 			desc = ethic_egalitarian
 		}
@@ -393,7 +393,7 @@ resolution_emperor_by_election = {
 		}
 		
 		modifier = { # EED
-			weight = 5
+			weight = 3 # NGS 5 -> 3
 			is_egalitarian = yes
 			desc = ethic_egalitarian
 		}
@@ -483,12 +483,23 @@ resolution_emperor_council_size_1 = {
 					}
 				}
 			}
-			desc = gal_com_wants_to_reduce_council_size
+			desc = gal_com_empire_or_overlord_highest_rank # NGS
 		}
 
-		modifier = {
+		modifier = { # NGS
+			factor = 0.5
+			is_galactic_emperor = yes
+			any_council_member = {
+				galactic_community_rank = 2
+				opinion_level = { who = prev level > neutral }
+			}
+			desc = eu_good_relations_emperor
+		}
+
+		modifier = { # NGS
 			factor = 0
 			galactic_community_rank = 2
+			is_authoritarian = no
 			desc = gal_com_second_rank
 		}
 
@@ -609,69 +620,74 @@ resolution_emperor_council_size_2 = {
 					}
 				}
 			}
+			is_egalitarian = no # NGS
+			is_galactic_emperor = no # NGS
 			desc = gal_com_alone_on_council_or_overlord
 		}
 
 
-		modifier = {
+		modifier = { # NGS
 			factor = 3
-			
-			num_council_positions = 3
-			OR = {
-				galactic_community_rank <= 2
+
 				AND = {
-					is_subject = yes
-					overlord = {
-						opinion_level = { who = prev level >= neutral }
-						galactic_community_rank <= 2
+					num_council_positions = 1
+					OR = {
+						galactic_community_rank = 2
+						AND = {
+							is_subject = yes
+							overlord = {
+								opinion_level = { who = prev level >= neutral }
+								galactic_community_rank = 2
+							}
+						}
 					}
 				}
+
+			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+
+		modifier = { # NGS
+			factor = 3
+			AND = {
+				num_council_positions = 3
+				OR = {
+					galactic_community_rank <= 2
+					AND = {
+						is_subject = yes
+						overlord = {
+							opinion_level = { who = prev level >= neutral }
+							galactic_community_rank <= 2
+						}
+					}
+				}
+				is_egalitarian = no
+			}
+			NAND = {
+				is_galactic_emperor = yes
+				is_active_resolution = resolution_emperor_by_appointment 
 			}
 			desc = gal_com_wants_to_reduce_council_size
 		}
 
-		modifier = {
-			factor = 3
-			num_council_positions = 1
-			OR = {
-				galactic_community_rank = 2
-				AND = {
-					is_subject = yes
-					overlord = {
-						opinion_level = { who = prev level >= neutral }
-						galactic_community_rank = 2
-					}
-				}
+		modifier = { # NGS
+			factor = 0.5
+			is_galactic_emperor = yes
+			num_council_positions = 3
+			any_council_member = {
+				galactic_community_rank = 3
+				opinion_level = { who = prev level > neutral }
 			}
-			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+			desc = eu_good_relations_emperor
 		}
-
-		modifier = {
-			factor = 0.5 # NGS 0.8 -> 0.5
-			num_council_positions = 3
-			is_egalitarian = yes
-			desc = ethic_egalitarian
-		}
-
-		modifier = {
-			factor = 0.5 # NGS 0.8 -> 0.5
+		modifier = { # NGS
+			factor = 3
+			is_galactic_emperor = yes
 			num_council_positions = 1
-			is_authoritarian = yes
-			desc = ethic_authoritarian
-		}
-
-		modifier = {
-			factor = 2 # NGS 1.2 -> 2
-			num_council_positions = 3
-			is_authoritarian = yes
-			desc = ethic_authoritarian
-		}
-
-		modifier = {
-			factor = 2 # NGS 1.2 -> 2
-			num_council_positions = 1
-			is_egalitarian = yes
-			desc = ethic_egalitarian
+			any_council_member = {
+				galactic_community_rank = 2
+				opinion_level = { who = prev level > neutral }
+			}
+			desc = eu_good_relations_emperor1
 		}
 	}
 }
@@ -738,54 +754,67 @@ resolution_emperor_council_size_3 = {
 			desc = gal_com_increase_council_size_positive
 		}
 
-		modifier = {
+		modifier = { # NGS
 			factor = 0
 
-			num_council_positions = 4
-			OR = {
-				galactic_community_rank = 4
-				AND = {
-					is_subject = yes
-					overlord = {
-						opinion_level = { who = prev level >= neutral }
-						galactic_community_rank = 4
+			AND = {
+				num_council_positions = 4
+				OR = {
+					galactic_community_rank = 4
+					AND = {
+						is_subject = yes
+						overlord = {
+							opinion_level = { who = prev level >= neutral }
+							galactic_community_rank = 4
+						}
 					}
 				}
 			}
 			desc = gal_com_they_or_overlord_would_be_removed_from_council
 		}
 
-		modifier = {
-			factor = 0
-
-			num_council_positions = 2
-			OR = {
-				galactic_community_rank <= 2
-				AND = {
-					is_subject = yes
-					overlord = {
-						opinion_level = { who = prev level >= neutral }
-						galactic_community_rank <= 2
+		modifier = { # NGS
+			factor = 0.4
+			AND = {
+				num_council_positions = 2
+				OR = {
+					galactic_community_rank <= 2
+					AND = {
+						is_subject = yes
+						overlord = {
+							opinion_level = { who = prev level >= neutral }
+							galactic_community_rank <= 2
+						}
 					}
 				}
+				is_egalitarian = no
+			}
+
+			NAND = {
+				is_galactic_emperor = yes
+				is_active_resolution = resolution_emperor_by_appointment 
 			}
 			desc = gal_com_dont_let_others_in_on_the_council
 		}
 
-		modifier = {
+		modifier = { # NGS
 			factor = 3
 
-			num_council_positions = 4
-			OR = {
-				galactic_community_rank <= 3
-				AND = {
-					is_subject = yes
-					overlord = {
-						opinion_level = { who = prev level >= neutral }
-						galactic_community_rank <= 3
+			AND = {
+				num_council_positions = 4
+				OR = {
+					galactic_community_rank <= 3
+					AND = {
+						is_subject = yes
+						overlord = {
+							opinion_level = { who = prev level >= neutral }
+							galactic_community_rank <= 3
+						}
 					}
 				}
+				is_egalitarian = no
 			}
+			NOT = { is_active_resolution = resolution_emperor_by_appointment }
 			desc = gal_com_wants_to_reduce_council_size
 		}
 
@@ -805,6 +834,27 @@ resolution_emperor_council_size_3 = {
 				}
 			}
 			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+
+		modifier = { # NGS
+			factor = 0.5
+			is_galactic_emperor = yes
+			num_council_positions = 4
+			any_council_member = {
+				galactic_community_rank = 4
+				opinion_level = { who = prev level > neutral }
+			}
+			desc = eu_good_relations_emperor
+		}
+		modifier = { # NGS
+			factor = 3
+			is_galactic_emperor = yes
+			num_council_positions = 2
+			any_council_member = {
+				galactic_community_rank = 3
+				opinion_level = { who = prev level > neutral }
+			}
+			desc = eu_good_relations_emperor1
 		}
 		
 		modifier = { # EED
@@ -927,72 +977,112 @@ resolution_emperor_council_size_4 = {
 			desc = gal_com_increase_council_size_positive
 		}
 
-		modifier = {
+		modifier = { # NGS
 			factor = 0
-			
-			num_council_positions = 5
-			OR = {
-				galactic_community_rank = 5
-				AND = {
-					is_subject = yes
-					overlord = {
-						opinion_level = { who = prev level >= neutral }
-						galactic_community_rank = 5
+
+			AND = {
+				num_council_positions = 5
+				OR = {
+					galactic_community_rank = 5
+					AND = {
+						is_subject = yes
+						overlord = {
+							opinion_level = { who = prev level >= neutral }
+							galactic_community_rank = 5
+						}
 					}
 				}
 			}
 			desc = gal_com_they_or_overlord_would_be_removed_from_council
 		}
 
-		modifier = {
-			factor = 0
 
-			num_council_positions = 3
-			OR = {
-				galactic_community_rank <= 3
-				AND = {
-					is_subject = yes
-					overlord = {
-						opinion_level = { who = prev level >= neutral }
-						galactic_community_rank <= 3
+		modifier = { # NGS
+			factor = 0.4
+			AND = {
+				num_council_positions = 3
+				OR = {
+					galactic_community_rank <= 3
+					AND = {
+						is_subject = yes
+						overlord = {
+							opinion_level = { who = prev level >= neutral }
+							galactic_community_rank <= 3
+						}
 					}
 				}
+				is_egalitarian = no
+			}
+			NAND = {
+				is_galactic_emperor = yes
+				is_active_resolution = resolution_emperor_by_appointment 
 			}
 			desc = gal_com_dont_let_others_in_on_the_council
 		}
 
-		modifier = {
+
+		modifier = { # NGS
 			factor = 3
-			
-			num_council_positions = 5
-			OR = {
-				galactic_community_rank <= 4
-				AND = {
-					is_subject = yes
-					overlord = {
-						opinion_level = { who = prev level >= neutral }
-						galactic_community_rank <= 4
+
+			AND = {
+				num_council_positions = 5
+				OR = {
+					galactic_community_rank <= 4
+					AND = {
+						is_subject = yes
+						overlord = {
+							opinion_level = { who = prev level >= neutral }
+							galactic_community_rank <= 4
+						}
 					}
 				}
+				is_egalitarian = no
+			}
+			NAND = {
+				is_galactic_emperor = yes
+				is_active_resolution = resolution_emperor_by_appointment 
 			}
 			desc = gal_com_wants_to_reduce_council_size
 		}
 
-		modifier = {
+
+		modifier = { # NGS
 			factor = 3
-			
-			num_council_positions = 3
-			OR = {
-				galactic_community_rank = 4
-				AND = {
-					is_subject = yes
-					overlord = {
-						opinion_level = { who = prev level >= neutral }
-						galactic_community_rank = 4
+			AND = {
+				num_council_positions = 3
+				OR = {
+					galactic_community_rank = 4
+					AND = {
+						is_subject = yes
+						overlord = {
+							opinion_level = { who = prev level >= neutral }
+							galactic_community_rank = 4
+						}
 					}
 				}
 			}
 			desc = gal_com_wants_to_add_themselves_or_overlord_to_council
+		}
+
+		modifier = { # NGS
+			factor = 0.5
+			is_galactic_emperor = yes
+			num_council_positions = 4
+			any_council_member = {
+				galactic_community_rank = 4
+				opinion_level = { who = prev level > neutral }
+			}
+			desc = eu_good_relations_emperor
+		}
+		modifier = { # NGS
+			factor = 3
+			is_galactic_emperor = yes
+			num_council_positions = 3
+			any_council_member = {
+				galactic_community_rank = 4
+				opinion_level = { who = prev level > neutral }
+			}
+			desc = eu_good_relations_emperor1
 		}
 		
 		modifier = { # EED
@@ -1150,6 +1240,17 @@ resolution_emperor_council_size_5 = {
 			is_part_of_galactic_council = yes
 			is_egalitarian = no # EED
 			desc = gal_com_negative_sentiment # EED
+		}
+
+		modifier = { # NGS
+			factor = 3
+			is_galactic_emperor = yes
+			num_council_positions = 4
+			any_council_member = {
+				galactic_community_rank = 5
+				opinion_level = { who = prev level > neutral }
+			}
+			desc = eu_good_relations_emperor1
 		}
 
 		modifier = {
@@ -2129,7 +2230,7 @@ resolution_emperor_gto = {
 	}
 
 	ai_weight = {
-		base = @resolution_weight_normal
+		base = @resolution_weight_popular # NGS normal -> popular
 
 		modifier = {
 			factor = 1.5
@@ -2162,6 +2263,12 @@ resolution_emperor_gto = {
 			factor = 0.2
 			is_gestalt = yes
 			desc = ethic_gestalt_consciousness
+		}
+
+		modifier = { # NGS
+			factor = 2
+			is_xenophile = yes
+			desc = ethic_xenophile
 		}
 
 		modifier = {

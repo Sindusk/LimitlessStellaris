@@ -365,7 +365,7 @@ resolution_council_denouncement = {
 			has_modifier = resolution_denounced # #NGS: Give them a break.
 		} 
 		OR = {
-			opinion_level = { who = from level < neutral }
+			opinion_level = { who = from level < poor } # NGS neutral -> poor
 			from = { is_rival = prev }
 			is_in_breach_of_any = yes
 			is_at_war_with = from # NGS
@@ -387,6 +387,12 @@ resolution_council_denouncement = {
 
 	effect = {
 		add_modifier = { modifier = resolution_denounced days = 3600 }
+		hidden_effect = { # NGS
+			set_timed_global_flag = {
+				flag = denouncement_cooldown_council
+				years = 15
+			}
+		}
 	}
 
 	allow = {

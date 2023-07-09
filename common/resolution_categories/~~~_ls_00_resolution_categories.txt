@@ -42,6 +42,19 @@ resolution_category_emperor_imperial_institutions = {
 	}
 }
 
+## Denouncement (NGS)
+# Merge between EED, NGS
+resolution_category_denouncements = {
+	group = politics_culture
+	icon = "GFX_resolution_purges"
+	resolution_types = {
+		"resolution_mutualdefense_castigation_denouncement"
+		"resolution_council_denouncement"
+		"resolution_galacticcooperation_interstellar_mediation_denouncement"
+		"resolution_rogue_state_denouncement"
+	}
+}
+
 ## Healthcare (NGS Version)
 # This is a copy of the NGS version of Healthcare resolution category to take priority over EED.
 resolution_category_healthcare = {

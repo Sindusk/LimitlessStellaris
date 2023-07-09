@@ -3561,6 +3561,23 @@ resolution_custodian_perpetual_custodianship = {
 			desc = gal_com_authoritarian_custodian
 		}
 
+		modifier = { # NGS
+			factor = 1.75
+			is_authoritarian = yes
+			is_galactic_custodian = no
+			desc = ethic_authoritarian
+		}
+
+		modifier = { # NGS
+			factor = 1.25
+			OR = {
+				has_valid_civic = civic_aristocratic_elite
+				has_valid_civic = civic_police_state
+				has_valid_civic = civic_dystopian_society
+			}
+			desc = gal_com_supporting_civics
+		}
+
 		modifier = {
 			factor = 0
 			is_subject = yes
