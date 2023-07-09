@@ -2947,3 +2947,5 @@ resolution_emperor_imperial_legions = {
 		}
 	}
 }
+
+

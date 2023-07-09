@@ -1,0 +1,290 @@
+##########################################################################
+# Limitless Stellaris - Civics & Origins
+##########################################################################
+
+##################################################
+## Amazing Civics - Megacorp
+##################################################
+# Adjustment for compatibility with Bug Branch versions of megacorps.
+
+civic_am_civics_off_world_investors = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = 5 }
+	description = "tooltip_civic_am_civics_off_world_investors_effects"
+}
+
+civic_am_civics_stellar_travel_agency = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = 5 }
+	description = "tooltip_civic_am_civics_stellar_travel_agency_effects"
+}
+
+civic_am_civics_social_media_giant = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = 5 }
+	description = "tooltip_civic_am_civics_social_media_giant_effects"
+}
+
+civic_am_civics_knowledge_is_profit = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = 5 }
+	description = "tooltip_civic_am_civics_knowledge_merchants_effects"
+}
+
+civic_am_civics_urban_parcification_tools = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = {
+		civics = { NOT = { value = civic_criminal_heritage } NOT = { value = civic_am_civics_criminal_connections } }
+	}	
+	random_weight = { base = 5 }
+	description = "tooltip_civic_am_civics_urban_parcification_tools_effects"
+	modifier = {
+		planet_crime_add = -20
+	}
+}
+
+civic_am_civics_corporate_growth = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = 5 }
+	description = "tooltip_civic_am_civics_corporate_growth_effects"
+}
+
+civic_am_civics_charitable_efforts = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = { 
+		civics = { 
+			NOT = {	value = civic_criminal_heritage } 
+		}
+		ethics = {
+			OR = {
+				text = tooltip_civic_am_civics_pacifist
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+			}
+		} 
+	}
+	random_weight = { base = 2 }
+	description = "tooltip_civic_am_civics_charitable_efforts_effects"
+	# modification = no
+}
+
+origin_am_civics_locust_capitalism = {
+	is_origin = yes
+	random_weight = { base = 0 }
+	icon = "gfx/interface/icons/origins/origins_am_civics_locust_capitalism.dds"
+	picture = GFX_origin_am_civics_locust_capitalism
+	
+	description = "tooltip_origin_am_civics_locust_capitalism_effects"
+	possible = {
+		authority = { # LS - Replace corporate authority with bug branch combined
+			OR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	
+	modifier = {
+		country_claim_influence_cost_mult = -0.50
+		country_starbase_influence_cost_mult = -0.50
+		starbase_shipyard_build_cost_mult = -0.25
+		ships_upkeep_mult = -0.50
+		country_naval_cap_mult = 0.50
+		station_gatherers_produces_mult = 1.5
+		station_researchers_produces_mult = 1.5
+		planet_jobs_specialist_produces_mult = 0.25
+	}
+}
+
+civic_am_civics_military_industrial_complex = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	possible = { 
+		ethics = {
+			NOR = {
+				text = tooltip_civic_am_civics_not_pacifist
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+			}
+		}
+	}
+	random_weight = { base = 5 }
+	description = "tooltip_civic_am_civics_military_industrial_complex_effects"
+	modification = no
+}
+
+civic_am_civics_banking_giant = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = 5 }
+	description = "tooltip_civic_am_civics_banking_giant_effects"
+}
+
+civic_am_civics_mining_consortium = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = 5 }
+	
+	modifier = {
+		planet_miners_minerals_produces_add = -1
+		planet_miners_alloys_produces_add = 1
+		
+	}
+}
+
+civic_am_civics_guild_of_engineers = {
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}
+	random_weight = { base = 5 }
+	
+	modifier = {
+		megastructures_habitat_influence_cost_mult = -0.20
+		country_megastructure_build_cap_add = 1
+	}
+}
+
+civic_am_civics_criminal_connections = {
+	modification = no
+	potential = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = { value = civic_galactic_sovereign_megacorp }
+		}
+	}	
+	possible = {
+		civics = { NOT = { value = civic_criminal_heritage } NOT = { value = civic_am_civics_urban_parcification_tools } }
+	}	
+	random_weight = { base = 0 } # Allowing crime is not something the AI can handle
+	
+	description = "civic_am_civics_criminal_connections_effect"
+	
+	modifier = {
+		job_am_civics_shady_merchant_per_crime = 0.05
+		job_criminal_add = -5
+		planet_crime_add = 25
+	}
+}

@@ -149,3 +149,12 @@ homicidal_diplomacy_restrictions = {
 		}
 	}]
 }
+
+## Is Core World [Expanded Stellaris Traditions]
+# Add exists = sector to prevent error logging.
+est_is_core_world = {
+	exists = sector # Added to prevent errors
+	sector = {
+		has_sector_type = core_sector
+	}	
+}

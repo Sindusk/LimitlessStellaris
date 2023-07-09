@@ -1,0 +1,39 @@
+##########################################################################
+# Limitless Stellaris - Endless Frontier Events
+##########################################################################
+
+namespace = mzilli_multiplan_events
+
+# Starbase is destroyed if disabled by multiplanetary primitives
+# This = Ship
+# From = Disabler Ship
+# LS - Fix for if FROM is a ship with no owner, or if FROM does not exist.
+ship_event = {
+	id = mzilli_multiplan_events.16
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = from # Add to avoid error log
+		from = {
+			exists = owner # Add to avoid error log
+			owner = { has_country_flag = multiplanetary_primitives }
+		}
+		OR = {
+			is_ship_size = starbase_outpost
+			is_ship_size = starbase_starport
+			is_ship_size = starbase_starhold
+			is_ship_size = starbase_starfortress
+			is_ship_size = starbase_citadel
+			is_ship_size = starbase_swarm
+			is_ship_size = starbase_ai
+			is_ship_size = starbase_exd_0
+			is_ship_size = starbase_exd
+			is_ship_size = starbase_marauder
+			is_ship_size = starbase_gatebuilders
+			is_ship_size = starbase_fe_outpost
+		}
+	}
+
+	immediate = { destroy_ship = this }
+}

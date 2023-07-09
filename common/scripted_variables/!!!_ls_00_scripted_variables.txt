@@ -119,10 +119,13 @@
 
 ### Doge Building Variables ###
 # Tier 0 (First building) [Deprecated]
-@db0_time = 360 	    # Tier 0 build time
-@db0_minerals = 400     # Tier 0 minerals
-@db0_upkeep = 2 	    # Tier 0 upkeep
+@db0_time = 300 	    # Tier 0 build time
+@db0_minerals = 300     # Tier 0 minerals
+@db0_rare_cost = 0		# Tier 0 rare cost
+@db0_upkeep = 1 	    # Tier 0 upkeep
 @db0_jobs = 2 		    # Tier 0 jobs
+@db0_adv_jobs = 0		# Tier 0 adv jobs
+@db0_dm_jobs = 0		# Tier 0 dark matter jobs
 
 # Tier 1 [Vanilla]
 @db1_time = 360		    # Tier 1 build time
