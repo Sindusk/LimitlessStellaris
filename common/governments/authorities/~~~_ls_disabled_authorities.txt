@@ -21,6 +21,9 @@ auth_sofe_ancients = {
 	potential = {
 		always = no
 	}
+	playable = {
+		always = no
+	}
 	possible = {
 		always = no
 	}

@@ -1027,78 +1027,123 @@ achieve_ftl_effect = {
 
 ## Assimilation Effect
 # Merge between All Ascension Paths, Subtle Polish, Ariphaos, Scripted Trigger Undercoat
+# Using pure All Ascension Paths version for now, since the Subtle Polish edits broke Assimilation.
 assimilation_effect = {
-	optimize_memory # Subtle Polish
 	random_owned_pop = {
 		limit = {
 			has_citizenship_type = {
 				type = citizenship_assimilation
-				country = owner # Subtle Polish root.owner -> owner
+				country = root.owner
 			}
 		}
 		if = { # Has Synth Assimilation
 			limit = {
-				has_living_standard = { # Subtle Polish
-					type = living_standard_tech_assimilation
-					country = prev
-				}
 				OR = {
-					owner = { # Subtle Polish root.owner -> owner
+					root.owner = {
 						has_country_flag = synth_assimilation
-						NOR = { # All Ascension Paths
+						NOR = {
 							has_policy_flag = synth_assimilation_bio
 							has_policy_flag = synth_assimilation_targeted
 						}
 					}
 					AND = {
-						is_robot_pop = yes # Subtle Polish
-						owner = { # Subtle Polish root.owner -> owner
-							is_machine_empire = yes # STU
+						OR = {
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+						root.owner = {
+							has_authority = auth_machine_intelligence
 							has_active_tradition = tr_synthetics_adopt_machine
 						}
 					}
 					# we have set targetted assimilation to organics, but there were no targets
-					species = { # All Ascension Paths
+					species = {
 						has_species_flag = assimilate_into_synths
 					}
-				}
+				}				
 			}
-			#kill_pop = yes # Subtle Polish removes this
-			change_species = owner_main_species # Subtle Polish
-			owner = { # Subtle Polish removes create_pop section
+			kill_pop = yes
+			root = {
 				if = {
-					limit = { has_ascension_perk = ap_become_the_crisis }
-					complete_crisis_objective = crisobj_purge_pops
+					limit = {
+						owner = {
+							OR = {
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+							}
+						}
+					}
+					create_pop = {
+						species = root.owner
+						ethos = root.owner
+					}
+				}
+				else_if = {
+					limit = { 
+						any_owned_species = {
+							OR = {
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+							}
+						}
+					}
+					random_owned_species = {
+						limit = {
+							OR = {
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+							}
+						}
+						root = {
+							create_pop = {
+								species = prev
+								ethos = root.owner
+							}
+						}
+					}
+				}
+				else = {
+					# fallback
+					create_pop = {
+						species = root.owner
+						ethos = root.owner
+					}
+				}
+				owner = {
+					if = {
+						limit = { has_ascension_perk = ap_become_the_crisis }
+						complete_crisis_objective = crisobj_purge_pops
+					}
 				}
 			}
 		}
 		else = {
-			species = { save_event_target_as = old_species } # Subtle Polish moves this up
 			random_galaxy_species = {
 				limit = {
 					has_species_flag = assimilation_species_of_species@prev.species
-					has_species_flag = assimilation_species_of_empire@prev.owner # Subtle Polish root -> prev
+					has_species_flag = assimilation_species_of_empire@root.owner
 				}
 				save_event_target_as = convert_to_species
+			}
+			species = {
+				save_event_target_as = old_species
 			}
 			if = {
 				limit = {
 					exists = event_target:convert_to_species #should always exist
 				}
-				# Subtle Polish removes everything commented below
-				#change_species = event_target:convert_to_species
-				#owner = {
-				#	if = {
-				#		limit = { has_ascension_perk = ap_become_the_crisis }
-				#		complete_crisis_objective = crisobj_purge_pops
-				#	}
-				#}
-				#root = {
-					#change_variable = {
-					#	which = assimilation_counter
-					#	value = -1
-					#}
-				prev = { # Subtle Polish
+				change_species = event_target:convert_to_species
+				owner = {
+					if = {
+						limit = { has_ascension_perk = ap_become_the_crisis }
+						complete_crisis_objective = crisobj_purge_pops
+					}
+				}
+				root = {
+					change_variable = {
+						which = assimilation_counter
+						value = -1
+					}
 					while = { #to avoid doing the random_galaxy_species thing too many times
 						limit = {
 							exists = event_target:old_species
@@ -1117,19 +1162,19 @@ assimilation_effect = {
 							change_species = event_target:convert_to_species
 							apply_post_assimilation_effects = yes
 						}
+						change_variable = {
+							which = assimilation_counter
+							value = -1
+						}
 						owner = {
 							if = {
 								limit = { has_ascension_perk = ap_become_the_crisis }
 								complete_crisis_objective = crisobj_purge_pops
 							}
 						}
-						change_variable = { # Subtle Polish moves down
-							which = assimilation_counter
-							value = -1
-						}
 					}
 				}
-				#apply_post_assimilation_effects = yes # Subtle Polish removes this
+				apply_post_assimilation_effects = yes
 			}
 			else = {
 				log_error = "No species found for \\[This.Species.GetName] pop owned by \\[This.Owner.GetName] on \\[This.Planet.GetName] to assimilate to"
