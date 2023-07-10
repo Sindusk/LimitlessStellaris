@@ -3,5 +3,36 @@
 ##########################################################################
 
 l_english:
+
+##################
+# Ascension Perks
+##################
+
   ls_ap_defender_of_the_galaxy_modifier_desc: "Diplomatic Weight: §G+40%§!\nDamage to Midgame Crisis factions: §G+100%§!\nDamage to Endgame Crisis factions: §G+50%§!\nDamage to Fallen Empires: §G+33%§!"
   ls_ai_boost: "Limitless Stellaris AI Boost"
+
+##################
+# EED Resolutions
+##################
+
+  ### Healthcare (EED Version)
+  resolution_category_healthcare_eed: "Galactic Healthcare"
+  resolution_healthcare_eed_repeal_1: "§RRepeal $resolution_healthcare_board_of_health$§!"
+  resolution_healthcare_eed_repeal_1_desc: "While the health of the [global_event_country.GetGalCommunityOrGalImperium] is clearly important, member nations should be trusted to set their own policies."
+  resolution_healthcare_eed_repeal_1_effect_success: "Repeals the §Y$resolution_healthcare_board_of_health$§! resolution."
+
+  resolution_healthcare_eed_repeal_2: "§RRepeal $resolution_healthcare_xenomedical_research$§!"
+  resolution_healthcare_eed_repeal_2_desc: "$resolution_healthcare_repeal_1_desc$"
+  resolution_healthcare_eed_repeal_2_effect_success: "Repeals the §Y$resolution_healthcare_xenomedical_research$§! resolution, leaving §Y$resolution_healthcare_board_of_health$§! as galactic law."
+
+  resolution_healthcare_eed_repeal_3: "§RRepeal $resolution_healthcare_war_relief$§!"
+  resolution_healthcare_eed_repeal_3_desc: "$resolution_healthcare_repeal_1_desc$"
+  resolution_healthcare_eed_repeal_3_effect_success: "Repeals the §Y$resolution_healthcare_war_relief$§! resolution, leaving §Y$resolution_healthcare_xenomedical_research$§! as galactic law."
+
+  resolution_healthcare_eed_repeal_4: "§RRepeal $resolution_healthcare_clonal_medicine$§!"
+  resolution_healthcare_eed_repeal_4_desc: "$resolution_healthcare_repeal_1_desc$"
+  resolution_healthcare_eed_repeal_4_effect_success: "Repeals the §Y$resolution_healthcare_clonal_medicine$§! resolution, leaving §Y$resolution_healthcare_war_relief$§! as galactic law."
+
+  resolution_healthcare_eed_repeal_5: "§RRepeal $resolution_healthcare_universal_healthcare$§!"
+  resolution_healthcare_eed_repeal_5_desc: "$resolution_healthcare_repeal_1_desc$"
+  resolution_healthcare_eed_repeal_5_effect_success: "Repeals the §Y$resolution_healthcare_universal_healthcare$§! resolution, leaving §Y$resolution_healthcare_clonal_medicine$§! as galactic law."
