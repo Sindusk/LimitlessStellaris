@@ -1,0 +1,114 @@
+##########################################################################
+# Limitless Stellaris - Species Rights
+##########################################################################
+
+##################################################
+## Purge Types
+##################################################
+
+## Processing
+# Merge between Organic Zealots, Bug Branch, Expanded Gestalts, Ariphaos
+purge_processing = {
+	pop_escape_chance = 0.20
+	pop_decline_rate = 50 # 1 pop per 2 months, overrides BASE_POP_DECLINE, will only work on purge types
+
+	pop_modifier = {
+		pop_happiness = -10
+	}
+
+	potential = {
+		has_utopia = yes # Organic Zealots optimization
+		exists = from
+		from = {
+			is_machine_empire = no # Merged
+			NOR = {
+				has_valid_civic = civic_mutualistic_behavior # Expanded Gestalts
+				AND = { # Bug Branch
+					has_valid_civic = civic_hive_devouring_swarm
+					is_lithoid_empire = yes # Bug Branch
+				}
+			}
+			
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = CAN_NOT_EAT_MACHINES
+			from = { # Organic Zealots optimization + Expanded Gestalts civic
+				OR = {
+					prev = { is_robotic = no }
+					# organic zealots waste not and want not
+					is_valid_organic_zealots = yes
+					# devouring swarms can CRONCH. in edge cases.
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_hive_parasitic # Expanded Gestalts
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "lonely_hive_mind_pops_kill_themselves_purge_type"
+			is_lonely_hive_mind_pop = no
+		}
+		custom_tooltip = {
+			fail_text = PURGES_ALLOWED
+			from = {
+				OR = {
+					is_gestalt = yes # Merged
+					has_valid_civic = civic_fanatic_purifiers
+					AND = { # Organic Zealots
+						is_valid_organic_zealots = yes
+						prev = { is_robotic = yes }
+					}
+					has_policy_flag = purge_allowed
+					# AND = { #species rights are disabled for presapients
+					#	has_policy_flag = pre_sapients_eat
+					#	prev = {
+					#		is_sapient = no
+					#	}
+					# }
+				}
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 50
+		modifier = {
+			factor = 0
+			NOR = {
+				has_trait = trait_delicious
+				has_trait = trait_felsic # Organic Zealots
+				from = {
+					OR = { # Expanded Gestalts
+						has_valid_civic = civic_hive_parasitic # Expanded Gestalts
+						has_valid_civic = civic_hive_devouring_swarm
+						AND = { # Organic Zealots
+							is_valid_organic_zealots = yes
+							prev = { is_robotic = yes }
+						}
+					}
+				}
+				AND = {
+					is_sapient = no
+					from = {
+						has_policy_flag = pre_sapients_eat
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			from = {
+				has_valid_ai_personality = yes
+				NOR = {
+					has_ai_personality_behaviour = purger
+					AND = { # Organic Zealots
+						is_valid_organic_zealots = yes
+						prev = { is_robotic = yes }
+					}
+				}
+			}
+		}
+	}
+}
