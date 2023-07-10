@@ -6,6 +6,14 @@
 @distance = 50
 @base_moon_distance = 10
 
+## Real Space Variables
+@jumps = 3
+
+## AOT Variables
+@dm_hab_size_lvl1 = 5
+@dm_hab_size_lvl2 = 8
+@dm_hab_size_lvl3 = 11
+
 ##################################################
 ## Enclaves
 ##################################################
