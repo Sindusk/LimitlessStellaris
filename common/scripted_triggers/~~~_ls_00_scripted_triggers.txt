@@ -2,7 +2,7 @@
 # Limitless Stellaris - Scripted Triggers
 ####################################################################################################
 
-## Homicidal Diplomacy Restrictions
+## Homicidal Diplomacy Restrictions [Scripted Trigger Undercoat]
 # Add support for Co-Op Start In Teams
 homicidal_diplomacy_restrictions = {
 	custom_tooltip = {
@@ -157,4 +157,10 @@ est_is_core_world = {
 	sector = {
 		has_sector_type = core_sector
 	}	
+}
+
+## Uses Regular District Set [More Standard Districts]
+# Overwritten to help with compatibility.
+msd_uses_regular_district_set = {
+	uses_district_industrial = yes # Redirect to Merger of Rules version to only apply when there should be industrial districts.
 }

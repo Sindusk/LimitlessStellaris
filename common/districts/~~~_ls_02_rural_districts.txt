@@ -31,9 +31,7 @@ district_generator = {
 		NOT = { has_modifier = urban_idyll_colony } # Venture Politics
 		is_pd_wasteland = no # Planetary Diversity
 		is_pd_planetary_megaproject = no # Planetary Diversity
-		NOT = { # OSA
-			has_planet_flag = osa_military
-		}
+		NOT = { has_planet_flag = osa_military } # OSA
 	}
 
 	allow = {
@@ -363,9 +361,7 @@ district_mining = {
 		}
 		is_pd_wasteland = no # Planetary Diversity
 		is_pd_planetary_megaproject = no # Planetary Diversity
-		NOT = { # OSA
-			has_planet_flag = osa_military
-		}
+		NOT = { has_planet_flag = osa_military } # OSA
 	}
 
 	allow = {
@@ -723,7 +719,7 @@ district_farming = {
 
 	potential = {
 		uses_district_set = standard
-		OR = {
+		OR = { # Merged
 			NOT = { exists = owner }
 			owner = { is_anglers_empire = no }
 			AND = {
@@ -747,9 +743,7 @@ district_farming = {
 				country_uses_food = no
 			}
 		}
-		NOT = { # OSA
-			has_planet_flag = osa_military
-		}
+		NOT = { has_planet_flag = osa_military } # OSA
 	}
 
 	allow = {

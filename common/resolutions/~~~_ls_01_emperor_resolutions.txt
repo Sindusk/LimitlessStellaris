@@ -3055,4 +3055,540 @@ resolution_emperor_imperial_legions = {
 	}
 }
 
+## Emperor - Imperial Navigation Agency
+# Merge between EED, MECR, NGS, Ariphaos
+resolution_emperor_ina = {
+	icon = "GFX_resolution_form_ina"
 
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+		resolution_emperor_ina = 1 # MECR custodian -> emperor
+	}
+	triggered_modifier = { # MECR
+		potential = { is_galactic_emperor = yes }
+		modifier = { imperial_governance_usage = 100 }
+	}
+
+	effect = {
+		custom_tooltip = "resolution_custodian_ina_effect" # MECR
+		hidden_effect = { pass_resolution_no_cooldown = resolution_category_imperial_institutions_reset_cooldown } # MECR
+		pass_resolution_modifier = yes # MECR
+	}
+
+	fail_effects = {
+		fail_resolution_modifier = yes # MECR
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = "resolution_emperor_ina" }
+		}
+	}
+
+	potential = {
+		has_nemesis = yes
+		OR = { # MECR
+			is_galactic_emperor = yes
+			and = { # MECR
+				has_galactic_emperor = yes
+				is_part_of_galactic_council = yes
+				is_active_resolution = "resolution_emperor_expand_power_of_council"
+			}
+			is_country_type = imperial_senator # MECR
+		}
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_loved # NGS normal -> loved
+
+		modifier = {
+			factor = 0.8
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 0.5
+			is_xenophobic_isolationists = yes # EED
+			desc = gal_com_isolationist_civic # EED
+		}
+
+		modifier = {
+			factor = 1.5 # NGS 1.2 -> 1.5
+			has_ai_personality = peaceful_traders
+			desc = personality_peaceful_traders
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.2 -> 2
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+
+		modifier = {
+			factor = 2
+			is_erudite_explorers = yes # EED
+			desc = personality_erudite_explorers
+		}
+
+		modifier = {
+			factor = 4
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+		modifier = { # EED
+			factor = 2
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = { # EED
+			factor = 1.25
+			OR = { is_militarist = yes is_civic_militarist = yes }
+			desc = ethic_militarist
+		}
+		modifier = { # EED
+			factor = 0.75
+			has_monthly_income = { resource = energy  value < 20 }
+			desc = gal_com_energy_income
+		}
+		modifier = { # EED
+			factor = 0.5
+			has_deficit = energy
+			desc = gal_com_energy_income
+		}
+		modifier = { # MECR
+			factor = 2
+			is_galactic_emperor = no
+			is_part_of_galactic_council = yes
+			desc = gal_com_on_galatic_council
+		}
+		modifier = { # MECR
+			factor = 2
+			is_subject = yes
+			overlord = { is_galactic_emperor = yes }
+			desc = gal_com_emperors_subject
+		}
+	}
+}
+
+## Emperor - Imperial Security Directorate
+# Merge between EED, MECR, NGS, Ariphaos
+resolution_emperor_isd = {
+	icon = "GFX_resolution_imperial_security_directorate"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4 # MECR t3 -> t4
+		}
+	}
+	target = no
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = "resolution_emperor_isd" }
+		}
+		custom_tooltip = { # MECR
+			fail_text = "can_support_less_upgraded_institutions_resolution"
+			OR = {
+				is_active_resolution = resolution_emperor_isd
+				NOT = { any_federation = { has_federation_perk = imperium_federation_passive } }
+				federation = {
+					check_variable = {
+						which = imperial_institutions_upgrades_support
+						value > value:imperial_institutions_upgrades_used
+					}
+				}
+			}
+		}
+	}
+	modifier = {
+		resolution_emperor_isd = 1
+	}
+	triggered_modifier = { # MECR
+		potential = {
+			is_galactic_emperor = yes
+			has_federation = yes
+			federation = { has_federation_perk = imperium_federation_passive }
+		}
+		modifier = {
+			spy_network_levels_add = 200
+		}
+	}
+	triggered_modifier = { # MECR
+		potential = {
+			has_global_flag = flag_crack_down_on_criminal_syndicate
+			is_megacorp = no
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			any_country = {
+				is_criminal_syndicate = yes
+				is_galactic_community_member = yes
+			}
+		}
+		modifier = { resolution_custodian_crack_down_on_criminal_syndicate_anti_inner = 1 }
+	}
+	triggered_modifier = { # MECR
+		potential = {
+			has_global_flag = flag_crack_down_on_criminal_syndicate
+			any_owned_planet = {
+				has_branch_office = yes
+				branch_office_owner = {
+					is_criminal_syndicate = yes
+					is_galactic_community_member = no
+				}
+			}
+		}
+		modifier = { resolution_custodian_crack_down_on_criminal_syndicate_anti_outer = 1 }
+	}
+	triggered_modifier = { # MECR
+		potential = {
+			has_global_flag = flag_crack_down_on_criminal_syndicate
+			is_criminal_syndicate = yes
+		}
+		modifier = { resolution_custodian_crack_down_on_criminal_syndicate_criminal = 1 }
+	}
+	triggered_modifier = { # MECR
+		potential = { is_galactic_emperor = yes }
+		modifier = { imperial_governance_usage = 250 }
+	}
+
+	effect = {
+		custom_tooltip = "non_repealable_department" # MECR
+		random_playable_country = {
+			limit = { is_galactic_emperor = yes }
+			add_modifier = { modifier = "imperial_security_directorate" }
+		}
+		hidden_effect = {
+			every_playable_country = {
+				limit = { is_galactic_community_member = yes }
+				country_event = { id = emperor.70 }
+			}
+			galactic_emperor = { # MECR
+				country_event = {
+					id = MECR.1992
+					days = 1
+				}
+			}
+		}
+		pass_resolution_modifier = yes # MECR
+	}
+
+	fail_effects = {
+		fail_resolution_modifier = yes # MECR
+	}
+
+	potential = {
+		has_nemesis = yes
+		OR = { # MECR
+			is_galactic_emperor = yes
+			and = { # MECR
+				has_galactic_emperor = yes
+				is_part_of_galactic_council = yes
+				is_active_resolution = "resolution_emperor_expand_power_of_council"
+			}
+			is_country_type = imperial_senator # MECR
+		}
+		NOT = { # MECR
+			any_country = { has_country_flag = galpol_turned_into_isd }
+		}
+	}
+
+	breach = { # MECR
+		custom_tooltip = {
+			AND = {
+				has_global_flag = flag_crack_down_on_criminal_syndicate
+				has_valid_civic = civic_criminal_heritage
+			}
+		}
+		NOT = { has_country_flag = constitutional_immunity }
+	}
+
+	active = {
+		has_galactic_emperor = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular # NGS disliked -> unpopular
+
+		modifier = {
+			factor = 2
+			any_owned_planet = {
+				planet_crime > 40
+			}
+			desc = gal_com_owns_high_crime_planet
+		}
+
+		modifier = {
+			factor = 2
+			any_owned_planet = {
+				has_branch_office = yes
+				branch_office_owner = { is_criminal_syndicate = yes }
+			}
+			desc = gal_com_owns_planet_with_criminal_syndicate_branch_office
+		}
+
+		modifier = {
+			factor = 0
+			is_criminal_syndicate = yes
+			desc = gov_criminal_syndicate
+		}
+
+		modifier = {
+			factor = 0.6
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+
+		modifier = { # NGS
+			factor = 2
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+
+		modifier = {
+			factor = 1.6 # NGS 1.4 -> 1.6
+			is_part_of_galactic_council = yes
+			desc = gal_com_on_galatic_council
+		}
+
+		modifier = {
+			factor = 20
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+	}
+}
+
+## Emperor - Pax Galactica
+# Merge between EED, NGS, Ariphaos
+resolution_emperor_pax_galactica = {
+	icon = "GFX_resolution_pax_galactica"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t3
+		}
+	}
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		custom_tooltip = resolution_emperor_pax_galactica_tooltip
+		hidden_effect = {
+			if = { # EED
+				limit = { NOT = { has_ai_personality = vb_keepers_of_peace } }
+				set_timed_country_flag = { flag = galcom_resolution_passed_anti_imperialist days = 7200 }
+			}
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_supremacist days = 7200 } # EED
+			every_war = {
+				limit = {
+					NOR = {
+						using_war_goal = {
+							type = wg_seize_council_seat
+							owner = attacker
+						}
+						using_war_goal = {
+							type = wg_seize_council_seat
+							owner = defender
+						}
+						using_war_goal = {
+							type = wg_declared_crisis
+							owner = attacker
+						}
+					}
+					any_attacker = { is_galactic_community_member = yes }
+					any_defender = { is_galactic_community_member = yes }
+				}
+				every_war_participant = {
+					limit = { is_galactic_community_member = yes }
+					prev = { remove_war_participant = prev }
+					country_event = { id = emperor.360 }
+				}
+			}
+		}
+	}
+
+	fail_effects = {
+	}
+
+	potential = {
+		has_nemesis = yes
+		OR = { # EED
+			is_galactic_emperor = yes
+			is_galactic_president = yes # EED
+		}
+	}
+
+	allow = {
+		if = { # EED
+			limit = { has_galactic_emperor = yes } # EED
+			imperial_authority >= 180
+		}
+		else_if = { # EED
+			limit = { has_galactic_republic = yes }
+			is_active_resolution = resolution_custodian_expand_gdf
+			is_active_resolution = resolution_custodian_expand_galpol
+			is_active_resolution = resolution_custodian_ina
+		}
+		custom_tooltip = { # EED
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = "resolution_emperor_pax_galactica" }
+		}
+	}
+
+	active = {
+		OR = { # EED
+			has_galactic_emperor = yes
+			has_galactic_republic = yes # EED
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal # NGS unpopular -> normal
+
+		modifier = {
+			factor = 4
+			OR = { # NGS
+				is_pacifist = yes
+				is_xenophile = yes # NGS
+			}
+			desc = ethic_pacifist
+		}
+
+		modifier = {
+			factor = 0.75 # NGS 0.2 -> 0.75
+			OR = { is_militarist = yes is_civic_militarist = yes } # EED
+			is_galactic_emperor = no # NGS
+			desc = ethic_militarist
+		}
+
+		modifier = { # NGS
+			factor = 2
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+
+		modifier = {
+			factor = 4
+			any_country = { is_crisis_faction = yes }
+			desc = gal_com_someone_is_revealed_crisis
+		}
+
+		modifier = {
+			factor = 4
+			any_neighbor_country = { is_crisis_faction = yes }
+			desc = gal_com_neighboring_crisis_empire
+		}
+
+		modifier = {
+			factor = 4
+			has_crisis_stage_1 = yes
+			desc = gal_com_crisis_stage_1
+		}
+
+		modifier = {
+			factor = 4
+			has_crisis_stage_2 = yes
+			desc = gal_com_crisis_stage_2
+		}
+
+		modifier = {
+			factor = 4
+			has_crisis_stage_3 = yes
+			desc = gal_com_crisis_stage_3
+		}
+
+		modifier = {
+			factor = 4
+			has_crisis_stage_4 = yes
+			desc = gal_com_crisis_stage_4
+		}
+
+		modifier = {
+			factor = 4
+			any_playable_country = { has_country_flag = crisis_sphere_revealed }
+			desc = gal_com_crisis_sphere_revealed
+		}
+
+		modifier = {
+			factor = 2
+			any_playable_country = { has_been_declared_crisis = yes }
+			desc = gal_com_someone_declared_crisis
+		}
+
+		modifier = {
+			factor = 4
+			has_global_flag = gray_goo_crisis_active
+			desc = gal_com_someone_is_revealed_crisis
+		}
+
+		modifier = {
+			factor = 4
+			has_global_flag = marauder_crisis_ongoing
+			desc = gal_com_someone_is_revealed_crisis
+		}
+
+		modifier = {
+			factor = 2
+			any_country = { is_country_type = awakened_fallen_empire }
+			desc = gal_com_exists_awakened_fallen_empire
+		}
+
+		modifier = {
+			factor = 4
+			has_global_flag = war_in_heaven_ongoing
+			desc = gal_com_ongoing_war_in_heaven
+		}
+		modifier = { # EED
+			factor = 5
+			is_civic_diplomatic_corps = yes
+			desc = gal_com_diplo_civic
+		}
+		modifier = { # EED
+			factor = 0
+			is_honorbound_warriors = yes
+			desc = personality_honorbound_warriors
+		}
+		modifier = { # EED
+			factor = 1.5
+			is_erudite_explorers = yes
+			desc = personality_erudite_explorers
+		}
+		modifier = { # EED
+			factor = 0.5
+			is_civic_cutthroat_politics = yes
+			desc = gal_com_cutthroat_civic
+		}
+		modifier = { # EED
+			factor = 1.25
+			is_civic_efficient_bureaucracy = yes
+			desc = gal_com_efficient_civic
+		}
+		modifier = { # EED
+			factor = 1.25
+			is_civic_free_traders = yes
+			desc = gal_com_trade_civic
+		}
+		modifier = { # EED
+			factor = 1.25
+			has_ai_personality = peaceful_traders
+			desc = gal_com_trader_ai_personality
+		}
+	}
+}
