@@ -3,6 +3,7 @@
 ##########################################################################
 
 ### Key:
+### AAP - Assimilate All the Pops!
 ### SAP - Sartek Ascension Perk Merger
 ### SAP (Fusion) - Sartek Ascenion Path Fusion
 ### EMEX - Empires Expanded
@@ -574,7 +575,7 @@ ap_detox = {
 
 ### ap_engineered_evolution
 ## Engineered Evolution (Vanilla)
-# Merge between SAP (Fusion), OSA, EMEX, Ariphaos
+# Merge between SAP (Fusion), OSA, AAP, EMEX, Ariphaos
 # Base from SAP (Fusion), check removal from OSA, potential changes to account for civics from EMEX (commented pending testing), and AI improvements from Ariphaos
 ap_engineered_evolution = {
 	on_enabled = {
@@ -649,19 +650,22 @@ ap_engineered_evolution = {
 
 	potential = {
 		has_utopia = yes
-		NOR = {
-			has_ascension_perk = ap_engineered_evolution
-			AND = {
-				has_authority = "auth_machine_intelligence"
-				NOT = { has_civic = civic_machine_assimilator }
-			}
+		# AAP conditions
+		NOT = { has_ascension_perk = ap_engineered_evolution }
+		is_machine_empire = no
+		#NOR = {
+			#has_ascension_perk = ap_engineered_evolution
+			#AND = {
+			#	has_authority = "auth_machine_intelligence"
+			#	NOT = { has_civic = civic_machine_assimilator }
+			#}
 			# EMEX changes commented out pending testing
 			#has_origin = origin_shroudwalker_apprentice
 			#has_valid_civic = civic_hive_cyborgs # EMEX
 			#has_valid_civic = civic_hive_manipulators_of_life # EMEX
-		}
- #		is_mechanical_empire = no
- #		is_cyborg_empire = no
+		#}
+		#is_mechanical_empire = no
+		#is_cyborg_empire = no
 	}
 
 	ai_weight = {
@@ -677,19 +681,6 @@ ap_engineered_evolution = {
 		modifier = {
 			factor = 10
 			has_authority = auth_hive_mind
-		}
-		modifier = { # Double check with Sartek to see if this is intended, and if so why.
-			factor = 0
-			OR = {
-				has_origin = origin_shroudwalker_apprentice
-				has_ascension_perk = ap_the_flesh_is_weak
-				has_ascension_perk = ap_organo_machine_interfacing
-				has_ascension_perk = ap_organo_machine_interfacing_assimilator
-				has_ascension_perk = ap_mind_over_matter
-				has_ascension_perk = ap_synthetic_evolution
-				has_ascension_perk = ap_engineered_evolution
-				has_ascension_perk = ap_synthetic_age
-			}
 		}
 	}
 }
@@ -1886,7 +1877,7 @@ ap_mastery_of_nature = {
 
 ### ap_mind_over_matter
 ## Mind Over Matter (Vanilla - Utopia)
-# Merge between SAP (Fusion), Ariphaos
+# Merge between SAP (Fusion), AAP, Ariphaos
 # Base from SAP (Fusion), AI modifiers by Ariphaos
 ap_mind_over_matter = {
 	on_enabled = {
@@ -1929,7 +1920,7 @@ ap_mind_over_matter = {
 		has_utopia = yes
 		NOR = {
 			has_ascension_perk = ap_mind_over_matter
-			is_shroudwalker_apprentice_empire = yes
+			has_origin = origin_shroudwalker_apprentice
 			#Planetary Diversity
 			has_origin = origin_pd_shroud
 		}
@@ -1966,17 +1957,6 @@ ap_mind_over_matter = {
 		modifier = {
 			factor = 10
 			has_ascension_perk = ap_become_the_crisis
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				has_origin = origin_shroudwalker_apprentice
-				has_ascension_perk = ap_the_flesh_is_weak
-				has_ascension_perk = ap_organo_machine_interfacing
-				has_ascension_perk = ap_mind_over_matter
-				has_ascension_perk = ap_synthetic_evolution
-				has_ascension_perk = ap_engineered_evolution
-			}
 		}
 	}
 }
@@ -2195,7 +2175,7 @@ ap_organo_machine_interfacing = {
 
 ### ap_organo_machine_interfacing_assimilator
 ## Organo-Machine Interfacing (Vanilla - Utopia)
-# Merge between SAP, Ariphaos
+# Merge between SAP, AAP, Ariphaos
 # Base from SAP, AI weight modifiers from Ariphaos
 ap_organo_machine_interfacing_assimilator = {
 	on_enabled = {
@@ -2227,9 +2207,7 @@ ap_organo_machine_interfacing_assimilator = {
 
 	potential = {
 		has_utopia = yes
-		NOT = {
-			has_ascension_perk = ap_organo_machine_interfacing_assimilator
-		}
+		NOT = { has_ascension_perk = ap_organo_machine_interfacing_assimilator }
 		is_machine_assimilator = yes
 	}
 
@@ -2242,19 +2220,6 @@ ap_organo_machine_interfacing_assimilator = {
 		modifier = { # Ariphaos modifier
 			factor = 0.1
 			num_ascension_perks < 3
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				has_origin = origin_shroudwalker_apprentice
-				has_ascension_perk = ap_the_flesh_is_weak
-				has_ascension_perk = ap_organo_machine_interfacing
-				has_ascension_perk = ap_organo_machine_interfacing_assimilator
-				has_ascension_perk = ap_mind_over_matter
-				has_ascension_perk = ap_synthetic_evolution
-				has_ascension_perk = ap_engineered_evolution
-				has_ascension_perk = ap_synthetic_age
-			}
 		}
 	}
 }
@@ -2374,19 +2339,6 @@ ap_synthetic_age = {
 			factor = 0.1
 			num_ascension_perks < 3
 		}
-		modifier = {
-			factor = 0
-			OR = {
-				has_origin = origin_shroudwalker_apprentice
-				has_ascension_perk = ap_the_flesh_is_weak
-				has_ascension_perk = ap_organo_machine_interfacing
-				has_ascension_perk = ap_organo_machine_interfacing_assimilator
-				has_ascension_perk = ap_mind_over_matter
-				has_ascension_perk = ap_synthetic_evolution
-				has_ascension_perk = ap_engineered_evolution
-				has_ascension_perk = ap_synthetic_age
-			}
-		}
 	}
 }
 
@@ -2473,6 +2425,7 @@ ap_synthetic_evolution = {
  #			has_origin = origin_shroudwalker_apprentice
 		}
 		is_gestalt = no
+		is_mechanical_empire = no # AAP
 		# Planetary Diversity Origin
  #		NOT = { has_origin = origin_techno_world }
 	}
@@ -2495,19 +2448,6 @@ ap_synthetic_evolution = {
 			factor = 0
 			has_origin = origin_necrophage
 			has_origin = origin_slavers
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				has_origin = origin_shroudwalker_apprentice
-				has_ascension_perk = ap_the_flesh_is_weak
-				has_ascension_perk = ap_organo_machine_interfacing
-				has_ascension_perk = ap_organo_machine_interfacing_assimilator
-				has_ascension_perk = ap_mind_over_matter
-				has_ascension_perk = ap_synthetic_evolution
-				has_ascension_perk = ap_engineered_evolution
-				has_ascension_perk = ap_synthetic_age
-			}
 		}
 	}
 }

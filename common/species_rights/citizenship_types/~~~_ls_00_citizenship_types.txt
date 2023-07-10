@@ -176,4 +176,1183 @@ citizenship_full_machine = {
 	}
 }
 
+## Assimilation
+# AAP version with merges from Expanded Gestalts, EMEX, StarTech
+citizenship_assimilation = {
+	is_assimilation = yes
+	potential = {
+		OR = {
+			has_synthethic_dawn = yes
+			has_utopia = yes
+		}
+		exists = from
+		from = {
+			OR = {
+				AND = {
+					is_machine_empire = yes
+					OR = {
+						has_active_tradition = tr_synthetics_adopt_machine # synthetic assimilation (machine)
+						has_valid_civic = civic_machine_assimilator # cybernetic assimilation (driven assimilator)
+					}
+				}
+				AND = {
+					is_hive_empire = yes
+					OR = {
+						NOT = { has_valid_civic = civic_hive_devouring_swarm }
+						root = { is_same_species = prev }
+					}
+					OR = {
+						has_tradition = tr_genetics_creation # hive assimilation
+						has_tradition = tr_cybernetics_transubstantiation_synthesis # cybernetic assimilation (hive)
+						has_civic = civic_hive_assimilators # EMEX
+						has_valid_civic = civic_mutualistic_behavior # Expanded Gestalts
+					}
+				}
+				AND = {
+					is_gestalt = no
+					OR = {
+						NOT = { has_valid_civic = civic_fanatic_purifiers }
+						root = { is_same_species = prev }
+					}
+					OR = {
+						has_country_flag = synth_assimilation # synthetic assimilation (regular)
+						has_tradition = tr_cybernetics_transubstantiation_synthesis # cybernetic assimilation (regular)
+						has_tradition = tr_psionics_psionic_assimilation # psionic assimilation
+						has_tradition = tr_genetics_creation # hive deassimilation
+						# machine deassimilation
+						AND = {
+							has_deassimilate_machines_active = yes
+							has_technology = tech_sapient_ai
+							prev = { has_trait = trait_machine_unit }
+						}
+						# cyborg deassimilation
+						AND = {
+							has_civic_organic_zealots_active = yes
+							has_technology = tech_gene_tailoring
+							has_technology = tech_gene_banks
+							prev = { has_trait = trait_cybernetic }
+						}
+					}
+				}
+			}
+		}
+	}
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = MUST_NOT_BE_DOMINANT_SPECIES
+			NOT = { is_exact_same_species = from }
+		}
+		custom_tooltip = {
+			fail_text = pre_sapients_citizenship
+			is_sapient = yes
+		}
+		if = {
+			limit = { is_lonely_hive_mind_pop = yes }
+			custom_tooltip = {
+				fail_text = lonely_hive_mind_pops_kill_themselves_citizenship_assimilation
+				from = {
+					OR = {
+						has_tradition = tr_genetics_creation
+						has_tradition = tr_cybernetics_transubstantiation_synthesis
+						has_tradition = tr_cybernetics_assimilator_inevitable_assimilation
+					}
+				}
+			}
+		}
+		if = {
+			limit = { is_disconnected_machine_pop = yes }
+			custom_tooltip = {
+				fail_text = disconnected_machine_pops_collapse_citizenship
+				OR = {
+					AND = {
+						has_deassimilate_machines_active = no
+						from = { has_country_flag = synth_assimilation }
+					}
+					AND = {
+						has_deassimilate_machines_active = yes
+						from = { is_hive_empire = no }
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = disconnected_machine_pops_collapse_citizenship_assimilation
+				OR = {
+					has_deassimilate_machines_active = no
+					from = {
+						OR = {
+							is_hive_empire = yes
+							has_technology = tech_sapient_ai
+							has_country_flag = synth_assimilation
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = { from = { is_machine_empire = yes } }
+			OR = {
+				# cybernetic assimilation (assimilator)
+				from = {
+					has_valid_civic = civic_machine_assimilator
+					custom_tooltip = {
+						fail_text = CYBORG_SPECIES_CANT_BE_MACHINE
+						prev = { is_robotic = no }
+					}
+					# tradition checked multiple times to make tooltips easier to read
+					custom_tooltip = {
+						fail_text = CYBORG_SPECIES_CANT_BE_HIVE
+						OR = {
+							has_tradition = tr_cybernetics_assimilator_inevitable_assimilation
+							prev = { NOT = { has_trait = trait_hive_mind } }
+						}
+					}
+					custom_tooltip = {
+						fail_text = CYBORG_SPECIES_CANT_BE_CYBORG
+						OR = {
+							has_tradition = tr_cybernetics_assimilator_inevitable_assimilation
+							prev = { NOT = { has_trait = trait_cybernetic } }
+						}
+					}
+					custom_tooltip = {
+						fail_text = CYBORG_SPECIES_CANT_BE_CYBORG_OR_MUST_BE_HIVE
+						OR = {
+							NOT = { has_tradition = tr_cybernetics_assimilator_inevitable_assimilation }
+							prev = {
+								OR = {
+									NOT = { has_trait = trait_cybernetic }
+									has_trait = trait_hive_mind
+								}
+							}
+						}
+					}
+				}
+				# synthetic assimilation (machine)
+				from = {
+					has_active_tradition = tr_synthetics_adopt_machine
+					custom_tooltip = {
+						fail_text = SYNTH_SPECIES_MUST_BE_MACHINE
+						prev = { is_robotic = yes }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { from = { is_hive_empire = yes } }
+			OR = {
+				# hive assimilation
+				from = {
+					OR = { # LS - Add modded conditions
+						has_tradition = tr_genetics_creation
+						has_civic = civic_hive_assimilators # EMEX
+						has_origin = origin_hive_overmind # Expanded Gestalts
+						has_valid_civic = civic_mutualistic_behavior # Expanded Gestalts
+						has_ascension_perk = ap_omnipresence # Expanded Gestalts
+					}
+					custom_tooltip = {
+						fail_text = HIVE_SPECIES_CANT_BE_HIVE
+						prev = {
+							is_robotic = no
+							NOT = { has_trait = trait_hive_mind }
+						}
+					}
+				}
+				# cybernetic assimilation (hive)
+				from = {
+					has_tradition = tr_cybernetics_transubstantiation_synthesis
+					custom_tooltip = {
+						fail_text = CYBORG_SPECIES_CANT_BE_CYBORG
+						prev = {
+							OR = {
+								NOT = { has_trait = trait_cybernetic }
+								AND = {
+									has_trait = trait_cybernetic
+									NOT = { has_trait = trait_hive_mind }
+								}
+							}
+						}
+					}
+					custom_tooltip = {
+						fail_text = HIVE_SPECIES_CANT_BE_HIVE
+						prev = {
+							is_robotic = no
+							OR = {
+								NOT = { has_trait = trait_hive_mind }
+								AND = {
+									NOT = { has_trait = trait_cybernetic }
+									has_trait = trait_hive_mind
+								}
+							}
+						}
+					}
+					custom_tooltip = {
+						fail_text = lost_robot_policy_war
+						OR = {
+							has_civic_organic_zealots_active = no
+							NOT = { has_country_flag = lost_robot_policy_war }
+						}
+					}
+					# organic zealots can't be hive-minded, so no self-check here
+					custom_tooltip = {
+						fail_text = civic_tooltip_overlord_not_organic_zealots
+						OR = {
+							has_civic_organic_zealots_active = no
+							NAND = {
+								is_subject = yes
+								overlord = { is_valid_organic_zealots = yes }
+							}
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { from = { is_gestalt = no } }
+			OR = {
+				# synthetic assimilation (regular)
+				from = {
+					custom_tooltip = {
+						text = HAS_COMPLETED_SYNTHETIC_EVOLUTION_PROJECT # intentionally not fail_text
+						has_country_flag = synth_assimilation
+					}
+					custom_tooltip = {
+						fail_text = SYNTH_SPECIES_CANT_BE_HIVE
+						prev = { NOT = { has_trait = trait_hive_mind } }
+					}
+					# note - tooltips won't generate as desired (depth limit?) if I nest the C:OZ checks inside and if block or a scripted_trigger
+					custom_tooltip = {
+						fail_text = lost_robot_policy_war
+						OR = {
+							has_civic_organic_zealots_active = no
+							NOT = { has_country_flag = lost_robot_policy_war }
+						}
+					}
+					custom_tooltip = {
+						fail_text = civic_tooltip_not_organic_zealots
+						OR = {
+							has_civic_organic_zealots_active = no
+							is_valid_organic_zealots = no
+						}
+					}
+					custom_tooltip = {
+						fail_text = civic_tooltip_overlord_not_organic_zealots
+						OR = {
+							has_civic_organic_zealots_active = no
+							NAND = {
+								is_subject = yes
+								overlord = { is_valid_organic_zealots = yes }
+							}
+						}
+					}
+				}
+				# cybernetic assimilation (regular)
+				from = {
+					has_tradition = tr_cybernetics_transubstantiation_synthesis
+					custom_tooltip = {
+						fail_text = CYBORG_SPECIES_MUST_BE_FULL_ORGANIC
+						prev = {
+							is_robotic = no
+							OR = {
+								NOT = { has_trait = trait_cybernetic }
+								has_trait = trait_hive_mind
+							}
+						}
+					}
+					custom_tooltip = {
+						fail_text = lost_robot_policy_war
+						OR = {
+							has_civic_organic_zealots_active = no
+							NOT = { has_country_flag = lost_robot_policy_war }
+						}
+					}
+					custom_tooltip = {
+						fail_text = civic_tooltip_not_organic_zealots
+						OR = {
+							has_civic_organic_zealots_active = no
+							is_valid_organic_zealots = no
+						}
+					}
+					custom_tooltip = {
+						fail_text = civic_tooltip_overlord_not_organic_zealots
+						OR = {
+							has_civic_organic_zealots_active = no
+							NAND = {
+								is_subject = yes
+								overlord = { is_valid_organic_zealots = yes }
+							}
+						}
+					}
+				}
+				# psionic assimilation
+				from = {
+					has_tradition = tr_psionics_psionic_assimilation
+					custom_tooltip = {
+						fail_text = PSI_SPECIES_MUST_BE_ORGANIC
+						prev = { is_robotic = no }
+					}
+					custom_tooltip = {
+						fail_text = PSI_SPECIES_IS_ALREADY_PSIONIC
+						prev = { NOT = { has_trait = trait_psionic } }
+					}
+					custom_tooltip = {
+						fail_text = PSI_SPECIES_CANT_BE_HIVE
+						prev = { NOT = { has_trait = trait_hive_mind } }
+					}
+				}
+				# hive deassimilation
+				from = {
+					has_tradition = tr_genetics_creation
+					custom_tooltip = {
+						fail_text = UNHIVE_SPECIES_MUST_BE_HIVE
+						prev = { has_trait = trait_hive_mind }
+					}
+				}
+				# cybernetic deassimilation
+				if = {
+					limit = { has_civic_organic_zealots_active = yes }
+					from = {
+						has_technology = tech_gene_tailoring
+						has_technology = tech_gene_banks
+						custom_tooltip = {
+							fail_text = UNCYBORG_SPECIES_MUST_BE_CYBORG
+							prev = { has_trait = trait_cybernetic }
+						}
+						custom_tooltip = {
+							fail_text = UNCYBORG_SPECIES_CANT_BE_HIVE
+							prev = { NOT = { has_trait = trait_hive_mind } }
+						}
+					}
+				}
+				else = {
+					hidden_trigger = { always = no }
+				}
+				# machine deassimilation
+				if = {
+					limit = { has_deassimilate_machines_active = yes }
+					from = {
+						has_technology = tech_sapient_ai
+						custom_tooltip = {
+							fail_text = UNMACHINE_SPECIES_MUST_BE_MACHINE
+							prev = { has_trait = trait_machine_unit }
+						}
+						custom_tooltip = {
+							fail_text = ROBOTS_ARE_ALLOWED
+							has_policy_flag = robots_allowed
+						}
+						custom_tooltip = {
+							fail_text = AI_IS_ALLOWED
+							NOT = { has_policy_flag = ai_outlawed }
+						}
+						custom_tooltip = {
+							fail_text = lost_robot_policy_war
+							OR = {
+								has_civic_organic_zealots_active = no
+								NOT = { has_country_flag = lost_robot_policy_war }
+							}
+						}
+						custom_tooltip = {
+							fail_text = civic_tooltip_not_organic_zealots
+							OR = {
+								has_civic_organic_zealots_active = no
+								is_valid_organic_zealots = no
+							}
+						}
+						custom_tooltip = {
+							fail_text = civic_tooltip_overlord_not_organic_zealots
+							OR = {
+								has_civic_organic_zealots_active = no
+								NAND = {
+									is_subject = yes
+									overlord = { is_valid_organic_zealots = yes }
+								}
+							}
+						}
+					}
+				}
+				else = {
+					hidden_trigger = { always = no }
+				}
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 10000 # StarTech 100 -> 10,000
+		modifier = { # StarTech AI
+			factor = 0.00001
+			is_multiplayer = yes
+			from = { has_country_flag = str_recently_human }
+			not = {
+				has_citizenship_type = {
+					type = citizenship_assimilation
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			# modified so terminator AIs can assimilate other machines/robots
+			# and organic zealots AIs can psionically/genetically assimilate non-machines and uncyborg cybernetics
+			from = {
+				OR = {
+					AND = {
+						has_valid_civic = civic_machine_terminator
+						NAND = {
+							has_active_tradition = tr_synthetics_adopt_machine
+							prev = { is_robotic = yes }
+						}
+					}
+					AND = {
+						has_civic_organic_zealots_active = yes
+						is_valid_organic_zealots = yes
+						NOR = {
+							AND = {
+								has_tradition = tr_psionics_psionic_assimilation
+								prev = { is_robotic = no }
+							}
+							AND = {
+								has_tradition = tr_genetics_creation
+								prev = { has_trait = trait_hive_mind }
+							}
+							AND = {
+								has_technology = tech_gene_tailoring
+								has_technology = tech_gene_banks
+								prev = {
+									has_trait = trait_cybernetic
+									NOT = { has_trait = trait_hive_mind }
+								}
+							}
+						}
+					}
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_fanatic_purifiers
+				}
+			}
+		}
+	}
+}
 
+## Organic Trophy
+# Merge between Bug Branch, Expanded Gestalts, StarTech, Ariphaos, STU
+citizenship_organic_trophy = {
+	potential = {
+		host_has_dlc = "Synthetic Dawn Story Pack"
+		exists = from
+		from = {
+			OR = { # Expanded Gestalts
+				AND = { # Vanilla Check
+					is_machine_empire = yes # STU
+					is_servitor_empire = yes # STU
+				}
+				#has_ascension_perk = ap_omnipresence # Expanded Gestalts removes - no longer works for omnipresence
+				has_ascension_perk = ap_life_assemblers # Expanded Gestalts
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = { # Expanded Gestalts
+			fail_text = "HIVE_MIND_MAIN_SPECIES_ALWAYS_CITIZEN"
+			NAND = {
+				from = { 
+					has_authority = auth_hive_mind
+					#has_ascension_perk = ap_omnipresence #no longer works for omnipresence
+					has_ascension_perk = ap_life_assemblers
+					}
+				has_trait = trait_hive_mind
+			}
+		}
+		custom_tooltip = {
+			fail_text = "lonely_hive_mind_pops_kill_themselves_citizenship"
+			is_lonely_hive_mind_pop = no
+		}
+		custom_tooltip = {
+			fail_text = "disconnected_machine_pops_kill_themselves_citizenship"
+			is_disconnected_machine_pop = no
+		}
+		custom_tooltip = {
+			fail_text = not_organic
+			NOR = {
+				has_trait = trait_mechanical
+				has_trait = trait_bugged_happy_machine # Bug Branch
+				has_trait = trait_machine_unit
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+}
+
+## Limited
+# Merge between NGS, Extra Origins, StarTech, Ariphaos, STU
+citizenship_limited = {
+	new_pop_weight = 0.75
+
+	in_breach_of = {
+		{ # NGS
+			key = resolution_galactic_cooperation_initiative
+		}
+	}
+
+	pop_modifier = {
+		pop_happiness = -0.1
+		pop_amenities_usage_mult = -0.25
+		pop_political_power = -0.5
+	}
+
+	potential = {
+		exists = from
+		from = {
+			NOR = {
+				is_hive_empire = yes # STU
+				is_machine_empire = yes # STU
+			}
+		}
+		NOR = {
+			has_trait = trait_machine_unit
+			is_shackled_robot_species_rights = yes
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "presapients_not_accepted_citizenship"
+			OR = {
+				is_sapient = yes
+				from = { 
+					NOT = {
+						has_policy_flag = pre_sapients_eat
+						has_policy_flag = pre_sapients_purge
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "HIVE_MIND_SPECIES_CITIZENS_ONLY"
+			OR = {
+				NOT = { from = { is_hive_empire = yes } } # STU
+				has_trait = trait_hive_mind
+			}
+		}
+		custom_tooltip = {
+			fail_text = "HIVE_MIND_MAIN_SPECIES_ALWAYS_CITIZEN"
+			NAND = {
+				from = { is_hive_empire = yes } # STU
+				has_trait = trait_hive_mind
+			}
+		}
+		custom_tooltip = {
+			fail_text = same_species_disallowed
+			NOT = { is_same_species = from }
+		}
+		custom_tooltip = {
+			fail_text = "lonely_hive_mind_pops_kill_themselves_citizenship"
+			is_lonely_hive_mind_pop = no
+		}
+		custom_tooltip = {
+			fail_text = "disconnected_machine_pops_kill_themselves_citizenship"
+			is_disconnected_machine_pop = no
+		}
+		custom_tooltip = {
+			fail_text = "FANATIC_PURIFIERS_MUST_PURIFY"
+			OR = {
+				NOT = { from = { has_valid_civic = civic_fanatic_purifiers } }
+				is_same_species = from
+				from.owner_species = { # Extra Origins
+					is_symbiote_of_prev = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = yes_service_yes_citizenship
+			if = {
+				limit = {
+					from = { has_valid_civic = civic_citizen_service }
+				}
+				NOT = { has_military_service_type = { type = military_service_full country = from } }
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 30 # StarTech 3 -> 30
+		modifier = { # NGS
+			factor = 0.1
+			from = { is_galactic_community_member = yes }
+			is_active_resolution = "resolution_galactic_cooperation_initiative"
+		}
+		modifier = { # NGS
+			factor = 1.25
+			from = { is_xenophobe = yes }
+		}
+		modifier = {
+			factor = 0
+			from = {
+				has_valid_ai_personality = yes
+				has_ai_personality_behaviour = multispecies
+				NOT = { has_country_flag = str_recently_human } # StarTech AI
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 0.001
+			is_multiplayer = yes
+			from = { has_country_flag = str_recently_human }
+			not = {
+				has_citizenship_type = {
+					type = citizenship_limited
+				}
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 10000
+			is_multiplayer = yes
+			from = { has_country_flag = str_recently_human }
+			has_citizenship_type = {
+				type = citizenship_limited
+			}
+		}
+		modifier = {
+			factor = 0.1 # NGS 0 -> 0.1
+			from = {
+				has_valid_ai_personality = no
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+		}
+		modifier = { # Extra Origins
+			factor = 0
+			AND = {
+				from = {
+					is_authoritarian = no
+					is_xenophobe = no
+				}
+				from.owner_species = {
+					is_symbiote_of_prev = yes
+				}
+			}
+		}
+		modifier = { # Extra Origins
+			factor = 0.33
+			from.owner_species = {
+				is_symbiote_of_prev = yes
+			}
+		}
+		modifier = { # Extra Origins
+			factor = 1.1
+			from = {
+				OR = {
+					has_ethic =  ethic_fanatic_xenophobe
+					has_ethic =  ethic_fanatic_authoritarian
+				}
+			}
+		}
+	}
+}
+
+## Slavery
+# Merge between Bug Branch, NGS, Expanded Gestalts, Extra Origins, StarTech, Ariphaos, STU
+citizenship_slavery = {
+	is_slavery = yes
+
+	in_breach_of = {
+		{
+			key = resolution_greatergood_balance_in_the_middle
+		}
+		{
+			key = resolution_greatergood_universal_prosperity_mandate
+		}
+		{ # NGS
+			key = resolution_stellar_diplomatic_forums
+		}
+		{ # NGS
+			key = resolution_prime_directive
+		}
+		{ # NGS
+			key = resolution_galactic_cooperation_initiative
+		}
+	}
+
+	potential = {
+		NAND = {
+			exists = this
+			OR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+				has_trait = trait_machine_replica # Expanded Gestalts
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = "presapients_allowed_citizenship"
+			OR = {
+				is_sapient = yes
+				from = { 
+					NOT = {
+						has_policy_flag = pre_sapients_protect
+						has_policy_flag = pre_sapients_allow
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "presapients_purged_citizenship"
+			OR = {
+				is_sapient = yes
+				from = { 
+					NOT = {
+						has_policy_flag = pre_sapients_purge
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "HIVE_MIND_MAIN_SPECIES_ALWAYS_CITIZEN"
+			NAND = {
+				from = { is_hive_empire = yes }
+				has_trait = trait_hive_mind
+			}
+		}
+		custom_tooltip = {
+			fail_text = same_species_disallowed
+			NOT = { is_same_species = from }
+		}
+		custom_tooltip = {
+			fail_text = "lonely_hive_mind_pops_kill_themselves_citizenship"
+			is_lonely_hive_mind_pop = no
+		}
+		custom_tooltip = { # Expanded Gestalts
+			fail_text = MUTUALISTIC_BEHAVIOUR_CANNOT_ENSLAVE
+			from = {
+				NOT = { has_valid_civic = civic_mutualistic_behavior }
+			}
+		}
+		custom_tooltip = {
+			fail_text = SERVITORS_CANNOT_ENSLAVE
+			from = {
+				NOT = { is_servitor_empire = yes } # STU
+			}
+		}
+		custom_tooltip = {
+			fail_text = ASSIMILATORS_CANNOT_ENSLAVE
+			from = {
+				NOT = { is_machine_assimilator = yes } # STU
+			}
+		}
+		custom_tooltip = {
+			fail_text = TERMINATORS_CANNOT_ENSLAVE
+			from = {
+				NOT = { has_valid_civic = civic_machine_terminator }
+			}
+		}
+		custom_tooltip = {
+			fail_text = DEVOURERS_CANNOT_ENSLAVE
+			from = {
+				NOT = { has_valid_civic = civic_hive_devouring_swarm }
+			}
+		}
+		custom_tooltip = {
+			fail_text = empire_xenophile
+			from = {
+				NOR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "FANATIC_PURIFIERS_MUST_PURIFY"
+			OR = {
+				NOT = { from = { has_valid_civic = civic_fanatic_purifiers } }
+				is_same_species = from
+				from.owner_species = { # Extra Origins
+					is_symbiote_of_prev = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = does_not_embrace_species_slavery
+			from = {
+				allows_slavery = yes
+				OR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_elitist # Bug Branch authoritarian -> elitist
+					has_ethic = ethic_fanatic_elitist # Bug Branch authoritarian -> elitist
+					is_gestalt = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = yes_service_yes_citizenship
+			if = {
+				limit = {
+					from = { has_valid_civic = civic_citizen_service }
+				}
+				NOT = { has_military_service_type = { type = military_service_full country = from } }
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 15
+		modifier = { # StarTech AI
+			factor = 0.001
+			is_multiplayer = yes
+			from = { has_country_flag = str_recently_human }
+			not = {
+				has_citizenship_type = {
+					type = citizenship_slavery
+				}
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 10
+			from = {
+			not = { is_country_type = default }
+			has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 50
+			from = {
+				or = { has_origin = origin_necrophage has_origin = origin_syncretic_evolution }
+				years_passed < 30
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 10000
+			is_multiplayer = yes
+			from = { has_country_flag = str_recently_human }
+			has_citizenship_type = {
+				type = citizenship_slavery
+			}
+		}
+		modifier = {
+			factor = 0
+			from = {
+				has_valid_ai_personality = yes
+				NOT = {
+					has_ai_personality_behaviour = slaver
+				}
+				NAND = {
+					is_ai = no
+					is_xenophobe = yes
+				}
+			}
+		}
+		modifier = { # NGS
+			factor = 0.15
+			from = { 
+				has_ethic = ethic_xenophobe
+				is_authoritarian = no
+				NOT = { has_valid_civic = civic_slaver_guilds }
+			}
+			NOT = { has_species_flag = syncretic_species@from }
+		}
+		modifier = {
+			factor = 0
+			from = {
+				is_elitist = no # Bug Branch authoritarian -> elitist
+				is_xenophobe = no
+				#is_hive_empire = no # Expanded Gestalts removes this
+			}
+		}
+		modifier = {
+			factor = 0.1
+			from = {
+				is_galactic_community_member = yes
+			}
+			OR = {
+				is_active_resolution = "resolution_greatergood_balance_in_the_middle"
+				is_active_resolution = "resolution_greatergood_universal_prosperity_mandate"
+				is_active_resolution = "resolution_greatergood_6" # NGS
+				is_active_resolution = "resolution_stellar_diplomatic_forums" # NGS
+				is_active_resolution = "resolution_prime_directive" # NGS
+				is_active_resolution = "resolution_galactic_cooperation_initiative" # NGS
+			}
+		}
+		modifier = {
+			factor = 2
+			has_species_flag = syncretic_species@from
+		}
+		modifier = { # Extra Origins
+			factor = 0
+			AND = {
+				from = {
+					is_authoritarian = no
+					is_xenophobe = no
+				}
+				from.owner_species = {
+					is_symbiote_of_prev = yes
+				}
+			}
+		}
+		modifier = { # Extra Origins
+			add = -14
+			from.owner_species = {
+				is_symbiote_of_prev = yes
+			}
+		}
+		modifier = { # Extra Origins
+			factor = 1.1
+			from = {#
+				OR = {
+					has_ethic =  ethic_fanatic_xenophobe
+					has_ethic =  ethic_fanatic_authoritarian
+				}
+			}
+		}
+	}
+}
+
+## Purge
+# Merge between NGS, Expanded Gestalts, Extra Origins, StarTech, Ariphaos, STU
+citizenship_purge = {
+	new_pop_weight = 0.0
+
+	is_purge = yes
+
+	potential = {
+		exists = from
+		NOT = { from = { is_machine_empire = yes } }
+		OR = {
+			NOT = { has_trait = trait_mechanical }
+			from = { NOT = { has_policy_flag = ai_full_rights } } # Ariphaos
+			AND = {
+				from = { is_hive_empire = yes }
+				is_robotic = yes
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		if = {
+			limit = { is_lonely_hive_mind_pop = yes }
+			hidden_trigger = { always = yes }
+		}
+		else = {
+			custom_tooltip = {
+				fail_text = is_broken_shackles_origin
+				if = {
+					limit = {
+						OR = {
+							is_robotic = no
+							AND = {
+								is_robotic = yes
+								NOT = {
+									from = { has_policy_flag = robots_outlawed }
+								}
+							}
+						}
+					}
+					from = {
+						NOT = {
+							has_origin = origin_broken_shackles
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = same_species_disallowed
+				NOT = { is_same_species = from }
+			}
+			custom_tooltip = { # Expanded Gestalts
+				fail_text = MUTUALISTIC_BEHAVIOUR_CANNOT_PURGE
+				from = {
+					NOT = { has_valid_civic = civic_mutualistic_behavior }
+				}
+			}
+			custom_tooltip = {
+				fail_text = "presapients_not_purged_citizenship"
+				OR = {
+					is_sapient = yes
+					from = { 
+						NOT = {
+							has_policy_flag = pre_sapients_protect
+							has_policy_flag = pre_sapients_allow
+							has_policy_flag = pre_sapients_eat
+						}
+					}
+				}
+			}
+			custom_tooltip = { # Extra Origins
+				fail_text = symbiote_disallowed
+				NOT = { is_symbiote_of_from = yes }
+			}
+			if = {
+				limit = {
+					NOR = {
+						has_trait = trait_machine_unit
+						has_trait = trait_mechanical
+					}
+				}
+				custom_tooltip = {
+					fail_text = PURGING_NOT_ALLOWED
+					from = {
+						NOT = {
+							has_policy_flag = purge_not_allowed
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = yes_service_yes_citizenship
+				if = {
+					limit = {
+						from = { has_valid_civic = civic_citizen_service }
+					}
+					NOT = { has_military_service_type = { type = military_service_full country = from } }
+				}
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 20
+		modifier = { # StarTech AI
+			factor = 0
+			from = { has_origin = origin_necrophage }
+			or = {
+				has_species_flag = str_integrated_conquest
+				from = { num_owned_planets = 1 }
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 10000
+			is_multiplayer = yes
+			from = { has_country_flag = str_recently_human }
+			has_citizenship_type = {
+				type = citizenship_purge
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 0
+			ariphaos_patch_slaves_expel = no
+		}
+		modifier = {
+			factor = 0
+			has_trait = trait_machine_unit
+			from = { is_machine_empire = yes }
+		}
+		modifier = {
+			factor = 0
+			from = {
+				has_valid_ai_personality = no
+				is_hive_empire = no
+			}
+		}
+		modifier = {
+			factor = 0
+			from = {
+				has_valid_ai_personality = yes
+				NOR = {
+					has_ai_personality_behaviour = purger
+					AND = {
+						has_ai_personality_behaviour = displacer
+						if = {
+							limit = {
+								is_necrophage_empire = yes # STU
+							}
+							is_hive_empire = yes
+						}
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			from = {
+				is_machine_empire = yes
+				has_government = gov_machine_industrial
+			}
+		}
+		modifier = {
+			factor = 0
+			from = {
+				is_hive_empire = yes
+				NOT = { has_valid_civic = civic_hive_devouring_swarm }
+				is_necrophage_empire = no # STU
+				OR = {
+					has_valid_civic = civic_hive_one_mind
+					has_valid_civic = civic_hive_subsumed_will
+					root = { has_trait = trait_hive_mind }
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			ariphaos_patch_slaves_rare_trait = yes # Ariphaos
+			from = {
+				has_origin = origin_syncretic_evolution
+			}
+		}
+		modifier = {
+			factor = 10
+			from = {
+				is_ai = yes
+				has_ascension_perk = ap_become_the_crisis
+			}
+		}
+		modifier = {
+			add = 1000
+			not = { has_species_flag = syncretic_species@from }
+			is_robotic = no
+			from = {
+				is_necrophage_empire = yes # STU
+				is_xenophobe = yes
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 10
+			from = {
+				OR = {
+					is_xenophobe = yes
+					is_authoritarian = yes
+				}
+			}
+			ariphaos_patch_slaves_expel = yes
+		}
+	}
+}
+
+## Purge (Machine)
+# Merge between Bug Branch, Expanded Gestalts, Ariphaos, STU
+citizenship_purge_machine = {
+	new_pop_weight = 0.0
+
+	is_purge = yes
+
+	potential = {
+		exists = from
+		from = { is_machine_empire = yes } # STU
+		NOR = {
+			has_trait = trait_machine_unit
+			has_trait = trait_mechanical
+			has_trait = trait_machine_replica # Expanded Gestalts
+		}
+		NAND = {
+			is_lonely_hive_mind_pop = no
+			from = { is_servitor_empire = yes } # STU
+		}
+		# LS - Ariphaos version. Not sure I like it...
+		#OR = {
+		#	NOT = { from = { has_valid_civic = civic_machine_servitor } }
+		#	is_lonely_hive_mind_pop = yes
+		#	has_trait = trait_machine_unit
+		#	has_trait = trait_mechanical
+		#}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = same_species_disallowed
+			NOT = { is_same_species = from }
+		}
+	}
+	ai_will_do = {
+		factor = 0
+	}
+}

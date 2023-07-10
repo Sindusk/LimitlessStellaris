@@ -1,0 +1,156 @@
+##########################################################################
+# Limitless Stellaris - Species Rights
+##########################################################################
+
+##################################################
+## Colonization Controls
+##################################################
+
+## Controlled
+# Merge between Expanded Gestalts, Subtle Polish, Ariphaos, STU
+colonization_control_yes = {
+	can_colonize = no
+	potential = {
+		NAND = {
+			from = { is_machine_empire = yes } # STU
+			is_robotic = yes # Subtle Polish optimization
+		}
+		NOT = {has_trait = trait_hive_mind_remote_drone } # Expanded Gestalts
+		NOT = {has_trait = trait_machine_replica } # Expanded Gestalts
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		if = {
+			limit = {
+				OR = {
+					has_citizenship_type = { country = from type = citizenship_purge }
+					has_citizenship_type = { country = from type = citizenship_purge_machine }
+					has_citizenship_type = { country = from type = citizenship_slavery }
+					has_citizenship_type = { country = from type = citizenship_robot_servitude }
+					AND = { # Subtle Polish
+						has_trait = trait_machine_unit
+						has_living_standard = {
+							country = from
+							type = living_standard_deassimilation
+						}
+					}
+				}
+			}
+			hidden_trigger = { always = yes }
+		}
+		else = {
+			custom_tooltip = {
+				fail_text = same_species_disallowed
+				NOT = { is_same_species = from }
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 2
+		modifier = {
+			factor = 0
+			from = {
+				is_xenophobe = no # Subtle Polish optimization
+				is_gestalt = no # Merged
+			}
+		}
+		modifier = {
+			factor = 0
+			has_trait = trait_cybernetic
+			from = { is_machine_assimilator = yes } # STU
+		}
+		modifier = {
+			factor = 0
+			has_slavery_type = { country = from type = slavery_indentured }
+		}
+	}
+}
+
+## Uncontrolled
+# Merge between Expanded Gestalts, Subtle Polish, Ariphaos, STU
+colonization_control_no = {
+	potential = {
+		exists = from
+		NAND = {
+			from = { is_machine_empire = yes } # STU
+			NOR = {
+				is_robotic = yes # Subtle Polish optimization
+				has_trait = trait_machine_replica # Expanded Gestalts
+				AND = {
+					has_trait = trait_cybernetic
+					from = { is_machine_assimilator = yes } # STU
+				}
+				from = { is_servitor_empire = yes } # STU
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			NOR = {
+				has_citizenship_type = { country = from type = citizenship_purge_machine }
+				has_citizenship_type = { country = from type = citizenship_purge }
+			}
+			fail_text = is_undesirables_tooltip
+		}
+		custom_tooltip = {
+			fail_text = "HIVE_MIND_SPECIES_CITIZENS_ONLY"
+			OR = {
+				NOT = { from = { is_hive_empire = yes } } # STU
+				has_trait = trait_hive_mind
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ROBOTS_CANNOT_COLONIZE"
+			OR = {
+				is_robotic = no # Subtle Polish optimization
+				from = { has_technology = tech_droid_workers }
+				from = { is_machine_empire = yes } # STU
+			}
+		}
+		custom_tooltip = {
+			fail_text = "SPECIES_CANNOT_COLONIZE"
+			is_sapient = yes # Subtle Polish
+			dm_is_species_smart_enough_for_leadership = yes # Subtle Polish
+		}
+		custom_tooltip = {
+			fail_text = is_slaves_not_battle_thralls_or_indentured_fail
+			if = {
+				limit = {
+					has_citizenship_type = { country = from type = citizenship_slavery }
+				}
+				OR = {
+					has_slavery_type = { country = from type = slavery_military }
+					has_slavery_type = { country = from type = slavery_indentured }
+				}
+			}
+		}
+		custom_tooltip = { # Subtle Polish
+			fail_text = SPECIES_MUST_NOT_BE_ASSIMILATING
+			NAND = {
+				has_trait = trait_machine_unit
+				has_living_standard = {
+					country = from
+					type = living_standard_deassimilation
+				}
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = { # Ariphaos
+			factor = 0
+			from = {
+				has_origin = origin_necrophage
+			}
+		}
+		modifier = {
+			factor = 0
+			from = { is_servitor_empire = yes } # STU
+			is_robotic = no # Subtle Polish optimization
+		}
+	}
+}
