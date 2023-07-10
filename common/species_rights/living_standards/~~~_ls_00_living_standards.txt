@@ -274,6 +274,34 @@ living_standard_chemical_bliss = {
 	}
 }
 
+## Deassimilation
+# AAP version. Add Bug Branch Happy Hive trait.
+living_standard_deassimilation = {
+	pop_modifier = { }
+	potential = {
+		has_utopia = yes
+		is_robotic = no
+		has_trait = trait_hive_mind
+		has_trait = trait_bugged_happy_hive # Bug Branch
+		exists = from
+		from = {
+			is_gestalt = no
+			has_tradition = tr_genetics_creation
+		}
+	}
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = SPECIES_MUST_BE_ASSIMILATING
+			has_citizenship_type = {
+				type = citizenship_assimilation
+				country = from
+			}
+		}
+	}
+	ai_will_do = { factor = 100 }
+}
+
 ## Decadent
 # Merge between OSA, Bug Branch, NGS, StarTech, STU
 living_standard_decadent = {
