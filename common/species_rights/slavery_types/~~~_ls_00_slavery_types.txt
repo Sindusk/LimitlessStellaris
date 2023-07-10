@@ -1,0 +1,381 @@
+##########################################################################
+# Limitless Stellaris - Species Rights
+##########################################################################
+
+##################################################
+## Slavery Types
+##################################################
+
+## Domestic
+# Merge between OSA, StarTech, Ariphaos
+slavery_domestic = {
+	pop_modifier = {
+		planet_jobs_produces_mult = 0.15 # OSA
+		pop_happiness = -0.20
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		from = { is_gestalt = no } # Merged
+	}
+
+	allow = {
+		hidden_trigger = { always = yes }
+		is_sapient = yes
+	}
+	ai_will_do = {
+		factor = 3
+		modifier = { # StarTech AI
+			factor = 0.0001
+			is_multiplayer = yes
+			from = {
+				has_country_flag = str_recently_human
+			}
+			NOT = {
+				has_slavery_type = {
+					country = from
+					type = slavery_domestic
+				}
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 100
+			has_trait = trait_nerve_stapled
+		}
+		modifier = { # StarTech AI
+			factor = 100
+			has_trait = trait_syncretic_proles
+		}
+		modifier = {
+			factor = 0
+			NOR = {
+				has_trait = trait_charismatic
+
+				AND = {
+					from = {
+						is_galactic_community_member = yes
+					}
+					OR = {
+						is_active_resolution = "resolution_greatergood_greater_than_ourselves"
+						is_active_resolution = "resolution_greatergood_balance_in_the_middle"
+						is_active_resolution = "resolution_greatergood_universal_prosperity_mandate"
+					}
+				}
+			}
+		}
+	}
+}
+
+## Indentured
+# Merge between OSA, StarTech, Ariphaos
+slavery_indentured = {
+	pop_modifier = {
+		planet_jobs_produces_mult = 0.10 # OSA
+		pop_happiness = -0.20
+		pop_political_power = 0.50
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		from = { is_gestalt = no } # Merged
+	}
+
+	allow = {
+		hidden_trigger = { always = yes }
+		is_sapient = yes
+	}
+	ai_can_colonize = yes #otherwise, AI will not colonise with enslaved species
+
+	ai_will_do = {
+		factor = 5000 # StarTech 30 -> 5,000
+		modifier = { # StarTech AI
+			factor = 0.0001
+			is_multiplayer = yes
+			from = {
+				has_country_flag = str_recently_human
+			}
+			NOT = {
+				has_slavery_type = {
+					country = from
+					type = slavery_indentured
+				}
+			}
+		}
+		modifier = {
+			factor = 50 # StarTech 10 -> 50
+			from = { has_valid_civic = civic_indentured_assets }
+		}
+		modifier = { # Syncretic Slaver Guild starts need their primary species to be in Indentured Service to avoid unemployment at game start.
+			factor = 50 # StarTech 10 -> 50
+			from = {
+				has_valid_civic = civic_slaver_guilds
+				has_origin = origin_syncretic_evolution
+			}
+			is_same_species = owner_main_species
+		}
+		modifier = {
+			factor = 0
+			OR = { # Ariphaos
+				has_trait = trait_syncretic_proles
+				has_trait = trait_presapient_proles # Ariphaos
+				has_trait = trait_enigmatic_intelligence_failed # Ariphaos
+				can_think = no # Ariphaos
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 0.1
+			NOR = {
+				has_trait = trait_psionic # StarTech AI
+				has_trait = trait_erudite
+				has_trait = trait_charismatic
+				has_trait = trait_traditional
+				has_trait = trait_natural_engineers
+				has_trait = trait_natural_physicists
+				has_trait = trait_natural_sociologists
+				has_trait = trait_intelligent
+				has_trait = trait_enigmatic_intelligence_poor
+				has_trait = trait_enigmatic_intelligence
+				has_trait = trait_presapient_natural_intellectuals
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 0.1
+			OR = {
+				has_trait = trait_quarrelsome
+				has_trait = trait_repugnant
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 10
+			has_trait = trait_charismatic
+			OR = {
+				has_trait = trait_erudite
+				has_trait = trait_traditional
+				has_trait = trait_natural_engineers
+				has_trait = trait_natural_physicists
+				has_trait = trait_natural_sociologists
+				has_trait = trait_intelligent
+				has_trait = trait_enigmatic_intelligence_poor
+				has_trait = trait_enigmatic_intelligence
+				has_trait = trait_presapient_natural_intellectuals
+			}
+		}
+	}
+}
+
+## Livestock
+# Merge between OSA, Bug Branch, StarTech, Ariphaos
+slavery_livestock = {
+	pop_modifier = {
+		planet_farmers_food_produces_mult = 2.0 # OSA
+		pop_happiness = -0.40
+	}
+
+	triggered_pop_modifier = { # Bug Branch
+		potential = {
+			has_councilor = { COUNCILOR = "councilor_bugged_organs_corpo" }
+		}
+		pop_growth_speed = 0.01
+		mult = value:councilor_level|TYPE|councilor_bugged_organs_corpo|
+	}
+
+	pop_tooltip = LIVESTOCK
+	pop_status_frame = 6
+
+	potential = {
+		host_has_dlc = "Utopia"
+		from = { is_machine_empire = no } # Merged
+	}
+
+	in_breach_of = {
+		{
+			key = resolution_greatergood_greater_than_ourselves
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = CANNOT_LIVESTOCK_MATRIX_MACHINES
+			NOR = {
+				has_trait = trait_mechanical
+				has_trait = trait_machine_unit
+			}
+		}
+		custom_tooltip = {
+			fail_text = empire_not_xenophobe
+			from = {
+				OR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+					is_gestalt = yes # Merged
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = noxious_stock
+			NOT = { has_trait = trait_noxious }
+		}
+	}
+	ai_will_do = {
+		factor = 3
+		modifier = {
+			factor = 0
+			NOR = {
+				has_trait = trait_delicious
+				from = { is_hive_empire = yes } # Merged
+			}
+		}
+		modifier = {
+			factor = 0.5
+			from = {
+				is_galactic_community_member = yes
+			}
+			OR = {
+				is_active_resolution = "resolution_greatergood_greater_than_ourselves"
+				is_active_resolution = "resolution_greatergood_balance_in_the_middle"
+				is_active_resolution = "resolution_greatergood_universal_prosperity_mandate"
+			}
+		}
+	}
+}
+
+## Matrix
+# Merge between OSA, Bug Branch, StarTech, Ariphaos
+slavery_matrix = {
+	pop_modifier = {
+		pop_happiness = -0.40
+	}
+
+	pop_tooltip = MATRIX_LIVESTOCK
+	pop_status_frame = 6
+
+	potential = {
+		host_has_dlc = "Synthetic Dawn Story Pack"
+		from = {
+			is_machine_empire = yes # Merged
+			NOT = { # Bug Branch
+				has_valid_civic = civic_bugged_machine_researcher
+			}
+		}
+	}
+
+	in_breach_of = {
+		{
+			key = resolution_greatergood_greater_than_ourselves
+		}
+	}
+
+	allow = {
+		hidden_trigger = { always = yes }
+	}
+
+	ai_will_do = {
+		factor = 50000 # StarTech 50 -> 50,000
+	}
+}
+
+## Military
+# Merge between OSA, StarTech, Ariphaos
+slavery_military = {
+	modifier = {
+		army_damage_mult = 0.2
+	}
+
+	pop_modifier = {
+		planet_jobs_produces_mult = 0.15 # OSA
+		pop_happiness = -0.20
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		from = { is_gestalt = no } # Merged
+	}
+
+	allow = {
+		hidden_trigger = { always = yes }
+		is_sapient = yes
+	}
+	ai_will_do = {
+		factor = 5
+		modifier = { # StarTech AI
+			factor = 0.0001
+			from = {
+				has_country_flag = str_recently_human
+			}
+			NOT = {
+				has_slavery_type = {
+					country = from
+					type = slavery_military
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = { has_trait = trait_very_strong }
+		}
+	}
+}
+
+## Normal
+# Merge between OSA, StarTech, Ariphaos
+slavery_normal = {
+	pop_modifier = {
+		planet_jobs_produces_mult = 0.25 # OSA 0.10 -> 0.25
+		pop_happiness = -0.30
+	}
+
+	in_breach_of = {
+		{
+			key = resolution_greatergood_greater_than_ourselves
+		}
+	}
+
+	potential = {
+		from = { is_gestalt = no } # Merged
+	}
+
+	allow = {
+		hidden_trigger = { always = yes } #triggers covered in citizenship_slavery and potential trigger
+		is_sapient = yes
+	}
+	ai_will_do = {
+		factor = 2 # StarTech 1 -> 2
+		modifier = { # StarTech AI
+			factor = 0.0001
+			is_multiplayer = yes
+			from = {
+				has_country_flag = str_recently_human
+			}
+			NOT = {
+				has_slavery_type = {
+					country = from
+					type = slavery_normal
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			from = {
+				is_galactic_community_member = yes
+			}
+			OR = {
+				is_active_resolution = "resolution_greatergood_greater_than_ourselves"
+				is_active_resolution = "resolution_greatergood_balance_in_the_middle"
+				is_active_resolution = "resolution_greatergood_universal_prosperity_mandate"
+			}
+		}
+		modifier = {
+			factor = 5
+			has_trait = trait_syncretic_proles
+		}
+		modifier = {
+			factor = 1.2
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_very_strong
+		}
+	}
+}
