@@ -5295,20 +5295,20 @@ artificial_intelligence_policy = {
 				limit = { is_robot_empire = no }
 				custom_tooltip = {
 					fail_text = empire_is_spiritualist
-					is_spiritualist = no
+					is_spiritualist = yes
+				}
+				OR = {
+					AND = { # EMEX
+						OR = {
+							has_ethic = "ethic_spiritualist"
+							has_ethic = "ethic_fanatic_spiritualist"
+						}
+						is_machine_or_nihil_cult_emex = yes
+					}
+					is_bugged_machine_cult = yes # Bug Branch
 				}
 				is_not_restricted_by_organic_zealots_fail = yes
 				NOT = { has_policy_flag = robots_outlawed }
-			}
-			OR = {
-				AND = { # EMEX
-					OR = {
-						has_ethic = "ethic_spiritualist"
-						has_ethic = "ethic_fanatic_spiritualist"
-					}
-					is_machine_or_nihil_cult_emex = yes
-				}
-				is_bugged_machine_cult = yes # Bug Branch
 			}
 		}
 

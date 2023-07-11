@@ -1,0 +1,2598 @@
+##########################################################################
+# Limitless Stellaris - Starbase Buildings
+##########################################################################
+
+##################################################
+## Standard
+##################################################
+
+## Recruitment Office
+# Expanded Starbases version
+recruitment_office = {
+	icon = "GFX_starbase_recruitment_office"
+	construction_days = 720
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = "tech_xeno_linguistics"
+			is_homicidal = no
+		}
+	}
+
+	possible = {
+		hidden_trigger = { # Expanded Starbases hides trigger
+			owner = {
+				count_starbase_buildings = {
+					type = recruitment_office
+					count < 1
+					include_being_constructed = yes
+				}
+			}
+		}
+	}
+
+	abort_construction_trigger = {
+		owner = {
+			count_starbase_buildings = {
+				type = recruitment_office
+				count > 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	country_modifier = {
+		external_leader_pool_add = 1
+		species_leader_exp_gain = 0.1
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 50
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	show_in_tech = "tech_xeno_linguistics"
+
+	custom_tooltip = sm_recruitment_office_tooltip
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}
+
+## Crew Quarters
+# StarTech AI version
+crew_quarters = {
+	icon = "GFX_spaceport_module_crew_quarters"
+	construction_days = 180
+
+	initial = yes
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 50
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	orbit_modifier = {
+		ship_orbit_upkeep_mult = -0.25
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 50 # StarTech 100 -> 50
+		modifier = { # StarTech AI
+			factor = 0
+			years_passed < 40
+		}
+		modifier = { # StarTech AI
+			factor = 0
+			exists = owner
+			owner = { country_uses_food = yes }
+			not = { has_starbase_building = hydroponics_bay }
+		}
+	}
+}
+
+## Hydroponics Bay
+# Merge between Expanded Starbases, StarTech, Ariphaos
+hydroponics_bay = {
+	icon = "GFX_spaceport_module_hydroponic_farms"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_hydroponics" }
+	}
+
+	possible = {
+		exists = owner
+		OR = {
+			owner = { is_ai = no }
+			owner = { country_uses_food = yes }
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 50
+		}
+
+		produces = {
+			food = 10
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	show_in_tech = "tech_hydroponics"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 200 # StarTech 100 -> 200
+		modifier = { # Expanded Starbases
+			factor = 0
+			exists = owner
+			owner = {
+				country_uses_food = no
+			}
+		}
+	}
+}
+
+## Resource Silo
+# Merge between Expanded Starbases, StarTech, Ariphaos
+resource_silo = {
+	icon = "GFX_spaceport_module_resource_silo"
+	construction_days = 180
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 50
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_technology = tech_construction_templates }
+			}
+		}
+		country_resource_max_add = 5000
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_construction_templates
+			}
+		}
+		country_resource_max_add = 10000
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 10 # StarTech 100 -> 10
+		modifier = { # StarTech AI
+			factor = 0
+			owner = {
+				not = {
+					has_technology = tech_interstellar_fleet_traditions
+				}
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 0
+			years_passed < 40
+		}
+		modifier = { # StarTech AI
+			factor = 5
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value > 12000
+				}
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 10
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value > 14000
+				}
+			}
+		}
+		modifier = { # StarTech AI
+			factor = 2
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value > 10000
+				}
+			}
+		}
+	}
+}
+
+## Nebula Refinery
+# Merge between ACOT X ES, StarTech, Ariphaos
+nebula_refinery = {
+	icon = "GFX_spaceport_nebula_refinery"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_space_mining_1 }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport_or_ring"
+			OR = {
+				has_starbase_size >= starbase_starport
+				is_orbital_ring = yes
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_nebula"
+			OR = { # ACOT X ES
+				star = { is_inside_nebula = yes }
+				solar_system = { # ACOT X ES
+					OR = {
+						# Nebula
+						is_star_class = sc_p_purple
+						is_star_class = sc_p_green
+						is_star_class = sc_p_red
+						is_star_class = sc_nova_1
+						is_star_class = sc_nova_2
+						is_star_class = sc_w_azure
+						is_star_class = sc_w_red
+						is_star_class = sc_w_green
+						is_star_class = sc_w_purple
+						is_star_class = sc_lbv_blue
+						is_star_class = sc_lbv_green
+						is_star_class = sc_lbv_red
+						is_star_class = sc_collapsar
+						# Protoplanetary Disks
+						is_star_class = sc_protostar
+						is_star_class = sc_tt_red
+						is_star_class = sc_tt_orange
+						is_star_class = sc_tt_white
+						is_star_class = sc_ae
+						is_star_class = pc_fu_star
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		produces = {
+			minerals = 10
+		}
+		produces = { # ACOT X ES
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_alloys_2 }
+			}
+			alloys = 4
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_mine_exotic_gases }
+			}
+			exotic_gases = 1
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	show_in_tech = "tech_space_mining_1"
+
+	ai_build_at_chokepoint = yes
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 150 # StarTech 100 -> 150
+	}
+}
+
+## Listening Post
+# Merge between Expanded Starbases, MECR, NGS, StarTech, Ariphaos
+listening_post = {
+	icon = "GFX_spaceport_module_navigators_guild"
+	construction_days = 360
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_sensors_2 }
+		is_orbital_ring = no
+	}
+
+	possible = {
+		NOT = {
+			has_starbase_building = dark_matter_listening_post
+		}
+	}
+
+	station_modifier = {
+		ship_sensor_range_add = 2
+		ship_hyperlane_range_add = 4
+	}
+
+	country_modifier = {
+		add_base_country_intel = 1 # Expanded Starbases
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+			exists = owner
+			owner = {
+				has_technology = tech_unusual_senses
+			}
+		}
+		custom_tooltip = sm_listening_post_unusual_senses_desc
+		ship_cloaking_detection_add = 1
+		ship_sensor_range_add = 1
+		mult = value:unusual_senses_mult
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+			}
+			OR = {
+				is_active_resolution = "resolution_galacticstudies_astral_studies_network"
+				is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+				is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+				is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+			}
+		}
+
+		ship_sensor_range_add = 1
+		ship_hyperlane_range_add = 2 # Expanded Starbases 1 -> 2
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+			exists = owner
+			owner = {
+				has_civic = civic_hive_subspace_ephapse
+				has_first_contact_dlc = yes
+			}
+		}
+	
+		ship_cloaking_detection_add = 1
+	}
+	
+	triggered_station_modifier = { # MECR
+		potential = {
+			hidden_trigger = { exists = this }
+			exists = owner
+			owner = { is_galactic_community_member = yes }
+			is_active_resolution = resolution_emperor_galactic_monitoring_network
+		}
+		ship_sensor_range_add = 2
+		ship_cloaking_detection_add = 2
+		starbase_trade_protection_range_add = 2
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 0.1 # StarTech 100 -> 0.1
+		modifier = { # StarTech AI
+			factor = 0
+			years_passed < 20
+		}
+		modifier = { # StarTech AI
+			factor = 0
+			exists = owner
+			owner = { country_uses_food = yes }
+			not = { has_starbase_building = hydroponics_bay }
+		}
+
+		modifier = { # StarTech AI
+			factor = 11
+			years_passed > 30
+		}
+	}
+
+	show_in_tech = "tech_sensors_2"
+}
+
+## Offworld Trading Company
+# Merge between Venture Politics, Expanded Starbases, 
+offworld_trading_company = {
+	icon = "GFX_starbase_offworld_trading_company"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_space_trading
+			is_gestalt = no
+		}
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = {
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		OR = {
+			has_starbase_module = trading_hub
+			starbase_buildable_is_in_queue_before = {
+				first = trading_hub
+				second = offworld_trading_company
+			}
+			OR = { # Venture Politics
+				AND = { # LS - Fix for logic
+					exists = owner
+					owner = {
+						has_valid_civic = civic_trading_fleet
+					}
+				}
+				has_starbase_module = anchorage
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+			exists = owner # ACOT X ES
+			owner = { NOT = { has_technology = "tech_galactic_trading_companies" } } # ACOT X ES
+			has_starbase_module = trading_hub
+		}
+		trade_value_add = 2
+		mult = value:num_starbase_modules_of_type|TYPE|trading_hub|
+	}
+	
+	triggered_station_modifier = { # ACOT X ES
+		potential = {
+			hidden_trigger = { exists = this }
+			exists = owner
+			owner = { has_technology = "tech_galactic_trading_companies" }
+			has_starbase_module = trading_hub
+		}
+		trade_value_add = 4
+		mult = value:num_starbase_modules_of_type|TYPE|trading_hub|
+	}
+	triggered_station_modifier = { # Venture Politics # LS - Modified to use multiplier instead of chain
+		potential = {
+			hidden_trigger = { exists = this }
+			owner = {
+					has_valid_civic = civic_trading_fleet
+			}
+			has_starbase_module = anchorage # LS - Check for building
+		}
+
+		trade_value_add = 2
+		mult = value:num_starbase_modules_of_type|TYPE|anchorage| # LS - Multiply by count of buildings
+	}
+
+	custom_tooltip = sm_offworld_trading_company_desc_modifier
+
+	show_in_tech = "tech_space_trading"
+	
+	triggered_system_modifier = { # ACOT X ES
+		potential = {
+			has_starbase_building = offworld_trading_company
+		}
+		trade_value_mult = 0.10
+	}
+
+	ai_build_at_chokepoint = no # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 0 # StarTech AI disables construction
+	}
+}
+
+## Fleet Academy
+# Merge between Expanded Starbases, EMEX, StarTech, Ariphaos
+fleet_academy = {
+	icon = "GFX_spaceport_module_fleet_academy"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_interstellar_fleet_traditions
+			NOT = { # EMEX
+				has_valid_civic = civic_military_academies
+			}
+		}
+
+		is_orbital_ring = no
+	}
+
+	possible = {
+		OR = {
+			has_starbase_module = shipyard
+			starbase_buildable_is_in_queue_before = {
+				first = shipyard
+				second = fleet_academy
+			}
+		}
+	}
+
+	ship_modifier = {
+		ship_starting_experience_add = 100
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	show_in_tech = "tech_interstellar_fleet_traditions"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 200 # StarTech 100 -> 200
+		modifier = { # StarTech AI
+			factor = 0
+			not = {
+				owner = { has_technology = tech_interstellar_fleet_traditions }
+			}
+		}
+		modifier = {
+			factor = 0
+			count_starbase_modules = {
+				type = shipyard
+				count < 3 # StarTech 2 -> 3
+			}
+		}
+	}
+}
+
+## Naval Logistics Office
+# Merge between Expanded Starbases, StarTech, Ariphaos
+naval_logistics_office = {
+	icon = "GFX_starbase_naval_logistics"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_interstellar_fleet_traditions }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_anchorage"
+			OR = {
+				has_starbase_module = anchorage
+				starbase_buildable_is_in_queue_before = {
+					first = anchorage
+					second = naval_logistics_office
+				}
+				has_starbase_module = orbital_ring_anchorage
+				starbase_buildable_is_in_queue_before = {
+					first = orbital_ring_anchorage
+					second = naval_logistics_office
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	custom_tooltip = sm_naval_logistics_office_desc_modifier
+	show_in_tech = "tech_interstellar_fleet_traditions"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 200 # StarTech 100 -> 200
+		modifier = { # StarTech AI
+			factor = 0
+			not = {
+				owner = { has_technology = tech_interstellar_fleet_traditions }
+			}
+		}
+		modifier = {
+			factor = 0
+			count_starbase_modules = {
+				type = anchorage
+				count < 3 # StarTech 1 -> 3
+			}
+		}
+	}
+}
+
+## Titan Yards
+# Merge between ACOT X ES, StarTech, Ariphaos, STU
+titan_yards = {
+	icon = "GFX_spaceport_module_titan_assembly_yard"
+	construction_days = 720
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_titans }
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = { # ACOT X ES changes this to include orbital rings
+			fail_text = "requires_citadel_or_ring_4"
+			OR = {
+				has_starbase_size >= starbase_citadel
+				has_starbase_size >= orbital_ring_tier_4
+				is_precursor_starbase = yes
+			}
+		}
+		custom_tooltip = { # ACOT X ES accounts for other shipyards
+			fail_text = "requires_shipyard"
+			OR = {
+				zaxv_has_shipyard = yes
+				starbase_buildable_is_in_queue_before = {
+					first = shipyard
+					second = titan_yards
+				}
+				has_starbase_module = orbital_ring_shipyard
+				starbase_buildable_is_in_queue_before = {
+					first = orbital_ring_shipyard
+					second = titan_yards
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_orbital_ring_shipyard
+					second = dragon_hatchery
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_starbase_shipyard
+					second = titan_yards
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_sigma_starbase_shipyard
+					second = titan_yards
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_phanon_starbase_shipyard
+					second = titan_yards
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = virtual_shipyard_uplink
+					second = titan_yards
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 500
+		}
+
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	custom_tooltip = sm_titan_yards_desc_modifier
+
+	ai_build_at_chokepoint = no # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 200 # StarTech 100 -> 200
+		modifier = {
+			factor = 0
+			OR = {
+				count_starbase_modules = {
+					type = shipyard
+					count < 3 # StarTech 2 -> 3
+				}
+				count_starbase_modules = {
+					type = orbital_ring_shipyard
+					count < 3 # StarTech 2 -> 3
+				}
+			}
+		}
+	}
+}
+
+## Colossus Yards
+# Merge between ACOT X ES, StarTech, Ariphaos, STU
+colossus_yards = {
+	icon = "GFX_spaceport_module_colossus_assembly_yard"
+	construction_days = 720
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				has_technology = tech_colossus
+				has_technology = tech_juggernaut
+				has_technology = tech_btc_1 # star-eater
+			}
+		}
+		#is_orbital_ring = no # Expanded Starbases removes this
+	}
+
+	possible = {
+		custom_tooltip = { # ACOT X ES reworks this to include orbital rings
+			fail_text = "requires_citadel_or_ring_4"
+			OR = {
+				has_starbase_size >= starbase_citadel
+				has_starbase_size >= orbital_ring_tier_4
+				is_precursor_starbase = yes
+			}
+		}
+		custom_tooltip = { # ACOT X ES adjusts this to acccount for more types of shipyards
+			fail_text = "requires_shipyard"
+			OR = {
+				zaxv_has_shipyard = yes
+				starbase_buildable_is_in_queue_before = {
+					first = shipyard
+					second = colossus_yards
+				}
+				has_starbase_module = orbital_ring_shipyard
+				starbase_buildable_is_in_queue_before = {
+					first = orbital_ring_shipyard
+					second = colossus_yards
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_starbase_shipyard
+					second = colossus_yards
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_sigma_starbase_shipyard
+					second = colossus_yards
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_phanon_starbase_shipyard
+					second = colossus_yards
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = virtual_shipyard_uplink
+					second = colossus_yards
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 1000
+		}
+
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	custom_tooltip = sm_colossus_yards_desc_modifier
+	show_in_tech = "tech_colossus"
+	show_in_tech = "tech_juggernaut"
+
+	ai_build_at_chokepoint = no # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 10000 # StarTech 100 -> 10,000
+		modifier = {
+			factor = 0
+			OR = {
+				count_starbase_modules = {
+					type = shipyard
+					count < 3 # StarTech 2 -> 3
+				}
+				count_starbase_modules = {
+					type = orbital_ring_shipyard
+					count < 3 # StarTech 2 -> 3
+				}
+			}
+		}
+	}
+}
+
+## Black Hole Observatory
+# Merge between ACOT X ES, NGS, StarTech, Ariphaos
+black_hole_observatory = {
+	icon = "GFX_spaceport_module_observatory"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_sensors_3 }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport_or_ring"
+			OR = {
+				has_starbase_size >= starbase_starport
+				is_orbital_ring = yes
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_black_hole"
+			OR = { # ACOT X ES
+				star = { is_star_class = sc_black_hole }
+				star = { is_star_class = sc_microquasar_1 } # ACOT X ES
+				star = { is_star_class = sc_microquasar_2 } # ACOT X ES
+				solar_system = { any_system_planet = { is_planet_class = pc_black_hole } } # ACOT X ES
+				solar_system = { has_natural_wormhole = yes } # ACOT X ES
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		produces = {
+			physics_research = 15
+		}
+		produces = { # ACOT X ES
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_mine_dark_matter }
+			}
+			sr_dark_matter = 1
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_astral_studies_network"
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+					is_active_resolution = "resolution_galacticstudies_6" # NGS
+				}
+			}
+			physics_research = 15
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_mine_dark_matter }
+			}
+			sr_dark_matter = 1
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+	triggered_station_modifier = { # ACOT X ES
+		potential = {
+			always = yes
+		}
+		custom_tooltip = black_hole_observatory_effects
+	}
+
+	triggered_station_modifier = { # ACOT X ES
+		potential = {
+			hidden_trigger = { exists = this }
+			has_first_contact_dlc = yes
+		}
+		custom_tooltip = detection_array_physics
+	}
+
+	show_in_tech = "tech_sensors_3"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 250 # StarTech 100 -> 250
+	}
+}
+
+## Target Uplink Computer
+# Merge between Expanded Starbases, StarTech, Ariphaos
+target_uplink_computer = {
+	icon = "GFX_spaceport_synchronized_defenses"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport_or_ring"
+			OR = {
+				has_starbase_size >= starbase_starport
+				is_orbital_ring = yes
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	station_modifier = {
+		ship_weapon_range_mult = 0.50
+		ship_tracking_add = 5 # Expanded Starbases
+	}
+
+	defense_platform_modifier = {
+		ship_weapon_range_mult = 0.50
+		ship_tracking_add = 5 # Expanded Starbases
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 0 # StarTech AI disables construction
+	}
+}
+
+## Defense Grid
+# Merge between Expanded Starbases, StarTech, Ariphaos
+defense_grid = {
+	icon = "GFX_starbase_defense_grid_supercomputer"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_synchronized_defences }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport_or_ring"
+			OR = {
+				has_starbase_size >= starbase_starport
+				is_orbital_ring = yes
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 150
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	station_modifier = {
+		starbase_defense_platform_capacity_add = 10 # Expanded Starbases 8 -> 10
+	}
+	
+	triggered_station_modifier = { # Expanded Starbases
+		potential = {
+			owner = { has_technology = "tech_synchronized_defences_2" }
+		}
+		starbase_defense_platform_capacity_add = 6
+	}
+
+	show_in_tech = "tech_synchronized_defences"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 1 # StarTech 100 -> 1
+		modifier = { # StarTech AI
+			factor = 0
+			years_passed < 20
+		}
+		modifier = { # StarTech AI
+			factor = 0
+			exists = owner
+			owner = { country_uses_food = yes }
+			not = { has_starbase_building = hydroponics_bay }
+		}
+		modifier = { # Expanded Starbases
+			factor = 0
+			NOR = {
+				has_starbase_module = gun_battery
+				has_starbase_module = missile_battery
+				has_starbase_module = hangar_bay
+				has_starbase_module = large_battery
+				has_starbase_module = extra_large_battery
+				has_starbase_module = titanic_battery
+				has_starbase_module = orbital_ring_gun_battery
+				has_starbase_module = orbital_ring_missile_battery
+				has_starbase_module = orbital_ring_hangar_bay
+				has_starbase_module = orbital_ring_large_battery
+				has_starbase_module = orbital_ring_extra_large_battery
+				has_starbase_module = orbital_ring_titanic_battery
+			}
+		}
+	}
+}
+
+## Deep Space Black Site
+# Merge between ACOT X ES, StarTech, Ariphaos, STU
+deep_space_black_site = {
+	icon = "GFX_starbase_deep_space_black_site"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_living_state
+			is_gestalt = no # Merged
+		}
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_colonized_planet"
+			solar_system = {
+				any_system_colony = {
+					is_owned_by = from
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		produces = {
+			unity = 3 # ACOT X ES 1 -> 3
+		}
+		produces = { # ACOT X ES
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_improved_black_site }
+			}
+			unity = 3
+		}
+		produces = { # ACOT X ES
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				has_global_flag = better_diplo_installed
+				is_active_resolution = "resolution_lawandorder_informed_governance"
+			}
+			unity = 3
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	system_modifier = {
+		pop_government_ethic_attraction = 0.25
+		planet_crime_mult = -0.25 # ACOT X ES
+		planet_stability_add = 5
+	}
+
+	triggered_country_modifier = { # ACOT X ES
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_improved_black_site
+			}
+		}
+		spy_network_daily_value_mult = 0.05
+	}
+
+	show_in_tech = "tech_living_state"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 150 # StarTech 100 -> 150
+		modifier = { # ACOT X ES
+			factor = 0.1
+			exists = owner
+			owner = {
+				is_egalitarian = yes
+				NOR = {
+					has_valid_civic = civic_shadow_council
+					has_valid_civic = civic_police_state
+				}
+			}
+		}
+	}
+}
+
+## Curator Think Tank
+# Merge between ACOT X ES, NGS, StarTech, Ariphaos
+curator_think_tank = {
+	icon = "GFX_starbase_curator_think_tank"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		OR = { # ACOT X ES
+			owner = { has_country_flag = curator_intro }
+			solar_system = { has_star_flag = enclave }
+		}	
+		owner = {
+			is_homicidal = no
+			has_country_flag = curator_intro
+		}
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_curator"
+			solar_system = {
+				has_star_flag = enclave
+				any_fleet_in_system = {
+					exists = owner
+					owner = {
+						has_country_flag = curator_enclave_country
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_curator_agreement"
+			solar_system = {
+				has_star_flag = enclave
+				any_fleet_in_system = {
+					exists = owner
+					owner = {
+						has_country_flag = curator_enclave_country
+						has_country_flag = think_tank@root.owner
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		produces = {
+			physics_research = 10 # ACOT X ES 5 -> 10
+			society_research = 10 # ACOT X ES 5 -> 10
+			engineering_research = 10 # ACOT X ES 5 -> 10
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+					is_active_resolution = "resolution_galacticstudies_6" # NGS
+				}
+			}
+			physics_research = 10 # ACOT X ES 5 -> 10
+			society_research = 10 # ACOT X ES 5 -> 10
+			engineering_research = 10 # ACOT X ES 5 -> 10
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+	triggered_station_modifier = { # ACOT X ES
+		potential = {
+			always = yes
+		}
+		custom_tooltip = curator_think_tank_effects
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 150 # StarTech 100 -> 150
+	}
+}
+
+## Art College
+# Merge between ACOT X ES, NGS, StarTech, Ariphaos
+art_college = {
+	icon = "GFX_starbase_artist_college"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		OR = { # ACOT X ES
+			owner = { has_country_flag = enclave_artist_encountered }
+			solar_system = { has_star_flag = enclave }
+		}
+		owner = {
+			is_homicidal = no
+			has_country_flag = enclave_artist_encountered
+		}
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_artisans"
+			solar_system = {
+				has_star_flag = enclave
+				any_fleet_in_system = {
+					exists = owner
+					owner = {
+						is_same_value = event_target:artist_enclave_country
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_artist_agreement"
+			solar_system = {
+				has_star_flag = enclave
+				any_fleet_in_system = {
+					exists = owner
+					owner = {
+						is_same_value = event_target:artist_enclave_country
+						has_country_flag = art_college@root.owner
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		produces = {
+			unity = 15 # ACOT X ES 10 -> 15
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+					is_active_resolution = "resolution_galacticstudies_6" # NGS
+				}
+			}
+			unity = 15 # ACOT X ES 10 -> 15
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 150 # StarTech 100 -> 150
+	}
+}
+
+## Salvager Workshop
+# Merge between ACOT X ES, NGS, StarTech, Ariphaos
+salvager_workshop = {
+	icon = "GFX_starbase_salvager_workshop"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			is_homicidal = no
+			has_country_flag = salvager_enclave_diplomacy_engaged
+		}
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_salvager_enclave"
+			solar_system = {
+				has_star_flag = enclave
+				any_fleet_in_system = {
+					exists = owner
+					owner = {
+						has_country_flag = salvager_enclave_country
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_salvager_agreement"
+			solar_system = {
+				has_star_flag = enclave
+				any_fleet_in_system = {
+					exists = owner
+					owner = {
+						has_country_flag = salvager_enclave_country
+						has_country_flag = salvage_works@root.owner
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+		upkeep = {
+			energy = 3
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+					is_active_resolution = "resolution_galacticstudies_6" # NGS
+				}
+			}
+			alloys = 5
+		}
+	}
+
+	orbit_modifier = {
+		ship_orbit_upkeep_mult = -0.2
+		ship_repair_hull_mult = 0.3
+		ship_repair_armor_mult = 0.3
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 150
+	}
+}
+
+## Shroud Beacon
+# Merge between ACOT X ES, StarTech, Ariphaos, STU
+shroud_beacon = {
+	icon = "GFX_starbase_shroud_beacon"
+	construction_days = 720
+
+	potential = {
+		exists = owner
+		owner = {
+			is_homicidal = no
+			has_country_flag = shroudwalker_enclave_diplomacy_engaged
+			has_country_flag = shroudwalker_enclave_bought_shroud_beacon
+		}
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_not_shroudwalker_system"
+			solar_system = {
+				NOR = {
+					has_star_flag = shroudwalker_enclave_system
+					any_fleet_in_system = {
+						exists = owner
+						owner = { has_country_flag = shroudwalker_enclave_country }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_bypass"
+			solar_system = {
+				if = {
+					limit = {
+						NOT = { has_star_flag = spawned_shroud_tunnel }
+					}
+					has_natural_wormhole = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "limit_one_shroud_tunnel"
+			OR = {
+				owner = {
+					NOT = {
+						any_system_within_border = {
+							OR = {
+								has_star_flag = spawned_shroud_tunnel
+								starbase = { has_starbase_building = shroud_beacon }
+							}
+						}
+					}
+				}
+				AND = {
+					solar_system = { has_star_flag = spawned_shroud_tunnel }
+					NOT = { has_starbase_building = shroud_beacon }
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_shroudwalker_agreement"
+			OR = {
+				AND = {
+					exists = event_target:shroudwalker_enclave_country
+					event_target:shroudwalker_enclave_country = {
+						has_country_flag = shroud_beacon@root.owner
+					}
+				}
+				owner = { has_country_flag = shroud_beacon }
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 500
+			rare_crystals = 25
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 50
+		#Don't build nextdoor to the Shroudwalkers
+		modifier = {
+			factor = 0
+			solar_system = {
+				any_neighbor_system = {
+					any_fleet_in_system = {
+						exists = owner
+						owner = { has_country_flag = shroudwalker_enclave_country }
+					}
+				}
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 0.2
+			owner = {
+				any_system_within_border = {
+					any_fleet_in_system = {
+						exists = owner
+						owner = { has_country_flag = shroudwalker_enclave_country }
+					}
+				}
+			}
+		}
+	}
+
+	on_finished = {
+		if = {
+			limit = {
+				solar_system = { NOT = { has_star_flag = spawned_shroud_tunnel } }
+			}
+			shroudwalker_enclave_starbase_create_shroud_tunnel = yes
+		}
+		fleet.owner = {
+			country_event = { id = enclave.4200 }
+			country_event = { id = origin.5625 }
+		}
+	}
+
+	on_destroyed = {
+		fleet.owner = {
+			country_event = { id = enclave.6015 }
+		}
+	}
+}
+
+## Cybrex Mining Hub
+# Expanded Starbases version
+cybrex_mining_hub = {
+	icon = "GFX_starbase_cybrex_mining_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_secrets_cybrex }
+		is_orbital_ring = no
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+			minor_artifacts = @minor_artifacts_cost_l
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	triggered_system_modifier = {
+		potential = {
+			owner = { 
+				NOT = { has_ascension_perk = ap_archaeoengineers }
+			}
+		}
+		station_gatherers_produces_mult = 2 # Expanded Starbases 1 -> 2
+	}
+
+
+	triggered_system_modifier = {
+		potential = {
+			owner = { has_ascension_perk = ap_archaeoengineers }
+		}
+		station_gatherers_produces_mult = 3 # Expanded Starbases 1.5 -> 3
+	}
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+
+	custom_tooltip = sm_cybrex_mining_hub_desc_modifier
+
+	show_in_tech = "tech_secrets_cybrex"
+}
+
+##################################################
+## Aura Buildings
+##################################################
+
+## Communications Jammer
+# Merge betweeen Expanded Starbases, StarTech, Ariphaos
+communications_jammer = {
+	icon = "GFX_starbase_communication_jammer"
+	construction_days = 180
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport_or_ring"
+			OR = {
+				has_starbase_size >= starbase_starport
+				is_orbital_ring = yes
+			}
+		}
+		solar_system = {
+			count_starbase_buildings = {
+				type = communications_jammer
+				count < 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	abort_construction_trigger = {
+		solar_system = {
+			count_starbase_buildings = {
+				type = communications_jammer
+				count > 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 50
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	equipped_component = "STARBASE_AURA_COMMUNICATIONS_JAMMER"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 1 # StarTech 100 -> 1
+		modifier = { # StarTech AI
+			factor = 0
+			years_passed < 20
+		}
+		modifier = { # StarTech AI
+			factor = 0
+			exists = owner
+			owner = { country_uses_food = yes }
+			not = { has_starbase_building = hydroponics_bay }
+		}
+		modifier = { # Expanded Starbases
+			factor = 0
+			NOR = {
+				has_starbase_module = gun_battery
+				has_starbase_module = missile_battery
+				has_starbase_module = hangar_bay
+				has_starbase_module = large_battery
+				has_starbase_module = extra_large_battery
+				has_starbase_module = titanic_battery
+				has_starbase_module = orbital_ring_gun_battery
+				has_starbase_module = orbital_ring_missile_battery
+				has_starbase_module = orbital_ring_hangar_bay
+				has_starbase_module = orbital_ring_large_battery
+				has_starbase_module = orbital_ring_extra_large_battery
+				has_starbase_module = orbital_ring_titanic_battery
+			}
+		}
+	}
+}
+
+## Disruption Field
+# Merge between Expanded Starbases, StarTech, Ariphaos, STU
+disruption_field = {
+	icon = "GFX_spaceport_module_orbital_mind_control_lazer"
+	construction_days = 180
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport_or_ring"
+			OR = {
+				has_starbase_size >= starbase_starport
+				is_orbital_ring = yes
+			}
+		}
+		solar_system = {
+			count_starbase_buildings = {
+				type = disruption_field
+				count < 1
+				include_being_constructed = yes
+			}
+		}
+		custom_tooltip = { # Ariphaos
+			fail_text = "pulsar_disables_shields"
+			system_star = {
+				NOR = {
+					is_star_class = sc_pulsar
+					is_star_class = sc_binary_1
+				}
+			}
+		}
+	}
+
+	abort_construction_trigger = {
+		solar_system = {
+			count_starbase_buildings = {
+				type = disruption_field # Ariphaos
+				count > 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	equipped_component = "STARBASE_AURA_DISRUPTION_FIELD"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 1 # StarTech 100 -> 1
+		modifier = { # StarTech AI
+			factor = 0
+			years_passed < 20
+		}
+		modifier = { # StarTech AI
+			factor = 0
+			exists = owner
+			owner = { country_uses_food = yes }
+			not = { has_starbase_building = hydroponics_bay }
+		}
+		modifier = { # Ariphaos
+			factor = 0.5
+			exists = owner
+			NOT = { owner = { is_preferred_weapons = weapon_type_energy } }
+		}
+		modifier = { # Expanded Starbases
+			factor = 0
+			NOR = {
+				has_starbase_module = gun_battery
+				has_starbase_module = missile_battery
+				has_starbase_module = hangar_bay
+				has_starbase_module = large_battery
+				has_starbase_module = extra_large_battery
+				has_starbase_module = titanic_battery
+				has_starbase_module = orbital_ring_gun_battery
+				has_starbase_module = orbital_ring_missile_battery
+				has_starbase_module = orbital_ring_hangar_bay
+				has_starbase_module = orbital_ring_large_battery
+				has_starbase_module = orbital_ring_extra_large_battery
+				has_starbase_module = orbital_ring_titanic_battery
+			}
+		}
+	}
+}
+
+## Warp Fluctuator
+# Merge between ACOT X ES, StarTech, Ariphaos
+warp_fluctuator = {
+	icon = "GFX_spaceport_module_atmospheric_manipulator"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_interstellar_economics
+			is_gestalt = no
+		}
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			has_starbase_size >= starbase_starport
+			is_precursor_starbase = yes # ACOT X ES
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	station_modifier = {
+		starbase_trade_collection_range_add = 2 # ACOT X ES 1 -> 2
+		trade_value_add = 2 # ACOT X ES
+	}
+
+	show_in_tech = "tech_interstellar_economics"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 1 # StarTech 100 -> 1
+		modifier = { # StarTech AI
+			factor = 0
+			years_passed < 20
+		}
+	}
+}
+
+## Transit Hub
+# Merge between ACOT X ES, StarTech, Ariphaos, STU
+transit_hub = {
+	icon = "GFX_spaceport_module_pioneering_terminal"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_hyper_drive_2
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport_or_ring"
+			OR = {
+				has_starbase_size >= starbase_starport
+				is_orbital_ring = yes
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_colonized_planet"
+			solar_system = {
+				any_system_colony = {
+					is_owned_by = from
+				}
+			}
+		}
+		solar_system = {
+			count_starbase_buildings = {
+				type = transit_hub
+				count < 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	abort_construction_trigger = {
+		solar_system = {
+			count_starbase_buildings = {
+				type = transit_hub # Ariphaos
+				count > 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	system_modifier = {
+		planet_resettlement_unemployed_mult = 1.00
+
+		show_only_custom_tooltip = no
+		custom_tooltip = "sm_transit_hub_migrate_effect_desc"
+	}
+
+	show_in_tech = "tech_hyper_drive_2"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 1 # StarTech AI disables construction, using 1 as compromise
+		modifier = {
+			factor = 0
+			NOT = {
+				solar_system = {
+					any_system_colony = {
+						exists = owner
+						owner = { is_playable = yes } # STU
+						OR = { # Ariphaos
+							free_jobs <= 0
+							free_housing <= 0
+							num_unemployed > 0
+						}
+					}
+				}
+			}
+		}
+		modifier = { # ACOT X ES
+			factor = 0.5
+			NOT = { has_starbase_building = offworld_trading_company }
+		}
+	}
+}
+
+## Command Center
+# Merge between ACOT X ES, StarTech, Ariphaos
+command_center = {
+	icon = "GFX_starbase_command_center"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_command_matrix }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starfortress_or_ring_3"
+			OR = {
+				has_starbase_size >= starbase_starfortress
+				has_starbase_size >= orbital_ring_tier_3
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		solar_system = {
+			count_starbase_buildings = {
+				type = command_center
+				count < 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	abort_construction_trigger = {
+		solar_system = {
+			count_starbase_buildings = {
+				type = command_center # Ariphaos
+				count > 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 250
+		}
+
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	equipped_component = "STARBASE_AURA_COMMAND_CENTER"
+	show_in_tech = "tech_command_matrix"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 1 # StarTech 100 -> 1
+		modifier = { # StarTech AI
+			factor = 0
+			years_passed < 30
+		}
+		modifier = { # ACOT X ES
+			factor = 0
+			NOR = {
+				has_starbase_module = gun_battery
+				has_starbase_module = missile_battery
+				has_starbase_module = hangar_bay
+				has_starbase_module = large_battery
+				has_starbase_module = extra_large_battery
+				has_starbase_module = titanic_battery
+				has_starbase_module = orbital_ring_gun_battery
+				has_starbase_module = orbital_ring_missile_battery
+				has_starbase_module = orbital_ring_hangar_bay
+				has_starbase_module = orbital_ring_large_battery
+				has_starbase_module = orbital_ring_extra_large_battery
+				has_starbase_module = orbital_ring_titanic_battery
+			}
+		}
+	}
+}
+
+## Trader Proxy Office
+# Merge between ACOT X ES, NGS, StarTech, Ariphaos, STU
+trader_proxy_office = {
+	icon = "GFX_starbase_offworld_trading_company"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			is_homicidal = no
+			is_gestalt = no
+			has_country_flag = has_market_access
+		}
+		solar_system = {
+			any_fleet_in_system = {
+				has_fleet_flag = trader_enclave_station
+			}
+		}
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		NOT = { has_starbase_building = trader_proxy_office }
+
+		custom_tooltip = {
+			fail_text = "requires_trader_enclave"
+			solar_system = {
+				OR = {
+					any_system_colony = {
+						exists = owner
+						owner = { is_playable = yes } # STU
+					}
+					AND = {
+						has_star_flag = enclave
+						any_fleet_in_system = {
+							exists = owner
+							owner = {
+								has_country_flag = trader_enclave_country
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+	}
+
+	country_modifier = {
+		country_trade_fee = -0.05
+	}
+	
+	station_modifier = {
+		trade_value_add = 10 # ACOT X ES
+	}
+	
+	triggered_station_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+			}
+			OR = {
+				is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+				is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+				is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				is_active_resolution = "resolution_galacticstudies_6" # NGS
+			}
+		}
+
+		trade_value_add = 10 # ACOT X ES 5 -> 10
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 200 # StarTech 100 -> 200
+		modifier = {
+			factor = 0
+			OR = {
+				solar_system = { NOT = { has_star_flag = guardians_traders_system } }
+				has_starbase_building = trader_proxy_office
+				solar_system = {
+					any_fleet_in_system = {
+						has_fleet_flag = trader_enclave_station
+					}
+				}
+			}
+		}
+	}
+}
+
+## Dragon Hatchery
+# Merge between ACOT X ES, StarTech, Ariphaos
+dragon_hatchery = {
+	icon = "GFX_starbase_dragon_hatchery"
+	construction_days = 720
+
+	potential = {
+		exists = owner
+		owner = {
+			is_dragon_breeder_country = yes
+		}
+		is_orbital_ring = no # ACOT X ES
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_citadel"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_citadel
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = { # ACOT X ES accounts for more shipyards
+			fail_text = "requires_shipyard"
+			OR = {
+				zaxv_has_shipyard = yes
+				starbase_buildable_is_in_queue_before = {
+					first = shipyard
+					second = dragon_hatchery
+				}
+				has_starbase_module = orbital_ring_shipyard
+				starbase_buildable_is_in_queue_before = {
+					first = orbital_ring_shipyard
+					second = dragon_hatchery
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_orbital_ring_shipyard
+					second = dragon_hatchery
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_starbase_shipyard
+					second = dragon_hatchery
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_sigma_starbase_shipyard
+					second = dragon_hatchery
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = acot_phanon_starbase_shipyard
+					second = dragon_hatchery
+				}
+				starbase_buildable_is_in_queue_before = {
+					first = virtual_shipyard_uplink
+					second = dragon_hatchery
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 750
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	custom_tooltip = dragon_hatchery_tooltip
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 0
+			owner = {
+				count_owned_starbase = {
+					count >= 1
+					limit = {
+						has_starbase_building = dragon_hatchery
+					}
+				}
+			}
+		}
+	}
+}
+
+## Ice Mining Station
+# Merge between ACOT X ES, StarTech, Ariphaos
+ice_mining_station = {
+	icon = "GFX_starbase_ice_mining_station"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_hydrocentric
+		}
+		is_orbital_ring = no # ACOT X ES
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+
+		custom_tooltip = {
+			fail_text = requires_ice_source
+			solar_system = {
+				OR = {
+					has_planet_class = pc_ice_asteroid
+					has_planet_class = pc_frozen
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+	}
+
+	custom_tooltip = ice_mining_station_tooltip
+
+	system_modifier = {
+		station_gatherers_produces_mult = 0.15
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 0
+			owner = {
+				count_owned_starbase = {
+					count >= 2
+					limit = {
+						has_starbase_building = ice_mining_station
+					}
+				}
+			}
+		}
+	}
+}
+
+## Offspring Outlook
+# Merge between ACOT X ES, StarTech, Ariphaos
+offspring_outlook = {
+	icon = "GFX_offspring_aura_sb"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_progenitor_hive
+		}
+		is_orbital_ring = no # ACOT X ES
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 150
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+	equipped_component = "STARBASE_OFFSPRING_OUTLOOK"
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 10
+	}
+}
+
+## Mercenary Garrison
+# Merge between ACOT X ES, NGS, StarTech, Ariphaos
+mercenary_garrison = {
+	icon = "GFX_starbase_mercenary_garrison"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			is_homicidal = no
+			has_country_flag = mercenary_enclave_diplomacy_engaged
+		}
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			OR = { # ACOT X ES
+				has_starbase_size >= starbase_starport
+				is_precursor_starbase = yes # ACOT X ES
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_mercenary_agreement"
+			owner = {
+				has_country_flag = mercenary_enclave_bought_mercenary_garrison
+			}
+		}
+		solar_system = {
+			count_starbase_buildings = {
+				type = mercenary_garrison
+				count < 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	abort_construction_trigger = {
+		solar_system = {
+			count_starbase_buildings = {
+				type = mercenary_garrison
+				count > 1
+				include_being_constructed = yes
+			}
+		}
+	}
+
+	equipped_component = "STARBASE_AURA_MERCENARY_GARRISON"
+
+	triggered_country_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+			}
+			OR = {
+				is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+				is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+				is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				is_active_resolution = "resolution_galacticstudies_6" # NGS
+			}
+		}
+
+		country_naval_cap_add = 5
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 50
+	}
+}
+
+## Cordyceptic Reanimation Facility
+# Merge between Planetary Diversity: Unique Worlds, Expanded Starbases, STU
+cordyceptic_reanimation_facility = {
+	icon = "GFX_cordyceptic_reanimation_facility"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_valid_civic = civic_hive_cordyceptic_drones }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_tiyanki_spawning_system"
+			star.solar_system = { 
+				OR = {
+					has_star_flag = tiyanki_graveyard_system
+					has_star_flag = tiyanki_spawn_system
+					has_star_flag = amoeba_home_system
+					has_star_flag = pd_tiyanki_graveyard_system # Planetary Diversity: Unique Worlds
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			food = 10
+		}
+	}
+
+	custom_tooltip = sm_cordyceptic_reanimation_facility_desc_modifier
+	on_finished = {
+		starbase_event = { id = necroids.305 days = 1800 }
+	}
+
+	ai_build_at_chokepoint = yes
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}
+
+## Dark Matter Listening Post
+# Merge between Expanded Starbases, MECR, StarTech
+dark_matter_listening_post = {
+	icon = "GFX_spaceport_module_navigators_guild"
+	construction_days = 360
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 500
+			sr_dark_matter = 100 # MECR 50 -> 100
+		}
+
+		upkeep = {
+			energy = 10
+			sr_dark_matter = 1 # MECR 0.5 -> 1
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = { # MECR
+				is_fallen_empire = yes
+				AND = { # MECR
+					is_galactic_community_member = yes
+					is_active_resolution = resolution_emperor_galactic_monitoring_network
+					has_technology = tech_dark_matter_detection
+				}
+			}
+		}
+		is_orbital_ring = no # MECR
+	}
+
+	possible = {
+		NOR = {
+			has_starbase_module = detection_array
+			has_starbase_building = dark_matter_detector
+			has_starbase_building = listening_post
+		}
+	}
+
+	station_modifier = {
+		ship_sensor_range_add = 2
+		ship_hyperlane_range_add = 4
+		ship_cloaking_detection_add = 8 # Expanded Starbases 6 -> 8
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+			exists = owner
+			owner = {
+				is_galactic_community_member = yes
+			}
+			OR = {
+				is_active_resolution = "resolution_galacticstudies_astral_studies_network"
+				is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+				is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+				is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+			}
+		}
+
+		ship_sensor_range_add = 1
+		ship_hyperlane_range_add = 1
+	}
+
+	country_modifier = {
+		add_base_country_intel = 2 # Expanded Starbases
+	}
+
+	triggered_station_modifier = { # MECR
+		potential = {
+			hidden_trigger = { exists = this }
+			exists = owner
+			owner = { is_galactic_community_member = yes }
+			is_active_resolution = resolution_emperor_galactic_monitoring_network
+		}
+		ship_sensor_range_add = 2
+		ship_cloaking_detection_add = 2
+		starbase_trade_protection_range_add = 2
+	}
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}
