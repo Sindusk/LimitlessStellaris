@@ -1,0 +1,609 @@
+##########################################################################
+# Limitless Stellaris - Starbase Modules
+##########################################################################
+
+##################################################
+## Standard Modules
+##################################################
+
+## Shipyard
+# Merge between Starbases Suck Less, OSA, Expanded Starbases, StarTech
+shipyard = {
+	icon = "GFX_starbase_shipyard"
+	section = "ASSEMBLYYARD_STARBASE_SECTION"
+	construction_days = 180
+	initial = yes
+
+	potential = {
+		is_orbital_ring = no
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 150 # OSA 50 -> 150
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_ingenuity_5
+				}
+			}
+			engineering_research = 2
+		}
+
+		upkeep = {
+			energy = 1
+			minerals = 1 # OSA
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.25 # OSA
+		ship_armor_mult = 0.25 # OSA
+		ship_shield_mult = 0.25 # OSA
+		starbase_shipyard_capacity_add = 1
+	}
+	triggered_station_modifier = {
+		potential = { has_starbase_building = irassian_naval_yards }
+		starbase_shipyard_capacity_add = 1
+	}
+
+	ai_build_at_chokepoint = yes # StarTech
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 300 # StarTech 100 -> 300
+		
+		modifier = { # StarTech AI
+			factor = 0
+			not = { has_starbase_module = shipyard }
+			owner = { needs_shipyard = no }
+		}
+		
+		modifier = { # StarTech AI
+			factor = 0
+			has_starbase_module = anchorage
+			not = { has_starbase_module = shipyard }
+		}
+	}
+}
+
+## Anchorage
+# Merge between Starbases Suck Less, OSA, Bug Branch, Expanded Starbases, StarTech
+anchorage = {
+	icon = "GFX_starbase_anchorage"
+	section = "ANCHORAGE_STARBASE_SECTION"
+	construction_days = 180
+
+	potential = {
+		is_orbital_ring = no
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 150 # OSA 50 -> 150
+		}
+		produces = { # OSA
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_ingenuity_5
+				}
+			}
+			engineering_research = 5
+		}
+
+		upkeep = {
+			energy = 1
+			minerals = 1 # OSA
+		}
+	}
+
+	station_modifier = { # OSA
+		ship_hull_mult = 0.25
+		ship_armor_mult = 0.25
+		ship_shield_mult = 0.25
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 4 # OSA 8 -> 4 # LS 8 -> 4 [Balance]
+	}
+	triggered_country_modifier = { # Expanded Starbases
+		potential = {
+			has_starbase_building = naval_logistics_office
+			owner = {
+				NOT = { has_technology = tech_interstellar_fleet_doctrines }
+				NOR = {
+					has_megastructure = strategic_coordination_center_3
+					has_megastructure = strategic_coordination_center_restored
+				}
+			}
+		}
+		country_naval_cap_add = 2
+	}
+	
+	triggered_country_modifier = { # Expanded Starbases
+		potential = {
+			has_starbase_building = naval_logistics_office
+			owner = {
+				has_technology = tech_interstellar_fleet_doctrines
+				NOR = {
+					has_megastructure = strategic_coordination_center_3
+					has_megastructure = strategic_coordination_center_restored
+				}
+			}
+		}
+		country_naval_cap_add = 4
+	}
+	
+	triggered_country_modifier = { # Expanded Starbases
+		potential = {
+			has_starbase_building = naval_logistics_office
+			owner = {
+				NOT = { has_technology = tech_interstellar_fleet_doctrines }
+				OR = {
+					has_megastructure = strategic_coordination_center_3
+					has_megastructure = strategic_coordination_center_restored
+				}
+			}
+		}
+		country_naval_cap_add = 4
+	}
+	
+	triggered_country_modifier = { # Expanded Starbases
+		potential = {
+			has_starbase_building = naval_logistics_office
+			owner = {
+				has_technology = tech_interstellar_fleet_doctrines
+				OR = {
+					has_megastructure = strategic_coordination_center_3
+					has_megastructure = strategic_coordination_center_restored
+				}
+			}
+		}
+		country_naval_cap_add = 6
+	}
+	triggered_country_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = bugged_military_telecom
+			}
+		}
+		country_naval_cap_add = 1
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = yes # StarTech AI
+	ai_weight = {
+		weight = 300 # StarTech 100 -> 300
+		modifier = { # StarTech AI
+			factor = 0
+			not = { has_starbase_module = anchorage }
+			owner = { needs_shipyard = yes }
+		}	
+		modifier = { # StarTech AI
+			factor = 0
+			has_starbase_module = shipyard
+			count_starbase_modules = {
+				type = shipyard
+				count < 2
+			}
+		}
+	}
+}
+
+## Gun Battery
+# Merge between Starbases Suck Less, OSA, Expanded Starbases, StarTech
+gun_battery = {
+	section = "BATTERY_STARBASE_SECTION"
+	icon = GFX_spaceport_modules
+	construction_days = 180
+
+	potential = {
+		is_orbital_ring = no
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 150 # OSA 50 -> 150
+		}
+
+		upkeep = {
+			energy = 2 # OSA 1 -> 2
+			minerals = 2 # OSA
+		}
+	}
+
+	station_modifier = {
+		ship_accuracy_mult = 0.10 # OSA
+		ship_tracking_mult = 0.10 # OSA
+		ship_fire_rate_mult	= 0.10 # OSA
+		ship_hull_mult = 0.25 # OSA
+		ship_armor_mult = 0.25 # OSA removes, Starbases Suck Less 0.10 -> 0.25
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 5
+		#starbase_defense_platform_capacity_add = 1 # OSA removes
+	}
+
+	triggered_station_modifier = { # Expanded Starbases
+		potential = {
+			has_starbase_building = trade_patrol
+		}
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 5
+	}
+
+	ai_build_at_chokepoint = yes # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 10 # StarTech 100 -> 10
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = {
+				OR = {
+					is_preferred_weapons = weapon_type_energy
+					is_preferred_weapons = weapon_type_kinetic
+				}
+			}
+		}
+	}
+
+	show_in_tech = "tech_mass_drivers_1"
+}
+
+## Missile Battery
+# Merge between Starbases Suck Less, OSA, Expanded Starbases, StarTech
+missile_battery = {
+	section = "MISSILE_STARBASE_SECTION"
+	icon = "GFX_starbase_missile_battery"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_torpedoes_1 }
+		is_orbital_ring = no
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 150 # OSA 50 -> 150
+		}
+
+		upkeep = {
+			energy = 2 # OSA 1 -> 2
+			minerals = 2 # OSA 1 -> 2
+		}
+	}
+
+	station_modifier = {
+		ship_accuracy_mult = 0.10 # OSA
+		ship_tracking_mult = 0.10 # OSA
+		ship_fire_rate_mult	= 0.10 # OSA
+		ship_hull_mult = 0.25 # OSA 0.10 -> 0.25
+		ship_armor_mult = 0.25 # OSA removes, Starbases Suck Less 0.10 -> 0.25
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 5
+		#starbase_defense_platform_capacity_add = 1 # OSA removes
+	}
+
+	triggered_station_modifier = { # Expanded Starbases
+		potential = {
+			has_starbase_building = trade_patrol
+		}
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 5
+	}
+
+	ai_build_at_chokepoint = no # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 0 # StarTech disables construction
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = { is_preferred_weapons = weapon_type_explosive }
+		}
+	}
+
+	show_in_tech = "tech_torpedoes_1"
+}
+
+## Hangar Bay
+# Merge between Starbases Suck Less, OSA, Expanded Starbases, StarTech
+hangar_bay = {
+	icon = "GFX_starbase_hangar_bay"
+	section = "HANGAR_STARBASE_SECTION"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_strike_craft_1 }
+		is_orbital_ring = no
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 150 # OSA 50 -> 150
+		}
+
+		upkeep = {
+			energy = 2 # OSA 1 -> 2
+			minerals = 2 # OSA
+		}
+	}
+
+	station_modifier = {
+		ship_accuracy_mult = 0.10 # OSA
+		ship_tracking_mult = 0.10 # OSA
+		ship_fire_rate_mult	= 0.10 # OSA
+		ship_hull_mult = 0.25 # OSA 0.10 -> 0.25
+		ship_armor_mult = 0.25 # OSA removes, Starbases Suck Less 0.10 -> 0.25
+		starbase_trade_protection_range_add = 2 # OSA 1 -> 2
+		starbase_trade_protection_add = 10
+		#starbase_defense_platform_capacity_add = 1 # OSA removes
+	}
+
+	triggered_station_modifier = { # Expanded Starbases
+		potential = {
+			has_starbase_building = trade_patrol
+		}
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 10
+	}
+
+	ai_build_at_chokepoint = no # StarTech AI
+	ai_build_outside_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 0 # StarTech disables construction
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = { is_preferred_weapons = weapon_type_strike_craft }
+		}
+		modifier = { # Expanded Starbases
+			factor = 2
+			has_starbase_module = trading_hub
+		}
+	}
+
+	show_in_tech = "tech_strike_craft_1"
+}
+
+## Solar Panel Network
+# Merge between Starbases Suck Less, OSA, Expanded Starbases, NGS, StarTech
+solar_panel_network = {
+	icon = "GFX_solar_panel_network"
+	section = "SCIENCE_STARBASE_SECTION"
+	construction_days = 180
+	initial = yes
+
+	potential = {
+		exists = owner
+		is_orbital_ring = no
+		owner = {
+			is_gestalt = yes
+			has_technology = "tech_solar_panel_network"
+		}
+	}
+
+	possible = {
+		solar_system = {
+			custom_tooltip = {
+				fail_text = "requires_no_black_hole_or_dyson_sphere"
+				NOR = {
+					is_star_class = sc_black_hole
+					has_megastructure = dyson_sphere_3
+					has_megastructure = dyson_sphere_4
+					has_megastructure = dyson_sphere_5
+					has_megastructure = dyson_sphere_restored # Expanded Starbases
+				}
+			}
+		}
+	}
+
+	show_in_tech = "tech_solar_panel_network"
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 150 # OSA 50 -> 150
+		}
+
+		produces = {
+			energy = 5 # OSA 6 -> 8 # LS 8 -> 5 [Balance]
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_astral_studies_network"
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+					is_active_resolution = "resolution_galacticstudies_6" # NGS
+				}
+			}
+			energy = 6
+		}
+	}
+
+	ai_build_at_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 100 # StarTech disables construction, ignored because it's actually good
+	}
+}
+
+## Trading Hub
+# Merge between Starbases Suck Less, OSA, Bug Branch, Expanded Starbases, StarTech
+trading_hub = {
+	icon = "GFX_starbase_trading_hub"
+	section = "REFINERY_STARBASE_SECTION"
+	construction_days = 180
+	initial = yes
+
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		is_orbital_ring = no
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 150 # OSA 50 -> 150
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		starbase_trade_collection_range_add = 1
+		trade_value_add = 2 # Expanded Starbases
+	}
+
+	triggered_station_modifier = { # Expanded Starbases
+		potential = {
+			solar_system = {
+				has_star_flag = enclave
+				any_ship_in_system = {
+					exists = owner
+					owner = {
+						has_country_flag = trader_enclave_country
+					}
+				}
+			}		
+		}
+
+		trade_value_add = 2
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+			owner = {
+				has_councilor = { COUNCILOR = "councilor_trading_posts" }
+			}
+		}
+		trade_value_add = 0.5
+		mult = value:councilor_level|TYPE|councilor_trading_posts|
+	}
+
+	triggered_station_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = bugged_civilian_telecom
+			}
+		}
+		trade_value_add = 2
+	}
+
+	ai_build_at_chokepoint = no # StarTech AI
+	ai_weight = {
+		weight = 0 # StarTech disables construction
+	}
+}
+
+## Detection Array
+# Expanded Starbases version
+detection_array = {
+	icon = "GFX_spaceport_module_detecton_array"
+	section = "SCIENCE_STARBASE_SECTION"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_detection_array }
+		is_orbital_ring = no
+	}
+
+	possible = {
+		NOT = {
+			has_starbase_building = dark_matter_listening_post
+		}
+		custom_tooltip = {
+			fail_text = "only_six_detection_array"
+			count_starbase_modules = {
+				type = detection_array
+				count < 6
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 1
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_astral_studies_network"
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			physics_research = 2
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = black_hole_observatory
+			}
+			physics_research = 2
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = protostar_observatory
+			}
+			physics_research = 2
+		}
+	}
+
+	station_modifier = {
+		ship_cloaking_detection_add = 1
+	}
+
+	ai_build_at_chokepoint = yes
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			add = 1000
+			owner = {
+				NOT = {
+					any_owned_starbase = {
+						has_starbase_module = detection_array
+					}
+				}
+			}
+		}
+	}
+
+	show_in_tech = "tech_detection_array"
+}
