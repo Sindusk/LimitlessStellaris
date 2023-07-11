@@ -648,6 +648,10 @@ building_major_capital = {
 		is_gestalt = no
 	}
 
+	country_modifier = { # LS - Add a leader capacity to the country
+		country_leader_cap_add = 1
+	}
+
 	planet_modifier = {
 		job_enforcer_add = 2
 		planet_housing_add = 8
@@ -902,6 +906,10 @@ building_system_capital = {
 
 	show_tech_unlock_if = {
 		is_gestalt = no
+	}
+
+	country_modifier = { # LS - Add a leader capacity to the country
+		country_leader_cap_add = 1
 	}
 
 	planet_modifier = {
@@ -1160,6 +1168,10 @@ building_imperial_capital = {
 	}
 
 	prerequisites = {
+	}
+
+	country_modifier = { # LS - Add a leader capacity to the country
+		country_leader_cap_add = 1
 	}
 
 	planet_modifier = {
@@ -1619,6 +1631,10 @@ building_machine_major_capital = {
 		is_machine_empire = yes
 	}
 
+	country_modifier = { # LS - Add a leader capacity to the country
+		country_leader_cap_add = 1
+	}
+
 	planet_modifier = {
 		planet_housing_add = 8
 		planet_amenities_add = 12
@@ -1801,6 +1817,10 @@ building_machine_system_capital = {
 
 	show_tech_unlock_if = {
 		is_machine_empire = yes
+	}
+
+	country_modifier = { # LS - Add a leader capacity to the country
+		country_leader_cap_add = 1
 	}
 
 	planet_modifier = {
@@ -2006,6 +2026,10 @@ building_imperial_machine_capital = {
 	}
 
 	prerequisites = {
+	}
+
+	country_modifier = { # LS - Add a leader capacity to the country
+		country_leader_cap_add = 1
 	}
 
 	planet_modifier = {
@@ -2442,6 +2466,10 @@ building_hive_major_capital = {
 		is_hive_empire = yes
 	}
 
+	country_modifier = { # LS - Add a leader capacity to the country
+		country_leader_cap_add = 1
+	}
+
 	planet_modifier = {
 		planet_housing_add = 10
 		planet_amenities_add = 12
@@ -2677,6 +2705,10 @@ building_imperial_hive_capital = {
 	}
 
 	prerequisites = {
+	}
+
+	country_modifier = { # LS - Add a leader capacity to the country
+		country_leader_cap_add = 1
 	}
 
 	planet_modifier = {
@@ -4596,6 +4628,10 @@ building_slave_major_capital = {
 			energy = @b1_upkeep
 			influence = @building_influence_t4 # OSA
 		}
+	}
+
+	country_modifier = { # LS - Add a leader capacity to the country
+		country_leader_cap_add = 1
 	}
 
 	planet_modifier = {

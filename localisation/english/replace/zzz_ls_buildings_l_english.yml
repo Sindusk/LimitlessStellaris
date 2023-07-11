@@ -9,71 +9,71 @@ l_english:
 ##################
   
   ## Organic Capitals
-  building_colony_shelter: "§LReassembled Ship Shelter§!"
+  building_colony_shelter: "§L£influence£ Reassembled Ship Shelter§!"
   building_colony_shelter_tt: "§MCapital§! - §BTier 1§! - §EBiological§!"
   building_colony_shelter_desc: "The remains of a Colony Ship, reassembled for planetside form and function."
-  building_capital: "§LPlanetary Administration§!"
+  building_capital: "§L£influence£ Planetary Administration§!"
   building_capital_tt: "§MCapital§! - §BTier 2§! - §EBiological§!"
   building_capital_desc: "Seat of the local ruling elite."
-  building_major_capital: "§LPlanetary Capital§!"
+  building_major_capital: "§L£influence£ Planetary Capital§!"
   building_major_capital_tt: "§MCapital§! - §BTier 3§! - §EBiological§!"
   building_major_capital_desc: "A sprawling complex of bureaucratic structures that acts as the administrative center for a major colony."
-  building_system_capital: "§LSystem Capital-Complex§!"
+  building_system_capital: "§L£influence£ System Capital-Complex§!"
   building_system_capital_tt: "§MCapital§! - §BTier 4§! - §EBiological§!"
   building_system_capital_desc: "A towering configuration of administrative bureaus and networked infrastructure, allowing the construction and operation of highly demanding facilities."
-  building_imperial_capital: "§LImperial Palace§!"
+  building_imperial_capital: "§L£influence£ Imperial Palace§!"
   building_imperial_capital_tt: "§MCapital§! - §BTier 5§! - §EBiological§!"
   building_imperial_capital_desc: "A massive palace complex fit for the greatest empire history has ever seen. If there is a bright center to the galaxy, this is it."
 
   ## Machine Capitals
-  building_deployment_post: "§LDeployment Post§!"
+  building_deployment_post: "§L£influence£ Deployment Post§!"
   building_deployment_post_tt: "§MCapital§! - §BTier 1§! - §EMachine§!"
   building_deployment_post_desc: "The initial deployment post from which we will expand on this world."
-  building_machine_capital: "§LAdministrative Array§!"
+  building_machine_capital: "§L£influence£ Administrative Array§!"
   building_machine_capital_tt: "§MCapital§! - §BTier 2§! - §EMachine§!"
   building_machine_capital_desc: "A semi-autonomous computer network that handles the various administrative functions on a planet."
-  building_machine_major_capital: "§LPlanetary Processor§!"
+  building_machine_major_capital: "§L£influence£ Planetary Processor§!"
   building_machine_major_capital_tt: "§MCapital§! - §BTier 3§! - §EMachine§!"
   building_machine_major_capital_desc: "A powerful administrative computer that has been designed to manage and oversee the various functions of a complex planetary settlement."
-  building_machine_system_capital: "§LPrimary Nexus§!"
+  building_machine_system_capital: "§L£influence£ Primary Nexus§!"
   building_machine_system_capital_tt: "§MCapital§! - §BTier 4§! - §EMachine§!"
   building_machine_system_capital_desc: "The administrative heart of the system. Hundreds of AIs process requests and manage the minute but critical details that are involved in running an efficient interstellar civilization."
-  building_imperial_machine_capital: "§LImperial Center§!"
+  building_imperial_machine_capital: "§L£influence£ Imperial Center§!"
   building_imperial_machine_capital_tt: "§MCapital§! - §BTier 5§! - §EMachine§!"
   building_imperial_machine_capital_desc: "This colossal complex is the administrative heart of the Galactic Imperium. Thousands of AIs are constantly processing and evaluating the current state of the galaxy."
 
   ## Hive Capitals
-  building_hive_capital: "§LHive Core§!"
+  building_hive_capital: "§L£influence£ Hive Core§!"
   building_hive_capital_tt: "§MCapital§! - §BTier 2§! - §EHivemind§!"
   building_hive_capital_desc: "The organizational core from which the Hive Mind coordinates planetside functions."
-  building_hive_major_capital: "§LHive Nexus§!"
+  building_hive_major_capital: "§L£influence£ Hive Nexus§!"
   building_hive_major_capital_tt: "§MCapital§! - §BTier 3§! - §EHivemind§!"
   building_hive_major_capital_desc: "A sprawling capital complex from which the Hive Mind focuses planetary organization, coordination, and planning."
-  building_imperial_hive_capital: "§LImperial Complex§!"
+  building_imperial_hive_capital: "§L£influence£ Imperial Complex§!"
   building_imperial_hive_capital_tt: "§MCapital§! - §BTier 5§! - §EHivemind§!"
   building_imperial_hive_capital_desc: "From this massive structure, the Hive Mind governs the Galactic Imperium. This is where the fate of the galaxy is decided."
 
   ### Habitat Capitals
-  building_hab_capital: "§LHabitat Administration§!"
+  building_hab_capital: "§L£influence£ Habitat Administration§!"
   building_hab_capital_tt: "§MCapital§! - §BTier 1§! - §EHabitat§!"
   building_hab_capital_desc: "The administrative hub of the Habitat, serving as its capital and the seat of the local government."
-  building_hab_major_capital: "§LHabitat Central Control§!"
+  building_hab_major_capital: "§L£influence£ Habitat Central Control§!"
   building_hab_major_capital_tt: "§MCapital§! - §BTier 2§! - §EHabitat§!"
   building_hab_major_capital_desc: "An extensive complex of bureaucratic offices that oversees the administration of a highly-populated habitat."
 
   ### Resort Capitals
-  building_resort_capital: "§LResort Administration§!"
+  building_resort_capital: "§L£influence£ Resort Administration§!"
   building_resort_capital_tt: "§MCapital§! - §BTier 1§! - §EResort§!"
   building_resort_capital_desc: "The central complex from where this planet-wide resort is administrated."
-  building_resort_major_capital: "§LResort Capital-Complex§!"
+  building_resort_major_capital: "§L£influence£ Resort Capital-Complex§!"
   building_resort_major_capital_tt: "§MCapital§! - §BTier 2§! - §EResort§!"
   building_resort_major_capital_desc: "A huge sprawling complex capable of administrating an even greater number of resorts and tourist attractions."
 
   ### Slave Capitals
-  building_slave_capital: "§LGovernor's Palace§!"
+  building_slave_capital: "§L£influence£ Governor's Palace§!"
   building_slave_capital_tt: "§MCapital§! - §BTier 1§! - §ESlave§!"
   building_slave_capital_desc: "The lavish palace from which this Thrall-World is governed."
-  building_slave_major_capital: "§LGovernor's Estates§!"
+  building_slave_major_capital: "§L£influence£ Governor's Estates§!"
   building_slave_major_capital_tt: "§MCapital§! - §BTier 2§! - §ESlave§!"
   building_slave_major_capital_desc: "Sprawling and luxurious palaces that house the ruling elite of the Thrall-World."
 
@@ -82,7 +82,7 @@ l_english:
 ##################
 
   ### Robot
-  building_robot_assembly_plant: "§PRobot Assembly Plants§!"
+  building_robot_assembly_plant: "§P£mod_planet_pop_assembly_mult£ Robot Assembly Plants§!"
   building_robot_assembly_plant_tt: "§MAssembly§! - §BTier 1§! - §ERobot§!"
   building_robot_assembly_plant_desc: "High-tech factories where skilled Roboticists assemble the latest robot models."
   building_robot_assembly_complex: "§PRobot Assembly Complex§!"
@@ -90,20 +90,20 @@ l_english:
   building_robot_assembly_complex_desc: "An advanced assembly plant where skilled Roboticists assemble the latest robot models."
 
   ### Machine
-  building_machine_assembly_plant: "§PMachine Assembly Plants§!"
+  building_machine_assembly_plant: "§P£mod_planet_pop_assembly_mult£ Machine Assembly Plants§!"
   building_machine_assembly_plant_tt: "§MAssembly§! - §BTier 1§! - §EMachine§!"
   building_machine_assembly_plant_desc: "A production line assembly plant where new units are constructed."
-  building_machine_assembly_complex: "§PMachine Assembly Complex§!"
+  building_machine_assembly_complex: "§P£mod_planet_pop_assembly_mult£ Machine Assembly Complex§!"
   building_machine_assembly_complex_tt: "§MAssembly§! - §BTier 2§! - §EMachine§!"
   building_machine_assembly_complex_desc: "An advanced assembly plant where new units are constructed."
 
   ### Hive
-  building_spawning_pool: "§PSpawning Pools§!"
+  building_spawning_pool: "§P£mod_planet_pop_assembly_mult£ Spawning Pools§!"
   building_spawning_pool_tt: "§MAssembly§! - §BTier 1§! - §EHive§!"
   building_spawning_pool_desc: "Tended by the scientific and gentle care of specialists, these pools stimulate our spawn into faster growth."
 
   ### Progenitor Hive
-  building_offspring_nest: "§POffspring Nest§!"
+  building_offspring_nest: "§P£mod_planet_pop_assembly_mult£ Offspring Nest§!"
   building_offspring_nest_tt: "§MAssembly§! - §BTier 1§! - §EProgenitor Hive§!"
   building_offspring_nest_desc: "This fortified nest safely harbors the local Offspring while also accelerating growth for the rest of the nearby hive."
 
@@ -118,10 +118,10 @@ l_english:
   building_necrophage_house_of_apotheosis_desc_hive: "A house of untold splendor where we have gone to great lengths to ensure that those awaiting their transformation into [This.Owner.GetAdj] drones can spend their final days outside the Hive in comfort."
  
   ### Organic
-  building_clone_vats: "§PClone Vats§!"
+  building_clone_vats: "§P£mod_planet_pop_assembly_mult£ Clone Vats§!"
   building_clone_vats_tt: "§MAssembly§! - §BTier 1§! - §EOrganic§!"
   building_clone_vats_desc: "Clone Vats break down simple materials to generate Organic Pop Assembly."
-  building_clone_birth_labs: "§PClone Birth-Labs§!"
+  building_clone_birth_labs: "§P£mod_planet_pop_assembly_mult£ Clone Birth-Labs§!"
   building_clone_birth_labs_tt: "§MAssembly§! - §BTier 2§! - §EOrganic§!"
   building_clone_birth_labs_desc: "State-of-the-art bio-engineering laboratories where $job_cloning_technician_plural$ oversee the accelerated maturation of clones and ensure that each clone is flash-imprinted with necessary skills for its predetermined job."
 
@@ -175,13 +175,13 @@ l_english:
   building_order_castle_desc: "The Order of the Toxic God has established a castle on this habitat. A contingent of knights and squires have set up base here."
 
   ### Ascension Government
-  building_psi_corps: "§PPsi Corps§!"
+  building_psi_corps: "§P£job_telepath£ Psi Corps§!"
   building_psi_corps_tt: "§MGovernment§! - §BTier 1§! - §EPsionic§!"
   building_psi_corps_desc: "Psi-gifted individuals are brought from all across to our empire to a place where they are able to hone their abilities.\n\n§YThe Psi Corps is your friend. Trust the Corps.§!"
-  building_embassy: "§PEmbassy Complex§!"
+  building_embassy: "§P£influence£ Embassy Complex§!"
   building_embassy_tt: "§MEmpire§! - §BTier 1§! - §EEmbassy§!"
   building_embassy_desc: "This building forms the heart of the Empire's diplomatic efforts.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
-  building_grand_embassy: "§PGrand Embassy Complex§!"
+  building_grand_embassy: "§P£influence£ Grand Embassy Complex§!"
   building_grand_embassy_tt: "§MEmpire§! - §BTier 2§! - §EEmbassy§!"
   building_grand_embassy_desc: "The complex is intended to awe the viewer, rendering them more compliant in negotiations.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
   building_gaiaseeders_1: "$building_gaiaseeders$ - Phase 1"
@@ -202,14 +202,14 @@ l_english:
 
   ### Food
   ## Basic
-  building_hydroponics_farm: "§VHydroponics Farms§!"
+  building_hydroponics_farm: "§V£food£ Hydroponics Farms§!"
   building_hydroponics_farm_tt: "§MFood§! - §BTier 1§! - §EBasic§!"
   building_hydroponics_farm_desc: "Hydroponics Farms produce nutrient-rich vegetable matter tailored for consumption by local Pops."
   ## Productivity
-  building_food_processing_facility: "§PFood Processing Facilities§!"
+  building_food_processing_facility: "§P£food£ Food Processing Facilities§!"
   building_food_processing_facility_tt: "§MFood§! - §BTier 1§! - §EProductivity§!"
   building_food_processing_facility_desc: "Food that is processed at these facilities has its nutritional value greatly increased."
-  building_food_processing_center: "§PFood Processing Centers§!"
+  building_food_processing_center: "§P£food£ Food Processing Centers§!"
   building_food_processing_center_tt: "§MFood§! - §BTier 2§! - §EProductivity§!"
   building_food_processing_center_desc: "Streamlined facilities where large amounts of food can be processed."
   building_baol_organic_plant: "$tech_secrets_baol$"
@@ -217,18 +217,18 @@ l_english:
   building_baol_organic_plant_desc: "$tech_secrets_baol_desc$"
 
   ### Minerals
-  building_mineral_purification_plant: "§PMineral Purification Plants§!"
+  building_mineral_purification_plant: "§P£minerals£ Mineral Purification Plants§!"
   building_mineral_purification_plant_tt: "§MMinerals§! - §BTier 1§! - §EProductivity§!"
   building_mineral_purification_plant_desc: "Minerals that have passed through these purifiers are of the highest quality."
-  building_mineral_purification_hub: "§PMineral Purification Hubs§!"
+  building_mineral_purification_hub: "§P£minerals£ Mineral Purification Hubs§!"
   building_mineral_purification_hub_tt: "§MMinerals§! - §BTier 2§! - §EProductivity§!"
   building_mineral_purification_hub_desc: "Massive hubs where minerals are received and then shuttled to arrays of purifiers."
 
   ### Energy
-  building_energy_grid: "§PEnergy Grid§!"
+  building_energy_grid: "§P£energy£ Energy Grid§!"
   building_energy_grid_tt: "§MEnergy§! - §BTier 1§! - §EProductivity§!"
   building_energy_grid_desc: "A carefully calibrated grid network maximizes the output of power generators."
-  building_energy_nexus: "§PEnergy Nexus§!"
+  building_energy_nexus: "§P£energy£ Energy Nexus§!"
   building_energy_nexus_tt: "§MEnergy§! - §BTier 2§! - §EProductivity§!"
   building_energy_nexus_desc: "This colossal facility centralizes all energy grids on the planet, improving their efficiency."
   building_bio_reactor: "Bio-Reactor"
@@ -259,22 +259,22 @@ l_english:
 ##################
 
   ### Resources
-  building_foundry_1: "§PAlloy Foundries§!"
+  building_foundry_1: "§P£alloys£ Alloy Foundries§!"
   building_foundry_1_tt: "§MAlloys§! - §BTier 1§! - §EProductivity§!"
   building_foundry_1_desc: "The [Owner.GetAlloyProducerPlural] working in these foundries produce high-quality alloys."
-  building_foundry_2: "§PAlloy Mega-Forges§!"
+  building_foundry_2: "§P£alloys£ Alloy Mega-Forges§!"
   building_foundry_2_tt: "§MAlloys§! - §BTier 2§! - §EProductivity§!"
   building_foundry_2_desc: "These massive forges can assist the end-stage production of alloys in our industries across the planet."
-  building_foundry_3: "§PAlloy Nano-Plants§!"
+  building_foundry_3: "§P£alloys£ Alloy Nano-Plants§!"
   building_foundry_3_tt: "§MAlloys§! - §BTier 3§! - §EProductivity§!"
   building_foundry_3_desc: "Large industrial fabricators geared towards increasing the production of alloys on the planet."
-  building_factory_1: "§PCivilian Industries§!"
+  building_factory_1: "§P£consumer_goods£ Civilian Industries§!"
   building_factory_1_tt: "§MConsumer Goods§! - §BTier 1§! - §EProductivity§!"
   building_factory_1_desc: "A wide collection of civilian industries and manufactories where a variety of consumer goods are produced."
-  building_factory_2: "§PCivilian Fabricators§!"
+  building_factory_2: "§P£consumer_goods£ Civilian Fabricators§!"
   building_factory_2_tt: "§MConsumer Goods§! - §BTier 2§! - §EProductivity§!"
   building_factory_2_desc: "Large industrial fabricators geared towards increasing the production of consumer goods on the planet."
-  building_factory_3: "§PCivilian Repli-Complexes§!"
+  building_factory_3: "§P£consumer_goods£ Civilian Repli-Complexes§!"
   building_factory_3_tt: "§MConsumer Goods§! - §BTier 3§! - §EProductivity§!"
   building_factory_3_desc: "Nearly anything can be replicated at the kiosks in these complexes."
 
@@ -293,10 +293,10 @@ l_english:
   building_nanite_transmuter_desc: "This factory mass-produces a variety of rare resources using extremely advanced nanites. A Nanite deficit will halt production."
 
   ### Special
-  building_ministry_production: "§PMinistry of Production§!"
+  building_ministry_production: "§£job_artificer£ PMinistry of Production§!"
   building_ministry_production_tt: "§MManufacturing§! - §BTier 1§! - §EUnique§!"
   building_ministry_production_desc: "The Ministry of Production works tirelessly to organize and streamline manufacturing across the entire planet."
-  building_production_center: "§PResource Processing Center§!"
+  building_production_center: "§P£job_artificer£ Resource Processing Center§!"
   building_production_center_tt: "§MManufacturing§! - §BTier 1§! - §EUnique§!"
   building_production_center_desc: "A vast facility which centralizes the handling of resources and manufacturing across the entire planet."
 
@@ -321,46 +321,46 @@ l_english:
 
   ### Research
   ## Basic
-  building_research_lab_1: "§VResearch Labs§!" # Vanilla
+  building_research_lab_1: "§V£job_researcher£ Research Labs§!" # Vanilla
   building_research_lab_1_tt: "§MResearch§! - §BTier 1§! - §EBasic§!"
   building_research_lab_1_desc: "Research Labs provide the basic facilities for general research."
-  building_research_lab_2: "§VResearch Complexes§!" # Vanilla
+  building_research_lab_2: "§V£job_researcher£ Research Complexes§!" # Vanilla
   building_research_lab_2_tt: "§MResearch§! - §BTier 2§! - §EBasic§!"
   building_research_lab_2_desc: "Upgraded research facilities with a very large staff capacity."
-  building_research_lab_3: "§VAdvanced Research Complexes§!" # Vanilla
+  building_research_lab_3: "§V£job_researcher£ Advanced Research Complexes§!" # Vanilla
   building_research_lab_3_tt: "§MResearch§! - §BTier 3§! - §EBasic§!"
   building_research_lab_3_desc: "These advanced research facilities have the very latest science equipment along with an extremely large staff capacity."
   ## Education (Unique)
-  building_AP_education_school: "§PEducation Compound§!" # Advanced Policies
+  building_AP_education_school: "§P£job_researcher£ Education Compound§!" # Advanced Policies
   building_AP_education_school_tt: "§MResearch§! - §BTier 1§! - §EEducation§!"
   building_AP_education_school_desc: "This compound is the nerve center for any organized education on the planet."
-  building_institute: "§PResearch Institute§!" # Vanilla
+  building_institute: "§P£job_researcher£ Research Institute§!" # Vanilla
   building_institute_tt: "§MResearch§! - §BTier 1§! - §EEducation§!"
   building_institute_desc: "The Research Institute is a massive complex, gathering the cutting edges of disparate fields together for unprecedented synergy, improving the research output of the whole planet."
   ## Processing (Unique)
-  building_AP_mind_controler: "§PKnowledge Hub§!" # Advanced Policies
+  building_AP_mind_controler: "§P£job_researcher£ Knowledge Hub§!" # Advanced Policies
   building_AP_mind_controler_tt: "§MResearch§! - §BTier 1§! - §EProcessing§!"
   building_AP_mind_controler_desc: "This building plans and plants knowledge into the next generation of drones."
-  building_supercomputer: "§PPlanetary Supercomputer§!" # Vanilla
+  building_supercomputer: "§P£job_researcher£ Planetary Supercomputer§!" # Vanilla
   building_supercomputer_tt: "§MResearch§! - §BTier 2§! - §EProcessing§!"
   building_supercomputer_desc: "A single colossal supercomputer which can carry out incredibly complex calculations, improving the research output of the whole planet."
   ## Productivity (Unique)
-  building_research_support_1: "§PPlanetary Research Archive§!" # More Standard Districts
+  building_research_support_1: "§P£job_researcher£ Planetary Research Archive§!" # More Standard Districts
   building_research_support_1_tt: "§MResearch§! - §BTier 1§! - §EProductivity§!"
   building_research_support_1_desc: "Existing scientific knowledge from across the empire is archived here, where teams of archivists re-analyze it in context of local research efforts."
-  building_research_support_2: "§PPlanetary Research Catalogue§!" # More Standard Districts
+  building_research_support_2: "§P£job_researcher£ Planetary Research Catalogue§!" # More Standard Districts
   building_research_support_2_tt: "§MResearch§! - §BTier 2§! - §EProductivity§!"
   building_research_support_2_desc: "In addition to housing an archive of existing scientific knowledge, this facility also creates and houses real-time backups for all research actively underway on the planet. Although this increases the up-front costs associated with research, it pays dividends by ensuring no progress goes unrecorded."
-  building_research_support_3: "§PSystem Research Locus§!" # More Standard Districts
+  building_research_support_3: "§P£job_researcher£ System Research Locus§!" # More Standard Districts
   building_research_support_3_tt: "§MResearch§! - §BTier 3§! - §EProductivity§!"
   building_research_support_3_desc: "This facility is much more than just an archive or backup: teams of researcher-cataloguers perform experiments in parallel for promising projects, independently testing theories and providing huge experimental datasets on behalf of scientists conducting original research."
 
   ### Artifacts
   ## Unique
-  building_archaeostudies_faculty: "§PFaculty of Archaeostudies§!" # Vanilla
+  building_archaeostudies_faculty: "§P£job_researcher£ Faculty of Archaeostudies§!" # Vanilla
   building_archaeostudies_faculty_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
   building_archaeostudies_faculty_desc: "A series of laboratories dedicated to the studies of technological applications of minor artifacts retrieved from elder empires."
-  building_vultaum_reality_computer: "§PVultaum Reality Computer§!" # Vanilla
+  building_vultaum_reality_computer: "§P£job_researcher£ Vultaum Reality Computer§!" # Vanilla
   building_vultaum_reality_computer_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
   building_vultaum_reality_computer_desc: "$tech_secrets_vultaum_desc$"
 
@@ -369,21 +369,21 @@ l_english:
 ##################
 
   ### Basic
-  building_commercial_zone: "§VCommercial Zones§!"
+  building_commercial_zone: "§V£trade_value£ Commercial Zones§!"
   building_commercial_zone_tt: "§MTrade§! - §BTier 1§! - §EBasic§!"
   building_commercial_zone_desc: "These commercial zones are home to towering office buildings and business complexes."
-  building_commercial_megaplex: "§VCommerce Megaplexes§!"
+  building_commercial_megaplex: "§V£trade_value£ Commerce Megaplexes§!"
   building_commercial_megaplex_tt: "§MTrade§! - §BTier 2§! - §EBasic§!"
   building_commercial_megaplex_desc: "Great commercial spires and towers rising up towards the sky, blotting out the light."
 
   ### Unique
-  building_galactic_stock_exchange: "§PGalactic Stock Exchange§!"
+  building_galactic_stock_exchange: "§P£trade_value£ Galactic Stock Exchange§!"
   building_galactic_stock_exchange_tt: "§MTrade§! - §BTier 2§! - §EUnique§!"
   building_galactic_stock_exchange_desc: "By engaging in free trade of goods and services we allow for a more specialized economy, where an individual can excel in a narrow field and trade for their needs."
 
   ### Civics
   ## Mercantile Complex (Banking Clans)
-  building_bank_office: "§PMercantile Complex§!" # Venture Politics
+  building_bank_office: "§P£trade_value£ Mercantile Complex§!" # Venture Politics
   building_bank_office_tt: "§MTrade§! - §BTier 1§! - §EBanking Clans§!"
   building_bank_office_desc: "Vast sums of wealth are directed by the merchants who work in this complex of offices and plazas."
   ## Omni Police Station
@@ -403,40 +403,40 @@ l_english:
 ##################
 
   ### Standard Housing
-  building_luxury_residence: "§PLuxury Residences§!"
+  building_luxury_residence: "§P£housing£ Luxury Residences§!"
   building_luxury_residence_tt: "§MHousing§! - §BTier 1§! - §EUnique§!"
   building_luxury_residence_desc: "Intricately designed residential towers with luxurious apartments. Advanced zero-g technology is the only thing keeping the more outlandish terrace designs from collapsing."
-  building_paradise_dome: "§PParadise Dome§!"
+  building_paradise_dome: "§P£housing£ Paradise Dome§!"
   building_paradise_dome_tt: "§MHousing§! - §BTier 2§! - §EUnique§!"
   building_paradise_dome_desc: "A fully enclosed habitation dome with a self-contained ecosystem, a veritable private paradise for those rich or fortunate enough to live there."
-  building_communal_housing: "§PCommunal Housing§!"
+  building_communal_housing: "§P£housing£ Communal Housing§!"
   building_communal_housing_tt: "§MHousing§! - §BTier 1§! - §EUnique§!"
   building_communal_housing_desc: "A block of uniform housing, equal in every way."
-  building_communal_housing_large: "Utopian Communal Housing§!"
+  building_communal_housing_large: "§P£housing£ Utopian Communal Housing§!"
   building_communal_housing_large_tt: "§MHousing§! - §BTier 2§! - §EUnique§!"
   building_communal_housing_large_desc: "An incredible feat of engineering that combines efficient, practical residences with carefully maintained idyllic landscapes."
 
   ## Machine Storage
-  building_drone_storage: "§PDrone Storage§!"
+  building_drone_storage: "§P£housing£ Drone Storage§!"
   building_drone_storage_tt: "§MHousing§! - §BTier 1§! - §EUnique§!"
   building_drone_storage_desc: "A storage area for Drones to undergo maintenance."
-  building_drone_megastorage: "§PUpgraded Drone Storage§!"
+  building_drone_megastorage: "§P£housing£ Upgraded Drone Storage§!"
   building_drone_megastorage_tt: "§MHousing§! - §BTier 2§! - §EUnique§!"
   building_drone_megastorage_desc: "With the latest upgrades, while undergoing maintenance a portion of Drones' power-generation can be re-directed to the grid."
 
   ### Hive Storage
-  building_hive_warren: "§PHive Warren§!"
+  building_hive_warren: "§P£housing£ Hive Warren§!"
   building_hive_warren_tt: "§MHousing§! - §BTier 1§! - §EUnique§!"
   building_hive_warren_desc: "A vast warren offers shelter for many Drones to rest."
-  building_expanded_warren: "§PExpanded Warren§!"
+  building_expanded_warren: "§P£housing£ Expanded Warren§!"
   building_expanded_warren_tt: "§MHousing§! - §BTier 2§! - §EUnique§!"
   building_expanded_warren_desc: "By expanding the warrens, still more Drone can shelter within."
 
   ### Entertainment
-  building_holo_theatres: "§VHolo-Theatres§!"
+  building_holo_theatres: "§V£amenities£ Holo-Theatres§!"
   building_holo_theatres_tt: "§MAmenities§! - §BTier 1§! - §EBasic§!"
   building_holo_theatres_desc: "The latest in holographic entertainment. Entire worlds built out of photons and energy fields."
-  building_hyper_entertainment_forum: "§VHyper-Entertainment Forums§!"
+  building_hyper_entertainment_forum: "§V£amenities£ Hyper-Entertainment Forums§!"
   building_hyper_entertainment_forum_tt: "§MAmenities§! - §BTier 2§! - §EBasic§!"
   building_hyper_entertainment_forum_desc: "These massive entertainment complexes is where dreams come true. Shopping malls, restaurants, amusement parks, virtual arcades, and more. You dream it - we are it!"
  
@@ -474,60 +474,60 @@ l_english:
 ##################
 
   ### Standard Monument
-  building_autochthon_monument: "§PAutochthon Monument§!"
+  building_autochthon_monument: "§P£unity£ Autochthon Monument§!"
   building_autochthon_monument_tt: "§MUnity§! - §BTier 1§! - §EMonument§!"
   building_autochthon_monument_desc: "A monument to the first pioneers to venture into space."
   building_autochthon_monument_effect: "Produces £unity£§G1§! for each §YAscension Perk§! our Empire has taken.\n\n"
-  building_heritage_site: "§PHeritage Site§!"
+  building_heritage_site: "§P£unity£ Heritage Site§!"
   building_heritage_site_tt: "§MUnity§! - §BTier 2§! - §EMonument§!"
   building_heritage_site_desc: "An area dedicated to the early history of our empire and its people."
   building_heritage_site_effect: "Produces £unity£§G2§! for each §YAscension Perk§! our Empire has taken.\n\n"
-  building_hypercomms_forum: "§PHypercomms Forum§!"
+  building_hypercomms_forum: "§P£unity£ Hypercomms Forum§!"
   building_hypercomms_forum_tt: "§MUnity§! - §BTier 3§! - §EMonument§!"
   building_hypercomms_forum_desc: "An immense facility equipped with avant-garde interpersonal communications equipment, the Forum allows for the exchange of multisensory ideas in casual discussions and rapid consensus-forming in debates."
   building_hypercomms_forum_effect: "Produces £unity£§G3§! for each §YAscension Perk§! our Empire has taken.\n\n"
   
   ### Standard Bureaucratic
-  building_bureaucratic_1: "§VAdministrative Offices§!"
+  building_bureaucratic_1: "§V£unity£ Administrative Offices§!"
   building_bureaucratic_1_tt: "§MUnity§! - §BTier 1§! - §EBasic§!"
   building_bureaucratic_1_desc: "A labyrinthine government complex of bureaucratic offices, sub-offices and sub-sub-offices."
-  building_bureaucratic_2: "§VAdministrative Park§!"
+  building_bureaucratic_2: "§V£unity£ Administrative Park§!"
   building_bureaucratic_2_tt: "§MUnity§! - §BTier 2§! - §EBasic§!"
   building_bureaucratic_2_desc: "An area full of buildings dedicated to the glory of effective and meticulous paperwork."
-  building_bureaucratic_3: "§VAdministrative Complex§!"
+  building_bureaucratic_3: "§V£unity£ Administrative Complex§!"
   building_bureaucratic_3_tt: "§MUnity§! - §BTier 3§! - §EBasic§!"
   building_bureaucratic_3_desc: "A vast stretch of land covered in bureaucratic offices containing countless cubicles."
 
   ### Standard Spiritualist
-  building_temple: "§VTemple§!"
+  building_temple: "§V£unity£ Temple§!"
   building_temple_tt: "§MUnity§! - §BTier 1§! - §EBasic§!"
   building_temple_desc: "Simple constructs erected since time immemorial, temples are places of quiet contemplation and communion with that which unites us all."
-  building_holotemple: "§VHolotemple§!"
+  building_holotemple: "§V£unity£ Holotemple§!"
   building_holotemple_tt: "§MUnity§! - §BTier 2§! - §EBasic§!"
   building_holotemple_desc: "An enhanced form of its rough-hewn predecessors, the latest in Spiritualist technology creates a mutable reality inside the Holotemple - all for deeper meditation and more intense devotion."
-  building_sacred_nexus: "§VSacred Nexus§!"
+  building_sacred_nexus: "§V£unity£ Sacred Nexus§!"
   building_sacred_nexus_tt: "§MUnity§! - §BTier 3§! - §EBasic§!"
   building_sacred_nexus_desc: "The latest developments in field technology allow worshipers to directly experience the divine influence of sacred ground."
 
   ### Machine
-  building_uplink_node: "§VUplink Node§!"
+  building_uplink_node: "§V£unity£ Uplink Node§!"
   building_uplink_node_tt: "§MUnity§! - §BTier 1§! - §EBasic§!"
   building_uplink_node_desc: "An uplink node that decreases planetary latency."
-  building_network_junction: "§VNetwork Junction§!"
+  building_network_junction: "§V£unity£ Network Junction§!"
   building_network_junction_tt: "§MUnity§! - §BTier 2§! - §EBasic§!"
   building_network_junction_desc: "This powerful transceiver increases the bandwidth of the signals being continuously sent between the many different systems operating across our empire."
-  building_system_conflux: "§VSystem Conflux§!"
+  building_system_conflux: "§V£unity£ System Conflux§!"
   building_system_conflux_tt: "§MUnity§! - §BTier 3§! - §EBasic§!"
   building_system_conflux_desc: "A massive hub facility that receives and forwards signals across interstellar distances from millions of different systems."
 
   ### Hive
-  building_hive_node: "§VSynaptic Nodes§!"
+  building_hive_node: "§V£unity£ Synaptic Nodes§!"
   building_hive_node_tt: "§MUnity§! - §BTier 1§! - §EBasic§!"
   building_hive_node_desc: "A center of massive, macroscopic synapses, these nodes - tended to and assisted by specialized drones - receive and transmit the will of the Hive."
-  building_hive_cluster: "§VSynaptic Clusters§!"
+  building_hive_cluster: "§V£unity£ Synaptic Clusters§!"
   building_hive_cluster_tt: "§MUnity§! - §BTier 2§! - §EBasic§!"
   building_hive_cluster_desc: "Synaptic hive nodes networked and clustered together produce maximum meganeuron transmission per available surface area, strengthening the organization of the will to its drones."
-  building_hive_confluence: "§VConfluence of Thought§!"
+  building_hive_confluence: "§V£unity£ Confluence of Thought§!"
   building_hive_confluence_tt: "§MUnity§! - §BTier 3§! - §EBasic§!"
   building_hive_confluence_desc: "A massive nervous center of macroscopic neurology, billions of meganeurons fire along vast stretches of roiling protoplasmic fibers in the Confluence, spreading, strengthening, coordinating the will of the Hive."
   
@@ -554,40 +554,40 @@ l_english:
   building_galactic_memorial_3_desc: "A monumental library of all that may or may not be understood about endings, chronicled for unknowable future ages."
  
   ### Machine Memorial
-  building_simulation_1: "§PSimulation Site§!"
+  building_simulation_1: "§P£unity£ Simulation Site§!"
   building_simulation_1_tt: "§MUnity§! - §BTier 1§! - §EMemorial§!"
   building_simulation_1_desc: "To advance our civilization we must run and evaluate complex simulations."
-  building_simulation_2: "§PSimulation Center§!"
+  building_simulation_2: "§P£unity£ Simulation Center§!"
   building_simulation_2_tt: "§MUnity§! - §BTier 2§! - §EMemorial§!"
   building_simulation_2_desc: "$building_simulation_1_desc$"
-  building_simulation_3: "§PSimulation Complex§!"
+  building_simulation_3: "§P£unity£ Simulation Complex§!"
   building_simulation_3_tt: "§MUnity§! - §BTier 3§! - §EMemorial§!"
   building_simulation_3_desc: "$building_simulation_1_desc$"
 
   ### Megacorp Memorial
-  building_corporate_monument: "§PCorporate Culture Site§!"
+  building_corporate_monument: "§P£unity£  Corporate Culture Site§!"
   building_corporate_monument_tt: "§MUnity§! - §BTier 1§! - §EMemorial§!"
   building_corporate_monument_desc: "A site dedicated to glorifying the unique corporate culture that permeates every business transaction conducted on the planet."
-  building_corporate_site: "§PBusiness Management Nexus§!"
+  building_corporate_site: "§P£unity£  Business Management Nexus§!"
   building_corporate_site_tt: "§MUnity§! - §BTier 2§! - §EMemorial§!"
   building_corporate_site_desc: "A facility where crucial decisions concerning the business culture of the planet can by strategized and subconsciously focus-tested by sapient resource specialists."
-  building_corporate_forum: "§PSynergy Forum§!"
+  building_corporate_forum: "§P£unity£ Synergy Forum§!"
   building_corporate_forum_tt: "§MUnity§! - §BTier 3§! - §EMemorial§!"
   building_corporate_forum_desc: "A massive FTL communications forum capable of synergizing the corporate culture of millions of planetary corporate subdivisions."
   
   ### Hive Memorial
-  building_sensorium_1: "§PSensorium Site§!"
+  building_sensorium_1: "§P£unity£ Sensorium Site§!"
   building_sensorium_1_tt: "§MUnity§! - §BTier 1§! - §EMemorial§!"
   building_sensorium_1_desc: "To further understand the galaxy, our specialized sensory drones need to experience everything it has to offer."
-  building_sensorium_2: "§PSensorium Center§!"
+  building_sensorium_2: "§P£unity£ Sensorium Center§!"
   building_sensorium_2_tt: "§MUnity§! - §BTier 2§! - §EMemorial§!"
   building_sensorium_2_desc: "$building_sensorium_1_desc$"
-  building_sensorium_3: "§PSensorium Complex§!"
+  building_sensorium_3: "§P£unity£ Sensorium Complex§!"
   building_sensorium_3_tt: "§MUnity§! - §BTier 3§! - §EMemorial§!"
   building_sensorium_3_desc: "$building_sensorium_1_desc$"
 
   ### Boosters
-  building_autocurating_vault: "Auto-Curating Vault"
+  building_autocurating_vault: "§P£unity£ Auto-Curating Vault§!"
   building_autocurating_vault_tt: "§MUnity§! - §BTier 1§! - §EUnique§!"
   building_autocurating_vault_desc: "A highly-specialized computerized network constantly acquires, analyzes, evaluates and puts on display everyday artifacts it deems of impending historical import, creating a living museum of the present and a window into the zeitgeist."
   building_citadel_of_faith: "Citadel of Faith"
