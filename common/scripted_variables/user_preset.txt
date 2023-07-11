@@ -282,7 +282,7 @@
 @giga_preset_mega_art_cap = 1
 @giga_preset_shipyard_cap = 4
 @giga_preset_nexus_cap = 1
-@giga_preset_ringworld_cap = 4
+@giga_preset_ringworld_cap = 1
 # ANY VALUE OTHER THAN 0 ON THE SENTRY WILL COUNT AS 1
 @giga_preset_sentry_cap = 1
 

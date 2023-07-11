@@ -37,3 +37,61 @@ ship_event = {
 
 	immediate = { destroy_ship = this }
 }
+
+namespace = mzilli_arch_events # Switch to arch_events
+
+## Arch Events 32 - Black Hole
+# Remove a line to prevent a crash.
+country_event = {
+	id = mzilli_arch_events.32
+	title = "mzilli_arch_events.27.name"
+	desc = "mzilli_arch_events.32.desc"
+	picture = GFX_evt_black_hole
+	show_sound = event_mystic_reveal
+	location = event_target:mzilli_bomb_giant
+	
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:mzilli_bomb_planet = {
+			change_pc = pc_black_hole
+			reset_planet = yes
+		}
+		event_target:mzilli_bomb_victim = {
+			if = {
+				limit = { exists = owner }
+				destroy_colony = yes
+			}
+		}
+	}
+
+	option = {
+		name = CURSES
+		custom_tooltip = mzilli_arch_events.32.tooltip
+		hidden_effect = {
+			event_target:mzilli_bomb_giant = {
+				solar_system = {
+					if = {
+						limit = { any_system_megastructure = { has_megastructure_flag = mzilli_bomb_victim_ring } }
+					}
+					random_system_megastructure = {
+						limit = { has_megastructure_flag = mzilli_bomb_victim_ring }
+						remove_megastructure = this
+					}
+				}
+				change_pc = pc_black_hole
+				set_planet_size = 20
+				reset_planet = yes
+				set_ring = no
+				set_deposit = d_physics_3
+			}
+			event_target:mzilli_bomb_planet = { remove_planet = yes }
+			event_target:mzilli_bomb_victim = {
+				change_pc = pc_black_hole
+				set_planet_size = 1
+				reset_planet = yes
+				#remove_planet = yes # Prevent Crash
+			}
+		}
+	}
+}
