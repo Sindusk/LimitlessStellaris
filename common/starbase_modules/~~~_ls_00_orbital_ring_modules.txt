@@ -1,0 +1,489 @@
+##########################################################################
+# Limitless Stellaris - Starbase Modules
+##########################################################################
+
+##################################################
+## Orbital Ring
+##################################################
+
+## Orbital Ring - Habitation
+# Expanded Starbases version
+orbital_ring_habitation = {
+	icon = "GFX_orbitalring_module_habitation"
+	section = "HABITAT_ORBITAL_RING_SECTION"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_housing_2 }
+		is_orbital_ring = yes
+	}
+
+	show_in_tech = "tech_housing_2"
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 200
+			influence = 25
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		planet_max_buildings_add = 0.5
+	}
+
+	replaceable = {
+		custom_tooltip = {
+			fail_text = orbital_ring_habitation_districts_maxed_out
+			OR = { # to keep tooltip from showing up when no module is built yet
+				NOT = { has_starbase_module = orbital_ring_habitation }
+				AND = {
+					has_starbase_module = orbital_ring_habitation
+					planet = {
+						num_free_districts = { type = any value >= 1 }
+					}
+				}
+			}
+		}
+	}
+
+	ai_build_at_chokepoint = no
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 3
+			exists = planet
+			planet = {
+				num_free_districts = { type = any value < 1 }
+			}
+		}
+		modifier = {
+			factor = 2
+			exists = planet
+			planet = {
+				OR = {
+					has_designation = col_mining
+					has_designation = col_farming
+					has_designation = col_generator
+					has_designation = col_industrial
+					has_designation = col_foundry
+					has_designation = col_factory
+					has_designation = col_rural
+					has_designation = col_rural_gestalt
+				}
+			}
+		}
+	}
+}
+
+## Orbital Ring - Shipyard
+# Expanded Starbases version
+orbital_ring_shipyard = {
+	icon = "GFX_starbase_shipyard"
+	section = "SHIPYARD_ORBITAL_RING_SECTION"
+	construction_days = 180
+	initial = yes
+
+	potential = {
+		is_orbital_ring = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 50
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		starbase_shipyard_capacity_add = 1
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		starbase_shipyard_capacity_add = 1
+	}
+
+
+	ai_build_at_chokepoint = no
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 100
+			owner = {
+				OR = {
+					count_owned_starbase = {
+						count = 0
+						limit = { has_starbase_module = orbital_ring_shipyard }
+					}
+					AND = {
+						num_starbases >= 4
+						count_owned_starbase = {
+							count < 2
+							limit = { has_starbase_module = orbital_ring_shipyard }
+						}
+					}
+					AND = {
+						num_starbases >= 9
+						count_owned_starbase = {
+							count < 3
+							limit = { has_starbase_module = orbital_ring_shipyard }
+						}
+					}
+					AND = {
+						num_starbases >= 15
+						count_owned_starbase = {
+							count < 4
+							limit = { has_starbase_module = orbital_ring_shipyard }
+						}
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 3
+			has_starbase_module = orbital_ring_shipyard
+			count_starbase_modules = {
+				count < 2
+				type = orbital_ring_shipyard
+			}
+		}
+		modifier = {
+			factor = 3
+			has_starbase_module = orbital_ring_shipyard
+			count_starbase_modules = {
+				count < 4
+				type = orbital_ring_shipyard
+			}
+		}
+	}
+}
+
+## Orbital Ring - Anchorage
+# Merge between Starbases Suck Less, Bug Branch, Expanded Starbases
+orbital_ring_anchorage = {
+	icon = "GFX_starbase_anchorage"
+	section = "ANCHORAGE_ORBITAL_RING_SECTION"
+	construction_days = 180
+
+	potential = {
+		is_orbital_ring = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 50
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 4
+	}
+	triggered_country_modifier = {
+		potential = {
+			has_starbase_building = naval_logistics_office
+			owner = {
+				NOT = { has_technology = tech_interstellar_fleet_doctrines }
+				NOR = {
+					has_megastructure = strategic_coordination_center_3
+					has_megastructure = strategic_coordination_center_restored
+				}
+			}
+		}
+		country_naval_cap_add = 2
+	}
+	
+	triggered_country_modifier = {
+		potential = {
+			has_starbase_building = naval_logistics_office
+			owner = {
+				has_technology = tech_interstellar_fleet_doctrines
+				NOR = {
+					has_megastructure = strategic_coordination_center_3
+					has_megastructure = strategic_coordination_center_restored
+				}
+			}
+		}
+		country_naval_cap_add = 4
+	}
+	
+	triggered_country_modifier = {
+		potential = {
+			has_starbase_building = naval_logistics_office
+			owner = {
+				NOT = { has_technology = tech_interstellar_fleet_doctrines }
+				OR = {
+					has_megastructure = strategic_coordination_center_3
+					has_megastructure = strategic_coordination_center_restored
+				}
+			}
+		}
+		country_naval_cap_add = 4
+	}
+	
+	triggered_country_modifier = {
+		potential = {
+			has_starbase_building = naval_logistics_office
+			owner = {
+				has_technology = tech_interstellar_fleet_doctrines
+				OR = {
+					has_megastructure = strategic_coordination_center_3
+					has_megastructure = strategic_coordination_center_restored
+				}
+			}
+		}
+		country_naval_cap_add = 6
+	}
+	triggered_country_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = bugged_military_telecom
+			}
+		}
+		country_naval_cap_add = 1
+	}
+	
+	triggered_country_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		country_naval_cap_add = 2
+	}
+
+
+	ai_build_at_chokepoint = no
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 2
+			count_starbase_modules = {
+				type = anchorage
+				count < 2
+			}
+		}
+	}
+}
+
+## Orbital Ring - Gun Battery
+# Merge between Starbases Suck Less, Expanded Starbases, STU
+orbital_ring_gun_battery = {
+	section = "GUN_BATTERY_ORBITAL_RING_SECTION"
+	icon = GFX_spaceport_modules
+	construction_days = 180
+
+	potential = {
+		is_orbital_ring = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 75 # Starbases Suck Less 50 -> 75
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.25 # Starbases Suck less 0.20 -> 0.25
+		ship_armor_mult = 0.25 # Starbases Suck Less 0.20 -> 0.25
+		#starbase_defense_platform_capacity_add = 1 # LS removal [Balance]
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		starbase_defense_platform_capacity_add = 1
+	}
+
+	ai_build_at_chokepoint = yes # Expanded Starbases
+	ai_build_outside_chokepoint = no # Expanded Starbases
+	ai_weight = {
+		weight = 100
+		modifier = { # Expanded Starbases
+			factor = 2
+			exists = owner
+			owner = {
+				OR = {
+					is_preferred_weapons = weapon_type_energy
+					is_preferred_weapons = weapon_type_kinetic
+				}
+			}
+		}
+	}
+
+	show_in_tech = "tech_mass_drivers_1"
+}
+
+## Orbital Ring - Missile Battery
+# Merge between Starbases Suck Less, Expanded Starbases, STU
+orbital_ring_missile_battery = {
+	section = "MISSILE_BATTERY_ORBITAL_RING_SECTION"
+	icon = "GFX_starbase_missile_battery"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_torpedoes_1 }
+		is_orbital_ring = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 100 # Starbases Suck Less 50 -> 100
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.25 # Starbases Suck Less 0.20 -> 0.25
+		ship_armor_mult = 0.25 # Starbases Suck Less 0.20 -> 0.25
+		#starbase_defense_platform_capacity_add = 1 # LS removal [Balance]
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		starbase_defense_platform_capacity_add = 1
+	}
+
+	ai_build_at_chokepoint = yes # Expanded Starbases
+	ai_build_outside_chokepoint = no # Expanded Starbases
+	ai_weight = {
+		weight = 100
+		modifier = { # Expanded Starbases
+			factor = 2
+			exists = owner
+			owner = { is_preferred_weapons = weapon_type_explosive }
+		}
+	}
+
+	show_in_tech = "tech_torpedoes_1"
+}
+
+## Orbital Ring - Hangar Bay
+# Merge between Starbases Suck Less, Expanded Starbases, STU
+orbital_ring_hangar_bay = {
+	icon = "GFX_starbase_hangar_bay"
+	section = "HANGAR_ORBITAL_RING_SECTION"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		is_orbital_ring = yes
+		owner = { has_technology = tech_strike_craft_1 }
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 100 # Starbases Suck Less 50 -> 100
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.25 # Starbases Suck Less 0.20 -> 0.25
+		ship_armor_mult = 0.25 # Starbases Suck Less 0.20 -> 0.25
+		#starbase_defense_platform_capacity_add = 1 # LS removal [Balance]
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		starbase_defense_platform_capacity_add = 1
+	}
+
+	ai_build_outside_chokepoint = yes # Expanded Starbases
+	ai_weight = {
+		weight = 100
+		modifier = { # Expanded Starbases
+			factor = 2
+			exists = owner
+			owner = { is_preferred_weapons = weapon_type_strike_craft }
+		}
+	}
+
+	show_in_tech = "tech_strike_craft_1"
+}
