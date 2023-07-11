@@ -1,0 +1,877 @@
+##########################################################################
+# Limitless Stellaris - Starbase Buildings
+##########################################################################
+
+### Key:
+### ORBU - Orbital Rings Buildings Upgraded
+### EMORB - Even More Orbital Ring Buildings
+
+##################################################
+## Orbital Ring
+##################################################
+
+## Orbital Ring - Minerals Hub
+# Merge between Bug Branch, Expanded Starbases, STU
+ring_minerals_hub = {
+	icon = "GFX_orbitalring_mineral_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_mineral_purification_2 }
+		is_orbital_ring = yes
+	}
+
+	planet_modifier = {
+		planet_miners_minerals_produces_add = 2
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+			volatile_motes = 100
+		}
+
+		upkeep = {
+			energy = 2
+			volatile_motes = 1
+		}
+	}
+
+	show_in_tech = "tech_mineral_purification_2"
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_functional_architecture = yes
+			}
+			planet = {
+				NOR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_machine
+					is_planet_class = pc_hive
+					is_planet_class = pc_city
+				}
+			}
+		}
+		modifier = {
+			district_mining_max = 2
+		}
+	}
+
+	ai_build_at_chokepoint = yes # Expanded Starbases
+	ai_build_outside_chokepoint = yes # Expanded Starbases
+	ai_weight = {
+		weight = 50 # Expanded Starbases 100 -> 50
+		modifier = { # Expanded Starbases
+			factor = 0
+			planet = {
+				planet_resource_compare = {
+					resource = minerals
+					value < 20
+					type = produces
+				}
+			}
+		}
+		modifier = { # Expanded Starbases
+			factor = 4
+			planet = {
+				has_designation = col_mining
+			}
+		}
+	}
+}
+
+## Orbital Ring - Energy Hub
+# Merge between Bug Branch, Expanded Starbases, STU
+ring_energy_hub = {
+	icon = "GFX_orbitalring_energy_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_power_hub_2 }
+		is_orbital_ring = yes
+	}
+
+	planet_modifier = {
+		planet_technician_energy_produces_add = 2
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+			exotic_gases = 100
+		}
+
+		upkeep = {
+			energy = 2
+			exotic_gases = 1
+		}
+	}
+
+	show_in_tech = "tech_power_hub_2"
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_functional_architecture = yes
+			}
+			planet = {
+				NOR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_machine
+					is_planet_class = pc_hive
+					is_planet_class = pc_city
+				}
+			}
+		}
+		modifier = {
+			district_generator_max = 2
+		}
+	}
+
+	ai_build_at_chokepoint = yes # Expanded Starbases
+	ai_build_outside_chokepoint = yes # Expanded Starbases
+	ai_weight = {
+		weight = 50 # Expanded Starbases 100 -> 50
+		modifier = { # Expanded Starbases
+			factor = 0
+			planet = {
+				planet_resource_compare = {
+					resource = energy
+					value < 20
+					type = produces
+				}
+			}
+		}
+		modifier = { # Expanded Starbases
+			factor = 4
+			planet = {
+				has_designation = col_generator
+			}
+		}
+	}
+}
+
+## Orbital Ring - Food Hub
+# Merge between Bug Branch, Expanded Starbases, STU
+ring_food_hub = {
+	icon = "GFX_orbitalring_food_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_food_processing_2 }
+		is_orbital_ring = yes
+	}
+
+	planet_modifier = {
+		planet_farmers_food_produces_add = 2
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+			volatile_motes = 100
+		}
+
+		upkeep = {
+			energy = 2
+			volatile_motes = 1
+		}
+	}
+
+	show_in_tech = "tech_food_processing_2"
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				is_bugged_functional_architecture = yes
+			}
+			planet = {
+				NOR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_machine
+					is_planet_class = pc_hive
+					is_planet_class = pc_city
+				}
+			}
+		}
+		modifier = {
+			district_farming_max = 2
+		}
+	}
+
+	ai_build_at_chokepoint = yes # Expanded Starbases
+	ai_build_outside_chokepoint = yes # Expanded Starbases
+	ai_weight = {
+		weight = 50 # Expanded Starbases 100 -> 50
+		modifier = { # Expanded Starbases
+			factor = 0
+			planet = {
+				planet_resource_compare = {
+					resource = food
+					value < 20
+					type = produces
+				}
+			}
+		}
+		modifier = { # Expanded Starbases
+			factor = 4
+			planet = {
+				has_designation = col_farming
+			}
+		}
+	}
+}
+
+## Orbital Ring - Trade Hub
+# Merge between Expanded Starbases, EMORB, STU
+ring_trade_hub = {
+	icon = "GFX_orbitalring_trade_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_interstellar_economics
+			is_gestalt = no
+		}
+		is_orbital_ring = yes
+	}
+
+	planet_modifier = {
+		trade_value_mult = 0.10 # Expanded Starbases 0.05 -> 0.10
+	}
+
+	triggered_planet_modifier = {
+		custom_tooltip = "sm_ring_trade_hub_effect"
+	}
+	
+	triggered_station_modifier = { # Expanded Starbases
+		potential = {
+			has_global_flag = LocalProduction_active
+		}
+
+		custom_tooltip = sm_local_ring_trade_hub_desc
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+			rare_crystals = 100
+		}
+
+		upkeep = {
+			energy = 2
+			rare_crystals = 1
+		}
+	}
+
+	show_in_tech = "tech_interstellar_economics"
+
+	ai_build_at_chokepoint = yes # EMORB
+	ai_build_outside_chokepoint = yes # EMORB
+	ai_weight = {
+		weight = 40 # EMORB 100 -> 40
+		modifier = { # EMORB
+			factor = 0
+			solar_system = {
+				has_system_trade_value < 50
+			}
+		}
+		modifier = { # EMORB
+			factor = 5
+			planet = {
+				has_designation = col_city
+			}
+		}
+	}
+}
+
+## Orbital Ring - Bureaucracy Hub
+# Merge between Expanded Starbases, EMORB, STU
+ring_bureaucracy_hub = {
+	icon = "GFX_orbitalring_bureaucracy_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_effective_bureaucracy
+			is_gestalt = no
+		}
+		is_orbital_ring = yes
+		NOT = { has_starbase_flag = planet_orbital_ring_uip } # EMORB
+	}
+
+	planet_modifier = {
+		planet_administrators_unity_produces_add = 1
+		planet_managers_unity_produces_add = 1
+		planet_priests_unity_produces_add = 1
+		planet_telepaths_unity_produces_add = 1
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 200
+			rare_crystals = 300
+		}
+
+		upkeep = {
+			energy = 2
+			rare_crystals = 1
+		}
+	}
+
+	show_in_tech = "tech_effective_bureaucracy"
+
+	ai_build_at_chokepoint = yes # EMORB
+	ai_build_outside_chokepoint = yes # EMORB
+	ai_weight = {
+		weight = 0 # EMORB disables construction
+	}
+}
+
+## Orbital Ring - Synapse Hub
+# Merge between Expanded Starbases, EMORB, STU
+ring_synapse_hub = {
+	icon = "GFX_orbitalring_synapse_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_hive_cluster
+			is_hive_empire = yes
+		}
+		is_orbital_ring = yes
+		NOT = { has_starbase_flag = planet_orbital_ring_uip } # EMORB
+	}
+
+	planet_modifier = {
+		custom_tooltip = "sm_ring_synapse_hub_effect"
+		planet_administrators_unity_produces_add = 1
+		pop_amenities_usage_mult = -0.10 # EMORB
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 200
+			exotic_gases = 300
+		}
+
+		upkeep = {
+			energy = 2
+			exotic_gases = 1
+		}
+	}
+
+	show_in_tech = "tech_hive_cluster"
+
+	ai_build_at_chokepoint = yes # EMORB
+	ai_build_outside_chokepoint = yes # EMORB
+	ai_weight = {
+		weight = 0 # EMORB disables construction
+	}
+}
+
+## Orbital Ring - Maintenance Hub
+# Merge between Expanded Starbases, ORBU, EMORB, STU
+ring_maintenance_hub = {
+	icon = "GFX_orbitalring_maintenance_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+		    OR = { # ORBU
+		        AND = {
+			        has_technology = tech_resource_processing_algorithms
+			        is_machine_empire = yes
+			    }
+			    AND = { # ORBU
+			        is_hive_empire = yes
+			        has_technology = tech_hive_cluster
+			    }
+			}
+		}
+		is_orbital_ring = yes
+		NOT = { has_starbase_flag = planet_orbital_ring_uip } # EMORB
+	}
+
+	planet_modifier = {
+		planet_administrators_unity_produces_add = 1 # Expanded Starbases
+		show_only_custom_tooltip = no # Expanded Starbases
+		custom_tooltip = "sm_ring_maintenance_hub_effect"
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 200
+			exotic_gases = 300
+		}
+
+		upkeep = {
+			energy = 2
+			exotic_gases = 1
+		}
+	}
+
+	show_in_tech = "tech_resource_processing_algorithms"
+	show_in_tech = "tech_hive_cluster"
+
+	ai_build_at_chokepoint = yes # EMORB
+	ai_build_outside_chokepoint = yes # EMORB
+	ai_weight = {
+		weight = 0 # EMORB
+	}
+}
+
+## Orbital Ring - Consumer Goods Hub
+# Merge between Expanded Starbases, EMORB, STU
+ring_consumer_goods_hub = {
+	icon = "GFX_orbitalring_consumer_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_luxuries_2
+			country_uses_consumer_goods = yes
+		}
+		is_orbital_ring = yes
+		NOT = { has_starbase_flag = planet_orbital_ring_uip } # EMORB
+	}
+
+	planet_modifier = {
+		planet_artisans_consumer_goods_produces_add = 1
+		planet_artisans_minerals_upkeep_add = 1
+	}
+	
+	triggered_planet_modifier = { # Expanded Starbases
+		potential = {
+			OR = {
+				NOT = { has_global_flag = expanded_pops_active }
+				AND = {
+					exists = owner
+					owner = {
+						OR = {
+							is_lithoid_empire = no
+							NOT = { is_agrarian_empire = { allow_invalid = yes } }
+						}
+					}
+				}
+			}
+		}
+		modifier = {
+			planet_artisans_minerals_upkeep_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = { # Expanded Starbases
+		potential = {
+			has_global_flag = expanded_pops_active
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+				has_technology = tech_agrarian_goods 
+				is_agrarian_empire = { allow_invalid = yes }
+			}
+		}
+		modifier = {
+			planet_farmers_consumer_goods_produces_add = 0.5
+		}
+	}
+	
+	triggered_planet_modifier = { # Expanded Starbases
+		potential = {
+			has_global_flag = expanded_pops_active
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				has_technology = tech_agrarian_goods_lithoid 
+				is_agrarian_empire = { allow_invalid = yes }
+			}
+		}
+		modifier = {
+			planet_miners_consumer_goods_produces_add = 0.5
+		}
+	}
+	
+	triggered_planet_modifier = { # Expanded Starbases
+		potential = {
+			has_global_flag = expanded_pops_active
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				is_agrarian_empire = { allow_invalid = yes }
+			}
+		}
+		modifier = {
+			planet_artisans_minerals_upkeep_add = 0.5
+			planet_artisans_food_upkeep_add = 0.5
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 200
+			rare_crystals = 300
+		}
+
+		upkeep = {
+			energy = 5
+			rare_crystals = 2
+		}
+	}
+
+	show_in_tech = "tech_luxuries_2"
+
+	ai_build_at_chokepoint = yes # EMORB
+	ai_build_outside_chokepoint = yes # EMORB
+	ai_weight = {
+		weight = 50 # EMORB 100 -> 50
+		modifier = { # EMORB
+			factor = 0
+			planet = {
+				planet_resource_compare = {
+					resource = consumer_goods
+					value < 20
+					type = produces
+				}
+			}
+		}
+		modifier = { # EMORB
+			factor = 4
+			planet = {
+				OR = {
+					has_designation = col_factory
+					has_designation = col_industrial
+					has_designation = col_ecu_factory # Expanded Starbases
+					has_designation = col_ecu_industrial # Expanded Starbases
+					has_designation = col_mac_factory # Expanded Starbases
+				}
+			}
+		}
+	}
+}
+
+## Orbital Ring - Alloys Hub
+# Merge between Expanded Starbases, EMORB, STU
+ring_alloys_hub = {
+	icon = "GFX_orbitalring_alloy_hub"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_alloys_2 }
+		is_orbital_ring = yes
+		NOT = { has_starbase_flag = planet_orbital_ring_uip } # EMORB
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_minerals_upkeep_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 1
+			planet_metallurgists_food_upkeep_add = 3
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 200
+			volatile_motes = 300
+		}
+
+		upkeep = {
+			energy = 5
+			volatile_motes = 2
+		}
+	}
+
+	show_in_tech = "tech_alloys_2"
+
+	ai_build_at_chokepoint = yes # EMORB
+	ai_build_outside_chokepoint = yes # EMORB
+	ai_weight = {
+		weight = 60 # EMORB 100 -> 60
+		modifier = { # EMORB
+			factor = 0
+			planet = {
+				planet_resource_compare = {
+					resource = alloys
+					value < 20
+					type = produces
+				}
+			}
+		}
+		modifier = { # EMORB
+			factor = 5
+			planet = {
+				OR = {
+					has_designation = col_foundry
+					has_designation = col_industrial
+					has_designation = col_ecu_foundry # Expanded Starbases
+					has_designation = col_ecu_industrial # Expanded Starbases
+					has_designation = col_mac_foundry # Expanded Starbases
+					has_designation = col_hiv_foundry # Expanded Starbases
+				}
+			}
+		}
+	}
+}
+
+## Orbital Ring - Galactic Stock Exchange
+# Merge between Bug Branch, Expanded Starbases, STU
+ring_galactic_stock_exchange = {
+	icon = "GFX_orbitalring_galactic_stock_exchange"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { 
+			has_technology = tech_galactic_markets
+		}
+		is_orbital_ring = yes
+		planet = {
+			NOR = {
+				has_modifier = resort_colony
+				has_modifier = slave_colony
+			}
+		}
+	}
+
+	possible = {
+		planet = {
+			NOR = {
+				has_building_construction = building_bugged_planetary_stock_exchange # Bug Branch
+				has_building = building_bugged_planetary_stock_exchange # Bug Branch
+				has_building_construction = building_galactic_stock_exchange
+				has_building = building_galactic_stock_exchange
+			}
+		}
+	}
+
+	abort_trigger = {
+		exists = planet
+		planet = {
+			exists = owner
+			OR = {
+				owner = { is_regular_empire = no }
+				has_modifier = slave_colony
+				has_modifier = resort_colony
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = planet
+		planet = {
+			exists = owner
+			OR = {
+				owner = { is_regular_empire = no }
+				has_modifier = slave_colony
+				has_modifier = resort_colony
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_merchant_add = 2
+		trade_value_mult = 0.20
+	}
+	
+	triggered_planet_modifier = { # Expanded Starbases
+		potential = {
+			has_global_flag = expanded_pops_active
+			exists = owner
+			owner = { has_civic = civic_merchant_guilds }
+		}
+		modifier = {
+			job_manager_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			NOR = {
+				has_global_flag = galactic_market_founded
+				owner = {
+					is_bugged_globalism = yes
+				}
+			}
+		}
+		job_merchant_add = 1
+		trade_value_mult = 0.05
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			OR = {
+				has_global_flag = galactic_market_founded
+				owner = {
+					is_bugged_globalism = yes
+				}
+			}
+		}
+		modifier = {
+			job_merchant_add = 2
+			trade_value_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 200
+			rare_crystals = 300
+		}
+
+		upkeep = {
+			energy = 5
+			rare_crystals = 2
+		}
+	}
+
+	show_in_tech = "tech_galactic_markets"
+
+	ai_build_at_chokepoint = yes
+	ai_build_outside_chokepoint = yes
+
+	ai_weight = {
+		weight = 50
+		modifier = {
+			factor = 4
+			solar_system = {
+				has_system_trade_value >= 50
+			}
+		}
+	}
+}
+
+## Orbital Ring - Noble Estates
+# Merge between Bug Branch, Expanded Starbases, STU
+ring_noble_estates = {
+	icon = "GFX_orbitalring_noble_estates"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { 
+			is_bugged_governmental_elitist = yes # Bug Branch
+		}
+		is_orbital_ring = yes
+		planet = {
+			NOR = {
+				has_modifier = slave_colony
+			}
+		}
+	}
+
+	possible = {
+		planet = {
+			NOR = {
+				has_building_construction = building_noble_estates
+				has_building = building_noble_estates
+				has_building_construction = building_palatial_estates # Expanded Starbases
+				has_building = building_palatial_estates # Expanded Starbases
+			}
+		}
+	}
+
+	abort_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				is_bugged_governmental_elitist = yes # Bug Branch
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = { 
+				is_bugged_governmental_elitist = yes # Bug Branch
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_noble_add = 2
+		planet_housing_add = 2
+	}
+	
+	triggered_planet_modifier = { # Expanded Starbases
+		potential = {
+			has_global_flag = expanded_pops_active
+		}
+		modifier = {
+			planet_housing_add = 4
+			planet_amenities_add = 10
+		}
+	}
+
+	triggered_planet_modifier = { # Bug Branch
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_bugged_peerage_assembly
+			}
+		}
+		job_noble_add = 1
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 200
+			exotic_gases = 300
+		}
+
+		upkeep = {
+			energy = 5
+			exotic_gases = 2
+		}
+	}
+
+	ai_build_at_chokepoint = yes
+	ai_build_outside_chokepoint = yes
+
+	ai_weight = {
+		weight = 100
+	}
+}
