@@ -9,6 +9,8 @@ event = {
 	is_triggered_only = yes
 	
 	immediate = {
+		set_global_flag = sustained_ship_acceleration # LS - Prevents issues because there's modded thruster types.
+		set_global_flag = longer_battles_mode_off # LS - The modifiers from this setting do not have intended effects.
 		every_country = {
 			limit = { is_ai = no }
 			#country_event = { id = realspace.206 } # This event opened the settings menu

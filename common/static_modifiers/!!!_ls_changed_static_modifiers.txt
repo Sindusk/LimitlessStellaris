@@ -1,0 +1,9 @@
+##########################################################################
+# Limitless Stellaris - Static Modifiers
+##########################################################################
+
+## Cruising Speed [Real Space: Ships in Scaling]
+# Change from 600% speed to 400% speed.
+speed_change_x6 = {
+	ship_speed_mult = 4 # LS 6 -> 4 [Balance]
+}
