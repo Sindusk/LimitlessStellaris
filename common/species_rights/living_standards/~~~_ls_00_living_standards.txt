@@ -281,8 +281,10 @@ living_standard_deassimilation = {
 	potential = {
 		has_utopia = yes
 		is_robotic = no
-		has_trait = trait_hive_mind
-		has_trait = trait_bugged_happy_hive # Bug Branch
+		OR = { # LS - Can be either hive_mind or bugged_happy_hive from Bug Branch.
+			has_trait = trait_hive_mind
+			has_trait = trait_bugged_happy_hive # Bug Branch
+		}
 		exists = from
 		from = {
 			is_gestalt = no
