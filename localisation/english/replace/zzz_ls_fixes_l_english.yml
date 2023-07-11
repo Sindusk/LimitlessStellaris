@@ -151,11 +151,6 @@ l_english:
   gal_com_startech_technology_state: "Technology Power"
   gal_com_startech_personality: "Leader Personality"
 
-  # Expanded Stellaris Traditions
-  # Bad localisation for this specific leader trait.
-  leader_trait_archaeologist_ancrel_est_2: "Archaeologist"
-  leader_trait_archaeologist_ancrel_est_2_desc: "Skill in Archaeology." # Placeholder
-
   # Plentiful Perks and Solar Storm clash on this perk. The Solar Storm one is being used, but the localization of Plentiful Perks takes priority.
   # This section here is a copy of the Solar Storm ascension perk text, so it replaces the Plentiful Perks version.
   ap_hive_mind_ascension: "§HAscension of Will§!"
