@@ -669,7 +669,7 @@ ap_engineered_evolution = {
 	}
 
 	ai_weight = {
-		factor = 15
+		factor = 1000 # LS 15 -> 1,000 (This is super important for AI)
 		modifier = {
 			factor = 0
 			num_owned_planets < 4

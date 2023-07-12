@@ -1349,7 +1349,7 @@ building_clone_vats = {
 	}
 
 	planet_modifier = {
-		planet_pop_assembly_organic_add = 1.0 # OSA # LS 2.5 -> 1.0 [Balance]
+		#planet_pop_assembly_organic_add = 1.0 # OSA # LS removed [Balance]
 	}
 	
 	inline_script = { # LS - Custom inline to add cloning tech or drone jobs.
@@ -1583,6 +1583,17 @@ building_clone_vats = {
 	inline_script = { # LS - Custom inline for warnings about the Clone Vats
 		script = buildings/pop_assembly/clone_vats/warnings
 	}
+
+	# LS AI Resource Production - Very important for AI to prioritize building these
+	ai_resource_production = {
+		energy = 50
+		minerals = 50
+		food = 50
+		alloys = 50
+		trigger = {
+			always = yes
+		}
+	}
 }
 
 ## Clone Birth-Labs (Tier 2) [Organic Zealots]
@@ -1622,7 +1633,7 @@ building_clone_birth_labs = {
 	}
 
 	planet_modifier = {
-		planet_pop_assembly_organic_add = 2.0 # LS - Upgrade from Clone Vats
+		#planet_pop_assembly_organic_add = 2.0 # LS - Removed [Balance]
 		#job_cloning_technician_add = 1 # LS - Remove technician because it's now an upgrade. Using inline instead.
 	}
 
@@ -1853,6 +1864,17 @@ building_clone_birth_labs = {
 
 	prerequisites = {
 		tech_cloning
+	}
+	
+	# LS AI Resource Production - Very important for AI to prioritize building these
+	ai_resource_production = {
+		energy = 50
+		minerals = 50
+		food = 50
+		alloys = 50
+		trigger = {
+			always = yes
+		}
 	}
 }
 
