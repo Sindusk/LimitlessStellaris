@@ -7,3 +7,30 @@
 speed_change_x6 = {
 	ship_speed_mult = 4 # LS 6 -> 4 [Balance]
 }
+
+###-----RINGWORLD STORAGE DISTRICTS-----### [Storage Districts and Solutions]
+#-----INITIAL-----#
+ringstorage0_district_aggregate_modifier = {
+	icon = "gfx/interface/icons/modifiers/mod_country_resource_max_add.dds"
+	country_resource_max_add = 50000 # LS 100,000 -> 50,000
+	}
+#-----TIER ONE-----#
+ringstorage1_district_aggregate_modifier = {
+	icon = "gfx/interface/icons/modifiers/mod_country_resource_max_add.dds"
+	country_resource_max_add = 100000 # LS 200,000 -> 100,000
+	}
+#-----TIER TWO-----#
+ringstorage2_district_aggregate_modifier = {
+	icon = "gfx/interface/icons/modifiers/mod_country_resource_max_add.dds"
+	country_resource_max_add = 150000 # LS 300,000 -> 150,000
+	}
+#-----TIER THREE-----#
+ringstorage3_district_aggregate_modifier = {
+	icon = "gfx/interface/icons/modifiers/mod_country_resource_max_add.dds"
+	country_resource_max_add = 200000 # LS 400,000 -> 200,000
+	}
+#-----TIER FOUR-----#
+ringstorage4_district_aggregate_modifier = {
+	icon = "gfx/interface/icons/modifiers/mod_country_resource_max_add.dds"
+	country_resource_max_add = 250000 # LS 500,000 -> 250,000
+	}
