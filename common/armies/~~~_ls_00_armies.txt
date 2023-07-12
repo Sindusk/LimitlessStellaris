@@ -1,9 +1,13 @@
 ##########################################################################
-# Limitless Stellaris Armies Changes
+# Limitless Stellaris - Armies
 ##########################################################################
 
 ### Key:
 ### ACOT - Ancient Cache of Technologies
+
+##################################################
+## Vanilla
+##################################################
 
 ### slave_army
 # Merge between ACOT and Plentiful Traditions

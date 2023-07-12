@@ -1,0 +1,105 @@
+##########################################################################
+# Limitless Stellaris - Armies
+##########################################################################
+
+##################################################
+## Omega's Stellaris Additions
+##################################################
+
+## Titan Battlegroup (Defense) [Omega's Stellaris Additions]
+# Disabled. Broken.
+defense_imperator_titan = {
+	defensive = yes
+	damage = 8.0
+	health = 10.0
+	has_morale = no
+	morale_damage = 4
+	collateral_damage = 20.0
+	war_exhaustion = 0.0 # No WE from defense armies
+	icon = GFX_army_type_machine_assault
+	has_species = no
+
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_active_tradition = tr_unyielding_resistance_is_frugal }
+			}
+			unity = 0.5
+		}
+	}
+
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	has_active_tradition = tr_ingenuity_finish
+		#}
+	}
+}
+
+## Titan Battlegroup [Omega's Stellaris Additions]
+# Disabled. Broken.
+imperator_titan = {
+	damage = 8.0
+	health = 10.0
+	has_morale = no
+	morale_damage = 4
+	collateral_damage = 20.0
+	war_exhaustion = 10.0
+	time = 1825
+	has_species = no
+
+	icon = GFX_army_type_machine_assault
+
+	resources = {
+		category = armies
+		cost = {
+			alloys = 1500
+		}
+
+		upkeep = {
+			alloys = 5
+			energy = 25
+		}
+	}
+
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	has_active_tradition = tr_ingenuity_finish
+		#}
+	}
+
+	allow = {
+		custom_tooltip = {
+			text = imperator_titan_limit_tooltip
+			owner = {
+				check_variable = {
+					which = "imperator_titan_count"
+					value < 25
+				}
+			}
+		}
+	}
+
+	on_queued = {
+		owner = {
+			change_variable = {
+				which = "imperator_titan_count"
+				value = 1
+			}
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			change_variable = {
+				which = "imperator_titan_count"
+				value = -1
+			}
+		}
+	}
+}
