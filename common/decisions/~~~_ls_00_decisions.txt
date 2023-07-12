@@ -2,6 +2,307 @@
 # Limitless Stellaris - Decisions
 ##########################################################################
 
+## Arcology Project
+# Planetary Diversity version with optimized potential triggers.
+decision_arcology_project = {
+    owned_planets_only = yes
+    icon = decision_arcology_project
+    enactment_time = 3600
+    resources = {
+        category = decisions
+        cost = {
+            influence = 200
+            minerals = 20000
+        }
+    }
+    potential = {
+		# LS - Major rewrite for potential to improve compatibility.
+		is_city_world = no # STU
+		is_relic_world = no # STU
+		is_nuked_world = no # STU
+		is_habitat = no # STU
+        merg_is_shroud_habitable = no # Merger
+		is_machine_world = no # STU
+        is_pd_unique = no # Planetary Diversity
+        is_artificial = no # Vanilla
+        is_pd_planetary_megaproject = no # Planetary Diversity
+        NOR = { # These conditions are unchanged
+            is_planet_class = pc_necrohive # Planetary Diversity
+            has_modifier = resort_colony # Vanilla
+            has_modifier = penal_colony # Vanilla
+            has_modifier = slave_colony # Vanilla
+            has_modifier = pm_wenkwort_custodian # Vanilla
+            is_planet_class = pc_geode
+        }
+        exists = owner
+        owner = {
+            has_ascension_perk = ap_arcology_project
+        }
+    }
+    allow = {
+        if = {
+            limit = {
+                owner = {
+                    is_ai = no
+                }
+            }
+            custom_tooltip = {
+                fail_text = decision_arcology_project_requirements
+                free_district_slots < 1
+                num_districts = {
+                    type = district_farming
+                    value < 1
+                }
+                num_districts = {
+                    type = district_mining
+                    value < 1
+                }
+                num_districts = {
+                    type = district_generator
+                    value < 1
+                }
+                num_districts = {
+                    type = district_farming_uncapped
+                    value < 1
+                }
+                num_districts = {
+                    type = district_mining_uncapped
+                    value < 1
+                }
+                num_districts = {
+                    type = district_generator_uncapped
+                    value < 1
+                }
+            }
+            custom_tooltip = {
+                fail_text = legendary_leader_decision_arcology_project
+                NOT = {
+                    has_planet_flag = legendary_leader_planet
+                }
+            }
+        }
+        num_uncleared_blockers < 1
+    }
+    effect = {
+        custom_tooltip = decision_arcology_project_effects
+        hidden_effect = {
+            clear_deposits = yes
+            set_industrial_focus_flags = yes
+            IF = {
+                limit = {
+                    NOR = {
+                        is_planet_class = pc_sulfur
+                        is_planet_class = pc_ammonia
+                        is_planet_class = pc_methane
+                        is_planet_class = pc_ash
+                        is_planet_class = pc_pd_hycean
+                    }
+                }
+                change_pc = pc_city
+                IF = {
+                    limit = {
+                        owner = {
+                            NOT = {
+                                has_trait = trait_pc_aquatic_preference
+                            }
+                        }
+                    }
+                    set_planet_entity = {
+                        entity = "city_planet_entity"
+                        graphical_culture = owner
+                    }
+                }
+                IF = {
+                    limit = {
+                        owner = {
+                            has_trait = trait_pc_aquatic_preference
+                        }
+                    }
+                    set_planet_entity = {
+                        entity = "aquaticcity_planet_01_entity"
+                        picture = "pc_aquaticcity"
+                    }
+                }
+                IF = {
+                    limit = {
+                        owner = {
+                            has_origin = origin_pd_shroud
+                            pd_has_psionic_ascension_finished = yes
+                        }
+                    }
+                    set_planet_entity = {
+                        picture = pc_shroudcity
+                        entity = pdshroudcity_planet_01_entity
+                    }
+                    add_deposit = d_pd_shroud_arc
+                }
+            }
+            IF = {
+                limit = {
+                    OR = {
+                        is_planet_class = pc_sulfur
+                        is_planet_class = pc_ammonia
+                        is_planet_class = pc_methane
+                        is_planet_class = pc_ash
+                        is_planet_class = pc_pd_hycean
+                    }
+                }
+                IF = {
+                    limit = {
+                        is_planet_class = pc_ammonia
+                    }
+                    IF = {
+                        limit = {
+                            NOT = {
+                                has_modifier = pdammoniaatmosphere
+                            }
+                        }
+                        add_modifier = {
+                            modifier = pdammoniaatmosphere
+                        }
+                    }
+                    remove_modifier = ammonia
+                    change_pc = pc_city
+                    set_planet_entity = {
+                        picture = pc_ammoniacity
+                        entity = ammonia_arc_planet_01_entity
+                    }
+                }
+                IF = {
+                    limit = {
+                        is_planet_class = pc_sulfur
+                    }
+                    IF = {
+                        limit = {
+                            NOT = {
+                                has_modifier = pdsulfuratmosphere
+                            }
+                        }
+                        add_modifier = {
+                            modifier = pdsulfuratmosphere
+                        }
+                    }
+                    remove_modifier = pdsulfur
+                    change_pc = pc_city
+                    set_planet_entity = {
+                        picture = pc_sulfurcity
+                        entity = sulfur_arc_planet_01_entity
+                    }
+                }
+                IF = {
+                    limit = {
+                        is_planet_class = pc_methane
+                    }
+                    IF = {
+                        limit = {
+                            NOT = {
+                                has_modifier = pdmethaneatmosphere
+                            }
+                        }
+                        add_modifier = {
+                            modifier = pdmethaneatmosphere
+                        }
+                    }
+                    remove_modifier = methane
+                    change_pc = pc_city
+                    set_planet_entity = {
+                        picture = pc_methanecity
+                        entity = methane_arc_planet_01_entity
+                    }
+                }
+                IF = {
+                    limit = {
+                        is_planet_class = pc_pd_hycean
+                    }
+                    IF = {
+                        limit = {
+                            NOT = {
+                                has_modifier = hyceanfloodedworld
+                            }
+                        }
+                        add_modifier = {
+                            modifier = hyceanfloodedworld
+                        }
+                    }
+                    remove_modifier = pd_hycean
+                    change_pc = pc_city
+                    set_planet_entity = {
+                        picture = pc_hyceancity
+                        entity = hyceancity_planet_01_entity
+                    }
+                }
+                IF = {
+                    limit = {
+                        is_planet_class = pc_ash
+                    }
+                    IF = {
+                        limit = {
+                            NOT = {
+                                has_modifier = pdashatmosphere
+                            }
+                        }
+                        add_modifier = {
+                            modifier = pdashatmosphere
+                        }
+                    }
+                    remove_modifier = ash
+                    change_pc = pc_city
+                    set_planet_entity = {
+                        picture = pc_ashcity
+                        entity = ash_arc_planet_01_entity
+                    }
+                }
+            }
+            add_deposit = d_pd_industrial_sector
+            owner = {
+                country_event = {
+                    id = distar.201
+                }
+            }
+            relic_world_conversion_effect = {
+                DISTRICT = district_arcology_housing
+                VARIABLE = num_housing_districts
+            }
+            relic_world_conversion_effect = {
+                DISTRICT = district_arcology_arms_industry
+                VARIABLE = num_industrial_districts
+            }
+            set_ecu_industrial_districts_effect = yes
+            planet_event = {
+                id = mega.200
+            }
+            planet_event = {
+                id = pdengine.14
+            }
+            if = {
+                limit = {
+                    OR = {
+                        is_active_resolution = "resolution_ecology_environmental_control_board"
+                        is_active_resolution = "resolution_ecology_paradise_initiative"
+                    }
+                }
+                owner = {
+                    set_timed_country_flag = {
+                        flag = resolution_breached_terraformed
+                        days = 3600
+                    }
+                }
+            }
+        }
+    }
+    ai_weight = {
+        weight = 1
+        modifier = {
+            factor = 100
+            exists = owner
+            OR = {
+                num_pops >= 70
+                is_capital = yes
+            }
+        }
+    }
+}
+
 ## Project Cornucopia
 # Merge between MECR and NGS
 decision_project_cornucopia = {

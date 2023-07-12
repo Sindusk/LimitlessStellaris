@@ -143,6 +143,16 @@ l_english:
   # Advanced Policies
   AP_trial_by_fire: "Begin the Trial by Fire" # Fix capitalization
   planet_trial_by_fire: "Trial by Fire" # Fix capitalization
+
+  ### --- Arcology Projects --- ###
+  ## Vanilla
+  # Arcology Project
+  # No longer requires only city or industrial districts, just cannot have generator, mining, or farming districts.
+  decision_arcology_project_requirements: "£trigger_no£ §RAll district slots on the planet must be filled, with no§! §Y$district_generator_plural$§!, §Y$district_mining_plural$§!, or §Y$district_farming_plural$§!"
+  ## Gigastructural Engineering
+  # Ringworld Arcology
+  # No longer requires only city districts, just cannot have generator or farming districts.
+  decision_ringworld_arcology_project_requirements: "$TRIGGER_FAIL$ §RAll district slots on the planet must be filled with no§! §Y$district_generator_plural$§! or §Y$district_farming_plural$§!"
  
   # StarTech Generic
   gal_com_startech_generic: "StarTech"
