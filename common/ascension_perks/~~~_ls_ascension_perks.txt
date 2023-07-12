@@ -1,0 +1,80 @@
+##########################################################################
+# Limitless Stellaris - Ascension Perks
+##########################################################################
+
+##################################################
+## Omega's Stellaris Additions
+##################################################
+
+## Advanced City Planning [Omega's Stellaris Additions]
+# Changed from max districts to non-artificial max districts.
+ap_advanced_city_planning = {
+	modifier = {
+		planet_non_artificial_max_districts_add = 5 # LS all max -> non-artificial max
+		district_generator_max = 5
+		district_mining_max = 5
+		district_farming_max = 5
+		planet_building_build_speed_mult = 2.5
+		planet_decision_enact_speed_mult = 2.5
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_advanced_city_planning
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_10"
+			num_ascension_perks > 9
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+	}
+}
+
+##################################################
+## Unique Ascension Perks
+##################################################
+
+## Economical Mastery [Unique Ascension Perks]
+# Removed other mods disabling this Ascension Perk. It now functions properly.
+ap_economic_prospertity = {
+	possible = {
+		custom_tooltip = { fail_text = "ap_economic_prospertity_req_1" tradition_prosperity_finish = yes }
+		custom_tooltip = { fail_text = "ap_economic_prospertity_req_2" OR = { has_technology = tech_galactic_markets is_megacorp = yes } }
+		#custom_tooltip = { fail_text = "ap_economic_prospertity_req_3" NOT = { has_global_flag = emex_version_rejuvenation } } # 'Empires Expanded'
+		#custom_tooltip = { fail_text = "ap_economic_prospertity_req_4" NAND = { has_global_flag = bug_branch_active has_bug_branch = yes } } # Ethics and Civics - Bug Branch
+	}
+	modifier = {
+		country_trade_fee = -0.1
+		trade_value_mult = 0.15
+		country_energy_produces_mult = 0.05
+		country_resource_max_energy_add = 10000
+		# branch_office_value_mult = 0.75
+	}
+	on_enabled = {
+		custom_tooltip = "ap_economic_prospertity_tooltip"
+		hidden_effect = {
+			country_event = { id = UniqueAscensionPerksEvents.54 }
+		}
+		add_resource = { energy = 10000 }
+	}
+	potential = {
+		NOT = { has_ascension_perk = ap_economic_prospertity }
+		is_gestalt = no
+		OR = {
+			is_ai = no
+			event_target:global_event_country = {
+				check_variable = { which = ap_economic_prospertity value > 0 }
+			}
+		}		# because ai_weight doesn't work
+	}
+	ai_weight = {
+		factor = event_target:global_event_country.ap_economic_prospertity
+		modifier = { factor = 5 is_megacorp = yes }
+	}
+}
