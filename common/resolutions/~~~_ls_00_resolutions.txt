@@ -1550,6 +1550,245 @@ resolution_development_aides = {
 	}
 }
 
+## Galactic Empire - Imperial Crusade
+# Merge between EED, MECR, NGS, Ariphaos, STU
+resolution_galactic_empire_imperial_crusade = {
+	icon = "GFX_resolution_imperial_crusade"
+
+	potential = {
+		#always = no # MECR disables, but leaving enabled for now
+		has_galactic_emperor = yes
+		NOR = { # MECR NOT -> NOR - Only one crusade at a time
+			any_war = {
+				using_war_goal = {
+					type = wg_imperial_crusade
+					owner = attacker
+				}
+			}
+			any_war = { # MECR
+				using_war_goal = {
+					type = wg_imperial_crusade_total_war
+					owner = attacker
+				}
+			}
+			any_war = { # MECR
+				using_war_goal = {
+					type = wg_imperial_crusade_anti_federation
+					owner = attacker
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			trigger = { NOT = { is_active_resolution = "resolution_emperor_imperial_ministry_of_defence" } } # MECR
+			influence = @resolution_cost_t1
+		}
+		cost = { # MECR
+			trigger = { is_active_resolution = "resolution_emperor_imperial_ministry_of_defence" }
+			influence = @resolution_cost_t1_half
+		}
+	}
+
+	target = yes
+	harmful = yes
+	valid_target = {
+		OR = { # MECR
+			is_playable = yes # EED
+			is_country_type = fallen_empire
+			AND = {
+				is_country_type = awakened_fallen_empire
+				NOT = { has_global_flag = war_in_heaven_ongoing }
+			}
+		}
+		is_galactic_community_member = no
+		NOR = {
+			has_country_flag = imperial_crusade_target
+			has_country_flag = empire_rebel
+		}
+		has_federation = no # MECR non-homicidal -> no federation
+		NOT = { is_at_war_with = galactic_emperor }
+	}
+
+	allow = {
+		imperial_authority >= 140
+	}
+
+	active = {
+		has_galactic_emperor = yes
+		from = { is_at_war_with = galactic_emperor }
+	}
+
+	effect = {
+		if = { # MECR
+			limit = {
+				NOT = { has_global_flag = imperial_unification_start }
+				is_country_type = default
+				is_homicidal = no
+			}
+			custom_tooltip = resolution_imperial_crusade_tooltip
+		}
+		else = { # MECR
+			custom_tooltip = resolution_imperial_crusade_tooltip_total_war
+		}
+		hidden_effect = {
+			save_event_target_as = crusade_target
+			galactic_emperor = {
+				set_timed_country_flag = { flag = galcom_resolution_passed_anti_prosperity days = 7200 } # EED
+				set_timed_country_flag = { flag = galcom_resolution_passed_anti_isolationist days = 7200 } # EED
+				save_event_target_as = gal_emperor
+				if = { # MECR
+					limit = {
+						event_target:crusade_target = {
+							is_country_type = default
+							is_homicidal = no
+						}
+					}
+					declare_war = {
+						target = event_target:crusade_target
+						name = "NAME_Imperial_Crusade_War"
+						attacker_war_goal = "wg_imperial_crusade"
+					}
+				}
+				else = { # MECR
+					declare_war = {
+						target = event_target:crusade_target
+						name = "NAME_Imperial_Crusade_War"
+						attacker_war_goal = "wg_imperial_crusade_total_war"
+					}
+				}
+			}
+			random_war = {
+				limit = {
+					OR = { # MECR
+						using_war_goal = {
+							type = wg_imperial_crusade
+							owner = event_target:gal_emperor
+						}
+						using_war_goal = { # MECR
+							type = wg_imperial_crusade_total_war
+							owner = event_target:gal_emperor
+						}
+					}
+				}
+				save_event_target_as = imperial_crusade_war
+			}
+			every_playable_country = {
+				limit = {
+					is_galactic_emperor = no
+					is_galactic_community_member = yes
+					NOR = {
+						is_in_federation_with = event_target:crusade_target
+						AND = {
+							exists = overlord
+							overlord = { is_same_value = event_target:crusade_target }
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_war = {
+							any_war_participant = {
+								is_same_value = event_target:crusade_target
+							}
+						}
+					}
+					every_war = {
+						limit = {
+							any_war_participant = {
+								is_same_value = event_target:crusade_target
+							}
+						}
+						remove_war_participant = event_target:crusade_target
+					}
+				}
+				join_war_on_side = {
+					war = event_target:imperial_crusade_war
+					side = event_target:gal_emperor
+				}
+			}
+			event_target:crusade_target = {
+				country_event = { id = emperor.350 }
+			}
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					has_communications = event_target:gal_emperor
+					has_communications = event_target:crusade_target
+					NOT = { is_same_value = event_target:crusade_target }
+				}
+				country_event = { id = emperor.351 }
+			}
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_normal
+
+		modifier = {
+			factor = 0.2
+			is_pacifist = yes
+			desc = ethic_pacifist
+		}
+
+		modifier = {
+			factor = 0.6
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.4 -> 2
+			is_militarist = yes
+			desc = ethic_militarist
+		}
+		modifier = { # NGS
+			factor = 3
+			is_galactic_emperor = yes
+			desc = galactic_emperor
+		}
+
+		modifier = {
+			factor = 1.8 # NGS 1.4 -> 1.8
+			is_part_of_galactic_council = yes
+			desc = gal_com_on_galatic_council
+		}
+
+		modifier = {
+			factor = 3 # NGS 2 -> 3
+			is_rival = from
+			desc = gal_com_target_is_rival # Ariphaos
+		}
+		modifier = { # NGS
+			factor = 0.9
+			from = { is_galactic_community_member = yes }
+			opinion_level = { who = from level > neutral }
+			NOT = { opinion_level = { who = from level > good } }
+			desc = good_opinion
+		}
+		modifier = { # NGS
+			factor = 0.75
+			from = { is_galactic_community_member = yes }
+			opinion_level = { who = from level > good }
+			desc = excellent_opinion
+		}
+		modifier = { # NGS
+			factor = 1.5
+			from = { is_galactic_community_member = yes }
+			opinion_level = { who = from level < neutral }
+			NOT = { opinion_level = { who = from level < poor } }
+			desc = bad_opinion
+		}
+		modifier = { # NGS
+			factor = 2
+			from = { is_galactic_community_member = yes }
+			opinion_level = { who = from level < poor }
+			desc = terrible_opinion
+		}
+	}
+}
 
 
 ##################################################
