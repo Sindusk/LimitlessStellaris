@@ -1,0 +1,553 @@
+## Same as the standard file, just renamed and moved so it's placed correctly in the district order.
+
+###-----PLANET-----###
+
+district_planet_storage = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+			uses_district_set = shattered_ring_world
+			#-----PD COMP-----#
+			uses_district_set = pdflorafort
+			uses_district_set = pdplanethab
+			uses_district_set = pdcrucible
+			uses_district_set = pdarchive
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_ai = no }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+			uses_district_set = shattered_ring_world
+			#-----PD COMP-----#
+			uses_district_set = pdflorafort
+			uses_district_set = pdplanethab
+			uses_district_set = pdcrucible
+			uses_district_set = pdarchive
+		}
+	}
+	
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 10
+			alloys = 1
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ecum_storage
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+	
+	#####-----NORMAL-----#####
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_yanz_storage_specialist_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_storage_specialist_add = 1
+		}
+	}
+	#####-----HIVE-----#####	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = "auth_hive_mind"
+			}
+		}
+		modifier = {
+			job_yanz_gestalt_storage_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = "auth_hive_mind"
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_gestalt_storage_drone_add = 1
+		}
+	}
+	#####-----MACHINE-----#####
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		modifier = {
+			job_yanz_machine_storage_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_machine_storage_drone_add = 1
+		}
+	}
+
+}
+
+###-----HABITAT-----###
+
+district_habitat_storage = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = {
+			uses_district_set = habitat
+			#-----GIGAS COMP-----#
+			uses_district_set = giga_habitat
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_ai = no }
+		OR = {
+			uses_district_set = habitat
+			#-----GIGAS COMP-----#
+			uses_district_set = giga_habitat			
+		}
+	}
+	
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 1500
+		}
+		upkeep = {
+			energy = 15
+			alloys = 2
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+	district_habitat_storage
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+	}
+
+	#####-----NORMAL-----#####
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_yanz_storage_specialist_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_storage_specialist_add = 2
+		}
+	}
+	#####-----HIVE-----#####	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = "auth_hive_mind"
+			}
+		}
+		modifier = {
+			job_yanz_gestalt_storage_drone_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = "auth_hive_mind"
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_gestalt_storage_drone_add = 2
+		}
+	}
+	#####-----MACHINE-----#####
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		modifier = {
+			job_yanz_machine_storage_drone_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_machine_storage_drone_add = 2
+		}
+	}
+
+}
+
+###-----ECUMENOPOLIS-----###
+
+district_ecum_storage = {
+	base_buildtime = 720
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = {
+			uses_district_set = city_world
+			#---PD COMP---#
+			uses_district_set = pdnecrohive
+			uses_district_set = pdmachinenecropolis
+			uses_district_set = pdpalacearc
+			uses_district_set = pdnecropolis
+			uses_district_set = pdmilarc
+			uses_district_set = pdecocity
+			uses_district_set = pdbioforge
+			uses_district_set = pdbiofort
+			uses_district_set = pdbiocapital
+			uses_district_set = pdmachinefactory
+			uses_district_set = pdmachinefort
+			uses_district_set = pdmachinecapital
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdfloraforge
+			uses_district_set = pdfloracapital
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_ai = no }
+		OR = {
+			uses_district_set = city_world
+			#---PD COMP---#
+			uses_district_set = pdnecrohive
+			uses_district_set = pdmachinenecropolis
+			uses_district_set = pdpalacearc
+			uses_district_set = pdnecropolis
+			uses_district_set = pdmilarc
+			uses_district_set = pdecocity
+			uses_district_set = pdbioforge
+			uses_district_set = pdbiofort
+			uses_district_set = pdbiocapital
+			uses_district_set = pdmachinefactory
+			uses_district_set = pdmachinefort
+			uses_district_set = pdmachinecapital
+			uses_district_set = pdcorpoarc
+			uses_district_set = pdfloraforge
+			uses_district_set = pdfloracapital
+		}
+	}
+	
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 3000
+		}
+		upkeep = {
+			energy = 30
+			alloys = 3
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ecum_storage
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	#####-----NORMAL-----#####
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_yanz_storage_specialist_add = 3
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_storage_specialist_add = 3
+		}
+	}
+	#####-----HIVE-----#####	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = "auth_hive_mind"
+			}
+		}
+		modifier = {
+			job_yanz_gestalt_storage_drone_add = 3
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = "auth_hive_mind"
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_gestalt_storage_drone_add = 3
+		}
+	}
+	#####-----MACHINE-----#####
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		modifier = {
+			job_yanz_machine_storage_drone_add = 3
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_machine_storage_drone_add = 3
+		}
+	}
+
+}
+
+###-----RINGWORLD-----###
+
+district_ringworld_storage = {
+	base_buildtime = 720
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		OR = {
+			uses_district_set = ring_world
+			#-----GIGAS COMP----#
+			uses_district_set = giga_alderson
+			uses_district_set = penrose_ring
+			uses_district_set = interstellar_ring
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_ai = no }
+		OR = {
+			uses_district_set = ring_world
+			#-----GIGAS COMP----#
+			uses_district_set = giga_alderson
+			uses_district_set = penrose_ring
+			uses_district_set = interstellar_ring
+		}
+	}
+	
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = 10000
+		}
+		upkeep = {
+			energy = 100
+			alloys = 10
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_ringworld_storage
+	}
+
+	planet_modifier = {
+		planet_housing_add = 10
+	}
+
+	#####-----NORMAL-----#####
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_yanz_storage_specialist_add = 5
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_storage_specialist_add = 5
+		}
+	}
+	#####-----HIVE-----#####	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = "auth_hive_mind"
+			}
+		}
+		modifier = {
+			job_yanz_gestalt_storage_drone_add = 5
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = "auth_hive_mind"
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_gestalt_storage_drone_add = 5
+		}
+	}
+	#####-----MACHINE-----#####
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		modifier = {
+			job_yanz_machine_storage_drone_add = 5
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+					has_active_building = building_storage_bureau
+		}
+		modifier = {
+			job_yanz_machine_storage_drone_add = 5
+		}
+	}
+
+}
