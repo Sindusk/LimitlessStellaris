@@ -1,0 +1,54 @@
+civic_organic_zealots = {
+	modification = no
+	playable = { has_utopia = yes }
+	ai_playable = { has_utopia = yes }
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			NOR = {
+				text = civic_tooltip_not_materialist
+				value = ethic_materialist
+				value = ethic_fanatic_materialist
+			}
+			NOR = {
+				text = civic_tooltip_not_pacifist
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+			}
+			NOR = {
+				text = civic_tooltip_not_xenophile
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_barbaric_despoilers
+			}
+		}
+		origin = {
+			NOT = {
+				value = origin_mechanists
+			}
+		}
+	}
+	random_weight = { base = @civic_rare_random_weight }
+	description = civic_tooltip_organic_zealots_effects
+	modifier = {
+		country_starbase_influence_cost_mult = -0.1
+		ship_fire_rate_mult = 0.2
+		ship_weapon_damage = 0.2
+		starbase_shipyard_build_cost_mult = -0.2
+		country_naval_cap_mult = 0.33
+	}
+}

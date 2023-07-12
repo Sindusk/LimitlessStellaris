@@ -1,0 +1,251 @@
+#civic_example = {
+#	playable = {}								# AND trigger, no scope; use this to prevent the civic from being selectable by the player (UI)
+#	potential = {}								# requirements list, see ../readme_requirements.txt
+#	possible = {}								# requirements list, see ../readme_requirements.txt
+#	pickable_at_start = yes / no				# default: yes
+#	modification = yes / no						# default: yes, set to no to prevent adding or removing this after creation of the empire
+#
+#	random_weight = { base = 5 }				# scriptable weight for randomizing a civic; required, else the civic will not get assigned randomly
+#												# Note: formula is "base + factor (default 1) * (result of modifiers)"
+#												# So to make it not spawn, set base and factor to 0
+#
+#	modifier = {}								# modifier added to the country if the civic is selected and valid
+#	can_build_ruler_ship = yes / no				# default: no
+#	traits = { trait = ... }					# default: empty; trait set to enforce on the primary species. They cannot be removed, but more can be added if points/picks permit
+#	has_secondary_species = {					# default: none; if present, will enable secondary species customization in empire designer and will create secondary species & pops at galaxy generation time (see empire_init_create_capital_secondary_pops)
+#		traits = { trait = ... }					# default: empty; trait set to enforce on the secondary species. They cannot be removed, but more can be added if points/picks permit
+#	}
+#	is_origin = yes / no						# default: no, set to yes if civic should be treated as an Origin
+#
+#	swap_type = {								# triggered name, desc, custom desc and modifiers
+#		name = ...
+#		description = ...
+#		trigger = {								# In empire creation / galaxy setup, this has no scope. During the game, when there are actual countries existing, it is set to country scope.
+#			local_human_species_class = ..		# If you want to use country scope here, you must always check is_scope_valid first (see civic_devouring_swarm), or you will get errors or it won't work as intended.
+#		}
+#		modifier = {							# modifier that is applied to the country when triggers are evaluated as true
+#			...
+#		}
+#	}
+#	ai_playable = {}							# Similar to "playable", for AI
+#}
+
+civic_world_crackers = {
+	modification = no
+	ai_playable = {
+		host_has_dlc = "Apocalypse"
+	}
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+	description = "civic_world_crackers_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			NOR = {
+				text = civic_tooltip_not_pacifist
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+			}
+		}
+		origin = {
+			NOR = {
+				value = origin_scion
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_mining_guilds
+				value = civic_environmentalist
+			}
+		}
+	}
+	modifier = {
+		planet_miners_minerals_produces_add = -2
+	}
+}
+
+civic_corporate_world_crackers = {
+	modification = no
+	ai_playable = {
+		host_has_dlc = "Apocalypse"
+	}
+	playable = {
+		host_has_dlc = "Apocalypse"
+	}
+	description = "civic_corporate_world_crackers_effects"
+	potential = {
+		authority = { # LS - Replace corporate authority with bug branch combined
+			OR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			NOR = {
+				text = civic_tooltip_not_pacifist
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+			}
+		}
+		origin = {
+			NOR = {
+				value = origin_scion
+			}
+		}
+		#civics = {
+		#	NOR = {
+		#		value = civic_mining_guilds
+		#		value = civic_environmentalist
+		#	}
+		#}
+	}
+	modifier = {
+		planet_miners_minerals_produces_add = -2
+	}
+}
+
+civic_desolators = {
+	description = "civic_desolators_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_fanatic_militarist
+				value = ethic_militarist
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_environmentalist
+			}
+		}
+	}
+	random_weight = {
+		base = 2
+	}
+}
+
+civic_hive_desolators = {
+	description = "civic_hive_desolators_effects"
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_hive_empath
+			}
+		}
+	}
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+	}
+	random_weight = {
+		base = 2
+	}
+}
+
+civic_machine_desolators = {
+	description = "civic_desolators_effects"
+	potential = {
+		authority = { value = auth_machine_intelligence }
+	}
+	modifier = {
+		councilor_gestalt_admiral_exp_gain = @gestalt_civic_node_xp_rate
+	}
+	random_weight = {
+		base = 2
+	}
+}
+
+civic_AAA_archeologists = {
+	description = "civic_AAA_archeologists_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			NOT = { value = ethic_fanatic_xenophobe }
+		}
+	}
+	modifier = {
+		ship_archaeological_site_clues_add = 1
+	}
+	random_weight = {
+		base = 2
+	}
+}
+
+# Insurgency
+civic_AAA_insurgency = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/civic_machine_remnants.dds"
+	potential = {
+		country_type = { value = AAA_insurgency }
+	}
+	random_weight = { base = 5 }
+	description = INSURGENCY_CIVIC_DESC
+	modifier = {}
+}
+
+civic_AAA_machine_malware = {
+	description = "civic_AAA_machine_malware_effects" # Nevermind, I found a way to implement the original idea # Nevermind, back to square one
+	potential = {
+		always = no # Disabled for now, can't find a real mechanic for it that I like
+		#authority = { value = auth_machine_intelligence }
+	}
+	#swap_type = {
+	#	description = "civic_AAA_machine_malware_nemesis_effects"
+	#	trigger = {
+	#		host_has_dlc = "Nemesis" # Testing, nemesis is real one
+	#	}
+	#}
+	modifier = {
+		intel_decryption_add = 1
+		councilor_gestalt_general_exp_gain = @gestalt_civic_node_xp_rate
+	}
+	random_weight = {
+		base = 2
+	}
+}
+
+civic_AAA_archivists = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/civic_ancient_caches_of_technology.dds"
+	potential = {
+		country_type = { value = enclave }
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+	}
+	random_weight = { base = 5 }
+	modifier = { }
+}

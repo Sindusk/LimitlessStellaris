@@ -1,0 +1,551 @@
+origin_galactic_hegemon = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_galactic_hegemon.dds"
+	picture = GFX_origin_galactic_hegemon
+	max_once_global = yes
+
+	playable = {
+		host_has_dlc = "Nemesis"
+	}
+
+	starting_colony = pc_city
+
+	possible = {
+        civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_terminator
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_tooltip_galactic_hegemon_effects"
+
+	traits = {
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+origin_galactic_custodian = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_galactic_custodian.dds"
+	picture = GFX_origin_galactic_custodian
+	max_once_global = yes
+
+	playable = {
+		host_has_dlc = "Nemesis"
+	}
+
+	possible = {
+        civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_terminator
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_tooltip_galactic_custodian_effects"
+
+	traits = {
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+
+origin_galactic_nemesis = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_galactic_nemesis.dds"
+	picture = GFX_origin_galactic_nemesis
+	max_once_global = yes
+
+	playable = {
+		host_has_dlc = "Nemesis"
+	}
+	
+	possible = {
+		ethics = {
+			NOR = {
+				value = ethic_pacifist
+				value = ethic_fanatic_pacifist
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+			}
+		}
+		civics = {
+			NOT = { 
+				value = civic_machine_servitor
+			}
+		}
+	}
+
+	description = "origin_galactic_nemesis_effects"
+
+	modifier = {
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+origin_chosen_of_the_shroud = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_chosen_of_the_shroud.dds"
+	picture = GFX_origin_chosen_of_the_shroud
+
+	playable = {
+		host_has_dlc = "Nemesis"
+	}
+
+	flags = { form_covenant_flag chosen_one_ruler_event }
+	
+	possible = {
+		ethics = {
+			OR = {
+				value = ethic_materialist
+				value = ethic_fanatic_materialist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+			}
+		}
+	}
+
+	description = "origin_chosen_of_the_shroud_effects"
+
+	modifier = {
+		ship_fire_rate_mult = 0.1
+		army_damage_mult = 0.1
+		starbase_shipyard_build_cost_mult = -0.25
+		country_claim_influence_cost_mult = -0.25
+		country_war_exhaustion_mult = -0.5
+	}
+
+	traits = {
+		trait = trait_psionic
+	}
+
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_old_alliance = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_old_alliance.dds"
+	picture = GFX_origin_old_alliance
+	max_once_global = yes
+
+	playable = {
+		host_has_dlc = "Nemesis"
+	}
+
+	possible = {
+        civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_terminator
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_old_alliance_effects"
+
+	traits = {
+	}
+
+	modifier = {
+	}
+
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_secondary_hegemon = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_secondary_hegemon.dds"
+	picture = GFX_origin_secondary_hegemon
+
+	playable = {
+		host_has_dlc = "Overlord"
+	}
+
+	possible = {
+        civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_terminator
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_tooltip_secondary_hegemon_effects"
+
+	traits = {
+	}
+
+	modifier = {
+		country_subject_power_penalty_mult = -0.25
+	}
+
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_secondary_hemegon_vassal = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_secondary_hegemon_subject.dds"
+	picture = GFX_origin_secondary_hegemon
+
+	playable = {
+		always = no
+	}
+
+	possible = {
+        civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_terminator
+			}
+		}
+	}
+
+	traits = {
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+origin_clone_guard = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_clone_guard.dds"
+	picture = GFX_origin_clone_guard
+	max_once_global = yes
+
+	playable = {
+		host_has_dlc = "Nemesis"
+	}
+
+	possible = {
+		ethics = {
+			OR = {
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+			NOR = {
+				value = ethic_gestalt_consciousness
+				value = ethic_fanatic_xenophobe
+			}
+		}
+		civics = {
+			NOR = { 
+			value = civic_permanent_employment
+			value = civic_pompous_purists
+			value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_clone_guard_effects"
+
+	flags = { custom_start_screen }
+
+	traits = {
+		trait = trait_clone_soldier_infertile
+	}
+
+	has_secondary_species = {
+		title = origin_clone_guard_secondary_species
+	}
+
+	modifier = {
+		modify_species_cost_mult = -0.25
+		category_biology_research_speed_mult = 0.20
+		pop_growth_speed = -0.5
+	}
+
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_esoteric_scholarium = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_esoteric_scholarium.dds"
+	picture = GFX_origin_esoteric_scholarium
+	max_once_global = yes
+
+	initializers = { esoteric_scholarium_system esoteric_scholarium_system_sol }
+
+	playable = {
+		host_has_dlc = "Nemesis"
+	}
+
+	possible = {
+		ethics = {
+			NOR = {
+				value = ethic_gestalt_consciousness
+				value = ethic_fanatic_xenophobe
+			}
+		}
+		civics = {
+			OR = {
+				value = civic_cyber_demos_cratos
+				value = civic_science_directorate
+				value = civic_cyber_dictatorship
+				value = civic_technocracy
+			}
+			NOR = { 
+				value = civic_pompous_purists
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_esoteric_scholarium_effects"
+
+	flags = {  }
+
+	traits = {
+		trait = trait_curator_defector
+	}
+
+	has_secondary_species = {
+		title = origin_clone_guard_secondary_species
+	}
+
+	modifier = {
+		station_researchers_produces_mult = 1
+		ship_sensor_range_add = 1
+		ships_upkeep_mult = 0.33
+		weapon_archaeotech_weapon_damage_mult = 0.33
+		empire_size_penalty_mult = 1
+	}
+
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_monopoly_chaebol = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_monopoly_chaebol.dds"
+	picture = GFX_origin_monopoly_chaebol
+	max_once_global = yes
+
+	playable = {
+		host_has_dlc = "Nemesis"
+		host_has_dlc = "Megacorp"
+	}
+
+	possible = {
+		OR = {
+			authority = { # LS - Replace corporate authority with bug branch combined
+				OR = {
+					value = auth_bugged_corporate_democratic
+					value = auth_corporate
+					value = auth_bugged_corporate_imperial
+				}
+			}
+			civics = {
+				OR = {
+					value = civic_family_business
+					value = civic_world_cooperative
+				}
+			}
+		}
+		ethics = {
+			NOR = {
+				value = ethic_gestalt_consciousness
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+		}
+		civics = {
+			NOR = { 
+				value = civic_criminal_heritage 
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_monopoly_chaebol_effects"
+
+	flags = { custom_start_screen }
+
+	modifier = {
+		empire_size_penalty_mult = 1
+		empire_size_branch_office_mult = -0.75
+	}
+
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_prospecting_machine = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_prospecting_machine.dds"
+	picture = GFX_origin_prospecting_machine
+
+	playable = {
+		host_has_dlc = "Nemesis"
+		host_has_dlc = "Synthetic Dawn Story Pack"
+	}
+
+	possible = {
+		authority = {
+			value = auth_machine_intelligence
+		}
+		civics = {
+			NOR = { 
+				value = civic_machine_servitor
+				value = civic_machine_terminator
+				value = civic_machine_assimilator
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	starting_colony = pc_nuked
+
+	description = "origin_prospecting_machine_effects"
+
+	flags = {  }
+
+	modifier = {
+		station_gatherers_produces_mult = 1
+		planet_jobs_simple_drone_produces_mult = 0.15
+		planet_jobs_alloys_produces_mult = 0.15
+		all_technology_research_speed = -0.25
+	}
+
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_prime_minister_in_silver = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_prime_minister_in_silver.dds"
+	picture = GFX_origin_prime_minister_in_silver
+
+	initializers = {
+		prime_minister_in_silver_system
+	}
+
+	starting_colony = pc_ringworld_habitable
+
+	playable = {
+		always = no
+	}
+
+	possible = {
+		authority = {
+			value = auth_machine_intelligence
+		}
+		civics = {
+			NOR = { 
+				value = civic_machine_servitor
+				value = civic_machine_terminator
+				value = civic_machine_assimilator
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_prime_minister_in_silver_effects"
+
+	flags = { custom_start_screen }
+
+	modifier = {
+		
+	}
+
+	random_weight = {
+		base = 5
+	}
+}
+
+origin_outside_the_border = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_outside_the_border.dds"
+	picture = GFX_origin_outside_the_border
+
+	possible = {
+		civics = {
+			NOR = { 
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_terminator
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_outside_the_border_effects"
+
+	modifier = {
+	}
+
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 3
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			factor = 10
+			has_ethic = ethic_fanatic_xenophobe
+		}
+	}
+}
+
+origin_internal_border = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_internal_border.dds"
+	picture = GFX_origin_internal_border
+
+	possible = {
+		civics = {
+			NOR = { 
+				value = civic_fanatic_purifiers
+				value = civic_hive_devouring_swarm
+				value = civic_machine_terminator
+				value = civic_outside_the_border
+			}
+		}
+	}
+
+	description = "origin_internal_border_effects"
+
+	modifier = {
+	}
+
+	random_weight = {
+		base = 5
+	}
+}

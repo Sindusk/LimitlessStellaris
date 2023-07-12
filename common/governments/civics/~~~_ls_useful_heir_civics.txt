@@ -1,0 +1,26 @@
+## Useful Heirs Civics
+civic_adoptive_dynasties = {
+	description =  "civic_tooltip_adoptive_dynasties_effects"
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		authority = {
+			OR = {
+				text = civic_tooltip_heir
+				inline_script = governments/conditions/auth_imperial
+			}
+		}
+	}
+	random_weight = { base = 3 }
+	modifier = {
+		planet_stability_add = 5
+	}
+}

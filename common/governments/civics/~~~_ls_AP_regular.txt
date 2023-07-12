@@ -1,0 +1,331 @@
+civic_AP_advanced_administration = {
+	description = "civic_AP_advanced_administration_effects"
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_barbaric_despoilers
+			}
+			NOT = {
+				value = civic_fanatic_purifiers
+			}
+			NOT = {
+				value = civic_death_cult
+			}
+		}
+	}
+	random_weight = {
+		base = 4
+	}
+	modifier = {
+		edict_length_mult = 0.2
+		edicts_cost_mult = -0.2
+		leader_skill_levels = 1
+		edicts_upkeep_mult = -0.2
+	}
+}
+
+civic_AP_war_complex = {
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		civics = {
+			NOT = {
+				value = civic_fanatic_purifiers
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_militarist
+				value = ethic_militarist
+				value = ethic_fanatic_militarist
+			}
+		}
+	}
+	modifier = {
+		country_alloys_produces_mult = 0.1
+		country_naval_cap_mult = 0.1
+		country_consumer_goods_produces_mult = -0.05
+	}
+	random_weight = {
+		base = 3
+	}
+}
+
+civic_AP_grand_architecture = {
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+	}
+	random_weight = {
+		weight = 3
+	}
+	modifier = {
+		planet_building_build_speed_mult = -0.1
+		planet_buildings_upkeep_mult = 0.05
+		country_unity_produces_mult = 0.1
+		planet_jobs_produces_mult = 0.05
+	}
+}
+
+civic_AP_mobile_construction = {
+	description = "civic_AP_mobile_construction_effects"
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		origin = {
+			NOR = {
+				value = origin_shattered_ring
+				value = origin_life_seeded
+				value = origin_scion
+				value = origin_ocean_paradise
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_agrarian_idyll
+				value = civic_AP_grand_architecture
+				value = civic_crafters
+				value = civic_functional_architecture
+				value = civic_anglers
+			}
+		}
+	}
+	modification = no
+	random_weight = {
+		weight = 1
+	}
+}
+
+civic_AP_ancient_remnants = {
+	modification = no
+	description = "civic_AP_ancient_remnants_effects"
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		origin = {
+			NOR = {
+				value = origin_ocean_paradise
+				value = origin_scion
+				value = AP_children_of_the_darkness
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_death_cult
+				value = civic_barbaric_despoilers
+			}
+		}
+	}
+	modifier = {
+		num_tech_alternatives_add = -2
+	}
+	random_weight = {
+		weight = 2
+	}
+}
+
+civic_AP_workers_ethic = {
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_pleasure_seekers
+			}
+		}
+	}
+	modifier = {
+		pop_cat_worker_political_power = 1
+		planet_jobs_produces_mult = 0.1
+		pop_happiness = -0.05
+	}
+	random_weight = {
+		weight = 3
+	}
+}
+
+civic_AP_good_education = {
+	description = "civic_AP_good_education_effect"
+	potential = {
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_slaver_guilds
+				value = civic_aristocratic_elite
+				value = civic_barbaric_despoilers
+			}
+		}
+	}
+	modifier = {
+		planet_educator_produces_mult = 0.33
+		planet_educator_upkeep_mult = -0.5
+		leader_skill_levels = 2
+	}
+	random_weight = {
+		weight = 2
+	}
+}
+
+civic_AP_ancestor_worship = {
+	potential = {
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_spiritualist
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_imperial_cult
+				value = civic_reanimated_armies
+			}
+		}
+	}
+	modifier = {
+		leader_skill_levels = +2
+		species_leader_exp_gain = 0.25
+		empire_size_pops_mult = -0.1
+	}
+	random_weight = {
+		weight = 2
+	}
+}
+
+civic_AP_travelling_circus = {
+	description = "civic_AP_travelling_circus_effects"
+	potential = {
+		authority = { # LS - Replace corporate authority with bug branch combined
+			NOR = {
+				value = auth_bugged_corporate_democratic
+				value = auth_corporate
+				value = auth_bugged_corporate_imperial
+			}
+		}
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_barbaric_despoilers
+			}
+			NOT = {
+				value = civic_fanatic_purifiers
+			}
+			NOT = {
+				value = civic_death_cult
+			}
+		}
+	}
+	modifier = {
+	}
+	random_weight = {
+		weight = 2
+	}
+}
