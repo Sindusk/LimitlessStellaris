@@ -1,4 +1,12 @@
-## Penal Colony
+##########################################################################
+# Limitless Stellaris - Colony Types
+##########################################################################
+
+##################################################
+## Vanilla
+##################################################
+
+## Penal Colony [Vanilla]
 # Merge between Subtle Polish and Expanded Espionage and Diplomacy
 col_penal = {
 	icon = GFX_colony_type_penal
@@ -168,5 +176,36 @@ col_penal = {
 	}
 	weight_modifier = {
 		base = 1000
+	}
+}
+
+##################################################
+## Modded
+##################################################
+
+## Void Sphere [Ancient Cache of Technologies]
+# Reduce the values and move some to the planet class definition instead.
+col_acot_enigmopolis = {
+	icon = GFX_colony_type_normal_colony
+
+	potential = {
+		exists = owner
+		is_planet_class = pc_acot_enigmopolis
+		is_special_colony_type = no
+	}
+
+	planet_modifier = {
+		pop_growth_speed = 0.20 # LS 0.50 -> 0.20
+		pop_happiness = 0.20 # LS 0.50 -> 0.20
+		planet_pop_assembly_mult = 0.10 # LS 0.25 -> 0.10
+		planet_stability_add = 20 # LS 50 -> 20
+		planet_jobs_produces_mult = 0.20 # LS 0.50 -> 0.20
+	}
+
+	weight_modifier = {
+		modifier = {
+			add = 10000
+		}
+
 	}
 }
