@@ -6,9 +6,65 @@
 ## Standard
 ##################################################
 
-## Direct Democratic (Bug Branch)
-# Not changing for now...
-#auth_bugged_direct_democratic
+## Direct Democratic [Bug Branch]
+# Bug Branch version
+auth_bugged_direct_democratic = {
+	election_term_years = 5
+	re_election_allowed = yes
+	max_election_candidates = 12
+	election_type = democratic
+
+	uses_mandates = yes
+
+	ruler_council_position = councilor_bugged_ruler_direct_democratic
+
+	possible = {
+		ethics = {
+			OR = {
+				text = civic_tooltip_egalitarian
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+			}
+			NOR = {
+				text = ethic_tooltip_gestalt
+				value = ethic_gestalt_consciousness
+				value = ethic_form_autonomous
+				value = ethic_form_convergent
+				value = ethic_form_affective
+				value = ethic_form_extrospective
+				value = ethic_form_introspective
+				value = ethic_form_impassive
+				value = ethic_foci_analysis
+				value = ethic_foci_connection
+				value = ethic_foci_convalescence
+				value = ethic_foci_encroachment
+				value = ethic_foci_logistics
+				value = ethic_foci_progression
+				value = ethic_gestalt_consciousness
+			}
+
+		}
+	}
+
+	random_weight = {
+		base = 2
+	}
+
+	country_modifier = {
+		tech_cost_empire_size_mult = -0.20 # LS [Balance]
+		country_leader_cap_add = 2 # LS [Balance]
+		planet_resettlement_unemployed_mult = 0.1
+		faction_approval = 0.20 # LS 0.10 -> 0.20 [Balance]
+		custom_tooltip = auth_democratic_tt
+
+	}
+
+	tags = {
+		AUTHORITY_BUGGED_ELECTION_DIRECT_DEMOCRATIC
+	}
+
+
+}
 
 ## Democratic (Vanilla)
 # Merge between Bug Branch, OSA
@@ -424,11 +480,88 @@ auth_machine_intelligence = {
 ## Corporate
 ##################################################
 
-## Democratic Corporate (Bug Branch)
-# Not changing for now...
-#auth_bugged_corporate_democratic
+## Democratic Corporate [Bug Branch]
+# Bug Branch version
+auth_bugged_corporate_democratic = {
+    election_term_years = 10
+    re_election_allowed = yes
+    max_election_candidates = 12
+    election_type = democratic
 
-## Corporate (Vanilla)
+    uses_mandates = yes
+    localization_postfix = corporate
+
+    has_agendas = yes
+
+	ruler_council_position = councilor_bugged_ruler_group_firm
+	
+	potential = {
+		country_type = { NOT = { value = primitive } }
+	}
+
+    playable = {
+        host_has_dlc = "Megacorp"
+    }
+    random_weight = {
+        base = 1
+    }
+
+    country_modifier = {
+		commercial_pact_mult = 0.50 # LS 0.20 -> 0.50 [OSA translation]
+		empire_size_penalty_mult = 0.50 # LS [OSA translation]
+		empire_size_colonies_mult = 0.50
+		faction_approval = 0.10 # LS [Balance]
+		country_leader_pool_size = 2 # LS [Balance]
+		custom_tooltip = auth_democratic_tt
+    }
+
+    possible = {
+		origin = {
+			NOR = {
+				text = origin_legendary_leader_no_gov_change
+				value = origin_legendary_leader_dictatorial
+				value = origin_legendary_leader_imperial
+			}
+		}
+        ethics = {
+			# NO LONGER COMPETITIVE
+            # OR = {
+            #     text = civic_tooltip_competitive
+            #     value = ethic_competitive
+            #     value = ethic_fanatic_competitive
+            # }
+            OR = {
+                text = civic_tooltip_egal_or_coop
+                value = ethic_egalitarian
+                value = ethic_fanatic_egalitarian
+				value = ethic_cooperative
+				value = ethic_fanatic_cooperative
+            }
+            NOR = {
+                text = ethic_tooltip_gestalt
+                value = ethic_form_autonomous
+                value = ethic_form_convergent
+                value = ethic_form_affective
+                value = ethic_form_extrospective
+                value = ethic_form_introspective
+                value = ethic_form_impassive
+                value = ethic_foci_analysis
+                value = ethic_foci_connection
+                value = ethic_foci_convalescence
+                value = ethic_foci_encroachment
+                value = ethic_foci_logistics
+                value = ethic_foci_progression
+                value = ethic_gestalt_consciousness
+            }
+        }
+    }
+
+    tags = {
+		AUTHORITY_BUGGED_ELECTION_DIRECT_DEMOCRATIC
+    }
+}
+
+## Corporate [Vanilla]
 # Merge between Bug Branch, OSA
 auth_corporate = {
 	election_term_years = 20
@@ -501,6 +634,81 @@ auth_corporate = {
 	}
 }
 
-## Imperial Corporate (Bug Branch)
-# Not changing for now...
-#auth_bugged_corporate_imperial
+## Imperial Corporate [Bug Branch]
+# Bug Branch version
+auth_bugged_corporate_imperial = {
+    has_heir = yes
+
+    has_agendas = yes
+    localization_postfix = corporate
+
+    has_agendas = yes
+
+	ruler_council_position = councilor_bugged_ruler_dynastic_enterprise
+
+	potential = {
+		country_type = { NOT = { value = primitive } }
+	}
+
+    playable = {
+        host_has_dlc = "Megacorp"
+    }
+    random_weight = {
+        base = 1
+    }
+
+    country_modifier = {
+		commercial_pact_mult = 0.50 # LS 0.20 -> 0.50 [OSA translation]
+		empire_size_penalty_mult = 0.50 # LS [OSA translation]
+		empire_size_colonies_mult = 0.50
+		faction_approval = -0.10 # LS [Balance]
+		trade_value_mult = 0.10 # LS [Balance]
+		leader_governors_influence_produces_add = 0.20 # LS [Balance]
+		country_edict_fund_add = 200 # LS [Balance]
+    }
+
+    possible = {
+		origin = {
+			NOR = {
+				text = origin_legendary_leader_no_gov_change
+				value = origin_legendary_leader_dictatorial
+				value = origin_legendary_leader_imperial
+			}
+		}
+        ethics = {
+			# NO LONGER COMPETITIVE
+            # OR = {
+            #     text = civic_tooltip_competitive
+            #     value = ethic_competitive
+            #     value = ethic_fanatic_competitive
+            # }
+            OR = {
+                text = civic_tooltip_auth_or_comp
+                value = ethic_authoritarian
+                value = ethic_fanatic_authoritarian
+				value = ethic_competitive
+				value = ethic_fanatic_competitive
+            }
+            NOR = {
+                text = ethic_tooltip_gestalt
+                value = ethic_form_autonomous
+                value = ethic_form_convergent
+                value = ethic_form_affective
+                value = ethic_form_extrospective
+                value = ethic_form_introspective
+                value = ethic_form_impassive
+                value = ethic_foci_analysis
+                value = ethic_foci_connection
+                value = ethic_foci_convalescence
+                value = ethic_foci_encroachment
+                value = ethic_foci_logistics
+                value = ethic_foci_progression
+                value = ethic_gestalt_consciousness
+            }
+        }
+    }
+
+    tags = {
+		AUTHORITY_HAS_HEIR
+    }
+}
