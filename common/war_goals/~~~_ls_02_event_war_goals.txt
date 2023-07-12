@@ -1,0 +1,251 @@
+##########################################################################
+# Limitless Stellaris - War Goals
+##########################################################################
+
+##################################################
+## Vanilla
+##################################################
+
+## Galactic Civil War - Loyalists
+# Merge between VER, EED, MECR
+wg_galactic_civil_war_loyalists = {
+	casus_belli = cb_event
+
+	cede_claims = no
+
+	allowed_peace_offers = {
+		status_quo
+		surrender
+		demand_surrender
+	}
+
+	war_exhaustion = 0.25
+
+	potential = {
+		always = no # event only
+	}
+	possible = {
+		always = yes
+	}
+
+	set_defender_wargoal = wg_galactic_civil_war_rebels
+
+	on_accept = {
+		custom_tooltip = wg_galactic_civil_war_loyalists_accept
+		hidden_effect = {
+			save_event_target_as = gal_emperor
+			from = {
+				save_event_target_as = rebel_leader
+				federation = {
+					every_member = {
+						add_to_galactic_community_no_message = yes
+					}
+					dissolve_federation = yes
+				}
+			}
+			federation = {
+				if = { # MECR/VER
+					limit = {
+						NOR = {
+							has_federation_perk = imperium_federation_passive # MECR
+							has_federation_type = vf_ef_federation
+						}
+					}
+					dissolve_federation = yes
+				}
+				else = { # VER
+					every_member = {
+						limit = {
+							OR = {
+								is_subject = no
+								AND = {
+									is_subject = yes
+									any_agreement = {
+										agreement_preset = preset_auto_state
+									}
+								}
+							}
+						}
+						leave_alliance = { override_requirements = yes }
+					}
+				}
+			}
+			country_event = { id = emperor.150 }
+		}
+	}
+
+	on_status_quo = {
+		# Rebels become independent
+		custom_tooltip = wg_galactic_civil_war_loyalists_status_quo
+		hidden_effect = {
+			random_playable_country = {
+				limit = { is_galactic_emperor = yes }
+				save_event_target_as = gal_emperor
+			}
+			federation = {
+				every_member = {
+					country_event = { id = emperor.250 }
+				}
+				if = { # MECR/VER
+					limit = {
+						NOR = {
+							has_federation_perk = imperium_federation_passive # MECR
+							has_federation_type = vf_ef_federation
+						}
+					}
+					dissolve_federation = yes
+				}
+				else = { # VER
+					every_member = {
+						limit = {
+							OR = {
+								is_subject = no
+								AND = {
+									is_subject = yes
+									any_agreement = {
+										agreement_preset = preset_auto_state
+									}
+								}
+							}
+						}
+						leave_alliance = { override_requirements = yes }
+					}
+				}
+			}
+			from = {
+				federation = {
+					every_member = {
+						country_event = { id = emperor.251 }
+					}
+				}
+			}
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					is_galactic_community_member = no
+				}
+				country_event = { id = emperor.252 }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+## Galactic Civil War - Rebels
+# Merge between VER, EED, MECR
+wg_galactic_civil_war_rebels = {
+	casus_belli = cb_event
+
+	cede_claims = no
+
+	allowed_peace_offers = {
+		status_quo
+		surrender
+		demand_surrender
+	}
+
+	war_exhaustion = 0.25
+
+	potential = {
+		always = no # event only
+	}
+	possible = {
+		always = yes
+	}
+
+	on_accept = {
+		custom_tooltip = wg_galactic_civil_war_rebels_accept
+		hidden_effect = {
+			save_event_target_as = rebel_leader
+			random_playable_country = {
+				limit = { is_galactic_emperor = yes }
+				save_event_target_as = gal_emperor
+				country_event = { id = emperor.202 }
+				restore_galactic_community_leader_backup_data = yes
+				set_galactic_emperor = no
+				if = { # MECR
+					limit = { is_gestalt = yes }
+					random_owned_leader = {
+						limit = {
+							has_leader_flag = gestalt_imperial_prime_minister
+							is_councilor = yes
+						}
+						kill_leader = { show_notification = yes }
+						root = { remove_country_flag = councilor_gestalt_general_icn }
+						unlock_council_selection = yes
+						country_create_gestalt_councilor = {
+							CLASS = general
+							COUNCIL_POS = councilor_gestalt_general
+							DESC = councilor_gestalt_general_desc
+						}
+					}
+				}
+				every_situation = { # MECR
+					limit = { is_situation_type = situation_imperial_governance }
+					destroy_situation = this
+				}
+				remove_country_flag = flag_situation_imperial_governance_running # MECR
+			}
+			cancel_all_emperor_resolutions = yes # MECR
+			set_council_size = 0
+			remove_global_flag = galactic_council_formed
+			cancel_resolution = resolution_galacticreforms_form_council
+			set_country_flag = sic_semper_tyrannis_achievement
+			federation = {
+				every_member = {
+					country_event = { id = emperor.200 }
+					remove_country_flag = empire_rebel
+					add_to_galactic_community = yes
+				}
+				dissolve_federation = yes
+			}
+			from = {
+				federation = {
+					every_member = {
+						remove_country_flag = empire_loyalist
+						country_event = { id = emperor.201 }
+					}
+					if = { # VER
+						limit = { # VER
+							NOT = { has_federation_type = vf_ef_federation }
+						}
+						dissolve_federation = yes
+					}
+					else = { # VER
+						every_member = {
+							limit = {
+								OR = {
+									is_subject = no
+									AND = {
+										is_subject = yes
+										any_agreement = {
+											agreement_preset = preset_auto_state
+										}
+									}
+								}
+							}
+							leave_alliance = { override_requirements = yes }
+						}
+					}
+				}
+			}
+			every_playable_country = {
+				limit = {
+					is_ai = no
+					is_galactic_community_member = no
+				}
+				country_event = { id = emperor.203 }
+			}
+			every_playable_country = { # MECR
+				clear_imperium_modifiers = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
