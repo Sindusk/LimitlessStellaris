@@ -838,7 +838,7 @@ hyper_relay = {
 	construction_blocks_and_blocked_by = self_type
 
 	potential = {
-		is_active_resolution = resolution_starbuild_railways # Resolutions Expanded
+		#is_active_resolution = resolution_starbuild_railways # Resolutions Expanded # LS - What is happening here...
 		has_technology = tech_hyper_relays
 		custom_tooltip = { # AI Performance Optimization
 			fail_text = "requires_some_ai_fixes_on_players_disabled"
