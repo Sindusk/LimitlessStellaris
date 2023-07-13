@@ -142,6 +142,8 @@ ap_economic_prospertity = {
 	}
 }
 
+## Expansionist Development [Unique Ascension Perks]
+# Remove the empire size from pops modifier.
 ap_expansionist_development = {
 	possible = {
 		custom_tooltip = { fail_text = "ap_expansionist_development_req_1" tradition_expansion_finish = yes }

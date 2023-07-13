@@ -1467,27 +1467,27 @@ ap_imperial_prerogative = {
 		factor = 10
 		modifier = {
 			factor = 0
-			num_owned_planets < 5
+			num_owned_planets < 3 # LS 5 -> 3
 		}
 		modifier = {
 			factor = 2
-			num_owned_planets > 10
+			num_owned_planets > 4 # LS 10 -> 4
 		}
 		modifier = {
 			factor = 3
-			num_owned_planets > 15
+			num_owned_planets > 5 # LS 15 -> 5
 		}
 		modifier = {
 			factor = 4
-			num_owned_planets > 20
+			num_owned_planets > 6 # LS 20 -> 6
 		}
 		modifier = {
 			factor = 5
-			num_owned_planets > 25
+			num_owned_planets > 7 # LS 25 -> 7
 		}
 		modifier = {
 			factor = 6
-			num_owned_planets > 30
+			num_owned_planets > 8 # LS 30 -> 8
 		}
 	}
 }

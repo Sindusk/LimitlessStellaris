@@ -564,7 +564,7 @@ AP_conscription = {
 	}
 }
 
-## Off-World Migration Push
+## Off-World Migration Push [Advanced Policies]
 # Disabled. Is almost never useful given how pops grow in the collection.
 AP_PD_migration_push = {
 	owned_planets_only = yes
@@ -640,7 +640,7 @@ AP_PD_migration_push = {
 	}
 }
 
-## Off-World Immigration Pull
+## Off-World Immigration Pull [Advanced Policies]
 # Disabled. Is almost never useful given how pops grow in the collection.
 AP_PD_migration_pull = {
 	owned_planets_only = yes
@@ -706,6 +706,131 @@ AP_PD_migration_pull = {
 				}
 			}
 		}
+	}
+}
+
+##################################################
+## Ecology
+##################################################
+
+## Create Urban Park [Ecology]
+# Disabled. Not intuitive and has bad conditionals. It's also kind of bad.
+eco_decision_city_park = {
+	owned_planets_only = yes
+	
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			unity = 50
+		}
+	}
+	
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#NOT = { is_planet_class = pc_city }
+		#NOT = { is_planet_class = pc_gas_giant }
+		#NOT = { is_planet_class = pc_asteroid }
+		#NOT = { is_planet_class = pc_ice_asteroid }
+		#NOT = { is_planet_class = pc_rare_crystal_asteroid }
+		#NOT = { is_planet_class = pc_molten }
+		#NOT = { is_planet_class = pc_barren }
+		#NOT = { is_planet_class = pc_barren_cold }
+		#NOT = { is_planet_class = pc_toxic }
+		#NOT = { is_planet_class = pc_frozen }
+		#NOT = { is_machine_world = yes }
+		#NOT = { is_planet_class = pc_cybrex }
+		#NOT = { is_planet_class = pc_ringworld_habitable }
+		#NOT = { is_planet_class = pc_shattered_ring_habitable }
+		#owner = {
+		#	OR = { 
+		#		is_machine_empire = no
+		#		is_servitor_empire = yes
+		#	}
+		#}
+		#NOT = { has_deposit = d_eco_city_park }
+		#NOt = { has_deposit = d_eco_city_park_hive }
+	}
+	
+	allow = {
+		NOR ={
+			has_modifier = eco_heavy
+			has_modifier = eco_extreme
+			has_modifier = eco_catastrophic
+		}
+		free_district_slots > 0
+	}
+	
+	effect = {
+		set_planet_flag = eco_city_park_decision
+		if = {
+			limit = { owner = { is_regular_empire = yes } }
+			add_deposit = d_eco_city_park
+		} else_if = {
+			limit = {
+				owner = { 
+					OR = { 
+						is_hive_empire = yes
+						is_servitor_empire = yes
+					}
+				}
+			}
+			add_deposit = d_eco_city_park_hive
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## Close Urban Park [Ecology]
+# Disabled. Not intuitive and has bad conditionals. It's also kind of bad.
+eco_decision_close_city_park = {
+	owned_planets_only = yes
+	
+	resources = {
+		category = decisions
+		cost = {
+			unity = 25
+		}
+	}
+	
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#OR = {
+		#	has_deposit = d_eco_city_park
+		#	has_deposit = d_eco_city_park_hive
+		#}
+		#NOR = {
+		#	has_deposit = d_eco_park
+		#	has_deposit = d_eco_park_hive
+		#}
+	}
+	
+	effect = {
+		remove_planet_flag = eco_city_park_decision
+		if = {
+			limit = { owner = { is_regular_empire = yes } }
+			remove_deposit = d_eco_city_park
+			custom_tooltip = eco_city_park_tooltip
+		} else_if = {
+			limit = {
+				owner = { 
+					OR = { 
+						is_hive_empire = yes
+						is_servitor_empire = yes
+					}
+				}
+			}
+			remove_deposit = d_eco_city_park_hive
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
 	}
 }
 
