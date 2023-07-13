@@ -1,0 +1,1168 @@
+##########################################################################
+# Limitless Stellaris - Technology
+##########################################################################
+
+@tech_gene_tailoring_POINTS = 1 # EMT
+
+##################################################
+## Repeatable
+##################################################
+
+## Command Limit
+# EMT version with ACOT modifier
+tech_repeatable_command_limit = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { military_theory }
+	levels = 5
+	prerequisites = { "tech_doctrine_fleet_size_6" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		command_limit_add = 25 # ACOT 15 -> 25
+	}
+}
+
+## Decryption
+# EMT version
+tech_repeatable_decryption = {
+	area = physics
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { computing }
+	levels = -1
+	prerequisites = {"tech_decryption_3"}
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		intel_decryption_add = 1
+	}
+}
+
+## Defense Platform Capacity
+# EMT version
+tech_repeatable_defense_platform_capacity = {
+	area = physics
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { computing }
+	levels = -1
+	prerequisites = { "tech_synchronized_defences" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		starbase_defense_platform_capacity_add = 2
+	}
+}
+
+## Encryption
+# EMT version
+tech_repeatable_encryption = {
+	area = physics
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { computing }
+	levels = -1
+	prerequisites = {"tech_encryption_3"}
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		intel_encryption_add = 1
+	}
+}
+
+## Improved Armor Output
+# EMT version
+tech_repeatable_improved_armor_output = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { materials }
+	ai_update_type = all
+	levels = -1
+	prerequisites = { "tech_ship_armor_3" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		ship_armor_mult = 0.05
+	}
+}
+
+## Army Damage
+# EMT version with ACOT modifier
+tech_repeatable_improved_army_damage = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { military_theory }
+	levels = -1
+	prerequisites = { "tech_combat_training" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		army_damage_mult = 0.2 # ACOT 0.1 -> 0.2
+	}
+}
+
+## Army Health
+# EMT version with ACOT modifier
+tech_repeatable_improved_army_health = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { military_theory }
+	levels = -1
+	prerequisites = { "tech_combat_training" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		army_health = 0.2
+	}
+}
+
+## Gene Points
+# EMT version
+tech_repeatable_improved_gene_points = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { biology }
+	levels = 5
+	prerequisites = { "tech_gene_expressions" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+		modifier = {
+			factor = 2
+			OR = {
+				has_origin = origin_overtuned
+				has_valid_civic = "civic_private_healthcare_corporate"
+			}
+		}
+		modifier = {
+			factor = 2
+			has_ascension_perk = ap_engineered_evolution
+		}
+		modifier = {
+			factor = 3
+			has_tradition = tr_genetics_creation
+		}
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		description = tech_gene_tailoring_modifier_desc
+		description_parameters = {
+			POINTS = @tech_gene_tailoring_POINTS
+		}
+		BIOLOGICAL_species_trait_points_add = @tech_gene_tailoring_POINTS
+	}
+}
+
+## Leader Capacity
+# EMT version
+tech_repeatable_improved_leader_cap = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { statecraft }
+	levels = -1
+	prerequisites = { "tech_leader_cap_3" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		country_leader_cap_add = 1
+	}
+}
+
+## Leader Life Span
+# EMT version with ACOT modifier
+tech_repeatable_improved_leader_life_span = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { biology }
+	levels = -1
+	prerequisites = { "tech_vitality_boosters" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		leader_age = 10 # ACOT 5 -> 10
+	}
+}
+
+## Machine Modding
+# EMT version
+tech_repeatable_improved_machine_modding = {
+	icon = tech_repeatable_improved_robot_modding
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { industry }
+	levels = 5
+	prerequisites = { "tech_nanite_assemblers" }
+	weight = @repeatableTechWeight
+
+	potential = {
+		is_machine_empire = yes
+	}
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+		modifier = {
+			factor = 2
+			has_valid_civic = "civic_modular_construction"
+		}
+		modifier = {
+			factor = 5
+			has_ascension_perk = ap_synthetic_age
+		}
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		MACHINE_species_trait_points_add = 1
+	}
+}
+
+## Starbase Damage
+# ACOT version
+tech_repeatable_improved_military_station_damage = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { voidcraft }
+	levels = 20
+	prerequisites = { "tech_defense_platform_hull_1" }
+	weight = @repeatableTechWeight
+	
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+	
+	modifier = {
+		shipclass_military_station_damage_mult = 0.1
+		shipclass_starbase_damage_mult = 0.1
+	}
+}
+
+## Starbase Health
+# ACOT version
+tech_repeatable_improved_military_station_health = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { voidcraft }
+	levels = 20
+	prerequisites = { "tech_defense_platform_hull_1" }
+	weight = @repeatableTechWeight
+	
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+	
+	modifier = {
+		shipclass_military_station_hull_mult = 0.05
+		shipclass_starbase_hull_mult = 0.05
+	}
+}
+
+## Robot Modding
+# EMT version
+tech_repeatable_improved_robot_modding = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { industry }
+	levels = 5
+	prerequisites = { "tech_robomodding_points_2" }
+	weight = @repeatableTechWeight
+
+	potential = {
+		NOT = { has_ethic = "ethic_gestalt_consciousness" }
+	}
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+		modifier = {
+			factor = 2
+			has_origin = origin_mechanists
+		}
+		modifier = {
+			factor = 2
+			has_ascension_perk = ap_the_flesh_is_weak
+		}
+		modifier = {
+			factor = 3
+			has_ascension_perk = ap_synthetic_evolution
+		}
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		ROBOT_species_trait_points_add = 1
+	}
+}
+
+## Shield Output
+# EMT version
+tech_repeatable_improved_shield_output = {
+	area = physics
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { field_manipulation }
+	ai_update_type = all
+	levels = -1
+	prerequisites = {"tech_shields_4"}
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		ship_shield_mult = 0.05
+	}
+}
+
+## Ship Health
+# ACOT version
+tech_repeatable_improved_ship_health = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { voidcraft }
+	ai_update_type = military	
+	levels = 20
+	prerequisites = { "tech_battleships" }
+	weight = @repeatableTechWeight
+	
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+	
+	modifier = {
+		shipclass_military_hull_mult = 0.05
+		shipclass_military_special_hull_mult = 0.05
+	}
+}
+
+## Starbase Capacity
+# EMT version
+tech_repeatable_improved_starbase_capacity = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { new_worlds }
+	levels = 5
+	prerequisites = { "tech_galactic_ambitions" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		country_starbase_capacity_add = 1
+	}
+}
+
+## Energy Output
+# ACOT version
+tech_repeatable_improved_tile_energy_output = {
+	area = physics
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { field_manipulation }
+	levels = -1
+	prerequisites = {"tech_power_plant_3"}
+	weight = @repeatableTechWeight
+	
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+	
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.05
+	}
+}
+
+## Mineral Output
+# ACOT version
+tech_repeatable_improved_tile_mineral_output = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { industry }
+	levels = -1
+	prerequisites = { "tech_mineral_purification_2" }
+	weight = @repeatableTechWeight
+	
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	#When a tech is added to the list of tech alternatives it will register each entry in weight_groups to a list. such as economy, or repeatable, or whatever
+	#Then all remaining potential techs will multiply their weight with the corresponding mod_weight_if_group_picked.
+	#So if the first tech picked has the weight group 'repeatable', all other techs with a mod_weight_if_group_picked 'repeatable = 0.4', for example, will multiply their weight with 0.4
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+	
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.05
+	}
+}
+
+## L-Cluster Clue
+# ADT version with NMDSO civic modifiers
+tech_repeatable_lcluster_clue = {
+	area = engineering
+	cost = @tier2cost1
+	cost_per_level = @repeatableTechLevelCost
+	tier = 2
+	is_rare = yes
+	category = { voidcraft }
+	levels = -1
+	weight = @tier3weight2
+
+	potential = {
+		has_country_flag = encountered_first_lgate
+		NOR = {
+			has_country_flag = completed_lcluster_chain
+			has_origin = civic_gateway_worshiper # NMDSO
+			has_global_flag = l_cluster_opened
+		}
+		OR = {
+			mid_game_years_passed > 0
+			NOT = { has_global_flag = gray_goo_crisis_set }
+			has_global_flag = l_cluster_origin
+		}
+	}
+
+	prereqfor_desc = {
+		custom = {
+			title = add_lcluster_clue
+			desc = tech_repeatable_lcluster_clue_desc
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = @federation_perk_factor # = 2
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_nanite_transmutation }
+			}
+		}
+		modifier = {
+			factor = 0.2
+			NOT = {
+				any_system_within_border = { has_star_flag = lgate }
+			}
+		}
+		modifier = { # Mod lclusterplus
+			factor = @federation_perk_factor # = 2
+			is_ai = no
+			has_global_flag = l_cluster_origin
+			OR = {
+				has_origin = origin_lclusterplus_gatebuilders
+				has_origin = origin_lclusterplus_gatebuilders_advanced
+			}
+		}
+	}
+
+	ai_weight = {
+		# factor = 1
+		modifier = { factor = 100 has_origin = civic_gateway_pursuer } # NMDSO
+		modifier = {
+			factor = 0
+			has_global_flag = CmtFlagLgateReqPlayer
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				has_global_flag = gray_goo_crisis_set
+				has_global_flag = marauder_crisis_ongoing
+			}
+		}
+		modifier = {
+			factor = 0.5
+			end_game_years_passed < -50
+		}
+		modifier = {
+			factor = 0.75
+			is_at_war = yes
+		}
+		modifier = {
+			factor = 0.75
+			research_leader = {
+				area = engineering
+				NOT = { has_trait = "leader_trait_expertise_voidcraft" }
+			}
+		}
+	}
+
+	weight_groups = {
+		# repeatable
+	}
+	mod_weight_if_group_picked = {
+		# repeatable = 0.01
+	}
+}
+
+## Megastructure Build Limit
+# EMT version
+tech_repeatable_megastructure_build_limit = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { voidcraft }
+	ai_update_type = all
+	levels = 5
+	prerequisites = { "tech_mega_engineering" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+		modifier = {
+			factor = 0
+			NOT = { has_ascension_perk = ap_master_builders }
+		}
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		country_megastructure_build_cap_add = 1
+	}
+}
+
+## Naval Cap
+# EMT version with ACOT modifier
+tech_repeatable_naval_cap = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { military_theory }
+	levels = 5
+	prerequisites = { "tech_doctrine_navy_size_4" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		country_naval_cap_add = 50
+	}
+}
+
+## Weapon Energy Damage
+# EMT version
+tech_repeatable_weapon_type_energy_damage = {
+	area = physics
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { particles }
+	ai_update_type = military
+	levels = -1
+	prerequisites = {"tech_lasers_4"}
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+		modifier = {
+			factor = @favored_weapon_ai_tech_factor
+			is_preferred_weapons = weapon_type_energy
+		}
+		modifier = {
+			factor = @disfavored_weapon_ai_tech_factor
+			NOT = { is_preferred_weapons = weapon_type_energy }
+		}
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		weapon_type_energy_weapon_damage_mult = 0.05
+	}
+}
+
+## Weapon Energy Fire Rate
+# EMT version
+tech_repeatable_weapon_type_energy_fire_rate = {
+	area = physics
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { particles }
+	ai_update_type = military
+	levels = -1
+	prerequisites = {"tech_lasers_2"}
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+		modifier = {
+			factor = @favored_weapon_ai_tech_factor
+			is_preferred_weapons = weapon_type_energy
+		}
+		modifier = {
+			factor = @disfavored_weapon_ai_tech_factor
+			NOT = { is_preferred_weapons = weapon_type_energy }
+		}
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		weapon_type_energy_weapon_fire_rate_mult = 0.05
+	}
+}
+
+## Explosive Damage
+# EMT version
+tech_repeatable_weapon_type_explosive_damage = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { propulsion }
+	ai_update_type = military
+	levels = -1
+	prerequisites = { "tech_missiles_3" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+		modifier = {
+			factor = @favored_weapon_ai_tech_factor
+			is_preferred_weapons = weapon_type_explosive
+		}
+		modifier = {
+			factor = @disfavored_weapon_ai_tech_factor
+			NOT = { is_preferred_weapons = weapon_type_explosive }
+		}
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		weapon_type_explosive_weapon_damage_mult = 0.05
+	}
+}
+
+## Explosive Fire Rate
+# EMT version
+tech_repeatable_weapon_type_explosive_fire_rate = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { propulsion }
+	ai_update_type = military
+	levels = -1
+	prerequisites = { "tech_missiles_3" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+		modifier = {
+			factor = @favored_weapon_ai_tech_factor
+			is_preferred_weapons = weapon_type_explosive
+		}
+		modifier = {
+			factor = @disfavored_weapon_ai_tech_factor
+			NOT = { is_preferred_weapons = weapon_type_explosive }
+		}
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		weapon_type_explosive_weapon_fire_rate_mult = 0.05
+	}
+}
+
+## Kinetic Damage
+# EMT version
+tech_repeatable_weapon_type_kinetic_damage = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { propulsion }
+	ai_update_type = military
+	levels = -1
+	prerequisites = { "tech_mass_drivers_3" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+		modifier = {
+			factor = @favored_weapon_ai_tech_factor
+			is_preferred_weapons = weapon_type_kinetic
+		}
+		modifier = {
+			factor = @disfavored_weapon_ai_tech_factor
+			NOT = { is_preferred_weapons = weapon_type_kinetic }
+		}
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		weapon_type_kinetic_weapon_damage_mult = 0.05
+	}
+}
+
+## Kinetic Fire Rate
+# EMT version
+tech_repeatable_weapon_type_kinetic_fire_rate = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { propulsion }
+	ai_update_type = military
+	levels = -1
+	prerequisites = { "tech_mass_drivers_3" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+		modifier = {
+			factor = @favored_weapon_ai_tech_factor
+			is_preferred_weapons = weapon_type_kinetic
+		}
+		modifier = {
+			factor = @disfavored_weapon_ai_tech_factor
+			NOT = { is_preferred_weapons = weapon_type_kinetic }
+		}
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		weapon_type_kinetic_weapon_fire_rate_mult = 0.05
+	}
+}
+
+## Strike Craft Damage
+# EMT version
+tech_repeatable_weapon_type_strike_craft_fire_damage = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { military_theory }
+	ai_update_type = military
+	levels = -1
+	prerequisites = { "tech_strike_craft_3" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+		modifier = {
+			factor = @favored_weapon_ai_tech_factor
+			is_preferred_weapons = weapon_type_strike_craft
+		}
+		modifier = {
+			factor = @disfavored_weapon_ai_tech_factor
+			NOT = { is_preferred_weapons = weapon_type_strike_craft }
+		}
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		weapon_type_strike_craft_weapon_damage_mult = 0.10
+	}
+}
+
+## Strike Craft Fire Rate
+# EMT version
+tech_repeatable_weapon_type_strike_craft_fire_rate = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { military_theory }
+	ai_update_type = military
+	levels = -1
+	prerequisites = { "tech_strike_craft_3" }
+	weight = @repeatableTechWeight
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+		modifier = {
+			factor = @favored_weapon_ai_tech_factor
+			is_preferred_weapons = weapon_type_strike_craft
+		}
+		modifier = {
+			factor = @disfavored_weapon_ai_tech_factor
+			NOT = { is_preferred_weapons = weapon_type_strike_craft }
+		}
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		weapon_type_strike_craft_weapon_fire_rate_mult = 0.10
+	}
+}

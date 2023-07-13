@@ -82,6 +82,229 @@ tech_new_life = {
 	}
 }
 
+### Repeatables
+
+## Housing Usage (Repeatable)
+# Disabled. Don't need more pop housing usage reductions...
+tech_repeatable_housing_usage = {
+	area = engineering
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { industry }
+	ai_update_type = all
+	levels = 5
+	prerequisites = { "tech_housing_1" }
+	weight = @repeatableTechWeight
+
+	potential = { # LS - Disable through potential
+		always = no
+	}
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		pop_housing_usage_mult = -0.025
+	}
+}
+
+## Improved Edict Length (Repeatable)
+# Disabled. Edict length doesn't do any good anymore.
+tech_repeatable_improved_edict_length = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { statecraft }
+	levels = -1
+	prerequisites = { "tech_artificial_moral_codes" }
+	weight = @repeatableTechWeight
+
+	potential = { # LS - Disable through potential
+		always = no
+	}
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		country_edict_fund_add = 25
+	}
+}
+
+## Sector Cap (Repeatable)
+# Disabled. Don't need more empire size reductions...
+tech_repeatable_improved_sector_cap = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { new_worlds }
+	levels = 5
+	prerequisites = { "tech_adaptive_bureaucracy" }
+	weight = @repeatableTechWeight
+
+	potential = { # LS - Disable through potential
+		always = no
+	}
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		empire_size_colonies_mult = -0.05
+	}
+}
+
+## Reduced Building Time
+# EMT version + Planetary Decision Build Speed modifier
+# Disabled. Don't need more building speed reductions...
+tech_repeatable_reduced_building_time = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { new_worlds }
+	levels = 5
+	prerequisites = { "tech_construction_templates" }
+	weight = @repeatableTechWeight
+	
+	potential = { # LS - Disable through potential
+		always = no
+	}
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+	
+	modifier = {
+		planet_building_build_speed_mult = 0.10
+		planet_decision_enact_speed_mult = 0.10 # Planetary Decision Build Speed
+	}
+}
+
+## Leader Cost (Repeatable)
+# Disabled. Don't need more leader cost and upkeep reductions...
+tech_repeatable_reduced_leader_cost = {
+	area = society
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { statecraft }
+	levels = 5
+	prerequisites = { "tech_adaptive_bureaucracy" }
+	weight = @repeatableTechWeight
+
+	potential = { # LS - Disable through potential
+		always = no
+	}
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		leaders_cost_mult = -0.10
+		leaders_upkeep_mult = -0.10
+	}
+}
+
+## Starbase Damage (Repeatable)
+# Disabled. Duplicate of another version.
+tech_repeatable_station_damage = {
+	area = physics
+	cost = @repeatableTechBaseCost
+	cost_per_level = @repeatableTechLevelCost
+	tier = @repeatableTechTier
+	category = { computing }
+	ai_update_type = all
+	levels = -1
+	prerequisites = { "tech_starbase_5" }
+	weight = @repeatableTechWeight
+
+	potential = { # LS - Disable through potential
+		always = no
+	}
+
+	weight_modifier = {
+		factor = @repatableTechFactor
+	}
+
+	ai_weight = {
+		factor = 1.0
+	}
+
+	weight_groups = {
+		repeatable
+	}
+	mod_weight_if_group_picked = {
+		repeatable = 0.01
+	}
+
+	modifier = {
+		shipclass_starbase_damage_mult = 0.05
+	}
+}
+
 ##################################################
 ## Plentiful Traditions - Extra Perks
 ##################################################
