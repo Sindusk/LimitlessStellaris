@@ -1,9 +1,82 @@
 ##########################################################################
-# Limitless Stellaris - Ascension Perks
+# Limitless Stellaris - Ascension Perks - Disabled
 ##########################################################################
 
 ##################################################
-## Disabled Ascension Perks
+## Plentiful Traditions
+##################################################
+
+## Favored Equilibrium [Plentiful Traditions]
+# Disabled. Bloat stat-only ascension perk.
+ap_plentiful_traditions_favored_equilibrium = {
+	modifier = {
+		empire_size_penalty_mult = -0.1
+		empire_size_colonies_mult = -0.1
+	}
+	potential = { # Fixed by uberwaffe
+		always = no # LS - Disable through potential
+		NOT = {
+			has_ascension_perk = ap_plentiful_traditions_favored_equilibrium
+		}
+	}
+	ai_weight = {
+		factor = 0
+	}
+}
+
+## Ghazalian Revelations [Plentiful Traditions]
+# Disabled. Bloat stat-only ascension perk.
+ap_plentiful_traditions_ghazalian_revelations = {
+	on_enabled = {
+		custom_tooltip = "tooltip_plentiful_traditions_ghazalian_revelations"
+	}
+	potential = {
+		always = no # LS - Disable through potential
+		NOT = {
+			has_ascension_perk = ap_plentiful_traditions_ghazalian_revelations
+		}
+	}
+	modifier = {
+		country_government_civic_points_add = 1
+	}
+	ai_weight = {
+		factor = 0
+	}
+}
+
+##################################################
+## Tidy Traditions
+##################################################
+
+## Ascension Star [Tidy Traditions]
+# Disabled. Has no english language translation.
+ap_tt_ascension_star = {
+	potential = {
+		always = no
+	}
+	possible = {
+		always = no
+	}
+	on_enabled = {
+		custom_tooltip = "find_ascension_star"
+		hidden_effect = {
+			if = {
+				limit = { is_ai != yes }
+				country_event = { id = TT_ascension_star.1 }
+			}
+			else_if = {
+				limit = { is_ai = yes }
+				add_modifier = { modifier = the_road_to_rejuvenation_ai days = -1 }
+			}
+		}
+	}
+	ai_weight = {
+		factor = 15
+	}
+}
+
+##################################################
+## Unique Ascension Perks
 ##################################################
 
 ## Artifact Hunter [Unique Ascension Perks]
@@ -39,33 +112,6 @@ ap_artifact_hunter = {
 		#}		# because ai_weight doesn't work
 	}
 	ai_weight = { factor = event_target:global_event_country.ap_artifact_hunter }
-}
-
-## Ascension Star [Tidy Traditions]
-# Disabled. Has no english language translation.
-ap_tt_ascension_star = {
-	potential = {
-		always = no
-	}
-	possible = {
-		always = no
-	}
-	on_enabled = {
-		custom_tooltip = "find_ascension_star"
-		hidden_effect = {
-			if = {
-				limit = { is_ai != yes }
-				country_event = { id = TT_ascension_star.1 }
-			}
-			else_if = {
-				limit = { is_ai = yes }
-				add_modifier = { modifier = the_road_to_rejuvenation_ai days = -1 }
-			}
-		}
-	}
-	ai_weight = {
-		factor = 15
-	}
 }
 
 ## Genius Pregnancy [Unique Ascension Perks]

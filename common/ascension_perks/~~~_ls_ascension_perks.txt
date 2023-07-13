@@ -3,6 +3,35 @@
 ##########################################################################
 
 ##################################################
+## Plentiful Traditions
+##################################################
+
+## Lebensraum Enlargement [Plentiful Traditions]
+# Base version
+ap_plentiful_traditions_lebensraum_enlargement = {
+	on_enabled = {
+		custom_tooltip = "tooltip_plentiful_traditions_lebensraum_enlargement"
+	}
+	possible = {
+		has_ascension_perk = ap_voidborn
+	}
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_plentiful_traditions_lebensraum_enlargement
+		}
+	}
+	modifier = {
+		#megastructures_cost_mult = -0.05
+		#megastructure_build_speed_mult = 0.05
+		megastructures_habitat_influence_cost_add = -50
+		megastructures_habitat_alloys_cost_add = -500
+	}
+	ai_weight = {
+		factor = 0
+	}
+}
+
+##################################################
 ## Omega's Stellaris Additions
 ##################################################
 
