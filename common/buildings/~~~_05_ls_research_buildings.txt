@@ -1293,7 +1293,7 @@ building_research_support_3 = {
 ## Research - Unique
 ##################################################
 
-## Advanced Materials Laboratory [Extra Ship Components NEXT]
+## Advanced Materials Laboratory (Tier 1) [Extra Ship Components NEXT]
 # Base version
 esc_building_materials_laboratory = {
 	base_buildtime = 360
@@ -1410,7 +1410,7 @@ esc_building_materials_laboratory = {
 	prerequisites = { "esc_tech_advanced_materials_lab" }
 }
 
-## Central Research Bureau [Extra Ship Components NEXT]
+## Central Research Bureau (Tier 1) [Extra Ship Components NEXT]
 # Base version
 esc_building_central_research_bureau = {
 	base_buildtime = 540
@@ -1533,6 +1533,374 @@ esc_building_central_research_bureau = {
 	show_tech_unlock_if = { NOT = { has_global_flag = ESC_GLOBAL_FLAG_central_research_bureau_forbidden } }
 	prerequisites = { "esc_tech_grand_research_initiative" }
 }
+
+## Dragon Hatchery (Tier 1) [Extra Ship Components NEXT]
+# Base version
+esc_building_dragon_hatchery = {
+	base_buildtime = 720
+	icon = esc_building_dragon_hatchery
+	category = army
+	empire_limit = { base = 1 }
+
+    # Building Tooltip
+    triggered_desc = {
+        text = esc_building_dragon_hatchery_tt
+    }
+
+	potential = {
+		NOT = { has_global_flag = ESC_GLOBAL_FLAG_ether_dragon_tech_forbidden }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		# base cost
+		cost = {
+			influence = 50
+			minerals = 2500
+		}
+		# cost modifier for empires that use food
+		cost = {
+			trigger = {
+				exists = owner
+				owner = { country_uses_food = yes }
+			}
+			food = 2500
+		}
+		# cost modifier for empires that don't use food
+		cost = {
+			trigger = {
+				exists = owner
+				owner = { country_uses_food = no }
+			}
+			minerals = 2500
+		}
+		# cost modifier for human players
+		cost = {
+			trigger = {
+				exists = owner
+				owner = { is_ai = no }
+			}
+			exotic_gases = 200
+		}
+		# base upkeep
+		upkeep = {
+			energy = 10
+		}
+		# upkeep modifier for empires that use food
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { country_uses_food = yes }
+			}
+			food = 45
+		}
+		# upkeep modifier for empired that don't use food
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { country_uses_food = no }
+			}
+			minerals = 45
+		}
+		# upkeep modifier for human players
+		upkeep = {
+			trigger = { owner = { is_ai = no } }
+			exotic_gases = 3
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_society_research_produces_mult = 0.20
+	}
+
+	# regular empires
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		job_researcher_add = 2
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+
+	# hive minds
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		job_brain_drone_add = 2
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	# machine empires
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		job_calculator_add = 2
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+
+	show_tech_unlock_if = { NOT = { has_global_flag = ESC_GLOBAL_FLAG_ether_dragon_tech_forbidden } }
+	prerequisites = { esc_tech_dragon_hatchery }
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		society_research = 20
+	}
+}
+
+## Technology Institute (Tier 1) [Extra Ship Components NEXT]
+# Base version
+esc_building_technology_institute = {
+	base_buildtime = 360
+	icon = esc_building_technology_institute
+	category = research
+	empire_limit = { base = 1 }
+
+    # Building Tooltip
+    triggered_desc = {
+        text = esc_building_technology_institute_tt
+    }
+
+	potential = {
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_global_flag = ESC_GLOBAL_FLAG_technology_institute_forbidden }
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		# base cost
+		cost = {
+			minerals = 750
+		}
+		# human player cost modifier
+		cost = {
+			trigger = {
+				exists = owner
+				owner = { is_ai = no }
+			}
+			influence = 15
+			exotic_gases = 25
+		}
+		# base upkeep
+		upkeep = {
+			energy = 10
+		}
+		# human player upkeep modifier
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_ai = no }
+			}
+			exotic_gases = 1
+		}
+		produces = {
+			influence = 0.5
+		}
+	}
+
+	country_modifier = {
+		ship_shield_damage_mult = 0.1
+		country_physics_tech_research_speed = 0.05
+	}
+
+	# regular empire
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 3
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+
+	# hive minds
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 3
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	# machine empires
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 3
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+
+	show_tech_unlock_if = { NOT = { has_global_flag = ESC_GLOBAL_FLAG_technology_institute_forbidden } }
+	prerequisites = { "esc_tech_technology_institute" }
+}
+
+## Watcher of Eternity (Tier 1) [Extra Ship Components NEXT]
+# Base version
+esc_building_watcher = {
+	base_buildtime = 540
+	icon = esc_building_watcher
+	category = research
+	empire_limit = { base = 1 }
+
+    # Building Tooltip
+    triggered_desc = {
+        text = esc_building_watcher_tt
+    }
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_global_flag = ESC_GLOBAL_FLAG_watcher_of_eternity_forbidden }
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 600
+			influence = 15
+			rare_crystals = 25
+			exotic_gases = 25
+			sr_dark_matter = 15
+		}
+		upkeep = {
+			energy = 10
+			sr_dark_matter = 2
+		}
+	}
+
+	country_modifier = {
+		all_technology_research_speed = 0.05
+	}
+
+	planet_modifier = {
+		planet_jobs_physics_research_produces_mult = 0.20
+		planet_jobs_society_research_produces_mult = 0.20
+		planet_jobs_engineering_research_produces_mult = 0.20
+	}
+
+	# regular empires
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+			job_researcher_add = 4
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = esc_watcher_of_eternity_effect_regular
+	}
+
+	# hive minds
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 5
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	# machine empire
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 5
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+
+	show_tech_unlock_if = { NOT = { has_global_flag = ESC_GLOBAL_FLAG_watcher_of_eternity_forbidden } }
+	prerequisites = { "esc_tech_watcher_of_eternity" }
+}
+
+##################################################
+## Research - Artifacts
+##################################################
 
 ## Faculty of Archaeostudies (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Planetary Diversity, Real Space: Planetary Stations, Guilli's Planet Modifiers

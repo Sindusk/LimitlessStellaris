@@ -367,13 +367,19 @@ l_english:
 
   ### Other Research
   ## Unique
-  esc_building_materials_laboratory: "Advanced Materials Laboratory" # Extra Ship Components NEXT
+  esc_building_materials_laboratory: "§B£job_researcher£ Advanced Materials Laboratory§!" # Extra Ship Components NEXT
   esc_building_materials_laboratory_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
   esc_building_materials_laboratory_desc: "A specialized laboratory dedicated to development better materials, both for governmental projects and everyday use."
   esc_building_central_research_bureau: "§B£job_researcher£ Central Research Bureau§!" # Extra Ship Components NEXT
   esc_building_central_research_bureau_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
   esc_building_central_research_bureau_desc: "A grand palace of science where the brightest mind of our empire gather together to unveil the mysteries of the universe."
   esc_central_research_bureau_effect_regular: "$job_head_researcher_effect_desc$\n$job_researcher_effect_desc$"
+  esc_building_dragon_hatchery: "§B£job_researcher£ Dragon Hatchery§!" # Extra Ship Components NEXT
+  esc_building_dragon_hatchery_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
+  esc_building_dragon_hatchery_desc: "A specialized cloning facility constructed for the explicit purpose of cloning the mighty Ether Drake."
+  esc_building_technology_institute: "§B£job_researcher£ Technology Institute§!" # Extra Ship Components NEXT
+  esc_building_technology_institute_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
+  esc_building_technology_institute_desc: "A large scientific complex dedicated to technological advancement of our Empire."
 
   ### Artifacts
   ## Unique
@@ -633,12 +639,19 @@ l_english:
   building_league_offices_tt: "§MUnity§! - §BTier 1§! - §EUnique§!"
   building_league_offices_desc: "$tech_secrets_league_desc$"
 
+  ### Other Unity
+  ## Unique
+  esc_building_culture_nexus: "§B£unity£ Culture Nexus§!"
+  esc_building_culture_nexus_tt: "§MUnity§! - §BTier 1§! - §EUnique§!"
+  esc_building_culture_nexus_desc: "A place where people of our Empire can learn about the galaxy and various cultures that exist within it."
+  esc_culture_nexus_effect_death_priests: "$job_death_priest_effect_desc$\n$job_mortal_initiate_effect_desc$"
+
 ##################
 # Army
 ##################
 
   ### General
-  building_military_academy: "Military Academy" # Vanilla
+  building_military_academy: "§P£job_soldier£ Military Academy§!" # Vanilla
   building_military_academy_tt: "§MDefense§! - §BTier 1§! - §EArmy§!"
   building_military_academy_desc: "Military Academies improve local recruitment rates and offer a higher standard of training."
   building_dread_encampment: "Dread Encampment" # Vanilla

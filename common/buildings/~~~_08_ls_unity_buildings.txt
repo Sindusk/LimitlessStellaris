@@ -4982,7 +4982,7 @@ building_organic_paradise = {
 ## Unity - Archaeotech
 ##################################################
 
-## First League Filing Offices (Tier 1)
+## First League Filing Offices (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Subtle Polish
 building_league_offices = {
 	base_buildtime = @db2_time
@@ -5242,4 +5242,173 @@ building_league_offices = {
 	prerequisites = {
 		"tech_secrets_league"
 	}
+}
+
+##################################################
+## Unity - Unique
+##################################################
+
+## Culture Nexus (Tier 1) [Extra Ship Components NEXT]
+# Base version
+esc_building_culture_nexus = {
+	base_buildtime = 360
+	icon = esc_building_culture_nexus
+	category = unity
+	empire_limit = { base = 1 }
+
+    # Building Tooltip
+    triggered_desc = {
+        text = esc_building_culture_nexus_tt
+    }
+
+	potential = {
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_global_flag = ESC_GLOBAL_FLAG_culture_nexus_forbidden }
+		exists = owner
+		owner = { is_regular_empire = yes }
+	}
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	convert_to = {
+		esc_building_cerebral_node
+		esc_building_network_regulator
+	}
+
+	resources = {
+		category = planet_buildings
+		# base cost
+		cost = {
+			minerals = 750
+		}
+		# human player cost modifier
+		cost = {
+			trigger = {
+				exists = owner
+				owner = { is_ai = no }
+			}
+			influence = 15
+			rare_crystals = 25
+		}
+		# base upkeep
+		upkeep = {
+			energy = 10
+		}
+		# human player upkeep modifier
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_ai = no }
+			}
+			rare_crystals = 1
+		}
+		produces = {
+			influence = 0.5
+		}
+	}
+
+	country_modifier = {
+		pop_government_ethic_attraction = 0.3
+		species_leader_exp_gain = 0.25
+		country_society_tech_research_speed = 0.05
+	}
+
+	planet_modifier = {
+		pop_happiness = 0.05
+		planet_amenities_add = 10
+	}
+
+	### non-spiritualist non-megacorp empires without death cult/memorialist civics -> culture workers
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_culture_workers = yes }
+		}
+		job_culture_worker_add = 5
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_culture_workers = yes }
+		}
+		text = job_culture_worker_effect_desc
+	}
+
+	### spiritualist empires without death cult/memorialist civics -> priests
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_priests = yes }
+		}
+		job_priest_add = 5
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_priests = yes }
+		}
+		text = job_priest_effect_desc
+	}
+
+	### non-spiritualist megacorp empires without death cult/memorialist civics -> manager
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_managers = yes }
+		}
+		job_manager_add = 5
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_managers = yes }
+		}
+		text = job_manager_effect_desc
+	}
+
+	### death cult empires -> death priests + mortal initiates
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_death_priests = yes }
+		}
+		modifier = {
+			job_death_priest_add = 3
+			job_mortal_initiate_add = 3
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_death_priests = yes }
+		}
+		text = esc_culture_nexus_effect_death_priests
+	}
+
+	### memorialist empires -> death chroniclers
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_memorialists = yes }
+		}
+		modifier = {
+			job_death_chronicler_add = 5
+		}
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { ESC_TRIGGER_country_uses_memorialists = yes }
+		}
+		text = job_death_chronicler_effect_desc
+	}
+
+	show_tech_unlock_if = {
+		owner = { is_regular_empire = yes }
+		NOT = { has_global_flag = ESC_GLOBAL_FLAG_culture_nexus_forbidden }
+	}
+	prerequisites = { "esc_tech_culture_nexus" }
+
 }
