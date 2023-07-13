@@ -158,13 +158,13 @@ l_english:
   building_slave_processing: "Slave Processing Facility"
   building_slave_processing_tt: "§MGovernment§! - §BTier 1§! - §ESlave§!"
   building_slave_processing_desc: "This large and imposing facility is used to process slave labor and extinguish any trace of free will."
-  building_precinct_house: "§pPrecinct Houses§!"
+  building_precinct_house: "§p£job_enforcer£ Precinct Houses§!"
   building_precinct_house_tt: "§MGovernment§! - §BTier 1§! - §EEnforcement§!"
   building_precinct_house_desc: "Monuments to law and order. Enforcers are based here."
-  building_hall_judgment: "§pHall of Judgment§!"
+  building_hall_judgment: "§p£job_enforcer£ Hall of Judgment§!"
   building_hall_judgment_tt: "§MGovernment§! - §BTier 2§! - §EEnforcement§!"
   building_hall_judgment_desc: "A massive complex dedicated to courts and law enforcement."
-  building_sentinel_posts: "§pSentinel Posts§!"
+  building_sentinel_posts: "§p£job_enforcer£ Sentinel Posts§!"
   building_sentinel_posts_tt: "§MGovernment§! - §BTier 1§! - §EDrone Enforcement§!"
   building_sentinel_posts_desc: "These are the outposts from which Patrol Drones scan the Consciousness for signs of deviancy and malfunction."
   building_order_keep: "Order's Keep"
@@ -178,10 +178,10 @@ l_english:
   building_psi_corps: "§P£job_telepath£ Psi Corps§!"
   building_psi_corps_tt: "§MGovernment§! - §BTier 1§! - §EPsionic§!"
   building_psi_corps_desc: "Psi-gifted individuals are brought from all across to our empire to a place where they are able to hone their abilities.\n\n§YThe Psi Corps is your friend. Trust the Corps.§!"
-  building_embassy: "§P£influence£ Embassy Complex§!"
+  building_embassy: "§B£influence£ Embassy Complex§!"
   building_embassy_tt: "§MEmpire§! - §BTier 1§! - §EEmbassy§!"
   building_embassy_desc: "This building forms the heart of the Empire's diplomatic efforts.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
-  building_grand_embassy: "§P£influence£ Grand Embassy Complex§!"
+  building_grand_embassy: "§B£influence£ Grand Embassy Complex§!"
   building_grand_embassy_tt: "§MEmpire§! - §BTier 2§! - §EEmbassy§!"
   building_grand_embassy_desc: "The complex is intended to awe the viewer, rendering them more compliant in negotiations.\n\nDue to the need to be close to the seat of government, it can only be built at our Capital."
   building_gaiaseeders_1: "$building_gaiaseeders$ - Phase 1"
@@ -278,22 +278,32 @@ l_english:
   building_factory_3_tt: "§MConsumer Goods§! - §BTier 3§! - §EProductivity§!"
   building_factory_3_desc: "Nearly anything can be replicated at the kiosks in these complexes."
 
-  ### Refineries
-  building_refinery: "Exotic Gas Refineries"
+  ### Exotic Gas
+  ## Basic
+  building_refinery: "§V£exotic_gas£ Exotic Gas Refineries§!" # Vanilla
   building_refinery_tt: "§MExotic Gas§! - §BTier 1§! - §EBasic§!"
   building_refinery_desc: "These advanced refineries work day and night to produce exotic gases."
-  building_chemical_plant: "Chemical Plants"
+
+  ### Volatile Motes
+  ## Basic
+  building_chemical_plant: "§V£volatile_motes£ Chemical Plants§!" # Vanilla
   building_chemical_plant_tt: "§MVolatile Motes§! - §BTier 1§! - §EBasic§!"
   building_chemical_plant_desc: "The unpredictable and sometimes unstable Volatile Motes are produced here artificially. No open flames are permitted within a five kilometer radius of the plants."
-  building_crystal_plant: "Synthetic Crystal Plants"
+
+  ### Rare Crystals
+  ## Basic
+  building_crystal_plant: "§V£rare_crystals£ Synthetic Crystal Plants§!" # Vanilla
   building_crystal_plant_tt: "§MCrystals§! - §BTier 1§! - §EBasic§!"
   building_crystal_plant_desc: "Nearly identical to the real thing, the crystals produced here are of the highest quality."
-  building_nanite_transmuter: "Nanite Transmuter"
+
+  ### Nanites
+  ## Basic
+  building_nanite_transmuter: "§V£nanites£Nanite Transmuter§!" # Vanilla
   building_nanite_transmuter_tt: "§MNanites§! - §BTier 1§! - §EBasic§!"
   building_nanite_transmuter_desc: "This factory mass-produces a variety of rare resources using extremely advanced nanites. A Nanite deficit will halt production."
 
   ### Special
-  building_ministry_production: "§£job_artificer£ PMinistry of Production§!"
+  building_ministry_production: "§P£job_artificer£ Ministry of Production§!"
   building_ministry_production_tt: "§MManufacturing§! - §BTier 1§! - §EUnique§!"
   building_ministry_production_desc: "The Ministry of Production works tirelessly to organize and streamline manufacturing across the entire planet."
   building_production_center: "§P£job_artificer£ Resource Processing Center§!"
@@ -355,9 +365,19 @@ l_english:
   building_research_support_3_tt: "§MResearch§! - §BTier 3§! - §EProductivity§!"
   building_research_support_3_desc: "This facility is much more than just an archive or backup: teams of researcher-cataloguers perform experiments in parallel for promising projects, independently testing theories and providing huge experimental datasets on behalf of scientists conducting original research."
 
+  ### Other Research
+  ## Unique
+  esc_building_materials_laboratory: "Advanced Materials Laboratory" # Extra Ship Components NEXT
+  esc_building_materials_laboratory_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
+  esc_building_materials_laboratory_desc: "A specialized laboratory dedicated to development better materials, both for governmental projects and everyday use."
+  esc_building_central_research_bureau: "§B£job_researcher£ Central Research Bureau§!" # Extra Ship Components NEXT
+  esc_building_central_research_bureau_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
+  esc_building_central_research_bureau_desc: "A grand palace of science where the brightest mind of our empire gather together to unveil the mysteries of the universe."
+  esc_central_research_bureau_effect_regular: "$job_head_researcher_effect_desc$\n$job_researcher_effect_desc$"
+
   ### Artifacts
   ## Unique
-  building_archaeostudies_faculty: "§P£job_researcher£ Faculty of Archaeostudies§!" # Vanilla
+  building_archaeostudies_faculty: "§B£job_researcher£ Faculty of Archaeostudies§!" # Vanilla
   building_archaeostudies_faculty_tt: "§MResearch§! - §BTier 1§! - §EUnique§!"
   building_archaeostudies_faculty_desc: "A series of laboratories dedicated to the studies of technological applications of minor artifacts retrieved from elder empires."
   building_vultaum_reality_computer: "§P£job_researcher£ Vultaum Reality Computer§!" # Vanilla
@@ -441,10 +461,10 @@ l_english:
   building_hyper_entertainment_forum_desc: "These massive entertainment complexes is where dreams come true. Shopping malls, restaurants, amusement parks, virtual arcades, and more. You dream it - we are it!"
  
   ### Pop Growth
-  building_clinic: "§PGene Clinics§!"
+  building_clinic: "§P£mod_planet_pop_assembly_mult£ Gene Clinics§!"
   building_clinic_tt: "§MPop Growth§! - §BTier 1§! - §EBiological§!"
   building_clinic_desc: "Gene Clinics can offer advanced medical treatments, which statistically lead to a significantly healthier and longer-living population."
-  building_hospital: "§PCyto-Revitalization Centers§!"
+  building_hospital: "§P£mod_planet_pop_assembly_mult£ Cyto-Revitalization Centers§!"
   building_hospital_tt: "§MPop Growth§! - §BTier 2§! - §EBiological§!"
   building_hospital_desc: "Cyto-Revitalization Centers can offer advanced medical treatments to a large population. Treatments on a cellular level lead to a significantly healthier and longer-living population."
 
@@ -618,21 +638,36 @@ l_english:
 ##################
 
   ### General
-  building_military_academy: "Military Academy"
+  building_military_academy: "Military Academy" # Vanilla
   building_military_academy_tt: "§MDefense§! - §BTier 1§! - §EArmy§!"
   building_military_academy_desc: "Military Academies improve local recruitment rates and offer a higher standard of training."
-  building_dread_encampment: "Dread Encampment"
+  building_dread_encampment: "Dread Encampment" # Vanilla
   building_dread_encampment_tt: "§MDefense§! - §BTier 1§! - §EArmy§!"
   building_dread_encampment_desc: "It is best to shield the activities of the necromancers from the tender eyes of the public as they raise undead hordes to fight in our armies."
-  building_stronghold: "§pStronghold§!"
+  building_stronghold: "§p£job_soldier£ Stronghold§!" # Vanilla
   building_stronghold_tt: "§MDefense§! - §BTier 1§! - §EArmy§!"
   building_stronghold_desc: "A planetary stronghold housing a substantial garrison force to protect the world from invasion and rebellion."
-  building_fortress: "§pFortress§!"
+  building_fortress: "§p£job_soldier£ Fortress§!" # Vanilla
   building_fortress_tt: "§MDefense§! - §BTier 2§! - §EArmy§!"
   building_fortress_desc: "A massive fortress complex with an expanded garrison and training facilities for soldiers."
-  building_planetary_shield_generator: "Planetary Shield Generator"
+  building_planetary_shield_generator: "Planetary Shield Generator" # Vanilla
   building_planetary_shield_generator_tt: "§MDefense§! - §BTier 1§! - §EShield§!"
   building_planetary_shield_generator_desc: "$tech_planetary_shield_generator_desc$"
+
+  ### Mechs
+  ## Unique
+  building_lightmechbay: "§P£job_soldier£ Light Mechbay§!" # Invasion!
+  building_lightmechbay_tt: "§MDefense§! - §BTier 1§! - §EMech§!"
+  building_lightmechbay_desc: "Constructs and maintains piloted giant war-machines.\n\nIncreases empire cap of light mechs by 4"
+  building_mediummechbay: "§P£job_soldier£ Medium Mechbay§!" # Invasion!
+  building_mediummechbay_tt: "§MDefense§! - §BTier 2§! - §EMech§!"
+  building_mediummechbay_desc: "Constructs and maintains piloted giant war-machines.\n\nIncreases empire cap of light and medium mechs by 4"
+  building_heavymechbay: "§P£job_soldier£ Heavy Mechbay§!" # Invasion!
+  building_heavymechbay_tt: "§MDefense§! - §BTier 3§! - §EMech§!"
+  building_heavymechbay_desc: "Constructs and maintains piloted giant war-machines.\n\nIncreases empire cap of light, medium and heavy mechs by 4"
+  building_assaultmechbay: "§P£job_soldier£ Assault Mechbay§!" # Invasion!
+  building_assaultmechbay_tt: "§MDefense§! - §BTier 4§! - §EMech§!"
+  building_assaultmechbay_desc: "Constructs and maintains piloted giant war-machines.\n\nIncreases empire cap of light, medium, heavy and assault mechs by 4"
 
 ##################
 # Deposits

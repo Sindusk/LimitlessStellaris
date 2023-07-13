@@ -1246,13 +1246,14 @@ building_factory_3 = {
 }
 
 ##################################################
-## Manufacturing - Refiners
+## Exotic Gas - Basic
 ##################################################
 
 ## Exotic Gas Refineries (Tier 1)
 # Merge between Sort Buildings, Extra Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_refinery = {
 	base_buildtime = @db2_time
+	base_cap_amount = 5 # LS - Basic resource building
 	position_priority = 4043000 # Sort Buildings
 
 	exempt_from_ai_planet_specialization = yes # StarTech AI enables this
@@ -1374,10 +1375,15 @@ building_refinery = {
 	}
 }
 
+##################################################
+## Volatile Motes - Basic
+##################################################
+
 ## Chemical Plants (Tier 1)
 # Merge between Sort Buildings, Extra Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_chemical_plant = {
 	base_buildtime = @db2_time
+	base_cap_amount = 5 # LS - Basic resource building
 	position_priority = 4042000 # Sort Buildings
 
 	exempt_from_ai_planet_specialization = yes # StarTech AI enables this
@@ -1499,10 +1505,15 @@ building_chemical_plant = {
 	}
 }
 
+##################################################
+## Rare Crystals - Basic
+##################################################
+
 ## Synthetic Crystal Plants (Tier 1)
 # Merge between Sort Buildings, Extra Buildings, OSA, Real Space: Planetary Stations, StarTech
 building_crystal_plant = {
 	base_buildtime = @db2_time
+	base_cap_amount = 5 # LS - Basic resource building
 	position_priority = 4044000 # Sort Buildings
 
 	exempt_from_ai_planet_specialization = yes # StarTech AI enables this
@@ -1625,10 +1636,15 @@ building_crystal_plant = {
 	}
 }
 
+##################################################
+## Nanites - Basic
+##################################################
+
 ## Nanite Transmuter (Tier 1)
 # Merge between Sort Buildings, Real Space: Planetary Stations, StarTech
 building_nanite_transmuter = {
 	base_buildtime = @db3_time
+	base_cap_amount = 5 # LS - Basic resource building
 	position_priority = 4041000 # Sort Buildings
 
 	category = manufacturing

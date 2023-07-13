@@ -899,10 +899,10 @@ building_replicator = {
 }
 
 ##################################################
-## ESC: Next
+## Extra Ship Components NEXT
 ##################################################
 
-## Crystal Farm [ESC: Next]
+## Crystal Farm [Extra Ship Components NEXT]
 # Disabled. Duplicate of Synthetic Crystal Plants from Vanilla.
 esc_building_crystal_farm_1 = {
     base_buildtime = 360
@@ -974,7 +974,7 @@ esc_building_crystal_farm_1 = {
     }
 }
 
-## Improved Crystal Farm [ESC: Next]
+## Improved Crystal Farm [Extra Ship Components NEXT]
 # Disabled. Duplicate of Synthetic Crystal Plants from Vanilla.
 esc_building_crystal_farm_2 = {
     base_buildtime = 360
@@ -1044,4 +1044,196 @@ esc_building_crystal_farm_2 = {
         rare_crystals = 8
         trigger = { always = yes }
     }
+}
+
+##################################################
+## Invasion!
+##################################################
+
+## Aero Base [Invasion!]
+# Disabled. Doesn't really fit the collection.
+building_aerofighter_base = {
+	base_buildtime = 360
+	base_cap_amount = 1
+	category = army
+	
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#exists = owner
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = 250
+		}			
+		upkeep = {
+			energy = 2
+		}
+		produces = {
+			engineering_research = 3
+		}
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = 5
+		planet_orbital_bombardment_damage = -0.05
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			trade_value_add = 5
+			job_pilot_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_pilot_drone_add = 2
+		}
+	}
+
+	prerequisites = {
+		"tech_strike_craft_1"
+	}
+}
+
+## Garrison Base [Invasion!]
+# Disabled. Doesn't really have a place. Consider for soldier productivity later down the line possibly.
+building_garrison_base = {
+	base_buildtime = 360
+	base_cap_amount = 2
+
+	category = army
+	
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			nor = {
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_spiritualist
+			}
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		owner = { 
+			or = {
+				is_regular_empire = no
+				is_gestalt = yes
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_spiritualist
+			}
+		}
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 2
+		planet_orbital_bombardment_damage = -0.05
+		job_soldier_add = 2
+	}
+	army_modifier = {
+		army_defense_health_mult = 0.1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_at_war = yes }
+		}
+		planet_stability_add = 2
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @b1_minerals
+		}			
+		upkeep = {
+			energy = 2
+		}
+	}
+	
+	prerequisites = {
+		"tech_ground_defense_planning"
+	}	
+	show_tech_unlock_if = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			nor = {
+				has_ethic = ethic_spiritualist
+				has_ethic = ethic_fanatic_spiritualist
+			}
+		}
+	}
+}
+
+## Paladin Order [Invasion!]
+# Disabled. Doesn't really have a place. Consider for soldier productivity later down the line possibly.
+building_warrior_order = {
+	base_buildtime = 360
+	base_cap_amount = 2
+	category = army
+	
+	potential = {
+		exists = owner
+		owner = {
+			or = {
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_spiritualist
+			}
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		owner = { 
+			nor = {
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_spiritualist
+			}
+		}
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 2
+		job_priest_add = 1
+		job_paladin_add = 1
+		pop_ethic_pacifist_attraction_mult = -0.1
+		planet_orbital_bombardment_damage = -0.05
+	}
+	army_modifier = {
+		army_defense_health_mult = 0.15
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @b1_minerals
+		}			
+		upkeep = {
+			energy = 1
+		}
+	}
+	
+	prerequisites = {
+		"tech_ground_defense_planning"
+	}	
+	show_tech_unlock_if = {
+		exists = owner
+		owner = {
+			or = {
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_spiritualist
+			}
+		}
+	}
 }

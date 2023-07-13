@@ -2504,38 +2504,6 @@ building_resource_silo = {
 		"tech_basic_industry"
 	}
 
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_patrol_drone_effect_desc
-	}
-	
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_maintenance_drone_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-		text = job_politician_effect_desc
-	}
-	
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-		text = job_clerk_effect_desc
-	}
-
 	# LS AI Resource Production
 	ai_resource_production = { # AI should really build this when their colony is reasonably sized, it's good now
 		trigger = {

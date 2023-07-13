@@ -718,7 +718,9 @@ building_embassy = {
 
 	category = government
 
-	base_cap_amount = 1
+	empire_limit = { # LS - Base Cap Amount -> Empire Limit
+		base = 1
+	}
 
 	potential = {
 		exists = owner

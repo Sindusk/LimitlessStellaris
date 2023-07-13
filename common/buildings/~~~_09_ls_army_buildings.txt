@@ -1083,3 +1083,230 @@ building_planetary_shield_generator = {
 		}
 	}
 }
+
+##################################################
+## Mech - Unique
+##################################################
+
+## Light Mechbay [Invasion!]
+# Base version
+building_lightmechbay = {
+	base_buildtime = 360
+	category = army
+	base_cap_amount = 1
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_lightmechbay_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	destroy_trigger = {
+		exists = owner
+		owner = { 
+			is_gestalt = yes
+		}
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = 500
+		}			
+		upkeep = {
+			alloys = 1
+		}
+		produces = {
+			engineering_research = 2
+		}
+	}
+	
+	planet_modifier = {
+		job_mechwarrior_add = 1
+		job_mechtech_add = 1
+	}
+	
+	prerequisites = {
+		"tech_powered_exoskeletons"
+	}
+	show_tech_unlock_if = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+	}
+	
+	upgrades = {
+		building_mediummechbay
+	}
+}
+
+## Medium Mechbay [Invasion!]
+# Base version
+building_mediummechbay = {
+	base_buildtime = 360
+	can_build = no
+	category = army
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_mediummechbay_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+		has_building = building_lightmechbay
+	}
+	destroy_trigger = {
+		exists = owner
+		owner = { 
+			is_gestalt = yes
+		}
+	}
+	
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = 750
+		}			
+		upkeep = {
+			alloys = 2
+		}
+		produces = {
+			engineering_research = 3
+		}
+	}
+	
+	planet_modifier = {
+		job_mechwarrior_add = 1
+		job_mechtech_add = 1
+	}
+	
+	prerequisites = {
+		"tech_robotic_workers"
+	}
+	show_tech_unlock_if = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+	}
+	
+	upgrades = {
+		building_heavymechbay
+	}
+}
+
+## Heavy Mechbay [Invasion!]
+# Base version
+building_heavymechbay = {
+	base_buildtime = 540
+	can_build = no
+	category = army
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_heavymechbay_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+		has_building = building_mediummechbay
+	}
+	destroy_trigger = {
+		exists = owner
+		owner = { 
+			is_gestalt = yes
+		}
+	}
+	
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = 750
+		}			
+		upkeep = {
+			alloys = 2
+		}
+		produces = {
+			engineering_research = 4
+		}
+	}
+	
+	planet_modifier = {
+		job_mechwarrior_add = 1
+		job_mechtech_add = 2
+	}
+	
+	prerequisites = {
+		"tech_droid_workers"
+	}
+	show_tech_unlock_if = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+	}
+	
+	upgrades = {
+		building_assaultmechbay
+	}
+}
+
+## Assault Mechbay [Invasion!]
+# Base version
+building_assaultmechbay = {
+	base_buildtime = 540
+	can_build = no
+	category = army
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_assaultmechbay_tt
+    }
+
+	potential = {
+		exists = owner
+		owner = { 
+			is_gestalt = no
+			has_ascension_perk = ap_mech_lords
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		owner = { 
+			or = {
+				is_gestalt = yes
+				not = { has_ascension_perk = ap_mech_lords }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = 1000
+		}			
+		upkeep = {
+			alloys = 3
+		}
+		produces = {
+			engineering_research = 5
+		}
+	}
+
+	planet_modifier = {
+		job_mechwarrior_add = 1
+		job_mechtech_add = 2
+		job_mechwarrior_l_add = 1 
+	}
+	
+	country_modifier = {
+		country_leader_cap_add = 1
+	}
+}
