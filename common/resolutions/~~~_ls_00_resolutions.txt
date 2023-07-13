@@ -437,19 +437,15 @@ resolution_council_denouncement = {
 		}
 
 		modifier = { # NGS
-			factor = 0.6
+			factor = 0.25
 			has_global_flag = denouncement_cooldown_council
-			NOR = { 
-				from = { is_rival = prev }
-				is_at_war_with = from
-			}
 			desc = denounced_cooldown_eu
 		}
 		# weaklings are scared of BtC
 		modifier = {
 			factor = 5
 			has_nemesis = yes
-			any_playable_country = {
+			from = { # NGS any_playable_country -> from
 				#has_crisis_level >= crisis_level_1
 				OR = {
 					has_crisis_level = crisis_level_1
@@ -476,7 +472,7 @@ resolution_council_denouncement = {
 		modifier = {
 			factor = 5
 			has_nemesis = yes
-			any_playable_country = {
+			from = { # NGS any_playable_country -> from
 				#has_crisis_level >= crisis_level_1
 				OR = {
 					has_crisis_level = crisis_level_1
@@ -500,6 +496,7 @@ resolution_council_denouncement = {
 			has_nemesis = yes
 			any_neighbor_country = {
 				#has_crisis_level >= crisis_level_1
+				is_same_value = from # NGS
 				OR = {
 					has_crisis_level = crisis_level_1
 					has_crisis_level = crisis_level_2

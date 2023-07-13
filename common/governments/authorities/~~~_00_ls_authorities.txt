@@ -51,6 +51,7 @@ auth_bugged_direct_democratic = {
 	}
 
 	country_modifier = {
+		country_unity_produces_mult = 0.15 # LS [OSA translation]
 		tech_cost_empire_size_mult = -0.20 # LS [Balance]
 		country_leader_cap_add = 2 # LS [Balance]
 		planet_resettlement_unemployed_mult = 0.1

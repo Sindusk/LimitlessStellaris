@@ -11,6 +11,7 @@
 ##################################################
 
 ## Growth Encouraged [Vanilla]
+# OSA version
 # Disabled. Not a toggle which makes it annoying to use.
 decision_planet_food_boost = {
 	owned_planets_only = yes
@@ -20,20 +21,24 @@ decision_planet_food_boost = {
 	resources = {
 		category = decisions
 		cost = {
+			influence = 50
 			food = 1000
 		}
 	}
 
 	potential = {
-		owner = {
-			is_regular_empire = yes
-			is_lithoid_empire = no
-		}
-		NOR = {
-			has_modifier = planet_growth_discouraged
-			has_modifier = planet_population_control
-		}
-		always = no
+		always = no # LS - Disable through potential
+		#exists = owner
+		#owner = {
+		#	AND = {
+		#		has_active_tradition = tr_compassion_finish
+		#		is_lithoid_empire = no
+		#	}
+		#}
+		#NOR = {
+		#	has_modifier = planet_growth_discouraged
+		#	has_modifier = planet_population_control
+		#}
 	}
 
 	allow = {
@@ -41,21 +46,37 @@ decision_planet_food_boost = {
 	}
 
 	effect = {
-		add_modifier = { modifier = "planet_food_boost" days = 3600 }
+		add_modifier = { 
+			modifier = "planet_food_boost"
+			days = 9000
+			clear_on_owner_change = yes
+		}
 	}
-
+	
 	ai_weight = {
 		weight = 5
-
-		# don't encourage growth if there is no free housing
 		modifier = {
 			factor = 0
-			free_housing < 1
+			owner = { resource_stockpile_compare = {
+				resource = food
+				value < 1800
+			}
+			}
+		}
+		modifier = {
+			factor = 400
+			owner = {
+				has_resource = {
+					type = food
+					amount > 2000
+				}
+			}
 		}
 	}
 }
 
 ## Distribute Luxury Goods [Vanilla]
+# Ariphaos version
 # Disabled. Not a toggle which makes it annoying to use.
 decision_planet_luxuries_boost = {
 	owned_planets_only = yes
@@ -135,11 +156,28 @@ decision_planet_luxuries_boost = {
 	}
 
 	potential = {
-		owner = { is_regular_empire = yes }
+		always = no # LS - Disable through potential
+		#owner = { is_regular_empire = yes }
 	}
 
 	allow = {
 		NOT = { has_modifier = planet_luxuries_boost }
+		or = {
+			owner = { is_ai = no }
+			and = {
+				free_amenities < -6
+				num_pops > 15
+				owner = {
+				resource_income_compare = {
+					resource = consumer_goods
+					value > 5
+				}
+				resource_stockpile_compare = {
+					resource = consumer_goods
+					value > 300
+				} }
+			}
+		}
 	}
 
 	effect = {
@@ -147,7 +185,7 @@ decision_planet_luxuries_boost = {
 	}
 
 	ai_weight = {
-		weight = 1
+		weight = 100
 	}
 }
 

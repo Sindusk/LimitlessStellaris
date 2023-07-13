@@ -299,7 +299,8 @@ civic_trading_fleet = {
 	}
 	random_weight = { base = 5 }
 	modifier = {
-		local_trade_protection_add = 10
+		command_limit_add = 10
+		#local_trade_protection_add = 10
 		#ship_hull_mult = 0.25
 	}
 	description = "civic_tooltip_trading_fleet_effects"

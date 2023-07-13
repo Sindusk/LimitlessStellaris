@@ -2922,7 +2922,7 @@ interference = {
 				has_ai_personality_behaviour = infiltrator
 			}
 			modifier = {
-				factor = 0
+				factor = 0.5 # NGS 0 -> 0.5
 				has_valid_ai_personality = yes
 				NOT = {
 					has_ai_personality_behaviour = infiltrator
@@ -2975,7 +2975,7 @@ interference = {
 				}
 			}
 			modifier = {
-				factor = 0
+				factor = 0.5 # NGS 0 -> 0.5
 				has_valid_ai_personality = yes
 				NOR = {
 					has_ai_personality_behaviour = infiltrator
@@ -3042,14 +3042,14 @@ interference = {
 				has_ai_personality_behaviour = dominator
 			}
 			modifier = {
-				factor = 0
+				factor = 0.5 # NGS 0 -> 0.5
 				has_valid_ai_personality = yes
 				NOT = {
 					has_ai_personality_behaviour = dominator
 				}
 			}
 			modifier = {
-				factor = 0
+				factor = 0.5 # NGS 0 -> 0.5
 				OR = {
 					has_ethic = "ethic_pacifist"
 					has_ethic = "ethic_fanatic_pacifist"
