@@ -18,11 +18,12 @@ empire_base = {
 }
 
 ## Empire Size
-# Using OSA version.
+# OSA base, custom edits
 empire_size = {
-	planet_structures_energy_upkeep_mult = 0.0015
-	planet_structures_minerals_upkeep_mult = 0.0015
-	planet_structures_food_upkeep_mult = 0.0015
+	planet_structures_upkeep_mult = 0.0010 # LS - Apply to all resources, at 0.1% per size instead of 0.15%
+	#planet_structures_energy_upkeep_mult = 0.0015 # LS - removed for all resources
+	#planet_structures_minerals_upkeep_mult = 0.0015 # LS - removed for all resources
+	#planet_structures_food_upkeep_mult = 0.0015 # LS - removed for all resources
 	leaders_upkeep_mult = 0.0005
 	planet_pops_upkeep_mult = 0.0005
 }
