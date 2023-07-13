@@ -1,0 +1,1597 @@
+##########################################################################
+# Limitless Stellaris - Tradition Categories
+##########################################################################
+
+##################################################
+## Vanilla
+##################################################
+
+## Adaptability
+# Merge between OSA, StarTech, STU
+tradition_adaptability = {
+	tree_template = "tree_11_12"
+	adoption_bonus = "tr_adaptability_adopt"
+	finish_bonus = "tr_adaptability_finish"
+	traditions = {
+		"tr_adaptability_recycling"
+		"tr_adaptability_survival_fittest"
+		"tr_adaptability_environmental_diversification"
+		"tr_adaptability_adaptive_ecology"
+		"tr_adaptability_appropriation"
+	}
+
+	potential = {
+		is_machine_empire = no
+	}
+
+	ai_weight = {
+		factor = 10 # StarTech 5 -> 10
+		modifier = {
+			factor = 2
+			is_homicidal = yes
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = {
+			factor = 8 # OSA 2 -> 8
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			factor = 16 # OSA 3 -> 16
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 7
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 14
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = {
+			factor = 7
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 14
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 16y
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 7
+			has_ethic = ethic_spiritualist
+		}
+		modifier = {
+			factor = 14
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = {
+			factor = 8
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 16
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = {
+			factor = 7
+			is_hive_empire = yes
+		}
+	}
+}
+
+## Aptitude
+# OSA version
+tradition_aptitude = {
+	desc = {
+		trigger = { is_regular_empire = yes }
+		text = tradition_aptitude_desc
+	}
+	desc = {
+		trigger = { is_hive_empire = yes }
+		text = tradition_aptitude_hive_desc
+	}
+	desc = {
+		trigger = { is_machine_empire = yes }
+		text = tradition_aptitude_machine_desc
+	}
+	tree_template = "tree_12_11"
+	adoption_bonus = "tr_aptitude_adopt"
+	finish_bonus = "tr_aptitude_finish"
+	traditions = {
+		"tr_aptitude_the_empire_needs_you"
+		"tr_aptitude_specialist_training"
+		"tr_aptitude_psychological_profiling"
+		"tr_aptitude_healthcare_program"
+		"tr_aptitude_champions_of_the_empire"
+	}
+
+	potential = {
+		has_paragon_dlc = yes
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 10
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 20
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			factor = 6
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			factor = 10
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 6
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 16
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_spiritualist
+		}
+		modifier = {
+			factor = 10
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = {
+			factor = 9
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 18
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = {
+			factor = 3
+			is_machine_empire = yes
+		}
+		modifier = {
+			factor = 3
+			is_hive_empire = yes
+		}			
+	}
+}
+
+## Cybernetics
+# AAP version
+tradition_cybernetics = {
+	tree_template = "tree_12_11_11"
+	adoption_bonus = "tr_cybernetics_adopt"
+	finish_bonus = "tr_cybernetics_finish"
+	potential = {
+		has_utopia = yes
+		is_machine_empire = no
+	}
+
+	traditions = {
+		"tr_cybernetics_transubstantiation_synthesis"
+		"tr_cybernetics_metabolic_reprocessing"
+		"tr_cybernetics_integrated_anatomy"
+		"tr_cybernetics_assembly_standards"
+		"tr_cybernetics_modular_cybernetics"
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+## Cybernetics (Assimilator)
+# AAP version
+tradition_cybernetics_assimilator = {
+	tree_template = "tree_12_11_11"
+	adoption_bonus = "tr_cybernetics_assimilator_adopt"
+	finish_bonus = "tr_cybernetics_assimilator_finish"
+	potential = {
+		has_utopia = yes
+		is_machine_assimilator = yes
+	}
+
+	traditions = {
+		"tr_cybernetics_assimilator_inevitable_assimilation"
+		"tr_cybernetics_assimilator_metabolic_reprocessing"
+		"tr_cybernetics_assimilator_integrated_anatomy"
+		"tr_cybernetics_assimilator_crucible"
+		"tr_cybernetics_assimilator_modular_cybernetics"
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+## Diplomacy
+# Merge between OSA, StarTech, STU
+tradition_diplomacy = {
+	tree_template = "tree_11_12"
+	adoption_bonus = "tr_diplomacy_adopt"
+	finish_bonus = "tr_diplomacy_finish"
+	traditions = {
+		"tr_diplomacy_the_federation"
+		"tr_diplomacy_entente_coordination"
+		"tr_diplomacy_diplomatic_networking"
+		"tr_diplomacy_direct_diplomacy"
+		"tr_diplomacy_eminent_diplomats"
+	}
+
+	ai_weight = {
+		factor = 10 # StarTech 5 -> 10
+		modifier = {
+			factor = 5 # StarTech 10 -> 5
+			has_federation = yes
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 12
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 20
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 1
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 2 # StarTech 4 -> 2
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 3 # StarTech 6 -> 3
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_militarist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = { # OSA
+			factor = 9
+			has_ethic = ethic_pacifist
+		}
+		modifier = { # OSA
+			factor = 18
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_materialist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_materialist
+		}
+		modifier = { # StarTech AI
+			factor = 30
+			has_tradition = tr_mercantile_finish
+		}
+		modifier = { # StarTech AI
+			factor = 0
+			OR = {
+				is_xenophobe = yes
+				is_homicidal = yes
+			}
+		}
+		modifier = {
+			factor = 0.5
+			is_gestalt = yes
+		}
+	}
+}
+
+## Discovery
+# Merge between OSA, StarTech, STU
+tradition_discovery = {
+	desc = {
+		trigger = { is_regular_empire = yes }
+		text =  tradition_discovery_desc
+	}
+	desc = {
+		trigger = { is_hive_empire = yes }
+		text =  tradition_discovery_hive_desc
+	}
+	desc = {
+		trigger = { is_machine_empire = yes }
+		text =  tradition_discovery_machine_desc
+	}
+	tree_template = "tree_11_111"
+	adoption_bonus = "tr_discovery_adopt"
+	finish_bonus = "tr_discovery_finish"
+	traditions = {
+		"tr_discovery_to_boldly_go"
+		"tr_discovery_databank_uplinks"
+		"tr_discovery_science_division"
+		"tr_discovery_polytechnic_education"
+		"tr_discovery_faith_in_science"
+	}
+
+	ai_weight = {
+		factor = 10 # StarTech 20 -> 10
+		modifier = {
+			factor = 5
+			years_passed < 10 # StarTech 20 -> 10
+		}
+		modifier = { # OSA
+			factor = 5
+			has_ethic = ethic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 1
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 9
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 18
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = { # OSA
+			factor = 8
+			has_ethic = ethic_militarist
+		}
+		modifier = { # OSA
+			factor = 16
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_pacifist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_spiritualist
+		}
+		modifier = {
+			factor = 10 # OSA 2 -> 10
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 20 # OSA 3 -> 20
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = { # OSA
+			factor = 10
+			is_machine_empire = yes
+		}
+		modifier = { # OSA
+			factor = 6
+			is_hive_empire = yes
+		}
+	}
+}
+
+## Domination
+# OSA version
+tradition_domination = {
+	desc = {
+		trigger = { is_regular_empire = yes }
+		text =  tradition_domination_desc
+	}
+	desc = {
+		trigger = { is_hive_empire = yes }
+		text =  tradition_domination_hive_desc
+	}
+	desc = {
+		trigger = { is_machine_empire = yes }
+		text =  tradition_domination_machine_desc
+	}
+	tree_template = "tree_21_11"
+	adoption_bonus = "tr_domination_adopt"
+	finish_bonus = "tr_domination_finish"
+	traditions = {
+		"tr_domination_colonial_viceroys"
+		"tr_domination_imperious_architecture"
+		"tr_domination_judgment_corps"
+		"tr_domination_grand_council"
+		"tr_domination_workplace_motivators"
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 8
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 16
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			factor = 10
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 10
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_spiritualist
+		}
+		modifier = {
+			factor = 6
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = {
+			factor = 4
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = {
+			factor = 4
+			is_machine_empire = yes
+		}
+		modifier = {
+			factor = 4
+			is_hive_empire = yes
+		}
+	}
+}
+
+## Expansion
+# Merge between OSA, StarTech, STU
+tradition_expansion = {
+	desc = {
+		trigger = {
+			is_regular_empire = yes
+			NOT = { is_void_dwellers_empire = yes } # STU
+		}
+		text =  tradition_expansion_desc
+	}
+	desc = {
+		trigger = { is_hive_empire = yes }
+		text =  tradition_expansion_hive_desc
+	}
+	desc = {
+		trigger = { is_machine_empire = yes }
+		text =  tradition_expansion_machine_desc
+	}
+	desc = {
+		trigger = { is_void_dwellers_empire = yes } # STU
+		text =  tradition_expansion_void_desc
+	}
+	tree_template = "tree_12_11"
+	adoption_bonus = "tr_expansion_adopt"
+	finish_bonus = "tr_expansion_finish"
+	traditions = {
+		"tr_expansion_reach_for_the_stars"
+		"tr_expansion_colonization_fever"
+		"tr_expansion_courier_network"
+		"tr_expansion_galactic_ambition"
+		"tr_expansion_a_new_life"
+	}
+
+	ai_weight = {
+		factor = 10 # StarTech 20 -> 10
+		modifier = {
+			factor = 5
+			years_passed < 10 # StarTech 20 -> 10
+		}
+		modifier = { # OSA
+			factor = 4
+			has_ethic = ethic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 8
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 9
+			has_ethic = ethic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 18
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 12
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_xenophile
+		}
+		modifier = { # OSA
+			factor = 20
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_militarist
+		}
+		modifier = { # OSA
+			factor = 20
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = { # OSA
+			factor = 8
+			has_ethic = ethic_pacifist
+		}
+		modifier = { # OSA
+			factor = 16
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = { # OSA
+			factor = 8
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # OSA
+			factor = 16
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = { # OSA
+			factor = 9
+			has_ethic = ethic_materialist
+		}
+		modifier = { # OSA
+			factor = 18
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = { # OSA
+			factor = 9
+			is_machine_empire = yes
+		}
+		modifier = { # OSA
+			factor = 9
+			is_hive_empire = yes
+		}
+	}
+}
+
+## Genetics
+# OSA version
+tradition_genetics = {
+	tree_template = "tree_111_11"
+	adoption_bonus = "tr_genetics_adopt"
+	finish_bonus = "tr_genetics_finish"
+
+	potential = {
+		has_utopia = yes
+	}
+
+	traditions = {
+		"tr_genetics_resequencing"
+		"tr_genetics_creation"
+		"tr_genetics_enhanced_expression"
+		"tr_genetics_efficient_cloning"
+		"tr_genetics_retrovirus"
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+## Harmony
+# Merge between OSA, StarTech, STU
+tradition_harmony = {
+	tree_template = "tree_21_11"
+	adoption_bonus = "tr_harmony_adopt"
+	finish_bonus = "tr_harmony_finish"
+	traditions = {
+		"tr_harmony_mind_and_body"
+		"tr_harmony_kinship"
+		"tr_harmony_the_greater_good"
+		"tr_harmony_harmonious_directives"
+		"tr_harmony_utopian_dream"
+	}
+
+	potential = {
+		is_gestalt = no
+	}
+
+	ai_weight = {
+		factor = 10 # StarTech 7.5 -> 10
+		modifier = { # OSA
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 4
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 8 # OSA 2 -> 8
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			factor = 16 # OSA 3 -> 16
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 2
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 4
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 8
+			has_ethic = ethic_xenophile
+		}
+		modifier = { # OSA
+			factor = 16
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = { # OSA
+			factor = 5
+			has_ethic = ethic_militarist
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_pacifist
+		}
+		modifier = { # OSA
+			factor = 20
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 9 # OSA 2 -> 9
+			has_ethic = ethic_spiritualist
+		}
+		modifier = {
+			factor = 18 # OSA 3 -> 18
+			has_ethic = ethic_fanatic_spiritualist
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_materialist
+		}
+		modifier = { # OSA
+			factor = 12
+			has_ethic = ethic_fanatic_materialist
+		}
+		modifier = {
+			factor = 3
+			is_current_or_former_necrophage_empire = yes
+		}
+	}
+}
+
+## Mercantile
+# Merge between OSA, StarTech, STU
+tradition_mercantile = {
+	tree_template = "tree_11_12"
+	adoption_bonus = "tr_mercantile_adopt"
+	finish_bonus = "tr_mercantile_finish"
+	traditions = {
+		"tr_mercantile_trickle_up_economics"
+		"tr_mercantile_commercial_enterprise"
+		"tr_mercantile_adaptive_economic_policies"
+		"tr_mercantile_marketplace_of_better_ideas"
+		"tr_mercantile_insider_trading"
+	}
+
+	potential = {
+		is_regular_empire = yes
+	}
+
+	ai_weight = {
+		factor = 10 # StarTech 20 -> 10
+		modifier = {
+			factor = 3
+			is_megacorp = yes # Merged
+		}
+		modifier = {
+			factor = 100
+			should_ai_focus_on_trade = yes
+		}
+		modifier = { # OSA
+			factor = 2
+			has_ethic = ethic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 4
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 5
+			has_ethic = ethic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 2
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 4
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 8
+			has_ethic = ethic_xenophile
+		}
+		modifier = { # OSA
+			factor = 16
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = { # OSA
+			factor = 2
+			has_ethic = ethic_militarist
+		}
+		modifier = { # OSA
+			factor = 4
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_pacifist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = { # OSA
+			factor = 5
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = { # StarTech AI
+			factor = 6 # OSA 2 -> 6
+			has_ethic = ethic_materialist
+		}
+		modifier = { # StarTech AI
+			factor = 12 # OSA 3 -> 12
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}
+
+## Politics
+# Merge between OSA, StarTech, STU
+tradition_politics = {
+	tree_template = "tree_11_11_21"
+	adoption_bonus = "tr_politics_adopt"
+	finish_bonus = "tr_politics_finish"
+	traditions = {
+		"tr_politics_quid_pro_quo"
+		"tr_politics_gravitas"
+		"tr_politics_national_agenda"
+		"tr_politics_persistent_petitioners"
+		"tr_politics_extraordinary_powers"
+	}
+
+	potential = {
+		host_has_dlc = Federations
+		is_homicidal = no
+	}
+
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 10
+			is_part_of_galactic_council = yes
+		}
+		modifier = {
+			factor = 0
+			is_galactic_community_member = no
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 12
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 20
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 1
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 10 # OSA 3 -> 10
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 20 # OSA 6 -> 20
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_militarist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 9 # OSA 3 -> 9
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 18 # OSA 6 -> 18
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_materialist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = { # OSA
+			factor = 5
+			is_machine_empire = yes
+		}
+		modifier = { # OSA
+			factor = 5
+			is_hive_empire = yes
+		}
+		modifier = {
+			factor = 0.05 # OSA 0 -> 0.05
+			is_homicidal = yes
+		}
+	}
+}
+
+## Prosperity
+# Merge between OSA, StarTech, STU
+tradition_prosperity = {
+	desc = {
+		trigger = { is_regular_empire = yes }
+		text =  tradition_prosperity_desc
+	}
+	desc = {
+		trigger = { is_hive_empire = yes }
+		text =  tradition_prosperity_hive_mind_desc
+	}
+	desc = {
+		trigger = { is_machine_empire = yes }
+		text =  tradition_prosperity_machine_desc
+	}
+	tree_template = "tree_12_11"
+	adoption_bonus = "tr_prosperity_adopt"
+	finish_bonus = "tr_prosperity_finish"
+	traditions = {
+		"tr_prosperity_administrative_operations"
+		"tr_prosperity_sct"
+		"tr_prosperity_pursuit_of_profit"
+		"tr_prosperity_interstellar_franchising"
+		"tr_prosperity_public_works"
+	}
+
+	ai_weight = {
+		factor = 250 # StarTech 20 -> 250
+		modifier = { # OSA
+			factor = 5
+			years_passed < 10
+		}
+		modifier = { # StarTech AI
+			factor = 5
+			num_ascension_perks > 0
+		}
+		modifier = { # StarTech AI
+			factor = 10
+			num_ascension_perks > 1
+		}
+		modifier = { # OSA
+			factor = 3
+			has_ethic = ethic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 3
+			has_ethic = ethic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 3
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 3
+			has_ethic = ethic_xenophile
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = { # OSA
+			factor = 3
+			has_ethic = ethic_militarist
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 5 # OSA 2 -> 5
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 10 # OSA 3 -> 10
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = { # OSA
+			factor = 3
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = { # OSA
+			factor = 3
+			has_ethic = ethic_materialist
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = { # OSA
+			factor = 3
+			is_machine_empire = yes
+		}
+		modifier = { # OSA
+			factor = 3
+			is_hive_empire = yes
+		}
+	}
+}
+
+## Psionics
+# AAP version, changed gestalt to machine
+tradition_psionics = {
+	tree_template = "tree_21_12"
+	adoption_bonus = "tr_psionics_adopt"
+	finish_bonus = "tr_psionics_finish"
+
+	potential = {
+		has_utopia = yes
+		#is_gestalt = no # LS - Change to machine
+		is_machine_empire = no # LS
+	}
+
+	traditions = {
+		"tr_psionics_psi_corps"
+		"tr_psionics_mind_readers"
+		"tr_psionics_psionic_assimilation"
+		"tr_psionics_breach_shroud"
+		"tr_psionics_shrouded_encryption"
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+## Statecraft
+# OSA version
+tradition_statecraft = {
+	desc = {
+		trigger = { is_regular_empire = yes }
+		text = tradition_statecraft_desc
+	}
+	desc = {
+		trigger = { is_hive_empire = yes }
+		text = tradition_statecraft_hive_desc
+	}
+	desc = {
+		trigger = { is_machine_empire = yes }
+		text = tradition_statecraft_machine_desc
+	}
+	tree_template = "tree_111_11"
+	adoption_bonus = "tr_statecraft_adopt"
+	finish_bonus = "tr_statecraft_finish"
+	traditions = {
+		"tr_statecraft_constitutional_focus"
+		"tr_statecraft_inspiring_agendas"
+		"tr_statecraft_immutable_directives"
+		"tr_statecraft_amongst_peers"
+		"tr_statecraft_shared_benefits"
+	}
+
+	potential = {
+		has_paragon_dlc = yes
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 10
+			has_ethic = ethic_authoritarian
+		}
+		modifier = {
+			factor = 20
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			factor = 6
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			factor = 10
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_xenophile
+		}
+		modifier = {
+			factor = 6
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 16
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_spiritualist
+		}
+		modifier = {
+			factor = 10
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = {
+			factor = 9
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 18
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = {
+			factor = 3
+			is_machine_empire = yes
+		}
+		modifier = {
+			factor = 3
+			is_hive_empire = yes
+		}			
+	}
+}
+
+## Subterfuge
+# StarTech version
+tradition_subterfuge = {
+	tree_template = "tree_12_12"
+	adoption_bonus = "tr_subterfuge_adopt"
+	finish_bonus = "tr_subterfuge_finish"
+
+	potential = {
+		has_nemesis = yes
+	}
+
+	traditions = {
+		"tr_subterfuge_information_security"
+		"tr_subterfuge_operational_security"
+		"tr_subterfuge_nda"
+		"tr_subterfuge_double_agents"
+		"tr_subterfuge_shadow_recruits"
+	}
+
+	ai_weight = {
+		factor = 0.01 # StarTech disables this tradition tree, set to 0.01 just in case it's the last one
+	}
+}
+
+## Supremacy
+# Merge between OSA, StarTech, STU
+tradition_supremacy = {
+	desc = {
+		trigger = { is_regular_empire = yes }
+		text =  tradition_supremacy_desc
+	}
+	desc = {
+		trigger = { is_hive_empire = yes }
+		text =  tradition_supremacy_hive_desc
+	}
+	desc = {
+		trigger = { is_machine_empire = yes }
+		text =  tradition_supremacy_machine_desc
+	}
+	tree_template = "tree_21_11"
+	adoption_bonus = "tr_supremacy_adopt"
+	finish_bonus = "tr_supremacy_finish"
+	traditions = {
+		"tr_supremacy_master_shipwrights"
+		"tr_supremacy_fleet_logistical_corps"
+		"tr_supremacy_overwhelming_force"
+		"tr_supremacy_war_games"
+		"tr_supremacy_great_game"
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 10
+			has_ascension_perk = ap_become_the_crisis
+		}
+		modifier = { # StarTech AI
+			factor = 10
+			years_passed > 40
+		}
+		modifier = { # OSA
+			factor = 9
+			has_ethic = ethic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 18
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 12
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 20
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_xenophile
+		}
+		modifier = { # OSA
+			factor = 12
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = {
+			factor = 9 # OSA 2 -> 9
+			has_ethic = ethic_militarist
+		}
+		modifier = {
+			factor = 18 # OSA 3 -> 18
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = { # OSA
+			factor = 1
+			has_ethic = ethic_pacifist
+		}
+		modifier = { # OSA
+			factor = 2
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = { # OSA
+			factor = 8
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # OSA
+			factor = 16
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_materialist
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = { # OSA
+			factor = 8
+			is_machine_empire = yes
+		}
+		modifier = { # OSA
+			factor = 8
+			is_hive_empire = yes
+		}
+		modifier = {
+			factor = 5
+			is_homicidal = yes
+		}
+	}
+}
+
+## Synchronicity
+# Merge between OSA, StarTech, STU
+tradition_synchronicity = {
+	tree_template = "tree_21_11"
+	adoption_bonus = "tr_synchronicity_adopt"
+	finish_bonus = "tr_synchronicity_finish"
+	traditions = {
+		"tr_synchronicity_cloned_organs"
+		"tr_synchronicity_kinship_gestalt"
+		"tr_synchronicity_integrated_preservation"
+		"tr_synchronicity_harmonious_directives"
+		"tr_synchronicity_collective_reasoning"
+	}
+
+	potential = {
+		is_gestalt = yes
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 3
+			is_current_or_former_necrophage_empire = yes
+		}
+		modifier = { # OSA
+			factor = 7
+			is_machine_empire = yes
+		}
+		modifier = { # OSA
+			factor = 7
+			is_hive_empire = yes
+		}
+	}
+}
+
+## Synthetics
+# AAP version
+tradition_synthetics = {
+	tree_template = "tree_11_12"
+	adoption_bonus = "tr_synthetics_adopt"
+	finish_bonus = "tr_synthetics_finish"
+	potential = {
+		OR = {
+			AND = {
+				is_regular_empire = yes
+				has_utopia = yes
+			}
+			AND = {
+				is_machine_empire = yes
+				has_synthethic_dawn = yes
+			}
+		}
+	}
+
+	traditions = {
+		"tr_synthetics_maintenance_protocols"
+		"tr_synthetics_optimization_algorithms"
+		"tr_synthetics_synthetic_age"
+		"tr_synthetics_prefabricated_components"
+		"tr_synthetics_solid_state_actuators"
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+## Unyielding
+# Merge between OSA, StarTech, STU
+tradition_unyielding = {
+	tree_template = "tree_111_11"
+	adoption_bonus = "tr_unyielding_adopt"
+	finish_bonus = "tr_unyielding_finish"
+	traditions = {
+		"tr_unyielding_resistance_is_frugal"
+		"tr_unyielding_never_surrender"
+		"tr_unyielding_bulwark_of_harmony"
+		"tr_unyielding_defensive_zeal"
+		"tr_unyielding_fortress_doctrine"
+	}
+
+	potential = {
+		OR = {
+			host_has_dlc = "Apocalypse"
+			has_overlord_dlc = yes
+		}
+	}
+
+	ai_weight = {
+		factor = 10 # StarTech 5 -> 10
+		modifier = { # OSA
+			factor = 8
+			has_ethic = ethic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 16
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = { # OSA
+			factor = 7
+			has_ethic = ethic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 14
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = { # OSA
+			factor = 9
+			has_ethic = ethic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 18
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_xenophile
+		}
+		modifier = { # OSA
+			factor = 12
+			has_ethic = ethic_fanatic_xenophile
+		}
+		modifier = { # OSA
+			factor = 9
+			has_ethic = ethic_militarist
+		}
+		modifier = { # OSA
+			factor = 18
+			has_ethic = ethic_fanatic_militarist
+		}
+		modifier = {
+			factor = 2 # StarTech 5 -> 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3 # StarTech 10 -> 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = { # OSA
+			factor = 6
+			has_ethic = ethic_spiritualist
+		}
+		modifier = { # OSA
+			factor = 12
+			has_ethic = ethic_fanatic_spiritualist
+		}	
+		modifier = { # OSA
+			factor = 5
+			has_ethic = ethic_materialist
+		}
+		modifier = { # OSA
+			factor = 10
+			has_ethic = ethic_fanatic_materialist
+		}		
+		modifier = { # OSA
+			factor = 6
+			is_machine_empire = yes
+		}
+		modifier = { # OSA
+			factor = 6
+			is_hive_empire = yes
+		}
+		modifier = { # OSA
+			factor = 2
+			has_valid_civic = civic_inwards_perfection
+		}
+		modifier = {
+			factor = 2 # StarTech 4 -> 2
+			is_inwards_perfection_empire = yes
+		}
+		modifier = {
+			factor = 3
+			any_neighbor_country = {
+				is_playable = yes
+				opinion_level = { who = prev level <= poor }
+				relative_power = { who = prev value >= superior }
+			}
+		}
+	}
+}
+
+## Versatility
+# Merge between OSA, StarTech, STU
+tradition_versatility = {
+	tree_template = "tree_11_12"
+	adoption_bonus = "tr_versatility_adopt"
+	finish_bonus = "tr_versatility_finish"
+	traditions = {
+		"tr_versatility_universal_compatibility"
+		"tr_versatility_adaptive_programming"
+		"tr_versatility_spatial_optimization"
+		"tr_versatility_material_analysis"
+		"tr_versatility_operational_proxies"
+	}
+
+	potential = {
+		is_machine_empire = yes # Merged
+	}
+
+	ai_weight = {
+		factor = 1 # StarTech 5 -> 1
+		modifier = {
+			factor = 1.5 # StarTech 2 -> 1.5
+			is_servitor_empire = yes # STU
+		}
+	}
+}
+

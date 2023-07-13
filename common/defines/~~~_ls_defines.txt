@@ -198,8 +198,8 @@
 	NPop = {
 		# Same as Logistic Pop Growth
 		BASE_POP_GROWTH						= 0.1	# Base growth rate of pops
-		# Logistic Pop Growth was 2.6. New value of 2.0 means roughly 30% less pop growth, keeping pops in check for a longer duration.
-		LOGISTIC_POP_GROWTH_R				= 2.0 	# Logistic Pop Growth Constant r
+		# Logistic Pop Growth was 2.6. New value of 1.7 means roughly 35% less pop growth, keeping pops in check for a longer duration.
+		LOGISTIC_POP_GROWTH_R				= 1.7 	# Logistic Pop Growth Constant r
 		# Logistic Pop Growth was 2. New value of 5 means new colonies will build up faster. Balanced by the fact that having a pop on a 25 colony would be more ideal.
 		LOGISTIC_POP_GROWTH_MIN_POPS		= 5		# Treat small colonies as having this many pops to avoid the very bottom of the curve
 		
