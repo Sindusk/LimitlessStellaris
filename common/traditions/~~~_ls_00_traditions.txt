@@ -1,0 +1,1543 @@
+##########################################################################
+# Limitless Stellaris - Tradition
+##########################################################################
+
+@ap_genetic_opener_POINTS = 2
+@ap_genetic_finisher_POINTS = 2
+
+##################################################
+## Vanilla
+##################################################
+
+## Cybernetics - Adopt
+# Merge between Organic Zealots, OSA, PD, EMEX
+tr_cybernetics_adopt = {
+	possible = {
+		if = {
+			limit = { is_hive_empire = no }
+			OR = { # PD
+				has_ascension_perk = ap_the_flesh_is_weak
+				AND = { # PD
+					has_origin = origin_pd_warform_world
+					has_technology =  tech_neuro_quantum_links
+				}	
+			}
+		}
+		else = {
+			OR = { # EMEX
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_valid_civic = civic_hive_cyborgs # EMEX
+			}
+		}
+		is_not_restricted_by_organic_zealots_fail = yes # Organic Zealots
+	}
+	unlocks_agenda = agenda_cybernetic_advantage
+	custom_tooltip = tr_cybernetics_adopt_desc
+
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = utopia.2500 }
+		}
+		
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_adopt_hive
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+			NOT = { has_valid_civic = civic_hive_cyborgs } # EMEX
+		}
+		custom_tooltip = tr_cybernetics_adopt_hive_desc
+		on_enabled = {
+			hidden_effect = {
+				country_event = { id = utopia.2500 }
+			}
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	
+	tradition_swap = { # EMEX
+		name = tr_cybernetics_adopt_hive_rc_emex
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+			has_valid_civic = civic_hive_cyborgs
+		}
+		custom_tooltip = rc_hive_started
+		on_enabled = {
+			hidden_effect = {
+				add_resource = {
+					alloys = 200
+				}
+			}
+		}
+		weight = {
+			factor = 10
+		}
+	}
+}
+
+## Cybernetics - Assembly Standards
+# OSA version
+tr_cybernetics_assembly_standards = {
+	possible = {
+		has_tradition = tr_cybernetics_metabolic_reprocessing
+	}
+	custom_tooltip = tr_cybernetics_assembly_standards_desc
+	# Unlocks Assmebly Standards policy, allowing Roboticists to provide Organic Pop Assembly for Cyborgs
+
+	tradition_swap = {
+		name = tr_cybernetics_synaptic_sub_processing
+		inherit_name = no
+		inherit_icon = no
+		trigger = {
+			is_hive_empire = yes
+		}
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.25 # OSA
+		}
+	}
+}
+
+## Cybernetics Assimilator - Modular Cybernetics
+# OSA version
+tr_cybernetics_assimilator_modular_cybernetics = {
+	possible = {
+		has_tradition = tr_cybernetics_assimilator_integrated_anatomy
+	}
+	custom_tooltip_with_modifiers = tr_cybernetics_assimilator_modular_cybernetics_tt
+	modifier = {
+		modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+		planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_1
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding_m
+		}
+		custom_tooltip = tr_cybernetics_assimilator_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 1
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_2
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding_m
+			has_technology = tech_binary_motivators
+		}
+		custom_tooltip = tr_cybernetics_assimilator_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 2
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 2
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_3
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding_m
+			has_technology = tech_binary_motivators
+			has_technology = tech_nanite_assemblers
+		}
+		custom_tooltip = tr_cybernetics_assimilator_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 3
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 3
+		}
+	}
+}
+
+## Cybernetics - Finish
+# EMEX version
+tr_cybernetics_finish = {
+	modifier = {
+		planet_cyborg_jobs_produces_mult = 0.10
+		BIOLOGICAL_species_trait_picks_add = 1
+		ascension_perks_add = 1
+	}
+	
+	# EMEX
+	tradition_swap = {
+		name = tr_cybernetics_finish_rc_emex
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_valid_civic = civic_hive_cyborgs
+		}
+		custom_tooltip = rc_hive_completed
+		on_enabled = {
+			hidden_effect = { remove_modifier = rc_hive_weak_cybernetics }
+		}
+		modifier = {
+			planet_cyborg_jobs_produces_mult = 0.10
+			BIOLOGICAL_species_trait_picks_add = 1
+			ascension_perks_add = 1
+		}
+	}
+}
+
+## Cybernetics - Modular Cybernetics
+# OSA version
+tr_cybernetics_modular_cybernetics = {
+	possible = {
+		has_tradition = tr_cybernetics_integrated_anatomy
+	}
+	custom_tooltip_with_modifiers = tr_cybernetics_modular_cybernetics_tt
+	modifier = {
+		modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+		planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_hive
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+		custom_tooltip = tr_cybernetics_modular_cybernetics_hive_tt
+		modifier = {
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_1
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding
+		}
+		custom_tooltip = tr_cybernetics_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 2
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 1
+		}
+		on_enabled = {
+			hidden_effect = {
+				if = {
+					limit = {
+						any_pre_ftl_within_border = {
+							has_country_flag = fotd_seperatist_country@root
+						}
+					}
+					country_event = { id = origin.6096 days = 3 }
+				}
+			}
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_2
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding
+			has_technology = tech_robomodding_points_1
+		}
+		custom_tooltip = tr_cybernetics_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 3
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 2
+		}
+		on_enabled = {
+			hidden_effect = {
+				if = {
+					limit = {
+						any_pre_ftl_within_border = {
+							has_country_flag = fotd_seperatist_country@root
+						}
+					}
+					country_event = { id = origin.6096 days = 3 }
+				}
+			}
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_3
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding
+			has_technology = tech_robomodding_points_1
+			has_technology = tech_robomodding_points_2
+		}
+		custom_tooltip = tr_cybernetics_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 4
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 3
+		}
+		on_enabled = {
+			hidden_effect = {
+				if = {
+					limit = {
+						any_pre_ftl_within_border = {
+							has_country_flag = fotd_seperatist_country@root
+						}
+					}
+					country_event = { id = origin.6096 days = 3 }
+				}
+			}
+		}
+	}
+	on_enabled = {
+		hidden_effect = {
+			if = {
+				limit = {
+					any_pre_ftl_within_border = {
+						has_country_flag = fotd_seperatist_country@root
+					}
+				}
+				country_event = { id = origin.6096 days = 3 }
+			}
+		}
+	}
+}
+
+## Diplomacy - Adopt
+# StarTech version
+tr_diplomacy_adopt = {
+	unlocks_agenda = agenda_build_relations
+	custom_tooltip = tr_diplomacy_adopt_desc
+	modifier = {
+		diplomacy_influence_upkeep_mult = -0.5
+	}
+	possible = { # StarTech AI
+		hidden_trigger = {
+			or = {
+				is_ai = no
+				num_ascension_perks > 2
+				has_origin = origin_common_ground
+				has_origin = origin_common_ground_npc
+			}
+		}
+	}
+}
+
+## Diplomacy - Diplomatic Network
+# EED version
+tr_diplomacy_diplomatic_networking = {
+	#Effects in diplomacy_economy
+	
+	modifier = {
+		add_base_country_intel = 10
+
+		show_only_custom_tooltip = no
+		custom_tooltip = tr_diplomacy_diplomatic_networking_desc
+	}
+
+	tradition_swap = {
+		name = tr_diplomacy_diplomatic_networking_gestalt
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_gestalt = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+## Diplomacy - Entente Coordination
+# Merge between EED, MECR, StarTech
+tr_diplomacy_entente_coordination = {
+	possible = {
+		has_tradition = tr_diplomacy_the_federation
+	}
+
+	modifier = {
+		federation_naval_cap_contribution_mult = 1.00
+		ship_federation_territory_speed_mult = 0.10 # EED
+	}
+
+	tradition_swap = { # MECR
+		name = tr_diplomacy_confederation_representative
+		inherit_icon = no
+		inherit_effects = no
+		inherit_name = no
+		trigger = {
+			has_federation = yes
+			federation = { has_federation_perk = galactic_confederation_passive }
+		}
+		#custom_tooltip = tr_diplomacy_confederation_representative_desc
+		modifier = {
+			envoys_add = 2
+		}
+		weight = {
+			factor = 1000
+		}
+	}
+
+	tradition_swap = { # MECR
+		name = tr_diplomacy_entente_coordination_emperor
+		inherit_icon = no
+		inherit_effects = no
+		inherit_name = no
+		trigger = {
+			is_galactic_emperor = yes
+		}
+		custom_tooltip = tr_diplomacy_entente_coordination_emperor_desc
+		modifier = {
+			gdf_ship_alloys_cost_mult = -0.10
+		}
+		weight = {
+			factor = 2000
+		}
+	}
+
+	tradition_swap = { # MECR
+		name = tr_diplomacy_entente_coordination_better_diplo
+		inherit_icon = yes
+		inherit_name = yes
+		inherit_effects = no
+		trigger = {
+			is_ExpEspNDip_activated = yes
+		}
+		modifier = {
+			federation_naval_cap_contribution_mult = 1.00
+			ship_federation_territory_speed_mult = 0.10
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+## Diplomacy - The Federation
+# Merge between EED, MECR, StarTech
+tr_diplomacy_the_federation = {
+	custom_tooltip = tr_diplomacy_the_federation_desc
+
+	#unlocks federation mechanic
+	modifier = {
+		envoys_add = 1
+	}
+
+	tradition_swap = { # MECR
+		name = tr_diplomacy_confederation_spirit
+		inherit_icon = yes
+		inherit_effects = no
+		inherit_name = no
+		trigger = {
+			has_federation = yes
+			federation = { has_federation_perk = galactic_confederation_passive }
+		}
+		custom_tooltip = tr_diplomacy_confederation_spirit_desc
+		weight = {
+			factor = 1000
+		}
+	}
+
+	tradition_swap = { # MECR
+		name = tr_diplomacy_imperial_prestige
+		inherit_icon = no
+		inherit_effects = no
+		inherit_name = no
+		trigger = {
+			is_galactic_emperor = yes
+		}
+		custom_tooltip = tr_diplomacy_imperial_prestige_desc
+		on_enabled = {
+			switch = {
+				trigger = has_policy_flag
+				diplo_stance_condescending_authority = { set_policy = { policy = diplomatic_stance option = diplo_stance_condescending_authority_advanced cooldown = no } }
+				diplo_stance_humble_and_friendly	 = { set_policy = { policy = diplomatic_stance option = diplo_stance_humble_and_friendly_advanced cooldown = no } }
+				diplo_stance_glory_conquest			 = { set_policy = { policy = diplomatic_stance option = diplo_stance_glory_conquest_advanced cooldown = no } }
+				diplo_stance_universal_transactions	 = { set_policy = { policy = diplomatic_stance option = diplo_stance_universal_transactions_advanced cooldown = no } }
+			}
+			set_country_flag = flag_tr_diplomacy_imperial_prestige_complete
+		}
+		modifier = {
+		}
+		weight = {
+			factor = 2000
+		}
+	}
+
+	tradition_swap = { # MECR
+		name = tr_diplomacy_the_federation_dlc
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		custom_tooltip = tr_diplomacy_the_federation_dlc_desc
+		trigger = {
+			has_federations_dlc = yes
+			has_global_flag = better_diplo_installed
+		}
+		modifier = {
+			envoys_add = 1
+			envoy_cohesion_effect_mult = 0.25
+			federation_join_malus_mult = -0.25
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = { # MECR
+		name = tr_diplomacy_the_federation
+		inherit_icon = yes
+		inherit_effects = no
+		inherit_name = yes
+		custom_tooltip = tr_diplomacy_the_federation_desc
+		trigger = {
+			has_global_flag = Forerunner_Traditions_Overhaul
+		}
+		modifier = {
+			federation_naval_cap_contribution_mult = 1.00
+			# unlocks federations
+		}
+		on_enabled = {
+			frr_add_potential_ap = yes
+		}
+		weight = {
+			factor = 3000
+		}
+	}
+	tradition_swap = { # MECR
+		name = tr_diplomacy_confederation_representative
+		inherit_icon = yes
+		inherit_effects = no
+		inherit_name = no
+		trigger = {
+			has_global_flag = Forerunner_Traditions_Overhaul
+			has_federation = yes
+			federation = { has_federation_perk = galactic_confederation_passive }
+		}
+		#custom_tooltip = tr_diplomacy_confederation_representative_desc
+		modifier = {
+			envoys_add = 3
+		}
+		on_enabled = {
+			frr_add_potential_ap = yes
+		}
+		weight = {
+			factor = 4000
+		}
+	}
+	tradition_swap = { # MECR
+		name = tr_diplomacy_entente_coordination_emperor
+		inherit_icon = yes
+		inherit_effects = no
+		inherit_name = no
+		trigger = {
+			has_global_flag = Forerunner_Traditions_Overhaul
+			is_galactic_emperor = yes
+		}
+		custom_tooltip = tr_diplomacy_entente_coordination_emperor_desc
+		modifier = {
+			gdf_ship_alloys_cost_mult = -0.10
+		}
+		on_enabled = {
+			frr_add_potential_ap = yes
+		}
+		weight = {
+			factor = 5000
+		}
+	}
+	possible = { # MECR
+		custom_tooltip = {
+			OR = {
+				NOT = { has_global_flag = Forerunner_Traditions_Overhaul }
+				has_tradition = frr_diplomacy_federation_b
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 10000
+	}
+}
+
+## Discovery - Adopt
+# StarTech version
+tr_discovery_adopt = {
+	unlocks_agenda = agenda_chart_the_unknown
+	custom_tooltip = tr_discovery_adopt_desc
+	modifier = {
+		ship_anomaly_research_speed_mult = 0.20
+	}
+	possible = { # StarTech AI
+		hidden_trigger = {
+			nand = {
+				is_ai = yes
+				num_ascension_perks = 1
+				not = {
+					has_tradition = tr_supremacy_adopt
+				}
+			}
+		}
+	}
+}
+
+## Discovery - Polytechnic Education
+# OSA version
+tr_discovery_polytechnic_education = {
+	possible = {
+		has_tradition = tr_discovery_science_division
+	}
+
+	modifier = {
+		country_leader_pool_size = 2 # OSA 1 -> 2
+		species_leader_exp_gain = 0.10
+		leader_scientists_physics_research_produces_add = 2 # OSA
+		leader_scientists_society_research_produces_add = 2 # OSA
+		leader_scientists_engineering_research_produces_add = 2 # OSA
+	}
+
+	tradition_swap = {
+		name = tr_discovery_polytechnic_education_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_discovery_polytechnic_education_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+## Discovery - Science Division
+# OSA version
+tr_discovery_science_division = {
+	modifier = {
+		num_tech_alternatives_add = 1
+		assist_research_mult = 0.25 # OSA
+		leader_scientists_cost_mult = -0.1
+		leader_scientists_upkeep_mult = -0.1
+	}
+
+	tradition_swap = {
+		name = tr_discovery_science_division_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_discovery_science_division_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+## Domination - Adopt
+# Merge between OSA, StarTech, STU
+tr_domination_adopt = {
+	unlocks_agenda = agenda_civil_exclusion
+	modifier = {
+		deposit_blockers_cost_mult = -0.25 # OSA -0.33 -> -0.25
+		planet_non_artificial_max_districts_add = 1 # OSA
+	}
+
+	tradition_swap = {
+		name = tr_domination_adopt_void
+		inherit_name = yes
+		inherit_icon = yes
+		custom_tooltip = tr_domination_adopt_void_desc
+		trigger = {
+			is_void_dwellers_empire = yes # STU
+		}
+		# Effects are implemented in 00_capital_buildings.txt
+		weight = {
+			factor = 1
+		}
+	}
+	possible = { # StarTech AI
+		hidden_trigger = {
+			or = {
+				is_ai = no
+				num_ascension_perks > 3
+			}
+		}
+	}
+}
+
+## Domination - Colonial Viceroys
+# OSA version
+tr_domination_colonial_viceroys = {
+	modifier = {
+		country_traditions_influence_produces_add = 1.0 # OSA 0.5 -> 1.0
+		leader_governors_cost_mult = -0.1
+		leader_governors_upkeep_mult = -0.1
+	}
+
+	tradition_swap = {
+		name = tr_domination_colonial_viceroys_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_domination_colonial_viceroys_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+## Domination - Grand Council
+# OSA version
+tr_domination_grand_council = {
+	possible = {
+		has_tradition = tr_domination_imperious_architecture
+		has_tradition = tr_domination_colonial_viceroys
+	}
+
+	modifier = {
+		councilor_exp_gain = 0.25 # OSA 0.20 -> 0.25
+		country_edict_fund_add = 100 # OSA 50 -> 100
+	}
+
+	tradition_swap = {
+		name = tr_domination_multi_thread
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_domination_synaptic_network
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+	}
+}
+
+## Domination - Imperious Architecture
+# OSA version
+tr_domination_imperious_architecture = {
+
+	# additional housing implemented in building files
+	custom_tooltip = tr_domination_imperious_architecture_desc
+
+	tradition_swap = {
+		name = tr_domination_synaptic_extensions
+		custom_tooltip = tr_domination_synaptic_extensions_desc
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_domination_modular_depot
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+		
+		custom_tooltip = tr_domination_modular_depot_desc
+		
+		modifier = {
+			# Additional Building slots implemented in district files
+			#empire_size_districts_mult = -0.25
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+	}
+}
+
+## Domination - Workplace Motivators
+# OSA version
+tr_domination_workplace_motivators = {
+	possible = {
+		has_tradition = tr_domination_judgment_corps
+	}
+
+	custom_tooltip_with_modifiers = tr_domination_workplace_motivators_desc
+	modifier = {
+		planet_jobs_worker_produces_mult = 0.10 # OSA 0.05 -> 0.10
+		planet_jobs_slave_produces_mult = 0.10 # OSA 0.05 -> 0.10
+	}
+
+	tradition_swap = {
+		name = tr_domination_drone_network
+		trigger = {
+			is_gestalt = yes
+		}
+		custom_tooltip_with_modifiers = tr_domination_drone_network_desc
+		modifier = {
+			planet_jobs_simple_drone_produces_mult = 0.10 # OSA 0.05 -> 0.10
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+	}
+}
+
+## Expansion - Adopt
+# Merge between Gigastructural Engineering, StarTech, STU
+tr_expansion_adopt = {
+	unlocks_agenda = agenda_superior_colonies
+	modifier = {
+		planet_colony_development_speed_mult = 0.25
+	}
+	possible = { # StarTech AI
+		hidden_trigger = {
+			or = {
+				is_ai = no
+				num_ascension_perks < 1
+			}
+			or = {
+				is_ai = no
+				nor = {
+					has_origin = origin_necrophage
+					has_origin = origin_void_dwellers
+					num_guaranteed_colonies < 2
+				}
+			}
+		}
+	}
+	tradition_swap = { # Gigastructural Engineering - Frameworld
+		name = tr_expansion_adopt_giga_frameworld
+		inherit_icon = yes
+		trigger = {
+			has_origin = origin_frameworld
+		}
+		modifier = {
+			frameworld_outposts_produces_mult = 0.1
+		}
+		weight = { factor = 1 }
+	}
+}
+
+## Expansion - Colonization Fever
+# Merge between Gigastructural Engineering, StarTech
+tr_expansion_colonization_fever = {
+	modifier = {
+		colony_start_num_pops_add = 1
+	}
+	custom_tooltip = tr_expansion_colonization_fever_desc
+
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_colonization_fever_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+
+	tradition_swap = { # Gigastructural Engineering - Frameworld
+		name = tr_expansion_colonization_fever_giga_frameworld
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			has_origin = origin_frameworld
+		}
+		modifier = {
+			colony_start_num_pops_add = 1 # we need this and inherits_effects = no to override the tooltip but keep the actual effect
+		}
+
+		weight = {
+			factor = 2 # should override default swaps
+		}
+	}
+}
+
+## Expansion - Finish
+# Merge between Gigastructural Engineering, StarTech, STU
+tr_expansion_finish = {
+	modifier = {
+		planet_non_artificial_max_districts_add = 1
+		ascension_perks_add = 1
+	}
+
+	tradition_swap = {
+		name = tr_expansion_finish_void
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_void_dwellers_empire = yes # STU
+		}
+		modifier = {
+			megastructures_habitat_cost_mult = -0.20
+			ascension_perks_add = 1
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = { # Gigastructural Engineering - Frameworld
+		name = tr_expansion_finish_giga_frameworld
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_origin = origin_frameworld
+		}
+		modifier = {
+			frameworld_outposts_cost_mult = -0.2
+			ascension_perks_add = 1
+		}
+		weight = { factor = 1 }
+	}
+}
+
+## Genetics - Adopt
+# EMEX version
+tr_genetics_adopt = {
+	possible = {
+		OR = { # EMEX
+			has_ascension_perk = ap_engineered_evolution
+			has_valid_civic = civic_hive_manipulators_of_life # EMEX
+		}
+	}
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = utopia.2700 }
+		}
+	}
+	unlocks_agenda = agenda_genetic_pursuit
+	modifier = {
+		description = tr_genetics_adopt_modifier_desc
+		description_parameters = {
+			POINTS = @ap_genetic_opener_POINTS
+		}
+		BIOLOGICAL_species_trait_points_add = @ap_genetic_opener_POINTS
+	}
+	# Unlocks Clone Vats
+}
+
+## Genetics - Retrovirus
+# OSA version
+tr_genetics_retrovirus = {
+	possible = {
+		has_tradition = tr_genetics_efficient_cloning
+	}
+	modifier = {
+		modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+		planet_jobs_society_research_produces_mult = 0.10 # OSA
+	}
+}
+
+## Harmony - Adopt
+# StarTech version
+tr_harmony_adopt = {
+	unlocks_agenda = agenda_inner_stability
+	modifier = {
+		planet_pops_upkeep_mult = -0.10
+	}
+	possible = { # StarTech AI
+		hidden_trigger = {
+			or = {
+				is_ai = no
+				num_ascension_perks > 2
+			}
+		}
+	}
+}
+
+## Harmony - Harmonious Directives
+# OSA version
+tr_harmony_harmonious_directives = {
+	possible = {
+		has_tradition = tr_harmony_kinship
+		has_tradition = tr_harmony_mind_and_body
+	}
+
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.05 # OSA
+		country_edict_fund_add = 100 # OSA 50 -> 100
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+## Harmony - Mind and Body
+# Merge between OSA, StarTech, STU
+tr_harmony_mind_and_body = {
+
+	modifier = {
+		leader_age = 20 # OSA 10 -> 20
+		negative_traits_country = -1
+	}
+
+	tradition_swap = {
+		name = tr_harmony_unity_of_self
+
+		custom_tooltip = tr_harmony_unity_of_self_desc
+		# gain unity per pop necrophaged
+
+		trigger = {
+			is_current_or_former_necrophage_empire = yes # STU
+		}
+		weight = {
+			factor = 2
+		}
+	}
+
+	ai_weight = {
+		factor = 1000
+		modifier = {
+			factor = 10
+			is_current_or_former_necrophage_empire = yes # STU
+		}
+	}
+}
+
+## Harmony - The Greater Good
+# OSA version
+tr_harmony_the_greater_good = {
+	modifier = {
+		pop_government_ethic_attraction = 0.25
+		planet_crime_add = -25 # OSA -10 -> -25
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
+
+## Harmony - Utopian Dream
+# OSA version
+tr_harmony_utopian_dream = {
+	possible = {
+		has_tradition = tr_harmony_the_greater_good
+	}
+
+	modifier = {
+		planet_stability_add = 5
+		pop_category_workers_unity_produces_add = 1 # OSA
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+## Mercantile - Adaptive Economic Policies
+# Merge between OSA, MECR, StarTech
+tr_mercantile_adaptive_economic_policies = {
+	#gain access to trade policies
+	custom_tooltip = tr_mercantile_adaptive_economic_policies_desc
+
+	tradition_swap = {
+		name = tr_mercantile_trade_fleets
+		inherit_icon = yes
+		custom_tooltip = tr_mercantile_trade_fleets_desc
+		trigger = {
+			has_federation = yes
+			federation = { has_federation_perk = trade_federation_passive }
+		}
+
+		modifier = {
+			federation_naval_cap_contribution_mult = 0.5
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = { # MECR
+		name = tr_mercantile_confederation_financial_business
+		inherit_name = no
+		inherit_effects = no
+		inherit_icon = yes
+		name = tr_politics_national_agenda_custodian
+		#custom_tooltip = tr_mercantile_confederation_financial_business_desc
+		trigger = {
+			has_federation = yes
+			federation = { has_federation_perk = galactic_confederation_passive }
+		}
+		modifier = {
+			job_merchant_per_pop = 0.025
+		}
+		weight = {
+			factor = 1000
+		}
+	}
+
+	possible = { # MECR
+		custom_tooltip = {
+			OR = {
+				NOT = { has_global_flag = Forerunner_Traditions_Overhaul }
+				has_tradition = frr_commerce_trade_a
+			}
+		}
+	}
+
+	ai_weight = { # MECR
+		factor = 1000
+	}
+}
+
+## Mercantile - Commercial Enterprise
+# OSA version
+tr_mercantile_commercial_enterprise = {
+	possible = {
+		has_tradition = tr_mercantile_trickle_up_economics
+	}
+	custom_tooltip_with_modifiers = tr_mercantile_commercial_enterprise_desc # OSA +with_modifiers
+	#commercial zone 1 merchant job
+	modifier = { # OSA
+		job_merchant_per_pop = 0.04
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+## Politics - Adopt
+# MECR version
+tr_politics_adopt = {
+	possible = {
+		is_galactic_community_formed = yes
+	}
+	unlocks_agenda = agenda_pioneer_politics
+	custom_tooltip = tr_politics_adopt_desc
+	modifier = {
+		envoys_add = 2 # MECR 1 -> 2
+		#Envoys generate influence, handled in the leaders script
+	}
+}
+
+## Politics - Extraordinary Powers
+# MECR version
+tr_politics_extraordinary_powers = {
+	possible = {
+		has_tradition = tr_politics_gravitas # MECR national_agenda -> gravitas
+		has_tradition = tr_politics_persistent_petitioners
+	}
+
+	modifier = {
+		veto_cooldown_mult = -0.25
+		emergency_measures_cooldown_mult = -0.25
+	}
+
+	tradition_swap = { # MECR
+		name = tr_politics_extraordinary_powers_custodian
+		inherit_name = yes
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_galactic_custodian = yes
+		}
+		modifier = {
+			veto_cooldown_mult = -0.10
+			emergency_measures_cooldown_mult = -0.10
+			country_base_influence_produces_add = 1
+		}
+		weight = {
+			factor = 100
+		}
+	}
+	tradition_swap = { # MECR
+		name = tr_politics_extraordinary_powers_emperor
+		inherit_name = yes
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_galactic_emperor = yes
+		}
+		modifier = {
+			veto_cooldown_mult = -0.15
+			emergency_measures_cooldown_mult = -0.15
+			diplo_action_acceptance_add = 5
+		}
+		weight = {
+			factor = 1000
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+## Politics - Finish
+# MECR version
+tr_politics_finish = {
+	modifier = {
+		custom_tooltip = tr_politics_finish_desc
+		diplo_weight_mult = 0.20 # MECR 0.10 -> 0.20
+		ascension_perks_add = 1
+		#Also unlocks 4 special resolutions
+	}
+}
+
+## Politics - Gravitas
+# MECR version
+tr_politics_gravitas = {
+	possible = { # MECR
+		has_tradition = tr_politics_national_agenda
+	}
+
+	custom_tooltip = tr_politics_gravitas_desc
+
+	modifier = {
+		resolutions_cost_mult = -0.20 # MECR -0.25 -> -0.20
+		diplo_weight_envoys_mult = 0.025
+	}
+
+	tradition_swap = { # MECR
+		name = tr_politics_gravitas_custodian
+		inherit_name = yes
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_galactic_custodian = yes
+		}
+		custom_tooltip = tr_politics_gravitas_custodian_desc
+		modifier = {
+			resolutions_cost_mult = -0.20
+			diplo_weight_envoys_mult = 0.025
+			diplo_weight_mult = 0.10
+		}
+		weight = {
+			factor = 100
+		}
+	}
+	tradition_swap = { # MECR
+		name = tr_politics_gravitas_emperor
+		inherit_name = yes
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_galactic_emperor = yes
+		}
+		custom_tooltip = tr_politics_gravitas_emperor_desc
+		modifier = {
+			resolutions_cost_mult = -0.20
+			diplo_weight_envoys_mult = 0.025
+		}
+		weight = {
+			factor = 1000
+		}
+	}
+
+	ai_weight = {
+		factor = 10000
+	}
+}
+
+## Politics - National Agenda
+# MECR version
+tr_politics_national_agenda = {
+
+	custom_tooltip = tr_politics_national_agenda_desc
+	#Handled through galcom.305
+
+	tradition_swap = { # MECR
+		name = tr_politics_national_agenda_custodian
+		custom_tooltip = tr_politics_national_agenda_custodian_desc
+		inherit_name = yes
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				is_galactic_custodian = yes
+				is_galactic_emperor = yes
+			}
+		}
+		#兼容Forerunner - A Traditions Overhaul
+		on_enabled = {
+			if = {
+				limit = { has_global_flag = Forerunner_Traditions_Overhaul }
+				frr_add_potential_ap = yes
+			}
+		}
+		weight = {
+			factor = 1000
+		}
+	}
+
+	possible = { # MECR
+		custom_tooltip = {
+			OR = {
+				NOT = { has_global_flag = Forerunner_Traditions_Overhaul }
+				has_tradition = frr_diplomacy_government_b
+			}
+		}
+	}
+	on_enabled = { # MECR
+		if = {
+			limit = { has_global_flag = Forerunner_Traditions_Overhaul }
+			frr_add_potential_ap = yes
+		}
+	}
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+## Politics - Persistent Petitioners
+# MECR version
+tr_politics_persistent_petitioners = {
+	possible = {
+		OR = { # MECR
+			has_tradition = tr_politics_quid_pro_quo
+			custom_tooltip = { # MECR
+				has_global_flag = Forerunner_Traditions_Overhaul
+				has_tradition = frr_subterfuge_manikin_b
+			}
+		}
+	}
+
+	custom_tooltip = tr_politics_persistent_petitioners_desc
+	#Handled through galcom.310-315
+
+	tradition_swap = { # MECR
+		name = tr_politics_consensus_driven_custodian
+		custom_tooltip = tr_politics_consensus_driven_custodian_desc
+		inherit_name = no
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_galactic_custodian = yes
+		}
+		modifier = {
+			envoys_add = 1
+		}
+		#兼容Forerunner - A Traditions Overhaul
+		on_enabled = {
+			if = {
+				limit = { has_global_flag = Forerunner_Traditions_Overhaul }
+				frr_add_potential_ap = yes
+			}
+		}
+		weight = {
+			factor = 100
+		}
+	}
+	tradition_swap = { # MECR
+		name = tr_politics_consensus_driven_emperor
+		custom_tooltip = tr_politics_consensus_driven_emperor_desc
+		inherit_name = no
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_galactic_emperor = yes
+		}
+		#兼容Forerunner - A Traditions Overhaul
+		on_enabled = {
+			if = {
+				limit = { has_global_flag = Forerunner_Traditions_Overhaul }
+				frr_add_potential_ap = yes
+			}
+		}
+		weight = {
+			factor = 1000
+		}
+		
+	}
+
+	on_enabled = { # MECR
+		if = {
+			limit = { has_global_flag = Forerunner_Traditions_Overhaul }
+			frr_add_potential_ap = yes
+		}
+	}
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+## Politics - Quid Pro Quo
+# Merge between OSA, MECR, StarTech
+tr_politics_quid_pro_quo = {
+	#Handled through galcom.300
+	custom_tooltip = tr_politics_quid_pro_quo_desc
+
+	modifier = {
+		envoy_improve_relations_mult = 0.25 # OSA
+	}
+
+	tradition_swap = { # MECR
+		name = tr_politics_majestic_prestige
+		inherit_name = no
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			OR = {
+				is_galactic_custodian = yes
+				is_galactic_emperor = yes
+			}
+		}
+		custom_tooltip = tr_politics_majestic_prestige_desc
+		#兼容Forerunner - A Traditions Overhaul
+		on_enabled = {
+			if = {
+				limit = { has_global_flag = Forerunner_Traditions_Overhaul }
+				frr_add_potential_ap = yes
+			}
+		}
+		weight = {
+			factor = 1000
+		}
+	}
+
+	possible = { # MECR
+		custom_tooltip = {
+			OR = {
+				NOT = { has_global_flag = Forerunner_Traditions_Overhaul }
+				has_tradition = frr_subterfuge_surveillance_b
+			}
+		}
+	}
+	on_enabled = { # MECR
+		if = {
+			limit = { has_global_flag = Forerunner_Traditions_Overhaul }
+			frr_add_potential_ap = yes
+		}
+	}
+
+	ai_weight = {
+		factor = 10000
+	}
+}
