@@ -1,0 +1,23 @@
+﻿##########################################################################
+# Limitless Stellaris - English Localisation - Decisions (Replacements)
+##########################################################################
+l_english:
+  ### --- Single Use Decisions (Red) --- ###
+  decision_acot_upgrade_garrison_1: "§LDefense Force Expansion§!" # Ancient Cache of Technologies
+  decision_acot_upgrade_garrison_2: "§LMaximum Defense Force§!" # Ancient Cache of Technologies
+  decision_giga_build_orbital_arcology: "§LConstruct Orbital Arcology§!" # Gigastructural Engineering
+  decision_giga_upgrade_orbital_arcology: "§LEnhance Orbital Arcology§!" # Gigastructural Engineering
+  decision_giga_maximize_orbital_arcology: "§LMaximize Orbital Arcology§!" # Gigastructural Engineering
+
+  ### - Toggle On Decisions (Green) --- ###
+  decision_mem_crystal_fields_seeding: "§VCrystal Field Seeding§!" # More Events Mod
+  decision_discourage_growth: "§VDiscourage Planetary Growth§!" # Vanilla
+  decision_martial_law: "§VDeclare Martial Law§!" # Vanilla
+
+  ### --- Toggle Off Decisions (Brown) --- ###
+  decision_mem_crystal_fields_clearing: "§pCrystal Field Clearance§!" # More Events Mod
+  decision_end_discourage_growth: "§pEnd Growth Discouragement§!" # Vanilla
+  decision_end_martial_law: "§pEnd Martial Law§!" # Vanilla
+
+  ### --- Colony Destruction --- ###
+  resettlecol_decision: "§x$MANUAL_RESETTLEMENT_VIEW_RESETTLE$ $COLONY$§!" # Resettle Colony

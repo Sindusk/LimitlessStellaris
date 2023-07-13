@@ -2,7 +2,774 @@
 # Limitless Stellaris - Disabled Decisions
 ##########################################################################
 
-### Extra Ship Components NEXT
+@shortlength = 720
+@mediumlength = 1800
+@longlength = 3200
+
+##################################################
+## Vanilla
+##################################################
+
+## Growth Encouraged [Vanilla]
+# Disabled. Not a toggle which makes it annoying to use.
+decision_planet_food_boost = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_resources
+
+	resources = {
+		category = decisions
+		cost = {
+			food = 1000
+		}
+	}
+
+	potential = {
+		owner = {
+			is_regular_empire = yes
+			is_lithoid_empire = no
+		}
+		NOR = {
+			has_modifier = planet_growth_discouraged
+			has_modifier = planet_population_control
+		}
+		always = no
+	}
+
+	allow = {
+		NOT = { has_modifier = planet_food_boost }
+	}
+
+	effect = {
+		add_modifier = { modifier = "planet_food_boost" days = 3600 }
+	}
+
+	ai_weight = {
+		weight = 5
+
+		# don't encourage growth if there is no free housing
+		modifier = {
+			factor = 0
+			free_housing < 1
+		}
+	}
+}
+
+## Distribute Luxury Goods [Vanilla]
+# Disabled. Not a toggle which makes it annoying to use.
+decision_planet_luxuries_boost = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_luxuries
+
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				num_pops < 10
+			}
+			consumer_goods = 100
+		}
+		cost = {
+			trigger = {
+				num_pops >= 10
+				num_pops < 20
+			}
+			consumer_goods = 200
+		}
+		cost = {
+			trigger = {
+				num_pops >= 20
+				num_pops < 30
+			}
+			consumer_goods = 300
+		}
+		cost = {
+			trigger = {
+				num_pops >= 30
+				num_pops < 40
+			}
+			consumer_goods = 400
+		}
+		cost = {
+			trigger = {
+				num_pops >= 40
+				num_pops < 50
+			}
+			consumer_goods = 500
+		}
+		cost = {
+			trigger = {
+				num_pops >= 50
+				num_pops < 60
+			}
+			consumer_goods = 600
+		}
+		cost = {
+			trigger = {
+				num_pops >= 60
+				num_pops < 70
+			}
+			consumer_goods = 700
+		}
+		cost = {
+			trigger = {
+				num_pops >= 70
+				num_pops < 85
+			}
+			consumer_goods = 800
+		}
+		cost = {
+			trigger = {
+				num_pops >= 85
+				num_pops < 100
+			}
+			consumer_goods = 900
+		}
+		cost = {
+			trigger = {
+				num_pops >= 100
+			}
+			consumer_goods = 1000
+		}
+	}
+
+	potential = {
+		owner = { is_regular_empire = yes }
+	}
+
+	allow = {
+		NOT = { has_modifier = planet_luxuries_boost }
+	}
+
+	effect = {
+		add_modifier = { modifier = "planet_luxuries_boost" days = 3600 }
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+##################################################
+## Advanced Policies
+##################################################
+
+### Standard Ethics Decisions
+
+## Trial by Fire [Advanced Policies]
+# Disabled. Too strong for being so cheap. Also not a toggle.
+AP_trial_by_fire = {
+	owned_planets_only = yes
+	sound = event_celebration
+	icon = decision_alien_propaganda
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_militarist = yes
+		#}
+	}
+	allow = {
+		planet = {
+			NOT = {
+				has_building = building_colony_shelter
+				has_building = building_hab_capital
+			}
+			NOT = {
+				has_modifier = planet_trial_by_fire
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_trial_by_fire
+			days = @mediumlength
+		}
+	}
+	ai_weight = {
+		weight = 0.5
+	}
+}
+
+## Generation of Peace [Advanced Policies]
+# Disabled. Too strong for being so cheap. Also not a toggle.
+AP_generation_of_peace = {
+	owned_planets_only = yes
+	sound = event_celebration
+	icon = decision_alien_propaganda
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_pacifist = yes
+		#}
+	}
+	allow = {
+		planet = {
+			NOT = {
+				has_modifier = planet_generation_of_peace
+			}
+		}
+		owner = {
+			is_at_war = no
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_generation_of_peace
+			days = @mediumlength
+		}
+	}
+	ai_weight = {
+		weight = 0.5
+	}
+}
+
+## Grand Sports Games [Advanced Policies]
+# Disabled. Too strong for being so cheap. Also not a toggle.
+AP_grand_sports_games = {
+	owned_planets_only = yes
+	sound = event_celebration
+	icon = decision_arcology_project
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_egalitarian = yes
+		#}
+	}
+	allow = {
+		planet = {
+			NOT = {
+				has_modifier = planet_grand_sports_games
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_grand_sports_games
+			days = @mediumlength
+		}
+	}
+	ai_weight = {
+		weight = 0.5
+	}
+}
+
+## Benevolent Gesture [Advanced Policies]
+# Disabled. Too strong for being so cheap. Also not a toggle.
+AP_benevolant_gesture = {
+	owned_planets_only = yes
+	sound = event_celebration
+	icon = decision_arcology_project
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_authoritarian = yes
+		#}
+	}
+	allow = {
+		planet = {
+			NOT = {
+				has_modifier = planet_benevolant_gesture
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_benevolant_gesture
+			days = @mediumlength
+		}
+	}
+	ai_weight = {
+		weight = 0.5
+	}
+}
+
+## Rite of the Heavens [Advanced Policies]
+# Disabled. Too strong for being so cheap. Also not a toggle.
+AP_rite_of_the_heavens = {
+	owned_planets_only = yes
+	sound = event_celebration
+	icon = decision_medieval_alien_civilization
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_spiritualist = yes
+		#}
+	}
+	allow = {
+		planet = {
+			NOT = {
+				has_modifier = planet_rite_of_the_heavens
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_rite_of_the_heavens
+			days = @mediumlength
+		}
+	}
+	ai_weight = {
+		weight = 0.5
+	}
+}
+
+## Competition of the Minds [Advanced Policies]
+# Disabled. Too strong for being so cheap. Also not a toggle.
+AP_competition_of_the_minds = {
+	owned_planets_only = yes
+	sound = event_celebration
+	icon = decision_alien_propaganda
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_materialist = yes
+		#}
+	}
+	allow = {
+		planet = {
+			NOT = {
+				has_building = building_colony_shelter
+				has_building = building_hab_capital
+			}
+			NOT = {
+				has_modifier = planet_competition_of_the_minds
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_competition_of_the_minds
+			days = @mediumlength
+		}
+	}
+	ai_weight = {
+		weight = 0.5
+	}
+}
+
+### Gestalt Decisions
+
+## Uplink Strengthened [Advanced Policies]
+# Disabled. Too strong for being so cheap. Also not a toggle. Also bugged.
+AP_uplink_strenghtend = {
+	owned_planets_only = yes
+	sound = event_celebration
+	icon = decision_glitchy_matrix
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_gestalt = yes
+		#	has_authority = auth_machine_intelligence
+		#}
+	}
+	allow = {
+		owner = {
+			any_owned_planet = {
+				NOT = {
+					has_modifier = planet_uplink_strengthend
+				}
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_uplink_strengthend
+			days = @mediumlength
+		}
+	}
+	ai_weight = {
+		weight = 0.5
+		modifier = {
+			factor = 0
+			num_pops <= 20
+		}
+		modifier = {
+			factor = 1.5
+			num_pops >= 60
+		}
+	}
+}
+
+## As One [Advanced Policies]
+# Disabled. Too strong for being so cheap. Also not a toggle. Also bugged.
+AP_as_one = {
+	owned_planets_only = yes
+	sound = event_celebration
+	icon = decision_unity_symbol
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_gestalt = yes
+		#	has_authority = auth_hive_mind
+		#}
+	}
+	allow = {
+		owner = {
+			any_owned_planet = {
+				NOT = {
+					has_modifier = planet_as_one
+				}
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_as_one
+			days = @mediumlength
+		}
+	}
+	ai_weight = {
+		weight = 0.5
+		modifier = {
+			factor = 0
+			num_pops <= 20
+		}
+		modifier = {
+			factor = 1.5
+			num_pops >= 60
+		}
+	}
+}
+
+### Policy Decisions
+
+## Planetary Conscription [Advanced Policies]
+# Disabled. Is basically never useful given the rest of the collection, and takes a slot on the menu.
+AP_conscription = {
+	owned_planets_only = yes
+	sound = event_air_raid_siren_02
+	icon = decision_victorious_army
+	resources = {
+		category = decisions
+		cost = {
+			unity = 100
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_regular_empire = yes
+		#	is_ai = no
+		#}
+		#NOT = {
+		#	has_modifier = planet_conscription
+		#}
+	}
+	allow = {
+		OR = {
+			AND = {
+				owner = {
+					has_policy_flag = AP_conscription_war_time
+					is_at_war = yes
+				}
+			}
+			AND = {
+				owner = {
+					has_policy_flag = AP_conscription_mandatory
+				}
+			}
+		}
+		owner = {
+			has_resource = {
+				type = unity
+				amount >= 100
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_conscription
+			days = 5400
+		}
+		custom_tooltip = AP_conscription_effect_desc
+		hidden_effect = {
+			planet_event = {
+				id = AP_PD.1
+			}
+			planet_event = {
+				id = AP_PD.2
+			}
+			planet_event = {
+				id = AP_PD.3
+			}
+			planet_event = {
+				id = AP_PD.4
+			}
+			planet_event = {
+				id = AP_PD.5
+			}
+		}
+	}
+	enactment_time = 60
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## Off-World Migration Push
+# Disabled. Is almost never useful given how pops grow in the collection.
+AP_PD_migration_push = {
+	owned_planets_only = yes
+	icon = decision_expel_population
+	sound = event_administrative_work
+	resources = {
+		category = AP_special_decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_country_type = default
+		#	is_gestalt = no
+		#}
+	}
+	allow = {
+		NOT = {
+			has_modifier = planet_AP_migration_pull
+		}
+		owner = {
+			OR = {
+				has_policy_flag = AP_migration_selective
+				has_policy_flag = AP_migration_encouraged
+				has_policy_flag = AP_migration_xenophile_encouraged
+			}
+			any_owned_planet = {
+				NOT = {
+					has_modifier = planet_AP_migration_push
+				}
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_AP_migration_push
+			days = 1800
+		}
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			factor = 0
+			has_modifier = planet_AP_migration_pull
+		}
+		modifier = {
+			add = 5
+			free_housing <= 5
+		}
+		modifier = {
+			add = 5
+			num_assigned_jobs = {
+				job = unemployed
+				value >= 3
+			}
+		}
+		modifier = {
+			add = 1
+			has_upgraded_capital = yes
+		}
+		modifier = {
+			factor = 0
+			planet = {
+				OR = {
+					has_designation = col_default
+					has_building = building_colony_shelter
+				}
+			}
+		}
+	}
+}
+
+## Off-World Immigration Pull
+# Disabled. Is almost never useful given how pops grow in the collection.
+AP_PD_migration_pull = {
+	owned_planets_only = yes
+	icon = decision_expel_population
+	sound = event_administrative_work
+	resources = {
+		category = AP_special_decisions
+		cost = {
+			unity = 500
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#owner = {
+		#	is_country_type = default
+		#	is_gestalt = no
+		#}
+	}
+	allow = {
+		NOT = {
+			has_modifier = planet_AP_migration_push
+		}
+		owner = {
+			OR = {
+				has_policy_flag = AP_migration_selective
+				has_policy_flag = AP_migration_encouraged
+				has_policy_flag = AP_migration_xenophile_encouraged
+			}
+			any_owned_planet = {
+				NOT = {
+					has_modifier = planet_AP_migration_pull
+				}
+			}
+		}
+	}
+	effect = {
+		add_modifier = {
+			modifier = planet_AP_migration_pull
+			days = 1800
+		}
+	}
+	ai_weight = {
+		weight = 0
+		modifier = {
+			factor = 0
+			has_modifier = planet_AP_migration_push
+		}
+		modifier = {
+			factor = 5
+			free_housing >= 5
+		}
+		modifier = {
+			factor = 5
+			free_jobs >= 3
+		}
+		modifier = {
+			add = 5
+			planet = {
+				OR = {
+					has_designation = col_default
+					has_building = building_colony_shelter
+				}
+			}
+		}
+	}
+}
+
+##################################################
+## Expanded Megastructures and Technology
+##################################################
+
+## Create Life [Expanded Megastructures and Technology]
+# Disabled. Adds a new species and leads to species bloat. Also creates new pops, which is starting to get phased out.
+decision_create_life = {
+	owned_planets_only = yes
+	icon = decision_cybernetics
+	prerequisites = {
+		"tech_new_life"		
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+		}
+	}
+	
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#exists = owner
+		#owner = {
+		#	NOT = { has_country_flag = new_species_project }
+		#	is_homicidal = no
+		#}
+	}
+	
+	effect = {
+		custom_tooltip = create_life_tooltip
+		hidden_effect = {
+			set_planet_flag = new_species_planet
+			owner = {
+				country_event = { id = megatech.20 }
+				if = {
+					limit = { is_ai = yes }
+					set_timed_country_flag = { flag = decision_create_life_timer days = 7200 }
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 1
+			owner = { NOT = { has_country_flag = decision_create_life_timer } }
+			free_housing >= 10
+			free_jobs >= 5
+			free_amenities >= 10
+		}
+	}
+}
+
+##################################################
+## Extra Ship Components NEXT
+##################################################
+
+## Settings Menu [Extra Ship Components NEXT]
 # Disable planetary decision to open the mod menu.
 decision_esc_mod_menu = {
 	owned_planets_only = yes
