@@ -1,0 +1,1058 @@
+##########################################################################
+# Limitless Stellaris - Resolutions
+##########################################################################
+
+##################################################
+## Galactic Market
+##################################################
+
+## Galactic Market - Allow Sentient Slave Trade
+# Merge between EED, MECR, NGS, StarTech, STU
+resolution_galactic_market_allow_sentient_slave_trade = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		custom_tooltip = resolution_galactic_market_allow_sentient_slave_trade_effect_success
+		hidden_effect = {
+			remove_global_flag = sentient_slave_trade_banned_flag
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_progressive days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			every_playable_country = {
+				limit = { 
+					is_galactic_community_member = yes
+					has_origin = origin_broken_shackles 
+				}
+				country_event = { id = origin.5130 }
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		host_has_dlc = "Megacorp"
+		has_global_flag = galactic_market_founded
+		has_global_flag = sentient_slave_trade_banned_flag
+		is_active_resolution = "resolution_galactic_market_ban_sentient_slave_trade"
+	}
+	
+	allow = { # MECR
+		custom_tooltip = {
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_galactic_market_allow_sentient_slave_trade }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_disliked
+
+		modifier = { # EED
+			factor = 0.5
+			has_slave_origin = yes
+			desc = gal_com_opposing_civics
+		}
+
+		modifier = {
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+
+		modifier = {
+			factor = 0.5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+			allows_slavery = no
+		}
+		
+		modifier = { # EED
+			factor = 0
+			NOT = { has_ai_personality_behaviour = slaver }
+			NOT = { has_ai_personality_behaviour = robot_exploiter }
+			OR = {
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_fanatic_xenophile
+			}
+			desc = gal_com_opposing_ethics
+		}
+
+		modifier = {
+			factor = 1.75 # NGS 1.5 -> 1.75
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.5 -> 2
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_ai_personality_behaviour = slaver
+			desc = gal_com_slaver_empire
+			OR = {
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_technology = tech_robotic_workers
+			is_capitalist = yes # wants to sell robots
+			desc = auth_corporate
+		}
+		
+		modifier = { # EED
+			factor = 4
+			has_ai_personality_behaviour = robot_exploiter
+			desc = personality_type_robot_exploiter
+		}
+
+		modifier = { # EED
+			factor = 0.5
+			has_ai_personality_behaviour = robot_liberator
+			desc = personality_type_robot_liberator
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_robot_empire = yes
+			desc = auth_machine_intelligence
+		}
+
+		modifier = { # EED
+			factor = 0.75
+			NOT = { has_ai_personality_behaviour = slaver }
+			desc = gal_com_not_slaver_empire
+		}
+
+		modifier = {
+			factor = 1.25
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_ai_personality_behaviour = slaver
+			desc = gal_com_slaver_empire
+		}
+		
+		modifier = { # EED
+			factor = 5
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 2
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+	}
+}
+
+## Galactic Market - Ban Sentient Organic Slave Trade
+# Merge between EED, MECR, NGS, StarTech, STU
+resolution_galactic_market_ban_sentient_organic_slave_trade = {
+	icon = "GFX_resolution_galactic_market_slave_trade"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+
+	target = no
+
+	effect = {
+		custom_tooltip = resolution_galactic_market_ban_sentient_organic_slave_trade_effect_success
+		hidden_effect = {
+			set_global_flag = organic_slave_trade_banned_flag
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_totalitarian days = 7200 } # EED
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_supremacist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			every_playable_country = {
+				limit = { 
+					is_galactic_community_member = yes
+					has_origin = origin_broken_shackles 
+				}
+				country_event = { id = origin.5115 }
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+		every_playable_country = {
+			limit = { 
+				is_galactic_community_member = yes
+				has_origin = origin_broken_shackles 
+			}
+			country_event = { id = origin.5120 }
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		has_megacorp = yes
+		has_global_flag = galactic_market_founded
+		NOT = {
+			is_active_resolution = "resolution_galactic_market_ban_sentient_organic_slave_trade"
+			has_global_flag = organic_slave_trade_banned_flag
+		}
+	}
+	
+	allow = { # MECR
+		custom_tooltip = {
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_galactic_market_ban_sentient_organic_slave_trade }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_disliked
+
+		modifier = { # EED
+			factor = 3
+			has_slave_origin = yes
+			desc = gal_com_supporting_civics
+		}
+
+		modifier = {
+			factor = 1.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.5 -> 2
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 2
+			NOT = { has_ai_personality_behaviour = slaver }
+			OR = {
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_fanatic_xenophile
+			}
+			desc = gal_com_supporting_ethics
+		}
+
+		modifier = {
+			factor = 0.5
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 0.5
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+			desc = gal_com_opposing_ethics
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ai_personality_behaviour = slaver
+			desc = gal_com_slaver_empire
+			OR = {
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			NOT = { has_ai_personality_behaviour = slaver }
+			desc = gal_com_not_slaver_empire
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			has_ai_personality_behaviour = slaver
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = { # EED
+			factor = 0
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 0
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+	}
+}
+
+## Galactic Market - Ban Sentient Slave Trade
+# Merge between EED, MECR, NGS, StarTech, STU
+resolution_galactic_market_ban_sentient_slave_trade = {
+	icon = "GFX_resolution_galactic_market_slave_trade"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		custom_tooltip = resolution_galactic_market_ban_sentient_slave_trade_effect_success
+		hidden_effect = {
+			set_global_flag = sentient_slave_trade_banned_flag
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_totalitarian days = 7200 } # EED
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_supremacist days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			every_playable_country = {
+				limit = { 
+					is_galactic_community_member = yes
+					has_origin = origin_broken_shackles 
+				}
+				country_event = { id = origin.5125 }
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+		every_playable_country = {
+			limit = { 
+				is_galactic_community_member = yes
+				has_origin = origin_broken_shackles 
+			}
+			country_event = { id = origin.5130 }
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		has_megacorp = yes # EED
+		has_global_flag = galactic_market_founded
+		has_global_flag = organic_slave_trade_banned_flag
+		is_active_resolution = "resolution_galactic_market_ban_sentient_organic_slave_trade"
+	}
+	
+	allow = { # MECR
+		custom_tooltip = {
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_galactic_market_ban_sentient_slave_trade }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_disliked
+
+		modifier = { # EED
+			factor = 1.5
+			has_slave_origin = yes
+			desc = gal_com_supporting_civics
+		}
+
+		modifier = {
+			factor = 1.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.5 -> 2
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 2
+			NOT = { has_ai_personality_behaviour = slaver }
+			OR = {
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_fanatic_xenophile
+			}
+			desc = gal_com_supporting_ethics
+		}
+
+		modifier = {
+			factor = 0.5
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 0.5
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 0
+			OR = {
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+			desc = gal_com_opposing_ethics
+		}
+		
+		modifier = { # EED
+			factor = 0
+			has_ai_personality_behaviour = slaver
+			desc = gal_com_slaver_empire
+			OR = {
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			NOT = { has_ai_personality_behaviour = slaver }
+			desc = gal_com_not_slaver_empire
+		}
+
+		modifier = { # EED
+			factor = 0.75
+			is_spiritualist = yes
+			desc = ethic_spiritualist
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			has_ai_personality_behaviour = slaver
+			desc = gal_com_slaver_empire
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			has_technology = tech_robotic_workers
+			is_capitalist = yes # wants to sell robots
+			desc = auth_corporate
+		}
+
+		modifier = { # EED
+			factor = 0.25
+			has_ai_personality_behaviour = robot_exploiter
+			desc = personality_type_robot_exploiter
+		}
+
+		modifier = { # EED
+			factor = 2
+			has_ai_personality_behaviour = robot_liberator
+			desc = personality_type_robot_liberator
+		}
+		
+		modifier = { # EED
+			factor = 4
+			is_robot_empire = yes
+			desc = auth_machine_intelligence
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 0
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+	}
+}
+
+## Galactic Market - Market Form
+# Merge between EED, MECR, NGS, StarTech, Ariphaos, STU
+resolution_galactic_market_form = {
+	icon = "GFX_resolution_form_galactic_market"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no # therefore, scope = proposing country
+
+	effect = {
+		custom_tooltip = resolution_galactic_market_form_effect_success
+		hidden_effect = {
+			# Start the Forming the Market event chain
+			country_event = { id = action.96 }
+
+			set_global_flag = galactic_community_resolution_passed
+
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	modifier = {
+		country_resource_max_add = 10000
+	}
+
+	potential = {
+		NOR = {
+			has_global_flag = galactic_market_founded
+			has_global_flag = ongoing_market_nomination
+		}
+
+		is_gestalt = no
+		is_homicidal = no
+		count_relation = {
+			limit = {
+				is_playable = yes # STU
+				is_homicidal = no
+			}
+			count >= 3
+		}
+	}
+
+	allow = { # MECR
+		custom_tooltip = {
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_galactic_market_form }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_popular
+
+		modifier = {
+			factor = 5 # EED 2 -> 5
+			is_capitalist = yes # EED megacorp -> capitalist
+			desc = auth_corporate
+		}
+
+		modifier = {
+			factor = 3 # EED 1.25 -> 3
+			OR = {
+				has_ai_personality = peaceful_traders
+				has_ai_personality = ruthless_capitalists
+			}
+			desc = gal_com_trader_ai_personality
+		}
+
+		# wants access to rare resources
+		modifier = { # EED
+			factor = 4
+			AND = {
+				has_monthly_income = { resource = volatile_motes value < 1 }
+				has_monthly_income = { resource = rare_crystals value < 1 }
+				has_monthly_income = { resource = exotic_gases value < 1 }
+			}
+			desc = gal_com_country_wants_rare_resources
+		}
+		modifier = { # EED
+			factor = 2
+			OR = {
+				has_monthly_income = { resource = volatile_motes value < 1 }
+				has_monthly_income = { resource = rare_crystals value < 1 }
+				has_monthly_income = { resource = exotic_gases value < 1 }
+			}
+			desc = gal_com_country_wants_rare_resources
+		}
+
+		modifier = {
+			factor = 0.5
+			has_ai_personality = xenophobic_isolationists
+			desc = personality_xenophobic_isolationists
+		}
+
+		modifier = { # NGS
+			factor = 1.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+		
+		modifier = { # EED
+			factor = 1.25
+			is_materialist = yes
+			desc = ethic_materialist
+		}
+
+		modifier = { # EED
+			factor = 0
+			is_xenophobic_isolationists = yes
+			desc = personality_xenophobic_isolationists
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_shared_burden_empire = yes
+			desc = civic_shared_burden
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_agrarian_empire = { allow_invalid = yes }
+			desc = gal_com_farming_civic
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_slaver_civic = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = { # EED
+			factor = 0.25
+			is_xenophobe = yes
+			is_materialist = no
+			is_capitalist = no
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_xenophobe = yes
+			OR = {
+				is_materialist = yes
+				is_capitalist = yes
+			}
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 0.8
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # Ariphaos
+			factor = 0.1
+			NOT = { has_global_flag = galactic_focus_pass_a_resolution_completed }
+			desc = ariphaos_patch_gal_com_first_resolution
+		}
+
+		modifier = { # Ariphaos
+			factor = 2
+			mid_game_years_passed >= 0
+			desc = gal_com_years_passed
+		}
+
+		modifier = { # Ariphaos
+			factor = 2
+			end_game_years_passed >= 0
+			desc = gal_com_years_passed
+		}
+
+		modifier = {
+			factor = 2
+			years_passed > 50
+			desc = gal_com_years_passed
+		}
+
+		modifier = {
+			factor = 3 # NGS 2 -> 3
+			years_passed > 100
+			desc = gal_com_years_passed
+		}
+
+		modifier = {
+			factor = 4 # NGS 2 -> 4
+			years_passed > 150
+			desc = gal_com_years_passed
+		}
+	}
+}
+
+## Galactic Market - Relocate
+# Merge between EED, MECR, NGS, StarTech, Ariphaos
+resolution_galactic_market_relocate = {
+	icon = "GFX_resolution_relocate_galactic_market"
+
+	resources = {
+		category = resolutions
+		cost = {
+			trigger = { NOT = { is_active_resolution = "resolution_emperor_imperial_ministry_of_defence" } } # MECR
+			influence = @resolution_cost_t1
+		}
+	}
+	target = no
+
+	allow = {
+		custom_tooltip = { # MECR
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_galactic_market_relocate }
+		}
+		custom_tooltip = {
+			fail_text = "resolution_galactic_market_relocate_trigger_fail"
+			NOT = {
+				has_global_flag = "resolution_galactic_market_relocated_recently"
+			}
+		}
+	}
+
+	effect = {
+		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
+		custom_tooltip = resolution_galactic_market_relocate_effect_success
+		hidden_effect = {
+			country_event = { id = galcom.64 }
+
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+
+			set_timed_global_flag = { flag = resolution_galactic_market_relocated_recently days = 18000 }
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = { add_modifier = { modifier = resolution_failed_diplomatic_weight days = 2200 } } # EED
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		has_megacorp = yes # EED
+		has_global_flag = galactic_market_founded
+		NOT = {
+			has_global_flag = ongoing_market_relocation_nomination
+		}
+		NOT = { has_modifier = galactic_market_founder }
+		is_gestalt = no
+		is_homicidal = no
+	}
+
+	ai_weight = {
+		base = @resolution_weight_disliked
+
+		modifier = {
+			factor = 0
+			has_modifier = galactic_market_founder
+			desc = gal_com_is_galactic_market_founder
+		}
+
+		modifier = {
+			factor = 0
+			any_federation_ally = {
+				has_modifier = galactic_market_founder
+			}
+			desc = gal_com_federation_ally_is_galactic_market_founder
+		}
+
+		modifier = {
+			factor = 0.5
+			is_gestalt = no
+			has_resource = { type = influence amount < 400 }
+			desc = gal_com_low_influence
+		}
+
+		modifier = {
+			factor = 1.5
+			is_gestalt = no
+			has_resource = { type = influence amount > 700 }
+			desc = gal_com_high_influence
+		}
+
+		modifier = {
+			factor = 2
+			is_megacorp = yes # Merged
+			NOT = { has_modifier = galactic_market_founder }
+			desc = gal_com_is_not_galactic_market_founder
+		}
+
+		modifier = {
+			factor = 1.25
+			OR = {
+				has_ai_personality = peaceful_traders
+				has_ai_personality = ruthless_capitalists
+			}
+			NOT = { has_modifier = galactic_market_founder }
+			desc = gal_com_trader_ai_personality
+		}
+		modifier = { # EED
+			factor = 1.5
+			has_ai_personality = ruthless_capitalists
+			NOT = { has_modifier = galactic_market_founder }
+			desc = gal_com_trader_ai_personality
+		}
+		
+		modifier = { # EED
+			factor = 0.5
+			is_gestalt = yes
+			desc = ethic_gestalt_consciousness
+		}
+		
+		modifier = { # MECR
+			factor = 0.1
+			NOR = {
+				is_voting_on_resolution = resolution_galactic_market_relocate
+				any_country = { is_proposing_resolution = resolution_galactic_market_relocate }
+			}
+			desc = gal_com_meaningless_resolution
+		}
+		modifier = { # MECR
+			factor = 0.5
+			NOT = { is_voting_on_resolution = resolution_galactic_market_relocate }
+			desc = gal_com_meaningless_resolution
+		}
+	}
+}
+
+## Galactic Market - Repeal Sentient Organic Slave Trade
+# Merge between EED, MECR, NGS, StarTech, STU
+resolution_galactic_market_repeal_sentient_organic_slave_trade = {
+	icon = "GFX_repeal_orange"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_denounce
+		}
+	}
+
+	target = no
+
+	modifier = {
+	}
+
+	effect = {
+		custom_tooltip = resolution_galactic_market_repeal_sentient_organic_slave_trade_effect_success
+		hidden_effect = {
+			remove_global_flag = organic_slave_trade_banned_flag
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_general days = @resolution_flag_timer }
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_progressive days = 7200 } # EED
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+			every_playable_country = {
+				limit = { 
+					is_galactic_community_member = yes
+					has_origin = origin_broken_shackles 
+				}
+				country_event = { id = origin.5131 }
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_general days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_federations_dlc = yes
+		has_megacorp = yes # EED
+		has_global_flag = galactic_market_founded
+		has_global_flag = organic_slave_trade_banned_flag
+		is_active_resolution = "resolution_galactic_market_ban_sentient_organic_slave_trade"
+	}
+	
+	allow = { # MECR
+		custom_tooltip = {
+			fail_text = "resolution_already_in_lower_house_session"
+			NOT = { has_global_flag = lh_recent_resolution_galactic_market_repeal_sentient_organic_slave_trade }
+		}
+	}
+
+	ai_weight = {
+		base = @resolution_weight_disliked
+
+		modifier = { # EED
+			factor = 0
+			has_slave_origin = yes
+			desc = gal_com_opposing_civics
+		}
+
+		modifier = {
+			factor = 0.5
+			is_xenophile = yes
+			desc = ethic_xenophile
+		}
+
+		modifier = {
+			factor = 0.5
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+		}
+		
+		modifier = { # EED
+			factor = 0
+			is_egalitarian = yes
+			desc = ethic_egalitarian
+			allows_slavery = no
+		}
+		
+		modifier = { # EED
+			factor = 0
+			NOT = { has_ai_personality_behaviour = slaver }
+			OR = {
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_fanatic_xenophile
+			}
+			desc = gal_com_opposing_ethics
+		}
+
+		modifier = {
+			factor = 1.75 # NGS 1.5 -> 1.75
+			is_xenophobe = yes
+			desc = ethic_xenophobe
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			has_ethic = ethic_fanatic_xenophobe
+			desc = ethic_xenophobe
+		}
+
+		modifier = {
+			factor = 2 # NGS 1.5 -> 2
+			is_authoritarian = yes
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 1.5
+			has_ethic = ethic_fanatic_authoritarian
+			desc = ethic_authoritarian
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_ai_personality_behaviour = slaver
+			desc = gal_com_slaver_empire
+			OR = {
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		
+		modifier = { # EED
+			factor = 0.75
+			NOT = { has_ai_personality_behaviour = slaver }
+			desc = gal_com_not_slaver_empire
+		}
+		
+		modifier = { # EED
+			factor = 2
+			has_ai_personality_behaviour = slaver
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = { # EED
+			factor = 5
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+
+		modifier = {
+			factor = 2
+			is_slaver = yes
+			desc = gal_com_slaver_empire
+		}
+	}
+}
