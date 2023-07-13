@@ -65,6 +65,40 @@ ap_advanced_city_planning = {
 	}
 }
 
+## Galactic Ascendency [Omega's Stellaris Additions]
+# Reduced empire size reduction multiplier.
+ap_galactic_ascendency = {
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_galactic_ascendency
+		}
+	}
+	
+	modifier = {
+		empire_size_mult = -0.05 # LS -0.20 -> -0.05
+		empire_size_penalty_mult = -0.25
+	}
+
+	on_enabled = {
+		add_modifier = {
+			modifier = "mod_osa_influence_sprawl"
+			days = -1
+			multiplier = owner.trigger:empire_size
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_10"
+			num_ascension_perks > 9
+		}
+	}
+
+	ai_weight = {
+		factor = 100
+	}
+}
+
 ##################################################
 ## Unique Ascension Perks
 ##################################################
@@ -106,4 +140,36 @@ ap_economic_prospertity = {
 		factor = event_target:global_event_country.ap_economic_prospertity
 		modifier = { factor = 5 is_megacorp = yes }
 	}
+}
+
+ap_expansionist_development = {
+	possible = {
+		custom_tooltip = { fail_text = "ap_expansionist_development_req_1" tradition_expansion_finish = yes }
+		# custom_tooltip = { fail_text = "ap_expansionist_development_req_2" has_technology = tech_automated_exploration }
+	}
+	modifier = {
+		country_starbase_influence_cost_mult = -0.1		# -0.15
+		# country_admin_cap_add = 100 		# Removed 3.3
+		# empire_size_penalty_mult = -0.25 	# Removed 3.3
+		# Added 3.3
+		empire_size_systems_mult = -0.1		# -0.15
+		empire_size_colonies_mult = -0.1		# -0.15
+		#empire_size_pops_mult = -0.1		# -0.15
+	}
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = UniqueAscensionPerksEvents.530 }
+		}
+		custom_tooltip = "ap_expansionist_development_tooltip"
+	}
+	potential = {
+		NOT = { has_ascension_perk = ap_expansionist_development }
+		OR = {
+			is_ai = no
+			event_target:global_event_country = {
+				check_variable = { which = ap_expansionist_development value > 0 }
+			}
+		}		# because ai_weight doesn't work
+	}
+	ai_weight = { factor = event_target:global_event_country.ap_expansionist_development }
 }

@@ -2,6 +2,10 @@
 # Limitless Stellaris - Static Modifiers
 ##########################################################################
 
+##################################################
+## Expanded Stellaris Ascension Perks
+##################################################
+
 ## Imperial Prerogative Modifier Stack [Expanded Stellaris Ascension Perks]
 mod_esap_gov_3_1 = {
 	empire_size_colonies_mult = -0.15 # LS -0.55 -> -0.15
@@ -35,12 +39,19 @@ mod_esap_gov_GC_3_5 = {
 	empire_size_colonies_mult = -0.35 # LS -0.75 -> -0.35
 }
 
+##################################################
+## Real Space: Ships in Scaling
+##################################################
 
 ## Cruising Speed [Real Space: Ships in Scaling]
 # Change from 600% speed to 400% speed.
 speed_change_x6 = {
 	ship_speed_mult = 4 # LS 6 -> 4 [Balance]
 }
+
+##################################################
+## Storage Districts and Solutions
+##################################################
 
 ###-----RINGWORLD STORAGE DISTRICTS-----### [Storage Districts and Solutions]
 #-----INITIAL-----#
