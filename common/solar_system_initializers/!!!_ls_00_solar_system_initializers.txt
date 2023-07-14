@@ -21,6 +21,587 @@
 @dm_hab_size_lvl3 = 11
 
 ##################################################
+## Triple Planet Systems
+##################################################
+
+## Tragula's Cross - Triple Planet 1
+# Disable system - too many planets, nothing special.
+unique_system_initializer_07 = {
+	name = "NAME_Unique_System_7"
+
+	class = sc_k
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = 0 # LS - Disable spawning
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_physics_4
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 65
+	}
+
+	change_orbit = @distance
+
+	planet = {
+		count = 2
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_1
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		class = pc_molten
+		orbit_angle = { min = 90 max = 270 }
+		size = 22
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_volatile_motes_1
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		size = 20
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_3
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren_cold"
+			count = 1
+			size = { min = 8 max = 20 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_frozen"
+			count = 1
+			size = { min = 8 max = 20 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				clear_deposits = yes
+				prevent_anomaly = yes
+				add_deposit = d_minerals_2
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_arid
+		orbit_angle = { min = 90 max = 270 }
+		size = 16
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_nuked
+		orbit_angle = { min = 90 max = 270 }
+		size = 19
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren_cold"
+			count = 1
+			size = 6
+			orbit_angle = { min = 90 max = 270 }
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_minerals_1
+			}
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren_cold"
+			count = 1
+			size = 7
+			orbit_angle = { min = 90 max = 270 }
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_minerals_2
+			}
+		}
+	}
+
+	change_orbit = 65
+
+	planet = {
+		count = 1
+		class = pc_savannah
+		orbit_angle = { min = 90 max = 270 }
+		size = 12
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_frozen
+		orbit_angle = { min = 90 max = 270 }
+		size = 20
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+		}
+	}
+}
+
+## Trin's Promise - Triple Planet 2
+# Disable system - too many planets, nothing special.
+unique_system_initializer_08 = {
+	name = "NAME_Unique_System_8"
+
+	class = sc_m_giant
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = 0 # LS - Disable spawning
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_physics_3
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 135
+	}
+
+	change_orbit = 25
+
+	planet = {
+		count = 3
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		size = 18
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_5
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren_cold"
+			count = 1
+			size = 10
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		size = 14
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_3
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_frozen"
+			count = 1
+			size = 10
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_rare_crystals_1
+			}
+		}
+	}
+
+	change_orbit = 55
+
+	planet = {
+		count = 1
+		class = pc_continental
+		orbit_angle = { min = 90 max = 270 }
+		size = 22
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = 1
+		class = pc_nuked
+		orbit_angle = { min = 90 max = 270 }
+		size = 14
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_tropical
+		orbit_angle = { min = 90 max = 270 }
+		size = 18
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_frozen"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 2
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+		}
+	}
+}
+
+## Loh - Triple Planet 3
+# Disable system - too many planets, nothing special.
+unique_system_initializer_09 = {
+	name = "NAME_Unique_System_9"
+
+	class = sc_a
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = 0 # LS - Disable spawning
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_physics_3
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 35
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 55
+	}
+
+	change_orbit = 55
+
+	planet = {
+		count = 3
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+		}
+	}
+
+	change_orbit = 55
+
+	planet = {
+		count = 1
+		class = pc_arctic
+		orbit_angle = { min = 90 max = 270 }
+		size = 16
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_toxic
+		orbit_angle = { min = 90 max = 270 }
+		size = 25
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_exotic_gases_1
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_nuked
+		orbit_angle = { min = 90 max = 270 }
+		size = 17
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_alpine
+		orbit_angle = { min = 90 max = 270 }
+		size = 21
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_frozen"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+}
+
+##################################################
 ## Megastructure Systems
 ##################################################
 
@@ -825,6 +1406,272 @@ ai_system_1 = {
 
 			init_effect = { prevent_anomaly = yes }
 		}
+	}
+}
+
+## Junkheap Ratling Home System
+# Adjust neighbors to be allowed to spawn 3 hyperlanes away instead, preventing it from putting too many tomb worlds too close.
+ratling_1_1 = {
+	class = "sc_pulsar"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 130
+	}
+
+	usage = misc_system_init
+	usage_odds = {
+		base = 90000
+		modifier = {
+			factor = 0
+			has_distar = no
+		}
+		modifier = {
+			factor = 0
+			any_playable_country = {
+				is_ai = no
+				species_portrait = mam_rat
+			}
+		}
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+	#scaled_spawn_chance = 8
+	max_instances = 1
+
+	flags = { ruined_empire ratling_home_system ratling_system }
+
+	planet = {
+		class = star
+		size = { min = @standard_min max = @standard_max }
+		orbit_distance = 0
+		init_effect = {
+			set_deposit = d_engineering_4
+			create_ambient_object = {
+				type = "abandoned_starbase_01_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 15
+					angle = random
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 15
+					angle = random
+				}
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 60
+					angle = random
+				}
+			}
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		class = "rl_unhabitable_planets"
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 10 max = 16 }
+		init_effect = {
+			prevent_anomaly = yes
+			create_ambient_object = {
+				type = "small_debris_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+	}
+	
+	planet = {
+		count = 1
+		class = "rl_unhabitable_planets"
+		orbit_distance = 25
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 10 max = 16 }
+		init_effect = {
+			prevent_anomaly = yes
+			create_ambient_object = {
+				type = "small_debris_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+	}
+	
+	planet = {
+		count = 1
+		class = "rl_unhabitable_planets"
+		orbit_distance = 30
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 10 max = 16 }
+		init_effect = {
+			prevent_anomaly = yes
+			create_ambient_object = {
+				type = "small_debris_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+	}
+
+	planet = {
+		name = "NAME_Ruinous_Core"
+		count = 1
+		class = "pc_nuked"
+		orbit_distance = 40
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 18 max = 24 }
+
+		init_effect = {
+			prevent_anomaly = yes
+			set_planet_flag = ratling_planet
+			set_planet_flag = ruinous_core_planet
+			set_planet_entity = {
+				picture = pc_junkheap
+			}
+			while = {
+				count = 3
+				random_deposit = {
+					limit = { #none
+					}
+					remove_deposit = yes
+				}
+			}
+			add_deposit = d_junk_wastes
+			add_deposit = d_junk_canals
+			add_deposit = d_junk_hollows
+			save_global_event_target_as = ratling_capital
+			create_ambient_object = {
+				type = "abandoned_starbase_01_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = random
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = random
+				}
+			}
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			name = "NAME_Lost_Encampment"
+			count = 1
+			class = "pc_nuked"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = { min = 11 max = 16 }
+			init_effect = {
+				prevent_anomaly = yes
+				set_planet_flag = ratling_planet
+				set_planet_flag = lost_encampment_planet
+				create_ambient_object = {
+					type = "large_debris_object"
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 5
+						angle = random
+					}
+				}
+				set_planet_entity = {
+					picture = pc_junkheap
+				}
+				while = {
+					count = 3
+					random_deposit = {
+						limit = { #none
+						}
+						remove_deposit = yes
+					}
+				}
+				add_deposit = d_junk_wastes
+				add_deposit = d_junk_canals
+				add_deposit = d_junk_hollows
+				save_global_event_target_as = ratling_planet_2_tar
+			}
+		}
+	}
+
+	change_orbit = 20
+
+	planet = {
+		count = 1
+		class = "pc_gas_giant"
+		orbit_distance = 30
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 10 max = 30 }
+		has_ring = yes
+		init_effect = {
+			prevent_anomaly = yes
+			create_ambient_object = {
+				type = "large_debris_object"
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = random
+				}
+			}
+		}
+	}
+
+	neighbor_system = {
+		distance = { min = 3 max = 50 } # LS min 0 -> 3
+		initializer = "ratling_1_2"
+	}
+	neighbor_system = {
+		distance = { min = 3 max = 50 } # LS min 0 -> 3
+		initializer = "ratling_1_3"
 	}
 }
 
