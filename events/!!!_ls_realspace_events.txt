@@ -3,7 +3,7 @@
 ##########################################################################
 namespace = realspace
 
-event = {
+country_event = {
 	id = realspace.204
 	hide_window = yes
 	is_triggered_only = yes

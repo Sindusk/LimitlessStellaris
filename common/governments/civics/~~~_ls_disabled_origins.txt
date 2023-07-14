@@ -182,6 +182,226 @@ origin_playable_oe_singular = {
 }
 
 ##################################################
+## Empires Expanded
+##################################################
+
+## Born of Knowledge [Empires Expanded]
+# Disabled. Has many bugs and the effects of the origin are extremely lackluster.
+# The new worlds it adds uses copies of vanilla districts which make them strictly worse and poor for mod compatibility.
+origin_born_of_knowledge = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_born_of_knowledge.dds"
+	picture = GFX_origin_born_of_knowledge
+	
+	max_once_global = yes
+
+	potential = {
+		always = no # Disabled through potential
+	}
+
+	possible = {
+		always = no # Disabled through potential
+	}
+	
+	initializers = { bok_start_system }
+	modifier = {	
+		colony_start_num_pops_add = 2
+		planet_researchers_produces_mult = 0.20 #calculator
+		planet_jobs_upkeep_mult = 0.10
+		#planet_pop_assembly_mult = -0.05
+	}
+
+	description = "origin_tooltip_born_of_knowledge_effects"
+	flags = { custom_start_screen }
+
+	random_weight = {
+		base = 0
+	}
+}
+
+##################################################
+## Extra Origins
+##################################################
+
+## Next Generation [Extra Origins]
+# Disabled. Boring.
+origin_next_generation = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_next_generation.dds"
+	picture = GFX_origin_next_generation
+
+	potential = {
+		always = no # Disabled through potential
+	}
+
+	possible = {
+		always = no # Disabled through potential
+	}
+
+	description = "origin_tooltip_next_generation_effects"
+
+	modifier = {
+		category_biology_research_speed_mult = 0.2
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 10
+	}
+}
+
+##################################################
+## Gigastructural Engineering
+##################################################
+
+## Birch World (Gigastructural Engineering)
+# Interferes with the Aeternum owning the galactic center.
+origin_birch = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_birch_world.dds"
+	picture = GFX_origin_birch
+	description = "origin_birch_effects"
+	starting_colony = pc_origin_dummy_birch
+	habitability_preference = pc_birch
+	preferred_planet_class_neighbor = no
+	max_once_global = yes
+	flags = { custom_start_screen }
+	initializers = { giga_birch_start }
+
+	potential = {
+		always = no
+	}
+	possible = {
+	 	always = no
+	}
+
+	random_weight = {
+		base = 0
+	}
+}
+
+##################################################
+## Legendary Worlds
+##################################################
+
+## Legendary Neighbor (Legendary Worlds)
+# Disabled. Adds a nonsensical trait to the species.
+origin_legw_next = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_legw_next.dds"
+	picture = GFX_origin_next
+	
+	max_once_global = yes
+
+	# starting_colony = pc_ocean
+	# habitability_preference = pc_ocean
+	initializers = { legw_next_start }
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+		ethics = {
+			NOT = { value = ethic_gestalt_consciousness }
+		}
+	}
+
+	description = origin_legw_next_effects
+
+	traits = {
+		trait = trait_legw_empire
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+## Legendary Neighbors (Legendary Worlds)
+# Disabled. Adds a nonsensical trait to the species.
+origin_legw_lucky = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_legw_lucky.dds"
+	picture = GFX_origin_lucky
+	max_once_global = yes
+
+	# starting_colony = pc_ocean
+	# habitability_preference = pc_ocean
+	initializers = { legw_lucky_start }
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+		ethics = {
+			NOT = { value = ethic_gestalt_consciousness }
+		}
+	}
+
+	description = origin_legw_lucky_effects
+
+	traits = {
+		trait = trait_legw_points
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
+##################################################
+## Reworked Advanced Ascension
+##################################################
+
+## Outstanding Insights (Reworked Advanced Ascension)
+# Disabled. Bloat and bad translation.
+AAR_origin_ascended = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/AAR_origin_ascended.dds"
+	picture = GFX_AAR_origin_ascended
+	description = AAR_tips_origin_ascended
+
+	max_once_global = yes
+	advanced_start = yes
+	#flags = { custom_start_screen first_contact_event Story7}
+	
+	playable = {
+		always = no
+	}
+	potential = {
+		always = no
+	}
+	possible = {
+	}
+	
+	#starting_colony = pc_gaia
+	#initializers = { shattered_ring_start }
+	#habitability_preference = pc_gaia
+	#preferred_planet_class_neighbor = no
+
+	#has_secondary_species = {
+	#	title = civic_syncretic_evolution_secondary_species
+	#	traits = {
+	#		trait = trait_syncretic_proles
+	#	}
+	#}
+	#traits = {
+	#	trait = trait_survivor
+	#}
+
+	random_weight = {
+		base = 5
+	}
+}
+
+##################################################
 ## Zer0's Infinity Stones Origins
 ##################################################
 
@@ -315,208 +535,4 @@ origin_space_stone = {
 	}
 	description = "origin_tooltip_space_stone_effects"
 
-}
-
-##################################################
-## Miscellaneous Origins
-##################################################
-
-## Born of Knowledge [Empires Expanded]
-# Disabled. Has many bugs and the effects of the origin are extremely lackluster.
-# The new worlds it adds uses copies of vanilla districts which make them strictly worse and poor for mod compatibility.
-origin_born_of_knowledge = {
-	is_origin = yes
-	icon = "gfx/interface/icons/origins/origin_born_of_knowledge.dds"
-	picture = GFX_origin_born_of_knowledge
-	
-	max_once_global = yes
-
-	potential = {
-		always = no # Disabled through potential
-	}
-
-	possible = {
-		always = no # Disabled through potential
-	}
-	
-	initializers = { bok_start_system }
-	modifier = {	
-		colony_start_num_pops_add = 2
-		planet_researchers_produces_mult = 0.20 #calculator
-		planet_jobs_upkeep_mult = 0.10
-		#planet_pop_assembly_mult = -0.05
-	}
-
-	description = "origin_tooltip_born_of_knowledge_effects"
-	flags = { custom_start_screen }
-
-	random_weight = {
-		base = 0
-	}
-}
-
-## Next Generation (Extra Origins)
-# Disabled. Boring.
-origin_next_generation = {
-	is_origin = yes
-	icon = "gfx/interface/icons/origins/origin_next_generation.dds"
-	picture = GFX_origin_next_generation
-
-	potential = {
-		always = no # Disabled through potential
-	}
-
-	possible = {
-		always = no # Disabled through potential
-	}
-
-	description = "origin_tooltip_next_generation_effects"
-
-	modifier = {
-		category_biology_research_speed_mult = 0.2
-	}
-
-	advanced_start = yes
-
-	random_weight = {
-		base = 10
-	}
-}
-
-## Birch World (Gigastructural Engineering)
-# Interferes with the Aeternum owning the galactic center.
-origin_birch = {
-	is_origin = yes
-	icon = "gfx/interface/icons/origins/origins_birch_world.dds"
-	picture = GFX_origin_birch
-	description = "origin_birch_effects"
-	starting_colony = pc_origin_dummy_birch
-	habitability_preference = pc_birch
-	preferred_planet_class_neighbor = no
-	max_once_global = yes
-	flags = { custom_start_screen }
-	initializers = { giga_birch_start }
-
-	potential = {
-		always = no
-	}
-	possible = {
-	 	always = no
-	}
-
-	random_weight = {
-		base = 0
-	}
-}
-
-## Legendary Neighbor (Legendary Worlds)
-# Disabled. Adds a nonsensical trait to the species.
-origin_legw_next = {
-	is_origin = yes
-	icon = "gfx/interface/icons/origins/origins_legw_next.dds"
-	picture = GFX_origin_next
-	
-	max_once_global = yes
-
-	# starting_colony = pc_ocean
-	# habitability_preference = pc_ocean
-	initializers = { legw_next_start }
-
-	potential = {
-		always = no
-	}
-
-	possible = {
-		ethics = {
-			NOT = { value = ethic_gestalt_consciousness }
-		}
-	}
-
-	description = origin_legw_next_effects
-
-	traits = {
-		trait = trait_legw_empire
-	}
-
-	advanced_start = yes
-
-	random_weight = {
-		base = 0
-	}
-}
-
-## Legendary Neighbors (Legendary Worlds)
-# Disabled. Adds a nonsensical trait to the species.
-origin_legw_lucky = {
-	is_origin = yes
-	icon = "gfx/interface/icons/origins/origins_legw_lucky.dds"
-	picture = GFX_origin_lucky
-	max_once_global = yes
-
-	# starting_colony = pc_ocean
-	# habitability_preference = pc_ocean
-	initializers = { legw_lucky_start }
-
-	potential = {
-		always = no
-	}
-
-	possible = {
-		ethics = {
-			NOT = { value = ethic_gestalt_consciousness }
-		}
-	}
-
-	description = origin_legw_lucky_effects
-
-	traits = {
-		trait = trait_legw_points
-	}
-
-	advanced_start = yes
-
-	random_weight = {
-		base = 0
-	}
-}
-
-## Outstanding Insights (Reworked Advanced Ascension)
-# Disabled. Bloat and bad translation.
-AAR_origin_ascended = {
-	is_origin = yes
-	icon = "gfx/interface/icons/origins/AAR_origin_ascended.dds"
-	picture = GFX_AAR_origin_ascended
-	description = AAR_tips_origin_ascended
-
-	max_once_global = yes
-	advanced_start = yes
-	#flags = { custom_start_screen first_contact_event Story7}
-	
-	playable = {
-		always = no
-	}
-	potential = {
-		always = no
-	}
-	possible = {
-	}
-	
-	#starting_colony = pc_gaia
-	#initializers = { shattered_ring_start }
-	#habitability_preference = pc_gaia
-	#preferred_planet_class_neighbor = no
-
-	#has_secondary_species = {
-	#	title = civic_syncretic_evolution_secondary_species
-	#	traits = {
-	#		trait = trait_syncretic_proles
-	#	}
-	#}
-	#traits = {
-	#	trait = trait_survivor
-	#}
-
-	random_weight = {
-		base = 5
-	}
 }
