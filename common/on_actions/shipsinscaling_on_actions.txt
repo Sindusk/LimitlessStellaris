@@ -1,0 +1,71 @@
+on_game_start = {
+	events = {
+		shipsinscaling.1
+		shipsinscaling.2
+	}
+}
+
+# After closing RS menu
+on_applying_rs_settings = {
+	events = {
+		shipsinscaling.11
+	}
+}
+
+# LS - This misses when a ship is created.
+#on_ship_upgraded = {
+#    events = {
+#        shipsinscaling.7
+#    }
+#}
+
+on_yearly_pulse = {
+	events = {
+	}
+}
+
+on_ship_enabled = {
+	events = {
+		shipsinscaling.7 # LS - This is what we're using
+		#shipsinscaling.2 # LS - Not using dynamic thrusters
+		#shipsinscaling.10 # LS - Not using longer battles
+	}
+}
+
+on_ship_built = {
+	events = {
+		shipsinscaling.7 # LS - This is what we're using
+		#shipsinscaling.2 # LS - Not using dynamic thrusters
+		#shipsinscaling.10 # LS - Not using longer battles
+	}
+}
+
+# This = owner of fleet 1
+# From = owner of fleet 2
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_entering_battle = {
+	events = {
+		shipsinscaling.8
+	}
+}
+
+# This = owner of fleet 1 (winner)
+# From = owner of fleet 2 (loser)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_space_battle_won = {
+	events = {
+		shipsinscaling.9
+	}
+}
+
+# This = owner of fleet 1 (loser)
+# From = owner of fleet 2 (winner)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_space_battle_lost = {
+	events = {
+		shipsinscaling.9
+	}
+}
