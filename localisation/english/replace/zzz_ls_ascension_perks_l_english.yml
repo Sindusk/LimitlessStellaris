@@ -7,3 +7,6 @@ l_english:
   ap_esap_gov_3: "$ap_imperial_prerogative$"
   ap_esap_gov_3_desc: "$ap_imperial_prerogative_desc$"
   ap_esap_gov_3_tooltip: "§YGovernment Perk§!. Reduce §YEmpire Size from Colonies§! by §G-10%§!. Further decreases §YEmpire Size from Colonies§! by §G-5%§! for each §YGovernment Perk§! unlocked (including this one)."
+  ap_esap_gov_3_corp: "Colonial Enterprises"
+  ap_esap_gov_3_corp_desc: "Expanding our assets to other planets within our galactic sectors shall guarantee our ever increasing supply demands."
+  ap_esap_gov_3_corp_tooltip: "§YGovernment Perk§!. Reduce §YEmpire Size from Colonies§! by §G-10%§!. Further decreases §YEmpire Size from Colonies§! by §G-5%§! for each §YGovernment Perk§! unlocked (including this one)."
