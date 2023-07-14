@@ -25,7 +25,7 @@ triggered_planet_modifier = {
 }
 
 ## Triggered Descriptions
-# Worker Educator - Might need localization
+# Worker Educator
 triggered_desc = {
 	trigger = {
 		exists = owner
@@ -33,7 +33,7 @@ triggered_desc = {
 	}
 	text = job_worker_educator_effect_desc
 }
-# Specialist Educator - Might need localization
+# Specialist Educator
 triggered_desc = {
 	trigger = {
 		exists = owner
@@ -41,7 +41,7 @@ triggered_desc = {
 	}
 	text = job_specialist_educator_effect_desc
 }
-# Ruler Educator - Might need localization
+# Ruler Educator
 triggered_desc = {
 	trigger = {
 		exists = owner

@@ -6,7 +6,67 @@
 @ap_genetic_finisher_POINTS = 2
 
 ##################################################
-## Vanilla
+## Adaptability [Vanilla]
+##################################################
+
+## Adaptability - Adopt
+tr_adaptability_adopt = {
+	unlocks_agenda = agenda_conquer_nature
+	modifier = {
+		#pop_housing_usage_mult = -0.10 # LS - Remove [Balance]
+		planet_housing_mult = 0.15 # LS [Balance]
+	}
+}
+
+##################################################
+## Aptitude [Vanilla]
+##################################################
+
+## Aptitude - Healthcare Program
+tr_aptitude_healthcare_program = {
+	possible = { has_tradition = tr_aptitude_the_empire_needs_you }
+	modifier = {
+		leader_age = 20
+		leader_admirals_unity_produces_add = 5
+		leader_generals_unity_produces_add = 5
+		leader_governors_unity_produces_add = 5
+		leader_scientists_unity_produces_add = 5
+	}
+	ai_weight = { factor = 1000 }
+
+	inline_script = {
+		script = paragon/tradition_swap_desc_hive
+		tradition = tr_aptitude_healthcare_program
+	}
+
+	# MACHINE Text and Modifier swap.
+	tradition_swap = {
+		trigger = { is_machine_empire = yes }
+		name = tr_aptitude_healthcare_program_machine
+		inherit_icon = yes
+		modifier = {
+			leaders_upkeep_mult = -0.25
+			leader_admirals_unity_produces_add = 5
+			leader_generals_unity_produces_add = 5
+			leader_governors_unity_produces_add = 5
+			leader_scientists_unity_produces_add = 5
+		}
+		weight = { factor = 1 }
+	}
+}
+
+## Aptitude - Finisher
+# Modified
+tr_aptitude_finish = {
+	modifier = {
+		country_leader_cap_add = 2 # LS 4 -> 2
+		leader_trait_selection_options_add = 1
+		ascension_perks_add = 1
+	}
+}
+
+##################################################
+## Cybernetics [Vanilla]
 ##################################################
 
 ## Cybernetics - Adopt
@@ -100,74 +160,6 @@ tr_cybernetics_assembly_standards = {
 		}
 		modifier = {
 			planet_jobs_unity_produces_mult = 0.25 # OSA
-		}
-	}
-}
-
-## Cybernetics Assimilator - Modular Cybernetics
-# OSA version
-tr_cybernetics_assimilator_modular_cybernetics = {
-	possible = {
-		has_tradition = tr_cybernetics_assimilator_integrated_anatomy
-	}
-	custom_tooltip_with_modifiers = tr_cybernetics_assimilator_modular_cybernetics_tt
-	modifier = {
-		modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
-		planet_jobs_engineering_research_produces_mult = 0.10 # OSA
-	}
-
-	tradition_swap = {
-		name = tr_cybernetics_modular_cybernetics_1
-		inherit_name = yes
-		inherit_icon = yes
-		trigger = {
-			has_technology = tech_robomodding_m
-		}
-		custom_tooltip = tr_cybernetics_assimilator_modular_cybernetics_tt_2
-		modifier = {
-			BIOLOGICAL_species_trait_points_add = 1
-			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
-			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
-		}
-		weight = {
-			factor = 1
-		}
-	}
-	tradition_swap = {
-		name = tr_cybernetics_modular_cybernetics_2
-		inherit_name = yes
-		inherit_icon = yes
-		trigger = {
-			has_technology = tech_robomodding_m
-			has_technology = tech_binary_motivators
-		}
-		custom_tooltip = tr_cybernetics_assimilator_modular_cybernetics_tt_2
-		modifier = {
-			BIOLOGICAL_species_trait_points_add = 2
-			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
-			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
-		}
-		weight = {
-			factor = 2
-		}
-	}
-	tradition_swap = {
-		name = tr_cybernetics_modular_cybernetics_3
-		inherit_name = yes
-		inherit_icon = yes
-		trigger = {
-			has_technology = tech_robomodding_m
-			has_technology = tech_binary_motivators
-			has_technology = tech_nanite_assemblers
-		}
-		custom_tooltip = tr_cybernetics_assimilator_modular_cybernetics_tt_2
-		modifier = {
-			BIOLOGICAL_species_trait_points_add = 3
-			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
-			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
-		}
-		weight = {
-			factor = 3
 		}
 	}
 }
@@ -333,6 +325,82 @@ tr_cybernetics_modular_cybernetics = {
 		}
 	}
 }
+
+##################################################
+## Cybernetics Assimilator [Vanilla]
+##################################################
+
+## Cybernetics Assimilator - Modular Cybernetics
+# OSA version
+tr_cybernetics_assimilator_modular_cybernetics = {
+	possible = {
+		has_tradition = tr_cybernetics_assimilator_integrated_anatomy
+	}
+	custom_tooltip_with_modifiers = tr_cybernetics_assimilator_modular_cybernetics_tt
+	modifier = {
+		modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+		planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_1
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding_m
+		}
+		custom_tooltip = tr_cybernetics_assimilator_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 1
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_2
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding_m
+			has_technology = tech_binary_motivators
+		}
+		custom_tooltip = tr_cybernetics_assimilator_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 2
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 2
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_3
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding_m
+			has_technology = tech_binary_motivators
+			has_technology = tech_nanite_assemblers
+		}
+		custom_tooltip = tr_cybernetics_assimilator_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 3
+			modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+			planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+		}
+		weight = {
+			factor = 3
+		}
+	}
+}
+
+##################################################
+## Diplomacy [Vanilla]
+##################################################
 
 ## Diplomacy - Adopt
 # StarTech version
@@ -599,6 +667,10 @@ tr_diplomacy_the_federation = {
 	}
 }
 
+##################################################
+## Discovery [Vanilla]
+##################################################
+
 ## Discovery - Adopt
 # StarTech version
 tr_discovery_adopt = {
@@ -707,6 +779,10 @@ tr_discovery_science_division = {
 	}
 }
 
+##################################################
+## Domination [Vanilla]
+##################################################
+
 ## Domination - Adopt
 # Merge between OSA, StarTech, STU
 tr_domination_adopt = {
@@ -776,6 +852,33 @@ tr_domination_colonial_viceroys = {
 
 	ai_weight = {
 		factor = 1000
+	}
+}
+
+## Domination - Finish
+# OSA version
+tr_domination_finish = {
+	modifier = {
+		#empire_size_pops_mult = -0.10 # LS - Removed [Balance]
+		leader_governors_unity_produces_add = 10 # LS [Balance]
+		ascension_perks_add = 1
+	}
+
+	tradition_swap = {
+		name = tr_domination_federations_finish
+		inherit_icon = yes
+		inherit_name = yes
+		custom_tooltip = tr_domination_federations_finish_desc
+		trigger = {
+			has_federations_dlc = yes
+		}
+		modifier = {
+			empire_size_pops_mult = -0.10
+			ascension_perks_add = 1
+		}
+		weight = {
+			factor = 1
+		}
 	}
 }
 
@@ -895,6 +998,10 @@ tr_domination_workplace_motivators = {
 	}
 }
 
+##################################################
+## Expansion [Vanilla]
+##################################################
+
 ## Expansion - Adopt
 # Merge between Gigastructural Engineering, StarTech, STU
 tr_expansion_adopt = {
@@ -986,6 +1093,49 @@ tr_expansion_colonization_fever = {
 	}
 }
 
+## Expansion - Courier Network
+# Vanilla - Nerfed
+tr_expansion_courier_network = {
+	possible = {
+		has_tradition = tr_expansion_reach_for_the_stars
+	}
+
+	modifier = {
+		empire_size_systems_mult = -0.05 # LS -0.25 -> 0.05 [Balance]
+		empire_size_colonies_mult = -0.10 # LS -0.25 -> -0.10 [Balance]
+	}
+
+	tradition_swap = {
+		name = tr_expansion_courier_network_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_courier_network_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
 ## Expansion - Finish
 # Merge between Gigastructural Engineering, StarTech, STU
 tr_expansion_finish = {
@@ -1024,6 +1174,10 @@ tr_expansion_finish = {
 		weight = { factor = 1 }
 	}
 }
+
+##################################################
+## Genetics [Vanilla]
+##################################################
 
 ## Genetics - Adopt
 # EMEX version
