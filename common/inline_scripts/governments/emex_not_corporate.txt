@@ -1,0 +1,9 @@
+## LS - Fix to apply to Bug Branch properly.
+# Not Corporate 
+authority = { # LS - Replace corporate authority with bug branch combined
+	NOR = {
+		value = auth_bugged_corporate_democratic
+		value = auth_corporate
+		value = auth_bugged_corporate_imperial
+	}
+}

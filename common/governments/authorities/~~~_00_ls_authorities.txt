@@ -51,6 +51,7 @@ auth_bugged_direct_democratic = {
 	}
 
 	country_modifier = {
+		show_only_custom_tooltip = no # LS
 		country_unity_produces_mult = 0.15 # LS [OSA translation]
 		tech_cost_empire_size_mult = -0.20 # LS [Balance]
 		country_leader_cap_add = 2 # LS [Balance]
@@ -67,7 +68,7 @@ auth_bugged_direct_democratic = {
 
 }
 
-## Democratic (Vanilla)
+## Indirectly Democratic (Vanilla)
 # Merge between Bug Branch, OSA
 auth_democratic = {
 	election_term_years = 10
@@ -508,9 +509,10 @@ auth_bugged_corporate_democratic = {
     }
 
     country_modifier = {
-		commercial_pact_mult = 0.50 # LS 0.20 -> 0.50 [OSA translation]
+		show_only_custom_tooltip = no # LS
 		empire_size_penalty_mult = 0.50 # LS [OSA translation]
 		empire_size_colonies_mult = 0.50
+		commercial_pact_mult = 0.50 # LS 0.20 -> 0.50 [OSA translation]
 		faction_approval = 0.10 # LS [Balance]
 		country_leader_pool_size = 2 # LS [Balance]
 		custom_tooltip = auth_democratic_tt
@@ -623,9 +625,9 @@ auth_corporate = {
 	}
 
 	country_modifier = {
-		commercial_pact_mult = 0.50 # OSA 0.20 -> 0.50
 		empire_size_penalty_mult = 0.50 # OSA
 		empire_size_colonies_mult = 0.50
+		commercial_pact_mult = 0.50 # OSA 0.20 -> 0.50
 		add_base_country_intel = 20 # OSA
 		diplomacy_upkeep_mult = -0.25 # OSA
 	}
@@ -659,9 +661,9 @@ auth_bugged_corporate_imperial = {
     }
 
     country_modifier = {
-		commercial_pact_mult = 0.50 # LS 0.20 -> 0.50 [OSA translation]
 		empire_size_penalty_mult = 0.50 # LS [OSA translation]
 		empire_size_colonies_mult = 0.50
+		commercial_pact_mult = 0.50 # LS 0.20 -> 0.50 [OSA translation]
 		faction_approval = -0.10 # LS [Balance]
 		trade_value_mult = 0.10 # LS [Balance]
 		leader_governors_influence_produces_add = 0.20 # LS [Balance]

@@ -99,7 +99,7 @@ councilor_ruler_hive_mind = {
 		council_agenda_finishing_effect_duration_mult = 0.05
 		assist_research_mult = 0.05
 		planet_building_build_speed_mult = 0.05
-		pop_category_complex_drones_produces_mult = 0.01 # LS [Balance]
+		planet_jobs_complex_drone_produces_mult = 0.01 # LS [Balance]
 		country_edict_fund_add = 5
 	}
 	icon = "GFX_icon_councilor_ruler"
@@ -116,7 +116,7 @@ councilor_ruler_machine_intelligence = {
 		country_energy_produces_mult = 0.02
 		country_minerals_produces_mult = 0.02 # LS [Balance]
 		country_alloys_produces_mult = 0.02
-		pop_category_simple_drones_produces_mult = 0.01 # LS [Balance]
+		planet_jobs_simple_drone_produces_mult = 0.01 # LS [Balance]
 		#ship_armor_regen_add_perc = 0.01 # LS - Removed [Issues]
 		#ship_hull_regen_add_perc = 0.01 # LS - Removed [Issues]
 		country_edict_fund_add = 5

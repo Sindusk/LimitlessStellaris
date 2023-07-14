@@ -2,6 +2,16 @@
 # Limitless Stellaris - Technology
 ##########################################################################
 
+@EarlyRepeatableTechCost = 12000
+@EarlyRepeatableTechLevelCost = 6000
+@EarlyRepatableTechFactor = 0.65
+@RepeatableCategoryFactor = 0.25
+@RepeatableDifferntFactor = 0.5
+@EarlyRepeatableWeight = 13
+@EarlyRepeatableTier = 3
+@SpecializationPenalty = 0.6
+@SpecializationLevel = 0.75
+
 ##################################################
 ## Ancient Cache of Technologies
 ##################################################
@@ -104,4 +114,183 @@ tech_dark_matter_generation = {
 	}
 }
 
+##################################################
+## Expanded Megastructures and Technology
+##################################################
+
+## Waste Worker Production (Repeatable) [Expanded Megastructures and Technology]
+# Changed from infinite repeatable to only having 1 level.
+tech_repeatable_waste_worker_production = {
+	area = society
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { biology }
+	levels = 1 # LS -1 -> 1
+	prerequisites = { "eco_tech_waste_processing_3" }
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_worker_production value > 9 }
+		}
+	} 
+	
+	potential = {
+		is_gestalt = no
+		is_country_type = default
+		has_global_flag = TechAscendant_active
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		production_repeatable
+	}
+	mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableCategoryFactor
+    }
+    mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableDifferntFactor
+	}
+
+	modifier = {
+		job_waste_handler_per_pop = 0.02
+		job_waste_manager_per_pop = 0.01
+	}
+}
+
+## Waste Drone Production (Repeatable) [Expanded Megastructures and Technology]
+# Changed from infinite repeatable to only having 1 level.
+tech_repeatable_waste_drone_production = {
+	area = society
+	cost = @EarlyRepeatableTechCost
+	cost_per_level = @EarlyRepeatableTechLevelCost
+	tier = @EarlyRepeatableTier
+	category = { biology }
+	levels = 1 # LS -1 -> 1
+	prerequisites = { "eco_tech_waste_processing_3" }
+	weight = @EarlyRepeatableWeight
+	
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 0 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 1 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 2 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 3 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 4 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 5 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 6 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 7 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 8 }
+		}
+		modifier = {
+			factor = @EarlyRepatableTechFactor
+			check_variable = { which = repeatable_waste_drone_production value > 9 }
+		}
+	} 
+	
+	potential = {
+		is_gestalt = yes
+		is_country_type = default
+		has_global_flag = TechAscendant_active
+	}
+	
+	ai_weight = {
+		factor = 1.0
+	}
+	
+	weight_groups = {
+		production_repeatable
+	}
+	mod_weight_if_group_picked = {
+		production_repeatable = @RepeatableCategoryFactor
+    }
+    mod_weight_if_group_picked = {
+		ship_repeatable = @RepeatableDifferntFactor
+	}
+
+	modifier = {
+		job_waste_drone_per_pop = 0.02
+		job_waste_overseer_per_pop = 0.01
+	}
+}
 
