@@ -20,7 +20,7 @@
 
 ### ap_arcology_project
 ## Arcology Project (Vanilla)
-# Merge between SAP, StarTech, and Electroids Species Pack
+# Merge between SAP, StarTech
 ap_arcology_project = {
 	potential = {
 		host_has_dlc = "Megacorp"
@@ -31,13 +31,6 @@ ap_arcology_project = {
 		NOT = { is_agrarian_empire = yes }
 		NOT = {
 			has_ascension_perk = ap_arcology_project
-		}
-		NOR = { # Electroids Block
-			has_origin = origin_elec_sun_empire
-			has_origin = origin_elec_supernova
-			has_origin = origin_elec_endless_horizon
-			has_origin = origin_elec_extradimensionals
-			has_origin = origin_elec_nebula_of_creation
 		}
 	}
 
@@ -1321,8 +1314,8 @@ ap_grasp_the_void = {
 
 ### ap_hive_worlds
 ## Hive Worlds (Vanilla - Utopia)
-# Merge between SAP, Ethics & Civics: Bug Branch, Electroids Species Pack, StarTech
-# Base from SAP, comment out the removal from Bug Branch, add origins from Electroids, AI weight from StarTech
+# Merge between SAP, Ethics & Civics: Bug Branch, StarTech
+# Base from SAP, comment out the removal from Bug Branch, AI weight from StarTech
 ap_hive_worlds = {
 	on_enabled = {
 		custom_tooltip = "allow_hive_worlds"
@@ -1345,12 +1338,6 @@ ap_hive_worlds = {
 		NOR = {
 			has_ascension_perk = ap_hive_worlds
 			has_origin = origin_pd_tree_of_life
-			# Electroids Species Pack Origins
-			has_origin = origin_elec_sun_empire
-			has_origin = origin_elec_supernova
-			has_origin = origin_elec_endless_horizon
-			has_origin = origin_elec_extradimensionals
-			has_origin = origin_elec_nebula_of_creation
 		}
 	}
 
@@ -2507,8 +2494,8 @@ ap_technological_ascendancy = {
 
 ### ap_the_flesh_is_weak
 ## The Flesh is Weak (Vanilla - Utopia)
-# Merge between SAP (Fusion), Electroids, Ariphaos
-# Base from SAP, potential changes from Electroids, AI weight modifiers from Ariphaos
+# Merge between SAP (Fusion), Ariphaos
+# Base from SAP, AI weight modifiers from Ariphaos
 ap_the_flesh_is_weak = {
 	on_enabled = {
 		custom_tooltip = "flesh_is_weak_tooltip"
@@ -2560,14 +2547,6 @@ ap_the_flesh_is_weak = {
 		is_gestalt = no
 		# Planetary Diversity Origin
  #		NOT = { has_origin = origin_techno_world }
- 		# Electroids
- 		NOR = {
-			has_origin = origin_elec_sun_empire
-			has_origin = origin_elec_supernova
-			has_origin = origin_elec_endless_horizon
-			has_origin = origin_elec_extradimensionals
-			has_origin = origin_elec_nebula_of_creation
-		}
 	}
 
 	ai_weight = {

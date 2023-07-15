@@ -508,5 +508,3 @@ country_event = {
 		name = emperor.106.a
 	}
 }
-
-
