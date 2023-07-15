@@ -9,8 +9,7 @@
 ## Administratum - Adopt
 # Nerfed
 tr_administratum_adopt = {
-	
-	custom_tooltip = tr_administratum_adopt_desc
+	#custom_tooltip = tr_administratum_adopt_desc # LS - No longer needed
 	unlocks_agenda = agenda_administratum
 	modifier = {
 		empire_size_mult = -0.05 # LS -0.20 -> -0.05
@@ -93,7 +92,7 @@ tr_administratum_3 = {
 		has_tradition = tr_administratum_1
 	}
 
-	custom_tooltip = tr_administratum_3_desc
+	#custom_tooltip = tr_administratum_3_desc # LS - No longer needed
 
 	modifier = {
 		intel_encryption_add = 1
@@ -145,7 +144,7 @@ tr_administratum_3 = {
 # Changed
 tr_benevolence_2 = {
 
-	custom_tooltip = tr_benevolence_2_desc
+	#custom_tooltip = tr_benevolence_2_desc # LS - No longer needed
 
 	possible = {
 		has_tradition = tr_benevolence_1

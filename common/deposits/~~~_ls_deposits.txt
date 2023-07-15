@@ -1,0 +1,86 @@
+##########################################################################
+# Limitless Stellaris - Deposits
+##########################################################################
+
+##################################################
+## Lithoid Supremacy
+##################################################
+
+## Sandstone Deposit [Lithoid Supremacy]
+# Fixing an owner existing check.
+d_sandstone_deposit = {
+	icon = d_massive_crevice
+	time = 360
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 2000
+		}
+	}
+
+	on_cleared = {
+		exists = owner # LS - Fix scope error.
+		owner = {
+			add_resource = {
+				minerals = 300
+			}
+		}
+	}
+
+	potential = {
+		planet_size >= 10
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	blocker_swap_types = {
+		d_sandstone_quarry
+	}
+
+	drop_weight = {
+		weight = @blocker_lower
+		modifier = {
+			#Minor increased chance per Alpine
+			factor = 1.2
+			is_planet_class = pc_alpine
+		}
+		modifier = {
+			#Minor increased chance per Desert
+			factor = 1.5
+			is_planet_class = pc_desert
+		}
+		modifier = {
+			#Minor increased chance per Savannah
+			factor = 1.1
+			is_planet_class = pc_savannah
+		}
+		modifier = {
+			#Reduced chance for sizes 10 and 11
+			factor = 0.5
+			planet_size < 12
+		}
+		modifier = {
+			#Increased chance for over 20
+			factor = 1.1
+			planet_size > 19
+		}
+		modifier = {
+			#Reduce dupe chance
+			factor = 0.2
+			has_deposit = d_sandstone_deposit
+		}
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+}

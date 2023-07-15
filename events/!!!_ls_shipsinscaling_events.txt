@@ -4,15 +4,37 @@
 
 namespace = shipsinscaling
 
+event = {
+	id = shipsinscaling.2
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_galaxy_fleet = {
+			every_owned_ship = {
+				ship_event = { id = shipsinscaling.99 } # LS - New event to properly set the ship speed.
+				# LS - None of these events below matter.
+				#ship_event = { id = shipsinscaling.3 }
+				#ship_event = { id = shipsinscaling.4 }
+				#ship_event = { id = shipsinscaling.5 }
+				#ship_event = { id = shipsinscaling.6 }
+					
+				#Longer Battles Mode
+				ship_event = { id = shipsinscaling.10 }
+			}
+		}
+	}
+}
+
 ## Ship Upgraded or Enabled
 # LS - Repurposed and optimized to fix all the issues, and reduce fleet iterations.
 ship_event = {
-    id = shipsinscaling.7
+    id = shipsinscaling.99
     hide_window = yes
     is_triggered_only = yes
 	
 	trigger = {
-		always = yes # LS - Might not be needed but yolo wont hurt anything (I think)
+		is_in_combat = no # LS - Might not be needed but yolo wont hurt anything (I think)
 		#NOT = { has_global_flag = sustained_ship_acceleration }
 	}
 

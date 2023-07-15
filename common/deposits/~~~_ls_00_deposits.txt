@@ -9,6 +9,10 @@
 @blocker_high = 10
 @blocker_low = 5
 
+##################################################
+## Vanilla
+##################################################
+
 ## Mountain Range
 # Merge between PD-RS:NF, Bug Branch
 d_mountain_range = {

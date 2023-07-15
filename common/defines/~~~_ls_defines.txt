@@ -194,7 +194,30 @@
 #	MAX_EXPANSION_DISTANCE = 1			#2	# Max number of jumps away AI will build starbases
 #	MAX_EXPANSION_DISTANCE_SUBJECT = 1	#2	# Max number of jumps away AI subjects will build starbases
 #}
-	# Limitless Stellaris Values:
+
+	##################################################
+	## Limitless Stellaris - NCombat
+	##################################################
+	NCombat = {
+		### Limitless Stellaris
+		## Combat Detect Range
+		# Adjusting from Real Space's 50 to 100 to reduce problems with fast engagements.
+		COMBAT_DETECT_RANGE_MIN					= 100	# When fleets are within this range, combat will be forced to start.
+
+		## Real Space: Ships in Scaling
+		#COMBAT_BACK_OFF_RATE							= 0.24
+		#SHIP_SMOOTH_ROTATION_THRESHOLD					= 7.141
+		
+		#SHIP_SMOOTH_ROTATION_THRESHOLD			= 3.141 # Used to smooth rotation rate of ships. equation is "y = x * ( min ( 1.0 x / SHIP_SMOOTH_ROTATION_THRESHOLD ) )" where x is the wanted delta rotation this tick and y the resulting delta rotation
+
+		#COMBAT_DETECT_RANGE_MULT				= 0.18 #0.45 #1.05	# Range to engage in combat with other ships is <fleets max attack range> * COMBAT_DETECT_RANGE_MULT
+		#COMBAT_DETECT_RANGE_MIN					= 50 #1.6 #4 #10
+		#COMBAT_AREA_MIN_ATTACK_RADIUS			= 0.004 #0.08 #0.2
+		
+	}
+	##################################################
+	## Limitless Stellaris - NPop
+	##################################################
 	NPop = {
 		# Same as Logistic Pop Growth
 		BASE_POP_GROWTH						= 0.1	# Base growth rate of pops
