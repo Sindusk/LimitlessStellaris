@@ -19,10 +19,10 @@ on_applying_rs_settings = {
 #    }
 #}
 
-on_yearly_pulse = {
-	events = {
-	}
-}
+#on_yearly_pulse = {
+#	events = {
+#	}
+#}
 
 on_ship_enabled = {
 	events = {

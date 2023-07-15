@@ -27,10 +27,8 @@ tr_aptitude_healthcare_program = {
 	possible = { has_tradition = tr_aptitude_the_empire_needs_you }
 	modifier = {
 		leader_age = 20
-		leader_admirals_unity_produces_add = 5
-		leader_generals_unity_produces_add = 5
-		leader_governors_unity_produces_add = 5
-		leader_scientists_unity_produces_add = 5
+		show_only_custom_tooltip = no
+		custom_tooltip = tr_aptitude_healthcare_program_desc
 	}
 	ai_weight = { factor = 1000 }
 
@@ -46,10 +44,8 @@ tr_aptitude_healthcare_program = {
 		inherit_icon = yes
 		modifier = {
 			leaders_upkeep_mult = -0.25
-			leader_admirals_unity_produces_add = 5
-			leader_generals_unity_produces_add = 5
-			leader_governors_unity_produces_add = 5
-			leader_scientists_unity_produces_add = 5
+			show_only_custom_tooltip = no
+			custom_tooltip = tr_aptitude_healthcare_program_desc
 		}
 		weight = { factor = 1 }
 	}
@@ -1216,6 +1212,10 @@ tr_genetics_retrovirus = {
 	}
 }
 
+##################################################
+## Harmony [Vanilla]
+##################################################
+
 ## Harmony - Adopt
 # StarTech version
 tr_harmony_adopt = {
@@ -1313,6 +1313,10 @@ tr_harmony_utopian_dream = {
 	}
 }
 
+##################################################
+## Mercantile [Vanilla]
+##################################################
+
 ## Mercantile - Adaptive Economic Policies
 # Merge between OSA, MECR, StarTech
 tr_mercantile_adaptive_economic_policies = {
@@ -1386,6 +1390,10 @@ tr_mercantile_commercial_enterprise = {
 		factor = 5000
 	}
 }
+
+##################################################
+## Politics [Vanilla]
+##################################################
 
 ## Politics - Adopt
 # MECR version
@@ -1693,5 +1701,137 @@ tr_politics_quid_pro_quo = {
 
 	ai_weight = {
 		factor = 10000
+	}
+}
+
+##################################################
+## Psionics [Vanilla]
+##################################################
+
+## Psionics - Adopt
+# Merge between PD, EED, STU
+tr_psionics_adopt = {
+	possible = {
+		if = {
+			limit = {
+				OR = { # PD
+					has_origin = origin_shroudwalker_apprentice
+					has_origin = origin_pd_shroud # PD
+				}
+			}
+			has_technology = tech_psionic_theory
+		}
+		else_if = { # EED
+			limit = { has_country_flag = dead_god_psionics }
+			has_technology = tech_psionic_theory
+		}
+		else = {
+			has_ascension_perk = ap_mind_over_matter
+		}
+	}
+	unlocks_agenda = agenda_psionic_supremacy
+	modifier = {
+		custom_tooltip = tr_psionics_adopt_tooltip
+	}
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = utopia.2600 }
+		}
+	}
+	# Grants the Latent Psionic trait
+
+	tradition_swap = {
+		name = tr_psionics_adopt_shroudwalker
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_origin = origin_shroudwalker_apprentice
+		}
+		modifier = {
+			custom_tooltip = tr_psionics_adopt_shroudwalker_tooltip
+		}
+		on_enabled = {
+			add_research_option = tech_telepathy
+			hidden_effect = {
+				country_event = { id = utopia.2600 }
+			}
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}
+
+##################################################
+## Subterfuge [Vanilla]
+##################################################
+
+## Subterfuge - Adopt
+# StarTech version
+tr_subterfuge_adopt = {
+	unlocks_agenda = agenda_uncover_secrets
+	modifier = {
+		intel_decryption_add = 1
+	}
+	custom_tooltip_with_modifiers = tr_subterfuge_adopt_desc
+	possible = { # StarTech AI
+		hidden_trigger = {
+			or = {
+				is_ai = no
+				num_ascension_perks > 4
+			}
+		}
+	}
+}
+
+##################################################
+## Synthetics [Vanilla]
+##################################################
+
+## Synthetics - Adopt
+# Planetary Diversity version
+tr_synthetics_adopt = {
+	possible = {
+		if = {
+			limit = { is_machine_empire = no }
+			has_ascension_perk = ap_synthetic_evolution
+		}
+		else = {
+			has_ascension_perk = ap_synthetic_age
+		}
+	}
+
+	unlocks_agenda = agenda_synthetic_yield
+	modifier = {
+		species_leader_exp_gain = 0.25
+		leader_skill_levels = 1
+	}
+
+	tradition_swap = {
+		name = tr_synthetics_adopt_machine
+		inherit_name = yes
+		inherit_icon = yes
+		custom_tooltip = tr_synthetics_adopt_machine_desc
+		trigger = {
+			is_machine_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	on_enabled = {
+		hidden_effect = {
+			if = {
+				limit = {
+					any_planet_within_border = {
+						has_planet_flag = fotd_seperatist_planet@root
+						owner = {
+							has_country_flag = fotd_seperatist_country@root
+						}
+					}
+				}
+				country_event = { id = origin.6099 days = 5 random = 2 }
+			}
+		}
 	}
 }

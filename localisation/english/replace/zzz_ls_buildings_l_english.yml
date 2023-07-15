@@ -280,7 +280,7 @@ l_english:
 
   ### Exotic Gas
   ## Basic
-  building_refinery: "§V£exotic_gas£ Exotic Gas Refineries§!" # Vanilla
+  building_refinery: "§V£exotic_gases£ Exotic Gas Refineries§!" # Vanilla
   building_refinery_tt: "§MExotic Gas§! - §BTier 1§! - §EBasic§!"
   building_refinery_desc: "These advanced refineries work day and night to produce exotic gases."
 
