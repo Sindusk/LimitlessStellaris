@@ -1,0 +1,512 @@
+##########################################################################
+# Limitless Stellaris - Emperor Events
+##########################################################################
+
+namespace = emperor
+
+## Emperor.1 - Rise of the Galactic Empire - HIDDEN
+# Merge between EED, MECR
+country_event = {
+	id = emperor.1
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Deal with existing Custodian resolutions
+		if = {
+			limit = { is_active_resolution = resolution_custodian_united_front }
+			set_country_flag = united_front_active
+		}
+		if = { # EED
+			limit = { is_active_resolution = resolution_republic_united_front }
+			set_country_flag = republic_united_front_active
+		}
+		if = { # EED
+			limit = { is_active_resolution = resolution_emperor_galactic_mobilization }
+			set_country_flag = galactic_mobilization_active
+		}
+		if = {
+			limit = { is_active_resolution = resolution_custodian_ina }
+			set_country_flag = custodian_ina_active
+		}
+		if = {
+			limit = { is_active_resolution = resolution_custodian_gto }
+			set_country_flag = custodian_gto_active
+		}
+		if = { # EED
+			limit = { is_active_resolution = resolution_custodian_galactic_standard }
+			set_country_flag = custodian_galactic_standard_active
+		}
+		if = { # EED
+			limit = { is_active_resolution = resolution_custodian_anti_piracy }
+			set_country_flag = custodian_anti_piracy_active
+		}
+		if = { # EED
+			limit = { is_active_resolution = resolution_republic_imperial_legions }
+			set_country_flag = republic_imperial_legions_active
+		}
+		if = { # EED
+			limit = { is_active_resolution = resolution_republic_science_academy }
+			set_country_flag = republic_science_academy_active
+		}
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = resolution_custodian_gdf
+					is_active_resolution = resolution_custodian_expand_gdf
+				}
+			}
+			set_timed_country_flag = { # To avoid duplicate IA events
+				flag = gdf_turned_into_armada
+				days = 11
+			}
+			country_event = { id = emperor.51 days = 10 }
+		}
+		if = {
+			limit = { is_active_resolution = resolution_custodian_galpol }
+			set_timed_country_flag = { # To avoid duplicate ISD events
+				flag = galpol_turned_into_isd
+				days = 5
+			}
+			country_event = { id = emperor.71 days = 4 }
+		}
+		################################### 改过的议案
+		if = { # MECR
+			limit = { is_active_resolution = resolution_custodian_galactic_standard }
+			set_country_flag = custodian_galactic_standard_active
+		}
+		if = {
+			limit = { is_active_resolution = resolution_custodian_galactic_mobilization }
+			set_country_flag = custodian_galactic_mobilization_active
+		}
+		if = {
+			limit = { is_active_resolution = resolution_custodian_webway_project }
+			set_country_flag = custodian_webway_project
+		}
+		if = {
+			limit = { is_active_resolution = resolution_custodian_peace_windows_project }
+			set_country_flag = custodian_peace_windows_project
+		}
+		################################### 兼容 Expanded Diplomacy and Espionage
+		if = { # MECR
+			limit = { is_ExpEspNDip_activated = yes }
+			if = {
+				limit = { is_active_resolution = resolution_republic_united_front }
+				set_country_flag = republic_united_front_active
+			}
+			if = {
+				limit = { is_active_resolution = resolution_emperor_galactic_mobilization }
+				set_country_flag = galactic_mobilization_active
+			}
+			if = {
+				limit = { is_active_resolution = resolution_custodian_anti_piracy }
+				set_country_flag = custodian_anti_piracy_active
+			}
+			if = {
+				limit = { is_active_resolution = resolution_republic_imperial_legions }
+				set_country_flag = republic_imperial_legions_active
+			}
+			if = {
+				limit = { is_active_resolution = resolution_republic_science_academy }
+				set_country_flag = republic_science_academy_active
+			}
+		}
+		################################### 兼容 Dawn of the Republic
+		if = { # MECR
+			limit = { is_active_resolution = resolution_universal_rights }
+			cancel_resolution = "resolution_universal_rights"
+		}
+
+		# Coronation
+		save_event_target_as = gal_emperor
+		country_event = { id = emperor.2 }
+	}
+}
+
+## Emperor.2 - Rise of the Galactic Empire
+# Merge between VFI, EED, MECR, Tidy Tradition, STU
+country_event = {
+	id = emperor.2
+	title = "emperor.2.name"
+	desc = {
+		trigger = { is_gestalt = no }
+		text = "emperor.2.normal.desc"
+	}
+	desc = {
+		trigger = { is_machine_empire = yes }
+		text = "emperor.2.machine.desc"
+	}
+	desc = {
+		trigger = { is_hive_empire = yes }
+		text = "emperor.2.hive.desc"
+	}
+	picture = GFX_evt_coronation
+	show_sound = event_coronation
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_modifier = gal_custodian
+		if = {
+			limit = {
+				has_federation = yes
+				federation = { # VFI
+					NOT = { has_federation_type = vf_ef_federation }
+				}
+			}
+			leave_alliance = { override_requirements = yes }
+		}
+		if = { # EED
+			limit = { has_global_flag = galactic_republic_formed }
+			remove_global_flag = galactic_republic_formed
+		}
+		set_galactic_emperor = yes
+		if = {
+			limit = { has_country_flag = united_front_active }
+			pass_resolution_no_cooldown = resolution_emperor_united_front
+			remove_country_flag = united_front_active
+		}
+		if = { # EED
+			limit = { has_country_flag = republic_united_front_active }
+			pass_resolution_no_cooldown = resolution_emperor_united_front
+			remove_country_flag = republic_united_front_active
+		}
+		if = { # EED
+			limit = { has_country_flag = galactic_mobilization_active }
+			pass_resolution_no_cooldown = resolution_emperor_galactic_mobilization
+			remove_country_flag = galactic_mobilization_active
+		}
+		if = {
+			limit = { has_country_flag = custodian_ina_active }
+			pass_resolution_no_cooldown = resolution_emperor_ina
+			remove_country_flag = custodian_ina_active
+		}
+		if = {
+			limit = { has_country_flag = custodian_gto_active }
+			pass_resolution_no_cooldown = resolution_emperor_gto
+			remove_country_flag = custodian_gto_active
+		}
+		if = { # EED
+			limit = { has_country_flag = custodian_galactic_standard_active }
+			pass_resolution_no_cooldown = resolution_emperor_galactic_standard
+			remove_country_flag = custodian_galactic_standard_active
+		}
+		if = { # EED
+			limit = { has_country_flag = custodian_anti_piracy_active }
+			pass_resolution_no_cooldown = resolution_empire_anti_piracy
+			remove_country_flag = custodian_anti_piracy_active
+		}
+		if = { # EED
+			limit = { has_country_flag = republic_imperial_legions_active }
+			pass_resolution_no_cooldown = resolution_emperor_imperial_legions
+			remove_country_flag = republic_imperial_legions_active
+		}
+		if = { # EED
+			limit = { has_country_flag = republic_science_academy_active }
+			pass_resolution_no_cooldown = resolution_empire_science_academy
+			remove_country_flag = republic_science_academy_active
+		}
+		if = { # MECR
+			limit = { has_country_flag = custodian_galactic_mobilization_active }
+			pass_resolution_no_cooldown = resolution_emperor_galactic_mobilization
+			remove_country_flag = custodian_galactic_mobilization_active
+		}
+		if = { # MECR
+			limit = { has_country_flag = custodian_webway_project }
+			pass_resolution_no_cooldown = resolution_emperor_webway_project
+			remove_country_flag = custodian_webway_project
+		}
+		if = { # MECR
+			limit = { has_country_flag = custodian_peace_windows_project }
+			pass_resolution_no_cooldown = resolution_emperor_pax_galactica
+			remove_country_flag = custodian_peace_windows_project
+		}
+		remove_global_flag = galactic_standard_activated
+		remove_global_flag = webway_project_activated
+		set_global_flag = flag_MECR_emperor_resolutions_repaired
+		set_tax_resolutions = yes # MECR
+		random_country = {
+			limit = { is_country_type = global_event }
+			change_variable = {
+				which = galactic_empires
+				value = 1
+			}
+		}
+		store_galactic_community_leader_backup_data = {
+			FLAG = yes
+			NAME = yes
+			ETHICS = yes
+			GOVERNMENT = yes
+		}
+		if = { # Tidy Tradition
+			limit = { # Standard empire with no change
+				has_policy_flag = nt_galactic_empire_no_change
+				is_gestalt = no
+				is_megacorp = no
+			}
+			if = {
+				limit = {
+					has_origin = origin_legendary_leader_dictatorial
+				}
+				set_origin = origin_legendary_leader_imperial
+			}
+			change_government = {
+				cooldown = no
+			}
+			force_add_civic = civic_galactic_sovereign
+		}
+		else_if = { # Tidy Tradition if -> else_if
+			limit = {
+				is_gestalt = no
+				is_megacorp = no
+			}
+			if = {
+				limit = {
+					has_origin = origin_legendary_leader_dictatorial
+				}
+				set_origin = origin_legendary_leader_imperial
+			}
+			shift_ethic = "ethic_fanatic_authoritarian"
+			change_government = {
+				authority = auth_imperial
+				cooldown = no
+				remove_invalid_civics = yes
+			}
+			force_add_civic = civic_galactic_sovereign
+		}
+		else_if = {
+			limit = { is_gestalt = yes }
+			force_add_civic = civic_galactic_sovereign
+		}
+		else_if = { # Tidy Tradition
+			limit = { # Megacorp with no change set
+				has_policy_flag = nt_galactic_empire_no_change
+				is_megacorp = yes
+			}
+			force_add_civic = civic_galactic_sovereign_megacorp
+			change_government = {
+				cooldown = no
+			}
+		}
+		else_if = {
+			limit = {
+				is_megacorp = yes
+			}
+			shift_ethic = "ethic_fanatic_authoritarian"
+			force_add_civic = civic_galactic_sovereign_megacorp
+			change_government = {
+				authority = auth_bugged_corporate_imperial
+				cooldown = no
+				remove_invalid_civics = yes
+			}
+		}
+		set_government_cooldown = no
+		set_name = random
+		room_name_override = ""
+
+		if = { # Tidy Tradition
+			limit = { NOT = { has_policy_flag = nt_galactic_empire_no_change_flag } } # LS - Optimized check
+			change_country_flag = {
+				icon = {
+					category = "special"
+					file = "the_empire.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors={
+					"red"
+					"red"
+					"null"
+					"null"
+				}
+			}
+		}
+		every_playable_country = {
+			limit = {
+				NOT = { is_same_value = root }
+			}
+			country_event = { id = emperor.3 }
+		}
+		pass_resolution_no_cooldown = resolution_emperor_by_election
+	}
+
+	option = {
+		name = emperor.2.a
+		add_resource = {
+			influence = 250
+		}
+		if = {
+			limit = {
+				is_gestalt = yes
+			}
+			custom_tooltip = emperor.2.a.tooltip.gestalt
+		}
+		else_if = {
+			limit = {
+				is_megacorp = yes
+			}
+			custom_tooltip = emperor.2.a.tooltip.megacorp
+		}
+		else = {
+			custom_tooltip = emperor.2.a.tooltip
+		}
+	}
+}
+
+## Emperor.106 - Open Revolt!
+# Merge between VFI, MECR
+country_event = {
+	id = emperor.106
+	title = "emperor.106.name"
+	desc = {
+		trigger = {
+			from = { has_federation = no }
+			any_playable_country = {
+				is_galactic_community_member = yes
+				has_country_flag = empire_loyalist
+			}
+		}
+		text = "emperor.106.a.desc"
+	}
+	desc = {
+		trigger = {
+			from = { has_federation = yes }
+			any_playable_country = {
+				is_galactic_community_member = yes
+				has_country_flag = empire_loyalist
+			}
+		}
+		text = "emperor.106.b.desc"
+	}
+	desc = {
+		trigger = {
+			NOT = {
+				any_playable_country = {
+					is_galactic_community_member = yes
+					has_country_flag = empire_loyalist
+				}
+			}
+		}
+		text = "emperor.106.c.desc"
+	}
+	picture = GFX_evt_open_revolt
+	show_sound = event_open_revolt
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Remove from ongoing wars except War in Heaven and Crisis
+		rebellion_remove_from_wars = yes
+		# All declared crisis wars end
+		if = {
+			limit = {
+				any_country = { has_country_flag = declared_crisis }
+			}
+			random_country = {
+				limit = { has_country_flag = declared_crisis }
+				remove_country_flag = declared_crisis
+			}
+		}
+		# Form Loyalist federation
+		if = { #帝国联邦存在时不需建立保皇派
+			limit = {
+				NOT = {
+					galactic_emperor = {
+						has_federation = yes
+						federation = { has_federation_perk = imperium_federation_passive }
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_federation = no # VFI
+					any_playable_country = {
+						is_galactic_community_member = yes
+						has_country_flag = empire_loyalist
+						has_been_declared_crisis = no
+					}
+				}
+				random_playable_country = {
+					limit = {
+						is_galactic_community_member = yes
+						has_country_flag = empire_loyalist
+						has_been_declared_crisis = no
+					}
+					join_alliance = {
+						who = root
+						name = NAME_Loyalists
+						override_requirements = yes
+					}
+					set_federation_leader = root
+				}
+				every_playable_country = {
+					limit = {
+						is_galactic_community_member = yes
+						has_country_flag = empire_loyalist
+						has_federation = no
+						has_been_declared_crisis = no
+					}
+					join_alliance = { who = root override_requirements = yes }
+				}
+				federation = {
+					set_federation_flag = empire_loyalists
+					set_federation_type = imperial_loyalists_federation
+					add_cohesion = 200
+					set_federation_law = centralization_imperial_loyalists
+					set_federation_law = succession_type_none
+					set_federation_law = succession_term_perpetual
+					set_federation_law = fleet_contribution_none
+					set_federation_law = treaties_separate_no_imperial_loyalists
+					set_federation_law = declare_war_president_vote_imperial_loyalists
+					set_federation_law = invite_members_president_vote_imperial_loyalists
+					set_federation_law = kick_members_president_vote_imperial_loyalists
+					set_federation_law = vote_weight_diplomatic_imperial_loyalists
+					set_federation_law = allow_subjects_to_join_yes_imperial_loyalists
+				}
+			}
+		}
+		else = { # VFI
+			every_playable_country = {
+				limit = {
+					is_galactic_community_member = yes
+					has_country_flag = empire_loyalist
+					has_federation = no
+					has_been_declared_crisis = no
+				}
+				join_alliance = { who = root override_requirements = yes }
+			}
+		}
+		every_federation = { # MECR
+			limit = { has_modifier = rebellion_federation_starting }
+			remove_modifier = rebellion_federation_starting
+		}
+
+		add_imperial_authority = 50 # Disruptive elements left Empire
+
+		# Declare War
+		declare_war = {
+			target = event_target:rebel_leader
+			name = "NAME_The_Civil_War"
+			attacker_war_goal = "wg_galactic_civil_war_loyalists"
+		}
+
+		# Inform non-members of civil war
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				is_galactic_community_member = no
+				NOT = { has_country_flag = empire_rebel }
+			}
+			country_event = { id = emperor.107 }
+		}
+	}
+
+	option = {
+		name = emperor.106.a
+	}
+}
+
+

@@ -211,7 +211,7 @@
 		NEW_COLONY_GROWTH					= 0		# New colonies have a penalty to their growth
 #       REQUIRED_POP_GROWTH                  = 100    # Required growth to make a new pop
 #       REQUIRED_POP_GROWTH_SCALE            = 0.5    # Required pop growth increased by this much for every pop in the empire
-				
+
 		MAX_EMIGRATION_PUSH					= 1000000
 		MAX_GROWTH_FROM_IMMIGRATION			= 10000
 		MAX_GROWTH_PENALTY_FROM_EMIGRATION	= 1000	# Fraction of base monthly growth
@@ -247,7 +247,7 @@
 		LOGISTIC_CEILING_MAX = 5000.0
 		LOGISTIC_CEILING_SLIDER_INTERVAL = 0.05
 
-		GROWTH_SCALE_DEFAULT = 0
+		GROWTH_SCALE_DEFAULT = 0.30 # LS 0 -> 0.30
 		GROWTH_SCALE_MIN = 0.00
 		GROWTH_SCALE_MAX = 1.00
 		GROWTH_SCALE_SLIDER_INTERVAL = 0.05
@@ -312,13 +312,13 @@
 		### Better Sliders ###
 		# These values control the mid and end game sliders in game setup
 		MID_GAME_START_MIN = 10			#min start: 2210
-		MID_GAME_START_DEFAULT = 80		#default: 2300
+		MID_GAME_START_DEFAULT = 70		#default: 2300
 		MID_GAME_START_MAX = 400		#max start: 2600
 		
 		START_YEAR_SLIDER_INTERVAL = 10
 		
 		END_GAME_START_MIN = 20			#min start: 2220
-		END_GAME_START_DEFAULT = 180	#default: 2400
+		END_GAME_START_DEFAULT = 140	#default: 2400
 		END_GAME_START_MAX = 800		#max start: 3000
 		
 		VICTORY_YEAR_MIN = 30			#min start: 2230
