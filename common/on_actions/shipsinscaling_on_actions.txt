@@ -1,7 +1,8 @@
 on_game_start = {
 	events = {
 		shipsinscaling.1
-		shipsinscaling.2
+		#shipsinscaling.2 # LS - Changed to 81
+		shipsinscaling.81 # LS - New custom action
 	}
 }
 
@@ -24,19 +25,29 @@ on_applying_rs_settings = {
 #	}
 #}
 
+## On Entering System
+# Scope: Ship
+# LS - New event trigger to try to catch any outliers where the ship speed doesn't update.
+# As soon as they cross into a new system, it will update their speed and they'll be back to normal.
+on_entering_system_fleet = {
+	events = {
+		shipsinscaling.98 # LS - New fleet-scoped event to update each ship within it.
+	}
+}
+
 on_ship_enabled = {
 	events = {
 		shipsinscaling.99 # LS - This is what we're using
-		#shipsinscaling.2 # LS - Not using dynamic thrusters
-		#shipsinscaling.10 # LS - Not using longer battles
+		#shipsinscaling.2 # LS - Deprecated for updated event
+		shipsinscaling.10
 	}
 }
 
 on_ship_built = {
 	events = {
 		shipsinscaling.99 # LS - This is what we're using
-		#shipsinscaling.2 # LS - Not using dynamic thrusters
-		#shipsinscaling.10 # LS - Not using longer battles
+		#shipsinscaling.2 # LS - Deprecated for updated event
+		shipsinscaling.10
 	}
 }
 

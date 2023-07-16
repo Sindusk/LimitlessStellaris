@@ -663,14 +663,14 @@ ap_engineered_evolution = {
 
 	ai_weight = {
 		factor = 1000 # LS 15 -> 1,000 (This is super important for AI)
-		modifier = {
-			factor = 0
-			num_owned_planets < 4
-		}
-		modifier = {
-			factor = 0.1
-			num_ascension_perks < 3
-		}
+		#modifier = { # LS - No reason not to take it when you can
+		#	factor = 0
+		#	num_owned_planets < 4
+		#}
+		#modifier = { # LS - No reason not to take it when you can
+		#	factor = 0.1
+		#	num_ascension_perks < 3
+		#}
 		modifier = {
 			factor = 10
 			has_authority = auth_hive_mind
@@ -2550,7 +2550,7 @@ ap_the_flesh_is_weak = {
 	}
 
 	ai_weight = {
-		factor = 20
+		factor = 1000 # LS 20 -> 1000 - This is very important for AI
 		modifier = {
 			factor = 0.5
 			is_materialist = no
@@ -2563,27 +2563,28 @@ ap_the_flesh_is_weak = {
 			factor = 0.1
 			has_ethic = ethic_fanatic_spiritualist
 		}
-		modifier = {
-			factor = 0
-			num_owned_planets < 4 # Ariphaos change from 6 to 4
-		}
-		modifier = { # Ariphaos modifier
-			factor = 0.1
-			num_ascension_perks < 3
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				has_origin = origin_shroudwalker_apprentice
-				has_ascension_perk = ap_the_flesh_is_weak
-				has_ascension_perk = ap_organo_machine_interfacing
-				has_ascension_perk = ap_organo_machine_interfacing_assimilator
-				has_ascension_perk = ap_mind_over_matter
-				has_ascension_perk = ap_synthetic_evolution
-				has_ascension_perk = ap_engineered_evolution
-				has_ascension_perk = ap_synthetic_age
-			}
-		}
+		#modifier = { # LS - No reason not to take it when you can
+		#	factor = 0
+		#	num_owned_planets < 4 # Ariphaos change from 6 to 4
+		#}
+		#modifier = { # Ariphaos modifier # LS - No reason not to take it when you can
+		#	factor = 0.1
+		#	num_ascension_perks < 3
+		#}
+		# LS - This doesn't make sense anymore.
+		#modifier = {
+		#	factor = 0
+		#	OR = {
+		#		has_origin = origin_shroudwalker_apprentice
+		#		has_ascension_perk = ap_the_flesh_is_weak
+		#		has_ascension_perk = ap_organo_machine_interfacing
+		#		has_ascension_perk = ap_organo_machine_interfacing_assimilator
+		#		has_ascension_perk = ap_mind_over_matter
+		#		has_ascension_perk = ap_synthetic_evolution
+		#		has_ascension_perk = ap_engineered_evolution
+		#		has_ascension_perk = ap_synthetic_age
+		#	}
+		#}
 	}
 }
 

@@ -23,6 +23,7 @@ tr_adaptability_adopt = {
 ##################################################
 
 ## Aptitude - Healthcare Program
+# Modified
 tr_aptitude_healthcare_program = {
 	possible = { has_tradition = tr_aptitude_the_empire_needs_you }
 	modifier = {
@@ -1248,6 +1249,38 @@ tr_harmony_harmonious_directives = {
 
 	ai_weight = {
 		factor = 5000
+	}
+}
+
+## Harmony - Kinship
+# OSA version (Nerfed)
+tr_harmony_kinship = {
+
+	modifier = {
+		pop_demotion_time_mult = -0.75
+		empire_size_pops_mult = -0.05 # LS -0.10 -> -0.05
+	}
+
+	tradition_swap = {
+		name = tr_harmony_kinship_shared_burdens
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			has_valid_civic = civic_shared_burden
+		}
+		modifier = {
+			leaders_upkeep_mult = -0.20
+			empire_size_pops_mult = -0.10
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+
+	ai_weight = {
+		factor = 1000
 	}
 }
 
