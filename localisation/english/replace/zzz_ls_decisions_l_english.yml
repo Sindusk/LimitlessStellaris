@@ -7,10 +7,18 @@ l_english:
   ### --- Single Use Decisions (Blue) --- ###
   decision_acot_upgrade_garrison_1: "§BDefense Force Expansion§!" # Ancient Cache of Technologies
   decision_acot_upgrade_garrison_2: "§BMaximum Defense Force§!" # Ancient Cache of Technologies
+  decision_acot_upgrade_fortification: "§BDefensive Wall§!" # Ancient Cache of Technologies
   decision_giga_build_orbital_arcology: "§BConstruct Orbital Arcology§!" # Gigastructural Engineering
   decision_giga_upgrade_orbital_arcology: "§BEnhance Orbital Arcology§!" # Gigastructural Engineering
   decision_giga_maximize_orbital_arcology: "§BMaximize Orbital Arcology§!" # Gigastructural Engineering
   osa_decision_titan_garrison: "§BDeploy Titan Garrison§!" # Omega's Stellaris Additions
+  osom_decision_subterranean_1: "§BSubterranean Geological Analysis§!" # Omega's Stellaris Additions
+  osom_decision_subterranean_2: "§BSubterranean Mapping§!" # Omega's Stellaris Additions
+  osom_decision_subterranean_3: "§BSubterranean Infrastructure§!" # Omega's Stellaris Additions
+  osom_decision_subterranean_4: "§BSubterranean Artificial Caverns§!" # Omega's Stellaris Additions
+  osom_decision_subterranean_5: "§BSubterranean Advanced Arcology§!" # Omega's Stellaris Additions
+  osom_decision_subterranean_microlite: "§BSubterranean Microlite Construction§!" # Omega's Stellaris Additions
+  decision_eapmastery_of_nature2: "§BSubjugation of Nature§!" # Reworked Advanced Ascension
   decision_mastery_of_nature: "§BMastery of Nature§!" # Vanilla
 
   ### - Toggle On Decisions (Green) --- ###
@@ -26,10 +34,10 @@ l_english:
   osa_decision_alloy_subsidies: "§VLocal Metallurgy Subsidies§!" # Omega's Stellaris Traditions
   osa_decision_unity_subsidies: "§VLocal Uniformity Subsidies§!" # Omega's Stellaris Traditions
 
-  # Toggle off Subsidies (Brown):
-  osa_decision_revoke_subsidies: "§pRevoke All Planetary Subsidies§!" # Omega's Stellaris Additions
-
   ### --- Toggle Off Decisions (Brown) --- ###
+  # Subsidies
+  osa_decision_revoke_subsidies: "§pRevoke All Planetary Subsidies§!" # Omega's Stellaris Additions
+  # Other Decisions
   decision_mem_crystal_fields_clearing: "§pCrystal Field Clearance§!" # More Events Mod
   decision_end_discourage_growth: "§pEnd Growth Discouragement§!" # Vanilla
   decision_end_martial_law: "§pEnd Martial Law§!" # Vanilla
