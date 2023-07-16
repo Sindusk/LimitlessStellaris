@@ -1103,4 +1103,19 @@ l_english:
   building_contained_ecosphere: "Contained Ecosphere"
   building_contained_ecosphere_tt: "§MParagon§! - §BTier 1§! - §EUnique§!"
   building_contained_ecosphere_desc: "§Y$NAME_Astrocreator_Azaryn$§!'s legacy, left to us when she passed. It is but a small section of the Vivarium's internal ecosystem.\n\nIntroduces a high concentration of §H$contained_ecosphere_pheromones$§! to a planet's atmosphere, applying positive effects to the population."
- 
+
+##################
+# Gigastructural Engineering
+##################
+
+  ### Supertensiles
+  ## Basic
+  building_giga_megaworkshop: "§V£giga_sr_amb_megaconstruction£ Molecular Foundry§!"
+  building_giga_megaworkshop_plural: "Molecular Foundries"
+  building_giga_megaworkshop_tt: "§MSupertensiles§! - §BTier 1§! - §EBasic§!"
+  building_giga_megaworkshop_desc: "Molecular synthesis arrays and spotless clean rooms fill these facilities, producing the highly specialized materials required for large-scale orbital construction projects."
+  ## Limited
+  building_giga_megaworkshop_hub: "§P£giga_sr_amb_megaconstruction£ Megaconstruction Logistics Hub§!"
+  building_giga_megaworkshop_hub_plural: "Megaconstruction Logistics Hubs"
+  building_giga_megaworkshop_hub_tt: "§MSupertensiles§! - §BTier 1§! - §ELimited§!"
+  building_giga_megaworkshop_hub_desc: "Experts coordinate a vast fleet of transport and construction ships, bearing forth their grand designs, while molecular foundries churn out vast quantities of construction materials."
