@@ -13,7 +13,7 @@ LS_generic_building_checks = {
 }
 
 ##################################################
-## Clone Vats
+## Pop Assembly
 ##################################################
 
 ## Whether they can build a Clone Vats building
@@ -105,6 +105,44 @@ LS_destroy_clone_vats_building = {
 ## Resources
 ##################################################
 
+## Whether they can build an Energy building
+# Scope: Planet
+LS_potential_energy_building = {
+	LS_generic_building_checks = yes # Generic Check
+	exists = owner
+	OR = { # Habitats can only have energy building if they're gestalt or it is built over an energy deposit.
+		is_habitat = no # Merged and inverted check
+		AND = { # If they're a gestalt, the habitat doesn't need the flag.
+			owner = { is_gestalt = yes }
+		}
+		has_planet_flag = energy_habitat # Non-gestalt on a habitat, it needs to be on an energy deposit.
+	}
+	OR = { # StarTech AI checks to ensure they are actually building energy here.
+		owner = { is_ai = no }
+		has_any_generator_district_or_building = yes
+	}
+}
+
+## Whether they can build a Minerals building
+# Scope: Planet
+LS_potential_mineral_building = {
+	LS_generic_building_checks = yes # Generic Check
+	exists = owner
+	NOR = { # Ringworlds don't have mines
+		uses_district_set = ring_world # Undercoat: changed from planet class check
+	}
+	OR = { # Habitats only have mines if they're built on an appropriate deposit
+		is_habitat = no
+		has_planet_flag = mining_habitat
+	}
+	OR = { # StarTech check to ensure the AI has a mining district before they bother with these.
+		owner = { is_ai = no }
+		has_any_mining_district = yes
+	}
+}
+
+## Whether they can build a Resource Silo building
+# Scope: Planet
 LS_potential_resource_silo_building = {
 	LS_generic_building_checks = yes # Generic Check
 }

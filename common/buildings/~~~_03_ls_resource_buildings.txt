@@ -1148,6 +1148,72 @@ building_baol_organic_plant = {
 }
 
 ##################################################
+## Minerals - Basic
+##################################################
+
+## Mining Facilities (Tier 1) [Extra Buildings]
+# Custom version with inlines
+eb_mineral = {
+	base_buildtime = @db1_time
+	base_cap_amount = 6 # LS - Basic Resource
+	position_priority = 4022000 # LS - Sort Buildings
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = eb_mineral_tt
+    }
+
+	destroy_trigger = {
+		has_modifier = resort_colony
+	}
+
+	potential = {
+		LS_potential_mineral_building = yes # LS - Custom Check
+	}
+
+	allow = { }
+
+	planet_modifier = {
+		planet_miners_minerals_produces_add = @db1_basic_output # LS - Basic outputs
+	}
+
+	inline_script = { # Adds the miner jobs based on proper conditions.
+		script = buildings/minerals/minerals_jobs
+		basic = @db1_jobs
+		adv = @db1_adv_jobs
+		dm = @db1_dm_jobs
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_mining_1"
+	}
+	
+	upgrades = {
+		"eb_mineral2"
+	}
+
+	ai_resource_production = {
+		minerals = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+##################################################
 ## Minerals - Productivity (Unique)
 ##################################################
 
@@ -1191,24 +1257,7 @@ building_mineral_purification_plant = {
 	}
 
 	potential = {
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = crucible_colony
-		}
-
-		NOT = { # Ringworlds don't have mines
-			uses_district_set = ring_world # undercoat: changed from planet class check
-		}
-		OR = { # Habitats only have mines if they're built on an appropriate deposit
-			is_habitat = no
-			has_planet_flag = mining_habitat
-		}
-		OR = {
-			owner = {
-				is_ai = no
-			}
-			has_any_mining_district = yes
-		}
+		LS_potential_mineral_building = yes # LS - Custom Check
 	}
 
 	allow = {
@@ -1829,6 +1878,72 @@ building_mineral_purification_hub = {
 }
 
 ##################################################
+## Energy - Basic
+##################################################
+
+## Power Plant (Tier 1) [Extra Buildings]
+# Custom version with inlines
+eb_energy = {
+	base_buildtime = @db1_time
+	base_cap_amount = 6 # LS - Basic Resource
+	position_priority = 4012000 # LS - Sort Buildings
+
+	category = resource
+
+    # Building Tooltip
+    triggered_desc = {
+        text = eb_energy_tt
+    }
+
+	destroy_trigger = {
+		has_modifier = resort_colony
+	}
+
+	potential = {
+		LS_potential_energy_building = yes # LS - Custom Check
+	}
+
+	allow = { }
+	
+	planet_modifier = {
+		planet_technician_energy_produces_add = @db1_basic_output # LS - Basic outputs
+	}
+
+	inline_script = { # Adds the miner jobs based on proper conditions.
+		script = buildings/energy/energy_jobs
+		basic = @db1_jobs
+		adv = @db1_adv_jobs
+		dm = @db1_dm_jobs
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+	}
+
+	prerequisites = {
+		tech_power_plant_2
+	}
+	
+	upgrades = {
+		"eb_energy2"
+	}
+
+	ai_resource_production = {
+		energy = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+##################################################
 ## Energy - Productivity (Unique)
 ##################################################
 
@@ -1862,22 +1977,7 @@ building_energy_grid = {
 	}
 
 	potential = {
-		NOR = {
-			has_modifier = resort_colony
-			has_modifier = crucible_colony
-		}
-		OR = {
-			NOT = { is_habitat = yes }
-			AND = {
-				exists = owner
-				owner = { is_gestalt = yes }
-			}
-			has_planet_flag = energy_habitat
-		}
-		OR = {
-			owner = { is_ai = no }
-			has_any_generator_district_or_building = yes
-		}
+		LS_potential_energy_building = yes
 	}
 
 	allow = {

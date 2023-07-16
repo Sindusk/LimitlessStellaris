@@ -1,0 +1,109 @@
+### Triggered Planet Modifier
+# Miner Jobs
+triggered_planet_modifier = {
+	potential = {
+		NOT = { is_planet_class = pc_shattered_ring_habitable }
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_fallen_empire_spiritualist = no
+		}
+	}
+	modifier = {
+		job_miner_add = $basic$
+	}
+}
+# Fallen Empire Miner Jobs
+triggered_planet_modifier = {
+	potential = {
+		NOT = { is_planet_class = pc_shattered_ring_habitable }
+		exists = owner
+		owner = { is_fallen_empire_spiritualist = yes }
+	}
+	modifier = {
+		job_fe_acolyte_mine_add = $basic$
+	}
+}
+# Mining Drone Jobs
+triggered_planet_modifier = {
+	potential = {
+		NOT = { is_planet_class = pc_shattered_ring_habitable }
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	modifier = {
+		job_mining_drone_add = $basic$
+	}
+}
+# Scrap Miner Jobs
+triggered_planet_modifier = {
+	potential = {
+		is_planet_class = pc_shattered_ring_habitable
+		exists = owner
+		owner = { is_regular_empire = yes }
+	}
+	modifier = {
+		job_scrap_miner_add = $basic$
+	}
+}
+# Scrap Miner Drone Jobs
+triggered_planet_modifier = {
+	potential = {
+		is_planet_class = pc_shattered_ring_habitable
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	modifier = {
+		job_scrap_miner_drone_add = $basic$
+	}
+}
+
+### Triggered Description
+# Mining Drone Job Description
+triggered_desc = {
+	trigger = {
+		NOT = { is_planet_class = pc_shattered_ring_habitable }
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	text = job_mining_drone_effect_desc
+}
+# Miner Job Description
+triggered_desc = {
+	trigger = {
+		NOT = { is_planet_class = pc_shattered_ring_habitable }
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_fallen_empire_spiritualist = no
+		}
+	}
+	text = job_miner_effect_desc
+}
+# Fallen Empire Miner Job Description
+triggered_desc = {
+	trigger = {
+		NOT = { is_planet_class = pc_shattered_ring_habitable }
+		exists = owner
+		owner = { is_fallen_empire_spiritualist = yes }
+	}
+	text = job_fe_acolyte_mine_effect_desc
+}
+# Scrap Miner Drone Job Description
+triggered_desc = {
+	trigger = {
+		is_planet_class = pc_shattered_ring_habitable
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	text = job_scrap_miner_drone_effect_desc
+}
+# Scrap Miner Job Description
+triggered_desc = {
+	trigger = {
+		is_planet_class = pc_shattered_ring_habitable
+		exists = owner
+		owner = { is_regular_empire = yes }
+	}
+	text = job_scrap_miner_effect_desc
+}
