@@ -1290,7 +1290,409 @@ building_research_support_3 = {
 }
 
 ##################################################
-## Research - Unique
+## Research - Speleology (Planet Unique)
+##################################################
+
+## Speleology Facility (Tier 1) [Omega's Stellaris Additions]
+# Base version with slight variable changes.
+osom_building_speleology_facility_1 = {
+	base_buildtime = @db1_time
+	position_priority = 1011000 # LS - Sorted on top tier, high priority.
+	base_cap_amount = 1
+	category = research
+
+    # Building Tooltip
+    triggered_desc = {
+        text = osom_building_speleology_facility_1_tt
+    }
+
+	potential = {
+		NOR = {
+			uses_district_set = habitat
+			uses_district_set = ring_world
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_osom_speleologist_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_osom_mapping_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_osom_mapping_drone_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+	}
+	
+	upgrades = {
+		"osom_building_speleology_facility_2"
+	}
+
+	prerequisites = {
+		"osom_tech_speleology_1"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_osom_speleologist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_osom_mapping_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_osom_mapping_drone_effect_desc
+	}
+
+	ai_resource_production = {
+		trigger = {
+			always = yes
+		}
+		engineering_research = 12
+	}
+	is_essential = yes
+}
+
+## Speleology Complex (Tier 2) [Omega's Stellaris Additions]
+# Base version with slight variable changes.
+osom_building_speleology_facility_2 = {
+	base_buildtime = @db2_time
+	can_build = no
+
+	category = research
+
+    # Building Tooltip
+    triggered_desc = {
+        text = osom_building_speleology_facility_2_tt
+    }
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+			job_osom_speleologist_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+			job_osom_mapping_drone_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+			job_osom_mapping_drone_add = 3
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			exotic_gases = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @db2_upkeep
+			minerals = @db2_upkeep
+			exotic_gases = @db2_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_gestalt = no
+				}
+			}
+			consumer_goods = @db1_upkeep
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_gestalt = yes
+				}
+			}
+			alloys = @db1_upkeep
+		}
+	}
+
+	upgrades = {
+		"osom_building_speleology_facility_3"
+	}
+
+	prerequisites = {
+		"osom_tech_speleology_2"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_head_researcher_effect_desc
+		text = job_osom_speleologist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+		text = job_osom_mapping_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+		text = job_osom_mapping_drone_effect_desc
+	}
+
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = physics_research
+				value >= 30
+			}
+		}
+		engineering_research = 12
+	}
+}
+
+## Speleology Institute (Tier 3) [Omega's Stellaris Additions]
+# Base version with slight variable changes.
+osom_building_speleology_facility_3 = {
+	base_buildtime = @db3_time
+	can_build = no
+
+	category = research
+
+    # Building Tooltip
+    triggered_desc = {
+        text = osom_building_speleology_facility_3_tt
+    }
+
+	allow = {
+		has_major_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+			job_osom_speleologist_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+			job_osom_mapping_drone_add = 5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+			job_osom_mapping_drone_add = 5
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db3_minerals
+			exotic_gases = @db3_rare_cost
+		}
+		upkeep = {
+			energy = @db3_upkeep
+			minerals = @db3_upkeep
+			exotic_gases = @db3_rare_upkeep
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_gestalt = no
+				}
+			}
+			consumer_goods = @db1_upkeep
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_gestalt = yes
+				}
+			}
+			alloys = @db1_upkeep
+		}
+	}
+
+	prerequisites = {
+		"osom_tech_speleology_3"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_osom_speleologist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_osom_mapping_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_osom_mapping_drone_effect_desc
+	}
+
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = physics_research
+				value >= 30
+			}
+		}
+		physics_research = 10
+		society_research = 10
+		engineering_research = 10
+	}
+}
+
+##################################################
+## Research - Laboratories (Empire Unique)
 ##################################################
 
 ## Advanced Materials Laboratory (Tier 1) [Extra Ship Components NEXT]

@@ -375,6 +375,18 @@ l_english:
   building_research_support_3_tt: "§MResearch§! - §BTier 3§! - §EProductivity§!"
   building_research_support_3_desc: "This facility is much more than just an archive or backup: teams of researcher-cataloguers perform experiments in parallel for promising projects, independently testing theories and providing huge experimental datasets on behalf of scientists conducting original research."
 
+  ### Speleology
+  ## Speleology
+  osom_building_speleology_facility_1: "§P£engineering£ Speleology Facility§!" # Omega's Stellaris Additions
+  osom_building_speleology_facility_1_tt: "§MEngineering§! - §BTier 1§! - §ESpeleology§!"
+  osom_building_speleology_facility_1_desc: "A small research facility dedicated to the field of speleology."
+  osom_building_speleology_facility_2: "§P£engineering£ Speleology Complex§!" # Omega's Stellaris Additions
+  osom_building_speleology_facility_2_tt: "§MEngineering§! - §BTier 2§! - §ESpeleology§!"
+  osom_building_speleology_facility_2_desc: "A massive research complex coordinating planetary subterranean studies."
+  osom_building_speleology_facility_3: "§P£engineering£ Speleology Institute§!" # Omega's Stellaris Additions
+  osom_building_speleology_facility_3_tt: "§MEngineering§! - §BTier 3§! - §ESpeleology§!"
+  osom_building_speleology_facility_3_desc: "A sprawling research campus dedicated to coordinating planetary subterranean studies and advancing the field of speleology."
+
   ### Other Research
   ## Unique
   esc_building_materials_laboratory: "§B£job_researcher£ Advanced Materials Laboratory§!" # Extra Ship Components NEXT
