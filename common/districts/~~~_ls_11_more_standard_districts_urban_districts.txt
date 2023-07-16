@@ -47,7 +47,7 @@ district_standard_cm_commercial = {
 		}
 	}
 	planet_modifier = {
-		planet_housing_add = 4 # LS 2 -> 4 [Balance]
+		planet_housing_add = 3 # LS 2 -> 3 [Balance]
 		job_clerk_add = 2
 	}
 	triggered_planet_modifier = {
@@ -256,7 +256,7 @@ district_standard_cm_leisure = {
 			}
 		}
 		modifier = {
-			planet_housing_add = 4 # LS 2 -> 4 [Balance]
+			planet_housing_add = 3 # LS 2 -> 3 [Balance]
 		}
 	}
 	triggered_planet_modifier = {
@@ -437,7 +437,7 @@ district_standard_cm_science = {
 		}
 	}
 	planet_modifier = {
-		planet_housing_add = 4 # LS 2 -> 4 [Balance]
+		planet_housing_add = 3 # LS 2 -> 3 [Balance]
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -605,7 +605,7 @@ district_standard_cm_admin_religious = {
 		}
 	}
 	planet_modifier = {
-		planet_housing_add = 4 # LS 2 -> 4 [Balance]
+		planet_housing_add = 3 # LS 2 -> 3 [Balance]
 		job_priest_add = 2
 		pop_ethic_spiritualist_attraction_mult = 0.05
 	}
@@ -702,7 +702,7 @@ district_standard_cm_admin_hive = {
 		}
 	}
 	planet_modifier = {
-		planet_housing_add = 4 # LS 2 -> 4 [Balance]
+		planet_housing_add = 3 # LS 2 -> 3 [Balance]
 		job_synapse_drone_add = 2
 	}
 	triggered_planet_modifier = {
@@ -792,7 +792,7 @@ district_standard_cm_military = {
 	}
 	planet_modifier = {
 		planet_orbital_bombardment_damage = -0.025
-		planet_housing_add = 4 # LS 2 -> 4 [Balance]
+		planet_housing_add = 3 # LS 2 -> 3 [Balance]
 	}
 	triggered_planet_modifier = {
 		potential = {

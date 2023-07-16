@@ -123,7 +123,7 @@ district_city = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 7 # LS 5 -> 7 [Balance]
+		planet_housing_add = 6 # LS 5 -> 6 [Balance]
 		planet_max_buildings_add = 1
 		job_clerk_add = 1
 	}
@@ -536,7 +536,7 @@ district_hive = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 8 # LS 6 -> 8 [Balance]
+		planet_housing_add = 7 # LS 6 -> 7 [Balance]
 		job_maintenance_drone_add = 3
 		planet_max_buildings_add = 1
 	}
@@ -748,7 +748,7 @@ district_nexus = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 7 # LS 5 -> 7 [Balance]
+		planet_housing_add = 6 # LS 5 -> 6 [Balance]
 		job_maintenance_drone_add = 3
 		planet_max_buildings_add = 1
 	}
@@ -908,7 +908,7 @@ district_industrial = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 4 # LS 2 -> 4 [Balance]
+		planet_housing_add = 3 # LS 2 -> 3 [Balance]
 	}
 
 	triggered_planet_modifier = { # OSA
@@ -1521,7 +1521,7 @@ district_srw_commercial = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 4 # LS 2 -> 4 [Balance]
+		planet_housing_add = 3 # LS 2 -> 3 [Balance]
 		job_clerk_add = 1 # Subtle Polish
 		job_artisan_add = 1 # Subtle Polish
 	}
