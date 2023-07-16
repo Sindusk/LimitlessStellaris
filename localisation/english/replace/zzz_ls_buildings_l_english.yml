@@ -649,12 +649,36 @@ l_english:
   building_alpha_hub_desc: "The nerve center of all intra-communication that occurs between the quintillions of semi-sapient systems that administers our empire."
  
   ### Servitors
-  building_organic_sanctuary: "Organic Sanctuary"
+  building_organic_sanctuary: "Organic Sanctuary" # Vanilla
   building_organic_sanctuary_tt: "§MUnity§! - §BTier 1§! - §EServitor§!"
   building_organic_sanctuary_desc: "This sanctuary provides a sealed environment where organics can thrive in a safe and above all controlled manner. The organics within have their housing needs completely fulfilled."
-  building_organic_paradise: "Organic Paradise"
+  building_organic_paradise: "Organic Paradise" # Vanilla
   building_organic_paradise_tt: "§MUnity§! - §BTier 2§! - §EServitor§!"
   building_organic_paradise_desc: "An AI-controlled artificial paradise designed to satisfy every need a sapient organic being might have, just so long as it does not express a need for self-determination. The organics within have their housing needs completely fulfilled."
+
+  ### Cults
+  ## Gravity Cult
+  building_bugged_gravity_monastery: "§P£unity£ Gravitic Abbey§!" # Bug Branch
+  building_bugged_gravity_monastery_tt: "§MUnity§! - §BTier 1§! - §EGravity Cult§!"
+  building_bugged_gravity_monastery_desc: "A place for all of those who believe to come together and show their faith and abilities."
+  building_bugged_gravity_monastery_two: "§P£unity£ Sanctorium of Reality's Tears§!" # Bug Branch
+  building_bugged_gravity_monastery_two_tt: "§MUnity§! - §BTier 2§! - §EGravity Cult§!"
+  building_bugged_gravity_monastery_two_desc: "Enhanced materials technology has allowed for our faithful to practice their craft in a place where there is much less risk to others."
+  ## Life Cult
+  building_bugged_life_monastery: "§P£mod_planet_pop_assembly_mult£ Gene Cloister§!" # Bug Branch
+  building_bugged_life_monastery_tt: "§MUnity§! - §BTier 1§! - §ELife Cult§!"
+  building_bugged_life_monastery_desc: "A place in which believers can study the doctrine of life and discuss its virtues."
+  building_bugged_life_monastery_two: "§P£mod_planet_pop_assembly_mult£ Archive of Life§!" # Bug Branch
+  building_bugged_life_monastery_two_tt: "§MUnity§! - §BTier 2§! - §ELife Cult§!"
+  building_bugged_life_monastery_two_desc: "A repository of all genetic code that has been found throughout our history both planetary and interstellar."
+  ## Mecha Cult
+  building_bugged_mecha_monastery: "§P£unity£ Mecha-Monastery§!" # Bug Branch
+  building_bugged_mecha_monastery_tt: "§MUnity§! - §BTier 1§! - §EMachine Cult§!"
+  building_bugged_mecha_monastery_desc: "A place where the most devout of believers get augmentations that allow them to become closer to the divine."
+  building_bugged_mecha_monastery_two: "§P£unity£ Mecha-Repositorium§!" # Bug Branch
+  building_bugged_mecha_monastery_two_tt: "§MUnity§! - §BTier 2§! - §EMachine Cult§!"
+  building_bugged_mecha_monastery_two_desc: "With the invent of ever more divine machines, our places of worship have become ever more complex to allow for more direct connection with the holy steel and code."
+
   
   ### Archaeotech
   building_league_offices: "First League Filing Offices"

@@ -1625,6 +1625,11 @@ building_clone_birth_labs = {
 
 	show_tech_unlock_if = {
 		is_machine_empire = no # LS - machine empires cannot obtain the tradition
+		OR = { # Minor optimization to prevent showing when they're not available yet.
+			has_origin = origin_clones
+			is_clone_army_empire = yes
+			has_tradition = tr_genetics_adopt
+		}
 	}
 
 	potential = {
