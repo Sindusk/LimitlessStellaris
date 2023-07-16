@@ -1237,3 +1237,112 @@ building_warrior_order = {
 		}
 	}
 }
+
+##################################################
+## Omega's Stellaris Additions
+##################################################
+
+## Planetary Defense Force Base [Omega's Stellaris Additions]
+# Disabled. Unclean implementation and needs a bit of effort for streamlining.
+building_eac_pdf_base = {
+	base_buildtime = 360
+	position_priority = 2
+	base_cap_amount = 1
+
+	category = army
+
+	potential = {
+		always = no # LS - Disable through potential.
+		# NOT = { is_planet_class = pc_habitat }
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_eac_pdf_shipbuilder_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_regular_empire = yes 
+				has_technology = eac_tech_patrol_craft_2
+			}
+		}
+		modifier = {
+			job_eac_pdf_shipbuilder_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_eac_pdf_drone_shipbuilder_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes 
+				has_technology = eac_tech_patrol_craft_2
+			}
+		}
+		modifier = {
+			job_eac_pdf_drone_shipbuilder_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 750
+		}			
+		upkeep = {
+			energy = 2.5
+			alloys = 2
+		}
+		upkeep = {
+			trigger = {
+				owner = { has_technology = eac_tech_patrol_craft_2 }
+			}
+			energy = 5
+			alloys = 2
+		}
+	}
+
+	prerequisites = {
+		"eac_tech_planetary_defense_force"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_eac_pdf_drone_shipbuilder_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_eac_pdf_shipbuilder_effect_desc
+	}
+
+	is_essential = yes
+	
+}
