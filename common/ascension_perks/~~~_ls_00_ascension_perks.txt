@@ -1919,11 +1919,11 @@ ap_mind_over_matter = {
 	}
 
 	ai_weight = {
-		factor = 100
-		modifier = {
-			factor = 0.1
-			is_spiritualist = no
-		}
+		factor = 1000 # LS - This is very important for AI
+		#modifier = { # LS - Doesn't matter if you're spiritualist, take it.
+		#	factor = 0.1
+		#	is_spiritualist = no
+		#}
 		modifier = { # Ariphaos modifier
 			factor = 10
 			has_ethic = ethic_fanatic_spiritualist
@@ -1933,14 +1933,14 @@ ap_mind_over_matter = {
 			is_materialist = yes
 			NOT = { has_ascension_perk = ap_become_the_crisis }
 		}
-		modifier = {
-			factor = 0
-			num_owned_planets < 4 # Ariphaos change from 6 to 4
-		}
-		modifier = { # Ariphaos modifier
-			factor = 0.1
-			num_ascension_perks < 3
-		}
+		#modifier = { # LS - Don't care about your planets, take the perk
+		#	factor = 0
+		#	num_owned_planets < 4 # Ariphaos change from 6 to 4
+		#}
+		#modifier = { # Ariphaos modifier # LS - Don't care about your ascension count, take the perk
+		#	factor = 0.1
+		#	num_ascension_perks < 3
+		#}
 		modifier = {
 			factor = 10
 			has_ascension_perk = ap_become_the_crisis
@@ -2551,10 +2551,11 @@ ap_the_flesh_is_weak = {
 
 	ai_weight = {
 		factor = 1000 # LS 20 -> 1000 - This is very important for AI
-		modifier = {
-			factor = 0.5
-			is_materialist = no
-		}
+		#modifier = { # LS - Doesn't matter if you're materialist, take the perk
+		#	factor = 0.5
+		#	is_materialist = no
+		#}
+		# LS - Spiritualists actually do get mad at this... so maybe they shouldn't?
 		modifier = { # Ariphaos modifier
 			factor = 0.2
 			has_ethic = ethic_spiritualist
