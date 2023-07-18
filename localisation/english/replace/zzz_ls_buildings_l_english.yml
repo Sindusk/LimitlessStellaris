@@ -228,6 +228,10 @@ l_english:
   building_mineral_purification_hub: "§G£minerals£ Mineral Purification Hubs§!"
   building_mineral_purification_hub_tt: "§MMinerals§! - §BTier 2§! - §EProductivity§!"
   building_mineral_purification_hub_desc: "Massive hubs where minerals are received and then shuttled to arrays of purifiers."
+  ## Precursor
+  gpm_building_mining_nanite_nexus: "§G£minerals£ Mining Nanite Nexus§!"
+  gpm_building_mining_nanite_nexus_tt: "§MMinerals§! - §BTier 1§! - §EPrecursor§!"
+  gpm_building_mining_nanite_nexus_desc: "Storage and control centre for our mining nanites. These nanites, once released, will dig smooth large tunnels towards any otherwise unreachable mineral veins."
 
   ### Energy
   ## Basic
