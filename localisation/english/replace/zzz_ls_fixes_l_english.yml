@@ -7,6 +7,10 @@ l_english:
   #roci_exploit: "(Leave Disabled) Space Exploitation"
   #roci_exploit_desc: "(Limitless Stellaris: This module can cause rare crashes. Leave it disabled.) The Space Exploitation module provides ['concept_minor_colony'], a mechanic you can use to build more resource production on uninhabitable planets for collection by Mining or Research stations. It has a Country level UI, accessible from an edict."
 
+  ### --- Vanilla --- ###
+  # Resource Silo starbase module copies the building, which now has different formatting. Reverting the changes on the starbase module.
+  sm_resource_silo: "Resource Silos"
+
   ### Vanilla - Trade Policies
   ## Added flair to show what resources it produces.
   # Wealth Creation

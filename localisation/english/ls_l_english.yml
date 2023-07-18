@@ -5,6 +5,13 @@
 l_english:
 
 ##################
+# Vanilla Stuff
+##################
+
+  # This stuff doesn't work unless it's not put in the replace folder, so here it is.
+  decision_mastery_of_nature: "§BMastery of Nature§!" # Vanilla
+
+##################
 # Ascension Perks
 ##################
 

@@ -39,6 +39,9 @@ l_english:
   osa_decision_designate_forgeworld: "§GDesignate Forge World§!" # Omega's Stellaris Additions
 
   ### - Resource Focuses (Dark Green) --- ###
+  decision_orbital_mirrors: "§VBuild Orbital Mirrors§!" # Planetary Diversity
+  decision_seismic_resonators: "§VBuild Seismic Resonator Stations§!" # Planetary Diversity
+  decision_bionanite_soil: "§VBuild Nanite-Enhanced Soil§!" # Planetary Diversity # LS - Edited to make "build" consistent
   decision_snowball_wasteland_1: "§VBuild Orbital Mirrors§!" # Planetary Diversity
   decision_snowball_wasteland_2: "§VBuild Seismic Resonator Stations§!" # Planetary Diversity
   decision_snowball_wasteland_3: "§VBuild Nanite-Enhanced Soil§!" # Planetary Diversity # LS - Edited to make "build" consistent
