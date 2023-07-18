@@ -8,41 +8,60 @@ l_english:
 # Capitals
 ##################
   
-  ## Organic Capitals
-  building_colony_shelter: "§L£influence£ Reassembled Ship Shelter§!"
+  ### Standard Empires
+  ## Vanilla Progression
+  building_colony_shelter: "§L£influence£ Reassembled Ship Shelter§!" # Vanilla
   building_colony_shelter_tt: "§MCapital§! - §BTier 1§! - §EBiological§!"
   building_colony_shelter_desc: "The remains of a Colony Ship, reassembled for planetside form and function."
-  building_capital: "§L£influence£ Planetary Administration§!"
+  building_capital: "§L£influence£ Planetary Administration§!" # Vanilla
   building_capital_tt: "§MCapital§! - §BTier 2§! - §EBiological§!"
   building_capital_desc: "Seat of the local ruling elite."
-  building_major_capital: "§L£influence£ Planetary Capital§!"
+  building_major_capital: "§L£influence£ Planetary Capital§!" # Vanilla
   building_major_capital_tt: "§MCapital§! - §BTier 3§! - §EBiological§!"
   building_major_capital_desc: "A sprawling complex of bureaucratic structures that acts as the administrative center for a major colony."
-  building_system_capital: "§L£influence£ System Capital-Complex§!"
+  building_system_capital: "§L£influence£ System Capital-Complex§!" # Vanilla
   building_system_capital_tt: "§MCapital§! - §BTier 4§! - §EBiological§!"
   building_system_capital_desc: "A towering configuration of administrative bureaus and networked infrastructure, allowing the construction and operation of highly demanding facilities."
-  building_imperial_capital: "§L£influence£ Imperial Palace§!"
+  building_imperial_capital: "§L£influence£ Imperial Palace§!" # Vanilla
   building_imperial_capital_tt: "§MCapital§! - §BTier 5§! - §EBiological§!"
   building_imperial_capital_desc: "A massive palace complex fit for the greatest empire history has ever seen. If there is a bright center to the galaxy, this is it."
-
-  ## Machine Capitals
-  building_deployment_post: "§L£influence£ Deployment Post§!"
+  ## Delta
+  building_dm_ancient_palace: "§L£influence£ Enigmatic Palace§!" # Ancient Cache of Technologies
+  building_dm_ancient_palace_tt: "§MCapital§! - §BTier Delta§! - §EBiological§!"
+  building_dm_ancient_palace_desc: "A new era calls for a new seat of power. Tne Empire must be reborn anew."
+  ## Alpha
+  building_ae_ancient_palace: "§L£influence£ Void Palace§!" # Ancient Cache of Technologies
+  building_ae_ancient_palace_tt: "§MCapital§! - §BTier Alpha§! - §EBiological§!"
+  building_ae_ancient_palace_desc: "The seat and throne of the New Galactic Order, The Void Palace is the mark of absolute power. From this throne shall it's rulers dictate the very fate of the galaxy."
+ 
+  ### Machine Empires
+  ## Vanilla Progression
+  building_deployment_post: "§L£influence£ Deployment Post§!" # Vanilla
   building_deployment_post_tt: "§MCapital§! - §BTier 1§! - §EMachine§!"
   building_deployment_post_desc: "The initial deployment post from which we will expand on this world."
-  building_machine_capital: "§L£influence£ Administrative Array§!"
+  building_machine_capital: "§L£influence£ Administrative Array§!" # Vanilla
   building_machine_capital_tt: "§MCapital§! - §BTier 2§! - §EMachine§!"
   building_machine_capital_desc: "A semi-autonomous computer network that handles the various administrative functions on a planet."
-  building_machine_major_capital: "§L£influence£ Planetary Processor§!"
+  building_machine_major_capital: "§L£influence£ Planetary Processor§!" # Vanilla
   building_machine_major_capital_tt: "§MCapital§! - §BTier 3§! - §EMachine§!"
   building_machine_major_capital_desc: "A powerful administrative computer that has been designed to manage and oversee the various functions of a complex planetary settlement."
-  building_machine_system_capital: "§L£influence£ Primary Nexus§!"
+  building_machine_system_capital: "§L£influence£ Primary Nexus§!" # Vanilla
   building_machine_system_capital_tt: "§MCapital§! - §BTier 4§! - §EMachine§!"
   building_machine_system_capital_desc: "The administrative heart of the system. Hundreds of AIs process requests and manage the minute but critical details that are involved in running an efficient interstellar civilization."
-  building_imperial_machine_capital: "§L£influence£ Imperial Center§!"
+  building_imperial_machine_capital: "§L£influence£ Imperial Center§!" # Vanilla
   building_imperial_machine_capital_tt: "§MCapital§! - §BTier 5§! - §EMachine§!"
   building_imperial_machine_capital_desc: "This colossal complex is the administrative heart of the Galactic Imperium. Thousands of AIs are constantly processing and evaluating the current state of the galaxy."
-
-  ## Hive Capitals
+  ## Delta
+  building_dm_ancient_control_center: "§L£influence£ Enigmatic Nexus§!" # Ancient Cache of Technologies
+  building_dm_ancient_control_center_tt: "§MCapital§! - §BTier Delta§! - §EMachine§!"
+  building_dm_ancient_control_center_desc: "A new era calls for a new focal of power. Tne Consensus must be reforged anew."
+  ## Alpha
+  building_ae_ancient_control_center: "§L£influence£ Void Nexus§!" # Ancient Cache of Technologies
+  building_ae_ancient_control_center_tt: "§MCapital§! - §BTier Alpha§! - §EMachine§!"
+  building_ae_ancient_control_center_desc: "From this nexus, billions of artificial intelligence networks intertwine together, and the overlord of the system decides what next in the machine's destiny lie ahead."
+ 
+  ### Hive Empires
+  ## Vanilla Progression
   building_hive_capital: "§L£influence£ Hive Core§!"
   building_hive_capital_tt: "§MCapital§! - §BTier 2§! - §EHivemind§!"
   building_hive_capital_desc: "The organizational core from which the Hive Mind coordinates planetside functions."
@@ -52,7 +71,15 @@ l_english:
   building_imperial_hive_capital: "§L£influence£ Imperial Complex§!"
   building_imperial_hive_capital_tt: "§MCapital§! - §BTier 5§! - §EHivemind§!"
   building_imperial_hive_capital_desc: "From this massive structure, the Hive Mind governs the Galactic Imperium. This is where the fate of the galaxy is decided."
-
+  ## Delta
+  building_dm_ancient_hive_cluster: "§L£influence£ Enigmatic Cluster§!"
+  building_dm_ancient_hive_cluster_tt: "§MCapital§! - §BTier Delta§! - §EHivemind§!"
+  building_dm_ancient_hive_cluster_desc: "A new era calls for a new root of power. Tne Hive must expand anew."
+  ## Alpha
+  building_ae_ancient_hive_cluster: "§L£influence£ Void Cluster§!"
+  building_ae_ancient_hive_cluster_tt: "§MCapital§! - §BTier Alpha§! - §EHivemind§!"
+  building_ae_ancient_hive_cluster_desc: "This enormous hive cluster is filled with billions of drones, all busy working to ensure the sovereignty of the Hive. Those who adapt thrive, those that do not wither and die."
+ 
   ### Habitat Capitals
   building_hab_capital: "§L£influence£ Habitat Administration§!"
   building_hab_capital_tt: "§MCapital§! - §BTier 1§! - §EHabitat§!"

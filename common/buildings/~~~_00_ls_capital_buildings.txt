@@ -25,7 +25,7 @@
 ## Capitals - Biological
 ##################################################
 
-## Colony (Tier 1)
+## Colony (Tier 1) [Vanilla]
 # Merge between Roma Invicta, OSA, StarTech AI, Ariphaos
 building_colony_shelter = {
 	capital = yes
@@ -353,7 +353,7 @@ building_colony_shelter = {
 	}
 }
 
-## Planetary Administration (Tier 2)
+## Planetary Administration (Tier 2) [Vanilla]
 # Merge between OSA, Bug Branch, Venture Politics, Subtle Polish, and more.
 # Custom inlines handle most of the functionality.
 building_capital = {
@@ -601,7 +601,7 @@ building_capital = {
 	}
 }
 
-## Planetary Capital (Tier 3)
+## Planetary Capital (Tier 3) [Vanilla]
 # Merge between OSA, Bug Branch, Venture Politics, Subtle Polish, and more.
 # Custom inlines handle most of the functionality.
 building_major_capital = {
@@ -860,7 +860,7 @@ building_major_capital = {
 	}
 }
 
-## System Capital-Complex (Tier 4)
+## System Capital-Complex (Tier 4) [Vanilla]
 # Merge between OSA, Bug Branch, Venture Politics, Subtle Polish, and more.
 # Custom inlines handle most of the functionality.
 building_system_capital = {
@@ -1131,7 +1131,7 @@ building_system_capital = {
 	}
 }
 
-## Imperial Palace (Tier 5) [Emperor]
+## Imperial Palace (Tier 5 - Emperor) [Vanilla]
 # Merge between OSA, Bug Branch, Venture Politics, Subtle Polish, and more.
 # Custom inlines handle most of the functionality.
 building_imperial_capital = {
@@ -1144,6 +1144,11 @@ building_imperial_capital = {
 	position_priority = 0
 
 	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_imperial_capital_tt
+    }
 
 	potential = {
 		exists = owner
@@ -1183,11 +1188,6 @@ building_imperial_capital = {
 		defense_armies_add = @tier_4_capital_defense_armies
 	}
 	
-    # Building Tooltip
-    triggered_desc = {
-        text = building_imperial_capital_tt
-    }
-
 	inline_script = buildings/on_all_capital_buildings # Vanilla modifier for all capital buildings.
 
 	inline_script = buildings/bugged_inline_capital_distributism_effects # Bug Branch - Distributism Civic modifiers.
@@ -1276,11 +1276,374 @@ building_imperial_capital = {
 	}
 }
 
+## Enigmatic Palace (Tier Delta) [Ancient Cache of Technologies]
+# Base version with updated variables and leader cap
+building_dm_ancient_palace = {
+	base_buildtime = @db6_time # LS 900 -> db6
+	capital = yes
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	can_build = no
+	position_priority = 0
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_dm_ancient_palace_tt
+    }
+
+	country_modifier = {
+		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
+		country_resource_max_add = 10000
+	}
+
+	upgrades = {
+		building_ae_ancient_palace
+	}
+
+	category = government
+	
+	potential = {
+		exists = owner
+		owner = { is_regular_empire = yes }
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}		
+	}
+	
+	convert_to = {
+		building_dm_ancient_control_center		
+		building_dm_ancient_hive_cluster
+	}
+	
+	allow = {
+	}
+	
+	prerequisites = {
+		"tech_dm_ancient_palace"
+	}
+	
+	show_tech_unlock_if = { 
+		is_regular_empire = yes
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_amenities_add = 30
+		trade_value_add = 5
+		trade_value_mult = 0.50
+		planet_max_districts_add = 2
+		planet_max_buildings_add = 8
+		planet_max_branch_office_buildings_add = 4
+		planet_orbital_bombardment_damage = -0.10
+		pop_environment_tolerance = 0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+			}	
+		}
+		modifier = {
+			job_acot_overlord_add = 1
+			job_acot_overseer_add = 4
+			job_acot_enforcer_add = 4
+		}
+	}
+
+	##### FOR FE ###
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire_spiritualist = no 
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_overseer_add = 4
+			job_fe_protector_add = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire_spiritualist = yes 
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_sky_cardinal_add = 4
+			job_fe_protector_add = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 20
+			sr_dark_matter = 10	
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured					
+			}
+			energy = 10
+			sr_dark_matter = 5	
+			acot_sr_dark_energy = 5
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae			
+			}
+			energy = 20
+			sr_dark_matter = 10	
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis			
+			}
+			energy = 60
+			sr_dark_matter = 30	
+			acot_sr_dark_energy = 30
+		}
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+		}			
+	}
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+## Void Palace (Tier Alpha) [Ancient Cache of Technologies]
+# Base version with updated variables and leader cap
+building_ae_ancient_palace = {
+	base_buildtime = @db7_time # 900 -> db7
+	capital = yes
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	can_build = no
+	position_priority = 0
+
+	category = government
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ae_ancient_palace_tt
+    }
+
+	country_modifier = {
+		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
+		country_resource_max_add = 20000
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_regular_empire = yes }
+	}
+	
+	convert_to = {
+		building_ae_ancient_control_center		
+		building_ae_ancient_hive_cluster
+	}
+	
+	allow = {
+		num_pops >= 20
+	}
+	
+	prerequisites = {
+		"tech_ae_ancient_palace"
+	}
+	
+	show_tech_unlock_if = { 
+		is_regular_empire = yes
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 50
+		planet_amenities_add = 50
+		trade_value_add = 15
+		trade_value_mult = 1.00
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 12
+		planet_max_branch_office_buildings_add = 5
+		planet_orbital_bombardment_damage = -0.20
+		pop_environment_tolerance = 0.20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_fallen_empire = no
+			}	
+		}
+		modifier = {
+			job_acot_overlord_add = 1
+			job_acot_overseer_add = 8
+			job_acot_enforcer_add = 8
+		}
+	}
+	
+	##### FOR FE ###
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire_spiritualist = no 
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_overseer_add = 8
+			job_fe_protector_add = 8
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_empire_spiritualist = yes 
+				is_fallen_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_sky_cardinal_add = 8
+			job_fe_protector_add = 8
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 40
+			sr_dark_matter = 20	
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured					
+			}
+			energy = 20
+			sr_dark_matter = 10	
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae			
+			}
+			energy = 40
+			sr_dark_matter = 20	
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis			
+			}
+			energy = 120
+			sr_dark_matter = 60	
+			acot_sr_dark_energy = 60
+		}
+		cost = {
+			minerals = 500
+			influence = 100
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+		}			
+	}
+	
+
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
 ##################################################
 ## Capitals - Machine
 ##################################################
 
-## Deployment Post (Tier 1)
+## Deployment Post (Tier 1) [Vanilla]
 # Merge between OSA, StarTech, Scripted Trigger Undercoat
 building_deployment_post = {
 	capital = yes
@@ -1406,7 +1769,7 @@ building_deployment_post = {
 	}
 }
 
-## Administrative Array (Tier 2)
+## Administrative Array (Tier 2) [Vanilla]
 # Merge between OSA, Bug Branch, StarTech, Scripted Trigger Undercoat
 building_machine_capital = {
 	base_buildtime = @db2_time
@@ -1588,7 +1951,7 @@ building_machine_capital = {
 	}
 }
 
-## Planetary Processor (Tier 3)
+## Planetary Processor (Tier 3) [Vanilla]
 # Merge between OSA, Bug Branch, StarTech, Scripted Trigger Undercoat
 building_machine_major_capital = {
 	base_buildtime = @db3_time
@@ -1775,7 +2138,7 @@ building_machine_major_capital = {
 	}
 }
 
-## Primary Nexus (Tier 4)
+## Primary Nexus (Tier 4) [Vanilla]
 # Merge between OSA, Bug Branch, StarTech, Scripted Trigger Undercoat
 building_machine_system_capital = {
 	base_buildtime = @db4_time
@@ -1987,7 +2350,7 @@ building_machine_system_capital = {
 	}
 }
 
-## Imperial Center (Tier 5) [Emperor]
+## Imperial Center (Tier 5 - Emperor) [Vanilla]
 # Merge between OSA, Bug Branch, StarTech, Scripted Trigger Undercoat
 building_imperial_machine_capital = {
 	base_buildtime = @db4_time
@@ -1999,6 +2362,11 @@ building_imperial_machine_capital = {
 	position_priority = 0
 
 	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_imperial_machine_capital_tt
+    }
 
 	potential = {
 		exists = owner
@@ -2043,15 +2411,9 @@ building_imperial_machine_capital = {
 		defense_armies_add = @tier_4_capital_defense_armies
 	}
 	
-    # Building Tooltip
-    triggered_desc = {
-        text = building_imperial_machine_capital_tt
-    }
-
 	inline_script = {
 		script = buildings/on_all_capital_buildings
 	}
-
 
 	triggered_planet_modifier = { # OSA
 		potential = {
@@ -2193,11 +2555,331 @@ building_imperial_machine_capital = {
 	}
 }
 
+## Enigmatic Nexus (Tier Delta) [Ancient Cache of Technologies]
+# Base version with updated variables and leader cap
+building_dm_ancient_control_center = {
+	base_buildtime = @db6_time # LS 900 -> db6
+	capital = yes
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_dm_ancient_control_center_tt
+    }
+
+	country_modifier = {
+		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
+		country_resource_max_add = 10000
+	}
+
+	category = government
+	
+	upgrades = {
+		building_ae_ancient_control_center
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+	
+	convert_to = {
+		building_dm_ancient_palace
+		building_dm_ancient_hive_cluster
+	}
+	
+	allow = {
+		num_pops >= 25
+	}
+	
+	prerequisites = {
+		"tech_dm_ancient_control_center"
+	}
+	
+	show_tech_unlock_if = { 
+		is_machine_empire = yes
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_amenities_add = 30
+		planet_max_districts_add = 2
+		planet_max_buildings_add = 8
+		planet_orbital_bombardment_damage = -0.10
+		pop_environment_tolerance = 0.10
+	}
+	
+	##### FOR DEFEARTHH ###
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_machine_empire = no
+			}
+		}
+		modifier = {
+			job_acot_overlord_droid_add = 1
+			job_acot_overseer_droid_add = 4
+			job_acot_enforcer_drone_add = 4
+		}
+	}
+
+	##### FOR FE ###
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_guardian_bot_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 20
+			sr_dark_matter = 10	
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured					
+			}
+			energy = 10
+			sr_dark_matter = 5	
+			acot_sr_dark_energy = 5
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae			
+			}
+			energy = 20
+			sr_dark_matter = 10	
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis			
+			}
+			energy = 60
+			sr_dark_matter = 30	
+			acot_sr_dark_energy = 30
+		}
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+		}			
+	}
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
+## Void Nexus (Tier Alpha) [Ancient Cache of Technologies]
+# Base version with updated variables and leader cap
+building_ae_ancient_control_center = {
+	base_buildtime = @db7_time # LS 900 -> db7
+	capital = yes
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ae_ancient_control_center_tt
+    }
+
+	country_modifier = {
+		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
+		country_resource_max_add = 20000
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+	
+	convert_to = {
+		building_ae_ancient_palace
+		building_ae_ancient_hive_cluster
+	}
+	
+	allow = {
+		num_pops >= 20
+	}
+	
+	prerequisites = {
+		"tech_ae_ancient_control_center"
+	}
+	
+	show_tech_unlock_if = { 
+		is_machine_empire = yes
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 50
+		planet_amenities_add = 50
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 12
+		planet_orbital_bombardment_damage = -0.20
+		pop_environment_tolerance = 0.20
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_machine_empire = no
+			}
+		}
+		modifier = {
+			job_acot_overlord_droid_add = 1
+			job_acot_overseer_droid_add = 8
+			job_acot_enforcer_drone_add = 8
+		}
+	}
+
+	##### FOR FE ###
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_fallen_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_fe_guardian_bot_add = 20
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 40
+			sr_dark_matter = 20	
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured					
+			}
+			energy = 20
+			sr_dark_matter = 10	
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae			
+			}
+			energy = 40
+			sr_dark_matter = 20	
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis			
+			}
+			energy = 120
+			sr_dark_matter = 60	
+			acot_sr_dark_energy = 60
+		}
+		cost = {
+			minerals = 500
+			influence = 100
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+		}			
+	}
+	
+	ai_weight = {
+		weight = 100
+	}
+}
+
 ##################################################
 ## Capitals - Hive
 ##################################################
 
-## Hive Core (Tier 2)
+## Hive Core (Tier 2) [Vanilla]
 # Merge between OSA, Planetary Diversity, StarTech, Scripted Trigger Undercoat
 building_hive_capital = {
 	capital = yes
@@ -2419,7 +3101,7 @@ building_hive_capital = {
 	}
 }
 
-## Hive Nexus (Tier 3)
+## Hive Nexus (Tier 3) [Vanilla]
 # Merge between OSA, Planetary Diversity, StarTech, Scripted Trigger Undercoat
 building_hive_major_capital = {
 	base_buildtime = @db2_time
@@ -2666,7 +3348,7 @@ building_hive_major_capital = {
 	}
 }
 
-## Imperial Complex (Tier 5) [Emperor]
+## Imperial Complex (Tier 5 - Emperor) [Vanilla]
 # Merge between OSA, Planetary Diversity, StarTech, Scripted Trigger Undercoat
 building_imperial_hive_capital = {
 	base_buildtime = @db4_time
@@ -2850,6 +3532,276 @@ building_imperial_hive_capital = {
 			}
 		}
 		text = job_osom_mapping_drone_effect_desc
+	}
+}
+
+## Enigmatic Cluster (Tier Delta) [Ancient Cache of Technologies]
+# Base version with updated variables and leader cap
+building_dm_ancient_hive_cluster = {
+	base_buildtime = @db6_time # LS 900 -> db6
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_dm_ancient_hive_cluster_tt
+    }
+
+	country_modifier = {
+		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
+		country_resource_max_add = 10000
+	}
+
+	upgrades = {
+		building_ae_ancient_hive_cluster
+	}
+
+	category = government
+	
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	
+	convert_to = {
+		building_dm_ancient_control_center
+		building_dm_ancient_palace
+	}
+	
+	allow = {
+		num_pops >= 20
+	}
+	
+	prerequisites = {
+		"tech_dm_ancient_hive_cluster"
+	}
+	
+	show_tech_unlock_if = { 
+		is_hive_empire = yes
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 30
+		planet_amenities_add = 30
+		planet_max_districts_add = 2
+		job_acot_overlord_drone_add = 1
+		job_acot_overseer_drone_add = 4
+		job_acot_enforcer_drone_add = 4
+		planet_max_buildings_add = 8
+		planet_orbital_bombardment_damage = -0.10
+		pop_environment_tolerance = 0.10
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 20
+			sr_dark_matter = 10	
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured					
+			}
+			energy = 10
+			sr_dark_matter = 5	
+			acot_sr_dark_energy = 5
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae			
+			}
+			energy = 20
+			sr_dark_matter = 10	
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis			
+			}
+			energy = 60
+			sr_dark_matter = 30	
+			acot_sr_dark_energy = 30
+		}
+		cost = {
+			minerals = 1000
+			sr_dark_matter = 100
+		}			
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+## Void Cluster (Tier Alpha) [Ancient Cache of Technologies]
+# Base version with updated variables and leader cap
+building_ae_ancient_hive_cluster = {
+	base_buildtime = @db7_time # LS 900 -> db7
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ae_ancient_hive_cluster_tt
+    }
+
+	country_modifier = {
+		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
+		country_resource_max_add = 20000
+	}
+
+	category = government
+	
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	
+	convert_to = {
+		building_ae_ancient_control_center
+		building_ae_ancient_palace
+	}
+	
+	allow = {
+		num_pops >= 25
+	}
+	
+	prerequisites = {
+		"tech_ae_ancient_hive_cluster"
+	}
+	
+	show_tech_unlock_if = { 
+		is_hive_empire = yes
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 50
+		planet_amenities_add = 50
+		job_acot_overlord_drone_add = 1
+		job_acot_overseer_drone_add = 8
+		job_acot_enforcer_drone_add = 8
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 12
+		planet_orbital_bombardment_damage = -0.20
+		pop_environment_tolerance = 0.20
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			planet_jobs_upkeep_mult = 0.1
+			planet_jobs_produces_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 40
+			sr_dark_matter = 20	
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured					
+			}
+			energy = 20
+			sr_dark_matter = 10	
+			acot_sr_dark_energy = 10
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_dark_fractured_ae			
+			}
+			energy = 40
+			sr_dark_matter = 20	
+			acot_sr_dark_energy = 20
+		}
+		produces = {
+			trigger = {
+				is_planet_class = pc_acot_enigmopolis			
+			}
+			energy = 120
+			sr_dark_matter = 60	
+			acot_sr_dark_energy = 60
+		}
+		cost = {
+			minerals = 500
+			influence = 100
+			sr_dark_matter = 5000
+			acot_sr_dark_energy = 5000
+		}			
+	}
+	
+	ai_weight = {
+		weight = 100
 	}
 }
 
