@@ -2146,6 +2146,63 @@ building_posthumous_employment_center = {
 ## Pop Assembly - Toxoid
 ##################################################
 
+## Mutagenic Spa (Tier 1)
+# Merge between Sort Buildings, Real Space: Planetary Stations, Ariphaos, Scripted Trigger Undercoat
+building_toxic_bath = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	category = amenity
+	icon = building_toxic_bath
+	position_priority = 2072000 # Sort Buildings
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_toxic_bath_tt
+    }
+
+	potential = {
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Station
+		owner = {
+			is_gestalt = no
+			has_toxic_baths = yes # Scripted Trigger Undercoat
+		}
+	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				OR = {
+					is_gestalt = yes
+					has_toxic_baths = no # Scripted Trigger Undercoat
+				}
+			}
+			has_modifier = slave_colony
+		}
+	}
+	planet_modifier = {
+		job_bath_attendant_add = @b1_jobs
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_megacorp = no }
+		}
+		text = job_toxic_baths_effect_desc
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = @db1_upkeep
+		}
+	}
+}
+
 ## Mutagenic Permutation Pool (Tier 1)
 # Merge between Sort Buildings, OSA, Real Space: Planetary Stations, Scripted Trigger Undercoat
 building_toxic_bath_hive = {

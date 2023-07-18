@@ -539,7 +539,75 @@ building_galactic_stock_exchange = {
 }
 
 ##################################################
-## Civics
+## Trade - Ascension Perks
+##################################################
+
+## Bazaar (Tier 1) [Solar Storm]
+# Requires Trade Winds Ascension Perk.
+# Base version with variable changes.
+building_ss_ap_bazaar = {
+	base_buildtime = @db2_time
+	icon = building_ss_ap_bazaar
+	position_priority = 2061000 # LS - Sort second row for planet unique
+	base_cap_amount = 1
+
+	category = trade
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_ss_ap_bazaar_tt
+    }
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+		owner = { has_ascension_perk = ap_trade_winds }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+	
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+		}
+	}
+	
+	planet_modifier = {
+		job_merchant_add = 1
+		job_spice_trader_add = 2
+		trade_value_mult = 0.15
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 600
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+	}
+	
+	prerequisites = {
+	}
+	
+	ai_resource_production = {
+		energy = 5
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+##################################################
+## Trade - Civics
 ##################################################
 
 ## Mercantile Complex (Tier 1) [Venture Politics]

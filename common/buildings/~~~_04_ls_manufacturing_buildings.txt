@@ -3,10 +3,10 @@
 ##########################################################################
 
 ##################################################
-## Manufacturing - Resources
+## Alloys - Productivity
 ##################################################
 
-## Alloy Foundries (Tier 1)
+## Alloy Foundries (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Planetary Diversity: Unique Worlds, Real Space: Planetary Stations, StarTech, Ariphaos
 # Custom inlines handle most of the job creation
 building_foundry_1 = {
@@ -172,7 +172,7 @@ building_foundry_1 = {
 	}
 }
 
-## Alloy Mega-Forges (Tier 2)
+## Alloy Mega-Forges (Tier 2) [Vanilla]
 # Merge between OSA, Planetary Diversity: Unique Worlds, Unique Ascension Perks, StarTech
 # Custom inlines handle most of the job creation
 building_foundry_2 = {
@@ -369,7 +369,7 @@ building_foundry_2 = {
 	}
 }
 
-## Alloy Nano-Plants (Tier 3)
+## Alloy Nano-Plants (Tier 3) [Vanilla]
 # Merge between OSA, Planetary Diversity: Unique Worlds, Unique Ascension Perks, Rise of Cosmic Industry, StarTech
 # Custom inlines handle most of the job creation
 building_foundry_3 = {
@@ -628,7 +628,172 @@ building_foundry_3 = {
 	}
 }
 
-## Civilian Industries (Tier 1)
+##################################################
+## Alloys - Enrichment
+##################################################
+
+## Alloy Enrichment Plant (Tier 1) [Empires Expanded]
+# Base version with modified variables
+building_alloy_enrichment_plant = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2042100 # LS - Sort right after productivity
+	category = manufacturing # LS resource -> manufacturing
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_alloy_enrichment_plant_tt
+    }
+
+	destroy_trigger = {
+		has_modifier = resort_colony
+	}
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		OR = { # Habitats only have mines if they're built on an appropriate deposit
+			NOT = { is_planet_class = pc_habitat }
+			has_building = building_foundry_1
+			has_building = building_foundry_2
+			has_building = building_foundry_3
+		}
+	}
+
+	allow = {
+		#buildings_simple_allow = yes
+	}
+
+	planet_modifier = {
+		planet_jobs_alloys_produces_mult = 0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_foundry_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_authority = auth_hive_mind }
+		}
+		modifier = {
+			job_alloy_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_authority = auth_machine_intelligence }
+		}
+		modifier = {
+			job_fabricator_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_authority = auth_machine_intelligence }
+		}
+		modifier = {
+			planet_jobs_alloys_produces_mult = 0.05
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+		}
+		cost = {
+			trigger = {
+				owner = { has_authority = auth_machine_intelligence }
+			}
+			minerals = 200
+			alloys = 200
+		}
+		upkeep = {
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+	}
+
+	prerequisites = {
+		tech_alloy_enrichment_1
+	}
+
+	#upgrades = {
+	#	building_alloy_enrichment_plant_2
+	#}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_authority = auth_hive_mind }
+		}
+		text = job_alloy_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_authority = auth_machine_intelligence }
+		}
+		text = job_fabricator_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_foundry_effect_desc
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 75
+			NOT = {
+				is_planet_class = pc_relic
+			}
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 0
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = {
+				has_monthly_income = {
+					resource = alloys
+					value < 50
+				}
+			}
+		}
+	}
+
+	ai_resource_production = {
+		alloys = 1
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+##################################################
+## Consumer Goods - Productivity
+##################################################
+
+## Civilian Industries (Tier 1) [Vanilla]
 # Merge between Sort OSA, Buildings, Planetary Diversity: Unique Worlds, Unique Ascension Perks, Real Space: Planetary Stations
 # Custom inlines handle most of the job creation
 building_factory_1 = {
@@ -832,7 +997,7 @@ building_factory_1 = {
 	}
 }
 
-## Civilian Fabricators (Tier 2)
+## Civilian Fabricators (Tier 2) [Vanilla]
 # Merge between OSA, Unique Ascension Perks, Real Space: Planetary Stations, StarTech
 # Custom inlines handle most of the job creation
 building_factory_2 = {
@@ -993,7 +1158,7 @@ building_factory_2 = {
 	}
 }
 
-## Civilian Repli-Complexes (Tier 3)
+## Civilian Repli-Complexes (Tier 3) [Vanilla]
 # Merge between OSA, Unique Ascension Perks, Real Space: Planetary Stations, Rise of Cosmic Industry, StarTech
 # Custom inlines handle most of the job creation
 building_factory_3 = {
@@ -1183,6 +1348,149 @@ building_factory_3 = {
 		consumer_goods = 20
 		trigger = {
 			str_num_districts_civindustry = { operator = > num = 4 }
+		}
+	}
+}
+
+##################################################
+## Consumer Goods - Enrichment
+##################################################
+
+## Goods Management Facility (Tier 1) [Empires Expanded]
+building_goods_management_hub = {
+	base_buildtime = @db1_time
+	base_cap_amount = 1
+	position_priority = 2041100 # LS - Sort right after productivity
+	category = manufacturing # LS resource -> manufacturing
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_factory_3_tt
+    }
+
+	destroy_trigger = {
+		has_modifier = resort_colony
+	}
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		OR = { # Habitats only have mines if they're built on an appropriate deposit
+			NOT = { is_planet_class = pc_habitat }
+			has_building = building_factory_1
+			has_building = building_factory_2
+			has_building = building_factory_3
+		}
+	}
+
+	allow = {
+		#buildings_simple_allow = yes
+	}
+
+	planet_modifier = {
+		planet_jobs_consumer_goods_produces_mult = 0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_artisan_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_machine_servitor }
+		}
+		modifier = {
+			job_artisan_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_machine_servitor }
+		}
+		modifier = {
+			planet_jobs_consumer_goods_produces_mult = 0.05
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+		}
+		cost = {
+			trigger = {
+				owner = { has_authority = auth_machine_intelligence }
+			}
+			minerals = 200
+			alloys = 200
+		}
+		upkeep = {
+			energy = @db1_upkeep
+			minerals = @db1_upkeep
+		}
+	}
+
+	prerequisites = {
+		tech_goods_management_1
+	}
+
+	#upgrades = {
+	#	building_goods_management_hub_2
+	#}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_valid_civic = civic_machine_servitor }
+		}
+		text = job_artisan_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_artisan_effect_desc
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 75
+			NOT = {
+				is_planet_class = pc_relic
+			}
+			owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value < 0
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = {
+				has_monthly_income = {
+					resource = consumer_goods
+					value < 50
+				}
+			}
+		}
+	}
+
+	ai_resource_production = {
+		consumer_goods = 1
+		trigger = {
+			always = yes
 		}
 	}
 }

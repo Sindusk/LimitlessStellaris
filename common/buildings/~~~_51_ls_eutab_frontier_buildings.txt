@@ -1,0 +1,85 @@
+##########################################################################
+# Limitless Stellaris - Buildings - Frontier
+##########################################################################
+
+##################################################
+## Frontier - Foundation
+##################################################
+
+## Frontier Settlement (Tier 1) [EUTAB]
+# Modified to remove the production modifiers
+building_eutab_dev_district = {
+	base_buildtime = 180 # LS - Lower to make it more optimal on newer colonies
+	base_cap_amount = 1
+	position_priority = 8061000 # LS - Sort as far to the end as possible
+	#position_priority = 199
+
+	category = government
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_eutab_dev_district_tt
+    }
+
+	potential = {
+		NOT = { has_modifier = slave_colony }
+		exists = owner
+		owner = { is_regular_empire = yes }
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 75 #PM: AI does not like the idea of free buildings
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 4
+		pop_environment_tolerance = 0.05
+		#planet_jobs_energy_produces_mult = 0.1 # LS - Removed [Balance]
+		#planet_jobs_minerals_produces_mult = 0.1 # LS - Removed [Balance]
+		#planet_jobs_food_produces_mult = 0.1 # LS - Removed [Balance]
+		job_clerk_add = 2
+		planet_max_buildings_add = 1
+	}
+
+	upgrades = {
+		building_eutab_interior_ministry #Authoritarian not Imperial
+		building_eutab_imperial_residence #Authoritarian Imperial
+		building_eutab_planetary_parliament #Egalitarian
+		building_eutab_xeno_adaptation #Xenophobe not Pacifist
+		building_eutab_expo_guard #Xenophobic Pacifist
+		building_eutab_xeno_district #Xenophile
+		building_eutab_wargame #Militarist
+		building_eutab_eco_preserve #Pacifist
+		building_eutab_arcology #Materialist
+		building_eutab_monument_unity #Spiritualist
+	}
+
+	prerequisites = {
+		"tech_eutab_dev_district"
+	}
+
+	triggered_desc = {
+		text = job_clerk_effect_desc
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { is_regular_empire = no }
+	}
+
+	ai_resource_production = {	#PM: If the AI can another research lab by constructing this, it should probably do so
+		trigger = {
+			num_buildings = {
+				type = any
+				value <= 10
+			}
+		}
+		physics_research = 15
+		society_research = 15
+		engineering_research = 15
+		mult = value:eutab_ai_resource_production_adjustment_value
+	}
+}

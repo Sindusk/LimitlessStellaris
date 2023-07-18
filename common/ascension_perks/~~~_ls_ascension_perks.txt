@@ -103,6 +103,47 @@ ap_galactic_ascendency = {
 ## Unique Ascension Perks
 ##################################################
 
+## Blind Faith into the Nation [Unique Ascension Perks]
+# Disable AI from ever taking this to avoid Utopia spam.
+ap_advanced_government_2 = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "ap_advanced_government_2_req_1"
+			OR = {
+				has_ascension_perk = ap_advanced_government_1
+				is_gestalt = yes
+			}
+		}
+		custom_tooltip = { fail_text = "ap_advanced_government_2_req_2" has_technology = tech_galactic_administration }
+		custom_tooltip = { fail_text = "ap_advanced_government_2_req_3" has_technology = tech_housing_2 }
+		custom_tooltip = { fail_text = "requires_mega_engineering" has_technology = tech_mega_engineering }
+		# custom_tooltip = { fail_text = "ap_advanced_government_2_req_4" has_technology = tech_ascension_theory } for stage 4 only
+		custom_tooltip = { fail_text = "requires_technology_starbase_4" has_technology = tech_starbase_4 }
+	}
+	modifier = {
+		country_unity_produces_mult = 0.15		# 0.25
+	}
+	on_enabled = {
+		custom_tooltip = "ap_advanced_government_2_tooltip"
+		hidden_effect = {
+			country_event = { id = UniqueAscensionPerksEvents.88 }
+		}
+	}
+	potential = {
+		NOT = { has_ascension_perk = ap_advanced_government_2 }
+		OR = {
+			is_ai = no
+			event_target:global_event_country = {
+				check_variable = { which = ap_advanced_government_2 value > 0 }
+			}
+		}		# because ai_weight doesn't work
+	}
+	ai_weight = {
+		factor = 0 # LS - Disable AI from ever taking this.
+		#factor = event_target:global_event_country.ap_advanced_government_2
+	}
+}
+
 ## Economical Mastery [Unique Ascension Perks]
 # Removed other mods disabling this Ascension Perk. It now functions properly.
 ap_economic_prospertity = {
@@ -174,4 +215,39 @@ ap_expansionist_development = {
 		}		# because ai_weight doesn't work
 	}
 	ai_weight = { factor = event_target:global_event_country.ap_expansionist_development }
+}
+
+## Security Strike Force [Unique Ascension Perks]
+# Disable AI from ever taking this, since it's bad for them.
+ap_advanced_security = {
+	possible = { }
+	modifier = {
+		planet_crime_add = -15		# -40
+		# planet_crime_no_happiness_add = -20
+		planet_crime_mult = -0.20
+		# planet_crime_no_happiness_mult = -0.25
+		local_trade_protection_add = 25		# 50
+	}
+	on_enabled = {
+		custom_tooltip = "ap_advanced_security_tooltip_1"
+		custom_tooltip = "ap_advanced_security_tooltip_2"
+		hidden_effect = {
+			country_event = { id = UniqueAscensionPerksEvents.55 }
+		}
+	}
+	potential = {
+		NOT = { has_ascension_perk = ap_advanced_security }
+		OR = {
+			is_ai = no
+			event_target:global_event_country = {
+				check_variable = { which = ap_advanced_security value > 0 }
+			}
+		}		# because ai_weight doesn't work
+	}
+	ai_weight = {
+		factor = 0 # LS - AI should avoid this perk.
+		#factor = event_target:global_event_country.ap_advanced_security
+		#modifier = { factor = 2 has_ethic = ethic_authoritarian }
+		#modifier = { factor = 5 has_ethic = ethic_fanatic_authoritarian }
+	}
 }

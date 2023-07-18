@@ -1115,14 +1115,16 @@ building_garrison_base = {
 	category = army
 	
 	potential = {
-		exists = owner
-		owner = {
-			is_gestalt = no
-			nor = {
-				has_ethic = ethic_fanatic_spiritualist
-				has_ethic = ethic_spiritualist
-			}
-		}
+		# LS - Disable through potential
+		always = no
+		#exists = owner
+		#owner = {
+		#	is_gestalt = no
+		#	nor = {
+		#		has_ethic = ethic_fanatic_spiritualist
+		#		has_ethic = ethic_spiritualist
+		#	}
+		#}
 	}
 	destroy_trigger = {
 		exists = owner
@@ -1165,16 +1167,16 @@ building_garrison_base = {
 	prerequisites = {
 		"tech_ground_defense_planning"
 	}	
-	show_tech_unlock_if = {
-		exists = owner
-		owner = {
-			is_gestalt = no
-			nor = {
-				has_ethic = ethic_spiritualist
-				has_ethic = ethic_fanatic_spiritualist
-			}
-		}
-	}
+	#show_tech_unlock_if = { # LS - Hide from tech options
+	#	exists = owner
+	#	owner = {
+	#		is_gestalt = no
+	#		nor = {
+	#			has_ethic = ethic_spiritualist
+	#			has_ethic = ethic_fanatic_spiritualist
+	#		}
+	#	}
+	#}
 }
 
 ## Paladin Order [Invasion!]
@@ -1185,13 +1187,15 @@ building_warrior_order = {
 	category = army
 	
 	potential = {
-		exists = owner
-		owner = {
-			or = {
-				has_ethic = ethic_fanatic_spiritualist
-				has_ethic = ethic_spiritualist
-			}
-		}
+		# LS - Disable through potential
+		always = no
+		#exists = owner
+		#owner = {
+		#	or = {
+		#		has_ethic = ethic_fanatic_spiritualist
+		#		has_ethic = ethic_spiritualist
+		#	}
+		#}
 	}
 	destroy_trigger = {
 		exists = owner
@@ -1226,16 +1230,16 @@ building_warrior_order = {
 	
 	prerequisites = {
 		"tech_ground_defense_planning"
-	}	
-	show_tech_unlock_if = {
-		exists = owner
-		owner = {
-			or = {
-				has_ethic = ethic_fanatic_spiritualist
-				has_ethic = ethic_spiritualist
-			}
-		}
 	}
+	#show_tech_unlock_if = { # LS - Hide from tech options
+	#	exists = owner
+	#	owner = {
+	#		or = {
+	#			has_ethic = ethic_fanatic_spiritualist
+	#			has_ethic = ethic_spiritualist
+	#		}
+	#	}
+	#}
 }
 
 ##################################################

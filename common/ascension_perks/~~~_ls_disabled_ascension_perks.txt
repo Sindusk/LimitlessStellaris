@@ -115,7 +115,7 @@ ap_artifact_hunter = {
 }
 
 ## Genius Pregnancy [Unique Ascension Perks]
-# Disabled. Balance concerns. May revisit later.
+# Disabled. Generates loads of pops which is undesirable.
 ap_genius_cloning = {
 	possible = {
 		custom_tooltip = { fail_text = "ap_genius_cloning_req_1" has_technology = tech_cloning }
@@ -149,6 +149,62 @@ ap_genius_cloning = {
 	ai_weight = {
 		factor = event_target:global_event_country.ap_genius_cloning
 		modifier = { factor = 5 is_hive_empire = yes }
+	}
+}
+
+## Robotic Assemblers [Unique Ascension Perks]
+# Disabled. Generates loads of pops which is undesirable.
+ap_robot_command = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "ap_robot_command_req_1"
+			OR = {
+				is_machine_empire = yes
+				has_technology = tech_robotic_workers
+			}
+		}
+		custom_tooltip = {
+			fail_text = "ap_robot_command_req_2"
+			OR = {
+				has_technology = tech_robomodding_m
+				has_technology = tech_robomodding
+			}
+		}
+		custom_tooltip = { fail_text = "ap_robot_command_req_3" has_technology = tech_assembly_pattern }
+		custom_tooltip = {
+			fail_text = "ap_robot_command_req_4"
+			any_owned_pop = {
+				OR = {
+					pop_has_trait = trait_mechanical
+					pop_has_trait = trait_machine_unit
+				}
+			}
+		}
+		custom_tooltip = { fail_text = "ap_requires_1_perk" num_ascension_perks > 0 }
+	}
+	modifier = { planet_pop_assembly_mult = 0.2 }	# 0.3 < v3.4
+	on_enabled = {
+		custom_tooltip = "ap_robot_command_tooltip"
+		hidden_effect = {
+			country_event = { id = UniqueAscensionPerksEvents.61 }
+		}
+	}
+	potential = {
+		# LS - Disable through potential
+		always = no
+		#NOT = { has_ascension_perk = ap_robot_command }
+		#is_hive_empire = no
+		#OR = {
+		#	is_ai = no
+		#	event_target:global_event_country = {
+		#		check_variable = { which = ap_robot_command value > 0 }
+		#	}
+		#}		# because ai_weight doesn't work
+	}
+	ai_weight = {
+		factor = event_target:global_event_country.ap_robot_command
+		modifier = { factor = 2 has_ethic = ethic_materialist }
+		modifier = { factor = 5 has_ethic = ethic_fanatic_materialist }
 	}
 }
 

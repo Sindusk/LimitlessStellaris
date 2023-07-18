@@ -4,14 +4,13 @@
 # Extra Localisation Colors:
 # https://steamuserimages-a.akamaihd.net/ugc/2040737956562736069/C206B1AB94B34EE00F7FF04EF75A594B6D3D3E4A/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=#000000&letterbox=false
 l_english:
-  ### --- Single Use Decisions (Blue) --- ###
-  decision_acot_upgrade_garrison_1: "§BDefense Force Expansion§!" # Ancient Cache of Technologies
-  decision_acot_upgrade_garrison_2: "§BMaximum Defense Force§!" # Ancient Cache of Technologies
-  decision_acot_upgrade_fortification: "§BDefensive Wall§!" # Ancient Cache of Technologies
+  ### --- High Priority Single-Use Decisions (Blue) --- ###
   decision_giga_build_orbital_arcology: "§BConstruct Orbital Arcology§!" # Gigastructural Engineering
   decision_giga_upgrade_orbital_arcology: "§BEnhance Orbital Arcology§!" # Gigastructural Engineering
   decision_giga_maximize_orbital_arcology: "§BMaximize Orbital Arcology§!" # Gigastructural Engineering
-  osa_decision_titan_garrison: "§BDeploy Titan Garrison§!" # Omega's Stellaris Additions
+  decision_transform_into_awesome: "§BSuperior Constructs§!" # Ancient Cache of Technology
+  decision_transform_into_awesome_machine: "§BSuperior Designs§!" # Ancient Cache of Technology
+  decision_transform_into_awesome_hive: "§BSuperior Evolutions§!" # Ancient Cache of Technology
   osom_decision_subterranean_1: "§BSubterranean Geological Analysis§!" # Omega's Stellaris Additions
   osom_decision_subterranean_2: "§BSubterranean Mapping§!" # Omega's Stellaris Additions
   osom_decision_subterranean_3: "§BSubterranean Infrastructure§!" # Omega's Stellaris Additions
@@ -20,6 +19,18 @@ l_english:
   osom_decision_subterranean_microlite: "§BSubterranean Microlite Construction§!" # Omega's Stellaris Additions
   decision_eapmastery_of_nature2: "§BSubjugation of Nature§!" # Reworked Advanced Ascension
   decision_mastery_of_nature: "§BMastery of Nature§!" # Vanilla
+
+  ### --- Low Priority Single-Use Decisions (Dark Teal) --- ###
+  decision_acot_upgrade_garrison_1: "§CDefense Force Expansion§!" # Ancient Cache of Technologies
+  decision_acot_upgrade_garrison_2: "§CMaximum Defense Force§!" # Ancient Cache of Technologies
+  decision_acot_upgrade_fortification: "§CDefensive Wall§!" # Ancient Cache of Technologies
+  osa_decision_titan_garrison: "§CDeploy Titan Garrison§!" # Omega's Stellaris Additions
+
+  ### - Duration-Based Decisions (Teal) --- ###
+  ## Eventually I would like to rework these all into toggles. But they'll be organized as such until that time arrives.
+  decision_planet_food_boost: "§EEncourage Planetary Growth§!" # Vanilla
+  decision_planet_luxuries_boost: "§EDistribute Luxury Goods§!" # Vanilla
+  decision_art_monument: "§EExhibit Art Monument§!" # Vanilla
 
   ### - Toggle On Decisions (Green) --- ###
   decision_mem_crystal_fields_seeding: "§GCrystal Field Seeding§!" # More Events Mod
