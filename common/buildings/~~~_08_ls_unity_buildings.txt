@@ -4978,9 +4978,8 @@ building_organic_paradise = {
 	}
 }
 
-
 ##################################################
-## Unity - Gravity Cult
+## Unity - Gravity Cult (Unique)
 ##################################################
 
 ## Gravitic Abbey (Tier 1) [Bug Branch]
@@ -5122,7 +5121,7 @@ building_bugged_gravity_monastery_two = {
 }
 
 ##################################################
-## Unity - Life Cult
+## Unity - Life Cult (Unique)
 ##################################################
 
 ## Gene Cloister (Tier 1) [Bug Branch]
@@ -5299,7 +5298,7 @@ building_bugged_life_monastery_two = {
 }
 
 ##################################################
-## Unity - Machine Cult
+## Unity - Machine Cult (Unique)
 ##################################################
 
 ## Mecha-Monastery (Tier 1) [Bug Branch]
@@ -5531,6 +5530,156 @@ building_bugged_mecha_monastery_two = {
 
 	ai_weight = {
 		base = 200
+	}
+}
+
+##################################################
+## Unity - Navy (Unique)
+##################################################
+
+## Naval Base (Tier 1) [Planetary Diversity: More Arcologies]
+# Base version with variable changes
+building_navel_base = {
+	base_buildtime = 240
+	base_cap_amount = 1 # LS - Now a planet unique
+	position_priority = 2013000 # LS - Sorted second row for planet unique
+	#position_priority = 100
+	icon = holding_recruitment_office
+
+	category = army
+	exempt_from_ai_planet_specialization = no
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_navel_base_tt
+    }
+
+	potential = {
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_naval_admin_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_naval_admin_hive_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @db1_minerals
+		}
+		upkeep = {
+			energy = 1
+			minerals = 1
+		}
+	}
+
+	prerequisites = {
+		"tech_planetary_defenses"
+	}
+
+	upgrades = {
+		"building_navel_command"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_naval_admin_hive_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_naval_admin_effect_desc
+	}
+}
+
+## Naval Command Center (Tier 2) [Planetary Diversity: More Arcologies]
+# Base version with variable changes
+building_navel_command = {
+	base_buildtime = @db1_time
+	can_build = no
+	planetary_ftl_inhibitor = yes
+	position_priority = 100
+	icon = holding_overlord_garrison
+
+	category = army
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_navel_command_tt
+    }
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_naval_admin_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_naval_admin_hive_add = 4
+		}
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @db2_minerals
+			volatile_motes = @db2_rare_cost
+		}
+		upkeep = {
+			energy = 1
+			minerals = 1
+			volatile_motes = @db2_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_global_defense_grid"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_naval_admin_hive_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_naval_admin_effect_desc
 	}
 }
 

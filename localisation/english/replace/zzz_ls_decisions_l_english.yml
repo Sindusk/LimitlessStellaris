@@ -38,7 +38,10 @@ l_english:
   decision_martial_law: "§GDeclare Martial Law§!" # Vanilla
   osa_decision_designate_forgeworld: "§GDesignate Forge World§!" # Omega's Stellaris Additions
 
-  ### - Subsidies (Dark Green) --- ###
+  ### - Resource Focuses (Dark Green) --- ###
+  decision_snowball_wasteland_1: "§VBuild Orbital Mirrors§!" # Planetary Diversity
+  decision_snowball_wasteland_2: "§VBuild Seismic Resonator Stations§!" # Planetary Diversity
+  decision_snowball_wasteland_3: "§VBuild Nanite-Enhanced Soil§!" # Planetary Diversity # LS - Edited to make "build" consistent
   osa_decision_energy_subsidies: "§VLocal Energy Subsidies§!" # Omega's Stellaris Traditions
   osa_decision_minerals_subsidies: "§VLocal Mining Subsidies§!" # Omega's Stellaris Traditions
   osa_decision_food_subsidies: "§VLocal Agriculture Subsidies§!" # Omega's Stellaris Traditions
