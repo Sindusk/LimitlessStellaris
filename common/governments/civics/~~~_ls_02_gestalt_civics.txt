@@ -937,6 +937,8 @@ civic_machine_maintenance_protocols = {
 	description = civic_tooltip_machine_maintenance_protocols_effects
 	modifier = {
 		councilor_gestalt_governor_exp_gain = @gestalt_civic_node_xp_rate
+		planet_maintenance_drones_energy_produces_add = 2 # OSA
+		planet_maintenance_drones_unity_produces_add = 2 # OSA
 		leader_governors_unity_produces_add = 10 # OSA
 		planet_pops_robotics_upkeep_mult = -0.05 # EMEX
 	}

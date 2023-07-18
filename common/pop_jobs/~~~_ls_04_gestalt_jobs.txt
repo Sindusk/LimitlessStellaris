@@ -552,19 +552,7 @@ evaluator = {
 	resources = {
 		category = planet_evaluators
 		produces = {
-			unity = 5 # OSA 4 -> 5
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					OR = {
-						has_active_tradition = tr_compassion_1_hive
-						has_active_tradition = tr_compassion_1_machine
-					}
-				}
-			}
-			society_research = 2
+			unity = 8 # OSA 4 -> 8
 		}
 		upkeep = {
 			energy = 2
@@ -621,15 +609,6 @@ synapse_drone = {
 		produces = {
 			unity = 4
 			society_research = 4 # OSA
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_administratum_2
-				}
-			}
-			unity = 2
 		}
 		upkeep = {
 			trigger = {
@@ -971,15 +950,6 @@ fabricator = {
 		category = planet_metallurgists
 		produces = {
 			alloys = 4
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_nanobiotics_4
-				}
-			}
-			nanites = 0.05
 		}
 		upkeep = {
 			minerals = 8
@@ -1971,18 +1941,6 @@ warrior_drone = {
 	}
 	resources = {
 		category = planet_soldiers
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					OR = {
-						has_active_tradition = tr_ingenuity_4_hive
-						has_active_tradition = tr_ingenuity_4_machine
-					}
-				}
-			}
-			engineering_research = 2
-		}
 	}
 
 	triggered_country_modifier = {
@@ -2191,6 +2149,7 @@ chronicle_drone = {
 		category = planet_evaluators
 		produces = {
 			unity = 4
+			society_research = 2 # OSA
 		}
 		upkeep = {
 			trigger = { is_robot_pop = yes } # Silfae's Portraits optimization
@@ -2221,18 +2180,6 @@ chronicle_drone = {
 			trigger = { has_mineral_upkeep = yes }
 			energy = 1
 			minerals = 2
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					OR = {
-						has_active_tradition = tr_compassion_1_hive
-						has_active_tradition = tr_compassion_1_machine
-					}
-				}
-			}
-			society_research = 2
 		}
 	}
 

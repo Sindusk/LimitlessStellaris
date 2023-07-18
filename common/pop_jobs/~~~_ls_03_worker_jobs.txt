@@ -44,15 +44,6 @@ clerk = {
 			engineering_research = 1
 			society_research = 1
 		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_valid_civic = civic_merchant_guilds
-				}
-			}
-			unity = 1
-		}
 	}
 
 	triggered_planet_modifier = { # OSA
@@ -1036,15 +1027,6 @@ soldier = {
 
 	resources = {
 		category = planet_soldiers
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_ingenuity_4
-				}
-			}
-			engineering_research = 2
-		}
 		produces = { # Bug Branch
 			trigger = {
 				exists = owner

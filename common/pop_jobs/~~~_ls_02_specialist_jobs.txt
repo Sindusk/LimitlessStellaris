@@ -135,14 +135,7 @@ researcher = {
 		produces = {
 			physics_research = 4
 			engineering_research = 4
-			society_research = 2 # OSA 4 -> 2
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = { has_valid_civic = civic_technocracy }
-			}
-			unity = 1
+			society_research = 4
 		}
 		upkeep = {
 			consumer_goods = 2
@@ -152,13 +145,6 @@ researcher = {
 				planet = {
 					has_planet_flag = has_science_ministry
 				}
-			}
-			consumer_goods = 1
-		}
-		upkeep = { # OSA
-			trigger = {
-				exists = owner
-				owner = { has_valid_civic = civic_technocracy }
 			}
 			consumer_goods = 1
 		}
@@ -328,33 +314,8 @@ priest = {
 	resources = {
 		category = planet_priests
 		produces = {
-			unity = 5 # OSA 4 -> 5
+			unity = 7 # OSA 4 -> 7
 			society_research = 2 # OSA
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = { has_valid_civic = civic_exalted_priesthood }
-			}
-			unity = 1
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_compassion_1
-				}
-			}
-			society_research = 2
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_administratum_2
-				}
-			}
-			unity = 2
 		}
 		produces = { # Planetary Diversity: Shroud Worlds
 			trigger = {
@@ -465,7 +426,7 @@ death_priest = {
 		category = planet_priests
 		produces = {
 			unity = 6 # OSA 3 -> 6
-			society_research = 2 # OSA 1 -> 2
+			society_research = 4 # OSA 1 -> 4
 		}
 		produces = {
 			trigger = {
@@ -473,22 +434,6 @@ death_priest = {
 				owner = { has_sacrificial_edict = yes }
 			}
 			unity = 3
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = { has_valid_civic = civic_exalted_priesthood }
-			}
-			unity = 1
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_compassion_1
-				}
-			}
-			society_research = 2
 		}
 		produces = { # Planetary Diversity: Shroud Worlds
 			trigger = {
@@ -1177,15 +1122,6 @@ duelist = {
 		produces = {
 			unity = 3 # OSA
 		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_compassion_1
-				}
-			}
-			society_research = 2
-		}
 		upkeep = {
 			alloys = 1
 		}
@@ -1280,15 +1216,6 @@ culture_worker = {
 			unity = 4
 			society_research = 2 # OSA
 		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_compassion_1
-				}
-			}
-			society_research = 2
-		}
 		upkeep = {
 			consumer_goods = 3
 		}
@@ -1343,16 +1270,7 @@ bureaucrat = {
 	resources = {
 		category = planet_administrators
 		produces = {
-			unity = 6 # OSA 4 -> 6
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_administratum_2
-				}
-			}
-			unity = 2
+			unity = 8 # OSA 4 -> 8
 		}
 		produces = { # Subtle Polish
 			trigger = {
@@ -1467,15 +1385,6 @@ unifier = {
 		category = planet_administrators
 		produces = {
 			unity = 4
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_administratum_2
-				}
-			}
-			unity = 2
 		}
 		upkeep = {
 			consumer_goods = 1
@@ -1857,24 +1766,6 @@ healthcare = {
 			energy = 2
 			society_research = 2
 		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_ingenuity_4
-				}
-			}
-			engineering_research = 2
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_compassion_1
-				}
-			}
-			society_research = 2
-		}
 		upkeep = {
 			consumer_goods = 1
 		}
@@ -1995,26 +1886,8 @@ manager = {
 	resources = {
 		category = planet_managers
 		produces = {
-			unity = 4
+			unity = 6 # OSA 4 -> 6
 			society_research = 2 # OSA
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_compassion_1
-				}
-			}
-			society_research = 2
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_administratum_2
-				}
-			}
-			unity = 2
 		}
 		produces = { # Planetary Diversity: Shroud Worlds
 			trigger = {
@@ -2347,15 +2220,6 @@ death_chronicler = {
 			unity = 4
 			society_research = 2
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_compassion_1
-				}
-			}
-			society_research = 2
-		}
 		upkeep = {
 			consumer_goods = 3
 		}
@@ -2603,15 +2467,6 @@ foundry = {
 		upkeep = {
 			minerals = 6
 		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_nanobiotics_4
-				}
-			}
-			nanites = 0.05
-		}
 		produces = {
 			trigger = {
 				planet = {
@@ -2725,16 +2580,6 @@ catalytic_technician = {
 
 		upkeep = {
 			food = 9
-		}
-
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = {
-					has_active_tradition = tr_nanobiotics_4
-				}
-			}
-			nanites = 0.05
 		}
 
 		produces = {

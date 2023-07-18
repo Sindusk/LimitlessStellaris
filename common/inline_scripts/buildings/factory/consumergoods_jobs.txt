@@ -1,5 +1,5 @@
 ####################################################################################################
-# Limitless Stellaris - Alloy Jobs Inline Script
+# Limitless Stellaris - Consumer Goods Jobs Inline Script
 ####################################################################################################
 # Merge between Vanilla
 

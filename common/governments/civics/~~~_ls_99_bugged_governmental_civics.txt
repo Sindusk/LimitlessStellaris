@@ -638,6 +638,7 @@ civic_technocracy = {
 	}
 	modifier = {
 		num_tech_alternatives_add = 1
+		planet_researchers_unity_produces_add = 2 # OSA
 	}
 	random_weight = { base = @civic_default_random_weight }
 	ai_weight = {

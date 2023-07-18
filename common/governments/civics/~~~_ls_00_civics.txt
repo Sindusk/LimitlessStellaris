@@ -1868,6 +1868,8 @@ civic_merchant_guilds = {
 		}
 	}
 	modifier = {
+		planet_clerks_unity_produces_add = 2 # OSA
+		planet_merchants_unity_produces_add = 2 # OSA
 		pop_cat_worker_political_power = -0.5 # Bug Branch
 		country_trade_fee = -0.05 # EMEX
 		trade_value_mult = 0.05 # EMEX

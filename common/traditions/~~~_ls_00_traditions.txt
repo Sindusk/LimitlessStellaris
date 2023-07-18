@@ -198,7 +198,7 @@ tr_cybernetics_modular_cybernetics = {
 	}
 	custom_tooltip_with_modifiers = tr_cybernetics_modular_cybernetics_tt
 	modifier = {
-		modify_species_cost_mult = -0.25 # OSA -0.50 -> -0.25
+		modify_species_cost_mult = -0.10 # OSA -0.50 -> -0.25 # LS -0.25 -> -0.10 [Balance]
 		planet_jobs_engineering_research_produces_mult = 0.10 # OSA
 	}
 

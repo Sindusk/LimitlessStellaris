@@ -3,43 +3,6 @@
 ##########################################################################
 
 ##################################################
-## Expanded Stellaris Ascension Perks
-##################################################
-
-## Imperial Prerogative Modifier Stack [Expanded Stellaris Ascension Perks]
-mod_esap_gov_3_1 = {
-	empire_size_colonies_mult = -0.15 # LS -0.55 -> -0.15
-}
-mod_esap_gov_3_2 = {
-	empire_size_colonies_mult = -0.20 # LS -0.60 -> -0.20
-}
-mod_esap_gov_3_3 = {
-	empire_size_colonies_mult = -0.25 # LS -0.65 -> -0.25
-}
-mod_esap_gov_3_4 = {
-	empire_size_colonies_mult = -0.30 # LS -0.70 -> -0.30
-}
-mod_esap_gov_3_5 = {
-	empire_size_colonies_mult = -0.35 # LS -0.75 -> -0.35
-}
-# Another version of the stack, not sure which one is correct so adjusting both.
-mod_esap_gov_GC_3_1 = {
-	empire_size_colonies_mult = -0.15 # LS -0.55 -> -0.15
-}
-mod_esap_gov_GC_3_2 = {
-	empire_size_colonies_mult = -0.20 # LS -0.60 -> -0.20
-}
-mod_esap_gov_GC_3_3 = {
-	empire_size_colonies_mult = -0.25 # LS -0.65 -> -0.25
-}
-mod_esap_gov_GC_3_4 = {
-	empire_size_colonies_mult = -0.30 # LS -0.70 -> -0.30
-}
-mod_esap_gov_GC_3_5 = {
-	empire_size_colonies_mult = -0.35 # LS -0.75 -> -0.35
-}
-
-##################################################
 ## Real Space: Ships in Scaling
 ##################################################
 

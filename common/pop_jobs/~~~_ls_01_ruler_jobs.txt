@@ -41,13 +41,6 @@ head_researcher = {
 			engineering_research = 5 # OSA 6 -> 5
 			society_research = 5 # OSA 6 -> 5
 		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = { has_valid_civic = civic_technocracy }
-			}
-			unity = 1
-		}
 		upkeep = {
 			consumer_goods = 2
 		}
@@ -158,14 +151,7 @@ high_priest = {
 		category = planet_priests
 		produces = {
 			unity = 10 # OSA 6 -> 10
-			society_research = 5 # OSA
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = { has_valid_civic = civic_exalted_priesthood }
-			}
-			unity = 1
+			society_research = 6 # OSA
 		}
 		produces = { # Planetary Diversity: Shroud Worlds
 			trigger = {
@@ -291,7 +277,7 @@ politician = {
 	resources = {
 		category = planet_politicians
 		produces = {
-			unity = 8 # OSA 6 -> 8
+			unity = 10 # OSA 6 -> 10
 		}
 		upkeep = {
 			consumer_goods = 2
@@ -299,7 +285,7 @@ politician = {
 	}
 	
 	country_modifier = {
-		country_edict_fund_add = 2 # OSA
+		country_edict_fund_add = 7 # OSA
 	}
 
 
@@ -371,7 +357,7 @@ noble = {
 	resources = {
 		category = planet_nobles
 		produces = {
-			unity = 7 # OSA 6 -> 7
+			unity = 8 # OSA 6 -> 8
 		}
 		upkeep = {
 			consumer_goods = 2
@@ -380,6 +366,7 @@ noble = {
 
 	planet_modifier = {
 		planet_stability_add = 5 # OSA 2 -> 5
+		planet_jobs_worker_produces_mult = 0.05 # OSA
 	}
 
 	triggered_planet_modifier = { # Bug Branch
@@ -457,13 +444,6 @@ merchant = {
 		category = planet_merchants
 		produces = { # OSA
 			unity = 4
-		}
-		produces = { # OSA
-			trigger = {
-				exists = owner
-				owner = { has_civic = civic_merchant_guilds	}
-			}
-			unity = 2
 		}
 		upkeep = {
 			consumer_goods = 2
@@ -561,7 +541,7 @@ executive = {
 		category = planet_executives
 		produces = {
 			society_research = 4 # OSA
-			unity = 6
+			unity = 8 # OSA 6 -> 8
 		}
 		upkeep = {
 			consumer_goods = 2
@@ -601,7 +581,7 @@ executive = {
 		potential = {
 			always = yes
 		}
-		trade_value_add = 4
+		trade_value_add = 6 # OSA 4 -> 6
 		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
 	}
 

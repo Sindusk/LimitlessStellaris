@@ -61,10 +61,6 @@ building_foundry_1 = {
 		}
 	}
 	
-	planet_modifier = {
-		planet_metallurgists_alloys_produces_add = 1 # OSA
-	}
-
 	inline_script = { # Adds the alloy jobs based on proper conditions.
 		script = buildings/foundry/alloy_jobs
 		basic = @db1_jobs
@@ -76,35 +72,16 @@ building_foundry_1 = {
 		script = buildings/foundry/ascension_jobs
 		industrialist = 1
 	}
-	
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				is_catalytic_empire = no
-				has_active_tradition = tr_metallurgy_4
-			}
-		}
-		modifier = {
-			planet_metallurgists_unity_produces_add = 2
-			planet_metallurgists_alloys_produces_add = 1
-			planet_metallurgists_minerals_upkeep_add = 4
-		}
-	}
 
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				is_catalytic_empire = yes
-				has_active_tradition = tr_metallurgy_4
-			}
-		}
-		modifier = {
-			planet_metallurgists_unity_produces_add = 2
-			planet_metallurgists_alloys_produces_add = 1
-			planet_metallurgists_food_upkeep_add = 4
-		}
+	inline_script = { # Omega's Stellaris Additions
+		script = "buildings/foundry/ost_foundry_jobs"
+		OST_PRODUCTION = 1
+		OECL_MINERAL_ECO = 1
+		OECL_FOOD_ECO = 0.5
+		OST_MINERAL = 2
+		OST_FOOD = 3
+		OST_JOB = 2
+		OST_JOB_2 = 1
 	}
 
 	resources = {
@@ -273,10 +250,6 @@ building_foundry_2 = {
 		tech_alloys_1
 	}
 
-	planet_modifier = {
-		planet_metallurgists_alloys_produces_add = 2 # OSA 1 -> 2
-	}
-	
 	inline_script = { # Adds the alloy jobs based on proper conditions.
 		script = buildings/foundry/alloy_jobs
 		basic = @db2_jobs
@@ -288,35 +261,16 @@ building_foundry_2 = {
 		script = buildings/foundry/ascension_jobs
 		industrialist = 1
 	}
-	
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				is_catalytic_empire = no
-				has_active_tradition = tr_metallurgy_4
-			}
-		}
-		modifier = {
-			planet_metallurgists_unity_produces_add = 2
-			planet_metallurgists_alloys_produces_add = 1
-			planet_metallurgists_minerals_upkeep_add = 4
-		}
-	}
 
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				is_catalytic_empire = yes
-				has_active_tradition = tr_metallurgy_4
-			}
-		}
-		modifier = {
-			planet_metallurgists_unity_produces_add = 2
-			planet_metallurgists_alloys_produces_add = 1
-			planet_metallurgists_food_upkeep_add = 4
-		}
+	inline_script = {
+		script = "buildings/foundry/ost_foundry_jobs"
+		OST_PRODUCTION = 2
+		OECL_MINERAL_ECO = 2
+		OECL_FOOD_ECO = 1
+		OST_MINERAL = 3
+		OST_FOOD = 6
+		OST_JOB = 3
+		OST_JOB_2 = 1
 	}
 
 	triggered_planet_modifier = {
@@ -513,10 +467,6 @@ building_foundry_3 = {
 		#building_roci_nano_forge_mod # Rise of Cosmic Industry
 	}
 
-	planet_modifier = {
-		planet_metallurgists_alloys_produces_add = 3 # OSA 2 -> 3
-	}
-	
 	inline_script = { # Adds the alloy jobs based on proper conditions.
 		script = buildings/foundry/alloy_jobs
 		basic = @db3_jobs
@@ -528,35 +478,16 @@ building_foundry_3 = {
 		script = buildings/foundry/ascension_jobs
 		industrialist = 2
 	}
-	
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				is_catalytic_empire = no
-				has_active_tradition = tr_metallurgy_4
-			}
-		}
-		modifier = {
-			planet_metallurgists_unity_produces_add = 2
-			planet_metallurgists_alloys_produces_add = 1
-			planet_metallurgists_minerals_upkeep_add = 4
-		}
-	}
 
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				is_catalytic_empire = yes
-				has_active_tradition = tr_metallurgy_4
-			}
-		}
-		modifier = {
-			planet_metallurgists_unity_produces_add = 2
-			planet_metallurgists_alloys_produces_add = 1
-			planet_metallurgists_food_upkeep_add = 6
-		}
+	inline_script = {
+		script = "buildings/foundry/ost_foundry_jobs"
+		OST_PRODUCTION = 3
+		OECL_MINERAL_ECO = 3
+		OECL_FOOD_ECO = 1.5
+		OST_MINERAL = 6
+		OST_FOOD = 9
+		OST_JOB = 4
+		OST_JOB_2 = 2
 	}
 
 	triggered_planet_modifier = {
@@ -796,11 +727,6 @@ building_factory_1 = {
 		}
 	}
 	
-	planet_modifier = {
-		planet_artisans_consumer_goods_produces_add = 1 # OSA
-		planet_artisans_minerals_upkeep_add = 2 # OSA
-	}
-	
 	inline_script = { # Adds the consumer goods jobs and descriptions based on proper conditions.
 		script = buildings/factory/consumergoods_jobs
 		basic = @db1_jobs
@@ -811,6 +737,15 @@ building_factory_1 = {
 	inline_script = { # Adds ascension perk jobs.
 		script = buildings/factory/ascension_jobs
 		industrialist = 1
+	}
+
+	inline_script = { # Omega's Stellaris Additions
+		script = "buildings/factory/ost_factory_jobs"
+		OST_PRODUCTION = 1
+		OECL_MINERAL_ECO = 1
+		OST_MINERAL = 2
+		OST_JOB = 2
+		OST_JOB_2 = 1
 	}
 
 	resources = {
@@ -950,11 +885,6 @@ building_factory_2 = {
 		}
 	}
 
-	planet_modifier = {
-		planet_artisans_consumer_goods_produces_add = 2 # OSA 1 -> 2
-		planet_artisans_minerals_upkeep_add = 4 # OSA 1 -> 4
-	}
-
 	inline_script = { # Adds the consumer goods jobs and descriptions based on proper conditions.
 		script = buildings/factory/consumergoods_jobs
 		basic = @db2_jobs
@@ -965,6 +895,15 @@ building_factory_2 = {
 	inline_script = { # Adds ascension perk jobs.
 		script = buildings/factory/ascension_jobs
 		industrialist = 1
+	}
+
+	inline_script = { # Omega's Stellaris Additions
+		script = "buildings/factory/ost_factory_jobs"
+		OST_PRODUCTION = 2
+		OECL_MINERAL_ECO = 2
+		OST_MINERAL = 4
+		OST_JOB = 3
+		OST_JOB_2 = 1
 	}
 
 	resources = {
@@ -1109,12 +1048,6 @@ building_factory_3 = {
 		}
 	}
 
-
-	planet_modifier = {
-		planet_artisans_consumer_goods_produces_add = 3 # OSA 2 -> 3
-		planet_artisans_minerals_upkeep_add = 6 # OSA 2 -> 4
-	}
-	
 	inline_script = { # Adds the consumer goods jobs and descriptions based on proper conditions.
 		script = buildings/factory/consumergoods_jobs
 		basic = @db3_jobs
@@ -1125,6 +1058,15 @@ building_factory_3 = {
 	inline_script = { # Adds ascension perk jobs.
 		script = buildings/factory/ascension_jobs
 		industrialist = 2
+	}
+
+	inline_script = { # Omega's Stellaris Additions
+		script = "buildings/factory/ost_factory_jobs"
+		OST_PRODUCTION = 3
+		OECL_MINERAL_ECO = 3
+		OST_MINERAL = 6
+		OST_JOB = 4
+		OST_JOB_2 = 2
 	}
 
 	triggered_planet_modifier = {
@@ -1780,7 +1722,7 @@ building_ministry_production = {
 	}
 
 	planet_modifier = {
-		job_politician_add = 1
+		job_osa_chief_engineer_add = 1 # OSA politician -> chief_engineer
 		planet_metallurgists_produces_mult = 0.25 # OSA 0.15 -> 0.25
 		planet_artisans_produces_mult = 0.25 # OSA 0.15 -> 0.25
 		planet_cultivators_produces_mult = 0.15 # Gigastructural Engineering
@@ -1820,7 +1762,7 @@ building_ministry_production = {
 	}
 
 	triggered_desc = {
-		text = job_politician_effect_desc
+		text = job_osa_chief_engineer_effect_desc # OSA politician -> chief_engineer
 	}
 
 	show_tech_unlock_if = {

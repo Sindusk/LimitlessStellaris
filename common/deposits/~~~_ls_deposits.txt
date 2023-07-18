@@ -2,6 +2,11 @@
 # Limitless Stellaris - Deposits
 ##########################################################################
 
+@blocker_high = 10
+@blocker_low = 5
+@blocker_lower = 2 #Might raise to 3
+@blocker_rare = 1
+
 ##################################################
 ## Lithoid Supremacy
 ##################################################

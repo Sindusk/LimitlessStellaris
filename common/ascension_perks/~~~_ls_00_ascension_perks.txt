@@ -928,10 +928,9 @@ ap_executive_vigor = {
 	}
 
 	potential = {
-		NOT = {
+		NOR = {
 			has_ethic = ethic_gestalt_consciousness
 			has_ascension_perk = ap_executive_vigor
-			has_ascension_perk = ap_esap_gov_1
 		}
 	}
 	on_enabled = {
@@ -1381,10 +1380,9 @@ ap_imperial_prerogative = {
 	}
 
 	potential = {
-		NOT = {
+		NOR = {
 			has_ethic = ethic_gestalt_consciousness
 			has_ascension_perk = ap_imperial_prerogative
-			has_ascension_perk = ap_esap_gov_3
 		}
 		is_megacorp = no
 	}
