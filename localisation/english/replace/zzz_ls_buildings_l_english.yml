@@ -428,17 +428,21 @@ l_english:
 ##################
 
   ### Basic
-  building_commercial_zone: "§V£trade_value£ Commercial Zones§!"
+  building_commercial_zone: "§V£trade_value£ Commercial Zones§!" # Vanilla
   building_commercial_zone_tt: "§MTrade§! - §BTier 1§! - §EBasic§!"
   building_commercial_zone_desc: "These commercial zones are home to towering office buildings and business complexes."
-  building_commercial_megaplex: "§V£trade_value£ Commerce Megaplexes§!"
+  building_commercial_megaplex: "§V£trade_value£ Commerce Megaplexes§!" # Vanilla
   building_commercial_megaplex_tt: "§MTrade§! - §BTier 2§! - §EBasic§!"
   building_commercial_megaplex_desc: "Great commercial spires and towers rising up towards the sky, blotting out the light."
 
   ### Unique
   ## Stock Exchange
+  building_bugged_planetary_stock_exchange: "§G£trade_value£ Planetary Stock Exchange§!" # Bug Branch
+  building_bugged_planetary_stock_exchange_tt: "§MTrade§! - §BTier 1§! - §EStock Exchange§!"
+  building_bugged_planetary_stock_exchange_desc: "This massive building utilizes the latest in data transfer technology to help organize the trading of stocks, energy credits, and many other valuable resources amongst people anywhere on the planet."
+  building_bugged_planetary_stock_exchange_effect_desc: "Increases the base production of £trade_value£ §YTrade§! producing jobs by §G1§!."
   building_galactic_stock_exchange: "§G£trade_value£ Galactic Stock Exchange§!" # Vanilla
-  building_galactic_stock_exchange_tt: "§MTrade§! - §BTier 2§! - §EUnique§!"
+  building_galactic_stock_exchange_tt: "§MTrade§! - §BTier 2§! - §EStock Exchange§!"
   building_galactic_stock_exchange_desc: "By engaging in free trade of goods and services we allow for a more specialized economy, where an individual can excel in a narrow field and trade for their needs."
 
   ### Ascension Perks
@@ -1177,6 +1181,6 @@ l_english:
 
   ### Frontier
   ## Foundation
-  building_eutab_dev_district: "Frontier Settlement" # EUTAB
+  building_eutab_dev_district: "§G£housing£ Frontier Settlement§!" # EUTAB
   building_eutab_dev_district_tt: "§MFrontier§! - §BTier 1§! - §EFoundation§!"
   building_eutab_dev_district_desc: "A foundation for spreading our way of life across this world.\n§YThis building provides a free building slot when constructed.§!"

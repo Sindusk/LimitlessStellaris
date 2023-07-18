@@ -288,12 +288,18 @@ building_commercial_megaplex = {
 ##################################################
 
 ## Planetary Stock Exchange (Tier 1) [Bug Branch]
-# --- Here as a reference until further adjustments are made.
+# Base version with variable changes.
 building_bugged_planetary_stock_exchange = {
 	base_buildtime = 480
+	position_priority = 2061000 # LS - Sort Buildings position for the vanilla version
 	base_cap_amount = 1
 
 	category = trade
+
+    # Building Tooltip
+    triggered_desc = {
+        text = building_bugged_planetary_stock_exchange_tt
+    }
 
 	potential = {
 		NOT = { has_modifier = resort_colony }
@@ -356,6 +362,7 @@ building_bugged_planetary_stock_exchange = {
 		}
 		upkeep = {
 			energy = 5
+			minerals = 5
 			rare_crystals = 2
 		}
 	}
