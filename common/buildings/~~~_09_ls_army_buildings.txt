@@ -1458,6 +1458,16 @@ building_lightmechbay = {
 	upgrades = {
 		building_mediummechbay
 	}
+	
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = alloys
+				value >= 5
+			}
+		}
+		engineering_research = 3
+	}
 }
 
 ## Medium Mechbay [Invasion!]
@@ -1514,6 +1524,16 @@ building_mediummechbay = {
 	
 	upgrades = {
 		building_heavymechbay
+	}
+	
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = alloys
+				value >= 5
+			}
+		}
+		engineering_research = 5
 	}
 }
 
@@ -1572,6 +1592,16 @@ building_heavymechbay = {
 	upgrades = {
 		building_assaultmechbay
 	}
+	
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = alloys
+				value >= 5
+			}
+		}
+		engineering_research = 6
+	}
 }
 
 ## Assault Mechbay [Invasion!]
@@ -1624,5 +1654,15 @@ building_assaultmechbay = {
 	
 	country_modifier = {
 		country_leader_cap_add = 1
+	}
+	
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = alloys
+				value >= 5
+			}
+		}
+		engineering_research = 8
 	}
 }

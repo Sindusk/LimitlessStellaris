@@ -1177,6 +1177,16 @@ building_garrison_base = {
 	#		}
 	#	}
 	#}
+	
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = energy
+				value >= 5
+			}
+		}
+		unity = 5
+	}
 }
 
 ## Paladin Order [Invasion!]
@@ -1240,6 +1250,16 @@ building_warrior_order = {
 	#		}
 	#	}
 	#}
+	
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = energy
+				value >= 5
+			}
+		}
+		unity = 10
+	}
 }
 
 ##################################################

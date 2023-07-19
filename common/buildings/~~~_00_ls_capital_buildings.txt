@@ -1277,7 +1277,7 @@ building_imperial_capital = {
 }
 
 ## Enigmatic Palace (Tier Delta) [Ancient Cache of Technologies]
-# Base version with updated variables and leader cap
+# Acquisition of Technology version with updated variables and leader cap
 building_dm_ancient_palace = {
 	base_buildtime = @db6_time # LS 900 -> db6
 	capital = yes
@@ -1296,71 +1296,60 @@ building_dm_ancient_palace = {
 		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
 		country_resource_max_add = 10000
 	}
-
 	upgrades = {
 		building_ae_ancient_palace
 	}
-
 	category = government
-	
 	potential = {
 		exists = owner
-		owner = { is_regular_empire = yes }
+		owner = {
+			is_regular_empire = yes
+		}
 		NOR = {
 			has_modifier = resort_colony
 			has_modifier = slave_colony
-		}		
+		}
 	}
-	
 	convert_to = {
-		building_dm_ancient_control_center		
+		building_dm_ancient_control_center
 		building_dm_ancient_hive_cluster
 	}
-	
 	allow = {
 	}
-	
 	prerequisites = {
-		"tech_dm_ancient_palace"
+		tech_dm_ancient_palace
 	}
-	
-	show_tech_unlock_if = { 
+	show_tech_unlock_if = {
 		is_regular_empire = yes
 	}
-	
 	planet_modifier = {
-		planet_housing_add = 30
-		planet_amenities_add = 30
-		trade_value_add = 5
-		trade_value_mult = 0.50
+		planet_housing_add = 10		#Mod Pack: reduced from 30
+		planet_amenities_add = 15		#Mod Pack: reduced from 30
 		planet_max_districts_add = 2
-		planet_max_buildings_add = 8
-		planet_max_branch_office_buildings_add = 4
-		planet_orbital_bombardment_damage = -0.10
-		pop_environment_tolerance = 0.10
+		planet_max_buildings_add = 4		#Mod Pack: reduced from 8
+		planet_max_branch_office_buildings_add = 2		#Mod Pack: reduced from 4
+		trade_value_add = 5
+		trade_value_mult = 0.4		#Mod Pack: reduced from 0.5
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = {
 				is_fallen_empire = no
-			}	
+			}
 		}
 		modifier = {
 			job_acot_overlord_add = 1
-			job_acot_overseer_add = 4
-			job_acot_enforcer_add = 4
+			job_acot_overseer_add = 1			#Mod Pack: reduced from 4
+			job_aot_dm_enforcer_add = 1			#Mod Pack: reduced from 4
 		}
 	}
-
 	##### FOR FE ###
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { 
-				is_fallen_empire_spiritualist = no 
+			owner = {
+				is_fallen_empire_spiritualist = no
 				is_fallen_empire = yes
 			}
 		}
@@ -1369,12 +1358,11 @@ building_dm_ancient_palace = {
 			job_fe_protector_add = 4
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { 
-				is_fallen_empire_spiritualist = yes 
+			owner = {
+				is_fallen_empire_spiritualist = yes
 				is_fallen_empire = yes
 			}
 		}
@@ -1383,84 +1371,85 @@ building_dm_ancient_palace = {
 			job_fe_protector_add = 4
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_1 }
+			owner = {
+				has_technology = tech_capital_productivity_1
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_2 }
+			owner = {
+				has_technology = tech_capital_productivity_2
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_3 }
+			owner = {
+				has_technology = tech_capital_productivity_3
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	resources = {
 		category = planet_buildings
 		produces = {
 			energy = 20
-			sr_dark_matter = 10	
+			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured					
+				is_planet_class = pc_dark_fractured
 			}
 			energy = 10
-			sr_dark_matter = 5	
+			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured_ae			
+				is_planet_class = pc_dark_fractured_ae
 			}
 			energy = 20
-			sr_dark_matter = 10	
+			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_acot_enigmopolis			
+				is_planet_class = pc_acot_enigmopolis
 			}
 			energy = 60
-			sr_dark_matter = 30	
+			sr_dark_matter = 30
 			acot_sr_dark_energy = 30
 		}
 		cost = {
 			minerals = 1000
 			sr_dark_matter = 100
-		}			
+		}
 	}
-	
 	ai_weight = {
 		weight = 100
 	}
 }
 
 ## Void Palace (Tier Alpha) [Ancient Cache of Technologies]
-# Base version with updated variables and leader cap
+# Acquisition of Technology version with updated variables and leader cap
 building_ae_ancient_palace = {
 	base_buildtime = @db7_time # 900 -> db7
 	capital = yes
@@ -1469,7 +1458,6 @@ building_ae_ancient_palace = {
 	can_be_disabled = no
 	can_build = no
 	position_priority = 0
-
 	category = government
 	
     # Building Tooltip
@@ -1481,62 +1469,57 @@ building_ae_ancient_palace = {
 		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
 		country_resource_max_add = 20000
 	}
-
 	potential = {
 		exists = owner
-		owner = { is_regular_empire = yes }
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_ae_ancient_palace
+		}
 	}
-	
 	convert_to = {
-		building_ae_ancient_control_center		
+		building_ae_ancient_control_center
 		building_ae_ancient_hive_cluster
 	}
-	
 	allow = {
 		num_pops >= 20
 	}
-	
+	upgrades = {
+		building_phanon_palace
+	}
 	prerequisites = {
 		"tech_ae_ancient_palace"
 	}
-	
-	show_tech_unlock_if = { 
+	show_tech_unlock_if = {
 		is_regular_empire = yes
 	}
-	
 	planet_modifier = {
-		planet_housing_add = 50
-		planet_amenities_add = 50
-		trade_value_add = 15
-		trade_value_mult = 1.00
-		planet_max_districts_add = 4
-		planet_max_buildings_add = 12
-		planet_max_branch_office_buildings_add = 5
-		planet_orbital_bombardment_damage = -0.20
-		pop_environment_tolerance = 0.20
+		planet_housing_add = 20
+		planet_amenities_add = 30		#Mod Pack: reduced from 50
+		planet_max_districts_add = 3		#Mod Pack: reduced from 4
+		planet_max_buildings_add = 8		#Mod Pack: reduced from 12
+		planet_max_branch_office_buildings_add = 3		#Mod Pack: reduced from 5
+		trade_value_add = 7.5		#Mod Pack: reduced from 15
+		trade_value_mult = 0.7		#Mod Pack: reduced from 1
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = {
 				is_fallen_empire = no
-			}	
+			}
 		}
 		modifier = {
 			job_acot_overlord_add = 1
-			job_acot_overseer_add = 8
-			job_acot_enforcer_add = 8
+			job_acot_overseer_add = 2			#Mod Pack: Reduced from 4
+			job_acot_enforcer_add = 2			#Mod Pack: Reduced from 4
 		}
 	}
-	
 	##### FOR FE ###
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { 
-				is_fallen_empire_spiritualist = no 
+			owner = {
+				is_fallen_empire_spiritualist = no
 				is_fallen_empire = yes
 			}
 		}
@@ -1545,12 +1528,11 @@ building_ae_ancient_palace = {
 			job_fe_protector_add = 8
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { 
-				is_fallen_empire_spiritualist = yes 
+			owner = {
+				is_fallen_empire_spiritualist = yes
 				is_fallen_empire = yes
 			}
 		}
@@ -1559,81 +1541,80 @@ building_ae_ancient_palace = {
 			job_fe_protector_add = 8
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_1 }
+			owner = {
+				has_technology = tech_capital_productivity_1
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_2 }
+			owner = {
+				has_technology = tech_capital_productivity_2
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_3 }
+			owner = {
+				has_technology = tech_capital_productivity_3
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	resources = {
 		category = planet_buildings
 		produces = {
 			energy = 40
-			sr_dark_matter = 20	
+			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured					
+				is_planet_class = pc_dark_fractured
 			}
 			energy = 20
-			sr_dark_matter = 10	
+			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured_ae			
+				is_planet_class = pc_dark_fractured_ae
 			}
 			energy = 40
-			sr_dark_matter = 20	
+			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_acot_enigmopolis			
+				is_planet_class = pc_acot_enigmopolis
 			}
 			energy = 120
-			sr_dark_matter = 60	
+			sr_dark_matter = 60
 			acot_sr_dark_energy = 60
 		}
 		cost = {
 			minerals = 500
-			influence = 100
+			unity = 100
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
-		}			
+		}
 	}
-	
-
-	
 	ai_weight = {
 		weight = 100
 	}
@@ -2556,7 +2537,7 @@ building_imperial_machine_capital = {
 }
 
 ## Enigmatic Nexus (Tier Delta) [Ancient Cache of Technologies]
-# Base version with updated variables and leader cap
+# Acquisition of Technology version with updated variables and leader cap
 building_dm_ancient_control_center = {
 	base_buildtime = @db6_time # LS 900 -> db6
 	capital = yes
@@ -2574,66 +2555,54 @@ building_dm_ancient_control_center = {
 		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
 		country_resource_max_add = 10000
 	}
-
 	category = government
-	
 	upgrades = {
 		building_ae_ancient_control_center
 	}
-
 	potential = {
 		exists = owner
-		owner = { is_machine_empire = yes }
+		owner = {
+			is_machine_empire = yes
+		}
 	}
-	
 	convert_to = {
 		building_dm_ancient_palace
 		building_dm_ancient_hive_cluster
 	}
-	
 	allow = {
 		num_pops >= 25
 	}
-	
 	prerequisites = {
-		"tech_dm_ancient_control_center"
+		tech_dm_ancient_control_center
 	}
-	
-	show_tech_unlock_if = { 
+	show_tech_unlock_if = {
 		is_machine_empire = yes
 	}
-	
 	planet_modifier = {
-		planet_housing_add = 30
-		planet_amenities_add = 30
-		planet_max_districts_add = 2
-		planet_max_buildings_add = 8
-		planet_orbital_bombardment_damage = -0.10
-		pop_environment_tolerance = 0.10
+		planet_housing_add = 10		#Mod Pack: reduced from 30
+		planet_amenities_add = 10		#Mod Pack: reduced from 30
+		planet_max_districts_add = 1		#Mod Pack: reduced from 2
+		planet_max_buildings_add = 4		#Mod Pack: reduced from 8
 	}
-	
 	##### FOR DEFEARTHH ###
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { 
+			owner = {
 				is_fallen_machine_empire = no
 			}
 		}
 		modifier = {
 			job_acot_overlord_droid_add = 1
-			job_acot_overseer_droid_add = 4
-			job_acot_enforcer_drone_add = 4
+			job_acot_overseer_droid_add = 1			#Mod Pack: reduced from 4
+			job_aot_dm_enforcer_drone_add = 1			#Mod Pack: reduced from 4
 		}
 	}
-
 	##### FOR FE ###
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { 
+			owner = {
 				is_fallen_machine_empire = yes
 			}
 		}
@@ -2641,84 +2610,85 @@ building_dm_ancient_control_center = {
 			job_fe_guardian_bot_add = 10
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_1 }
+			owner = {
+				has_technology = tech_capital_productivity_1
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_2 }
+			owner = {
+				has_technology = tech_capital_productivity_2
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_3 }
+			owner = {
+				has_technology = tech_capital_productivity_3
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	resources = {
 		category = planet_buildings
 		produces = {
 			energy = 20
-			sr_dark_matter = 10	
+			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured					
+				is_planet_class = pc_dark_fractured
 			}
 			energy = 10
-			sr_dark_matter = 5	
+			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured_ae			
+				is_planet_class = pc_dark_fractured_ae
 			}
 			energy = 20
-			sr_dark_matter = 10	
+			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_acot_enigmopolis			
+				is_planet_class = pc_acot_enigmopolis
 			}
 			energy = 60
-			sr_dark_matter = 30	
+			sr_dark_matter = 30
 			acot_sr_dark_energy = 30
 		}
 		cost = {
 			minerals = 1000
 			sr_dark_matter = 100
-		}			
+		}
 	}
-	
 	ai_weight = {
 		weight = 100
 	}
 }
 
 ## Void Nexus (Tier Alpha) [Ancient Cache of Technologies]
-# Base version with updated variables and leader cap
+# Acquisition of Technology version with updated variables and leader cap
 building_ae_ancient_control_center = {
 	base_buildtime = @db7_time # LS 900 -> db7
 	capital = yes
@@ -2726,7 +2696,6 @@ building_ae_ancient_control_center = {
 	can_be_ruined = no
 	can_be_disabled = no
 	position_priority = 0
-
 	category = government
 
     # Building Tooltip
@@ -2738,58 +2707,53 @@ building_ae_ancient_control_center = {
 		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
 		country_resource_max_add = 20000
 	}
-
 	potential = {
 		exists = owner
-		owner = { is_machine_empire = yes }
+		owner = {
+			is_machine_empire = yes
+			has_technology = tech_ae_ancient_control_center
+		}
 	}
-	
 	convert_to = {
 		building_ae_ancient_palace
 		building_ae_ancient_hive_cluster
 	}
-	
+	upgrades = {
+		building_phanon_control_center
+	}
 	allow = {
 		num_pops >= 20
 	}
-	
 	prerequisites = {
 		"tech_ae_ancient_control_center"
 	}
-	
-	show_tech_unlock_if = { 
+	show_tech_unlock_if = {
 		is_machine_empire = yes
 	}
-	
 	planet_modifier = {
-		planet_housing_add = 50
-		planet_amenities_add = 50
-		planet_max_districts_add = 4
-		planet_max_buildings_add = 12
-		planet_orbital_bombardment_damage = -0.20
-		pop_environment_tolerance = 0.20
+		planet_housing_add = 20		#Mod Pack: reduced from 20
+		planet_amenities_add = 20		#Mod Pack: reduced from 50
+		planet_max_districts_add = 2		#Mod Pack: reduced from 4
+		planet_max_buildings_add = 8		#Mod Pack: reduced from 12
 	}
-	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { 
+			owner = {
 				is_fallen_machine_empire = no
 			}
 		}
 		modifier = {
 			job_acot_overlord_droid_add = 1
-			job_acot_overseer_droid_add = 8
-			job_acot_enforcer_drone_add = 8
+			job_acot_overseer_droid_add = 2			#Mod Pack: Reduced from 4
+			job_acot_enforcer_drone_add = 2			#Mod Pack: Reduced from 4
 		}
 	}
-
 	##### FOR FE ###
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { 
+			owner = {
 				is_fallen_machine_empire = yes
 			}
 		}
@@ -2797,79 +2761,80 @@ building_ae_ancient_control_center = {
 			job_fe_guardian_bot_add = 20
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_1 }
+			owner = {
+				has_technology = tech_capital_productivity_1
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_2 }
+			owner = {
+				has_technology = tech_capital_productivity_2
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_3 }
+			owner = {
+				has_technology = tech_capital_productivity_3
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	resources = {
 		category = planet_buildings
 		produces = {
 			energy = 40
-			sr_dark_matter = 20	
+			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured					
+				is_planet_class = pc_dark_fractured
 			}
 			energy = 20
-			sr_dark_matter = 10	
+			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured_ae			
+				is_planet_class = pc_dark_fractured_ae
 			}
 			energy = 40
-			sr_dark_matter = 20	
+			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_acot_enigmopolis			
+				is_planet_class = pc_acot_enigmopolis
 			}
 			energy = 120
-			sr_dark_matter = 60	
+			sr_dark_matter = 60
 			acot_sr_dark_energy = 60
 		}
 		cost = {
 			minerals = 500
-			influence = 100
+			unity = 100
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
-		}			
+		}
 	}
-	
 	ai_weight = {
 		weight = 100
 	}
@@ -3536,7 +3501,7 @@ building_imperial_hive_capital = {
 }
 
 ## Enigmatic Cluster (Tier Delta) [Ancient Cache of Technologies]
-# Base version with updated variables and leader cap
+# Acquisition of Technology version with updated variables and leader cap
 building_dm_ancient_hive_cluster = {
 	base_buildtime = @db6_time # LS 900 -> db6
 	capital = yes
@@ -3555,124 +3520,117 @@ building_dm_ancient_hive_cluster = {
 		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
 		country_resource_max_add = 10000
 	}
-
+	category = government
 	upgrades = {
 		building_ae_ancient_hive_cluster
 	}
-
-	category = government
-	
 	potential = {
 		exists = owner
-		owner = { is_hive_empire = yes }
+		owner = {
+			is_hive_empire = yes
+		}
 	}
-	
 	convert_to = {
 		building_dm_ancient_control_center
 		building_dm_ancient_palace
 	}
-	
 	allow = {
 		num_pops >= 20
 	}
-	
 	prerequisites = {
-		"tech_dm_ancient_hive_cluster"
+		tech_dm_ancient_hive_cluster
 	}
-	
-	show_tech_unlock_if = { 
+	show_tech_unlock_if = {
 		is_hive_empire = yes
 	}
-	
 	planet_modifier = {
-		planet_housing_add = 30
-		planet_amenities_add = 30
+		planet_housing_add = 10		#Mod Pack: Reduced from 30
+		planet_amenities_add = 10		#Mod Pack: Reduced from 30
 		planet_max_districts_add = 2
+		planet_max_buildings_add = 4		#Mod Pack: Reduced from 8
 		job_acot_overlord_drone_add = 1
-		job_acot_overseer_drone_add = 4
-		job_acot_enforcer_drone_add = 4
-		planet_max_buildings_add = 8
-		planet_orbital_bombardment_damage = -0.10
-		pop_environment_tolerance = 0.10
+		job_acot_overseer_drone_add = 1		#Mod Pack: Reduced from 4
+		job_aot_dm_enforcer_drone_add = 1		#Mod Pack: Reduced from 4
 	}
-	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_1 }
+			owner = {
+				has_technology = tech_capital_productivity_1
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_2 }
+			owner = {
+				has_technology = tech_capital_productivity_2
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_3 }
+			owner = {
+				has_technology = tech_capital_productivity_3
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	resources = {
 		category = planet_buildings
 		produces = {
 			energy = 20
-			sr_dark_matter = 10	
+			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured					
+				is_planet_class = pc_dark_fractured
 			}
 			energy = 10
-			sr_dark_matter = 5	
+			sr_dark_matter = 5
 			acot_sr_dark_energy = 5
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured_ae			
+				is_planet_class = pc_dark_fractured_ae
 			}
 			energy = 20
-			sr_dark_matter = 10	
+			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_acot_enigmopolis			
+				is_planet_class = pc_acot_enigmopolis
 			}
 			energy = 60
-			sr_dark_matter = 30	
+			sr_dark_matter = 30
 			acot_sr_dark_energy = 30
 		}
 		cost = {
 			minerals = 1000
 			sr_dark_matter = 100
-		}			
+		}
 	}
-
 	ai_weight = {
 		weight = 100
 	}
 }
 
 ## Void Cluster (Tier Alpha) [Ancient Cache of Technologies]
-# Base version with updated variables and leader cap
+# Acquisition of Technology version with updated variables and leader cap
 building_ae_ancient_hive_cluster = {
 	base_buildtime = @db7_time # LS 900 -> db7
 	capital = yes
@@ -3689,117 +3647,115 @@ building_ae_ancient_hive_cluster = {
 
 	country_modifier = {
 		country_leader_cap_add = 1 # LS - Capitals give +1 leader now
-		country_resource_max_add = 20000
+		country_resource_max_add = 15000		#Mod Pack: Reduced from 20000
 	}
-
 	category = government
-	
+	upgrades = {
+		building_phanon_hive_cluster
+	}
 	potential = {
 		exists = owner
-		owner = { is_hive_empire = yes }
+		owner = {
+			is_hive_empire = yes
+			has_technology = tech_ae_ancient_hive_cluster
+		}
 	}
-	
 	convert_to = {
 		building_ae_ancient_control_center
 		building_ae_ancient_palace
 	}
-	
 	allow = {
 		num_pops >= 25
 	}
-	
 	prerequisites = {
 		"tech_ae_ancient_hive_cluster"
 	}
-	
-	show_tech_unlock_if = { 
+	show_tech_unlock_if = {
 		is_hive_empire = yes
 	}
-	
 	planet_modifier = {
-		planet_housing_add = 50
-		planet_amenities_add = 50
+		planet_housing_add = 20
+		planet_amenities_add = 20		#Mod Pack: Reduced from 50
+		planet_max_districts_add = 2		#Mod Pack: Reduced from 4
+		planet_max_buildings_add = 8		#Mod Pack: Reduced from 12
 		job_acot_overlord_drone_add = 1
-		job_acot_overseer_drone_add = 8
-		job_acot_enforcer_drone_add = 8
-		planet_max_districts_add = 4
-		planet_max_buildings_add = 12
-		planet_orbital_bombardment_damage = -0.20
-		pop_environment_tolerance = 0.20
+		job_acot_overseer_drone_add = 2		#Mod Pack: Reduced from 4
+		job_acot_enforcer_drone_add = 2		#Mod Pack: Reduced from 4
 	}
-	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_1 }
+			owner = {
+				has_technology = tech_capital_productivity_1
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_2 }
+			owner = {
+				has_technology = tech_capital_productivity_2
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_technology = tech_capital_productivity_3 }
+			owner = {
+				has_technology = tech_capital_productivity_3
+			}
 		}
 		modifier = {
 			planet_jobs_upkeep_mult = 0.1
 			planet_jobs_produces_mult = 0.1
 		}
 	}
-
 	resources = {
 		category = planet_buildings
 		produces = {
 			energy = 40
-			sr_dark_matter = 20	
+			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured					
+				is_planet_class = pc_dark_fractured
 			}
 			energy = 20
-			sr_dark_matter = 10	
+			sr_dark_matter = 10
 			acot_sr_dark_energy = 10
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_dark_fractured_ae			
+				is_planet_class = pc_dark_fractured_ae
 			}
 			energy = 40
-			sr_dark_matter = 20	
+			sr_dark_matter = 20
 			acot_sr_dark_energy = 20
 		}
 		produces = {
 			trigger = {
-				is_planet_class = pc_acot_enigmopolis			
+				is_planet_class = pc_acot_enigmopolis
 			}
 			energy = 120
-			sr_dark_matter = 60	
+			sr_dark_matter = 60
 			acot_sr_dark_energy = 60
 		}
 		cost = {
 			minerals = 500
-			influence = 100
+			unity = 100
 			sr_dark_matter = 5000
 			acot_sr_dark_energy = 5000
-		}			
+		}
 	}
-	
 	ai_weight = {
 		weight = 100
 	}
