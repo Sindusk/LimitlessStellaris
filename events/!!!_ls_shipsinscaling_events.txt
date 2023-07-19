@@ -66,27 +66,26 @@ ship_event = {
 	}
 
 	immediate = {
-		# LS - After reconsideration, why are we even bothering to remove it every time?
-		#if = { # LS - Default setting for the collection, lets prioritize it
-		#	limit = { has_global_flag = sustained_ship_acceleration }
-		#	remove_modifier = speed_change_x6 # LS - Our edited version
-		#}
-		#else_if = { # LS if -> else_if (for optimization)
-		#    limit = { has_modifier = speed_change_x1 }
-		#    remove_modifier = speed_change_x1
-		#}
-		#else_if = { # LS if -> else_if (for optimization)
-		#    limit = { has_modifier = speed_change_x2 }
-		#    remove_modifier = speed_change_x2
-		#}
-		#else_if = { # LS if -> else_if (for optimization)
-		#    limit = { has_modifier = speed_change_x3 }
-		#    remove_modifier = speed_change_x3
-		#}
-		#else_if = { # LS if -> else_if (for optimization)
-		#    limit = { has_modifier = speed_change_x4 }
-		#    remove_modifier = speed_change_x4
-		#}
+		if = { # LS - Default setting for the collection, lets prioritize it
+			limit = { has_global_flag = sustained_ship_acceleration }
+			remove_modifier = speed_change_x6 # LS - Our edited version
+		}
+		else_if = { # LS if -> else_if (for optimization)
+		    limit = { has_modifier = speed_change_x1 }
+		    remove_modifier = speed_change_x1
+		}
+		else_if = { # LS if -> else_if (for optimization)
+		    limit = { has_modifier = speed_change_x2 }
+		    remove_modifier = speed_change_x2
+		}
+		else_if = { # LS if -> else_if (for optimization)
+		    limit = { has_modifier = speed_change_x3 }
+		    remove_modifier = speed_change_x3
+		}
+		else_if = { # LS if -> else_if (for optimization)
+		    limit = { has_modifier = speed_change_x4 }
+		    remove_modifier = speed_change_x4
+		}
 		if = { # LS - Default setting for the collection, lets prioritize it
 			limit = { has_global_flag = sustained_ship_acceleration }
 			if = { # LS - Optimization for performance
