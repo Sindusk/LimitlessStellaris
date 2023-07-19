@@ -224,7 +224,7 @@
 		# Logistic Pop Growth was 2.6. New value of 1.7 means roughly 35% less pop growth, keeping pops in check for a longer duration.
 		LOGISTIC_POP_GROWTH_R				= 1.7 	# Logistic Pop Growth Constant r
 		# Logistic Pop Growth was 2. New value of 5 means new colonies will build up faster. Balanced by the fact that having a pop on a 25 colony would be more ideal.
-		LOGISTIC_POP_GROWTH_MIN_POPS		= 5		# Treat small colonies as having this many pops to avoid the very bottom of the curve
+		LOGISTIC_POP_GROWTH_MIN_POPS		= 10	# Treat small colonies as having this many pops to avoid the very bottom of the curve
 		
 		### Realistic Logistic Pop Growth ###
 		LOGISTIC_POP_GROWTH_FLOOR			= 1		# Logistic Pop Growth won't lower growth to less than this percent.
@@ -249,7 +249,8 @@
 		## Limitless Stellaris - Custom Defines
 		GOVERNMENT_CIVIC_POINTS_BASE		= 3		# Base amount of civic points (to "pay" for government civic costs)
 		GENERAL_DEATH_CHANCE				= 0.0	# Chance that general dies when an army under command is destroyed (scaled to number of armies)
-		LEADER_MAX_SKILL_CAP				= 30	# Maximum skill for leaders by default
+		LEADER_MAX_SKILL_CAP				= 30	# Maximum skill for leaders by default; Default: 10
+		POLICY_YEARS						= 2		# Years a set policy can not be changed for; Default: 10
 
 		# Planetary Ascension cost formula: ( Empire Sprawl * PLANET_ASCENSION_SPRAWL_SCALE) * ( 1 + ( Empire Wide Sum of Ascension Tiers * PLANET_ASCENSION_SUM_SCALE )
 		PLANET_ASCENSION_SPRAWL_SCALE		= 20.0  # Scaling factor for Planetary Ascension cost based on the empire Sprawl

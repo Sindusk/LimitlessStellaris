@@ -664,7 +664,7 @@ building_alloy_enrichment_plant = {
 	}
 
 	planet_modifier = {
-		planet_jobs_alloys_produces_mult = 0.10
+		planet_jobs_alloys_produces_mult = 0.05
 	}
 
 	triggered_planet_modifier = {
@@ -1387,7 +1387,7 @@ building_goods_management_hub = {
 	}
 
 	planet_modifier = {
-		planet_jobs_consumer_goods_produces_mult = 0.10
+		planet_jobs_consumer_goods_produces_mult = 0.05
 	}
 
 	triggered_planet_modifier = {
