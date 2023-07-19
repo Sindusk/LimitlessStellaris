@@ -16,7 +16,7 @@ event = {
 		every_galaxy_fleet = { # Scope into every fleet
 			every_owned_ship = { # Scope into every ship
 				ship_event = { id = shipsinscaling.99 } # LS - New event to properly set the ship speed.
-				# LS - None of these events below matter.
+				# LS - None of these events below matter anymore.
 				#ship_event = { id = shipsinscaling.3 }
 				#ship_event = { id = shipsinscaling.4 }
 				#ship_event = { id = shipsinscaling.5 }
@@ -56,37 +56,37 @@ fleet_event = {
 # Scope: Ship
 # LS - Repurposed and optimized to fix all the issues, and reduce fleet iterations.
 ship_event = {
-    id = shipsinscaling.99
-    hide_window = yes
-    is_triggered_only = yes
+	id = shipsinscaling.99
+	hide_window = yes
+	is_triggered_only = yes
 	
 	trigger = {
-		is_in_combat = no # LS - Might not be needed but yolo wont hurt anything (I think)
+		is_in_combat = no # LS - Only need to apply the modifier if they're not in combat.
 		#NOT = { has_global_flag = sustained_ship_acceleration }
 	}
 
-    immediate = {
+	immediate = {
 		# LS - After reconsideration, why are we even bothering to remove it every time?
 		#if = { # LS - Default setting for the collection, lets prioritize it
 		#	limit = { has_global_flag = sustained_ship_acceleration }
 		#	remove_modifier = speed_change_x6 # LS - Our edited version
 		#}
-        #else_if = { # LS if -> else_if (for optimization)
-        #    limit = { has_modifier = speed_change_x1 }
-        #    remove_modifier = speed_change_x1
-        #}
-        #else_if = { # LS if -> else_if (for optimization)
-        #    limit = { has_modifier = speed_change_x2 }
-        #    remove_modifier = speed_change_x2
-        #}
-        #else_if = { # LS if -> else_if (for optimization)
-        #    limit = { has_modifier = speed_change_x3 }
-        #    remove_modifier = speed_change_x3
-        #}
-        #else_if = { # LS if -> else_if (for optimization)
-        #    limit = { has_modifier = speed_change_x4 }
-        #    remove_modifier = speed_change_x4
-        #}
+		#else_if = { # LS if -> else_if (for optimization)
+		#    limit = { has_modifier = speed_change_x1 }
+		#    remove_modifier = speed_change_x1
+		#}
+		#else_if = { # LS if -> else_if (for optimization)
+		#    limit = { has_modifier = speed_change_x2 }
+		#    remove_modifier = speed_change_x2
+		#}
+		#else_if = { # LS if -> else_if (for optimization)
+		#    limit = { has_modifier = speed_change_x3 }
+		#    remove_modifier = speed_change_x3
+		#}
+		#else_if = { # LS if -> else_if (for optimization)
+		#    limit = { has_modifier = speed_change_x4 }
+		#    remove_modifier = speed_change_x4
+		#}
 		if = { # LS - Default setting for the collection, lets prioritize it
 			limit = { has_global_flag = sustained_ship_acceleration }
 			if = { # LS - Optimization for performance
@@ -94,8 +94,8 @@ ship_event = {
 				add_modifier = { modifier = speed_change_x6 } # LS - Our edited version
 			}
 		}
-        else_if = { # LS if -> else_if (for optimization)
-            limit = {
+		else_if = { # LS if -> else_if (for optimization)
+			limit = {
 				OR = {
 					has_component = SHIP_THRUSTER_2
 					has_component = DESTROYER_SHIP_THRUSTER_2
@@ -112,9 +112,9 @@ ship_event = {
 				limit = { NOT = { has_modifier = speed_change_x1 } } # LS - Just make sure they don't have the modifier already
 				add_modifier = { modifier = speed_change_x1 }
 			}
-        }
-        else_if = { # LS if -> else_if (for optimization)
-            limit = {
+		}
+		else_if = { # LS if -> else_if (for optimization)
+			limit = {
 				OR = {
 					has_component = SHIP_THRUSTER_3
 					has_component = DESTROYER_SHIP_THRUSTER_3
@@ -130,9 +130,9 @@ ship_event = {
 				limit = { NOT = { has_modifier = speed_change_x2 } } # LS - Just make sure they don't have the modifier already
 				add_modifier = { modifier = speed_change_x2 }
 			}
-        }
-        else_if = { # LS if -> else_if (for optimization)
-            limit = {
+		}
+		else_if = { # LS if -> else_if (for optimization)
+			limit = {
 				OR = {
 					has_component = SHIP_THRUSTER_4
 					has_component = DESTROYER_SHIP_THRUSTER_4
@@ -147,9 +147,9 @@ ship_event = {
 				limit = { NOT = { has_modifier = speed_change_x3 } } # LS - Just make sure they don't have the modifier already
 				add_modifier = { modifier = speed_change_x3 }
 			}
-        }
-        else_if = { # LS if -> else_if (for optimization)
-            limit = {
+		}
+		else_if = { # LS if -> else_if (for optimization)
+			limit = {
 				OR = {
 					has_component = SHIP_THRUSTER_5
 					has_component = DESTROYER_SHIP_THRUSTER_5
@@ -164,10 +164,10 @@ ship_event = {
 				limit = { NOT = { has_modifier = speed_change_x4 } } # LS - Just make sure they don't have the modifier already
 				add_modifier = { modifier = speed_change_x4 }
 			}
-        }
+		}
 		if = { # LS - Cleanup, just in case they had it from a previous battle and it wasn't removed properly.
 			limit = { has_modifier = speed_reduction }
 			remove_modifier = speed_reduction # LS - Remove speed modifier if they have it.
 		}
-    }
+	}
 }

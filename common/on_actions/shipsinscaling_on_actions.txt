@@ -26,7 +26,7 @@ on_applying_rs_settings = {
 #}
 
 ## On Entering System
-# Scope: Ship
+# Scope: Fleet
 # LS - New event trigger to try to catch any outliers where the ship speed doesn't update.
 # As soon as they cross into a new system, it will update their speed and they'll be back to normal.
 on_entering_system_fleet = {
