@@ -249,8 +249,8 @@ ultra_rich = {
 # Merge between ACOT, Plentiful Perks
 skill_admiral = {
 	ship_fire_rate_mult = 0.02 # ACOT 0.03 -> 0.02
-	ship_weapon_damage = 0.02 # ACOT
-	command_limit_add = 10 # Plentiful Perks
+	#ship_weapon_damage = 0.02 # ACOT
+	command_limit_add = 5 # Plentiful Perks # LS 10 -> 5 [Balance]
 	ship_disengage_opportunities_add = 0.2
 }
 
@@ -258,7 +258,7 @@ skill_admiral = {
 # Using ACOT version
 skill_general = {
 	army_damage_mult = 0.10 # ACOT 0.05 -> 0.10
-	army_health = 0.1 # ACOT
+	#army_health = 0.1 # ACOT # LS - Removed [Balance]
 	army_morale = 0.1 # ACOT
 	army_morale_damage_mult = 0.1 # ACOT
 }
@@ -269,7 +269,7 @@ skill_scientist = {
 	all_technology_research_speed = 0.02 # ACOT
 	science_ship_survey_speed = 0.05 # ACOT 0.10 -> 0.05
 	ship_archaeological_site_clues_add = 1
-	ship_evasion_add = 2.5 # ACOT
+	#ship_evasion_add = 2.5 # ACOT # LS - Removed [Balance]
 }
 
 ## Governor Skill
@@ -277,8 +277,8 @@ skill_scientist = {
 skill_governor = {
 	planet_jobs_produces_mult = 0.025 # ACOT 0.02 -> 0.025
 	species_empire_size_mult = -0.025 # ACOT 0.02 -> 0.025
-	planet_crime_add = -5 # ACOT -3 -> -5
-	planet_amenities_add = 5 # ACOT
+	planet_crime_add = -3 # ACOT -3 -> -5 # LS -5 -> -3 [Balance]
+	#planet_amenities_add = 5 # ACOT # LS - Removed [Balance]
 }
 
 ## Ruler Skill
