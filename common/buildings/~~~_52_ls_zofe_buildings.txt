@@ -1,0 +1,474 @@
+##########################################################################
+# Limitless Stellaris - Zenith of Fallen Empires
+##########################################################################
+
+##################################################
+## Zenith of Fallen Empires
+##################################################
+
+## Affluence Center (FE)
+# Merge between AOT, ZOFE
+# Using AOT base with some minor changes from ZOFE
+building_fe_affluence_center = {
+	base_buildtime = @db2_time # ZOFE 360 -> b2
+	can_build = yes
+	can_demolish = yes
+	icon = building_affluence_center
+	category = manufacturing
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_gestalt = no
+				has_valid_civic = civic_machine_servitor
+			}
+			has_technology = tech_fe_affluence_center
+		}
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	resources = {
+		category = planet_zofe_automated_buildings # ZOFE +zofe_automated
+		cost = {
+			minerals = 1000
+			rare_crystals = 150
+		}
+		produces = {
+			consumer_goods = @auto_cg_dm
+		}
+		upkeep = {
+			minerals = 25
+			energy = 10
+		}
+	}
+	upgrades = {
+		building_ae_affluence_center
+		building_fe_opulent_plaza # ZOFE
+	}
+	prerequisites = {
+		tech_fe_affluence_center
+	}
+	show_tech_unlock_if = {
+		OR = {
+			is_gestalt = no
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+	ai_weight = {
+		weight = 10000
+	}
+}
+
+## Dimensional Fabricator (FE)
+# Merge between AOT, ZOFE
+# Using AOT base with some minor changes from ZOFE
+building_fe_dimensional_fabricator = {
+	base_buildtime = @db2_time # ZOFE 360 -> b2
+	can_build = yes
+	can_demolish = yes
+	icon = building_dimensional_fabricator
+	category = resource
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_fe_dimensional_fabricator
+		}
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	planet_modifier = {
+	}
+	resources = {
+		category = planet_zofe_automated_buildings # ZOFE +zofe_automated
+		cost = {
+			minerals = 1000
+			alloys = 250
+			rare_crystals = 100
+			volatile_motes = 100
+			exotic_gases = 100
+		}
+		produces = {
+			minerals = @auto_minerals_dm
+			rare_crystals = @auto_sr_dm
+			exotic_gases = @auto_sr_dm
+			volatile_motes = @auto_sr_dm
+			sr_zro = @auto_sr_dm
+			sr_living_metal = @auto_sr_dm
+		}
+		upkeep = {
+			energy = 20
+			acot_sr_dark_energy = 3
+		}
+	}
+	upgrades = {
+		building_ae_dimensional_fabricator
+		building_fe_dimensional_harvester # ZOFE
+	}
+	prerequisites = {
+		tech_fe_dimensional_fabricator
+	}
+	ai_weight = {
+		weight = 10000
+	}
+}
+
+## Master Archive (FE)
+# Merge between AOT, ZOFE
+# Using AOT base with some minor changes from ZOFE
+building_fe_master_archive = {
+	base_buildtime = @db2_time # ZOFE 360 -> b2
+	can_build = yes
+	can_demolish = yes
+	icon = building_master_archive
+	base_cap_amount = 1
+	category = research
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_fe_master_archive
+		}
+	}
+	allow = {
+		has_enigmatic_capital = yes
+		NOR = {
+			has_building = building_ae_master_archive
+			has_building = building_stellarite_master_archive
+			has_building = building_phanon_master_archive
+		}
+	}
+	
+	triggered_desc = { # ZOFE
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+
+	triggered_desc = { # ZOFE
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = { # ZOFE
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+	
+	triggered_planet_modifier = { # ZOFE
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 10
+		}
+	}
+	
+	triggered_planet_modifier = { # ZOFE
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 10
+		}
+	}
+	
+	triggered_planet_modifier = { # ZOFE
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 10
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			exotic_gases = 200
+		}
+		produces = {
+			physics_research = @auto_research_dm
+			society_research = @auto_research_dm
+			engineering_research = @auto_research_dm
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+	upgrades = {
+		building_ae_master_archive
+		building_fe_master_archive_2 # ZOFE
+	}
+	prerequisites = {
+		tech_fe_master_archive
+	}
+	ai_weight = {
+		weight = 10000
+	}
+}
+
+## Nano Forge (FE)
+# Merge between AOT, ZOFE
+# Using AOT base with some minor changes from ZOFE
+building_fe_nano_forge = {
+	base_buildtime = @db2_time # ZOFE 360 -> b2
+	can_build = yes
+	can_demolish = yes
+	icon = building_nano_forge
+	category = manufacturing
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_fe_nano_forge
+		}
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	planet_modifier = {
+	}
+	resources = {
+		category = planet_zofe_automated_buildings # ZOFE +zofe_automated
+		cost = {
+			minerals = 1000
+			sr_living_metal = 50
+		}
+		produces = {
+			alloys = @auto_alloy_dm
+		}
+		upkeep = {
+			minerals = 40
+			energy = 10
+		}
+	}
+	upgrades = {
+		building_ae_nano_forge
+		building_fe_nano_forge_2 # ZOFE
+	}
+	prerequisites = {
+		tech_fe_nano_forge
+	}
+	ai_weight = {
+		weight = 10000
+	}
+}
+
+## Nourishment Center (FE)
+# Merge between AOT, ZOFE
+# Using AOT base with some minor changes from ZOFE
+building_fe_nourishment_center = {
+	base_buildtime = @db2_time # ZOFE 360 -> b2
+	can_build = yes
+	can_demolish = yes
+	icon = building_nourishment_center
+	category = resource
+	potential = {
+		exists = owner
+		owner = {
+			is_machine_empire = no
+			has_technology = tech_fe_nourishment_center
+		}
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	planet_modifier = {
+	}
+	resources = {
+		category = planet_zofe_automated_buildings # ZOFE +zofe_automated
+		cost = {
+			minerals = 1000
+			volatile_motes = 150
+		}
+		produces = {
+			food = @auto_food_dm
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+	upgrades = {
+		building_ae_nourishment_center
+		building_fe_gourmet_center # ZOFE
+	}
+	prerequisites = {
+		tech_fe_nourishment_center
+	}
+	ai_weight = {
+		weight = 10000
+	}
+}
+
+## Sky Dome (FE)
+# Merge between AOT, ZOFE
+# Using AOT base with some minor changes from ZOFE
+building_fe_sky_dome = {
+	base_buildtime = @db2_time # ZOFE 360 -> b2
+	can_build = yes
+	icon = building_fe_dome
+	category = amenity
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_technology = tech_fe_sky_dome
+		}
+	}
+	allow = {
+		has_enigmatic_capital = yes
+	}
+	convert_to = {
+		building_organic_paradise # ZOFE
+		building_drone_megastorage
+		building_expanded_warren
+		building_communal_housing_large
+	}
+	planet_modifier = {
+		planet_housing_add = @auto_housing_dm
+		planet_amenities_add = @auto_amenities_dm
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 750
+			rare_crystals = 100
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+	upgrades = {
+		building_ae_sky_dome
+	}
+	prerequisites = {
+		tech_fe_sky_dome
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+	ai_weight = {
+		weight = 5000
+	}
+}
+
+## Synthetic Zro
+# ZOFE version to prevent EMT from overwriting it
+building_synthetic_zro = {
+	base_buildtime = 360
+	can_build = yes
+	can_demolish = yes
+	#base_cap_amount = 1
+	
+	category = manufacturing
+	
+	potential = {
+		exists = owner
+		owner = { is_zofe_country = yes }
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 100
+		}
+		produces = {
+			#sr_zro = 5
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_ae_zro_alchemist_add = 5
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_ae_zro_drone_add = 5
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			OR = {
+				has_designation = col_refinery
+				has_designation = col_habitat_refinery
+			}
+		}
+		modifier = {
+			job_ae_zro_alchemist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+			OR = {
+				has_designation = col_refinery
+				has_designation = col_habitat_refinery
+			}
+		}
+		modifier = {
+			job_ae_zro_drone_add = 1
+		}
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_ae_zro_alchemist_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_ae_zro_drone_effect_desc
+	}
+
+	
+	prerequisites = {
+		"tech_synthetic_zro"
+	}
+
+}

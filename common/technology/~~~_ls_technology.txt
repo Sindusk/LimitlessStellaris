@@ -13,6 +13,356 @@
 @SpecializationLevel = 0.75
 
 ##################################################
+## Acquisition of Technology
+##################################################
+
+## Affluence Center [Acquisition of Technology]
+# AOT version to overwrite ZOFE version
+tech_fe_affluence_center = {
+	cost = @acot_tier6cost2
+	area = engineering
+	tier = 6
+	category = {
+		materials
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier4weight1
+	potential = {
+		has_technology = tech_dm_production_core
+		OR = {
+			is_gestalt = no
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = {
+				has_technology = tech_dm_production_core
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+}
+
+## Class 4 Singularity [Acquisition of Technology]
+# AOT version to overwrite ZOFE version
+tech_fe_class_4_singularity = {
+	cost = @acot_tier6cost2
+	area = physics
+	tier = 6
+	category = {
+		field_manipulation
+	}
+	prerequisites = {
+		tech_dm_production_core
+	}
+	weight = @tier3weight1
+	potential = {
+		has_technology = tech_dm_production_core
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = {
+				has_technology = tech_dm_production_core
+			}
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_mine_exotic_gases
+				has_technology = tech_exotic_gases
+			}
+		}
+		modifier = {
+			factor = 2
+			has_tradition = tr_prosperity_adopt
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+}
+
+## Dimensional Fabricator [Acquisition of Technology]
+# AOT version to overwrite ZOFE version
+tech_fe_dimensional_fabricator = {
+	cost = @acot_tier6cost2
+	area = engineering
+	tier = 6
+	category = {
+		industry
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier3weight1
+	potential = {
+		has_technology = tech_dm_production_core
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = {
+				has_technology = tech_dm_production_core
+			}
+		}
+		factor = 2
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+
+## Master Archive [Acquisition of Technology]
+# AOT version to overwrite ZOFE version
+tech_fe_master_archive = {
+	cost = @acot_tier6cost2
+	area = physics
+	tier = 6
+	category = {
+		computing
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier4weight1
+	potential = {
+		has_technology = tech_dm_production_core
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = {
+				has_technology = tech_dm_production_core
+			}
+		}
+		factor = 2
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_computing"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_computing"
+			}
+		}
+	}
+}
+
+## Nano-Forge [Acquisition of Technology]
+# AOT version to overwrite ZOFE version
+tech_fe_nano_forge = {
+	cost = @acot_tier6cost2
+	area = engineering
+	tier = 6
+	category = {
+		materials
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier4weight1
+	potential = {
+		has_technology = tech_dm_production_core
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = {
+				has_technology = tech_dm_production_core
+			}
+		}
+		factor = 2
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+}
+
+## Nourishment Center [Acquisition of Technology]
+# AOT version to overwrite ZOFE version
+tech_fe_nourishment_center = {
+	cost = @acot_tier6cost2
+	area = society
+	tier = 6
+	category = {
+		biology
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier3weight1
+	potential = {
+		has_technology = tech_dm_production_core
+		OR = {
+			is_machine_empire = no
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = {
+				has_technology = tech_dm_production_core
+			}
+		}
+		factor = 2
+		modifier = {
+			factor = 0.01
+			is_machine_empire = yes
+			NOR = {
+				has_valid_civic = civic_machine_servitor
+				has_valid_civic = civic_machine_assimilator
+				any_owned_planet = {
+					num_districts = {
+						type = district_farming
+						value > 0
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_biology"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 30
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_biology"
+			}
+		}
+	}
+}
+
+## Sky Dome [Acquisition of Technology]
+# AOT version to overwrite ZOFE version
+tech_fe_sky_dome = {
+	cost = @acot_tier6cost2
+	area = society
+	tier = 6
+	category = {
+		statecraft
+	}
+	prerequisites = {
+		"tech_dm_production_core"
+	}
+	weight = @tier1weight1
+	potential = {
+		has_technology = tech_dm_production_core
+		is_gestalt = no
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = {
+				has_technology = tech_dm_production_core
+			}
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				has_technology = tech_mine_rare_crystals
+				has_technology = tech_rare_crystals
+			}
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+	ai_weight = {
+		factor = 20
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+
+##################################################
 ## Ancient Cache of Technologies
 ##################################################
 

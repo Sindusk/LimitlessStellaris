@@ -1,6 +1,7 @@
 # Unique Ascension Perks - Add Industrialist Jobs.
 triggered_planet_modifier = {
 	potential = {
+		has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 		exists = owner
 		owner = {
 			OR = {
@@ -18,6 +19,7 @@ triggered_planet_modifier = {
 # Limitless Stellaris - Added effect description of UAP industrialist job.
 triggered_desc = {
 	trigger = {
+		has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 		exists = owner
 		owner = {
 			OR = {

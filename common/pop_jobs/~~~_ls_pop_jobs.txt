@@ -279,3 +279,161 @@ cloning_drone = {
 		}
 	}
 }
+
+##################################################
+## Zenith of Fallen Empires
+##################################################
+
+## Dark Matter Drone [Zenith of Fallen Empires]
+# Merge between AOT, ZOFE
+# Using ZOFE as base with additions from AOT
+ae_dark_matter_drone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	is_capped_by_modifier = yes
+	building_icon = building_ae_dark_matter_generator # AOT
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_dm_technician
+		produces = {
+			sr_dark_matter = 4
+		}
+		produces = { # AOT
+			trigger = {
+				planet = {
+					is_planet_class = pc_acot_enigmopolis
+				}
+			}
+			sr_dark_matter = 20
+		}
+		produces = { # AOT
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+				}
+			}
+			sr_dark_matter = 4
+		}
+		produces = { # AOT
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_reactor
+				}
+			}
+			sr_dark_matter = 4
+		}
+		produces = { # AOT
+			trigger = {
+				planet = {
+					OR = {
+						is_planet_class = pc_dark_fractured
+						is_planet_class = pc_dark_fractured_ae
+					}
+					has_modifier = acot_modifier_supercharged_reactor
+				}
+			}
+			sr_dark_matter = 4
+		}
+		upkeep = { # AOT
+			trigger = {
+				planet = {
+					has_modifier = acot_modifier_supercharged_reactor
+				}
+			}
+			minerals = 16
+		}
+		
+		upkeep = {
+			minerals = 40
+			rare_crystals = 2
+			exotic_gases = 2
+			volatile_motes = 2
+		}
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = { type = living_standard_academic_privilege }
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_trait = trait_robot_logic_engines
+				has_trait = trait_intelligent
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_trait = trait_natural_engineers
+				has_trait = trait_natural_physicists
+				has_trait = trait_natural_sociologists
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 0.65
+			has_trait = trait_presapient_proles
+		}
+		modifier = {
+			factor = 1.5
+			has_job = ae_dark_matter_drone
+		}
+		modifier = {
+			factor = 0.1
+			has_trait = trait_enigmatic_intelligence_failed
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_trait = trait_enigmatic_intelligence
+				has_trait = trait_enigmatic_intelligence_poor
+			}
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_natural_intellectuals
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_trait = trait_robust
+				has_trait = trait_robot_efficient_processors
+			}
+		}
+		modifier = {
+			factor = 0.8
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_void_dweller_1
+		}
+	}
+}

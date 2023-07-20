@@ -2038,6 +2038,7 @@ building_ministry_production = {
 
 	triggered_planet_modifier = { # Unique Ascension Perks
 		potential = {
+			has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 			exists = owner
 			owner = {
 				OR = {

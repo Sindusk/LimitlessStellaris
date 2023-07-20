@@ -363,8 +363,7 @@ ap_defender_of_the_galaxy = {
 	modifier = {
 		# Vanilla
 		description = ls_ap_defender_of_the_galaxy_modifier_desc
-		custom_tooltip = "ap_defender_of_the_galaxy_effect_opinion" # Unique Ascension Perks
-		diplo_weight_mult = 0.4 # Buffed by Unique Ascension Perks. Default value 0.2
+		diplo_weight_mult = 0.2
 		damage_vs_country_type_swarm_mult = 0.5
 		damage_vs_country_type_extradimensional_mult = 0.5
 		damage_vs_country_type_extradimensional_2_mult = 0.5
@@ -388,10 +387,6 @@ ap_defender_of_the_galaxy = {
 		damage_vs_country_type_dormant_marauders_mult = 1.0
 		damage_vs_country_type_pirate_mult = 1.0
 		country_trust_growth = 0.25
-		# Unique Ascension Perks merges Galactic Contender with this one. These modifiers are from Galactic Contender
-		damage_vs_country_type_fallen_empire_mult = 0.33
-		damage_vs_country_type_awakened_fallen_empire_mult = 0.33
-		damage_vs_country_type_gate_builders_mult = 0.33
 	}
 
 	on_enabled = {
@@ -403,7 +398,7 @@ ap_defender_of_the_galaxy = {
 	potential = {
 		NOR = {
 			has_ascension_perk = ap_defender_of_the_galaxy
-			has_ascension_perk = ap_galactic_contender # Disabled by Unique Ascension Perks, but incompatible just in case
+			has_ascension_perk = ap_galactic_contender
 		}
 	}
 
@@ -1620,7 +1615,7 @@ ap_lord_of_war = {
 
 ### ap_machine_worlds
 ## Machine Worlds (Vanilla - Synthetic Dawn)
-# Merge between SAP, UAP, StarTech 
+# Merge between SAP, UAP, StarTech
 # Base from SAP, minor improvements from UAP, AI weights from StarTech
 ap_machine_worlds = {
 	on_enabled = {

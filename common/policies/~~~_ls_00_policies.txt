@@ -4782,6 +4782,7 @@ trade_policy = {
 		name = "trade_policy_adv_conversion_energy_name"
 		policy_flags = { trade_policy_adv_conversion_energy }
 		potential = {
+			has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 			OR = {
 				has_ascension_perk = ap_economic_prospertity
 				AND = {
@@ -4797,6 +4798,7 @@ trade_policy = {
 		name = "trade_policy_adv_conversion_minerals_name"
 		policy_flags = { trade_policy_adv_conversion_minerals }
 		potential = {
+			has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 			OR = {
 				has_ascension_perk = ap_economic_prospertity
 				AND = {
@@ -4812,6 +4814,7 @@ trade_policy = {
 		name = "trade_policy_adv_conversion_food_name"
 		policy_flags = { trade_policy_adv_conversion_food }
 		potential = {
+			has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 			OR = {
 				has_ascension_perk = ap_economic_prospertity
 				AND = {
@@ -4827,6 +4830,7 @@ trade_policy = {
 		name = "trade_policy_adv_conversion_consumer_goods_name"
 		policy_flags = { trade_policy_adv_conversion_consumer_goods }
 		potential = {
+			has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 			OR = {
 				has_ascension_perk = ap_economic_prospertity
 				AND = {
@@ -4838,26 +4842,11 @@ trade_policy = {
 		modifier = {}
 		AI_weight = { factor = 0 }
 	}
-	# LS - Forge Investments option disabled [Balance]
-	#option = { # UAP
-	#	name = "trade_policy_adv_conversion_alloys_name"
-	#	policy_flags = { trade_policy_adv_conversion_alloys }
-	#	potential = {
-	#		OR = {
-	#			has_ascension_perk = ap_economic_prospertity
-	#			AND = {
-	#				mid_game_years_passed > 0
-	#				is_trade_league_federation = no
-	#			}
-	#		}
-	#	}
-	#	modifier = {}
-	#	AI_weight = { factor = 0 }
-	#}
 	option = { # UAP
 		name = "trade_policy_adv_conversion_unity_name"
 		policy_flags = { trade_policy_adv_conversion_unity }
 		potential = {
+			has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 			OR = {
 				has_ascension_perk = ap_economic_prospertity
 				AND = {
@@ -4873,6 +4862,7 @@ trade_policy = {
 		name = "trade_policy_adv_conversion_research_name"
 		policy_flags = { trade_policy_adv_conversion_research }
 		potential = {
+			has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 			OR = {
 				has_ascension_perk = ap_economic_prospertity
 				AND = {
@@ -4887,6 +4877,7 @@ trade_policy = {
 	option = { # UAP
 		name = "trade_policy_adv_conversion_trade_league_name"
 		potential = {
+			has_global_flag = has_uap_mod # LS - Continue function when UAP reinstalled
 			mid_game_years_passed > 0
 			OR = {
 				has_ascension_perk = ap_economic_prospertity

@@ -1,0 +1,150 @@
+##########################################################################
+# Limitless Stellaris - Dawn of Ascension Civics
+##########################################################################
+
+##################################################
+## Dawn of Ascension
+##################################################
+
+## All Seeing Machine [Dawn of Ascension]
+# Base version renamed to allow it to function alongside ZOFE
+civic_doa_all_seeing_machine = {
+    modification = yes
+    icon ="gfx/interface/icons/governments/civics/civic_doa_machine_unitary_cohesion.dds"
+	potential = {
+	    authority = { value = auth_machine_intelligence }  
+		civics = {
+			value = civic_ascended_empire # Added via event - this trigger prevents the civic from being picked
+		}
+	}
+	
+	possible = {
+        civics = {
+			NOR = {
+				value = civic_efficient_drones2
+			}
+		} 
+	}
+	
+	random_weight = { base = 250 }
+	modifier = {
+		add_base_country_intel = 70
+		intel_decryption_add = 10
+		intel_encryption_add = 10
+ 
+	}
+}
+
+## Beacon of Prosperity [Dawn of Ascension]
+# Base version renamed to allow it to function alongside ZOFE
+civic_doa_beacon_of_prosperity = {
+    modification = yes
+    icon ="gfx/interface/icons/governments/civics/civic_doa_beacon_of_liberty.dds"
+	potential = {
+		civics = {
+			value = civic_ascended_empire # Added via event - this trigger prevents the civic from being picked
+		}
+	}
+	possible = {
+	   civics = {
+			NOR = {
+				value = civic_Architects_of_Gaia
+				value = civic_utopian_ideals
+				value = civic_industrial_juggernaut
+				value = civic_mega_architects
+				value = civic_galactic_superpower
+				value = civic_industrial_espionage
+				value = civic_peaceful_haven
+				value = civic_capitalistic_foundation
+				value = civic_galactic_diplomats
+				value = civic_covert_state
+				value = civic_society_of_equals
+				value = civic_slave_masters
+				value = civic_fanatical_mechanists
+				value = civic_shroud_scholars
+				value = civic_fanatical_mechanists_spiri
+			}
+		}
+        ethics = {
+			OR = {
+			    value = ethic_pluralist
+				value = ethic_fanatic_pluralist
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+			}		
+		}
+	}
+	random_weight = { base = 250 }
+	modifier = {
+		planet_jobs_worker_produces_mult = 0.2
+		planet_jobs_consumer_goods_produces_mult = 0.2
+		diplo_weight_economy_mult = 1.0
+ 
+	}
+}
+
+## Galactic Superpower [Dawn of Ascension]
+# Base version renamed to allow it to function alongside ZOFE
+civic_doa_galactic_superpower = {
+    modification = yes
+    icon ="gfx/interface/icons/governments/civics/civic_doa_distinguished_admiralty.dds"
+	potential = {
+		civics = {
+			value = civic_ascended_empire # Added via event - this trigger prevents the civic from being picked
+		}
+	}
+	possible = {
+	   civics = {
+			NOR = {
+				value = civic_Architects_of_Gaia
+				value = civic_utopian_ideals
+				value = civic_industrial_juggernaut
+				value = civic_mega_architects
+				value = civic_industrial_espionage
+				value = civic_peaceful_haven
+				value = civic_capitalistic_foundation
+				value = civic_galactic_diplomats
+				value = civic_covert_state
+				value = civic_beacon_of_prosperity
+				value = civic_society_of_equals
+				value = civic_slave_masters
+				value = civic_fanatical_mechanists
+				value = civic_shroud_scholars
+				value = civic_fanatical_mechanists_spiri
+			}
+		}
+        ethics = {
+			OR = {
+			    value = ethic_militarist
+				value = ethic_fanatic_militarist
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}		
+		}
+	}
+	random_weight = { base = 250 }
+	modifier = {
+		country_naval_cap_mult = 0.3
+		ship_weapon_damage = 0.2
+ 
+	}
+}
+
+## National Humiliation [Dawn of Ascension]
+# Base version renamed to allow it to function alongside ZOFE
+civic_doa_national_humiliation = {
+    modification = no
+    icon ="gfx/interface/icons/governments/civics/negatives/civic_doa_lethargic_leadership.dds"
+	potential = {
+		civics = {
+			value = civic_national_humiliation # Added via event - this trigger prevents the civic from being picked
+		}
+	}
+	random_weight = { base = 250 }
+	modifier = {
+	    diplo_weight_mult = -1
+		country_unity_produces_mult = -0.5
+		country_influence_produces_mult = -0.5
+		country_government_civic_points_add = -3
+	}
+}

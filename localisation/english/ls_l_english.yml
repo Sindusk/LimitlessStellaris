@@ -15,11 +15,32 @@ l_english:
 # Ascension Perks
 ##################
 
+  ## Limitless Stellaris
   ls_ap_defender_of_the_galaxy_modifier_desc: "Diplomatic Weight: §G+40%§!\nDamage to Midgame Crisis factions: §G+100%§!\nDamage to Endgame Crisis factions: §G+50%§!\nDamage to Fallen Empires: §G+33%§!"
   ls_ai_boost: "Limitless Stellaris AI Boost"
 
+  ## Dawn of Ascension
+  # New loc for their version of the Ascension Perk Galactic Ascendancy for compat with ZOFE.
+  ap_doa_galactic_ascendancy: "Galactic Ascendancy"
+  ap_doa_galactic_ascendancy_desc: "We posses the dark matter technology that allowed the precursors to last for a thousand years."
+
 ##################
-# EED Resolutions
+# Civics
+##################
+
+  ## Dawn of Ascension
+  # New loc for their version of civics which clash with ZOFE.
+  civic_doa_all_seeing_machine: "All Seeing Machine"
+  civic_doa_all_seeing_machine_desc: "Through unknown means, this machine has achieved the ability to see everything.\n§RNational Focus§!"
+  civic_doa_beacon_of_prosperity: "Beacon Of Prosperity"
+  civic_doa_beacon_of_prosperity_desc: "Improving the lives of all its citizens, this beacon of prosperity insure wealth for all.\n§RNational Focus§!"
+  civic_doa_galactic_superpower: "Galactic Superpower"
+  civic_doa_galactic_superpower_desc: "This civilisation sees themselves as one of the galaxies superpowers.\n§RNational Focus§!"
+  civic_doa_national_humiliation: "National Humiliation"
+  civic_doa_national_humiliation_desc: "This empire has suffered greatly in war and has been humilated on a galactic scale, they're now only a fraction of their former power"
+
+##################
+# Resolutions
 ##################
 
   ### Healthcare (EED Version)
