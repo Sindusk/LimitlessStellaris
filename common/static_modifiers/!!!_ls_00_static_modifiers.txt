@@ -249,7 +249,7 @@ ultra_rich = {
 # Merge between ACOT, Plentiful Perks
 skill_admiral = {
 	ship_fire_rate_mult = 0.02 # ACOT 0.03 -> 0.02
-	#ship_weapon_damage = 0.02 # ACOT
+	#ship_weapon_damage = 0.02 # ACOT # LS - Removed [Balance]
 	command_limit_add = 5 # Plentiful Perks # LS 10 -> 5 [Balance]
 	ship_disengage_opportunities_add = 0.2
 }
