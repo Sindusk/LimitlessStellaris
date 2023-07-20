@@ -465,6 +465,50 @@ tech_dark_matter_generation = {
 }
 
 ##################################################
+## Ancient Cache of Technologies
+##################################################
+
+## Battlecruiser Build Speed [Dawn of Ascension]
+# DOA version to prevent NSC overwrite.
+tech_battlecruiser_build_speed = {
+	area = engineering
+   cost = @fallentechcost
+   tier = @fallentechtier
+   category = { voidcraft }
+   prerequisites = { "tech_ascended_battlecruiser" }
+   weight = @tier4weight1
+
+   modifier = {
+	   custom_tooltip = tech_battlecruiser_build_speed_effect
+	   shipsize_febattlecruiser_build_speed_mult = 0.25
+   }
+
+   weight_modifier = {
+	   modifier = {
+		   factor = value:tech_weight_likelihood
+		   research_leader = {
+			   area = engineering
+			   has_trait = "leader_trait_expertise_voidcraft"
+		   }
+	   }
+	   modifier = {
+		   factor = 1.5
+		   has_valid_civic = civic_eager_explorers
+	   }
+   }
+
+   ai_weight = {
+	   modifier = {
+		   factor = 1.25
+		   research_leader = {
+			   area = engineering
+			   has_trait = "leader_trait_expertise_voidcraft"
+		   }
+	   }
+   }
+}
+
+##################################################
 ## Expanded Megastructures and Technology
 ##################################################
 
@@ -644,3 +688,86 @@ tech_repeatable_waste_drone_production = {
 	}
 }
 
+##################################################
+## Expanded Starbases
+##################################################
+
+## Stellar Bastion [Expanded Starbases]
+# Renamed to prevent clash with NSC
+tech_starbase_8 = {
+	cost = @tier5cost3
+	area = engineering
+	category = { voidcraft }
+	tier = 6 # LS - Up tier from 5 to 6 since it's now big
+	prerequisites = { "tech_starbase_7" } # LS - Change to require the Solar Stronghold
+	weight = @tier5weight3
+	
+	# unlocks Citadel
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			OR = {
+				AND = {
+					has_apocalypse = yes
+					NOT = { has_technology = tech_titans }
+				}
+				AND = {
+					NOT = { has_apocalypse = yes }
+					NOT = { has_technology = tech_battleships }
+				}
+			}
+		}
+		modifier = {
+			factor = 0.1
+			NOT = { years_passed > 90 }
+		}	
+		modifier = {
+			factor = 10
+			any_neighbor_country = {
+				has_technology = tech_starbase_8
+			}
+		}
+		modifier = {
+			factor = 2
+			years_passed > 110
+		}
+		modifier = {
+			factor = 3
+			years_passed > 115
+		}
+		modifier = {
+			factor = 4
+			years_passed > 120
+		}
+		modifier = {
+			factor = 5
+			count_starbase_sizes = {
+				starbase_size = starbase_citadel
+				count >= 3
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_unyielding_adopt
+		}
+		modifier = {
+			factor = @ap_grasp_the_void_travel_tech
+			has_ascension_perk = ap_grasp_the_void
+		}
+		modifier = {
+			factor = @eager_explorer_effect
+			is_eager_explorer_empire = yes
+		}
+	}
+	
+	prereqfor_desc = {	
+		ship = {
+			title = "TECH_UNLOCK_BASTION_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_BASTION_CONSTRUCTION_DESC"
+		}
+	}
+	
+	ai_weight = {
+		factor = 100 #higher factor due to starbase upgrade
+	}
+}

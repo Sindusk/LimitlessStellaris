@@ -64,3 +64,12 @@ l_english:
   resolution_healthcare_eed_repeal_5: "§RRepeal $resolution_healthcare_universal_healthcare$§!"
   resolution_healthcare_eed_repeal_5_desc: "$resolution_healthcare_repeal_1_desc$"
   resolution_healthcare_eed_repeal_5_effect_success: "Repeals the §Y$resolution_healthcare_universal_healthcare$§! resolution, leaving §Y$resolution_healthcare_clonal_medicine$§! as galactic law."
+
+##################
+# Starbases
+##################
+
+  ## Expanded Starbases
+  # Changed internal id for Stellar Bastion technology to work alongside NSC
+  tech_starbase_8: "Stellar Bastion"
+  tech_starbase_8_desc: "Our engineers have drawn up plans for monumental space bastions larger than any space installation previously dreamed possible."

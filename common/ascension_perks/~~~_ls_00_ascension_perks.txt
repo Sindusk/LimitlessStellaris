@@ -815,8 +815,8 @@ ap_enigmatic_engineering = {
 
 ### ap_eternal_vigilance
 ## Eternal Vigilance (Vanilla)
-# Merge between SAP, SSL, OSA, Utopian Dream, UAP, StarTech
-# Base from SAP, modifiers from SSL and OSA, change possible condition from Utopian Dream, minor improvements from UAP, adjustment to AI weight from StarTech
+# Merge between SAP, SSL, NSC, OSA, Utopian Dream, UAP, StarTech
+# Base from SAP, modifiers from SSL, NSC, and OSA, change possible condition from Utopian Dream, minor improvements from UAP, adjustment to AI weight from StarTech
 ap_eternal_vigilance = {
 	possible = {
 		has_technology = tech_starbase_3 # Utopian Dream opens this up faster
@@ -861,7 +861,7 @@ ap_eternal_vigilance = {
 	
 	modifier = {
 		# Limitless Stellaris Merged Modifiers
-		country_starbase_capacity_add = 4	# SSL
+		country_starbase_capacity_add = 10	# SSL # NSC 4 -> 10
 		shipclass_starbase_damage_mult = 0.5	# Utopian Dream
 		shipclass_starbase_hull_mult = 1		# Omega's Stellaris Additions
 		shipclass_military_station_damage_mult = 0.5	# Omega's Stellaris Additions
@@ -1189,8 +1189,8 @@ ap_galactic_force_projection = {
 
 ### ap_grasp_the_void
 ## Grasp The Void (Vanilla)
-# Merge between SAP, OSA, Utopian Dream, WAP, Expanded Starbases, StarTech
-# Base from SAP, add modifiers from OSA, add modifiers from Utopian Dream, add modifiers from WAP, tech unlocks from Expanded Starbases, AI weight from StarTech
+# Merge between SAP, NSC, OSA, Utopian Dream, WAP, Expanded Starbases, StarTech
+# Base from SAP, add modifiers from NSC and OSA, add modifiers from Utopian Dream, add modifiers from WAP, tech unlocks from Expanded Starbases, AI weight from StarTech
 ap_grasp_the_void = {
 	possible = {
 		custom_tooltip = {
@@ -1249,6 +1249,10 @@ ap_grasp_the_void = {
 		starbase_module_build_speed_mult = 0.33 # Worthy Ascension Perks
 		ship_windup_mult = -0.15 # Worthy Ascension Perks
 		ship_speed_mult = 0.25 # Utopian Dream
+		ship_interstellar_speed_mult = 0.15 # NSC
+		science_ship_survey_speed = 0.15 # NSC
+		ship_anomaly_research_speed_mult = 0.15 # NSC
+		ship_archaeological_site_excavation_speed_mult = 0.15 # NSC
 		op_cat_sabotage_skill_add = 4 # Omega's Stellaris Additions
 		op_cat_sabotage_speed_mult = 0.25 # Omega's Stellaris Additions
 	}

@@ -6,7 +6,7 @@
 ## Vanilla
 ##################################################
 
-## Arcane Deciphering
+## Arcane Deciphering [Vanilla]
 # Merge between EMEX, Spaceborne Civs Expanded, STU
 tech_arcane_deciphering = {
 	cost = @tier2cost3
@@ -47,7 +47,7 @@ tech_arcane_deciphering = {
 	}
 }
 
-## Archeology Lab
+## Archeology Lab [Vanilla]
 # Merge between EMEX, Spaceborne Civs Expanded, STU
 tech_archeology_lab_ancrel = {
 	area = society
@@ -113,7 +113,7 @@ tech_archeology_lab_ancrel = {
 	}
 }
 
-## Assembly Pattern
+## Assembly Pattern [Vanilla]
 # Merge between Planetary Decision Build Speed, Bug Branch, Ariphaos
 tech_assembly_pattern = {
 	cost = @tier1cost3
@@ -148,7 +148,68 @@ tech_assembly_pattern = {
 	}
 }
 
-## Construction Templates
+## Battleships [Vanilla]
+# Merge between NSC, Bug Branch, Ariphaos
+tech_battleships = {
+	cost = @tier4cost1
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "tech_Battlecruiser_1" } # NSC cruiser -> battlecruiser
+	weight = @tier4weight1
+
+	## unlock battleships
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_UNLOCK_BATTLESHIP_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_BATTLESHIP_CONSTRUCTION_DESC"
+		}
+	}
+
+	modifier = {
+		command_limit_add = 10
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.1
+			NOT = { years_passed > 50 }
+		}
+		modifier = {
+			factor = 10
+			any_neighbor_country = {
+				has_technology = tech_battleships
+			}
+		}
+		modifier = {
+			factor = 2
+			years_passed > 60
+		}
+		modifier = {
+			factor = 3
+			years_passed > 65
+		}
+		modifier = {
+			factor = 4
+			years_passed > 70
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_supremacy_adopt
+		}
+		modifier = { # Bug Branch
+			factor = 1.25
+			is_bugged_war_engineers = yes
+		}
+	}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+
+	}
+}
+
+## Construction Templates [Vanilla]
 # Merge between Planetary Decision Build Speed, Bug Branch, Ariphaos, STU
 tech_construction_templates = {
 	cost = @tier3cost2
@@ -206,7 +267,7 @@ tech_construction_templates = {
 	}
 }
 
-## Droid Workers
+## Droid Workers [Vanilla]
 # Merge between Bug Branch, EMEX, Ariphaos, STU
 tech_droid_workers = {
 	cost = @tier2cost3
@@ -279,7 +340,7 @@ tech_droid_workers = {
 	}
 }
 
-## Housing 2
+## Housing 2 [Vanilla]
 # Merge between Bug Branch, Masters of Nature, Ariphaos, STU
 tech_housing_2 = {
 	cost = @tier3cost1
@@ -322,7 +383,7 @@ tech_housing_2 = {
 	}
 }
 
-## Housing Agrarian Idyll
+## Housing Agrarian Idyll [Vanilla]
 # Merge between Bug Branch, Subtle Polish, Ariphaos, STU
 tech_housing_agrarian_idyll = {
 	cost = @tier3cost1
@@ -356,7 +417,7 @@ tech_housing_agrarian_idyll = {
 	}
 }
 
-## Psionic Theory
+## Psionic Theory [Vanilla]
 # Merge between Bug Branch, NGS, Expanded Gestalts, Extra Origins, Ariphaos, STU
 tech_psionic_theory = {
 	cost = @tier3cost1
@@ -484,5 +545,76 @@ tech_psionic_theory = {
 			factor = 2
 			is_ai = no #auto-research
 		}
+	}
+}
+
+## Titans [Vanilla]
+# Merge between NSC, Bug Branch, Ariphaos
+tech_titans = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	category = { voidcraft }
+	prerequisites = { "tech_Dreadnought_1" } # NSC battleship -> dreadnought
+	weight = @tier5weight1
+	ai_update_type = military
+
+	modifier = {
+		command_limit_add = 10
+	}
+
+	potential = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	## unlock titans
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		ship = {
+			title = "TECH_UNLOCK_TITAN_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_TITAN_CONSTRUCTION_DESC"
+		}
+		custom = {
+			title = "TECH_UNLOCK_ION_CANNON_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_ION_CANNON_CONSTRUCTION_DESC"
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.1
+			NOT = { years_passed > 100 }
+		}
+		modifier = {
+			factor = 10
+			any_neighbor_country = {
+				has_technology = tech_titans
+			}
+		}
+		modifier = {
+			factor = 2
+			years_passed > 130
+		}
+		modifier = {
+			factor = 3
+			years_passed > 140
+		}
+		modifier = {
+			factor = 4
+			years_passed > 150
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_supremacy_adopt
+		}
+		modifier = { # Bug Branch
+			factor = 1.25
+			is_bugged_war_engineers = yes
+		}
+	}
+
+	ai_weight = {
+		factor = @ai_ship_types_factor
+
 	}
 }

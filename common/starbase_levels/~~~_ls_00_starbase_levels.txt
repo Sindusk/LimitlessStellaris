@@ -58,7 +58,7 @@ starbase_level_starfortress = {
 # StarTech AI weight added
 starbase_level_citadel = {
 	ship_size = starbase_citadel
-	next_level = starbase_level_bastion
+	next_level = starbase_level_stronghold # LS - Now upgrades to Grand Citadel [NSC]
 	level_weight = 4
 	ai_weight = {
 		weight = 91 # StarTech AI 5 -> 91
@@ -66,13 +66,48 @@ starbase_level_citadel = {
 	potential_home_base = yes
 }
 
+## Grand Citadel (Tier 5) [NSC]
+# Base version
+starbase_level_stronghold = {
+	ship_size = starbase_stronghold
+	next_level = starbase_level_headquarters
+	level_weight = 5
+	ai_weight = { weight = 100 } # LS 6 -> 100
+	potential_home_base = yes
+	upgrade_possible = {
+		nsc_modmenu_game_content_on_trigger = { CATEGORY = starbase SUBCAT = class ID = stronghold }
+	}
+}
+
+## Solar Stronghold (Tier 6) [NSC]
+# Base version now upgrades to Stellar Bastion
+starbase_level_headquarters = {
+	ship_size = starbase_headquarters
+	next_level = starbase_level_bastion # LS - Now upgrades to Stellar Bastion [Expanded Starbases]
+	level_weight = 6
+	ai_weight = { weight = 110 } # LS 7 -> 110
+	potential_home_base = yes
+	upgrade_possible = {
+		nsc_modmenu_game_content_on_trigger = { CATEGORY = starbase SUBCAT = class ID = headquarters }
+	}
+}
+
 ## Stellar Bastion (Tier 5) [Expanded Starbases]
 # Base version
 starbase_level_bastion = {
 	ship_size = starbase_bastion
-	level_weight = 5
+	level_weight = 7
 	ai_weight = {
-		weight = 100 # LS 6 -> 100
+		weight = 120 # LS 6 -> 120
 	}
 	potential_home_base = yes
+}
+
+## Level HQ (???) [NSC]
+# Looks to be unused?
+starbase_level_hq = {
+	ship_size = headquarters
+	potential_home_base = yes
+	show_in_outliner = no
+	collects_trade = no
 }

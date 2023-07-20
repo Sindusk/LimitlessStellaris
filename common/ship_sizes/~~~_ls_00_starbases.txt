@@ -1,0 +1,1243 @@
+##########################################################################
+# Limitless Stellaris - Ship Sizes
+##########################################################################
+
+# Vanilla Variables
+@build_block_radius_starbase = 20
+@starbase_formation_priority = 1
+
+##################################################
+## Starbases - Crisis
+##################################################
+
+## Starbase - Crisis (AI)
+# Merge between OSA, Expanded Starbases, ACOT: Override
+starbase_ai = {
+	graphical_culture = { "ai_01" }
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_armor_add = 40000 # OSA 20,000 -> 40,000
+		ship_shield_add = 80000 # OSA 20,000 -> 80,000
+		ship_sensor_range_add = 1 # Expanded Starbases
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 0.20
+	}
+
+	potential_construction = { # Expanded Starbases
+		is_scope_type = planet
+		is_primary_star = yes
+		NOT = {
+			exists = orbital_defence
+		}
+	}
+
+	max_hitpoints = 200000 # OSA 20,000 -> 200,000
+	base_buildtime = 730
+	combat_size_multiplier = 50
+	size_multiplier = 16
+	fleet_slot_size = 2
+	section_slots = { "core" = { locator = "root" } }
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	is_listed = no
+	can_disable = no
+
+	enable_default_design = no	#if yes, countries will have an auto-generated design at start
+	class = shipclass_starbase
+
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = -1
+	icon = ship_size_military_station
+}
+
+## Starbase - Crisis (Extradimensional Anchor)
+# Merge between OSA, Expanded Starbases, ACOT: Override
+starbase_exd = {
+	graphical_culture = { "extra_dimensional_01" "extra_dimensional_02" "extra_dimensional_03" }
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_shield_add = 160000 # OSA 80,000 -> 160,000
+		ship_armor_add = 20000 # OSA 10,000 -> 20,000
+		ship_sensor_range_add = 1 # Expanded Starbases
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 0.20
+		ship_fire_rate_mult = 0.50
+	}
+
+	potential_construction = { # Expanded Starbases
+		is_scope_type = planet
+		is_primary_star = yes
+		NOT = {
+			exists = orbital_defence
+		}
+	}
+
+	max_hitpoints = 1200000 # OSA 120,000 -> 1,200,000
+	base_buildtime = 730
+	combat_size_multiplier = 50
+	size_multiplier = 4
+	fleet_slot_size = 2
+	section_slots = { "core" = { locator = "root" } }
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	is_listed = no
+	can_disable = no
+
+	enable_default_design = no	#if yes, countries will have an auto-generated design at start
+	class = shipclass_starbase
+
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = -1
+	icon = ship_size_military_station
+}
+
+## Starbase - Crisis (Extradimensional Normal)
+# Using OSA version.
+starbase_exd_0 = {
+	graphical_culture = { "extra_dimensional_01" "extra_dimensional_02" "extra_dimensional_03" }
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_armor_add = 40000 # OSA
+		ship_shield_add = 80000 # OSA 40,000 -> 80,000
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 0.20
+	}
+
+	potential_construction = {
+		is_scope_type = planet
+		is_primary_star = yes
+		NOT = {
+			exists = orbital_defence
+		}
+	}
+
+	max_hitpoints = 200000 # OSA 20,000 -> 200,000
+	base_buildtime = 730
+	combat_size_multiplier = 50
+	size_multiplier = 4 # OSA 16 -> 4
+	fleet_slot_size = 2
+	section_slots = { "core" = { locator = "root" } }
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	is_listed = no
+	can_disable = no
+
+	enable_default_design = no	#if yes, countries will have an auto-generated design at start
+	class = shipclass_starbase
+
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = -1
+	icon = ship_size_military_station
+}
+
+## Starbase - Crisis (Swarm)
+# Merge between OSA, Expanded Starbases, ACOT: Override
+starbase_swarm = {
+	graphical_culture = { "swarm_01" }
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_armor_add = 60000 # OSA 30,000 -> 60,000
+		ship_shield_add	= 60000 # OSA
+		ship_sensor_range_add = 1 # Expanded Starbases
+	}
+	ship_modifier = {
+		ship_weapon_range_mult = 0.20
+	}
+
+	potential_construction = { # Expanded Starbases
+		is_scope_type = planet
+		is_primary_star = yes
+		NOT = {
+			exists = orbital_defence
+		}
+	}
+	
+	max_hitpoints = 300000 # OSA 30,000 -> 300,000
+	base_buildtime = 730
+	combat_size_multiplier = 50
+	size_multiplier = 16
+	fleet_slot_size = 2
+	section_slots = { "core" = { locator = "root" } }
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	is_listed = no
+	can_disable = no
+
+	enable_default_design = no	#if yes, countries will have an auto-generated design at start
+	class = shipclass_starbase
+
+	required_component_set = "sensor_components"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = -1
+	icon = ship_size_military_station
+}
+
+## Starbases - Fallen Empire Outpost
+# Using OSA version.
+starbase_fe_outpost = {
+	graphical_culture = { "fallen_empire_01" "fallen_empire_02" "fallen_empire_03" "fallen_empire_04" }
+
+	enable_default_design = no	#if yes, countries will have an auto-generated design at start
+	class = shipclass_starbase
+
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_armor_add = 25000 # OSA 1,000 -> 25,000
+		ship_shield_add = 25000 # OSA
+		starbase_defense_platform_capacity_add = 3
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.50
+		ship_weapon_range_mult = 0.20
+	}
+	max_hitpoints = 50000 # OSA 5,000 -> 50,000
+	base_buildtime = 360
+	resources = {
+		category = starbase_stations
+		cost = {
+			trigger = {
+				from = {
+					is_machine_empire = no
+				}
+			}
+			alloys = 100
+		}
+		cost = {
+			trigger = {
+				from = {
+					is_machine_empire = yes
+				}
+			}
+			alloys = 150
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	potential_construction = {
+		is_scope_type = planet
+		is_primary_star = yes
+		NOT = {
+			exists = orbital_defence
+		}
+	}
+
+	combat_size_multiplier = 5
+	size_multiplier = 4
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+	}
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	prerequisites = { "tech_starbase_1" }
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = 1
+	icon = ship_size_military_station
+}
+
+##################################################
+## Starbases - Standard
+##################################################
+
+## Starbase - Outpost (Tier 0)
+# Merge between NSC, OSA, Expanded Gestalts
+starbase_outpost = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_armor_add = 1000
+		ship_shield_add	= 1000 # OSA
+		starbase_defense_platform_capacity_add = 4 # OSA 3 -> 4
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.50
+		ship_weapon_range_mult = 0.20
+	}
+	max_hitpoints = 7500 # NSC 5,000 -> 7,500
+	base_buildtime = 360
+	resources = {
+		category = starbase_stations
+		cost = {
+			trigger = {
+				from = {
+					is_machine_empire = no
+				}
+			}
+			alloys = 100
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = no
+				}
+			}
+			alloys = -50
+			food = 200
+			larva = 5
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = yes
+				}
+			}
+			alloys = -50
+			minerals = 300
+		}
+		cost = {
+			trigger = {
+				from = {
+					is_machine_empire = yes
+				}
+			}
+			alloys = 150
+		}
+		upkeep = {
+			energy = 1
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_insight_finish
+				}
+			}
+			physics_research = 7.5
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_nanobiotics_finish
+				}
+			}
+			engineering_research = 7.5
+		}
+	}
+
+	potential_construction = {
+		is_scope_type = planet
+		is_primary_star = yes
+		NOT = {
+			exists = orbital_defence
+		}
+	}
+
+	possible_construction = {
+		always = yes
+	}
+
+	combat_size_multiplier = 5
+	size_multiplier = 4
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		# OSA:
+		"1" = { locator = "part2" }
+		"2" = { locator = "part2" }
+		"3" = { locator = "part3" }
+		"4" = { locator = "part3" }
+		"5" = { locator = "part4" }
+		"6" = { locator = "part4" }
+		"7" = { locator = "part5" }
+		"8" = { locator = "part5" }
+		"9" = { locator = "part6" }
+		"10" = { locator = "part6" }
+		"11" = { locator = "part7" }
+		"12" = { locator = "part7" }
+		"13" = { locator = "part2" }
+		"14" = { locator = "part2" }
+		"15" = { locator = "part3" }
+		"16" = { locator = "part3" }
+		"17" = { locator = "part4" }
+		"18" = { locator = "part4" }
+		"19" = { locator = "part5" }
+		"20" = { locator = "part5" }
+		"21" = { locator = "part6" }
+		"22" = { locator = "part6" }
+		"23" = { locator = "part7" }
+		"24" = { locator = "part7" }
+		"25" = { locator = "part2" }
+	}
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	prerequisites = { "tech_starbase_1" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = 1
+	icon = ship_size_military_station
+}
+
+## Starbase - Starport (Tier 1)
+# Merge between NSC, OSA, More Starbase Slots, Expanded Gestalts
+starbase_starport = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_armor_add = 2000
+		ship_shield_add	= 2000 # OSA
+		starbase_module_capacity_add = 4 # LS 2 -> 4 [Balance]
+		starbase_building_capacity_add = 2 # More Starbase Slots 1 -> 2
+		starbase_defense_platform_capacity_add = 8 # OSA 6 -> 8
+		#trade system
+		starbase_trade_collection_range_add = 1
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 8
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.50
+		ship_weapon_range_mult = 0.20
+	}
+	max_hitpoints = 15000 # OSA 10,000 -> 15,000
+	base_buildtime = 360
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 200
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = no
+				}
+			}
+			alloys = -100
+			food = 400
+			larva = 10
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = yes
+				}
+			}
+			alloys = -100
+			minerals = 600
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  { 
+					AND = {
+						is_machine_empire = no
+						is_lithoid_empire = no
+					}
+				}
+			}
+			energy = 1.5
+			food = 0.25
+			minerals = 0.25
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  {
+					OR = {
+						is_machine_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 1.5
+			minerals = 0.5
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_insight_finish
+				}
+			}
+			physics_research = 7.5
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_nanobiotics_finish
+				}
+			}
+			engineering_research = 7.5
+		}
+	}
+
+	combat_size_multiplier = 20
+	size_multiplier = 6
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		# More Starbase Slots:
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		"5" = { locator = "part6" }
+		"6" = { locator = "part7" }
+		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
+		"8" = { locator = "part3" }
+		"9" = { locator = "part4" }
+		"10" = { locator = "part5" }
+		"11" = { locator = "part6" }
+		"12" = { locator = "part7" }
+		"13" = { locator = "part2"}
+		"14" = { locator = "part3"}
+		"15" = { locator = "part4"}
+		"16" = { locator = "part5"}
+		"17" = { locator = "part6"}
+		"18" = { locator = "part7"}
+		"19" = { locator = "part2"}
+		"20" = { locator = "part3"}
+		"21" = { locator = "part4"}
+		"22" = { locator = "part5"}
+		"23" = { locator = "part6"}
+		"24" = { locator = "part7"}
+		"25" = { locator = "part2"}
+	}
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	prerequisites = { "tech_starbase_2" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_inhibitor"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = 2
+	icon = ship_size_military_station
+
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+}
+
+## Starbase - Starhold (Tier 2)
+# Merge between NSC, OSA, More Starbase Slots, Expanded Gestalts
+starbase_starhold = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # -1 -> -0.5
+		ship_armor_add = 5000
+		ship_shield_add	= 5000 # OSA
+		starbase_module_capacity_add = 8 # LS 4 -> 8 [Balance]
+		starbase_building_capacity_add = 4 # More Starbase Slots 2 -> 4
+		starbase_defense_platform_capacity_add = 16 # OSA 9 -> 16
+		#trade system
+		starbase_trade_collection_range_add = 1
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 16
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.50
+		ship_weapon_range_mult = 0.20
+	}
+	max_hitpoints = 35000 # OSA 20,000 -> 35,000
+	base_buildtime = 360 # NSC 720 -> 360
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 500
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = no
+				}
+			}
+			alloys = -250
+			food = 1000
+			larva = 25
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = yes
+				}
+			}
+			alloys = -250
+			minerals = 1500
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  { 
+					AND = {
+						is_machine_empire = no
+						is_lithoid_empire = no
+					}
+				}
+			}
+			energy = 2.5
+			food = 0.5
+			minerals = 0.5
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  {
+					OR = {
+						is_machine_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 2.5
+			minerals = 1.0
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_insight_finish
+				}
+			}
+			physics_research = 7.5
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_nanobiotics_finish
+				}
+			}
+			engineering_research = 7.5
+		}
+	}
+
+	combat_size_multiplier = 30
+	size_multiplier = 8
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		# More Starbase Slots:
+		"5" = { locator = "part6" }
+		"6" = { locator = "part7" }
+		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
+		"8" = { locator = "part3" }
+		"9" = { locator = "part4" }
+		"10" = { locator = "part5" }
+		"11" = { locator = "part6" }
+		"12" = { locator = "part7" }
+		"13" = { locator = "part2"}
+		"14" = { locator = "part3"}
+		"15" = { locator = "part4"}
+		"16" = { locator = "part5"}
+		"17" = { locator = "part6"}
+		"18" = { locator = "part7"}
+		"19" = { locator = "part2"}
+		"20" = { locator = "part3"}
+		"21" = { locator = "part4"}
+		"22" = { locator = "part5"}
+		"23" = { locator = "part6"}
+		"24" = { locator = "part7"}
+		"25" = { locator = "part2"}
+	}
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	prerequisites = { "tech_starbase_3" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_inhibitor"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = 3
+	icon = ship_size_military_station
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+}
+
+## Starbase - Star Fortress (Tier 3)
+# Merge between NSC, OSA, More Starbase Slots, Expanded Gestalts
+starbase_starfortress = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_armor_add = 20000 # OSA 10,000 -> 20,000
+		ship_shield_add	= 20000 # OSA
+		starbase_module_capacity_add = 12 # LS 6 -> 12 [Balance]
+		starbase_building_capacity_add = 6 # More Starbase Slots 3 -> 6
+		starbase_defense_platform_capacity_add = 24 # OSA 12 -> 24
+		#trade system
+		starbase_trade_collection_range_add = 1
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 24
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.50
+		ship_weapon_range_mult = 0.20
+	}
+	max_hitpoints = 90000 # OSA 40,000 -> 80,000 # NSC 80,000 -> 90,000
+	base_buildtime = 360 # NSC 1080 -> 360
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 1250
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = no
+				}
+			}
+			alloys = -625
+			food = 2500
+			larva = 62.5
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = yes
+				}
+			}
+			alloys = -625
+			minerals = 3750
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  { 
+					AND = {
+						is_machine_empire = no
+						is_lithoid_empire = no
+					}
+				}
+			}
+			energy = 3.5
+			food = 0.75
+			minerals = 0.75
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  {
+					OR = {
+						is_machine_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 3.5
+			minerals = 1.5
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_insight_finish
+				}
+			}
+			physics_research = 7.5
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_nanobiotics_finish
+				}
+			}
+			engineering_research = 7.5
+		}
+	}
+
+	combat_size_multiplier = 40
+	size_multiplier = 12
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		"5" = { locator = "part6" }
+		"6" = { locator = "part7" }
+		# More Starbase Slots:
+		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
+		"8" = { locator = "part3" }
+		"9" = { locator = "part4" }
+		"10" = { locator = "part5" }
+		"11" = { locator = "part6" }
+		"12" = { locator = "part7" }
+		"13" = { locator = "part2"}
+		"14" = { locator = "part3"}
+		"15" = { locator = "part4"}
+		"16" = { locator = "part5"}
+		"17" = { locator = "part6"}
+		"18" = { locator = "part7"}
+		"19" = { locator = "part2"}
+		"20" = { locator = "part3"}
+		"21" = { locator = "part4"}
+		"22" = { locator = "part5"}
+		"23" = { locator = "part6"}
+		"24" = { locator = "part7"}
+		"25" = { locator = "part2"}
+	}
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	prerequisites = { "tech_starbase_4" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_inhibitor"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = 4
+	icon = ship_size_military_station
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+}
+
+## Starbase - Citadel (Tier 4)
+# Merge between NSC, OSA, More Starbase Slots, Expanded Gestalts
+starbase_citadel = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_armor_add = 40000 # OSA 20,000 -> 40,000
+		ship_shield_add	= 40000 # OSA
+		starbase_module_capacity_add = 16 # LS 6 -> 16 [Balance]
+		starbase_building_capacity_add = 8 # LS 4 -> 8
+		starbase_defense_platform_capacity_add = 36 # OSA 15 -> 36
+		#trade system
+		starbase_trade_collection_range_add = 1
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 32
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.50
+		ship_weapon_range_mult = 0.20
+	}
+	max_hitpoints = 160000 # OSA 80,000 -> 160,000
+	base_buildtime = 360 # NSC 1440 -> 360
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 3500
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = no
+				}
+			}
+			alloys = -750
+			food = 7000
+			larva = 175
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = yes
+				}
+			}
+			alloys = -750
+			minerals = 10500
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  { 
+					AND = {
+						is_machine_empire = no
+						is_lithoid_empire = no
+					}
+				}
+			}
+			energy = 4.5
+			food = 1.0
+			minerals = 1.0
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  {
+					OR = {
+						is_machine_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 4.5
+			minerals = 2.0
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_insight_finish
+				}
+			}
+			physics_research = 7.5
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_nanobiotics_finish
+				}
+			}
+			engineering_research = 7.5
+		}
+	}
+
+	combat_size_multiplier = 50
+	size_multiplier = 16
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		"5" = { locator = "part6" }
+		"6" = { locator = "part7" }
+		# Expanded Starbases:
+		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
+		"8" = { locator = "part3" }
+		"9" = { locator = "part4" }
+		# More Starbase Slots:
+		"10" = { locator = "part5" }
+		"11" = { locator = "part6" }
+		"12" = { locator = "part7" }
+		"13" = { locator = "part2"}
+		"14" = { locator = "part3"}
+		"15" = { locator = "part4"}
+		"16" = { locator = "part5"}
+		"17" = { locator = "part6"}
+		"18" = { locator = "part7"}
+		"19" = { locator = "part2"}
+		"20" = { locator = "part3"}
+		"21" = { locator = "part4"}
+		"22" = { locator = "part5"}
+		"23" = { locator = "part6"}
+		"24" = { locator = "part7"}
+		"25" = { locator = "part2"}
+	}
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	enable_3dview_in_ship_browser = yes #if yes, ship design will have a 3d view in the ship browser
+	prerequisites = { "tech_starbase_5" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_inhibitor"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = 5
+	icon = ship_size_military_station
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+}
+
+## Starbase - Bastion (Tier 5)
+# Using More Starbase Slots version. Added Expanded Gestalts costs, OSA production and upkeep
+starbase_bastion = {
+	entity = "starbase_citadel_entity"
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -0.5 # LS -1.0 -> -0.5 (OSA extension)
+		ship_armor_add = 80000 # LS 40,000 -> 80,000 (OSA extension)
+		ship_shield_add	= 80000 # LS - OSA extension
+		starbase_module_capacity_add = 22 # LS 12 -> 22 [Balance]
+		starbase_building_capacity_add = 10 # More Starbase Slots 8 -> 10
+		starbase_defense_platform_capacity_add = 48 # LS 24 -> 48 (OSA extension)
+		#trade system
+		starbase_trade_collection_range_add = 1
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 40
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.50
+		ship_weapon_range_mult = 0.20
+	}
+	max_hitpoints = 320000 # LS 160,000 -> 320,000 (OSA extension)
+	base_buildtime = 1800
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 7000
+		}
+		cost = { # Limitless Stellaris - Expanded Gestalts Compatibility
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = no
+				}
+			}
+			alloys = -1500
+			food = 14000
+			larva = 350
+		}
+		cost = { # Limitless Stellaris - Expanded Gestalts Compatibility
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = yes
+				}
+			}
+			alloys = -1500
+			minerals = 21000
+		}
+		upkeep = { # Limitless Stellaris - OSA Compatibility
+			trigger = {
+				from =  { 
+					AND = {
+						is_machine_empire = no
+						is_lithoid_empire = no
+					}
+				}
+			}
+			energy = 5.5
+			food = 1.5
+			minerals = 2.0
+		}
+		upkeep = { # Limitless Stellaris - OSA Compatibility
+			trigger = {
+				from =  {
+					OR = {
+						is_machine_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 5.5
+			minerals = 3.0
+		}
+		produces = { # Limitless Stellaris - OSA Compatibility
+			trigger = {
+				from =  {
+					has_active_tradition = tr_insight_finish
+				}
+			}
+			physics_research = 7.5
+		}
+		produces = { # Limitless Stellaris - OSA Compatibility
+			trigger = {
+				from =  {
+					has_active_tradition = tr_nanobiotics_finish
+				}
+			}
+			engineering_research = 7.5
+		}
+	}
+
+	combat_size_multiplier = 50
+	size_multiplier = 32
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		"5" = { locator = "part6" }
+		"6" = { locator = "part7" }
+		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
+		"8" = { locator = "part3" }
+		"9" = { locator = "part4" }
+		"10" = { locator = "part5" }
+		"11" = { locator = "part6" }
+		"12" = { locator = "part7" }
+		# More Starbase Slots:
+		"13" = { locator = "part2"}
+		"14" = { locator = "part3"}
+		"15" = { locator = "part4"}
+		"16" = { locator = "part5"}
+		"17" = { locator = "part6"}
+		"18" = { locator = "part7"}
+		"19" = { locator = "part2"}
+		"20" = { locator = "part3"}
+		"21" = { locator = "part4"}
+		"22" = { locator = "part5"}
+		"23" = { locator = "part6"}
+		"24" = { locator = "part7"}
+		"25" = { locator = "part2"}
+	}
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	enable_3dview_in_ship_browser = yes #if yes, ship design will have a 3d view in the ship browser
+	prerequisites = { "tech_starbase_8" } # LS - Change from starbase_6 to starbase_8 since it's been renamed.
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_inhibitor"
+
+	build_block_radius = @build_block_radius_starbase
+	formation_priority = @starbase_formation_priority
+	icon_frame = 5
+	icon = ship_size_military_station
+	potential_construction = {
+		always = no
+	}
+	
+	possible_construction = {
+		always = no
+	}
+}

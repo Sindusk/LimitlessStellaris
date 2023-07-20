@@ -519,11 +519,11 @@ trading_hub = {
 }
 
 ## Detection Array
-# Expanded Starbases version
+# Expanded Starbases version with NSC construction time
 detection_array = {
 	icon = "GFX_spaceport_module_detecton_array"
 	section = "SCIENCE_STARBASE_SECTION"
-	construction_days = 180
+	construction_days = 60 # NSC 180 -> 60
 
 	potential = {
 		exists = owner
