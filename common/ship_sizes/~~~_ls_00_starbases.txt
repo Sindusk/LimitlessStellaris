@@ -312,10 +312,9 @@ starbase_outpost = {
 	acceleration = 0.0
 	rotation_speed = 0.0
 	modifier = {
-		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_evasion_mult = -1 # OSA -1 -> -0.5 # LS -0.5 -> -1
 		ship_armor_add = 1000
-		ship_shield_add	= 1000 # OSA
-		starbase_defense_platform_capacity_add = 4 # OSA 3 -> 4
+		starbase_defense_platform_capacity_add = 3 # OSA 3 -> 4 # LS 4 -> 3 [Balance]
 		ship_sensor_range_add = 1
 	}
 	ship_modifier = {
@@ -401,32 +400,38 @@ starbase_outpost = {
 	fleet_slot_size = 2
 	section_slots = {
 		"core" = { locator = "part1" }
-		# OSA:
 		"1" = { locator = "part2" }
-		"2" = { locator = "part2" }
-		"3" = { locator = "part3" }
-		"4" = { locator = "part3" }
-		"5" = { locator = "part4" }
-		"6" = { locator = "part4" }
-		"7" = { locator = "part5" }
-		"8" = { locator = "part5" }
-		"9" = { locator = "part6" }
-		"10" = { locator = "part6" }
-		"11" = { locator = "part7" }
+		"2" = { locator = "part3" }
+		# More Starbase Slots:
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		"5" = { locator = "part6" }
+		"6" = { locator = "part7" }
+		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
+		"8" = { locator = "part3" }
+		"9" = { locator = "part4" }
+		"10" = { locator = "part5" }
+		"11" = { locator = "part6" }
 		"12" = { locator = "part7" }
-		"13" = { locator = "part2" }
-		"14" = { locator = "part2" }
-		"15" = { locator = "part3" }
-		"16" = { locator = "part3" }
-		"17" = { locator = "part4" }
-		"18" = { locator = "part4" }
-		"19" = { locator = "part5" }
-		"20" = { locator = "part5" }
-		"21" = { locator = "part6" }
-		"22" = { locator = "part6" }
-		"23" = { locator = "part7" }
-		"24" = { locator = "part7" }
-		"25" = { locator = "part2" }
+		"13" = { locator = "part2"}
+		"14" = { locator = "part3"}
+		"15" = { locator = "part4"}
+		"16" = { locator = "part5"}
+		"17" = { locator = "part6"}
+		"18" = { locator = "part7"}
+		"19" = { locator = "part2"}
+		"20" = { locator = "part3"}
+		"21" = { locator = "part4"}
+		"22" = { locator = "part5"}
+		"23" = { locator = "part6"}
+		"24" = { locator = "part7"}
+		"25" = { locator = "part2"}
+		# LS - Adding more slots by default
+		"26" = { locator = "part3"}
+		"27" = { locator = "part4"}
+		"28" = { locator = "part5"}
+		"29" = { locator = "part6"}
+		"30" = { locator = "part7"}
 	}
 
 	is_designable = no
@@ -459,12 +464,11 @@ starbase_starport = {
 	acceleration = 0.0
 	rotation_speed = 0.0
 	modifier = {
-		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_evasion_mult = -1 # OSA -1 -> -0.5 # LS -0.5 -> -1
 		ship_armor_add = 2000
-		ship_shield_add	= 2000 # OSA
-		starbase_module_capacity_add = 4 # LS 2 -> 4 [Balance]
-		starbase_building_capacity_add = 2 # More Starbase Slots 1 -> 2
-		starbase_defense_platform_capacity_add = 8 # OSA 6 -> 8
+		starbase_module_capacity_add = 3 # LS 2 -> 3 [Balance]
+		starbase_building_capacity_add = 1 # More Starbase Slots 1 -> 2 # LS 2 -> 1 [Balance]
+		starbase_defense_platform_capacity_add = 6 # OSA 6 -> 8 # LS 8 -> 6 [Balance]
 		#trade system
 		starbase_trade_collection_range_add = 1
 		starbase_trade_protection_range_add = 1
@@ -473,7 +477,7 @@ starbase_starport = {
 	}
 	ship_modifier = {
 		ship_fire_rate_mult = 0.50
-		ship_weapon_range_mult = 0.20
+		ship_weapon_range_mult = 0.25 # LS 0.20 -> 0.25
 	}
 	max_hitpoints = 15000 # OSA 10,000 -> 15,000
 	base_buildtime = 360
@@ -577,6 +581,12 @@ starbase_starport = {
 		"23" = { locator = "part6"}
 		"24" = { locator = "part7"}
 		"25" = { locator = "part2"}
+		# LS - Adding more slots by default
+		"26" = { locator = "part3"}
+		"27" = { locator = "part4"}
+		"28" = { locator = "part5"}
+		"29" = { locator = "part6"}
+		"30" = { locator = "part7"}
 	}
 	is_designable = no
 	num_target_locators = 0
@@ -617,12 +627,11 @@ starbase_starhold = {
 	acceleration = 0.0
 	rotation_speed = 0.0
 	modifier = {
-		ship_evasion_mult = -0.5 # -1 -> -0.5
+		ship_evasion_mult = -1 # OSA -1 -> -0.5 # LS -0.5 -> -1
 		ship_armor_add = 5000
-		ship_shield_add	= 5000 # OSA
-		starbase_module_capacity_add = 8 # LS 4 -> 8 [Balance]
-		starbase_building_capacity_add = 4 # More Starbase Slots 2 -> 4
-		starbase_defense_platform_capacity_add = 16 # OSA 9 -> 16
+		starbase_module_capacity_add = 6 # LS 4 -> 6 [Balance]
+		starbase_building_capacity_add = 2 # More Starbase Slots 2 -> 4 # LS 4 -> 2 [Balance]
+		starbase_defense_platform_capacity_add = 9 # OSA 9 -> 16 # LS 16 -> 9 [Balance]
 		#trade system
 		starbase_trade_collection_range_add = 1
 		starbase_trade_protection_range_add = 1
@@ -631,7 +640,7 @@ starbase_starhold = {
 	}
 	ship_modifier = {
 		ship_fire_rate_mult = 0.50
-		ship_weapon_range_mult = 0.20
+		ship_weapon_range_mult = 0.30 # LS 0.20 -> 0.30
 	}
 	max_hitpoints = 35000 # OSA 20,000 -> 35,000
 	base_buildtime = 360 # NSC 720 -> 360
@@ -711,9 +720,9 @@ starbase_starhold = {
 		"core" = { locator = "part1" }
 		"1" = { locator = "part2" }
 		"2" = { locator = "part3" }
+		# More Starbase Slots:
 		"3" = { locator = "part4" }
 		"4" = { locator = "part5" }
-		# More Starbase Slots:
 		"5" = { locator = "part6" }
 		"6" = { locator = "part7" }
 		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
@@ -735,6 +744,12 @@ starbase_starhold = {
 		"23" = { locator = "part6"}
 		"24" = { locator = "part7"}
 		"25" = { locator = "part2"}
+		# LS - Adding more slots by default
+		"26" = { locator = "part3"}
+		"27" = { locator = "part4"}
+		"28" = { locator = "part5"}
+		"29" = { locator = "part6"}
+		"30" = { locator = "part7"}
 	}
 	is_designable = no
 	num_target_locators = 0
@@ -774,12 +789,11 @@ starbase_starfortress = {
 	acceleration = 0.0
 	rotation_speed = 0.0
 	modifier = {
-		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_evasion_mult = -1 # OSA -1 -> -0.5 # LS -0.5 -> -1 [Balance]
 		ship_armor_add = 20000 # OSA 10,000 -> 20,000
-		ship_shield_add	= 20000 # OSA
-		starbase_module_capacity_add = 12 # LS 6 -> 12 [Balance]
-		starbase_building_capacity_add = 6 # More Starbase Slots 3 -> 6
-		starbase_defense_platform_capacity_add = 24 # OSA 12 -> 24
+		starbase_module_capacity_add = 10 # LS 6 -> 10 [Balance]
+		starbase_building_capacity_add = 4 # More Starbase Slots 3 -> 6
+		starbase_defense_platform_capacity_add = 15 # OSA 12 -> 24 # LS 24 -> 15 [Balance]
 		#trade system
 		starbase_trade_collection_range_add = 1
 		starbase_trade_protection_range_add = 1
@@ -788,7 +802,7 @@ starbase_starfortress = {
 	}
 	ship_modifier = {
 		ship_fire_rate_mult = 0.50
-		ship_weapon_range_mult = 0.20
+		ship_weapon_range_mult = 0.35 # LS 0.20 -> 0.35
 	}
 	max_hitpoints = 90000 # OSA 40,000 -> 80,000 # NSC 80,000 -> 90,000
 	base_buildtime = 360 # NSC 1080 -> 360
@@ -868,11 +882,11 @@ starbase_starfortress = {
 		"core" = { locator = "part1" }
 		"1" = { locator = "part2" }
 		"2" = { locator = "part3" }
+		# More Starbase Slots:
 		"3" = { locator = "part4" }
 		"4" = { locator = "part5" }
 		"5" = { locator = "part6" }
 		"6" = { locator = "part7" }
-		# More Starbase Slots:
 		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
 		"8" = { locator = "part3" }
 		"9" = { locator = "part4" }
@@ -892,6 +906,12 @@ starbase_starfortress = {
 		"23" = { locator = "part6"}
 		"24" = { locator = "part7"}
 		"25" = { locator = "part2"}
+		# LS - Adding more slots by default
+		"26" = { locator = "part3"}
+		"27" = { locator = "part4"}
+		"28" = { locator = "part5"}
+		"29" = { locator = "part6"}
+		"30" = { locator = "part7"}
 	}
 	is_designable = no
 	num_target_locators = 0
@@ -931,12 +951,11 @@ starbase_citadel = {
 	acceleration = 0.0
 	rotation_speed = 0.0
 	modifier = {
-		ship_evasion_mult = -0.5 # OSA -1 -> -0.5
+		ship_evasion_mult = -1 # OSA -1 -> -0.5 # LS -0.5 -> -1 [Balance]
 		ship_armor_add = 40000 # OSA 20,000 -> 40,000
-		ship_shield_add	= 40000 # OSA
-		starbase_module_capacity_add = 16 # LS 6 -> 16 [Balance]
-		starbase_building_capacity_add = 8 # LS 4 -> 8
-		starbase_defense_platform_capacity_add = 36 # OSA 15 -> 36
+		starbase_module_capacity_add = 14 # LS 6 -> 14 [Balance]
+		starbase_building_capacity_add = 6 # LS 4 -> 6 [Balance]
+		starbase_defense_platform_capacity_add = 21 # OSA 15 -> 36 # LS 36 -> 21 [Balance]
 		#trade system
 		starbase_trade_collection_range_add = 1
 		starbase_trade_protection_range_add = 1
@@ -945,7 +964,7 @@ starbase_citadel = {
 	}
 	ship_modifier = {
 		ship_fire_rate_mult = 0.50
-		ship_weapon_range_mult = 0.20
+		ship_weapon_range_mult = 0.40 # LS 0.20 -> 0.40
 	}
 	max_hitpoints = 160000 # OSA 80,000 -> 160,000
 	base_buildtime = 360 # NSC 1440 -> 360
@@ -1025,15 +1044,14 @@ starbase_citadel = {
 		"core" = { locator = "part1" }
 		"1" = { locator = "part2" }
 		"2" = { locator = "part3" }
+		# More Starbase Slots:
 		"3" = { locator = "part4" }
 		"4" = { locator = "part5" }
 		"5" = { locator = "part6" }
 		"6" = { locator = "part7" }
-		# Expanded Starbases:
 		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
 		"8" = { locator = "part3" }
 		"9" = { locator = "part4" }
-		# More Starbase Slots:
 		"10" = { locator = "part5" }
 		"11" = { locator = "part6" }
 		"12" = { locator = "part7" }
@@ -1050,6 +1068,12 @@ starbase_citadel = {
 		"23" = { locator = "part6"}
 		"24" = { locator = "part7"}
 		"25" = { locator = "part2"}
+		# LS - Adding more slots by default
+		"26" = { locator = "part3"}
+		"27" = { locator = "part4"}
+		"28" = { locator = "part5"}
+		"29" = { locator = "part6"}
+		"30" = { locator = "part7"}
 	}
 	is_designable = no
 	num_target_locators = 0
@@ -1092,10 +1116,10 @@ starbase_stronghold = {
 	
 	modifier = {
 		ship_evasion_mult = -1
-		ship_armor_add = 40000
-		starbase_module_capacity_add = 15
-		starbase_building_capacity_add = 15
-		starbase_defense_platform_capacity_add = 30
+		ship_armor_add = 60000 # LS 40,000 -> 60,000 [Balance]
+		starbase_module_capacity_add = 18 # LS 15 -> 18 [Balance]
+		starbase_building_capacity_add = 8 # LS 15 -> 8 [Balance]
+		starbase_defense_platform_capacity_add = 27 # LS 30 -> 27 [Balance]
 		starbase_trade_collection_range_add = 1
 		starbase_trade_protection_range_add = 1
 		starbase_trade_protection_add = 40
@@ -1103,10 +1127,10 @@ starbase_stronghold = {
 	}
 	ship_modifier = {
 		ship_fire_rate_mult = 0.50
-		ship_weapon_range_mult = 0.20
+		ship_weapon_range_mult = 0.50 # LS 0.20 -> 0.50
 	}
 	
-	max_hitpoints = 200000
+	max_hitpoints = 220000 # LS 200,000 -> 220,000 [Balance]
 	combat_size_multiplier = 50
 	size_multiplier = 18
 	fleet_slot_size = 2
@@ -1114,24 +1138,36 @@ starbase_stronghold = {
 		"core" = { locator = "part1" }
 		"1" = { locator = "part2" }
 		"2" = { locator = "part3" }
+		# More Starbase Slots:
 		"3" = { locator = "part4" }
 		"4" = { locator = "part5" }
 		"5" = { locator = "part6" }
 		"6" = { locator = "part7" }
-		"7" = { locator = "part5" }
-		"8" = { locator = "part5" }
-		"9" = { locator = "part6" }
-		"10" = { locator = "part6" }
-		"11" = { locator = "part7" }
+		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
+		"8" = { locator = "part3" }
+		"9" = { locator = "part4" }
+		"10" = { locator = "part5" }
+		"11" = { locator = "part6" }
 		"12" = { locator = "part7" }
-		"13" = { locator = "part2" }
-		"14" = { locator = "part3" }
-		"15" = { locator = "part4" }
-		"16" = { locator = "part5" }
-		"17" = { locator = "part6" }
-		"18" = { locator = "part7" }
-		"19" = { locator = "part5" }
-		"20" = { locator = "part5" }
+		"13" = { locator = "part2"}
+		"14" = { locator = "part3"}
+		"15" = { locator = "part4"}
+		"16" = { locator = "part5"}
+		"17" = { locator = "part6"}
+		"18" = { locator = "part7"}
+		"19" = { locator = "part2"}
+		"20" = { locator = "part3"}
+		"21" = { locator = "part4"}
+		"22" = { locator = "part5"}
+		"23" = { locator = "part6"}
+		"24" = { locator = "part7"}
+		"25" = { locator = "part2"}
+		# LS - Adding more slots by default
+		"26" = { locator = "part3"}
+		"27" = { locator = "part4"}
+		"28" = { locator = "part5"}
+		"29" = { locator = "part6"}
+		"30" = { locator = "part7"}
 	}
 	num_target_locators = 0
 	icon_frame = 6
@@ -1149,8 +1185,71 @@ starbase_stronghold = {
 	
 	resources = {
 		category = starbase_stations
-		cost = { alloys = 4500 }
-		upkeep = { energy = 8 }
+		cost = {
+			alloys = 8500
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = no
+				}
+			}
+			alloys = -1800
+			food = 17000
+			larva = 420
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = yes
+				}
+			}
+			alloys = -1800
+			minerals = 25000
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  { 
+					AND = {
+						is_machine_empire = no
+						is_lithoid_empire = no
+					}
+				}
+			}
+			energy = 9
+			food = 2
+			minerals = 2
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  {
+					OR = {
+						is_machine_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 9
+			minerals = 4
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_insight_finish
+				}
+			}
+			physics_research = 7.5
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_nanobiotics_finish
+				}
+			}
+			engineering_research = 7.5
+		}
 	}
 	build_block_radius = @build_block_radius_starbase
 
@@ -1180,10 +1279,10 @@ starbase_headquarters = {
 	
 	modifier = {
 		ship_evasion_mult = -1
-		ship_armor_add = 80000
-		starbase_module_capacity_add = 20  #35
-		starbase_building_capacity_add = 20  #35
-		starbase_defense_platform_capacity_add = 60
+		ship_armor_add = 100000 # LS 80,000 -> 100,000 [Balance]
+		starbase_module_capacity_add = 22 # LS 20 -> 22 [Balance]
+		starbase_building_capacity_add = 10 # LS 8 -> 10 [Balance]
+		starbase_defense_platform_capacity_add = 35 # LS 60 -> 35 [Balance]
 		starbase_trade_collection_range_add = 3
 		starbase_trade_protection_range_add = 3
 		starbase_trade_protection_add = 60
@@ -1191,10 +1290,10 @@ starbase_headquarters = {
 	}
 	ship_modifier = {
 		ship_fire_rate_mult = 0.50
-		ship_weapon_range_mult = 0.20
+		ship_weapon_range_mult = 0.60 # LS 0.20 -> 0.60 [Balance]
 	}
 	
-	max_hitpoints = 250000
+	max_hitpoints = 350000 # LS 250,000 -> 350,000 [Balance]
 	combat_size_multiplier = 50
 	size_multiplier = 24
 	fleet_slot_size = 2
@@ -1202,29 +1301,41 @@ starbase_headquarters = {
 		"core" = { locator = "part1" }
 		"1" = { locator = "part2" }
 		"2" = { locator = "part3" }
+		# More Starbase Slots:
 		"3" = { locator = "part4" }
 		"4" = { locator = "part5" }
 		"5" = { locator = "part6" }
 		"6" = { locator = "part7" }
-		"7" = { locator = "part5" }
-		"8" = { locator = "part5" }
-		"9" = { locator = "part6" }
-		"10" = { locator = "part6" }
-		"11" = { locator = "part7" }
+		"7" = { locator = "part2" } # <-- fix slot 7-9, "part7" is max. Now slot 7 replaces slot 1 graphically, if I understood the system correctly.
+		"8" = { locator = "part3" }
+		"9" = { locator = "part4" }
+		"10" = { locator = "part5" }
+		"11" = { locator = "part6" }
 		"12" = { locator = "part7" }
-		"13" = { locator = "part2" }
-		"14" = { locator = "part3" }
-		"15" = { locator = "part4" }
-		"16" = { locator = "part5" }
-		"17" = { locator = "part6" }
-		"18" = { locator = "part7" }
-		"19" = { locator = "part5" }
-		"20" = { locator = "part5" }
+		"13" = { locator = "part2"}
+		"14" = { locator = "part3"}
+		"15" = { locator = "part4"}
+		"16" = { locator = "part5"}
+		"17" = { locator = "part6"}
+		"18" = { locator = "part7"}
+		"19" = { locator = "part2"}
+		"20" = { locator = "part3"}
+		"21" = { locator = "part4"}
+		"22" = { locator = "part5"}
+		"23" = { locator = "part6"}
+		"24" = { locator = "part7"}
+		"25" = { locator = "part2"}
+		# LS - Adding more slots by default
+		"26" = { locator = "part3"}
+		"27" = { locator = "part4"}
+		"28" = { locator = "part5"}
+		"29" = { locator = "part6"}
+		"30" = { locator = "part7"}
 	}
 	num_target_locators = 0
 	icon_frame = 7
 	icon = ship_size_military_station
-	base_buildtime = 2500
+	base_buildtime = 360 # LS 2500 -> 360
 	
 	is_space_station = no
 	can_have_federation_design = no
@@ -1237,8 +1348,71 @@ starbase_headquarters = {
 	
 	resources = {
 		category = starbase_stations
-		cost = { alloys = 6500 }
-		upkeep = { energy = 10 }
+		cost = {
+			alloys = 20000
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = no
+				}
+			}
+			alloys = -4000
+			food = 40000
+			larva = 1000
+		}
+		cost = { # Expanded Gestalts
+			trigger = {
+				from = {
+					has_valid_civic = civic_hive_organic
+					is_lithoid_empire = yes
+				}
+			}
+			alloys = -4000
+			minerals = 60000
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  { 
+					AND = {
+						is_machine_empire = no
+						is_lithoid_empire = no
+					}
+				}
+			}
+			energy = 18
+			food = 4
+			minerals = 4
+		}
+		upkeep = { # OSA
+			trigger = {
+				from =  {
+					OR = {
+						is_machine_empire = yes
+						is_lithoid_empire = yes
+					}
+				}
+			}
+			energy = 18
+			minerals = 8
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_insight_finish
+				}
+			}
+			physics_research = 7.5
+		}
+		produces = { # OSA
+			trigger = {
+				from =  {
+					has_active_tradition = tr_nanobiotics_finish
+				}
+			}
+			engineering_research = 7.5
+		}
 	}
 	build_block_radius = @build_block_radius_starbase
 	
@@ -1267,12 +1441,11 @@ starbase_bastion = {
 	acceleration = 0.0
 	rotation_speed = 0.0
 	modifier = {
-		ship_evasion_mult = -0.5 # LS -1.0 -> -0.5 (OSA extension)
-		ship_armor_add = 80000 # LS 40,000 -> 80,000 (OSA extension)
-		ship_shield_add	= 80000 # LS - OSA extension
-		starbase_module_capacity_add = 22 # LS 12 -> 22 [Balance]
-		starbase_building_capacity_add = 10 # More Starbase Slots 8 -> 10
-		starbase_defense_platform_capacity_add = 48 # LS 24 -> 48 (OSA extension)
+		ship_evasion_mult = -1
+		ship_armor_add = 200000 # LS 40,000 -> 200,000 [Balance]
+		starbase_module_capacity_add = 26 # LS 12 -> 26 [Balance]
+		starbase_building_capacity_add = 15 # More Starbase Slots 8 -> 10 # LS 10 -> 15 [Balance]
+		starbase_defense_platform_capacity_add = 50 # LS 24 -> 50 [Balance]
 		#trade system
 		starbase_trade_collection_range_add = 1
 		starbase_trade_protection_range_add = 1
@@ -1281,14 +1454,14 @@ starbase_bastion = {
 	}
 	ship_modifier = {
 		ship_fire_rate_mult = 0.50
-		ship_weapon_range_mult = 0.20
+		ship_weapon_range_mult = 0.75 # LS 0.20 -> 0.75 [Balance]
 	}
-	max_hitpoints = 320000 # LS 160,000 -> 320,000 (OSA extension)
-	base_buildtime = 1800
+	max_hitpoints = 500000 # LS 160,000 -> 500,000 [Balance]
+	base_buildtime = 360 # LS 1800 -> 360
 	resources = {
 		category = starbase_stations
 		cost = {
-			alloys = 7000
+			alloys = 50000
 		}
 		cost = { # Limitless Stellaris - Expanded Gestalts Compatibility
 			trigger = {
@@ -1297,9 +1470,9 @@ starbase_bastion = {
 					is_lithoid_empire = no
 				}
 			}
-			alloys = -1500
-			food = 14000
-			larva = 350
+			alloys = -10000
+			food = 100000
+			larva = 2500
 		}
 		cost = { # Limitless Stellaris - Expanded Gestalts Compatibility
 			trigger = {
@@ -1308,10 +1481,10 @@ starbase_bastion = {
 					is_lithoid_empire = yes
 				}
 			}
-			alloys = -1500
-			minerals = 21000
+			alloys = -10000
+			minerals = 150000
 		}
-		upkeep = { # Limitless Stellaris - OSA Compatibility
+		upkeep = { # OSA
 			trigger = {
 				from =  { 
 					AND = {
@@ -1320,11 +1493,11 @@ starbase_bastion = {
 					}
 				}
 			}
-			energy = 5.5
-			food = 1.5
-			minerals = 2.0
+			energy = 36
+			food = 8
+			minerals = 8
 		}
-		upkeep = { # Limitless Stellaris - OSA Compatibility
+		upkeep = { # OSA
 			trigger = {
 				from =  {
 					OR = {
@@ -1333,8 +1506,8 @@ starbase_bastion = {
 					}
 				}
 			}
-			energy = 5.5
-			minerals = 3.0
+			energy = 36
+			minerals = 16
 		}
 		produces = { # Limitless Stellaris - OSA Compatibility
 			trigger = {
@@ -1355,12 +1528,13 @@ starbase_bastion = {
 	}
 
 	combat_size_multiplier = 50
-	size_multiplier = 32
+	size_multiplier = 36
 	fleet_slot_size = 2
 	section_slots = {
 		"core" = { locator = "part1" }
 		"1" = { locator = "part2" }
 		"2" = { locator = "part3" }
+		# More Starbase Slots:
 		"3" = { locator = "part4" }
 		"4" = { locator = "part5" }
 		"5" = { locator = "part6" }
@@ -1371,7 +1545,6 @@ starbase_bastion = {
 		"10" = { locator = "part5" }
 		"11" = { locator = "part6" }
 		"12" = { locator = "part7" }
-		# More Starbase Slots:
 		"13" = { locator = "part2"}
 		"14" = { locator = "part3"}
 		"15" = { locator = "part4"}
@@ -1385,6 +1558,12 @@ starbase_bastion = {
 		"23" = { locator = "part6"}
 		"24" = { locator = "part7"}
 		"25" = { locator = "part2"}
+		# LS - Adding more slots by default
+		"26" = { locator = "part3"}
+		"27" = { locator = "part4"}
+		"28" = { locator = "part5"}
+		"29" = { locator = "part6"}
+		"30" = { locator = "part7"}
 	}
 	is_designable = no
 	num_target_locators = 0
