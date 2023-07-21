@@ -5,6 +5,8 @@
 # Vanilla Variables
 @build_block_radius_starbase = 20
 @starbase_formation_priority = 1
+@build_block_orbital_ring = 20
+@orbital_ring_formation_priority = 1
 
 ##################################################
 ## Starbases - Crisis
