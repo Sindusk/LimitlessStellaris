@@ -924,7 +924,7 @@ starbase_starfortress = {
 	}
 }
 
-## Starbase - Citadel (Tier 4)
+## Starbase - Citadel (Tier 4) [Vanilla]
 # Merge between NSC, OSA, More Starbase Slots, Expanded Gestalts
 starbase_citadel = {
 	max_speed = 0.0
@@ -1083,7 +1083,183 @@ starbase_citadel = {
 	}
 }
 
-## Starbase - Bastion (Tier 5)
+## Starbase - Grand Citadel (Tier 5) [NSC]
+# Base version.
+starbase_stronghold = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_add = 40000
+		starbase_module_capacity_add = 15
+		starbase_building_capacity_add = 15
+		starbase_defense_platform_capacity_add = 30
+		starbase_trade_collection_range_add = 1
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 40
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.50
+		ship_weapon_range_mult = 0.20
+	}
+	
+	max_hitpoints = 200000
+	combat_size_multiplier = 50
+	size_multiplier = 18
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		"5" = { locator = "part6" }
+		"6" = { locator = "part7" }
+		"7" = { locator = "part5" }
+		"8" = { locator = "part5" }
+		"9" = { locator = "part6" }
+		"10" = { locator = "part6" }
+		"11" = { locator = "part7" }
+		"12" = { locator = "part7" }
+		"13" = { locator = "part2" }
+		"14" = { locator = "part3" }
+		"15" = { locator = "part4" }
+		"16" = { locator = "part5" }
+		"17" = { locator = "part6" }
+		"18" = { locator = "part7" }
+		"19" = { locator = "part5" }
+		"20" = { locator = "part5" }
+	}
+	num_target_locators = 0
+	icon_frame = 6
+	icon = ship_size_military_station
+	base_buildtime = 360
+	
+	is_space_station = no
+	can_have_federation_design = no
+	enable_default_design = yes
+	is_designable = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+	
+	resources = {
+		category = starbase_stations
+		cost = { alloys = 4500 }
+		upkeep = { energy = 8 }
+	}
+	build_block_radius = @build_block_radius_starbase
+
+	prerequisites = { "tech_starbase_6" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_inhibitor"
+	
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+}
+
+## Starbase - Solar Stronghold (Tier 6) [NSC]
+# Base version.
+starbase_headquarters = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_add = 80000
+		starbase_module_capacity_add = 20  #35
+		starbase_building_capacity_add = 20  #35
+		starbase_defense_platform_capacity_add = 60
+		starbase_trade_collection_range_add = 3
+		starbase_trade_protection_range_add = 3
+		starbase_trade_protection_add = 60
+		ship_sensor_range_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 0.50
+		ship_weapon_range_mult = 0.20
+	}
+	
+	max_hitpoints = 250000
+	combat_size_multiplier = 50
+	size_multiplier = 24
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		"5" = { locator = "part6" }
+		"6" = { locator = "part7" }
+		"7" = { locator = "part5" }
+		"8" = { locator = "part5" }
+		"9" = { locator = "part6" }
+		"10" = { locator = "part6" }
+		"11" = { locator = "part7" }
+		"12" = { locator = "part7" }
+		"13" = { locator = "part2" }
+		"14" = { locator = "part3" }
+		"15" = { locator = "part4" }
+		"16" = { locator = "part5" }
+		"17" = { locator = "part6" }
+		"18" = { locator = "part7" }
+		"19" = { locator = "part5" }
+		"20" = { locator = "part5" }
+	}
+	num_target_locators = 0
+	icon_frame = 7
+	icon = ship_size_military_station
+	base_buildtime = 2500
+	
+	is_space_station = no
+	can_have_federation_design = no
+	enable_default_design = yes
+	is_designable = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+	
+	resources = {
+		category = starbase_stations
+		cost = { alloys = 6500 }
+		upkeep = { energy = 10 }
+	}
+	build_block_radius = @build_block_radius_starbase
+	
+	prerequisites = { "tech_starbase_7" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ftl_inhibitor"
+	
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+}
+
+## Starbase - Stellar Bastion (Tier 7) [Expanded Starbases]
 # Using More Starbase Slots version. Added Expanded Gestalts costs, OSA production and upkeep
 starbase_bastion = {
 	entity = "starbase_citadel_entity"
@@ -1231,7 +1407,7 @@ starbase_bastion = {
 
 	build_block_radius = @build_block_radius_starbase
 	formation_priority = @starbase_formation_priority
-	icon_frame = 5
+	icon_frame = 8
 	icon = ship_size_military_station
 	potential_construction = {
 		always = no
@@ -1240,4 +1416,308 @@ starbase_bastion = {
 	possible_construction = {
 		always = no
 	}
+}
+
+##################################################
+## Starbases - Orbital Rings
+##################################################
+
+## Orbital Ring (Tier 1) [Vanilla]
+# Expanded Starbases version with new icon frame
+orbital_ring_tier_1 = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_add = 2000
+		starbase_defense_platform_capacity_add = 9
+		starbase_module_capacity_add = 2
+		starbase_building_capacity_add = 1
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 1.0
+		ship_weapon_range_mult = 1.0
+	}
+	max_hitpoints = 10000
+	base_buildtime = 720
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 1000
+			influence = 50
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	combat_size_multiplier = 5
+	size_multiplier = 4
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+	}
+
+	potential_construction = {
+		# This is build through a megastructure
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	prerequisites = { "tech_orbital_ring_tier_1" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	build_block_radius = @build_block_orbital_ring
+	formation_priority = @orbital_ring_formation_priority
+	icon_frame = 10 # LS 7 -> 10 for new icon
+	scales_with_planet = yes
+	graphical_culture = yes
+}
+
+## Orbital Ring (Tier 2) [Vanilla]
+# Expanded Starbases version with new icon frame
+orbital_ring_tier_2 = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_add = 5000
+		starbase_defense_platform_capacity_add = 12
+		starbase_module_capacity_add = 4
+		starbase_building_capacity_add = 2
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 1.0
+		ship_weapon_range_mult = 1.50
+	}
+	max_hitpoints = 20000
+	base_buildtime = 900
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 1500
+			influence = 100
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	combat_size_multiplier = 20
+	size_multiplier = 4
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+	}
+
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	prerequisites = { "tech_starbase_4" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	build_block_radius = @build_block_orbital_ring
+	formation_priority = @orbital_ring_formation_priority
+	icon_frame = 11 # LS 8 -> 11 for new icon
+	scales_with_planet = yes
+	graphical_culture = yes
+}
+
+## Orbital Ring (Tier 3) [Vanilla]
+# Expanded Starbases version with new icon frame
+orbital_ring_tier_3 = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_add = 10000
+		starbase_defense_platform_capacity_add = 18
+		starbase_module_capacity_add = 6
+		starbase_building_capacity_add = 4
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 1.0
+		ship_weapon_range_mult = 2.0
+	}
+	max_hitpoints = 40000
+	base_buildtime = 1080
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 2000
+			influence = 150
+		}
+
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	combat_size_multiplier = 20
+	size_multiplier = 4
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		"5" = { locator = "part2" }
+		"6" = { locator = "part3" }
+	}
+
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	prerequisites = { "tech_starbase_5" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	build_block_radius = @build_block_orbital_ring
+	formation_priority = @orbital_ring_formation_priority
+	icon_frame = 12 # LS 9 -> 12 for new icon
+	scales_with_planet = yes
+	graphical_culture = yes
+}
+
+## Orbital Ring (Tier 4) [Expanded Starbases]
+# Base version with new icon frame
+orbital_ring_tier_4 = {
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.0
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_add = 20000
+		starbase_defense_platform_capacity_add = 24
+		starbase_module_capacity_add = 9
+		starbase_building_capacity_add = 6
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 1.0
+		ship_weapon_range_mult = 2.0
+	}
+	max_hitpoints = 80000
+	base_buildtime = 1440
+	resources = {
+		category = starbase_stations
+		cost = {
+			alloys = 2500
+			influence = 200
+		}
+
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	combat_size_multiplier = 20
+	size_multiplier = 4
+	fleet_slot_size = 2
+	section_slots = {
+		"core" = { locator = "part1" }
+		"1" = { locator = "part2" }
+		"2" = { locator = "part3" }
+		"3" = { locator = "part4" }
+		"4" = { locator = "part5" }
+		"5" = { locator = "part2" }
+		"6" = { locator = "part3" }
+		"7" = { locator = "part4" }
+		"8" = { locator = "part5" }
+		"9" = { locator = "part2" }
+	}
+
+	potential_construction = {
+		always = no
+	}
+
+	possible_construction = {
+		always = no
+	}
+
+	is_designable = no
+	num_target_locators = 0
+	is_space_station = no
+	can_have_federation_design = no
+	is_civilian = no
+	components_add_to_cost = no
+	can_disable = yes
+	flip_control_on_disable = yes
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	prerequisites = { "tech_starbase_6" }
+	class = shipclass_starbase
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	build_block_radius = @build_block_orbital_ring
+	formation_priority = @orbital_ring_formation_priority
+	icon_frame = 13 # LS 9 -> 13 for new icon
+	scales_with_planet = yes
+	graphical_culture = yes
 }

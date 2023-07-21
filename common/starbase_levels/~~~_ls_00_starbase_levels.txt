@@ -92,7 +92,7 @@ starbase_level_headquarters = {
 	}
 }
 
-## Stellar Bastion (Tier 5) [Expanded Starbases]
+## Stellar Bastion (Tier 7) [Expanded Starbases]
 # Base version
 starbase_level_bastion = {
 	ship_size = starbase_bastion

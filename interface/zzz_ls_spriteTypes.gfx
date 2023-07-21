@@ -1,0 +1,19 @@
+spriteTypes = {
+	spriteType = { # LS - Correction for new outliner icons for starbases.
+		name = "GFX_starbase_outliner"
+		textureFile = "gfx/interface/icons/starbase_outliner.dds"
+		noOfFrames = 13 # LS 9 -> 13 (3 new 
+	}
+
+	spriteType = {
+		name = "GFX_starbase_ship_size_small"
+		textureFile = "gfx/interface/icons/starbase_ship_sizes.dds"
+		noOfFrames = 8
+	}
+
+	spriteType = {
+		name = "GFX_starbase_ship_size_medium"
+		textureFile = "gfx/interface/icons/starbase_ship_sizes_medium.dds"
+		noOfFrames = 8
+	}
+}

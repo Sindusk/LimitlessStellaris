@@ -45,7 +45,7 @@ ap_doa_galactic_ascendancy = {
 			NOT = { 
 		    has_country_flag = ascension_started
 		    }
-		}		
+		}
 	}
 	
 	ai_weight = {
