@@ -1,0 +1,45 @@
+##########################################################################
+# Limitless Stellaris - Component Templates
+##########################################################################
+
+##################################################
+## Cloud Weapons
+##################################################
+
+## Space Cloud Lightning [Vanilla]
+# Merge between The Storm Cluster, ESC, EMT, Ariphaos, STU
+weapon_component_template = {
+	key = "SPACE_CLOUD_LIGHTNING"
+
+	size = large
+	entity = "large_space_cloud_weapon_entity" # EMT
+	type = instant
+	icon = "GFX_ship_part_space_cloud_weapon_1"
+	icon_frame = 1
+	projectile_gfx = "arc_emitter"
+	tags = { weapon_type_energy weapon_type_space_fauna }
+	ai_tags = { weapon_role_anti_hull }
+
+	component_set = "SPACE_CLOUD_WEAPON_1"
+	prerequisites = { "tech_space_cloud_weapon_1" }
+	upgrades_to = "ESC_CLOUD_LIGHTNING_2"
+	#upgrades_to = "STORM_CLOUD_LIGHTNING" # The Storm Cluster # LS - Using ESC instead
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @s_t3_cost
+		}
+		upkeep = {
+			energy = @s_t3_upkeep_energy
+			alloys = @s_t3_upkeep_alloys
+		}
+	}
+	#upgrades_to = "SPACE_CLOUD_LIGHTNING_2" # EMT # LS - Using ESC instead
+	ai_weight = { # Ariphaos
+		weight = 20
+		modifier = {
+			factor = 0
+			NOT = { has_global_flag = ai_invasion_happened }
+		}
+	}
+}

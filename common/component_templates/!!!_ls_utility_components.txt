@@ -1,0 +1,121 @@
+##########################################################################
+# Limitless Stellaris - Component Templates
+##########################################################################
+
+##################################################
+## Armor
+##################################################
+
+## Small Nanite Armor [Expanded Megastructures and Technology]
+# Merge between L-Cluster Plus, EMT
+utility_component_template = {
+	key = "SMALL_NANITE_ARMOR"
+	size = small
+	icon = "GFX_ship_part_nanite_armor"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @s_t8_nanite_cost # L-Cluster Plus
+			nanites = 0.25
+		}
+		upkeep = { # L-Cluster Plus
+			energy = @s_t8_nanite_upkeep_energy
+			alloys = @s_t8_nanite_upkeep_alloys
+		}
+	}
+
+	prerequisites = { "tech_nanite_armor" }
+	component_set = "NANITE_ARMOR"
+
+	modifier = {
+		ship_hull_add = @armor_S5
+		ship_armor_add = @armor_nanite_8S # L-Cluster Plus
+		ship_hull_regen_add_perc = 0.025
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = nanites }
+		}
+	}
+}
+
+## Medium Nanite Armor [Expanded Megastructures and Technology]
+# Merge between L-Cluster Plus, EMT
+utility_component_template = {
+	key = "MEDIUM_NANITE_ARMOR"
+	size = medium
+	icon = "GFX_ship_part_nanite_armor"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t8_nanite_cost # L-Cluster Plus
+			nanites = 0.5
+		}		
+		upkeep = { # L-Cluster Plus
+			energy = @m_t8_nanite_upkeep_energy
+			alloys = @m_t8_nanite_upkeep_alloys
+		}
+	}
+
+	prerequisites = { "tech_nanite_armor" }
+	component_set = "NANITE_ARMOR"
+
+	modifier = {
+		ship_hull_add = @armor_M5
+		ship_armor_add = @armor_nanite_8M # L-Cluster Plus
+		ship_hull_regen_add_perc = 0.025
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = nanites }
+		}
+	}
+}
+
+## Large Nanite Armor [Expanded Megastructures and Technology]
+# Merge between L-Cluster Plus, EMT
+utility_component_template = {
+	key = "LARGE_NANITE_ARMOR"
+	size = large
+	icon = "GFX_ship_part_nanite_armor"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @l_t8_nanite_cost # L-Cluster Plus
+			nanites = 1
+		}
+		upkeep = { # L-Cluster Plus
+			energy = @l_t8_nanite_upkeep_energy
+			alloys = @l_t8_nanite_upkeep_alloys
+		}
+	}
+
+	prerequisites = { "tech_nanite_armor" }
+	component_set = "NANITE_ARMOR"
+
+	modifier = {
+		ship_hull_add = @armor_L5
+		ship_armor_add = @armor_nanite_8L # L-Cluster Plus
+		ship_hull_regen_add_perc = 0.025
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = nanites }
+		}
+	}
+}
