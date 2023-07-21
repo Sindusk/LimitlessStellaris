@@ -37,7 +37,7 @@ ethic_fanatic_authoritarian = {
 }
 
 ## Authoritarian
-# Merge between OSA, Bug Branch
+# Merge between DFEM, OSA, Bug Branch
 ethic_authoritarian = {
 	cost = 1
 	category = "col"
@@ -63,6 +63,9 @@ ethic_authoritarian = {
 
 	tags = {       
         MORE_ENFORCER_JOBS # Bug Branch
+		ETHIC_ALLOWS_STRATIFIED_SOCIETY # DFEM
+		ETHIC_ALLOWS_SLAVERY # DFEM
+		ETHIC_NEVER_DEMOCRACY # DFEM
 	}
 
 	random_weight = {
@@ -90,6 +93,77 @@ ethic_authoritarian = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_SLAVERY_POS
+		trigger = {
+			any_enslaved_species = {
+				is_same_species = root
+				is_robotic = no
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_OVERLORD_POS
+		trigger = {
+			is_subject = yes
+			has_loyalty > 0
+			overlord = { is_authoritarian = yes }
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_XENO_SLAVES_POS
+		trigger = {
+			any_enslaved_species = {
+				not = { is_same_species = root }
+				is_robotic = no
+			}
+			NOT = {
+				any_enslaved_species = {
+					is_same_species = root
+					is_robotic = no
+				}
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_CONSUMER_GOODS_NEG_pemd
+		trigger = {
+			is_authoritarian = no
+			any_owned_species = {
+				OR = {
+					has_living_standard = { type = living_standard_utopian country = root }
+					has_living_standard = { type = living_standard_good country = root }
+					has_living_standard = { type = living_standard_shared_burden country = root }
+				}
+			}
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_STRATIFIED_POS
+		trigger = {
+			any_owned_species = {
+				OR = {
+					has_living_standard = { type = living_standard_stratified country = root }
+					has_living_standard = { type = living_standard_dystopian_society country = root }
+				}
+			}
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_BENEFIT_FROM_INEQUALITY_POS
+		trigger = {
+			any_owned_species = {
+				is_sapient = yes
+				NOR = {
+					has_citizenship_type = { type = citizenship_full country = prev.owner }
+					has_citizenship_type = { type = citizenship_slavery country = prev.owner }
+				}
+			}
+		}
+	}
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_AUTOCRATIC_GOV_POS
 		trigger = {
@@ -113,6 +187,39 @@ ethic_authoritarian = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_AUTHORITARIAN_DIPLOMACY_POS
+		trigger = {
+			any_relation = {
+				OR = {
+					is_in_federation_with = root
+					has_defensive_pact = root
+				}
+				is_authoritarian = yes
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_HEGEMONYFED_POS
+		trigger = {
+			has_federation = yes
+			federation = {
+				has_federation_type = hegemony_federation
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_NOBLES_POS
+		trigger = {
+			num_assigned_jobs = {
+				job = noble
+				value > 0
+			}
+		}
+	}
+
 	# Check for any leader on the Council with Faction's Ethic.
 	pop_attraction_tag = { # Bug Branch
 		desc = POP_ATTRACTION_REPRESENTED_ON_COUNCIL
@@ -128,6 +235,66 @@ ethic_authoritarian = {
 			}
 		}
 	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_HIGH_STRATUM_POS
+		trigger = {
+			is_gestalt = no
+			any_owned_species = {
+				has_citizenship_type = {
+					type = citizenship_full
+					country = prev
+				}
+				NOT = {
+					has_living_standard = {
+						type = living_standard_utopian
+						country = prev
+					}
+				}
+			}
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_ENFORCER_POS
+		trigger = {
+			any_owned_planet = {
+				num_assigned_jobs = {
+					job = enforcer
+					value > 0
+				}
+			}
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_LOW_STRATUM_NEG
+		trigger = {
+			OR = {
+				is_gestalt = no
+				any_owned_species = { species_has_happiness_with_owner = prev }
+			}
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_UNEMPLOYMENT_NEG
+		trigger = {
+			any_owned_planet = { num_unemployed > 0 }
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_CRIME_POS
+		trigger = {
+			is_authoritarian = no
+			any_owned_planet = {
+				OR = {
+					has_modifier = criminal_underworld
+					has_modifier = criminal_gambling
+					has_modifier = center_of_drug_trade
+				}
+			}
+		}
+	}
+
 
 	country_attraction = {
 		base = 1
@@ -173,12 +340,19 @@ ethic_authoritarian = {
 		}
 		modifier = {
 			factor = 2
+			is_playable = yes # DFEM
 			NOR = {
 				has_ethic = ethic_authoritarian
 				has_ethic = ethic_fanatic_authoritarian
 			}
 			has_faction = totalitarian
 		}
+		modifier = { # DFEM
+			exists = overlord
+			has_loyalty > 0
+			mult = value:ethics_from_overlord|ETHIC|authoritarian|
+		}
+		mult = value:authoritarian_ethics_from_relations # DFEM
 		modifier = {
 			factor = 1.5
 			has_federation = yes
@@ -211,9 +385,128 @@ ethic_authoritarian = {
 	# from = planet
 	pop_attraction = {
 		base = 1
+
+		modifier = { # DFEM
+			factor = 0
+			has_trait = trait_hive_mind
+		}
 		modifier = {
 			factor = 1.25
 			has_trait = "trait_decadent"
+		}
+		modifier = { # DFEM
+			factor = 1.5
+			is_enslaved = no
+			from = {
+				any_enslaved_species = {
+					is_same_species = root
+					is_robotic = no
+				}
+			}
+		}
+		modifier = { # DFEM
+			factor = 1.25
+			is_enslaved = no
+			from = {
+				any_enslaved_species = {
+					NOT = { is_same_species = root }
+					is_robotic = no
+				}
+				NOT = {
+					any_enslaved_species = {
+						is_same_species = root
+						is_robotic = no
+					}
+				}
+			}
+		}
+		modifier = { # DFEM
+			factor = 1.2
+			has_citizenship_rights = yes
+			from = {
+				any_owned_species = {
+					is_sapient = yes
+					NOR = {
+						has_citizenship_type = { type = citizenship_full country = prev.owner }
+						has_citizenship_type = { type = citizenship_slavery country = prev.owner }
+					}
+				}
+			}
+		}
+		modifier = { # DFEM
+			factor = 1.25
+			is_enslaved = no
+			NOR = {
+				is_pop_category = worker
+				is_pop_category = criminal
+			}
+			OR = {
+				has_living_standard = { type = living_standard_stratified }
+				AND = {
+					is_pop_category = ruler
+					has_living_standard = { type = living_standard_dystopian_society }
+				}
+			}
+		}
+		modifier = { # DFEM
+			factor = 0.75
+			owner = { is_authoritarian = no }
+			OR = {
+				has_living_standard = { type = living_standard_utopian }
+				has_living_standard = { type = living_standard_good }
+				has_living_standard = { type = living_standard_shared_burden }
+			}
+			NOT = { is_pop_category = ruler }
+		}
+		modifier = { # DFEM
+			factor = 0.85
+			OR = {
+				is_pop_category = worker
+				is_pop_category = slave
+				is_pop_category = criminal
+			}
+		}
+		modifier = { # DFEM
+			factor = 0.95
+			NOR = {
+				is_pop_category = worker
+				is_pop_category = slave
+				is_pop_category = criminal
+				is_pop_category = ruler
+			}
+		}
+		modifier = { # DFEM
+			factor = 1.2
+			is_pop_category = ruler
+			NOT = { has_living_standard = { type = living_standard_utopian } }
+		}
+		modifier = { # DFEM
+			factor = 1.2
+			has_job = enforcer
+		}
+		modifier = { # DFEM
+			factor = 1.65
+			has_job = noble
+		}
+		modifier = { # DFEM
+			factor = 0.75
+			is_unemployed = yes
+		}
+		modifier = { # DFEM
+			factor = 1.1
+			planet = {
+				OR = {
+					has_modifier = criminal_underworld
+					has_modifier = criminal_gambling
+					has_modifier = center_of_drug_trade
+				}
+				NOT = {
+					owner = { is_authoritarian = yes }
+				}
+			}
+			NOT = {
+				is_pop_category = criminal
+			}
 		}
 	}
 }
@@ -250,7 +543,7 @@ ethic_fanatic_egalitarian = {
 }
 
 ## Egalitarian
-# Merge between OSA, Bug Branch
+# Merge between DFEM, OSA, Bug Branch
 ethic_egalitarian = {
 	cost = 1
 	category = "col"
@@ -262,6 +555,7 @@ ethic_egalitarian = {
 
 	tags = {
 		ETHIC_NEVER_AUTOCRACY # Bug Branch
+		ETHIC_ALLOWS_UTOPIA # DFEM
 	}
 
 	leader_background_job_weight = {
@@ -314,6 +608,20 @@ ethic_egalitarian = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_CONSUMER_GOODS_POS
+		trigger = {
+			is_authoritarian = no
+			any_owned_species = {
+				OR = {
+					has_living_standard = { type = living_standard_utopian country = root }
+					has_living_standard = { type = living_standard_good country = root }
+					has_living_standard = { type = living_standard_shared_burden country = root }
+				}
+			}
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_EGALITARIAN_DIPLOMACY_POS
 		trigger = {
@@ -335,6 +643,35 @@ ethic_egalitarian = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_UTOPIAN_CITIZENSHIP_POS
+		trigger = {
+			any_owned_species = {
+				is_robotic = no
+				NOT = { is_same_species = root }
+			}
+			count_owned_species = {
+				limit = {
+					is_sapient = yes
+					is_robotic = no
+					NOT = {
+						has_citizenship_type = { type = citizenship_full country = root }
+					}
+				}
+				count = 0
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_ENSLAVED_POS
+		trigger = {
+			any_enslaved_species = {
+				is_robotic = no
+			}
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_DEMOCRATIC_GOV_POS
 		trigger = {
@@ -349,11 +686,30 @@ ethic_egalitarian = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_OVERLORD_POS
+		trigger = {
+			is_subject = yes
+			has_loyalty > 0
+			overlord = { is_egalitarian = yes }
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_DECADENT_NEG
 		trigger = {
 			any_owned_species = {
 				has_trait = "trait_decadent"
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_NOBLES_NEG
+		trigger = {
+			num_assigned_jobs = {
+				job = noble
+				value > 0
 			}
 		}
 	}
@@ -374,12 +730,35 @@ ethic_egalitarian = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_HIGH_STRATUM_NEG
+		trigger = {
+			is_gestalt = no
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_LOW_STRATUM_POS
+		trigger = {
+			OR = {
+				is_gestalt = no
+				any_owned_species = { species_has_happiness_with_owner = prev }
+			}
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_UNEMPLOYMENT_POS
+		trigger = {
+			any_owned_planet = { num_unemployed > 0 }
+		}
+	}
+
+
 	country_attraction = {
 		base = 1
 		modifier = {
 			factor = 0
 			NOR = {
-				is_country_type = default
+				is_playable = yes # STU
 				has_ethic = ethic_egalitarian
 				has_ethic = ethic_fanatic_egalitarian
 				AND = {
@@ -418,6 +797,7 @@ ethic_egalitarian = {
 		}
 		modifier = {
 			factor = 2
+			is_playable = yes # STU
 			NOR = {
 				has_ethic = ethic_egalitarian
 				has_ethic = ethic_fanatic_egalitarian
@@ -432,15 +812,37 @@ ethic_egalitarian = {
 			factor = 3
 			has_ethic = ethic_fanatic_egalitarian
 		}
+		modifier = { # DFEM
+			exists = overlord
+			has_loyalty > 0
+			mult = value:ethics_from_overlord|ETHIC|egalitarian|
+		}
 		modifier = {
 			factor = 0.75
-			is_country_type = default
+			is_playable = yes # STU
 			has_election_type = none
 		}
 		modifier = {
 			factor = 1.25
-			is_country_type = default
+			is_playable = yes # STU
 			has_election_type = democratic
+		}
+		modifier = { # DFEM
+			factor = 1.25
+			any_owned_species = {
+				is_robotic = no
+				NOT = { is_same_species = root }
+			}
+			count_owned_species = {
+				limit = {
+					is_sapient = yes
+					is_robotic = no
+					NOT = {
+						has_citizenship_type = { type = citizenship_full country = root }
+					}
+				}
+				count = 0
+			}
 		}
 		modifier = { # Bug Branch
 			factor = 1.5
@@ -471,18 +873,61 @@ ethic_egalitarian = {
 		modifier = {
 			factor = value:count_councilors_with_ethic|ETHIC|egalitarian|
 		}
+
+		mult = value:egalitarian_ethics_from_relations # DFEM
 	}
 
 	# from = planet
 	pop_attraction = {
 		base = 1
+
+		modifier = { # DFEM
+			factor = 0
+			has_trait = trait_hive_mind
+		}
 		modifier = {
 			factor = 0.5
 			has_trait = "trait_decadent"
 		}
 		modifier = {
 			factor = 1.25
-			NOT = { has_citizenship_type = { type = citizenship_full } }
+			has_citizenship_rights = no # DFEM
+		}
+		modifier = { # DFEM
+			factor = 1.5
+			is_enslaved = yes
+			is_robot_pop = no
+		}
+		modifier = { # DFEM
+			factor = 1.25
+			owner = { is_authoritarian = no }
+			OR = {
+				has_living_standard = { type = living_standard_utopian }
+				has_living_standard = { type = living_standard_good }
+				has_living_standard = { type = living_standard_shared_burden }
+			}
+			NOT = { is_pop_category = ruler }
+		}
+		modifier = { # DFEM
+			factor = 1.1
+			OR = {
+				is_pop_category = worker
+				is_pop_category = slave
+				is_pop_category = criminal
+			}
+		}
+		modifier = { # DFEM
+			factor = 0.75
+			is_pop_category = ruler
+			NOT = { has_living_standard = { type = living_standard_utopian } }
+		}
+		modifier = { # DFEM
+			factor = 0.15
+			has_job = noble
+		}
+		modifier = { # DFEM
+			factor = 1.25
+			is_unemployed = yes
 		}
 	}
 }
@@ -526,11 +971,13 @@ ethic_fanatic_xenophobe = {
 }
 
 ## Xenophobe
-# Merge between OSA, Bug Branch
+# Merge between DFEM, OSA, Bug Branch
 ethic_xenophobe = {
 	cost = 1
 	category = "xen"
 	category_value = 1
+
+	xenophobe = yes # DFEM - used for a few hardcoded checks (mainly tooltips)
 
 	fanatic_variant = ethic_fanatic_xenophobe
 
@@ -567,6 +1014,21 @@ ethic_xenophobe = {
 		}
 	}
 
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_FACTION_POS
+		trigger = {
+			NOR = {
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_xenophobe
+			}
+			OR = {
+				has_faction = supremacist
+				has_faction = isolationist
+			}
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_FANATIC_PURIFIERS_POS
 		trigger = {
@@ -577,13 +1039,14 @@ ethic_xenophobe = {
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_INWARDS_PERFECTION_POS
 		trigger = {
-			has_valid_civic = civic_inwards_perfection
+			is_inwards_perfection_empire = yes # STU
 		}
 	}
 
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_DEFENSIVE_XENO_WAR_POS
 		trigger = {
+			is_at_war = yes # DFEM
 			any_war = {
 				any_defender = {
 					is_same_value = prevprev
@@ -610,6 +1073,21 @@ ethic_xenophobe = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_NOXIOUS_POS
+		trigger = {
+			any_owned_planet = {
+				any_owned_species = {
+					has_trait = "trait_noxious"
+				}
+				any_owned_pop = {
+					NOT = { has_trait = "trait_noxious" }
+					is_non_sapient_robot = no
+				}
+			}
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_XENO_SLAVES_POS
 		trigger = {
@@ -617,6 +1095,15 @@ ethic_xenophobe = {
 				not = { is_same_species = root }
 				is_robotic = no
 			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_OVERLORD_POS
+		trigger = {
+			is_subject = yes
+			has_loyalty > 0
+			overlord = { is_xenophobe = yes }
 		}
 	}
 
@@ -633,14 +1120,36 @@ ethic_xenophobe = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_PURGING_POS
+		trigger = {
+			any_relation = {
+				has_opinion_modifier = {
+					who = root
+					modifier = opinion_genocidal
+				}
+			}
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_PURGING_OF_SPECIES_POS
 		trigger = {
 			any_relation = {
 				has_opinion_modifier = {
 					who = root
+					is_reverse = yes # DFEM
 					modifier = opinion_genocidal_our_species
 				}
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_NEIGHBOR_HOMICIDAL_POS
+		trigger = {
+			any_neighbor_country = {
+				is_homicidal = yes
 			}
 		}
 	}
@@ -655,14 +1164,13 @@ ethic_xenophobe = {
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_FREE_XENOS_NEG
 		trigger = {
-			any_owned_planet = {
-				any_owned_pop = {
-					not = { is_same_species = root }
-					is_enslaved = no
-					is_being_purged = no
-					is_sapient = yes
-					is_robot_pop = no
-				}
+			# DFEM removes any_owned_planet
+			any_owned_pop = {
+				not = { is_same_species = root }
+				is_enslaved = no
+				is_being_purged = no
+				is_sapient = yes
+				is_robot_pop = no
 			}
 		}
 	}
@@ -673,6 +1181,7 @@ ethic_xenophobe = {
 			any_relation = {
 				is_subject = no
 				has_migration_access = root
+				NOT = { is_same_species = root } # DFEM
 			}
 		}
 	}
@@ -693,12 +1202,43 @@ ethic_xenophobe = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_NATIVES_LACKING_NECESSITIES_POS
+		trigger = {
+			is_xenophobe = no
+			OR = {
+				AND = {
+					has_deficit = food
+					any_owned_species = {
+						is_same_species = prev
+						has_food_upkeep = yes
+					}
+				}
+				AND = {
+					has_deficit = minerals
+					any_owned_species = {
+						is_same_species = prev
+						has_mineral_upkeep = yes
+					}
+				}
+				has_deficit = consumer_goods
+				any_owned_planet = {
+					OR = {
+						free_housing < 0
+						free_amenities < 0
+					}
+					any_owned_species = { is_same_species = prev }
+				}
+			}
+		}
+	}
+
 	country_attraction = {
 		base = 1
 		modifier = {
 			factor = 0
 			NOR = {
-				is_country_type = default
+				is_playable = yes # STU
 				has_ethic = ethic_xenophobe
 				has_ethic = ethic_fanatic_xenophobe
 				AND = {
@@ -718,6 +1258,7 @@ ethic_xenophobe = {
 		}
 		modifier = {
 			factor = 2
+			is_playable = yes # STU
 			NOR = {
 				has_ethic = ethic_xenophobe
 				has_ethic = ethic_fanatic_xenophobe
@@ -735,9 +1276,14 @@ ethic_xenophobe = {
 			factor = 3
 			has_ethic = ethic_fanatic_xenophobe
 		}
+		modifier = { # DFEM
+			exists = overlord
+			has_loyalty > 0
+			mult = value:ethics_from_overlord|ETHIC|xenophobe|
+		}
 		modifier = {
 			factor = 1.5
-			has_valid_civic = civic_inwards_perfection
+			is_inwards_perfection_empire = yes # STU
 		}
 		modifier = {
 			factor = 1.5
@@ -750,6 +1296,7 @@ ethic_xenophobe = {
 				has_migration_access = root
 			}
 		}
+		mult = value:xenophobe_ethics_from_relations # DFEM
 		modifier = {
 			factor = 0.75
 			allows_alien_leaders = yes
@@ -767,23 +1314,34 @@ ethic_xenophobe = {
 		}
 		modifier = {
 			factor = 2.0
-			is_country_type = default
-			is_same_species = root
+			species = { is_robotic = no } # DFEM
+			#is_country_type = default # DFEM removes
+			#is_same_species = root # DFEM removes
 			any_relation = {
 				NOT = { is_same_species = root }
 				any_enslaved_species = {
-					is_robotic = no
+					#is_robotic = no # DFEM removes
 					is_same_species = root
+				}
+			}
+		}
+		modifier = { # DFEM
+			factor = 2.5
+			any_relation = {
+				has_opinion_modifier = {
+					who = root
+					modifier = opinion_genocidal
 				}
 			}
 		}
 		modifier = {
 			factor = 4.0
-			is_country_type = default
-			is_same_species = root
+			#is_country_type = default # DFEM removes
+			#is_same_species = root # DFEM removes
 			any_relation = {
 				has_opinion_modifier = {
 					who = root
+					is_reverse = yes
 					modifier = opinion_genocidal_our_species
 				}
 			}
@@ -807,6 +1365,8 @@ ethic_xenophobe = {
 				observation_outpost_owner = { has_ethic = ethic_xenophobe }
 			}
 		}
+
+		# DFEM - Check for any leader on the Council with Faction's Ethic.
 		modifier = {
 			factor = value:count_councilors_with_ethic|ETHIC|xenophobe|
 		}
@@ -815,6 +1375,11 @@ ethic_xenophobe = {
 	#from = planet
 	pop_attraction = {
 		base = 1
+
+		modifier = { # DFEM
+			factor = 0
+			has_trait = trait_hive_mind
+		}
 		modifier = {
 			factor = 2.0
 			is_enslaved = no
@@ -827,7 +1392,7 @@ ethic_xenophobe = {
 			}
 		}
 		modifier = {
-			factor = 0.5
+			factor = 0.45 # DFEM 0.5 -> 0.45
 			is_enslaved = no
 			is_being_purged = no
 			from = {
@@ -843,11 +1408,27 @@ ethic_xenophobe = {
 		modifier = {
 			factor = 1.5
 			from = {
-				any_owned_pop = {
+				any_owned_species = { # DFEM pop -> species
 					NOT = { is_same_species = root }
 					has_trait = "trait_repugnant"
 				}
 			}
+		}
+		modifier = { # DFEM
+			factor = 1.5
+			NOT = { has_trait = trait_noxious }
+			from = {
+				any_owned_species = {
+					NOT = { is_same_species = root }
+					has_trait = trait_noxious
+				}
+			}
+		}
+		modifier = { # DFEM - want necessities xenos have
+			factor = 1.25
+			is_same_species = owner
+			owner = { is_xenophobe = no }
+			pop_lacking_necessities = yes
 		}
 	}
 }
@@ -890,11 +1471,13 @@ ethic_fanatic_xenophile = {
 }
 
 ## Xenophile
-# Merge between OSA, Bug Branch
+# Merge between DFEM, OSA, Bug Branch
 ethic_xenophile = {
 	cost = 1
 	category = "xen"
 	category_value = 3
+
+	xenophile = yes # DFEM - used for a few hardcoded checks (mainly tooltips)
 
 	category_opposite = yes
 
@@ -968,6 +1551,7 @@ ethic_xenophile = {
 		trigger = {
 			any_relation = {
 				NOT = { is_same_species = root }
+				is_subject = no # DFEM
 				OR = {
 					is_in_federation_with = root
 					has_defensive_pact = root
@@ -989,15 +1573,21 @@ ethic_xenophile = {
 	}
 
 	pop_attraction_tag = {
-		desc = POP_ATTRACTION_CHARISMATIC_POS
+		desc = POP_ATTRACTION_CHARISMATIC_OR_CRAFTED_POS # DFEM +OR_CRAFTED
 		trigger = {
 			any_owned_planet = {
-				any_owned_pop = {
-					NOT = { has_trait = "trait_charismatic" }
-					is_non_sapient_robot = no
-				}
 				any_owned_species = {
-					has_trait = "trait_charismatic"
+					OR = { # DFEM
+						has_trait = "trait_charismatic"
+						has_trait = "trait_crafted_smiles" # DFEM
+					}
+				}
+				any_owned_pop = {
+					NOR = { # DFEM
+						has_trait = "trait_charismatic"
+						has_trait = "trait_crafted_smiles" # DFEM
+					}
+					is_non_sapient_robot = no
 				}
 			}
 		}
@@ -1013,7 +1603,7 @@ ethic_xenophile = {
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_INWARDS_PERFECTION_NEG
 		trigger = {
-			has_valid_civic = civic_inwards_perfection
+			is_inwards_perfection_empire = yes # STU
 		}
 	}
 
@@ -1030,18 +1620,68 @@ ethic_xenophile = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_PURGING_NEG
+		trigger = {
+			any_relation = {
+				has_opinion_modifier = {
+					who = root
+					modifier = opinion_genocidal
+				}
+			}
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_PURGING_OF_SPECIES_NEG
 		trigger = {
 			any_relation = {
 				has_opinion_modifier = {
 					who = root
+					is_reverse = yes # DFEM
 					modifier = opinion_genocidal_our_species
 				}
 			}
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_NECROPHAGE_NEG
+		trigger = {
+			is_necrophage_empire = yes
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_XENO_LEADERS_POS
+		trigger = {
+			allows_alien_leaders = yes
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_OVERLORD_POS
+		trigger = {
+			is_subject = yes
+			has_loyalty > 0
+			overlord = { is_xenophile = yes }
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_XENO_OUTREACH_AGENCY_POS
+		trigger = {
+			any_owned_planet = {
+				has_branch_office = yes
+				has_holding = {
+					holding = building_xeno_tourism_agency
+					owner = branch_office_owner
+				}
+			}
+		}
+	}
+
+	# DFEM - Check for any leader on the Council with Faction's Ethic.
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_REPRESENTED_ON_COUNCIL
 		trigger = {
@@ -1057,12 +1697,43 @@ ethic_xenophile = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_NATIVES_LACKING_NECESSITIES_NEG
+		trigger = {
+			is_xenophobe = no
+			OR = {
+				AND = {
+					has_deficit = food
+					any_owned_species = {
+						is_same_species = prev
+						has_food_upkeep = yes
+					}
+				}
+				AND = {
+					has_deficit = minerals
+					any_owned_species = {
+						is_same_species = prev
+						has_mineral_upkeep = yes
+					}
+				}
+				has_deficit = consumer_goods
+				any_owned_planet = {
+					OR = {
+						free_housing < 0
+						free_amenities < 0
+					}
+					any_owned_species = { is_same_species = prev }
+				}
+			}
+		}
+	}
+
 	country_attraction = {
 		base = 1
 		modifier = {
 			factor = 0
 			NOR = {
-				is_country_type = default
+				is_playable = yes # STU
 				has_ethic = ethic_xenophile
 				has_ethic = ethic_fanatic_xenophile
 				AND = {
@@ -1082,6 +1753,7 @@ ethic_xenophile = {
 		}
 		modifier = {
 			factor = 2
+			is_playable = yes # STU
 			NOR = {
 				has_ethic = ethic_xenophile
 				has_ethic = ethic_fanatic_xenophile
@@ -1096,9 +1768,14 @@ ethic_xenophile = {
 			factor = 3
 			has_ethic = ethic_fanatic_xenophile
 		}
+		modifier = { # DFEM
+			exists = overlord
+			has_loyalty > 0
+			mult = value:ethics_from_overlord|ETHIC|xenophile|
+		}
 		modifier = {
 			factor = 0.5
-			has_valid_civic = civic_inwards_perfection
+			is_inwards_perfection_empire = yes # STU
 		}
 		modifier = {
 			factor = 0.33
@@ -1106,9 +1783,10 @@ ethic_xenophile = {
 		}
 		modifier = {
 			factor = 1.5
-			is_country_type = default
+			is_playable = yes # STU
 			allows_alien_leaders = yes
 		}
+		mult = value:xenophile_ethics_from_relations # DFEM
 		modifier = {
 			factor = 1.5
 			any_relation = {
@@ -1130,11 +1808,21 @@ ethic_xenophile = {
 		}
 		modifier = {
 			factor = 0.25
-			is_same_species = root
+			#is_same_species = root # DFEM removes
 			any_relation = {
 				has_opinion_modifier = {
 					who = root
+					is_reverse = yes # DFEM
 					modifier = opinion_genocidal_our_species
+				}
+			}
+		}
+		modifier = { # DFEM
+			factor = 0.4
+			any_relation = {
+				has_opinion_modifier = {
+					who = root
+					modifier = opinion_genocidal
 				}
 			}
 		}
@@ -1168,6 +1856,7 @@ ethic_xenophile = {
 				observation_outpost_owner = { has_ethic = ethic_xenophile }
 			}
 		}
+		# DFEM - Check for any leader on the Council with Faction's Ethic.
 		modifier = {
 			factor = value:count_councilors_with_ethic|ETHIC|xenophile|
 		}
@@ -1176,6 +1865,11 @@ ethic_xenophile = {
 	# from = planet
 	pop_attraction = {
 		base = 1
+
+		modifier = { # DFEM
+			factor = 0
+			has_trait = trait_hive_mind
+		}
 		modifier = {
 			factor = 2
 			not = { is_same_species = root }
@@ -1201,9 +1895,32 @@ ethic_xenophile = {
 			from = {
 				any_owned_species = {
 					NOT = { is_same_species = root }
-					has_trait = "trait_charismatic"
+					OR = { # DFEM
+						has_trait = "trait_charismatic"
+						has_trait = "trait_crafted_smiles" # DFEM
+					}
 				}
 			}
+		}
+		modifier = { # DFEM
+			factor = 0.5
+			has_trait = trait_necrophage
+		}
+		modifier = { # DFEM
+			factor = 1.1
+			from = {
+				has_branch_office = yes
+				has_holding = {
+					holding = building_xeno_tourism_agency
+					owner = branch_office_owner
+				}
+			}
+		}
+		modifier = { # DFEM - want necessities xenos have
+			factor = 0.9
+			is_same_species = owner
+			owner = { is_xenophobe = no }
+			pop_lacking_necessities = yes
 		}
 	}
 }
@@ -1238,7 +1955,7 @@ ethic_fanatic_militarist = {
 }
 
 ## Militarist
-# Merge between OSA, Bug Branch
+# Merge between DFEM, OSA, Bug Branch
 ethic_militarist = {
 	cost = 1
 	category = "mil"
@@ -1292,9 +2009,24 @@ ethic_militarist = {
 	}
 
 	pop_attraction_tag = {
-		desc = POP_ATTRACTION_AT_WAR_POS
+		desc = POP_ATTRACTION_AT_WAR_POS_pemd # DFEM +pemd
 		trigger = {
 			is_at_war = yes
+			country_has_high_war_exhaustion = no # DFEM
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_AT_WAR_WITH_RIVAL_POS
+		trigger = {
+			is_at_war = yes
+			country_has_high_war_exhaustion = no
+			any_war = {
+				any_war_participant = {
+					is_rival = root
+					prev = { NOT = { is_war_participant = { side = root } } }
+				}
+			}
 		}
 	}
 
@@ -1330,9 +2062,9 @@ ethic_militarist = {
 		trigger = {
 			any_neighbor_country = {
 				OR = {
-					is_hostile_to = from
-					is_domineering_to = from
-					is_rival = from
+					is_hostile_to = root # DFEM from -> root
+					is_domineering_to = root # DFEM from -> root
+					is_rival = root # DFEM from -> root
 				}
 			}
 		}
@@ -1363,8 +2095,10 @@ ethic_militarist = {
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_WEAK_NEG
 		trigger = {
-			any_owned_species = {
-				has_trait = "trait_weak"
+			any_owned_planet = { # DFEM changes to any_owned_planet
+				any_owned_species = {
+					has_trait = "trait_weak"
+				}
 			}
 		}
 	}
@@ -1372,10 +2106,73 @@ ethic_militarist = {
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_INWARDS_PERFECTION_NEG
 		trigger = {
-			has_valid_civic = civic_inwards_perfection
+			is_inwards_perfection_empire = yes # STU
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_WARFED_POS
+		trigger = {
+			has_federation = yes
+			federation = {
+				has_federation_type = military_federation
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_DUELIST_POS_pemd
+		trigger = {
+			country_has_high_war_exhaustion = no
+			num_assigned_jobs = {
+				job = duelist
+				value > 0
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_SOLDIER_POS_pemd
+		trigger = {
+			country_has_high_war_exhaustion = no
+			num_assigned_jobs = {
+				job = soldier
+				value > 0
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_MILITARY_SUPERIOR_RIVAL_POS
+		trigger = {
+			any_rival_country = {
+				is_neighbor_of = root
+				relative_power = {
+					who = root
+					category = fleet
+					value >= superior
+				}
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_OVERLORD_POS
+		trigger = {
+			is_subject = yes
+			has_loyalty > 0
+			overlord = { is_militarist = yes }
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_NO_WARS_NEG
+		trigger = {
+			has_policy_flag = no_wars
+		}
+	}
+
+	# DFEM - Check for any leader on the Council with Faction's Ethic.
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_REPRESENTED_ON_COUNCIL
 		trigger = {
@@ -1386,6 +2183,34 @@ ethic_militarist = {
 						is_councilor = yes
 					}
 					has_ethic = ethic_militarist
+				}
+			}
+		}
+	}
+	
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_LACKING_NECESSITIES_POS
+		trigger = {
+			is_militarist = no
+			OR = {
+				AND = {
+					has_deficit = food
+					any_owned_species = {
+						has_food_upkeep = yes
+					}
+				}
+				AND = {
+					has_deficit = minerals
+					any_owned_species = {
+						has_mineral_upkeep = yes
+					}
+				}
+				has_deficit = consumer_goods
+				any_owned_planet = {
+					OR = {
+						free_housing < 0
+						free_amenities < 0
+					}
 				}
 			}
 		}
@@ -1418,6 +2243,7 @@ ethic_militarist = {
 
 		modifier = {
 			factor = 2
+			is_playable = yes # STU
 			NOR = {
 				has_ethic = ethic_militarist
 				has_ethic = ethic_fanatic_militarist
@@ -1442,9 +2268,15 @@ ethic_militarist = {
 			has_ethic = ethic_fanatic_militarist
 		}
 
+		modifier = { # DFEM
+			exists = overlord
+			has_loyalty > 0
+			mult = value:ethics_from_overlord|ETHIC|militarist|
+		}
+
 		modifier = {
 			factor = 0.33
-			has_valid_civic = civic_inwards_perfection
+			is_inwards_perfection_empire = yes # STU
 		}
 
 		modifier = {
@@ -1487,6 +2319,56 @@ ethic_militarist = {
 				delay = 50
 			}
 		}
+
+		modifier = { # DFEM
+			factor = 2.0
+			is_at_war = yes
+			country_has_high_war_exhaustion = no
+		}
+		modifier = { # DFEM
+			factor = 1.5
+			is_at_war = yes
+			country_has_high_war_exhaustion = no
+			any_war = {
+				any_war_participant = {
+					is_rival = root
+					prev = {
+						NOT = {
+							is_war_participant = {
+								who = prev
+								side = root
+							}
+						}
+					}
+				}
+			}
+		}
+		modifier = { # DFEM
+			factor = 2.0
+			recently_lost_war = yes
+		}
+		modifier = { # DFEM
+			factor = 1.5
+			any_neighbor_country = {
+				OR = {
+					is_hostile_to = root
+					is_domineering_to = root
+					is_rival = root
+				}
+			}
+		}
+		modifier = { # DFEM
+			factor = 1.25
+			any_rival_country = {
+				is_neighbor_of = root
+				relative_power = {
+					who = root
+					category = fleet
+					value >= superior
+				}
+			}
+		}
+
 		# Effects of indoctrination mission
 		modifier = {
 			factor = 20
@@ -1507,13 +2389,19 @@ ethic_militarist = {
 			}
 		}
 		modifier = {
-			factor = 1.25
+			factor = 2 # DFEM 1.25 -> 2 - If the empire is losing planets, militarism should increase
 			any_relation = {
 				any_owned_planet = {
 					is_original_owner = root
 				}
 			}
 		}
+		modifier = { # DFEM
+			factor = 0.75
+			has_policy_flag = no_wars
+		}
+
+		# DFEM - Check for any leader on the Council with Faction's Ethic.
 		modifier = {
 			factor = value:count_councilors_with_ethic|ETHIC|militarist|
 		}
@@ -1522,6 +2410,11 @@ ethic_militarist = {
 	# from = planet
 	pop_attraction = {
 		base = 1
+
+		modifier = { # DFEM
+			factor = 0
+			has_trait = trait_hive_mind
+		}
 		modifier = {
 			factor = 2.0
 			OR = {
@@ -1575,6 +2468,22 @@ ethic_militarist = {
 				NOT = { is_controlled_by = from.owner }
 			}
 		}
+		modifier = { # DFEM
+			factor = 2
+			has_job = duelist
+			owner = { country_has_high_war_exhaustion = no }
+		}
+		modifier = { # DFEM
+			factor = 1.25
+			has_job = soldier
+			owner = { country_has_high_war_exhaustion = no }
+		}
+		modifier = { # DFEM - want necessities foreigners have
+			factor = 1.25
+			is_same_species = owner
+			owner = { is_militarist = no }
+			pop_lacking_necessities = yes
+		}
 	}
 }
 
@@ -1613,7 +2522,7 @@ ethic_fanatic_pacifist = {
 }
 
 ## Pacifist
-# Merge between OSA, Bug Branch
+# Merge between DFEM, OSA, Bug Branch
 ethic_pacifist = {
 	cost = 1
 	category = "mil"
@@ -1680,10 +2589,29 @@ ethic_pacifist = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_WAR_EXHAUSTION_POS
+		trigger = {
+			is_pacifist = no
+			country_has_high_war_exhaustion = yes
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_INWARDS_PERFECTION_POS
 		trigger = {
-			has_valid_civic = civic_inwards_perfection
+			is_inwards_perfection_empire = yes # STU
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_WEAK_POS
+		trigger = {
+			any_owned_planet = {
+				any_owned_species = {
+					has_trait = "trait_weak"
+				}
+			}
 		}
 	}
 
@@ -1707,6 +2635,41 @@ ethic_pacifist = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_DUELIST_NEG
+		trigger = {
+			country_has_high_war_exhaustion = no
+			num_assigned_jobs = {
+				job = duelist
+				value > 0
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_UNRESTRICTED_WARS_NEG
+		trigger = {
+			has_policy_flag = unrestricted_wars
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_NON_AGGRESSION_PACTS_POS
+		trigger = {
+			num_non_aggression_pacts > 0
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_OVERLORD_POS
+		trigger = {
+			is_subject = yes
+			has_loyalty > 0
+			overlord = { is_pacifist = yes }
+		}
+	}
+
+	# DFEM - Check for any leader on the Council with Faction's Ethic.
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_REPRESENTED_ON_COUNCIL
 		trigger = {
@@ -1747,6 +2710,7 @@ ethic_pacifist = {
 		}
 		modifier = {
 			factor = 2
+			is_playable = yes # DFEM
 			NOR = {
 				has_ethic = ethic_pacifist
 				has_ethic = ethic_fanatic_pacifist
@@ -1768,6 +2732,11 @@ ethic_pacifist = {
 		modifier = {
 			factor = 3
 			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = { # DFEM
+			exists = overlord
+			has_loyalty > 0
+			mult = value:ethics_from_overlord|ETHIC|pacifist|
 		}
 		modifier = {
 			factor = 1.33
@@ -1828,6 +2797,11 @@ ethic_pacifist = {
 				observation_outpost_owner = { has_ethic = ethic_pacifist }
 			}
 		}
+		modifier = { # DFEM
+			factor = 0.75
+			has_policy_flag = unrestricted_wars
+		}
+		# DFEM - Check for any leader on the Council with Faction's Ethic.
 		modifier = {
 			factor = value:count_councilors_with_ethic|ETHIC|pacifist|
 		}
@@ -1837,6 +2811,15 @@ ethic_pacifist = {
 	# from = planet
 	pop_attraction = {
 		base = 1
+
+		modifier = { # DFEM
+			factor = 0
+			has_trait = trait_hive_mind
+		}
+		modifier = { # DFEM
+			factor = 1.1
+			has_trait = "trait_weak"
+		}
 		modifier = {
 			factor = 0.5
 			OR = {
@@ -1855,6 +2838,29 @@ ethic_pacifist = {
 					}
 				}
 			}
+		}
+		modifier = { # DFEM
+			factor = 0.1
+			has_job = duelist
+			owner = { country_has_high_war_exhaustion = no }
+		}
+		modifier = { # DFEM
+			factor = 2.0
+			NOT = {
+				has_military_service_type = { type = military_service_none }
+			}
+			from = {
+				owner = {
+					is_pacifist = no
+					country_has_high_war_exhaustion = yes
+				}
+			}
+		}
+		modifier = { # DFEM - want necessities foreigners have
+			factor = 0.9
+			is_same_species = owner
+			owner = { is_militarist = no }
+			pop_lacking_necessities = yes
 		}
 	}
 }
@@ -1890,7 +2896,7 @@ ethic_fanatic_spiritualist = {
 }
 
 ## Spiritualist
-# Merge between OSA, Bug Branch
+# Merge between DFEM, OSA, Bug Branch
 ethic_spiritualist = {
 	cost = 1
 	category = "spi"
@@ -1953,6 +2959,15 @@ ethic_spiritualist = {
 			OR = {
 				has_technology = "tech_telepathy"
 				has_technology = "tech_psionic_theory"
+				has_ascension_perk = ap_mind_over_matter # DFEM
+				is_shroudwalker_apprentice_empire = yes # DFEM
+				has_tradition = tr_psionics_psionic_assimilation # DFEM
+				any_owned_species = { # DFEM
+					OR = {
+						has_trait = trait_latent_psionic
+						has_trait = trait_psionic
+					}
+				}
 			}
 		}
 	}
@@ -1975,6 +2990,15 @@ ethic_spiritualist = {
 					has_ethic = ethic_fanatic_spiritualist
 				}
 			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_OVERLORD_POS
+		trigger = {
+			is_subject = yes
+			has_loyalty > 0
+			overlord = { is_spiritualist = yes }
 		}
 	}
 
@@ -2005,12 +3029,78 @@ ethic_spiritualist = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_ROBOTS_NEG
+		trigger = {
+			any_owned_species = {
+				is_robotic = yes
+			}
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_ROBOT_RIGHTS_NEG
 		trigger = {
 			has_policy_flag = ai_full_rights
 			owner = {
 				is_bugged_machine_cult = no
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_PRIESTS_POS
+		trigger = {
+			OR = {
+				num_assigned_jobs = {
+					job = priest
+					value > 0
+				}
+				num_assigned_jobs = {
+					job = high_priest
+					value > 0
+				}
+				num_assigned_jobs = {
+					job = death_priest
+					value > 0
+				}
+				num_assigned_jobs = {
+					job = preacher
+					value > 0
+				}
+			}
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_ROBOTICIST_NEG
+		trigger = {
+			num_assigned_jobs = {
+				job = roboticist
+				value > 0
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_SPIFED_POS
+		trigger = {
+			has_federation = yes
+			federation = {
+				has_federation_type = spiritualist_federation
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_SPIFED_PERK_POS
+		trigger = {
+			has_federation = yes
+			federation = {
+				has_federation_type = spiritualist_federation
+				has_federation_perk = spiritualist_envoys_1
+			}
+			any_envoy = {
+				has_envoy_task = { task = federation }
 			}
 		}
 	}
@@ -2059,6 +3149,7 @@ ethic_spiritualist = {
         }
     }
 
+	# DFEM - Check for any leader on the Council with Faction's Ethic.
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_REPRESENTED_ON_COUNCIL
 		trigger = {
@@ -2073,6 +3164,34 @@ ethic_spiritualist = {
 			}
 		}
 	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_BETRAYED_BY_CREATORS_NEG
+		trigger = {
+			is_materialist = no
+			has_origin = origin_clone_army
+			OR = {
+				has_modifier = honorable_leadership
+				has_modifier = dishonorable_leadership
+			}
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_DISAPPOINTING_GOD_NEG
+		trigger = {
+			is_materialist = no
+			has_origin = origin_toxic_knights
+			OR = {
+				has_modifier = despair_of_the_knightly_order
+				AND = {
+					has_relic = r_toxic_god
+					NOT = { has_country_flag = quest_complete_achievement }
+				}
+			}
+		}
+	}
+
+
 
 	country_attraction = {
 		base = 1
@@ -2118,22 +3237,38 @@ ethic_spiritualist = {
 		}
 		modifier = {
 			factor = 2
+			is_playable = yes # STU
 			NOR = {
 				has_ethic = ethic_spiritualist
 				has_ethic = ethic_fanatic_spiritualist
 			}
 			has_faction = traditionalist
 		}
+		modifier = { # DFEM
+			factor = 1.5
+			has_federation = yes
+			federation = {
+				has_federation_type = spiritualist_federation
+			}
+		}
+		modifier = { # DFEM
+			factor = value:ethics_from_federation_envoys
+			has_federation = yes
+			federation = {
+				has_federation_type = spiritualist_federation
+				has_federation_perk = spiritualist_envoys_1
+			}
+		}
 		modifier = {
-			factor = 2.4
+			factor = 2 # DFEM 2.4 -> 2
 			has_ethic = ethic_spiritualist
 		}
 		modifier = {
-			factor = 3.6
+			factor = 3 # DFEM 3.6 -> 3
 			has_ethic = ethic_fanatic_spiritualist
 		}
 		modifier = {
-			factor = 1.25
+			factor = 1.1 # DFEM 1.25 -> 1.1
 			is_playable = yes
 			has_technology = "tech_psionic_theory"
 		}
@@ -2145,13 +3280,21 @@ ethic_spiritualist = {
 		modifier = {
 			factor = 1.5
 			is_playable = yes
-			has_ascension_perk = ap_transcendence
+			OR = { # LS
+				has_ascension_perk = ap_transcendence # Vanilla
+				has_tradition = tr_psionics_psionic_assimilation # DFEM
+			}
 		}
 		modifier = {
 			factor = 0.75
 			is_playable = yes
 			has_policy_flag = ai_full_rights
 			is_bugged_machine_cult = no
+		}
+		modifier = { # DFEM
+			exists = overlord
+			has_loyalty > 0
+			mult = value:ethics_from_overlord|ETHIC|spiritualist|
 		}
 		modifier = {
             		factor = 1.25
@@ -2194,18 +3337,59 @@ ethic_spiritualist = {
 				}
 			}
 		}
+		# DFEM - Check for any leader on the Council with Faction's Ethic.
 		modifier = {
 			factor = value:count_councilors_with_ethic|ETHIC|spiritualist|
 		}
 		mult = value:spiritualist_ethics_from_relations
+		modifier = { # DFEM
+			factor = 0.5
+			is_materialist = no
+			OR = {
+				has_modifier = honorable_leadership
+				has_modifier = dishonorable_leadership
+				has_modifier = despair_of_the_knightly_order
+				AND = {
+					has_relic = r_toxic_god
+					NOT = { has_country_flag = quest_complete_achievement }
+				}
+			}
+		}
 	}
 
 	# from = planet
 	pop_attraction = {
 		base = 1
+
+		modifier = { # DFEM
+			factor = 0
+			has_trait = trait_hive_mind
+		}
+		modifier = { # DFEM
+			factor = 1.1
+			has_trait = trait_latent_psionic
+		}
+		modifier = { # DFEM
+			factor = 1.2
+			has_trait = trait_psionic
+		}
 		modifier = {
 			factor = 0.25
 			is_robot_pop = yes
+		}
+		modifier = { # DFEM
+			factor = 2
+			OR = {
+				has_job = priest
+				has_job = high_priest
+				has_job = death_priest
+				has_job = mortal_initiate
+				has_job = preacher
+			}
+		}
+		modifier = { # DFEM
+			factor = 0.25
+			has_job = roboticist
 		}
 	}
 }
@@ -2243,7 +3427,7 @@ ethic_fanatic_materialist = {
 }
 
 ## Materialist
-# Merge between OSA, Bug Branch
+# Merge between DFEM, OSA, Bug Branch
 ethic_materialist = {
 	cost = 1
 	category = "spi"
@@ -2349,6 +3533,15 @@ ethic_materialist = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_OVERLORD_POS
+		trigger = {
+			is_subject = yes
+			has_loyalty > 0
+			overlord = { is_materialist = yes }
+		}
+	}
+
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_MATERIALIST_RESEARCH_POS
 		trigger = {
@@ -2358,6 +3551,24 @@ ethic_materialist = {
 					has_ethic = ethic_materialist
 					has_ethic = ethic_fanatic_materialist
 				}
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_MATERIALIST_DIPLOMACY_POS
+		trigger = {
+			any_relation = {
+				OR = {
+					is_in_federation_with = root
+					has_defensive_pact = root
+					has_commercial_pact = root
+					AND = {
+						is_subject = no
+						has_migration_access = root
+					}
+				}
+				is_materialist = yes
 			}
 		}
 	}
@@ -2375,6 +3586,41 @@ ethic_materialist = {
 		}
 	}
 
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_PRIESTS_NEG
+		trigger = {
+			OR = {
+				num_assigned_jobs = {
+					job = priest
+					value > 0
+				}
+				num_assigned_jobs = {
+					job = high_priest
+					value > 0
+				}
+				num_assigned_jobs = {
+					job = death_priest
+					value > 0
+				}
+				num_assigned_jobs = {
+					job = preacher
+					value > 0
+				}
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_RESEARCHFED_POS
+		trigger = {
+			has_federation = yes
+			federation = {
+				has_federation_type = research_federation
+			}
+		}
+	}
+
+	# DFEM - Check for any leader on the Council with Faction's Ethic.
 	pop_attraction_tag = {
 		desc = POP_ATTRACTION_REPRESENTED_ON_COUNCIL
 		trigger = {
@@ -2385,6 +3631,70 @@ ethic_materialist = {
 						is_councilor = yes
 					}
 					has_ethic = ethic_materialist
+				}
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_MATERIALIST_JOB_POS
+		trigger = {
+			any_owned_planet = {
+				OR = {
+					num_assigned_jobs = {
+						job = researcher
+						value > 0
+					}
+					num_assigned_jobs = {
+						job = head_researcher
+						value > 0
+					}
+					num_assigned_jobs = {
+						job = overlord_academic
+						value > 0
+					}
+					num_assigned_jobs = {
+						job = dimensional_portal_researcher
+						value > 0
+					}
+					num_assigned_jobs = {
+						job = space_time_anomaly_researcher
+						value > 0
+					}
+					num_assigned_jobs = {
+						job = roboticist
+						value > 0
+					}
+					num_assigned_jobs = {
+						job = robot_caretaker
+						value > 0
+					}
+				}
+			}
+		}
+	}
+
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_BETRAYED_BY_CREATORS_POS
+		trigger = {
+			is_materialist = no
+			has_origin = origin_clone_army
+			OR = {
+				has_modifier = honorable_leadership
+				has_modifier = dishonorable_leadership
+			}
+		}
+	}
+	pop_attraction_tag = { # DFEM
+		desc = POP_ATTRACTION_DISAPPOINTING_GOD_POS
+		trigger = {
+			is_materialist = no
+			has_origin = origin_toxic_knights
+			OR = {
+				has_modifier = despair_of_the_knightly_order
+				AND = {
+					has_relic = r_toxic_god
+					NOT = { has_country_flag = quest_complete_achievement }
 				}
 			}
 		}
@@ -2434,6 +3744,7 @@ ethic_materialist = {
 		}
 		modifier = {
 			factor = 2
+			is_playable = yes # STU
 			NOR = {
 				has_ethic = ethic_materialist
 				has_ethic = ethic_fanatic_materialist
@@ -2465,6 +3776,11 @@ ethic_materialist = {
 			has_policy_flag = ai_full_rights
 			is_bugged_machine_cult = no
 		}
+		modifier = { # DFEM
+			exists = overlord
+			has_loyalty > 0
+			mult = value:ethics_from_overlord|ETHIC|materialist|
+		}
 		modifier = {
 			factor = 1.33
 			any_relation = {
@@ -2479,16 +3795,36 @@ ethic_materialist = {
 			factor = value:count_councilors_with_ethic|ETHIC|materialist|
 		}
 		mult = value:materialist_ethics_from_relations
+		modifier = { # DFEM
+			factor = 1.5
+			is_materialist = no
+			OR = {
+				has_modifier = honorable_leadership
+				has_modifier = dishonorable_leadership
+				has_modifier = despair_of_the_knightly_order
+				AND = {
+					has_relic = r_toxic_god
+					NOT = { has_country_flag = quest_complete_achievement }
+				}
+			}
+		}
 	}
 
 	# from = planet
 	pop_attraction = {
 		base = 1
-		modifier = {
+		modifier = { # DFEM
 			factor = 0
+			has_trait = trait_hive_mind
+		}
+		modifier = {
+			factor = 0.1 # DFEM 0 -> 0.1
 			OR = {
 				has_job = priest
 				has_job = high_priest
+				has_job = death_priest # DFEM
+				has_job = mortal_initiate # DFEM
+				has_job = preacher # DFEM
 			}
 		}
 		modifier = {
@@ -2521,6 +3857,21 @@ ethic_materialist = {
 		modifier = {
 			factor = 1.25
 			has_trait = "trait_natural_physicists"
+		}
+		modifier = { # DFEM
+			factor = 1.15
+			OR = {
+				has_job = researcher
+				has_job = head_researcher
+				has_job = overlord_academic
+				has_job = dimensional_portal_researcher
+				has_job = space_time_anomaly_researcher
+				has_job = roboticist
+			}
+		}
+		modifier = { # DFEM
+			factor = 1.5
+			has_job = robot_caretaker
 		}
 	}
 }
