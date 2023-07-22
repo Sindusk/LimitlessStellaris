@@ -774,7 +774,7 @@ building_supercomputer = {
 	destroy_trigger = {
 		exists = owner
 		OR = {
-			LS_potential_processing_building = yes # LS - Custom Trigger
+			LS_potential_processing_building = no # LS - Custom Trigger
 			buildings_no_exotic_gases = yes # StarTech AI
 			str_research_destroy = yes # StarTech AI
 		}
