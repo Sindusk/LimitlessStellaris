@@ -3817,6 +3817,10 @@ building_hab_capital = {
 		script = buildings/on_all_capital_buildings
 	}
 
+	inline_script = {
+		script = "buildings/capital/ost_capital_colony_jobs"
+	}
+
 	inline_script = "buildings/bugged_inline_capital_distributism_effects"
 	#inline_script = "buildings/bugged_inline_capital_desc"
     
@@ -3900,21 +3904,6 @@ building_hab_capital = {
 		}
 		modifier = {
 			job_osom_mapping_drone_add = 2
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				AND = {
-					has_active_tradition = tr_solidarity_3
-					is_gestalt = no
-				}
-			}
-		}
-		modifier = {
-			job_healthcare_add = 1
 		}
 	}
 
@@ -4193,16 +4182,6 @@ building_hab_capital = {
 			owner = { is_hive_empire = yes }
 		}
 		text = job_synapse_drone_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3
-			}
-		}
-		text = job_healthcare_effect_desc
 	}
 
 	triggered_desc = { # OSA

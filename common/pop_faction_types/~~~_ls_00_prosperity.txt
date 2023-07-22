@@ -1,15 +1,18 @@
 ## Prosperity
-# Merge between OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
+# Merge between DFEM, OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
 prosperity = {
 	election_header = "GFX_faction_header_yellow"
 	guiding_ethic = ethic_pacifist
-	visual_ethic = "prosperity_visual_ethic" # Bug Branch removes "s" at end
+	visual_ethic = "prosperity_visual_ethics" # Bug Branch removes "s" at end, but it's an error and should be ignored
 
 	unique = yes
 	support_multiplier = 1
 
 	is_potential = {
-		is_faction_allowed = yes
+		OR = { # DFEM
+			is_faction_allowed = yes
+			has_origin = origin_war_or_peace # DFEM
+		}
 	}
 
 	parameters = {
@@ -475,6 +478,246 @@ prosperity = {
 					has_policy_flag = diplo_stance_supremacist
 					has_policy_flag = diplo_stance_glory_conquest # MECR
 				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROSPERITY_TRADE_AGREEMENTS1"
+		unfulfilled_title = "PROSPERITY_TRADE_AGREEMENTS1"
+		desc = "PROSPERITY_TRADE_AGREEMENTS1_DESC"
+
+		unfulfilled_effect = -0.001
+		fulfilled_effect = +5
+
+		potential = {
+			exists = owner
+			owner = {
+				num_communications > 0
+			}
+			count_playable_country = {
+				limit = {
+					OR = {
+						has_commercial_pact = root.owner
+						AND = {
+							is_in_federation_with = root.owner
+							federation = { has_federation_type = trade_federation }
+						}
+					}
+				}
+				count < 2
+			}
+		}
+
+		trigger = {
+			count_playable_country = {
+				limit = {
+					OR = {
+						has_commercial_pact = root.owner
+						AND = {
+							is_in_federation_with = root.owner
+							federation = { has_federation_type = trade_federation }
+						}
+					}
+				}
+				count > 0
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROSPERITY_TRADE_AGREEMENTS2"
+		unfulfilled_title = "PROSPERITY_TRADE_AGREEMENTS2"
+		desc = "PROSPERITY_TRADE_AGREEMENTS2_DESC"
+
+		unfulfilled_effect = -0.001
+		fulfilled_effect = +10
+
+		potential = {
+			exists = owner
+			count_playable_country = {
+				limit = {
+					OR = {
+						has_commercial_pact = root.owner
+						AND = {
+							is_in_federation_with = root.owner
+							federation = { has_federation_type = trade_federation }
+						}
+					}
+				}
+				count = 2
+			}
+		}
+
+		trigger = {
+			count_playable_country = {
+				limit = {
+					OR = {
+						has_commercial_pact = root.owner
+						AND = {
+							is_in_federation_with = root.owner
+							federation = { has_federation_type = trade_federation }
+						}
+					}
+				}
+				count > 1
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROSPERITY_TRADE_AGREEMENTS3"
+		unfulfilled_title = "PROSPERITY_TRADE_AGREEMENTS3"
+		desc = "PROSPERITY_TRADE_AGREEMENTS3_DESC"
+
+		unfulfilled_effect = -0.001
+		fulfilled_effect = +15
+
+		potential = {
+			exists = owner
+			count_playable_country = {
+				limit = {
+					OR = {
+						has_commercial_pact = root.owner
+						AND = {
+							is_in_federation_with = root.owner
+							federation = { has_federation_type = trade_federation }
+						}
+					}
+				}
+				count > 2
+			}
+		}
+
+		trigger = {
+			count_playable_country = {
+				limit = {
+					OR = {
+						has_commercial_pact = root.owner
+						AND = {
+							is_in_federation_with = root.owner
+							federation = { has_federation_type = trade_federation }
+						}
+					}
+				}
+				count > 2
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROSPERITY_NO_TERROR_BOMBING"
+		unfulfilled_title = "PROSPERITY_TERROR_BOMBING"
+		desc = "PROSPERITY_TERROR_BOMBING_DESC"
+
+		unfulfilled_effect = -5
+		fulfilled_effect = +0.001
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				has_policy_flag = orbital_bombardment_selective
+			}
+		}
+	}
+
+	demand = {
+		title = "PROSPERITY_NO_PK"
+		unfulfilled_title = "PROSPERITY_PK"
+		desc = "PROSPERITY_NO_PK_DESC"
+
+		unfulfilled_effect = -10
+		fulfilled_effect = +0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_ascension_perk = ap_colossus
+					has_crisis_level = crisis_level_5
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_policy_flag = orbital_bombardment_selective
+				NOT = {
+					has_country_flag = killed_with_pk
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROSPERITY_GALACTIC_LAW"
+		unfulfilled_title = "PROSPERITY_BREAKING_GALACTIC_LAW"
+		desc = "PROSPERITY_GALACTIC_LAW_DESC"
+
+		unfulfilled_effect = -5
+		fulfilled_effect = +0.001
+
+		potential = {
+			is_galactic_community_formed = yes
+		}
+
+		trigger = {
+			owner = {
+				is_in_breach_of_any = no
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROSPERITY_ALIGNED_RIVAL"
+		unfulfilled_title = "PROSPERITY_ALIGNED_RIVAL"
+		desc = "PROSPERITY_ALIGNED_RIVAL_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_rival_country = {
+					is_pacifist = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_rival_country = {
+						is_pacifist = yes
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROSPERITY_SUPPRESS_RIVALS"
+		unfulfilled_title = "PROSPERITY_UNSUPPRESSED_RIVALS"
+		desc = "PROSPERITY_SUPPRESS_RIVALS_DESC"
+
+		fulfilled_effect = 0.01
+		unfulfilled_effect = -5
+
+		potential = {
+			owner = {
+				any_pop_faction = {
+					is_pop_faction_type = imperialist
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_modifier = suppressed_militarist
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 ## Supremacist
-# Merge between VFE, OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
+# Merge between DFEM, VFE, OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
 supremacist = {
 	election_header = "GFX_faction_header_yellow"
 	guiding_ethic = ethic_xenophobe
@@ -26,7 +26,13 @@ supremacist = {
 	}
 
 	is_potential = {
-		is_faction_allowed = yes
+		OR = { # DFEM
+			is_faction_allowed = yes
+			AND = { # DFEM
+				has_origin = origin_questions_of_the_unknown
+				is_pacifist = no
+			}
+		}
 	}
 
 	parameters = {
@@ -262,6 +268,323 @@ supremacist = {
 		}
 	}
 
+	demand = { # DFEM
+		title = "SUPREMACIST_ACTUAL_ALIEN_SLAVES"
+		unfulfilled_title = "SUPREMACIST_NO_ACTUAL_ALIEN_SLAVES"
+		desc = "SUPREMACIST_ACTUAL_ALIEN_SLAVES_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = 0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_fanatic_purifiers }
+				any_owned_species = {
+					NOT = { is_same_species = prev }
+					is_robotic = no
+					is_sapient = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_enslaved_species = {
+					is_robotic = no
+					is_sapient = yes
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "SUPREMACIST_DISADVANTAGED_ALIENS"
+		unfulfilled_title = "SUPREMACIST_DISADVANTAGED_ALIENS"
+		desc = "SUPREMACIST_DISADVANTAGED_ALIENS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_fanatic_purifiers }
+				any_owned_species = {
+					NOT = { is_same_species = prev }
+					is_robotic = no
+					is_sapient = yes
+					NOT = {
+						has_citizenship_type = { type = citizenship_purge country = prev }
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					AND = {
+						species = {
+							OR = {
+								has_living_standard = { type = living_standard_utopian country = root.owner }
+								has_living_standard = { type = living_standard_decadent country = root.owner }
+								has_living_standard = { type = living_standard_chemical_bliss country = root.owner }
+							}
+						}
+						NOT = {
+							any_owned_species = {
+								NOT = { is_same_species = prev }
+								is_robotic = no
+								is_sapient = yes
+								OR = {
+									has_living_standard = { type = living_standard_utopian country = root.owner }
+									has_living_standard = { type = living_standard_decadent country = root.owner }
+									has_living_standard = { type = living_standard_chemical_bliss country = root.owner }	
+								}
+							}
+						}
+					}
+					AND = {
+						species = {
+							OR = {
+								has_living_standard = { type = living_standard_good country = root.owner }
+							}
+						}
+						NOT = {
+							any_owned_species = {
+								NOT = { is_same_species = prev }
+								is_robotic = no
+								is_sapient = yes
+								OR = {
+									has_living_standard = { type = living_standard_utopian country = root.owner }
+									has_living_standard = { type = living_standard_good country = root.owner }
+									has_living_standard = { type = living_standard_decadent country = root.owner }
+									has_living_standard = { type = living_standard_chemical_bliss country = root.owner }	
+								}
+							}
+						}
+					}
+					AND = {
+						species = {
+							OR = {
+								has_living_standard = { type = living_standard_normal country = root.owner }
+								has_living_standard = { type = living_standard_academic_privilege country = root.owner }
+								has_living_standard = { type = living_standard_stratified country = root.owner }
+								has_living_standard = { type = living_standard_shared_burden country = root.owner }
+							}
+						}
+						NOT = {
+							any_owned_species = {
+								NOT = { is_same_species = prev }
+								is_robotic = no
+								is_sapient = yes
+								OR = {
+									has_living_standard = { type = living_standard_utopian country = root.owner }
+									has_living_standard = { type = living_standard_good country = root.owner }
+									has_living_standard = { type = living_standard_decadent country = root.owner }
+									has_living_standard = { type = living_standard_chemical_bliss country = root.owner }	
+									has_living_standard = { type = living_standard_normal country = root.owner }
+									has_living_standard = { type = living_standard_academic_privilege country = root.owner }
+									has_living_standard = { type = living_standard_stratified country = root.owner }
+									has_living_standard = { type = living_standard_shared_burden country = root.owner }
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "SUPREMACIST_PURGE"
+		unfulfilled_title = "SUPREMACIST_NO_PURGE"
+		desc = "SUPREMACIST_PURGE_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_fanatic_purifiers }
+				any_owned_species = {
+					NOR = {
+						is_same_species = prev
+						is_robotic_species = yes
+					}
+				}
+				OR = {
+					AND = {
+						has_deficit = food
+						is_lithoid_empire = no
+						NOT = { has_country_flag = synthetic_empire }
+						any_owned_species = {
+							is_archetype = BIOLOGICAL
+							NOT = { is_same_species = root.owner }
+						}
+					}
+					AND = {
+						has_deficit = minerals
+						is_lithoid_empire = yes
+						NOT = { has_country_flag = synthetic_empire }
+						any_owned_species = {
+							is_archetype = LITHOID
+							NOT = { is_same_species = root.owner }
+						}
+					}
+					any_owned_planet = {
+						OR = {
+							free_housing < 0
+							has_modifier = planet_population_control
+							has_modifier = planet_growth_discouraged
+							AND = {
+								free_housing < 1
+								free_district_slots < 1
+							}
+							AND = {
+								free_amenities < 0
+								num_assigned_jobs = {
+									job = servant
+									value = 0
+								}
+							}
+						}
+						any_owned_species = { is_same_species = root.owner }
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					AND = {
+						has_deficit = food
+						is_lithoid_empire = no
+						NOT = { has_country_flag = synthetic_empire }
+						any_owned_species = {
+							is_archetype = BIOLOGICAL
+							NOT = { is_same_species = root.owner }
+							NAND = {
+								has_citizenship_type = {
+									type = citizenship_slavery
+									country = root.owner
+								}
+								has_slavery_type = {
+									type = slavery_livestock
+									country = root.owner
+								}
+							}
+						}
+						NOT = {
+							any_owned_species = {
+								is_archetype = BIOLOGICAL
+								NOT = { is_same_species = root.owner }
+								has_citizenship_type = {
+									type = citizenship_purge
+									country = root.owner
+								}
+							}
+						}
+					}
+					AND = {
+						has_deficit = minerals
+						is_lithoid_empire = yes
+						NOT = { has_country_flag = synthetic_empire }
+						any_owned_species = {
+							is_archetype = LITHOID
+							NOT = { is_same_species = root.owner }
+							NAND = {
+								has_citizenship_type = {
+									type = citizenship_slavery
+									country = root.owner
+								}
+								has_slavery_type = {
+									type = slavery_livestock
+									country = root.owner
+								}
+							}
+						}
+						NOT = {
+							any_owned_species = {
+								is_archetype = LITHOID
+								NOT = { is_same_species = root.owner }
+								has_citizenship_type = {
+									type = citizenship_purge
+									country = root.owner
+								}
+							}
+						}
+					}
+					AND = {
+						any_owned_planet = {
+							OR = {
+								free_housing < 0
+								has_modifier = planet_population_control
+								has_modifier = planet_growth_discouraged
+								AND = {
+									free_housing < 1
+									free_district_slots < 1
+								}
+								AND = {
+									free_amenities < 0
+									num_assigned_jobs = {
+										job = servant
+										value = 0
+									}
+								}
+							}
+							any_owned_species = { is_same_species = root.owner }
+						}
+						NOT = {
+							any_owned_planet = {
+								has_current_purge = yes
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "SUPREMACIST_CHAINED_MINDS"
+		unfulfilled_title = "SUPREMACIST_NO_CHAINED_MINDS"
+		desc = "SUPREMACIST_CHAINED_MINDS_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = 0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_fanatic_purifiers }
+				has_tradition = tr_genetics_creation
+				any_owned_species = {
+					NOT = { is_same_species = prev }
+					is_robotic = no
+					is_sapient = yes
+					NOR = {
+						has_citizenship_type = { type = citizenship_purge country = prev }
+						has_trait = trait_syncretic_proles
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_owned_species = {
+					NOT = { is_same_species = prev }
+					has_species_flag = template_applied_by@prev
+					has_trait = trait_nerve_stapled
+				}
+			}
+		}
+	}
+
 	demand = {
 		title = "SUPREMACIST_NO_MIGRATION_TREATIES"
 		unfulfilled_title = "SUPREMACIST_MIGRATION_TREATIES"
@@ -372,6 +695,40 @@ supremacist = {
 		trigger = {
 			owner = {
 				has_country_flag = killed_guardian
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "NO_ALIEN_EDICTS"
+		unfulfilled_title = "ALIEN_EDICTS"
+		desc = "NO_ALIEN_EDICTS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = edict_masters_writings_politics
+					has_country_flag = edict_masters_writings_diplomacy
+					has_country_flag = edict_masters_writings_philosophy
+					has_country_flag = edict_masters_writings_war
+					has_country_flag = nuumismatic_visualization
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_edict = masters_writings_politics
+					has_edict = masters_writings_diplomacy
+					has_edict = masters_writings_philosophy
+					has_edict = masters_writings_war
+					has_edict = nuumismatic_visualization
+				}
 			}
 		}
 	}
@@ -539,6 +896,60 @@ supremacist = {
 		trigger = {
 			owner = {
 				has_policy_flag = oppressive_terms
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "SUPREMACIST_NO_CORRUPTED_MINDS"
+		unfulfilled_title = "SUPREMACIST_CORRUPTED_MINDS"
+		desc = "SUPREMACIST_CORRUPTED_MINDS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -15
+
+		potential = {
+			exists = owner
+			owner = {
+				has_global_flag = dtraits_randomization_flag
+				has_technology = tech_gene_tailoring
+				OR = {
+					is_xenophile = yes
+					has_country_flag = gave_citizens_trait_naturally_xenophilic
+					has_country_flag = removed_citizens_trait_naturally_xenophobic
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					has_country_flag = gave_citizens_trait_naturally_xenophilic
+					has_country_flag = removed_citizens_trait_naturally_xenophobic
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "SUPREMACIST_SUPPRESS_RIVALS"
+		unfulfilled_title = "SUPREMACIST_UNSUPPRESSED_RIVALS"
+		desc = "SUPREMACIST_SUPPRESS_RIVALS_DESC"
+
+		fulfilled_effect = 0.01
+		unfulfilled_effect = -5
+
+		potential = {
+			owner = {
+				any_pop_faction = {
+					is_pop_faction_type = xenoist
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_modifier = suppressed_xenophile
 			}
 		}
 	}

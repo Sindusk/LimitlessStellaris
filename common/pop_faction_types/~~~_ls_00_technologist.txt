@@ -1,5 +1,5 @@
 ## Technologist
-# Merge between Organic Zealots, OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
+# Merge between DFEM, Organic Zealots, OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
 technologist = {
 	election_header = "GFX_faction_header_yellow"
 	guiding_ethic = ethic_materialist
@@ -27,7 +27,10 @@ technologist = {
 	}
 
 	is_potential = {
-		is_faction_allowed = yes
+		OR = { # DFEM
+			is_faction_allowed = yes
+			has_origin = origin_religious_disputes # DFEM
+		}
 		is_valid_organic_zealots = no # Organic Zealots
 	}
 
@@ -389,6 +392,229 @@ technologist = {
 		ETHIC_OPPOSED = ethic_spiritualist
 	} 
 
+	demand = { # DFEM
+		title = "TECHNOLOGIST_EXTENDED_LIFESPAN"
+		unfulfilled_title = "TECHNOLOGIST_EXTENDED_LIFESPAN"
+		desc = "TECHNOLOGIST_EXTENDED_LIFESPAN_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_origin = origin_overtuned }
+				NOR = {
+					has_country_flag = synthetic_empire
+					AND = {
+						any_owned_species = {
+							is_robotic_species = no
+							has_species_flag = template_applied_by@prev
+							is_variable_set = wild_type_leader_age_modifier
+							check_variable_arithmetic = {
+								which = modifier:leader_age
+								subtract = wild_type_leader_age_modifier
+								value >= value:dfaction_trait_based_modifier_threshold|base|40|
+							}
+						}
+						NOT = {
+							any_owned_species = {
+								is_robotic_species = no
+								has_species_flag = template_applied_by@prev
+								OR = {
+									has_citizenship_type = {
+										type = citizenship_full
+										country = prev
+									}
+									has_citizenship_type = {
+										type = citizenship_limited
+										country = prev
+									}
+								}
+								is_variable_set = wild_type_leader_age_modifier
+								check_modifier_value = {
+									modifier = leader_age
+									value < wild_type_leader_age_modifier
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				AND = {
+					any_owned_species = {
+						has_species_flag = template_applied_by@prev
+						is_variable_set = wild_type_leader_age_modifier
+						check_variable_arithmetic = {
+							which = modifier:leader_age
+							subtract = wild_type_leader_age_modifier
+							value >= value:dfaction_trait_based_modifier_threshold|base|20|
+						}
+					}
+					NOT = {
+						any_owned_species = {
+							has_species_flag = template_applied_by@prev
+							OR = {
+								has_citizenship_type = {
+									type = citizenship_full
+									country = prev
+								}
+								has_citizenship_type = {
+									type = citizenship_limited
+									country = prev
+								}
+							}
+							is_variable_set = wild_type_leader_age_modifier
+							check_modifier_value = {
+								modifier = leader_age
+								value < wild_type_leader_age_modifier
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_EXTENDED_LIFESPAN"
+		unfulfilled_title = "TECHNOLOGIST_EXTENDED_LIFESPAN"
+		desc = "TECHNOLOGIST_EXTENDED_LIFESPAN_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = synthetic_empire
+					AND = {
+						any_owned_species = {
+							is_robotic_species = no
+							has_species_flag = template_applied_by@prev
+							is_variable_set = wild_type_leader_age_modifier
+							check_variable_arithmetic = {
+								which = modifier:leader_age
+								subtract = wild_type_leader_age_modifier
+								value > value:dfaction_trait_based_modifier_threshold|base|40|
+							}
+						}
+						NOT = {
+							any_owned_species = {
+								is_robotic_species = no
+								has_species_flag = template_applied_by@prev
+								OR = {
+									has_citizenship_type = {
+										type = citizenship_full
+										country = prev
+									}
+									has_citizenship_type = {
+										type = citizenship_limited
+										country = prev
+									}
+								}
+								check_modifier_value = {
+									modifier = leader_age
+									value < wild_type_leader_age_modifier
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			always = yes
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_IMMORTALITY"
+		unfulfilled_title = "TECHNOLOGIST_IMMORTALITY"
+		desc = "TECHNOLOGIST_IMMORTALITY_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_robotic_workers
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_country_flag = synthetic_empire
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_ENHANCED_INTELLECT"
+		unfulfilled_title = "TECHNOLOGIST_ENHANCED_INTELLECT"
+		desc = "TECHNOLOGIST_ENHANCED_INTELLECT_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_technology = tech_gene_tailoring
+					AND = {
+						has_country_flag = synthetic_empire
+						has_technology = tech_robomodding
+					}
+					has_tradition = tr_cybernetics_integrated_anatomy
+					has_tradition = tr_cybernetics_assimilator_integrated_anatomy
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				AND = {
+					any_owned_species = {
+						has_species_flag = template_applied_by@prev
+						is_variable_set = wild_type_intelligence_modifier
+						check_variable = {
+							which = wild_type_intelligence_modifier
+							value < value:intelligence_modifier
+						}
+					}
+					NOT = {
+						any_owned_species = {
+							has_species_flag = template_applied_by@prev
+							OR = {
+								has_citizenship_type = {
+									type = citizenship_full
+									country = prev
+								}
+								has_citizenship_type = {
+									type = citizenship_limited
+									country = prev
+								}
+							}
+							is_variable_set = wild_type_leader_age_modifier
+							check_variable = {
+								which = wild_type_intelligence_modifier
+								value > value:intelligence_modifier
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	demand = {
 		title = "TECHNOLOGIST_SECRET_KNOWLEDGE"
 		unfulfilled_title = "TECHNOLOGIST_NO_SECRET_KNOWLEDGE"
@@ -505,6 +731,94 @@ technologist = {
 		}
 	}
 
+	demand = { # DFEM
+		title = "TECHNOLOGIST_SACRIFICE"
+		unfulfilled_title = "TECHNOLOGIST_SACRIFICE"
+		desc = "TECHNOLOGIST_SACRIFICE_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_valid_civic = civic_death_cult
+					has_valid_civic = civic_death_cult_corporate
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_edict = sacrifice_bounty
+					has_edict = sacrifice_harmony
+					has_edict = sacrifice_togetherness
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_NO_THEOCRACY"
+		unfulfilled_title = "TECHNOLOGIST_THEOCRACY"
+		desc = "TECHNOLOGIST_THEOCRACY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				is_spiritualist = yes
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_valid_civic = civic_exalted_priesthood
+					has_valid_civic = civic_imperial_cult
+					has_valid_civic = civic_gospel_of_the_masses
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "NO_GODS"
+		unfulfilled_title = "NO_GODS"
+		desc = "NO_GODS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				is_xenophile = no
+				OR = {
+					has_technology = tech_akx_worm_3
+					has_ascension_perk = ap_transcendence
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					is_researching_special_project = WORM_ENTRY_POINT
+					any_owned_planet = {
+						has_building_construction = building_akx_worm_3
+					}
+					has_country_flag = has_shroud_patron
+					ruler = { has_trait = leader_trait_ruler_chosen }
+				}
+			}
+		}
+	}
+
 	demand = {
 		title = "COOPERATIVE_DIPLO_STANCE"
 		unfulfilled_title = "COOPERATIVE_DIPLO_STANCE"
@@ -529,6 +843,257 @@ technologist = {
 					has_policy_flag = diplo_stance_galactic_custodian # MECR
 					has_policy_flag = diplo_stance_humble_and_friendly # MECR
 				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_NO_CORRUPTED_MINDS"
+		unfulfilled_title = "TECHNOLOGIST_CORRUPTED_MINDS"
+		desc = "TECHNOLOGIST_CORRUPTED_MINDS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -15
+
+		potential = {
+			exists = owner
+			owner = {
+				has_global_flag = dtraits_randomization_flag
+				has_technology = tech_gene_tailoring
+				OR = {
+					is_spiritualist = yes
+					has_country_flag = gave_citizens_trait_naturally_spiritualist
+					has_country_flag = removed_citizens_trait_naturally_materialist
+					has_country_flag = gave_noncitizens_trait_naturally_spiritualist
+					has_country_flag = removed_noncitizens_trait_naturally_materialist
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					has_country_flag = gave_citizens_trait_naturally_spiritualist
+					has_country_flag = removed_citizens_trait_naturally_materialist
+					has_country_flag = gave_noncitizens_trait_naturally_spiritualist
+					has_country_flag = removed_noncitizens_trait_naturally_materialist
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_ALIGNED_RIVAL"
+		unfulfilled_title = "TECHNOLOGIST_ALIGNED_RIVAL"
+		desc = "TECHNOLOGIST_ALIGNED_RIVAL_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_rival_country = {
+					is_materialist = yes
+					is_homicidal = no
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_rival_country = {
+						is_materialist = yes
+						is_homicidal = no
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_OPPOSED_RIVAL"
+		unfulfilled_title = "TECHNOLOGIST_NO_OPPOSED_RIVAL"
+		desc = "TECHNOLOGIST_OPPOSED_RIVAL_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_spiritualist = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_rival_country = {
+					is_spiritualist = yes
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_ALIGNED_ENEMY"
+		unfulfilled_title = "TECHNOLOGIST_ALIGNED_ENEMY"
+		desc = "TECHNOLOGIST_ALIGNED_ENEMY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_war = {
+					defender = { is_materialist = yes is_homicidal = no }
+					any_attacker = { is_same_value = prev }
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_war = {
+						defender = { is_materialist = yes is_homicidal = no }
+						any_attacker = { is_same_value = prev }
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_OPPOSED_ENEMY"
+		unfulfilled_title = "TECHNOLOGIST_OPPOSED_ENEMY"
+		desc = "TECHNOLOGIST_OPPOSED_ENEMY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_spiritualist = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_war = {
+					OR = {
+						AND = {
+							defender = { is_spiritualist = yes }
+							any_attacker = { is_same_value = prev }		
+						}
+						AND = {
+							attacker = { is_spiritualist = yes }
+							any_defender = { is_same_value = prev }		
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_ALIGNED_ALLY"
+		unfulfilled_title = "TECHNOLOGIST_ALIGNED_ALLY"
+		desc = "TECHNOLOGIST_ALIGNED_ALLY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_materialist = yes
+					is_homicidal = no
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_relation = {
+					is_materialist = yes
+					OR = {
+						has_defensive_pact = root.owner
+						is_in_federation_with = root.owner
+						root.owner = { is_guaranteeing = prev }
+						is_overlord_to = root.owner
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_OPPOSED_ALLY"
+		unfulfilled_title = "TECHNOLOGIST_NO_OPPOSED_ALLY"
+		desc = "TECHNOLOGIST_OPPOSED_ALLY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_spiritualist = yes
+					OR = {
+						has_defensive_pact = root.owner
+						is_in_federation_with = root.owner
+						root.owner = { is_guaranteeing = prev }
+						is_overlord_to = root.owner
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_relation = {
+						is_spiritualist = yes
+						OR = {
+							has_defensive_pact = root.owner
+							is_in_federation_with = root.owner
+							root.owner = { is_guaranteeing = prev }
+						}
+					}	
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TECHNOLOGIST_SUPPRESS_RIVALS"
+		unfulfilled_title = "TECHNOLOGIST_UNSUPPRESSED_RIVALS"
+		desc = "TECHNOLOGIST_SUPPRESS_RIVALS_DESC"
+
+		fulfilled_effect = 0.01
+		unfulfilled_effect = -5
+
+		potential = {
+			owner = {
+				any_pop_faction = {
+					is_pop_faction_type = traditionalist
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_modifier = suppressed_spiritualist
 			}
 		}
 	}

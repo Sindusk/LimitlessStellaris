@@ -1,5 +1,5 @@
 ## Isolationist
-# Merge between OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
+# Merge between DFEM, OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
 isolationist = {
 	election_header = "GFX_faction_header_yellow"
 	guiding_ethic = ethic_xenophobe
@@ -26,7 +26,13 @@ isolationist = {
 	}
 
 	is_potential = {
-		is_faction_allowed = yes
+		OR = { # DFEM
+			is_faction_allowed = yes
+			AND = { # DFEM
+				has_origin = origin_questions_of_the_unknown
+				is_pacifist = yes
+			}
+		}
 	}
 
 	parameters = {
@@ -199,7 +205,10 @@ isolationist = {
 
 		trigger = {
 			owner = {
-				NOT = { any_war = { is_war_participant = { who = prev side = attackers } } }
+				NOR = { # DFEM
+					any_war = { is_war_participant = { who = prev side = attackers } }
+					has_country_flag = entered_war_as_defender # DFEM
+				}
 			}
 		}
 	}
@@ -222,6 +231,30 @@ isolationist = {
 		trigger = {
 			owner = {
 				has_federation = no
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "ISOLATIONIST_NO_BRANCH_OFFICES"
+		unfulfilled_title = "ISOLATIONIST_NO_BRANCH_OFFICES"
+		desc = "ISOLATIONIST_NO_BRANCH_OFFICES_DESC"
+
+		unfulfilled_effect = -10
+		fulfilled_effect = 0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_megacorp = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_owned_planet = { has_branch_office = yes }
 			}
 		}
 	}
@@ -457,6 +490,73 @@ isolationist = {
 		}
 	}
 
+	demand = { # DFEM
+		title = "NO_ALIEN_EDICTS"
+		unfulfilled_title = "ALIEN_EDICTS"
+		desc = "NO_ALIEN_EDICTS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = edict_masters_writings_politics
+					has_country_flag = edict_masters_writings_diplomacy
+					has_country_flag = edict_masters_writings_philosophy
+					has_country_flag = edict_masters_writings_war
+					has_country_flag = nuumismatic_visualization
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_edict = masters_writings_politics
+					has_edict = masters_writings_diplomacy
+					has_edict = masters_writings_philosophy
+					has_edict = masters_writings_war
+					has_edict = nuumismatic_visualization
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "NO_ALIEN_POWERS"
+		unfulfilled_title = "ALIEN_POWERS"
+		desc = "NO_ALIEN_POWERS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = {
+				is_spiritualist = no
+				OR = {
+					has_technology = tech_akx_worm_3
+					has_ascension_perk = ap_transcendence
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					is_researching_special_project = WORM_ENTRY_POINT
+					any_owned_planet = {
+						has_building_construction = building_akx_worm_3
+					}
+					has_country_flag = has_shroud_patron
+					ruler = { has_trait = leader_trait_ruler_chosen }
+				}
+			}
+		}
+	}
+
 	demand = {
 		title = "ISOLATIONIST_DIPLO_STANCE"
 		unfulfilled_title = "ISOLATIONIST_DIPLO_STANCE"
@@ -502,6 +602,64 @@ isolationist = {
 		trigger = {
 			owner = {
 				NOT = { has_policy_flag = first_contact_proactive }
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "ISOLATIONIST_NO_CORRUPTED_MINDS"
+		unfulfilled_title = "ISOLATIONIST_CORRUPTED_MINDS"
+		desc = "ISOLATIONIST_CORRUPTED_MINDS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -15
+
+		potential = {
+			exists = owner
+			owner = {
+				has_global_flag = dtraits_randomization_flag
+				has_technology = tech_gene_tailoring
+				OR = {
+					is_xenophile = yes
+					has_country_flag = gave_citizens_trait_naturally_xenophilic
+					has_country_flag = removed_citizens_trait_naturally_xenophobic
+					has_country_flag = gave_noncitizens_trait_naturally_xenophilic
+					has_country_flag = removed_noncitizens_trait_naturally_xenophobic
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					has_country_flag = gave_citizens_trait_naturally_xenophilic
+					has_country_flag = removed_citizens_trait_naturally_xenophobic
+					has_country_flag = gave_noncitizens_trait_naturally_xenophilic
+					has_country_flag = removed_noncitizens_trait_naturally_xenophobic
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "ISOLATIONIST_SUPPRESS_RIVALS"
+		unfulfilled_title = "ISOLATIONIST_UNSUPPRESSED_RIVALS"
+		desc = "ISOLATIONIST_SUPPRESS_RIVALS_DESC"
+
+		fulfilled_effect = 0.01
+		unfulfilled_effect = -5
+
+		potential = {
+			owner = {
+				any_pop_faction = {
+					is_pop_faction_type = xenoist
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_modifier = suppressed_xenophile
 			}
 		}
 	}

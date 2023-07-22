@@ -135,6 +135,7 @@ ruler = {
 				has_high_living_standard_type = yes
 				has_normal_living_standard_type = yes
 				has_stratified_living_standard_type = yes
+				has_dystopian_society_living_standard_type = yes # OSA
 				has_decadent_living_standard_type = yes
 			}
 		}

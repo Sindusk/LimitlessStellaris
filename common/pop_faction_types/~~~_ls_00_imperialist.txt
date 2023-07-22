@@ -1,5 +1,5 @@
 ## Imperialist
-# Merge between VFE, OSA, Bug Branch, MECR, EMEX, Ariphaos, Scripted Trigger Undercoat
+# Merge between DFEM, VFE, OSA, Bug Branch, MECR, EMEX, Ariphaos, Scripted Trigger Undercoat
 imperialist = {
 	election_header = "GFX_faction_header_yellow"
 	guiding_ethic = ethic_militarist #only pops of this ethic can join the faction
@@ -27,7 +27,10 @@ imperialist = {
 
 	#Note: number of potential or actual members is checked by POP_FACTION_MIN_POTENTIAL_MEMBERS define
 	is_potential = {
-		is_faction_allowed = yes
+		OR = { # DFEM
+			is_faction_allowed = yes
+			has_origin = origin_war_or_peace # DFEM
+		}
 		is_peacekeeper_emex = no # EMEX
 	}
 
@@ -437,6 +440,9 @@ imperialist = {
 					}
 					is_federation_leader = yes
 				}
+				owner = { # DFEM
+					is_galactic_emperor = yes
+				}
 			}
 		}
 	}
@@ -659,7 +665,7 @@ imperialist = {
 			exists = owner
 			owner = {
 				is_homicidal = no
-				is_country_type = default
+				is_playable = yes # STU
 				NOR = { # LS - inverted and combined with MECR
 					has_policy_flag = diplo_stance_cooperative # Ariphaos
 					has_policy_flag = diplo_stance_humble_and_friendly # MECR
@@ -771,6 +777,361 @@ imperialist = {
 		trigger = {
 			owner = {
 				has_policy_flag = oppressive_terms
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "IMPERIALIST_AT_WAR"
+		unfulfilled_title = "IMPERIALIST_AT_WAR"
+		desc = "IMPERIALIST_AT_WAR_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_country_flag = recently_won_war }
+				OR = {
+					is_at_war = yes
+					any_relation = {
+						prev = {
+							has_casus_belli = { target = prev }
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				is_at_war = yes
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "IMPERIALIST_WON_WAR"
+		unfulfilled_title = "IMPERIALIST_WON_WAR"
+		desc = "IMPERIALIST_WON_WAR_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					is_at_war = yes
+					has_country_flag = recently_won_war
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_country_flag = recently_won_war
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "IMPERIALIST_NO_SURRENDER"
+		unfulfilled_title = "IMPERIALIST_NO_SURRENDER"
+		desc = "IMPERIALIST_NO_SURRENDER_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					is_at_war = yes
+					has_country_flag = recently_lost_war
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_country_flag = recently_lost_war
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "IMPERIALIST_STRONG_FLEET"
+		unfulfilled_title = "IMPERIALIST_STRONG_FLEET"
+		desc = "IMPERIALIST_STRONG_FLEET_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				num_communications > 0
+				any_relation = {
+					is_playable = yes
+					prev = {
+						has_intel = {
+							who = prev
+							intel = relative_fleet
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					any_relation = {
+						is_playable = yes
+						prev = {
+							has_intel = {
+								who = prev
+								intel = relative_fleet
+							}
+						}
+						relative_power = {
+							who = prev
+							category = fleet
+							value > equivalent
+						}
+					}
+					any_relation = {
+						is_playable = yes
+						prev = {
+							NOT = {
+								has_intel = {
+									who = prev
+									intel = relative_fleet
+								}
+							}
+						}
+						relative_power = {
+							who = prev
+							category = all
+							value >= equivalent
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "IMPERIALIST_STRONGEST_FLEET"
+		unfulfilled_title = "IMPERIALIST_STRONGEST_FLEET"
+		desc = "IMPERIALIST_STRONGEST_FLEET_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				num_communications > 0
+				any_relation = {
+					is_playable = yes
+					prev = {
+						has_intel = {
+							who = prev
+							intel = relative_fleet
+						}
+					}
+				}
+				NOR = {
+					any_relation = {
+						is_playable = yes
+						prev = {
+							has_intel = {
+								who = prev
+								intel = relative_fleet
+							}
+						}
+						relative_power = {
+							who = prev
+							category = fleet
+							value > equivalent
+						}
+					}
+					any_relation = {
+						is_playable = yes
+						prev = {
+							NOT = {
+								has_intel = {
+									who = prev
+									intel = relative_fleet
+								}
+							}
+						}
+						relative_power = {
+							who = prev
+							category = all
+							value >= equivalent
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					any_relation = {
+						is_playable = yes
+						prev = {
+							has_intel = {
+								who = prev
+								intel = relative_fleet
+							}
+						}
+						relative_power = {
+							who = prev
+							category = fleet
+							value > inferior
+						}
+					}
+					any_relation = {
+						is_playable = yes
+						prev = {
+							NOT = {
+								has_intel = {
+									who = prev
+									intel = relative_fleet
+								}
+							}
+						}
+						relative_power = {
+							who = prev
+							category = all
+							value >= inferior
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "IMPERIALIST_OVERWHELMING_FLEET"
+		unfulfilled_title = "IMPERIALIST_OVERWHELMING_FLEET"
+		desc = "IMPERIALIST_OVERWHELMING_FLEET_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				num_communications > 0
+				any_relation = {
+					is_playable = yes
+					prev = {
+						has_intel = {
+							who = prev
+							intel = relative_fleet
+						}
+					}
+				}
+				NOR = {
+					any_relation = {
+						is_playable = yes
+						prev = {
+							has_intel = {
+								who = prev
+								intel = relative_fleet
+							}
+						}
+						relative_power = {
+							who = prev
+							category = fleet
+							value > inferior
+						}
+					}
+					any_relation = {
+						is_playable = yes
+						prev = {
+							NOT = {
+								has_intel = {
+									who = prev
+									intel = relative_fleet
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_relation = {
+						is_playable = yes
+						prev = {
+							has_intel = {
+								who = prev
+								intel = relative_fleet
+							}
+						}
+						relative_power = {
+							who = prev
+							category = fleet
+							value > pathetic
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "IMPERIALIST_LIBERATION"
+		unfulfilled_title = "IMPERIALIST_LIBERATION"
+		desc = "IMPERIALIST_LIBERATION_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = liberation_wars
+				num_communications > 0
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_country_flag = recent_liberation
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "IMPERIALIST_SUPPRESS_RIVALS"
+		unfulfilled_title = "IMPERIALIST_UNSUPPRESSED_RIVALS"
+		desc = "IMPERIALIST_SUPPRESS_RIVALS_DESC"
+
+		fulfilled_effect = 0.01
+		unfulfilled_effect = -5
+
+		potential = {
+			owner = {
+				any_pop_faction = {
+					is_pop_faction_type = prosperity
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_modifier = suppressed_pacifist
 			}
 		}
 	}

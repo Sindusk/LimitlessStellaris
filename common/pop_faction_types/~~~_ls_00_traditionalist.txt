@@ -1,5 +1,5 @@
 ## Traditionalist
-# Merge between OSA, Bug Branch, Planetary Diversity, EMEX, Ariphaos, Scripted Trigger Undercoat
+# Merge between DFEM, OSA, Bug Branch, Planetary Diversity, EMEX, Ariphaos, Scripted Trigger Undercoat
 traditionalist = {
 	election_header = "GFX_faction_header_yellow"
 	guiding_ethic = ethic_spiritualist
@@ -26,7 +26,10 @@ traditionalist = {
 	}
 
 	is_potential = {
-		is_faction_allowed = yes
+		OR = { # DFEM
+			is_faction_allowed = yes
+			has_origin = origin_religious_disputes # DFEM
+		}
 	}
 
 	parameters = {
@@ -429,6 +432,289 @@ traditionalist = {
 				OR = {
 					has_ethic = ethic_fanatic_spiritualist
 					has_ethic = ethic_spiritualist
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM - "TRADITIONALIST_THEOCRACY"
+		title = "TRADITIONALIST_THEOCRACY"
+		unfulfilled_title = "TRADITIONALIST_THEOCRACY"
+		desc = "TRADITIONALIST_THEOCRACY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				is_spiritualist = yes
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					has_valid_civic = civic_exalted_priesthood
+					has_valid_civic = civic_imperial_cult
+					has_valid_civic = civic_gospel_of_the_masses
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE"
+		unfulfilled_title = "TRADITIONALIST_NO_HOMEWORLD_PILGRIMAGE"
+		desc = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				NOR = {
+					has_origin = origin_lost_colony
+					has_origin = origin_broken_shackles
+				}
+				exists = species.home_planet
+				species.home_planet = {
+					NOT = { is_owned_by = root.owner }
+				}
+			}
+		}
+
+		trigger = {
+			owner.species.home_planet = {
+				exists = space_owner
+				space_owner = {
+					has_communications = root.owner
+					NOT = { has_closed_borders = root.owner }
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE"
+		unfulfilled_title = "TRADITIONALIST_NO_HOMEWORLD_PILGRIMAGE"
+		desc = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE_DESC_LOST_COLONY"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_lost_colony
+				exists = species.home_planet
+			}
+		}
+
+		trigger = {
+			owner.species.home_planet = {
+				exists = space_owner
+				space_owner = {
+					OR = {
+						is_same_value = root.owner
+						has_communications = root.owner
+						NOT = { has_closed_borders = root.owner }
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE"
+		unfulfilled_title = "TRADITIONALIST_NO_HOMEWORLD_PILGRIMAGE"
+		desc = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE_DESC_LOST_COLONY"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_lost_colony
+				exists = species.home_planet
+			}
+		}
+
+		trigger = {
+			owner.species.home_planet = {
+				exists = space_owner
+				space_owner = {
+					OR = {
+						is_same_value = root.owner
+						has_communications = root.owner
+						NOT = { has_closed_borders = root.owner }
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE"
+		unfulfilled_title = "TRADITIONALIST_NO_HOMEWORLD_PILGRIMAGE"
+		desc = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE_DESC_BROKEN_SHACKLES_1"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_broken_shackles
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_galaxy_species = {
+					has_species_flag = broken_shackles_starting_species@prev
+					exists = home_planet
+					home_planet = {
+						exists = owner
+						OR = {
+							is_owned_by = root.owner
+							AND = {
+								exists = observation_outpost_owner
+								observation_outpost_owner = { is_same_value = root.owner }
+							}
+							owner = {
+								is_country_type = default
+								has_communications = root.owner
+								NOT = { has_closed_borders = root.owner }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE_2"
+		unfulfilled_title = "TRADITIONALIST_NO_HOMEWORLD_PILGRIMAGE_2"
+		desc = "TRADITIONALIST_HOMEWORLD_PILGRIMAGE_DESC_BROKEN_SHACKLES_2"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_broken_shackles
+				any_galaxy_species = {
+					has_species_flag = broken_shackles_starting_species@prev
+					exists = home_planet
+					home_planet = {
+						exists = owner
+						OR = {
+							is_owned_by = root.owner
+							AND = {
+								exists = observation_outpost_owner
+								observation_outpost_owner = { is_same_value = root.owner }
+							}
+							owner = {
+								is_country_type = default
+								has_communications = root.owner
+								NOT = { has_closed_borders = root.owner }
+							}
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_galaxy_species = {
+						has_species_flag = broken_shackles_starting_species@prev
+						exists = home_planet
+						NOT = {
+							home_planet = {
+								exists = owner
+								OR = {
+									is_owned_by = root.owner
+									AND = {
+										exists = observation_outpost_owner
+										observation_outpost_owner = { is_same_value = root.owner }
+									}
+									owner = {
+										is_country_type = default
+										has_communications = root.owner
+										NOT = { has_closed_borders = root.owner }
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_TOXIC_QUEST_FAST"
+		unfulfilled_title = "TRADITIONALIST_TOXIC_QUEST_NOT_FAST"
+		desc = "TRADITIONALIST_TOXIC_QUEST_FAST_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_toxic_knights
+				any_situation = {
+					is_situation_type = situation_toxic_knights
+					situation_monthly_progress > 0.4
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_situation = {
+					is_situation_type = situation_toxic_knights
+					situation_monthly_progress > 0.6
+				}					
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_TOXIC_QUEST_SLOW"
+		unfulfilled_title = "TRADITIONALIST_TOXIC_QUEST_NOT_SLOW"
+		desc = "TRADITIONALIST_TOXIC_QUEST_SLOW_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_toxic_knights
+				OR = {
+					has_country_flag = quest_abandoned
+					any_situation = {
+						is_situation_type = situation_toxic_knights
+						situation_monthly_progress <= 0.6
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_situation = {
+					is_situation_type = situation_toxic_knights
+					situation_monthly_progress <= 0.4
 				}
 			}
 		}
@@ -912,6 +1198,380 @@ traditionalist = {
 		}
 	}
 
+	demand = { # DFEM - "TRADITIONALIST_DIVINE_PATRON"
+		title = "TRADITIONALIST_DIVINE_PATRON"
+		unfulfilled_title = "TRADITIONALIST_DIVINE_PATRON"
+		desc = "TRADITIONALIST_DIVINE_PATRON_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = 0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_technology = tech_akx_worm_3
+					has_ascension_perk = ap_transcendence
+				}
+				NOT = { has_country_flag = end_of_the_cycle_reckoning }
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					is_researching_special_project = WORM_ENTRY_POINT
+					has_country_flag = worm_tomb_ending
+					has_country_flag = has_shroud_patron
+				}
+				NOT = { has_country_flag = end_of_the_cycle_reckoning }
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_SACRIFICE"
+		unfulfilled_title = "TRADITIONALIST_SACRIFICE"
+		desc = "TRADITIONALIST_SACRIFICE_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_valid_civic = civic_death_cult
+					has_valid_civic = civic_death_cult_corporate
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_edict = sacrifice_bounty
+					has_edict = sacrifice_harmony
+					has_edict = sacrifice_togetherness
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_TEMPLES"
+		unfulfilled_title = "TRADITIONALIST_TEMPLES"
+		desc = "TRADITIONALIST_TEMPLES_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				is_spiritualist = yes
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_planet = {
+						NOR = {
+							num_assigned_jobs = {
+								job = priest
+								value > 0
+							}
+							num_assigned_jobs = {
+								job = death_priest
+								value > 0
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = {
+		title = "TRADITIONALIST_PROSPERITY_TEMPLES"
+		unfulfilled_title = "TRADITIONALIST_PROSPERITY_TEMPLES"
+		desc = "TRADITIONALIST_PROSPERITY_TEMPLES_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_gospel_of_the_masses
+				num_communications > 0
+			}
+		}
+
+		trigger = {
+			owner = {
+				count_relation = {
+					count > 1
+					limit = {
+						any_owned_planet = {
+							has_branch_office = root.owner
+							OR = {
+								has_holding = { holding = building_temple_of_prosperity owner = root.owner }
+								has_holding = { holding = building_subversive_shrine owner = root.owner }
+							}
+						}	
+					}
+				}
+			}
+		}
+	}
+
+	demand = {
+		title = "TRADITIONALIST_SANCTUMS"
+		unfulfilled_title = "TRADITIONALIST_SANCTUMS"
+		desc = "TRADITIONALIST_SANCTUMS_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_memorialist
+			}
+		}
+
+		trigger = {
+			owner = {
+				count_owned_planet = {
+					count > 1
+					limit = {
+						OR = {
+							is_planet_class = pc_nuked
+							is_planet_class = pc_relic
+						}
+						OR = {
+							has_building = building_galactic_memorial_1
+							has_building = building_galactic_memorial_2
+							has_building = building_galactic_memorial_3
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_GAIA_SEEDERS"
+		unfulfilled_title = "TRADITIONALIST_GAIA_SEEDERS"
+		desc = "TRADITIONALIST_GAIA_SEEDERS_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_idyllic_bloom
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					has_country_flag = spread_idyllic_bloom
+					any_subject = {
+						any_owned_planet = {
+							has_holding = { holding = holding_idyllic_bloom owner = root.owner }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_AGRARIAN_IDYLL"
+		unfulfilled_title = "TRADITIONALIST_AGRARIAN_IDYLL"
+		desc = "TRADITIONALIST_AGRARIAN_IDYLL_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_agrarian_idyll
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = too_much_city_for_traditionalists
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_HONOURABLE_DEATH"
+		unfulfilled_title = "TRADITIONALIST_NO_HONOURABLE_DEATH"
+		desc = "TRADITIONALIST_HONOURABLE_DEATH_DESC"
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_warrior_culture }
+		}
+		trigger = {
+			owner = {
+				has_country_flag = d_demands_honourable_death
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_NO_DISHONOURABLE_KILLING"
+		unfulfilled_title = "TRADITIONALIST_DISHONOURABLE_KILLING"
+		desc = "TRADITIONALIST_DISHONOURABLE_KILLING_DESC"
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_warrior_culture }
+		}
+		trigger = {
+			owner = {
+				NOT = { has_country_flag = d_demands_dishonourable_killing }
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_HEROIC_TALES_LEADER_APEX"
+		unfulfilled_title = "TRADITIONALIST_HEROIC_TALES_NO_LEADER_APEX"
+		desc = "TRADITIONALIST_HEROIC_TALES_LEADER_APEX_DESC"
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_heroic_tales }
+		}
+		trigger = {
+			owner = {
+				any_owned_leader = { has_skill >= 10 }
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_HEROIC_TALES_RENOWNED_LEADERS"
+		unfulfilled_title = "TRADITIONALIST_HEROIC_TALES_NO_RENOWNED_LEADERS"
+		desc = "TRADITIONALIST_HEROIC_TALES_RENOWNED_LEADERS_DESC"
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_heroic_tales }
+		}
+		trigger = {
+			owner = {
+				any_owned_leader = {
+					OR = {
+						has_leader_flag = renowned_leader
+						has_leader_flag = legendary_leader
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_NO_WELFARE"
+		unfulfilled_title = "TOTALITARIAN_WELFARE"
+		desc = "TRADITIONALIST_NO_WELFARE_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -2
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = {
+					any_owned_species = {
+						OR = {
+							has_living_standard = { type = living_standard_utopian country = prev }
+							has_living_standard = { type = living_standard_decadent country = prev }
+							has_living_standard = { type = living_standard_chemical_bliss country = prev }
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					any_owned_species = {
+						OR = {
+							has_living_standard = { type = living_standard_good country = prev }
+							has_living_standard = { type = living_standard_academic_privilege country = prev }
+							AND = {
+								has_living_standard = { type = living_standard_normal country = prev }
+								NOT = {
+									has_citizenship_type = { type = citizenship_full country = prev }
+								}
+							}
+						}
+					}
+					any_owned_planet = {
+						OR = {
+							has_modifier = unemployment_benefits
+							has_modifier = planet_luxuries_boost
+						}
+					}
+				}
+			}
+		}
+	}
+	demand = { # DFEM
+		title = "TRADITIONALIST_NO_WELFARE"
+		unfulfilled_title = "TOTALITARIAN_WELFARE"
+		desc = "TRADITIONALIST_NO_WELFARE_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_species = {
+					OR = {
+						has_living_standard = { type = living_standard_utopian country = prev }
+						has_living_standard = { type = living_standard_decadent country = prev }
+						has_living_standard = { type = living_standard_chemical_bliss country = prev }
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_species = {
+						OR = {
+							has_living_standard = { type = living_standard_utopian country = prev }
+							has_living_standard = { type = living_standard_decadent country = prev }
+							has_living_standard = { type = living_standard_chemical_bliss country = prev }
+						}
+					}
+				}
+			}
+		}
+	}
+
 	demand = {
 		title = "TRADITIONALIST_RELIGIOUS_FINDING"
 		unfulfilled_title = "TRADITIONALIST_NO_RELIGIOUS_FINDING"
@@ -958,6 +1618,723 @@ traditionalist = {
 
 		trigger = {
 			owner.federation = { has_federation_type = spiritualist_federation }
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_SCION"
+		unfulfilled_title = "TRADITIONALIST_SCION"
+		desc = "TRADITIONALIST_SCION_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_scion
+				any_relation = {
+					has_country_flag = scion_master
+					is_spiritualist = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				is_subject = yes
+				overlord = {
+					has_country_flag = scion_master
+					is_spiritualist = yes
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_SKY_DRAGON"
+		unfulfilled_title = "TRADITIONALIST_NO_SKY_DRAGON"
+		desc = "TRADITIONALIST_SKY_DRAGON_DESC"
+
+		fulfilled_effect = 0
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_here_be_dragons
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					any_country = {
+						has_country_flag = here_be_the_dragon@root.owner
+						any_owned_ship = { is_ship_size = space_dragon_origin }
+					}
+					any_owned_planet = {
+						has_deposit = d_landed_dragon
+					}
+					AND = {
+						has_country_flag = dragon_breeders
+						any_owned_ship = {
+							is_ship_size = space_dragon_origin
+						}
+					}
+				}	
+			}
+		}
+	}
+	demand = { # DFEM
+		title = "TRADITIONALIST_SKY_DRAGON_PLEASED"
+		unfulfilled_title = "TRADITIONALIST_SKY_DRAGON_NOT_PLEASED"
+		desc = "TRADITIONALIST_SKY_DRAGON_PLEASED_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.01
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_here_be_dragons
+				OR = {
+					any_country = {
+						has_country_flag = here_be_the_dragon@root.owner
+						any_owned_ship = { is_ship_size = space_dragon_origin }
+					}
+					any_owned_planet = {
+						has_deposit = d_landed_dragon
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = dragon_displeased
+				}
+			}
+		}
+	}
+	demand = { # DFEM
+		title = "TRADITIONALIST_SKY_DRAGON_PLEASED"
+		unfulfilled_title = "TRADITIONALIST_SKY_DRAGON_NOT_PLEASED"
+		desc = "TRADITIONALIST_SKY_DRAGON_PLEASED_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.01
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_here_be_dragons
+				has_country_flag = dragon_breeders
+				any_owned_ship = {
+					is_ship_size = space_dragon_origin
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = dragon_breeders
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_STAY_HOME"
+		unfulfilled_title = "TRADITIONALIST_STAY_HOME"
+		desc = "TRADITIONALIST_STAY_HOME_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_origin = origin_life_seeded
+					has_origin = origin_ocean_paradise
+					has_origin = origin_shattered_ring
+				}
+				NOT = {
+					has_ascension_perk = ap_consecrated_worlds
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_planet = {
+						NOR = {
+							is_homeworld = yes
+							solar_system = {
+								is_same_value = owner.home_planet.solar_system
+							}
+						}
+						any_owned_species = {
+							is_same_species = root
+						}
+					}
+				}	
+			}
+		}
+	}
+	demand = { # DFEM
+		title = "TRADITIONALIST_STAY_HOME_CW"
+		unfulfilled_title = "TRADITIONALIST_STAY_HOME_CW"
+		desc = "TRADITIONALIST_STAY_HOME_CW_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_origin = origin_life_seeded
+					has_origin = origin_ocean_paradise
+					has_origin = origin_shattered_ring
+				}
+				has_ascension_perk = ap_consecrated_worlds
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_planet = {
+						NOR = {
+							is_homeworld = yes
+							has_planet_flag = consecrated
+							solar_system = {
+								is_same_value = owner.home_planet.solar_system
+							}
+						}
+						any_owned_species = {
+							is_same_species = root
+						}
+					}
+				}	
+			}
+		}
+	}
+	demand = { # DFEM
+		title = "TRADITIONALIST_MENDED_RING"
+		unfulfilled_title = "TRADITIONALIST_UNMENDED_RING"
+		desc = "TRADITIONALIST_MENDED_RING_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_shattered_ring
+				has_technology = tech_mega_engineering
+				home_planet.solar_system = {
+					count_system_colony = {
+						count <= 2
+						limit = {
+							OR = {
+								is_planet_class = pc_shattered_ring_habitable
+								is_planet_class = pc_ringworld_habitable
+							}
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				home_planet.solar_system = {
+					count_system_colony = {
+						count > 1
+						limit = {
+							OR = {
+								is_planet_class = pc_shattered_ring_habitable
+								is_planet_class = pc_ringworld_habitable
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	demand = { # DFEM
+		title = "TRADITIONALIST_MENDED_RING"
+		unfulfilled_title = "TRADITIONALIST_UNMENDED_RING"
+		desc = "TRADITIONALIST_MENDED_RING_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_origin = origin_shattered_ring
+				has_technology = tech_mega_engineering
+				home_planet.solar_system = {
+					count_system_colony = {
+						count > 2
+						limit = {
+							OR = {
+								is_planet_class = pc_shattered_ring_habitable
+								is_planet_class = pc_ringworld_habitable
+							}
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				home_planet.solar_system = {
+					count_system_colony = {
+						count > 2
+						limit = {
+							OR = {
+								is_planet_class = pc_shattered_ring_habitable
+								is_planet_class = pc_ringworld_habitable
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_IMPROVED_MINDS"
+		unfulfilled_title = "TRADITIONALIST_IMPROVED_MINDS"
+		desc = "TRADITIONALIST_IMPROVED_MINDS"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_origin = origin_clone_army }
+				has_technology = tech_gene_tailoring
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					has_country_flag = gave_citizens_trait_traditional
+					has_country_flag = gave_citizens_trait_expressed_tradition
+					has_country_flag = gave_citizens_trait_naturally_spiritualist
+					has_country_flag = removed_citizens_trait_naturally_materialist
+					has_country_flag = gave_noncitizens_trait_traditional
+					has_country_flag = gave_noncitizens_trait_expressed_tradition
+					has_country_flag = gave_noncitizens_trait_naturally_spiritualist
+					has_country_flag = removed_noncitizens_trait_naturally_materialist
+					has_country_flag = gave_slaves_trait_traditional
+					has_country_flag = gave_slaves_trait_expressed_tradition
+					has_country_flag = gave_slaves_trait_naturally_spiritualist
+					has_country_flag = removed_slaves_trait_naturally_materialist
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_NO_CORRUPTED_MINDS"
+		unfulfilled_title = "TRADITIONALIST_CORRUPTED_MINDS"
+		desc = "TRADITIONALIST_CORRUPTED_MINDS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -15
+
+		potential = {
+			exists = owner
+			owner = {
+				has_global_flag = dtraits_randomization_flag
+				has_technology = tech_gene_tailoring
+				OR = {
+					is_synthetic_empire = yes
+					has_country_flag = gave_citizens_trait_naturally_materialist
+					has_country_flag = removed_citizens_trait_naturally_spiritualist
+					has_country_flag = gave_noncitizens_trait_naturally_materialist
+					has_country_flag = removed_noncitizens_trait_naturally_spiritualist
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					has_country_flag = gave_citizens_trait_naturally_materialist
+					has_country_flag = removed_citizens_trait_naturally_spiritualist
+					has_country_flag = gave_noncitizens_trait_naturally_materialist
+					has_country_flag = removed_noncitizens_trait_naturally_spiritualist
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_ALIGNED_RIVAL"
+		unfulfilled_title = "TRADITIONALIST_ALIGNED_RIVAL"
+		desc = "TRADITIONALIST_ALIGNED_RIVAL_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_rival_country = {
+					is_spiritualist = yes
+					is_homicidal = no
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_rival_country = {
+						is_spiritualist = yes
+						is_homicidal = no
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_OPPOSED_RIVAL"
+		unfulfilled_title = "TRADITIONALIST_OPPOSED_RIVAL"
+		desc = "TRADITIONALIST_OPPOSED_RIVAL_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_synthetic_empire = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_rival_country = {
+					is_synthetic_empire = yes
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_ALIGNED_ENEMY"
+		unfulfilled_title = "TRADITIONALIST_ALIGNED_ENEMY"
+		desc = "TRADITIONALIST_ALIGNED_ENEMY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_war = {
+					defender = { is_spiritualist = yes is_homicidal = no }
+					any_attacker = { is_same_value = prev }
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_war = {
+						defender = { is_spiritualist = yes is_homicidal = no }
+						any_attacker = { is_same_value = prev }
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_OPPOSED_ENEMY"
+		unfulfilled_title = "TRADITIONALIST_OPPOSED_ENEMY"
+		desc = "TRADITIONALIST_OPPOSED_ENEMY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_synthetic_empire = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_war = {
+					OR = {
+						AND = {
+							defender = { is_synthetic_empire = yes }
+							any_attacker = { is_same_value = prev }		
+						}
+						AND = {
+							attacker = { is_synthetic_empire = yes }
+							any_defender = { is_same_value = prev }		
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_ALIGNED_ALLY"
+		unfulfilled_title = "TRADITIONALIST_ALIGNED_ALLY"
+		desc = "TRADITIONALIST_ALIGNED_ALLY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_spiritualist = yes
+					is_homicidal = no
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_relation = {
+					is_spiritualist = yes
+					OR = {
+						has_defensive_pact = root.owner
+						is_in_federation_with = root.owner
+						root.owner = { is_guaranteeing = prev }
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_OPPOSED_ALLY"
+		unfulfilled_title = "TRADITIONALIST_OPPOSED_ALLY"
+		desc = "TRADITIONALIST_OPPOSED_ALLY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_synthetic_empire = yes
+					OR = {
+						root.owner = { is_guaranteeing = prev }
+						is_overlord_to = root.owner
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_relation = {
+						is_synthetic_empire = yes
+						OR = {
+							root.owner = { is_guaranteeing = prev }
+							is_overlord_to = root.owner
+						}
+					}	
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_OPPOSED_RESEARCH_DEAL"
+		unfulfilled_title = "TRADITIONALIST_NO_OPPOSED_RESEARCH_DEAL"
+		desc = "TRADITIONALIST_OPPOSED_RESEARCH_DEAL_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_synthetic_empire = yes
+					OR = {
+						has_research_agreement = root.owner
+						AND = {
+							is_in_federation_with = root.owner
+							federation = { has_federation_type = research_federation }
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_relation = {
+						is_synthetic_empire = yes
+						OR = {
+							has_research_agreement = root.owner
+							AND = {
+								is_in_federation_with = root.owner
+								federation = { has_federation_type = research_federation }
+							}
+						}
+					}	
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_ROBOT_RIVAL"
+		unfulfilled_title = "TRADITIONALIST_ROBOT_RIVAL"
+		desc = "TRADITIONALIST_ROBOT_RIVAL_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_synthetic_empire = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_rival_country = {
+					is_synthetic_empire = yes
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_ROBOT_ENEMY"
+		unfulfilled_title = "TRADITIONALIST_ROBOT_ENEMY"
+		desc = "TRADITIONALIST_ROBOT_ENEMY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_synthetic_empire = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_war = {
+					OR = {
+						AND = {
+							defender = { is_synthetic_empire = yes }
+							any_attacker = { is_same_value = prev }		
+						}
+						AND = {
+							attacker = { is_synthetic_empire = yes }
+							any_defender = { is_same_value = prev }		
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_ROBOT_ALLY"
+		unfulfilled_title = "TRADITIONALIST_NO_ROBOT_ALLY"
+		desc = "TRADITIONALIST_ROBOT_ALLY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_synthetic_empire = yes
+					OR = {
+						has_defensive_pact = root.owner
+						is_in_federation_with = root.owner
+						root.owner = { is_guaranteeing = prev }
+						is_overlord_to = root.owner
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_relation = {
+						is_synthetic_empire = yes
+						OR = {
+							has_defensive_pact = root.owner
+							is_in_federation_with = root.owner
+							root.owner = { is_guaranteeing = prev }
+							is_overlord_to = root.owner
+						}
+					}	
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "TRADITIONALIST_SUPPRESS_RIVALS"
+		unfulfilled_title = "TRADITIONALIST_UNSUPPRESSED_RIVALS"
+		desc = "TRADITIONALIST_SUPPRESS_RIVALS_DESC"
+
+		fulfilled_effect = 0.01
+		unfulfilled_effect = -5
+
+		potential = {
+			owner = {
+				any_pop_faction = {
+					is_pop_faction_type = technologist
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_modifier = suppressed_materialist
+			}
 		}
 	}
 

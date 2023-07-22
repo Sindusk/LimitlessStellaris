@@ -1,5 +1,5 @@
 ## Progressive
-# Merge between VFE, OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
+# Merge between DFEM, VFE, OSA, Bug Branch, MECR, Ariphaos, Scripted Trigger Undercoat
 progressive = {
 	election_header = "GFX_faction_header_yellow"
 	guiding_ethic = ethic_egalitarian
@@ -34,7 +34,10 @@ progressive = {
 	}
 
 	is_potential = {
-		is_faction_allowed = yes
+		OR = { # DFEM
+			is_faction_allowed = yes
+			has_origin = origin_struggle_for_freedom # DFEM
+		}
 	}
 
 	parameters = {
@@ -230,10 +233,27 @@ progressive = {
 
 		trigger = {
 			owner = {
-				NOR = {
-					has_authority_imperial = yes # STU
-					has_authority_dictatorial = yes # STU
-				}
+				is_autocracy = no # DFEM
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_DEMOCRACY"
+		unfulfilled_title = "PROGRESSIVE_DEMOCRACY"
+		desc = "PROGRESSIVE_REAL_DEMOCRATIC_GOVERNMENT_DESC"
+
+		fulfilled_effect = 10
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			exists = owner
+			owner = {
+				is_democracy = yes
 			}
 		}
 	}
@@ -295,6 +315,30 @@ progressive = {
 		}
 	}
 
+	demand = { # DFEM
+		title = "PROGRESSIVE_FREEDOM_TO_LEAVE"
+		unfulfilled_title = "PROGRESSIVE_NO_FREEDOM_TO_LEAVE"
+		desc = "PROGRESSIVE_FREEDOM_TO_LEAVE_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.01
+
+		potential = {
+			exists = owner
+			owner = {
+				num_communications > 0
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_relation = {
+					has_migration_access = prev
+				}
+			}
+		}
+	}
+
 	demand = {
 		title = "PROGRESSIVE_REPRODUCTIVE_FREEDOM"
 		unfulfilled_title = "PROGRESSIVE_NO_REPRODUCTIVE_FREEDOM"
@@ -333,6 +377,144 @@ progressive = {
 						OR = {
 							has_living_standard = { type = living_standard_dystopian_society country = prev }
 							has_living_standard = { type = living_standard_stratified country = prev }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_WELFARE"
+		unfulfilled_title = "PROGRESSIVE_NO_WELFARE"
+		desc = "PROGRESSIVE_WELFARE_DESC"
+
+		unfulfilled_effect = -0.001
+		fulfilled_effect = 5
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = {
+					any_owned_species = {
+						OR = {
+							has_living_standard = { type = living_standard_dystopian_society country = prev }
+							has_living_standard = { type = living_standard_stratified country = prev }
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_species = {
+						OR = {
+							has_living_standard = {
+								type = living_standard_subsistence
+								country = prev
+							}
+							has_living_standard = {
+								type = living_standard_normal
+								country = prev
+							}
+							has_living_standard = {
+								type = living_standard_academic_privilege
+								country = prev
+							}
+							has_living_standard = {
+								type = living_standard_decadent
+								country = prev
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_UTOPIAN_ABUNDANCE"
+		unfulfilled_title = "PROGRESSIVE_UTOPIAN_ABUNDANCE"
+		desc = "PROGRESSIVE_UTOPIAN_ABUNDANCE_DESC"
+
+		unfulfilled_effect = -0.001
+		fulfilled_effect = 5
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = {
+					any_owned_species = {
+						OR = {
+							has_living_standard = {
+								type = living_standard_stratified
+								country = prev
+							}
+							has_living_standard = {
+								type = living_standard_subsistence
+								country = prev
+							}
+							has_living_standard = {
+								type = living_standard_normal
+								country = prev
+							}
+							has_living_standard = {
+								type = living_standard_academic_privilege
+								country = prev
+							}
+							has_living_standard = {
+								type = living_standard_decadent
+								country = prev
+							}
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_species = {
+						has_living_standard = {
+							type = living_standard_good
+							country = prev
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_NEEDS_MET"
+		unfulfilled_title = "PROGRESSIVE_NEEDS_MET"
+		desc = "PROGRESSIVE_NEEDS_MET_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					AND = {
+						has_deficit = food
+						any_owned_species = { has_food_upkeep = yes }
+					}
+					AND = {
+						has_deficit = minerals
+						any_owned_species = { has_mineral_upkeep = yes }
+					}
+					any_owned_planet = {
+						OR = {
+							free_housing < 0
+							free_amenities < 0
 						}
 					}
 				}
@@ -475,6 +657,336 @@ progressive = {
 			owner = {
 				NOT = {
 					has_policy_flag = oppressive_terms
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_FREE_THOUGHT"
+		unfulfilled_title = "PROGRESSIVE_NO_FREE_THOUGHT"
+		desc = "PROGRESSIVE_FREE_THOUGHT_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -20
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_technology = tech_gene_tailoring
+					has_technology = tech_thought_enforcement
+					has_technology = tech_pk_godray
+					has_tradition = tr_cybernetics_integrated_anatomy
+					has_tradition = tr_cybernetics_assimilator_integrated_anatomy
+					AND = {
+						has_country_flag = synthetic_empire
+						has_technology = tech_robomodding
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_edict = thought_enforcement
+					has_country_flag = gave_citizens_trait_conformist
+					has_country_flag = gave_citizens_trait_docile
+					has_country_flag = gave_citizens_trait_nerve_stapled
+					has_country_flag = gave_citizens_trait_complacent
+					has_country_flag = gave_citizens_trait_honest
+					has_country_flag = gave_citizens_trait_naturally_xenophobic
+					has_country_flag = gave_citizens_trait_naturally_xenophilic
+					has_country_flag = gave_citizens_trait_naturally_spiritualist
+					has_country_flag = gave_citizens_trait_naturally_materialist
+					has_country_flag = gave_citizens_trait_cyborg_loyalty_circuits
+					has_country_flag = gave_citizens_trait_traditional
+					has_country_flag = gave_citizens_trait_expressed_tradition
+					has_country_flag = removed_citizens_trait_deviants
+					has_country_flag = removed_citizens_trait_unruly
+					has_country_flag = removed_citizens_trait_political
+					has_country_flag = removed_citizens_trait_dishonest
+					has_country_flag = removed_citizens_trait_naturally_xenophobic
+					has_country_flag = removed_citizens_trait_naturally_xenophilic
+					has_country_flag = removed_citizens_trait_naturally_spiritualist
+					has_country_flag = removed_citizens_trait_naturally_materialist
+					has_country_flag = removed_citizens_trait_quarrelsome
+					has_country_flag = gave_noncitizens_trait_conformist
+					has_country_flag = gave_noncitizens_trait_docile
+					has_country_flag = gave_noncitizens_trait_nerve_stapled
+					has_country_flag = gave_noncitizens_trait_complacent
+					has_country_flag = gave_noncitizens_trait_honest
+					has_country_flag = gave_noncitizens_trait_naturally_xenophobic
+					has_country_flag = gave_noncitizens_trait_naturally_xenophilic
+					has_country_flag = gave_noncitizens_trait_naturally_spiritualist
+					has_country_flag = gave_noncitizens_trait_naturally_materialist
+					has_country_flag = gave_noncitizens_trait_cyborg_loyalty_circuits
+					has_country_flag = gave_noncitizens_trait_traditional
+					has_country_flag = gave_citizens_trait_expressed_tradition
+					has_country_flag = removed_noncitizens_trait_deviants
+					has_country_flag = removed_noncitizens_trait_unruly
+					has_country_flag = removed_noncitizens_trait_political
+					has_country_flag = removed_noncitizens_trait_dishonest
+					has_country_flag = removed_noncitizens_trait_naturally_xenophobic
+					has_country_flag = removed_noncitizens_trait_naturally_xenophilic
+					has_country_flag = removed_noncitizens_trait_naturally_spiritualist
+					has_country_flag = removed_noncitizens_trait_naturally_materialist
+					has_country_flag = removed_noncitizens_trait_quarrelsome
+					any_owned_planet = { has_modifier = uneasy_faith }
+					AND = {
+						has_policy_flag = ai_full_rights
+						OR = {
+							has_country_flag = gave_citizens_trait_robots_loyalty_circuits
+							has_country_flag = gave_citizens_trait_robot_self_destruct_protocol
+							has_country_flag = gave_citizens_trait_robot_override_code
+							has_country_flag = gave_noncitizens_trait_robot_loyalty_circuits
+							has_country_flag = gave_noncitizens_trait_robot_self_destruct_protocol
+							has_country_flag = gave_noncitizens_trait_robot_override_code
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DEFM
+		title = "PROGRESSIVE_NO_NERVE_STAPLING"
+		unfulfilled_title = "PROGRESSIVE_NERVE_STAPLING"
+		desc = "PROGRESSIVE_NERVE_STAPLING_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -20
+
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_genetics_creation
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_country_flag = gave_citizens_trait_nerve_stapled
+					has_country_flag = made_citizens_nonsapient
+					has_country_flag = gave_noncitizens_trait_nerve_stapled
+					has_country_flag = made_noncitizens_nonsapient
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_ALIGNED_RIVAL"
+		unfulfilled_title = "PROGRESSIVE_ALIGNED_RIVAL"
+		desc = "PROGRESSIVE_ALIGNED_RIVAL_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_rival_country = {
+					is_egalitarian = yes
+					is_homicidal = no
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_rival_country = {
+						is_egalitarian = yes
+						is_homicidal = no
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_OPPOSED_RIVAL"
+		unfulfilled_title = "PROGRESSIVE_OPPOSED_RIVAL"
+		desc = "PROGRESSIVE_OPPOSED_RIVAL_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_authoritarian = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_rival_country = {
+					is_authoritarian = yes
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_ALIGNED_ENEMY"
+		unfulfilled_title = "PROGRESSIVE_ALIGNED_ENEMY"
+		desc = "PROGRESSIVE_ALIGNED_ENEMY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_war = {
+					defender = { is_egalitarian = yes is_homicidal = no }
+					any_attacker = { is_same_value = prev }
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_war = {
+						defender = { is_egalitarian = yes is_homicidal = no }
+						any_attacker = { is_same_value = prev }
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_OPPOSED_ENEMY"
+		unfulfilled_title = "PROGRESSIVE_OPPOSED_ENEMY"
+		desc = "PROGRESSIVE_OPPOSED_ENEMY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_authoritarian = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_war = {
+					OR = {
+						AND = {
+							defender = { is_authoritarian = yes }
+							any_attacker = { is_same_value = prev }		
+						}
+						AND = {
+							attacker = { is_authoritarian = yes }
+							any_defender = { is_same_value = prev }		
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_ALIGNED_ALLY"
+		unfulfilled_title = "PROGRESSIVE_ALIGNED_ALLY"
+		desc = "PROGRESSIVE_ALIGNED_ALLY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_egalitarian = yes
+					is_homicidal = no
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_relation = {
+					is_egalitarian = yes
+					OR = {
+						has_defensive_pact = root.owner
+						is_in_federation_with = root.owner
+						root.owner = { is_guaranteeing = prev }
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_OPPOSED_ALLY"
+		unfulfilled_title = "PROGRESSIVE_OPPOSED_ALLY"
+		desc = "PROGRESSIVE_OPPOSED_ALLY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_authoritarian = yes
+					OR = {
+						has_defensive_pact = root.owner
+						is_in_federation_with = root.owner
+						is_overlord_to = root.owner
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_relation = {
+						is_authoritarian = yes
+						OR = {
+							has_defensive_pact = root.owner
+							is_in_federation_with = root.owner
+							is_overlord_to = root.owner
+						}
+					}	
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "PROGRESSIVE_FREE_SPEECH"
+		unfulfilled_title = "PROGRESSIVE_NO_FREE_SPEECH"
+		desc = "PROGRESSIVE_FREE_SPEECH_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -20
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_edict = information_quarantine
+					any_pop_faction = {
+						has_modifier = suppressed_faction
+					}
 				}
 			}
 		}

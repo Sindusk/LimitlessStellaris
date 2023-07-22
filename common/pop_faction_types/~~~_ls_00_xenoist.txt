@@ -26,7 +26,10 @@ xenoist = {
 	}
 
 	is_potential = {
-		is_faction_allowed = yes
+		OR = { # DFEM
+			is_faction_allowed = yes
+			has_origin = origin_questions_of_the_unknown # DFEM
+		}
 	}
 
 	parameters = {
@@ -209,6 +212,89 @@ xenoist = {
 				NOR = {
 					has_policy_flag = purge_displacement_only
 					has_policy_flag = purge_allowed
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_NO_SUBSISTENCE"
+		unfulfilled_title = "XENOIST_SUBSISTENCE"
+		desc = "XENOIST_NO_SUBSISTENCE_DESC"
+
+		unfulfilled_effect = -10
+		fulfilled_effect = 0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_species = {
+					OR = {
+						has_citizenship_type = {
+							type = citizenship_slavery
+							country = prev
+						}
+						has_citizenship_type = {
+							type = citizenship_limited
+							country = prev
+						}
+						has_citizenship_type = {
+							type = citizenship_purge
+							country = prev
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_owned_species = {
+					has_living_standard = {
+						type = living_standard_subsistence
+						country = prev
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_XENO_CITIZENS"
+		unfulfilled_title = "XENOIST_NO_XENO_CITIZENS"
+		desc = "XENOIST_XENO_CITIZENS_DESC"
+
+		unfulfilled_effect = 0.001
+		fulfilled_effect = 5
+
+		potential = {
+			exists = owner
+			owner = {
+				NOT = {
+					any_owned_species = {
+						OR = {
+							has_citizenship_type = { country = prev type = citizenship_slavery }
+							has_citizenship_type = { country = prev type = citizenship_purge }								
+						}
+					}
+				}
+				any_owned_species = {
+					NOR = {
+						is_same_species = prev
+						is_robotic = yes
+						is_sapient = no
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_owned_species = {
+						is_robotic = no
+						has_citizenship_type = { country = prev type = citizenship_limited }
+					}
 				}
 			}
 		}
@@ -441,10 +527,10 @@ xenoist = {
 		}
 	}
 
-	demand = {
-		title = "XENOIST_PRE_SAPIENT_SURVIVAL"
-		unfulfilled_title = "XENOIST_NO_PRE_SAPIENT_SURVIVAL"
-		desc = "XENOIST_PRE_SAPIENT_SURVIVAL_DESC"
+	demand = { # DFEM
+		title = "XENOIST_NO_PRE_SAPIENT_PURGE"
+		unfulfilled_title = "XENOIST_PRE_SAPIENT_PURGE"
+		desc = "XENOIST_PRE_SAPIENT_PURGE_DESC"
 
 		unfulfilled_effect = -10
 		fulfilled_effect = 0.001
@@ -454,6 +540,7 @@ xenoist = {
 			owner = {
 				OR = {
 					has_policy_flag = pre_sapients_allow
+					has_policy_flag = pre_sapients_eat
 					has_policy_flag = pre_sapients_purge
 				}
 				OR = {
@@ -470,6 +557,98 @@ xenoist = {
 		trigger = {
 			owner = {
 				has_policy_flag = pre_sapients_allow
+			}
+		}
+	}
+
+	demand = {
+		title = "XENOIST_PRE_SAPIENT_SURVIVAL"
+		unfulfilled_title = "XENOIST_NO_PRE_SAPIENT_SURVIVAL"
+		desc = "XENOIST_PRE_SAPIENT_SURVIVAL_DESC"
+
+		unfulfilled_effect = -10
+		fulfilled_effect = 0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_policy_flag = pre_sapients_allow
+					has_policy_flag = pre_sapients_protect # DFEM purge -> protect
+				}
+				OR = {
+					has_country_flag = found_presapients
+					any_planet_within_border = {
+						any_owned_pop = {
+							is_sapient = no
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_policy_flag = pre_sapients_protect # DFEM allow -> protect
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_NO_DEGRADED_BODIES"
+		unfulfilled_title = "XENOIST_NO_DEGRADED_BODIES"
+		desc = "XENOIST_DEGRADED_BODIES_DESC"
+
+		unfulfilled_effect = -10
+		fulfilled_effect = 0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_genetics_resequencing
+				NOT = { has_origin = origin_overtuned }
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_country_flag = gave_noncitizens_trait_fleeting
+					has_country_flag = gave_noncitizens_trait_cyborg_self_destruct_protocol
+					has_country_flag = removed_noncitizens_trait_enduring
+					has_country_flag = removed_noncitizens_trait_venerable
+					has_country_flag = gave_slaves_trait_fleeting
+					has_country_flag = gave_slaves_trait_cyborg_self_destruct_protocol
+					has_country_flag = removed_slaves_trait_enduring
+					has_country_flag = removed_slaves_trait_venerable
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_NO_DEGRADED_MINDS"
+		unfulfilled_title = "XENOIST_DEGRADED_MINDS"
+		desc = "XENOIST_DEGRADED_MINDS_DESC"
+
+		unfulfilled_effect = -20
+		fulfilled_effect = 0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_genetics_resequencing
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOR = {
+					has_country_flag = gave_slaves_trait_nerve_stapled
+					has_country_flag = made_slaves_nonsapient
+					has_country_flag = gave_noncitizens_trait_nerve_stapled
+					has_country_flag = made_noncitizens_nonsapient
+				}
 			}
 		}
 	}
@@ -542,6 +721,87 @@ xenoist = {
 		trigger = {
 			owner = {
 				has_federation = yes
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_UNHAPPY_SUBJECTS"
+		unfulfilled_title = "XENOIST_NO_UNHAPPY_SUBJECTS"
+		desc = "XENOIST_SUBJECTS_UNHAPPY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -10
+
+		potential = {
+			exists = owner
+			owner = { is_overlord = yes }
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_subject = { has_loyalty < -10 }
+				}
+			}
+		}
+	}
+	demand = { # DFEM
+		title = "XENOIST_HAPPY_SUBJECTS"
+		unfulfilled_title = "XENOIST_NO_HAPPY_SUBJECTS"
+		desc = "XENOIST_SUBJECTS_HAPPY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				is_overlord = yes
+				any_subject = {
+					NOT = { is_same_species = prev }
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_subject = {
+					NOT = { is_same_species = prev }
+					has_loyalty > 10
+				}
+			}
+		}
+	}
+	demand = { # DFEM
+		title = "XENOIST_AID_AGENCIES"
+		unfulfilled_title = "XENOIST_NO_AID_AGENCIES"
+		desc = "XENOIST_AID_AGENCIES_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				is_overlord = yes
+				any_subject = {
+					NOT = { is_same_species = prev }
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_subject = {
+					NOT = { is_same_species = prev }
+					any_owned_planet = {
+						OR = {
+							has_holding = { holding = holding_aid_agency owner = root.owner }
+							has_holding = { holding = holding_communal_housing_outreach owner = root.owner }
+						}
+					}
+				}
 			}
 		}
 	}
@@ -679,6 +939,124 @@ xenoist = {
 		}
 	}
 
+	demand = { # DFEM
+		title = "XENOIST_NO_TERROR_BOMBING"
+		unfulfilled_title = "XENOIST_TERROR_BOMBING"
+		desc = "XENOIST_TERROR_BOMBING_DESC"
+
+		unfulfilled_effect = -5
+		fulfilled_effect = +0.001
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = {
+				has_policy_flag = orbital_bombardment_selective
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_NO_PK"
+		unfulfilled_title = "XENOIST_PK"
+		desc = "XENOIST_NO_PK_DESC"
+
+		unfulfilled_effect = -10
+		fulfilled_effect = +0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_ascension_perk = ap_colossus
+					has_crisis_level = crisis_level_5
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_policy_flag = orbital_bombardment_selective
+				NOT = {
+					has_country_flag = killed_with_pk
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_NO_TERRAFORMING"
+		unfulfilled_title = "XENOIST_TERRAFORMING"
+		desc = "XENOIST_NO_TERRAFORMING_DESC"
+
+		unfulfilled_effect = -5
+		fulfilled_effect = +0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_terrestrial_sculpting
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = destroyed_planet_climate
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_NO_HUNTED_FAUNA"
+		unfulfilled_title = "XENOIST_HUNTED_FAUNA"
+		desc = "XENOIST_NO_HUNTED_FAUNA_DESC"
+
+		unfulfilled_effect = -5
+		fulfilled_effect = +0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_country_flag = hunted_fauna
+					any_relation = {
+						OR = {
+							is_country_type = origin_dragon
+							is_country_type = tiyanki
+							is_country_type = tiyanki_garrison
+							is_country_type = amoeba
+							is_country_type = amoeba_borderless
+							is_country_type = amoeba_garrison
+							is_country_type = amoeba_faction
+							is_country_type = crystal
+							is_country_type = crystal_faction
+							is_country_type = guardian_dragon
+							is_country_type = guardian_stellarite
+							is_country_type = guardian_wraith
+							is_country_type = guardian_hiver
+							is_country_type = guardian_horror
+							is_country_type = guardian_elderly_tiyanki
+							is_country_type = ldragon_country
+							is_country_type = guardian_hatchling
+						}
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					has_country_flag = hunted_fauna
+				}
+			}
+		}
+	}
+
 	demand = {
 		title = "XENOIST_COOPERATIVE_DIPLO_STANCE" # Bug Branch adds "XENOIST"
 		unfulfilled_title = "XENOIST_COOPERATIVE_DIPLO_STANCE" # Bug Branch adds "XENOIST"
@@ -750,6 +1128,258 @@ xenoist = {
 		trigger = {
 			owner = {
 				has_policy_flag = benevolent_terms
+			}
+		}
+	}
+
+
+	demand = { # DFEM
+		title = "XENOIST_NO_CORRUPTED_MINDS"
+		unfulfilled_title = "XENOIST_CORRUPTED_MINDS"
+		desc = "XENOIST_CORRUPTED_MINDS_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -15
+
+		potential = {
+			exists = owner
+			owner = {
+				has_global_flag = dtraits_randomization_flag
+				has_technology = tech_gene_tailoring
+				OR = {
+					is_xenophobe = yes
+					has_country_flag = gave_citizens_trait_naturally_xenophobic
+					has_country_flag = removed_citizens_trait_naturally_xenophilic
+					has_country_flag = gave_noncitizens_trait_naturally_xenophobic
+					has_country_flag = removed_noncitizens_trait_naturally_xenophilic
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				OR = {
+					has_country_flag = gave_citizens_trait_naturally_xenophobic
+					has_country_flag = removed_citizens_trait_naturally_xenophilic
+					has_country_flag = gave_noncitizens_trait_naturally_xenophobic
+					has_country_flag = removed_noncitizens_trait_naturally_xenophilic
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_ALIGNED_RIVAL"
+		unfulfilled_title = "XENOIST_ALIGNED_RIVAL"
+		desc = "XENOIST_ALIGNED_RIVAL_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_rival_country = {
+					is_xenophile = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_rival_country = {
+						is_xenophile = yes
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_OPPOSED_RIVAL"
+		unfulfilled_title = "XENOIST_OPPOSED_RIVAL"
+		desc = "XENOIST_OPPOSED_RIVAL_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					country_angers_xenoists = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_rival_country = {
+					country_angers_xenoists = yes
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_ALIGNED_ENEMY"
+		unfulfilled_title = "XENOIST_ALIGNED_ENEMY"
+		desc = "XENOIST_ALIGNED_ENEMY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_war = {
+					defender = { is_xenophile = yes  }
+					any_attacker = { is_same_value = prev }
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_war = {
+						defender = { is_xenophile = yes  }
+						any_attacker = { is_same_value = prev }
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_OPPOSED_ENEMY"
+		unfulfilled_title = "XENOIST_OPPOSED_ENEMY"
+		desc = "XENOIST_OPPOSED_ENEMY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					country_angers_xenoists = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_war = {
+					OR = {
+						AND = {
+							defender = { country_angers_xenoists = yes }
+							any_attacker = { is_same_value = prev }		
+						}
+						AND = {
+							attacker = { country_angers_xenoists = yes }
+							any_defender = { is_same_value = prev }		
+						}
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_ALIGNED_ALLY"
+		unfulfilled_title = "XENOIST_ALIGNED_ALLY"
+		desc = "XENOIST_ALIGNED_ALLY_DESC"
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					is_xenophile = yes
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_relation = {
+					is_xenophile = yes
+					OR = {
+						has_defensive_pact = root.owner
+						is_in_federation_with = root.owner
+						root.owner = { is_guaranteeing = prev }
+						is_overlord_to = root.owner
+					}
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_OPPOSED_ALLY"
+		unfulfilled_title = "XENOIST_OPPOSED_ALLY"
+		desc = "XENOIST_OPPOSED_ALLY_DESC"
+
+		fulfilled_effect = 0.001
+		unfulfilled_effect = -5
+
+		potential = {
+			exists = owner
+			owner = {
+				any_relation = {
+					country_angers_xenoists = yes
+					OR = {
+						has_defensive_pact = root.owner
+						is_in_federation_with = root.owner
+						root.owner = { is_guaranteeing = prev }
+						is_overlord_to = root.owner
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				NOT = {
+					any_relation = {
+						country_angers_xenoists = yes
+						OR = {
+							has_defensive_pact = root.owner
+							is_in_federation_with = root.owner
+							root.owner = { is_guaranteeing = prev }
+						}
+					}	
+				}
+			}
+		}
+	}
+
+	demand = { # DFEM
+		title = "XENOIST_SUPPRESS_RIVALS"
+		unfulfilled_title = "XENOIST_UNSUPPRESSED_RIVALS"
+		desc = "XENOIST_SUPPRESS_RIVALS_DESC"
+
+		fulfilled_effect = 0.01
+		unfulfilled_effect = -5
+
+		potential = {
+			owner = {
+				any_pop_faction = {
+					OR = {
+						is_pop_faction_type = supremacist
+						is_pop_faction_type = isolationist
+					}
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				has_modifier = suppressed_xenophobe
 			}
 		}
 	}
