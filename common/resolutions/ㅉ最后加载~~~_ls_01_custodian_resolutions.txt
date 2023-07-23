@@ -3440,6 +3440,7 @@ resolution_custodian_perpetual_custodianship = {
 	effect = {
 		custom_tooltip = resolution_custodian_perpetual_custodianship_tooltip
 		hidden_effect = {
+			set_timed_country_flag = { flag = galcom_resolution_passed_anti_progressive days = 7200 } # EED
 			set_custodian_term_days = -1 # -1 means that the timer will stop counting
 		}
 	}
@@ -3457,6 +3458,7 @@ resolution_custodian_perpetual_custodianship = {
 	potential = {
 		has_nemesis = yes
 		is_galactic_custodian = yes
+		has_galactic_republic = no # EED
 	}
 
 	active = {
