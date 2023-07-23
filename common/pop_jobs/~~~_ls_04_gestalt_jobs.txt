@@ -7,7 +7,7 @@
 ##################################################
 
 ## Spawning Drone
-# Merge between OSA, Plentiful Traditions, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Plentiful Traditions, Scripted Trigger Undercoat
 spawning_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -88,6 +88,16 @@ spawning_drone = {
 			}
 			minerals = 5
 		}
+		produces = { # DTM
+			trigger = {
+				exists = planet.assembling_species
+				planet.assembling_species = {
+					has_trait = trait_experimental
+				}
+			}
+			society_research = 10
+			mult = value:experimental_assembly_factor
+		}
 	}
 
 	weight = {
@@ -114,7 +124,7 @@ spawning_drone = {
 }
 
 ## Offspring Drone
-# Merge between OSA, Plentiful Traditions, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Plentiful Traditions, Scripted Trigger Undercoat
 offspring_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -198,6 +208,16 @@ offspring_drone = {
 			}
 			minerals = 5
 		}
+		produces = { # DTM
+			trigger = {
+				exists = planet.assembling_species
+				planet.assembling_species = {
+					has_trait = trait_experimental
+				}
+			}
+			society_research = 10
+			mult = value:experimental_assembly_factor
+		}
 	}
 
 	weight = {
@@ -224,7 +244,7 @@ offspring_drone = {
 }
 
 ## Cyber Drone
-# Vanilla
+# DTM version
 cyber_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -258,6 +278,16 @@ cyber_drone = {
 		upkeep = {
 			alloys = 1
 		}
+		produces = { # DTM
+			trigger = {
+				exists = planet.assembling_species
+				planet.assembling_species = { has_trait = trait_experimental }
+				can_assemble_cyborg_pop = yes
+				can_assemble_hive_pop = yes
+			}
+			society_research = 7.5
+			mult = value:experimental_assembly_factor
+		}
 	}
 
 	weight = {
@@ -284,7 +314,7 @@ cyber_drone = {
 }
 
 ## Replicator
-# Merge between OSA, Plentiful Traditions
+# Merge between OSA, DTM, Plentiful Traditions
 replicator = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -363,6 +393,7 @@ replicator = {
 
 	weight = {
 		weight = @spawner_drone_job_weight
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.01 # crisis purge
 			exists = planet
@@ -459,7 +490,7 @@ crucible_drone = {
 }
 
 ## Coordinator
-# Merge between OSA, Bug Branch, Silfae's Portraits, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Bug Branch, Silfae's Portraits, Scripted Trigger Undercoat
 coordinator = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -521,6 +552,7 @@ coordinator = {
 	weight = {
 		weight = @synapse_drone_job_weight
 		mult = value:job_weights_modifier|JOB|coordinator|RESOURCE|unity|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.9
 			exists = owner
@@ -532,7 +564,7 @@ coordinator = {
 }
 
 ## Evaluator
-# Merge between OSA, Bug Branch, Silfae's Portraits
+# Merge between OSA, DTM, Bug Branch, Silfae's Portraits
 evaluator = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -572,6 +604,7 @@ evaluator = {
 		modifier = {
 			planet_crime_no_happiness_add = -3
 		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
 	}
 
 	triggered_planet_modifier = {
@@ -587,7 +620,7 @@ evaluator = {
 }
 
 ## Synapse Drone
-# Merge between OSA, Bug Branch, Silfae's Portraits
+# Merge between OSA, DTM, Bug Branch, Silfae's Portraits
 synapse_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -680,11 +713,12 @@ synapse_drone = {
 		weight = @synapse_drone_job_weight
 		mult = value:job_weights_modifier|JOB|synapse_drone|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 	}
 }
 
 ## Brain Drone
-# Merge between OSA, Bug Branch, Silfae's Portraits, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Bug Branch, Silfae's Portraits, Scripted Trigger Undercoat
 brain_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -706,7 +740,7 @@ brain_drone = {
 		produces = {
 			physics_research = 4
 			engineering_research = 4
-			society_research = 2 # OSA 4 -> 2
+			society_research = 4 # OSA 4 -> 2 # LS 2 -> 4 [Balance]
 		}
 		upkeep = {
 			minerals = 6
@@ -762,6 +796,7 @@ brain_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_research_modifier|JOB|brain_drone|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.9
 			exists = owner
@@ -773,7 +808,7 @@ brain_drone = {
 }
 
 ## Calculator
-# Merge between OSA, Silfae's Portraits, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Silfae's Portraits, Scripted Trigger Undercoat
 calculator = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -795,7 +830,7 @@ calculator = {
 		produces = {
 			physics_research = 4
 			engineering_research = 4
-			society_research = 2 # OSA 4 -> 2
+			society_research = 4 # OSA 4 -> 2 # LS 2 -> 4 [Balance]
 		}
 		upkeep = {
 			energy = 4
@@ -839,6 +874,7 @@ calculator = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_research_modifier|JOB|calculator|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.9
 			exists = owner
@@ -850,7 +886,7 @@ calculator = {
 }
 
 ## Artisan Drone
-# Vanilla + STU
+# Merge between OSA, DTM
 artisan_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -907,6 +943,7 @@ artisan_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|artisan_drone|RESOURCE|consumer_goods|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.9
 			exists = owner
@@ -928,7 +965,7 @@ artisan_drone = {
 }
 
 ## Fabricator
-# Merge between OSA, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Scripted Trigger Undercoat
 fabricator = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -988,6 +1025,7 @@ fabricator = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|fabricator|RESOURCE|alloys|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.9
 			exists = owner
@@ -999,7 +1037,7 @@ fabricator = {
 }
 
 ## Alloy Drone
-# OSA version
+# Merge between OSA, DTM
 alloy_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1068,11 +1106,12 @@ alloy_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|alloy_drone|RESOURCE|alloys|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 	}
 }
 
 ## Catalytic Drone
-# OSA version
+# Merge between OSA, DTM
 catalytic_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1161,11 +1200,12 @@ catalytic_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|catalytic_drone|RESOURCE|alloys|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 	}
 }
 
 ## Chemist Drone
-# Vanilla + STU
+# DTM version
 chemist_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1196,6 +1236,7 @@ chemist_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|chemist_drone|RESOURCE|volatile_motes|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.9
 			exists = owner
@@ -1207,7 +1248,7 @@ chemist_drone = {
 }
 
 ## Translucer Drone
-# Vanilla + STU
+# DTM version
 translucer_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1238,6 +1279,7 @@ translucer_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|translucer_drone|RESOURCE|rare_crystals|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.9
 			exists = owner
@@ -1280,6 +1322,7 @@ gas_refiner_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|gas_refiner_drone|RESOURCE|exotic_gases|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.9
 			exists = owner
@@ -1291,7 +1334,7 @@ gas_refiner_drone = {
 }
 
 ## Patrol Drone
-# Silfae's Portraits version
+# Merge between OSA, DTM, Silfae's Portraits
 patrol_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1314,8 +1357,10 @@ patrol_drone = {
 		}
 	}
 
-	planet_modifier = {
+	triggered_planet_modifier = {
+		potential = { always = yes }
 		planet_crime_no_happiness_add = -10 # LS -20 -> -10
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
 	}
 
 	pop_modifier = {
@@ -1325,6 +1370,8 @@ patrol_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|patrol_drone|RESOURCE|unity|FACTOR|0.25|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 50
 			planet = { planet_crime > 22 }
@@ -1381,7 +1428,7 @@ patrol_drone = {
 }
 
 ## Mining Drone
-# Vanilla + STU
+# DTM version
 crystal_mining_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1412,6 +1459,7 @@ crystal_mining_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|crystal_mining_drone|RESOURCE|rare_crystals|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 1.1
 			exists = owner
@@ -1423,7 +1471,7 @@ crystal_mining_drone = {
 }
 
 ## Mote Harvesting Drone
-# Vanilla + STU
+# DTM version
 mote_harvesting_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1454,6 +1502,7 @@ mote_harvesting_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|mote_harvesting_drone|RESOURCE|volatile_motes|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 1.1
 			exists = owner
@@ -1465,7 +1514,7 @@ mote_harvesting_drone = {
 }
 
 ## Gas Extraction Drone
-# Vanilla + STU
+# DTM version
 gas_extraction_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1496,6 +1545,7 @@ gas_extraction_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_modifier|JOB|gas_extraction_drone|RESOURCE|exotic_gases|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 1.1
 			exists = owner
@@ -1507,7 +1557,7 @@ gas_extraction_drone = {
 }
 
 ## Mining Drone
-# Merge between OSA, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Scripted Trigger Undercoat
 mining_drone = {
 	category = simple_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1522,6 +1572,7 @@ mining_drone = {
 	}
 
 	possible_precalc = can_fill_drone_job
+	possible = { can_work_outdoors = yes } # DTM
 
 	resources = {
 		category = planet_miners
@@ -1591,7 +1642,7 @@ mining_drone = {
 }
 
 ## Agri-Drone
-# Merge between OSA, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Scripted Trigger Undercoat
 agri_drone = {
 	category = simple_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1606,6 +1657,7 @@ agri_drone = {
 	}
 
 	possible_precalc = can_fill_drone_job
+	possible = { can_work_outdoors = yes } # DTM
 
 	resources = {
 		category = planet_farmers
@@ -1703,7 +1755,7 @@ agri_drone = {
 }
 
 ## Technician Drone
-# Vanilla + STU
+# DTM version
 technician_drone = {
 	category = simple_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1718,6 +1770,7 @@ technician_drone = {
 	}
 
 	possible_precalc = can_fill_drone_job
+	possible = { can_work_outdoors = yes } # DTM
 
 	resources = {
 		category = planet_technician
@@ -1783,7 +1836,7 @@ technician_drone = {
 }
 
 ## Maintenance Drone
-# Merge between OSA, Bug Branch, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, DTM, Scripted Trigger Undercoat
 maintenance_drone = {
 	category = simple_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -1851,6 +1904,7 @@ maintenance_drone = {
 	}
 
 	possible_precalc = can_fill_drone_job
+	possible = { can_work_outdoors = yes } # DTM
 
 	triggered_planet_modifier = {
 		potential = {
@@ -1930,14 +1984,18 @@ maintenance_drone = {
 }
 
 ## Warrior Drone
-# Merge between OSA, Bug Branch, Silfae's Portraits, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, DTM, Silfae's Portraits, Scripted Trigger Undercoat
 warrior_drone = {
 	category = simple_drone
 	condition_string = DRONE_JOB_TRIGGER
 	building_icon = building_stronghold
 
-	country_modifier = {
-		country_naval_cap_add = 4
+	triggered_country_modifier = { # DTM converts to triggered
+		potential = { always = yes }
+		modifier = {
+			country_naval_cap_add = 4
+		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
 	}
 	resources = {
 		category = planet_soldiers
@@ -1954,6 +2012,7 @@ warrior_drone = {
 		modifier = {
 			country_naval_cap_add = 2
 		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
 	}
 	
 	inline_script = "jobs/bugged_soldier_effects" # Bug Branch
@@ -1980,6 +2039,7 @@ warrior_drone = {
 	}
 
 	possible_precalc = can_fill_drone_job
+	possible = { can_work_outdoors = yes } # DTM
 
 	weight = {
 		weight = 5
@@ -2037,6 +2097,46 @@ warrior_drone = {
 		modifier = {
 			factor = 1.2
 			has_trait = trait_cybernetic
+		}
+		modifier = { # DTM
+			factor = 2
+			has_trait = trait_huge
+		}
+		modifier = { # DTM
+			factor = 1.5
+			has_trait = trait_big
+		}
+		modifier = { # DTM
+			factor = 0.5
+			has_trait = trait_small
+		}
+		modifier = { # DTM
+			factor = 0.25
+			has_trait = trait_tiny
+		}
+		modifier = { # DTM
+			factor = 2
+			has_trait = trait_huge_lithoid
+		}
+		modifier = { # DTM
+			factor = 1.5
+			has_trait = trait_big_lithoid
+		}
+		modifier = { # DTM
+			factor = 0.5
+			has_trait = trait_small_lithoid
+		}
+		modifier = { # DTM
+			factor = 0.25
+			has_trait = trait_tiny_lithoid
+		}
+		modifier = { # DTM
+			factor = 1.5
+			has_trait = trait_aggressive
+		}
+		modifier = { # DTM
+			factor = 0.5
+			has_trait = trait_timid
 		}
 		modifier = { # Silfae's Portraits
 			factor = 1.1
@@ -2129,7 +2229,7 @@ bluelotus_drone = {
 }
 
 ## Chronicle Drone
-# Merge between OSA, Silfae's Portraits
+# Merge between OSA, DTM, Silfae's Portraits
 chronicle_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -2195,6 +2295,7 @@ chronicle_drone = {
 		modifier = {
 			planet_crime_no_happiness_add = -3
 		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
 	}
 
 	triggered_planet_modifier = {
@@ -2206,6 +2307,7 @@ chronicle_drone = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_multiple_resources_modifier|JOB|chronicle_drone|RESOURCE1|unity|WEIGHT1|0.7|RESOURCE2|society_research|WEIGHT2|0.3|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.01 # crisis purge
 			exists = planet
@@ -2221,7 +2323,7 @@ chronicle_drone = {
 }
 
 ## Scrap Miner Drone
-# Vanilla + STU
+# DTM version
 scrap_miner_drone = {
 	category = simple_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -2237,6 +2339,7 @@ scrap_miner_drone = {
 	}
 
 	possible_precalc = can_fill_drone_job
+	possible = { can_work_outdoors = yes } # DTM
 
 	resources = {
 		category = planet_miners
@@ -2274,7 +2377,7 @@ scrap_miner_drone = {
 }
 
 ## Bath Attendant (Hive)
-# OSA version
+# Merge between OSA, DTM
 bath_attendant_hive = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -2310,11 +2413,23 @@ bath_attendant_hive = {
 			}
 			minerals = 4
 		}
+		produces = { # DTM
+			trigger = {
+				exists = planet.assembling_species
+				planet.assembling_species = {
+					has_trait = trait_experimental
+				}
+			}
+			society_research = 0.075
+			mult = planet.value:toxic_attendant_growth
+			# mult = value:experimental_assembly_factor
+		}
 	}
 
 	weight = {
 		weight = @spawner_drone_job_weight
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.5 # job is less useful if pop control is active, but still gives amenities
 			planet = {
@@ -2336,7 +2451,7 @@ bath_attendant_hive = {
 }
 
 ## Bath Attendant (Machine)
-# OSA version
+# Merge between OSA, DTM
 bath_attendant_machine = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -2368,6 +2483,7 @@ bath_attendant_machine = {
 
 	weight = {
 		weight = @spawner_drone_job_weight
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.01 # crisis purge
 			exists = planet
@@ -2383,7 +2499,7 @@ bath_attendant_machine = {
 }
 
 ## Archaeo-Drone
-# Merge between OSA, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Scripted Trigger Undercoat
 archaeo_drone = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -2456,11 +2572,12 @@ archaeo_drone = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_research_modifier|JOB|archaeo_drone|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 	}
 }
 
 ## Archaeo Unit
-# Vanilla + STU
+# DTM version
 archaeo_unit = {
 	category = complex_drone
 	condition_string = DRONE_JOB_TRIGGER
@@ -2533,6 +2650,7 @@ archaeo_unit = {
 	weight = {
 		weight = @complex_drone_job_weight
 		mult = value:job_weights_research_modifier|JOB|archaeo_unit|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.9
 			exists = owner

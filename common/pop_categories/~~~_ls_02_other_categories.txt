@@ -7,7 +7,7 @@
 ##################################################
 
 ## Purge
-# Vanilla + STU blank script
+# DTM version
 purge = {
 	rank = 0
 	clothes_texture_index = 2
@@ -20,7 +20,7 @@ purge = {
 			is_being_purged = yes
 			has_pop_flag = event_purge
 			AND = { # controlled by crisis
-				has_global_flag = galactic_crisis_happened
+				#has_global_flag = galactic_crisis_happened # DTM removes this
 				exists = planet
 				planet = {
 					exists = controller
@@ -58,6 +58,14 @@ purge = {
 	pop_modifier = {
 		pop_political_power = -1
 	}
+
+	triggered_planet_modifier = { # DTM
+		potential = {
+			has_trait = trait_elusive
+		}
+		planet_crime_add = 0.5
+	}
+
 	resources = {
 		category = pop_category_purge
 	}

@@ -53,8 +53,8 @@ servant = {
 	}
 }
 
-## Slave Overseer
-# Vanilla
+## Slave Overseer [Vanilla]
+# DTM version
 slave_overseer = {
 	category = worker
 	is_capped_by_modifier = yes
@@ -70,6 +70,7 @@ slave_overseer = {
 
 	possible = {
 		planet = { has_modifier = slave_colony }
+		NOT = { has_trait = trait_robot_simplistic_morality } # DTM
 	}
 
 	resources = {
@@ -497,8 +498,8 @@ bio_trophy = {
 	}
 }
 
-## Purge
-# Merge between Organic Zealots, OSA, Bug Branch
+## Purge [Vanilla]
+# Merge between Organic Zealots, OSA, Bug Branch, DTM
 purge = {
 	category = purge
 	is_capped_by_modifier = no
@@ -522,7 +523,7 @@ purge = {
 	}
 
 	resources = {
-		category = planet_jobs
+		category = planet_jobs_purge # DTM jobs -> jobs_purge
 		produces = {
 			trigger = {
 				exists = owner
@@ -861,7 +862,7 @@ assimilation = {
 }
 
 ## Criminal
-# OSA version
+# Merge between OSA, DTM, Ariphaos
 criminal = {
 	category = criminal
 	is_capped_by_modifier = yes
@@ -903,9 +904,19 @@ criminal = {
 		}
 	}
 
-	planet_modifier = {
-		trade_value_add = -5
-		branch_office_criminal_syndicate_value_add = 7.5
+	#planet_modifier = { # DTM converts to triggered
+	#	trade_value_add = -5
+	#	branch_office_criminal_syndicate_value_add = 7.5
+	#}
+	triggered_planet_modifier = { # DTM converts to triggered
+		potential = { # LS - adding for clarity
+			always = yes
+		}
+		modifier = {
+			trade_value_add = -5
+			branch_office_criminal_syndicate_value_add = 7.5
+		}
+		mult = value:scripted_modifier_mult|MODIFIER|criminal_job_effect_mult|
 	}
 
 	triggered_planet_modifier = {
@@ -924,6 +935,7 @@ criminal = {
 
 	weight = {
 		weight = @criminal_job_weight
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|criminal_job_effect_mult| # DTM
 	}
 }
 

@@ -1,0 +1,85 @@
+## Regular Upkeep Inline
+# Merge between DTM, Silfae's Portraits, STU
+# Food Upkeep
+upkeep = {
+	trigger = {
+		has_food_upkeep = yes
+		is_radiotrophic = no # DTM phototrophic -> radiotrophic
+		NAND = { # DTM
+			has_trait = trait_pioneer_flora
+			is_phototrophic = yes
+		}
+	}
+	food = @living_standard_food_normal
+}
+upkeep = {
+	trigger = {
+		has_food_upkeep = yes
+		is_radiotrophic = yes # DTM phototrophic -> radiotrophic
+	}
+	food = @living_standard_phototrophic_normal
+}
+
+# Mineral Upkeep
+upkeep = {
+	trigger = {
+		has_mineral_upkeep = yes
+		is_radiotrophic = no # DTM phototrophic -> radiotrophic
+	}
+	minerals = @living_standard_food_normal
+}
+
+upkeep = {
+	trigger = {
+		has_mineral_upkeep = yes
+		is_radiotrophic = yes # DTM phototrophic -> radiotrophic
+	}
+	minerals = @living_standard_phototrophic_normal
+}
+
+# Energy Upkeep
+upkeep = {
+	trigger = { has_phototrophic_energy_upkeep = yes }
+	energy = @living_standard_phototrophic_normal
+}
+
+upkeep = {
+	trigger = { has_energy_upkeep = yes }
+	energy = @living_standard_energy_normal
+}
+upkeep = { # DTM
+	trigger = {
+		AND = {
+			has_trait = trait_voidling
+			has_trait = trait_cyborg_power_intensive
+		}
+	}
+	energy = @living_standard_energy_normal
+}
+
+# Added: Silicoid Upkeep
+upkeep = { # Silfae's Portraits
+	trigger = { has_silicoid_food_upkeep = yes }
+	food = @living_standard_food_silicoid
+}
+
+upkeep = { # Silfae's Portraits
+	trigger = {
+		has_silicoid_mineral_upkeep = yes
+		is_phototrophic = no
+	}
+	minerals = @living_standard_minerals_silicoid
+}
+
+upkeep = { # Silfae's Portraits
+	trigger = {
+		has_silicoid_mineral_upkeep = yes
+		is_phototrophic = yes
+	}
+	minerals = @living_standard_food_silicoid
+}
+
+upkeep = { # Silfae's Portraits
+	trigger = { has_electroid_energy_upkeep = yes }
+	energy = @living_standard_energy_electroid
+}

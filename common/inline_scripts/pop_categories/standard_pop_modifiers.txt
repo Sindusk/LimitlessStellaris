@@ -1,0 +1,67 @@
+## Standard Pop Modifiers
+# Merge between DFEM, DTM
+triggered_planet_modifier = { # DTM
+	potential = {
+		valuable_secretions_check = yes
+		can_generate_trade_value = yes
+	}
+	trade_value_add = 0.4
+}
+triggered_planet_modifier = { # DTM
+	potential = {
+		has_trait = trait_robot_surveilance_protocol
+		is_being_purged = no
+	}
+	planet_crime_add = -0.5
+}
+triggered_planet_modifier = { # DTM
+	potential = {
+		has_trait = trait_robot_poor_security
+		is_being_purged = no
+	}
+	planet_crime_add = 0.5
+}
+
+triggered_planet_modifier = { # DTM
+	potential = {
+		has_trait = trait_robot_poor_security_machine
+		is_being_purged = no
+	}
+	planet_crime_no_happiness_add = 0.5
+}
+
+triggered_planet_modifier = { # DTM
+	potential = {
+		has_trait = trait_baby_crazy
+		NOT = {
+			has_migration_control = { type = migration_control_yes }
+		}
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+	planet_emigration_push_add = 2
+	mult = value:pop_growth_suppression
+}
+
+triggered_pop_modifier = { # DFEM
+	potential = {
+		pop_has_happiness = yes
+		exists = planet
+		planet = { is_variable_set = dle_pop_count }
+	}
+	pop_happiness = -0.25
+	multiplier = value:hostile_population_percent
+}
+triggered_pop_modifier = { # DFEM
+	potential = {
+		ideological_discomfort = yes
+	}
+	pop_happiness = -0.10
+}
+triggered_pop_modifier = { # DFEM
+	potential = {
+		strong_ideological_discomfort = yes
+	}
+	pop_happiness = -0.10
+}

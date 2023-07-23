@@ -1,0 +1,249 @@
+##########################################################################
+# Limitless Stellaris - Pop Jobs
+##########################################################################
+
+##################################################
+## Overlord
+##################################################
+
+## Knight (Overlord) [Vanilla]
+# Merge between DTM, Daemonic Incursion, STU
+overlord_knight = {
+	category = specialist
+	can_set_priority = no
+	building_icon = building_order_keep
+	clothes_texture_index = 3
+	icon = knight
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+		NOT = { has_trait = trait_robot_simplistic_morality } # DTM
+	}
+
+	overlord_resources = {
+		category = knights_independent_category
+		produces = {
+			unity = 3
+			mult = value:overlord_knights_unity_output_modifier # DI +overlord
+		}
+		produces = {
+			physics_research = 2
+			engineering_research = 2
+			society_research = 2
+			mult = value:overlord_knights_research_output_modifier # DI +overlord
+		}
+	}
+
+	resources = {
+		category = knights_independent_category
+		upkeep = {
+			alloys = 1
+		}
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			always = yes
+		}
+		pop_defense_armies_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|knights_independent_category_produces_mult|
+	}
+
+	triggered_planet_modifier = {
+		planet_stability_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|knights_independent_category_produces_mult|
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			owner.overlord = { has_modifier = alloy_producing_knights }
+		}
+		country_alloys_produces_mult = 0.015
+	}
+
+	weight = {
+		weight = @overlord_job_weight
+		modifier = {
+			factor = 0
+			is_enslaved = yes
+		}
+		modifier = {
+			factor = value:job_weights_modifier|JOB|bureaucrat|RESOURCE|unity| # DI mult -> factor
+		}
+		modifier = {
+			factor = value:job_weights_research_modifier|JOB|researcher| # DI mult -> factor
+		}
+		modifier = {
+			factor = 5
+			has_job = overlord_knight
+		}
+	}
+}
+
+## Knight Drone (Overlord) [Vanilla]
+# Merge between DTM, Daemonic Incursion, STU
+overlord_knight_drone = {
+	category = complex_drone
+	can_set_priority = no
+	building_icon = building_order_keep
+	clothes_texture_index = 3
+	icon = knight
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = yes
+		}
+		NOT = { has_trait = trait_robot_simplistic_morality } # DTM
+	}
+
+	overlord_resources = {
+		category = knights_independent_category
+		produces = {
+			unity = 3
+			mult = value:overlord_knights_unity_output_modifier # DI +overlord
+		}
+		produces = {
+			physics_research = 2
+			engineering_research = 2
+			society_research = 2
+			mult = value:overlord_knights_research_output_modifier # DI +overlord
+		}
+	}
+
+	resources = {
+		category = knights_independent_category
+		upkeep = {
+			alloys = 1
+		}
+	}
+
+	triggered_pop_modifier = {
+		potential = {
+			always = yes
+		}
+		pop_defense_armies_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|knights_independent_category_produces_mult|
+	}
+
+	triggered_planet_modifier = {
+		planet_stability_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|knights_independent_category_produces_mult|
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			owner.overlord = { has_modifier = alloy_producing_knights }
+		}
+		country_alloys_produces_mult = 0.015
+	}
+
+	weight = {
+		weight = @overlord_job_weight
+		modifier = {
+			factor = 0
+			is_enslaved = yes
+		}
+		modifier = {
+			factor = value:job_weights_modifier|JOB|bureaucrat|RESOURCE|unity| # DI mult -> factor
+		}
+		modifier = {
+			factor = value:job_weights_research_modifier|JOB|researcher| # DI mult -> factor
+		}
+		modifier = {
+			factor = 5
+			has_job = overlord_knight_drone
+		}
+	}
+}
+
+## Ranger Drone (Overlord) [Vanilla]
+# Merge between Ecology, DTM, STU
+overlord_ranger_drone = {
+	category = simple_drone
+	can_set_priority = no
+	is_capped_by_modifier = yes
+	building_icon = holding_park_ranger_lodge
+	clothes_texture_index = 1
+	icon = ranger
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+	possible = { can_work_outdoors = yes } # DTM
+
+	planet_modifier = {
+		planet_stability_add = 1 # Ecology
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { has_global_flag = EcologyMod_active } # Ecology
+			exists = owner
+			owner = {
+				country_uses_consumer_goods = yes
+			}
+		}
+		planet_pops_consumer_goods_upkeep_mult = -0.1
+	}
+	
+	triggered_planet_modifier = { # Ecology
+		potential = {
+			always = yes
+		}
+		planet_amenities_no_happiness_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+	
+	resources = { # Ecology
+		category = planet_overlord_rangers
+		produces = {
+			trigger = {
+				has_global_flag = EcologyMod_active
+			}
+			waste = -20
+		}
+		produces = {
+			trigger = {
+				has_global_flag = EcologyMod_active
+				owner = { has_tradition = tr_environmentalism_conservation }
+			}
+			waste = -10
+		}
+	}
+
+	overlord_resources = {
+		category = planet_overlord_rangers
+		produces = {
+			unity = 6 # Ecology 10 -> 6
+			society_research = 4 # Ecology
+		}
+	}
+
+	weight = {
+		weight = @overlord_job_weight
+	}
+}

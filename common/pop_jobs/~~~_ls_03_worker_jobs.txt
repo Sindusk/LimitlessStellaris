@@ -1014,15 +1014,22 @@ farmer = {
 }
 
 ## Soldier
-# Merge between OSA, Bug Branch, Silfae's Portraits, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, DTM, Silfae's Portraits, Ariphaos, Scripted Trigger Undercoat
 soldier = {
 	category = worker
 	condition_string = SOLDIER_JOB_TRIGGER
 	building_icon = building_stronghold
 	clothes_texture_index = 4
 
-	country_modifier = {
-		country_naval_cap_add = 4
+	#country_modifier = {
+	#	country_naval_cap_add = 4 # DTM converts to triggered
+	#}
+
+	triggered_country_modifier = { # DTM converts to triggered
+		modifier = {
+			country_naval_cap_add = 4
+		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
 	}
 
 	resources = {
@@ -1130,6 +1137,7 @@ soldier = {
 
 	weight = {
 		weight = @soldier_job_weight
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
 		modifier = {
 			factor = 10
 			exists = planet
@@ -1201,6 +1209,50 @@ soldier = {
 		modifier = {
 			factor = 2
 			has_trait = trait_lithoid
+		}
+		modifier = { # DTM
+			factor = 2
+			has_trait = trait_huge
+		}
+		modifier = { # DTM
+			factor = 1.5
+			has_trait = trait_big
+		}
+		modifier = { # DTM
+			factor = 0.5
+			has_trait = trait_small
+		}
+		modifier = { # DTM
+			factor = 0.25
+			has_trait = trait_tiny
+		}
+		modifier = { # DTM
+			factor = 2
+			has_trait = trait_huge_lithoid
+		}
+		modifier = { # DTM
+			factor = 1.5
+			has_trait = trait_big_lithoid
+		}
+		modifier = { # DTM
+			factor = 0.5
+			has_trait = trait_small_lithoid
+		}
+		modifier = { # DTM
+			factor = 0.25
+			has_trait = trait_tiny_lithoid
+		}
+		modifier = { # DTM
+			factor = 1.5
+			has_trait = trait_aggressive
+		}
+		modifier = { # DTM
+			factor = 0.5
+			has_trait = trait_timid
+		}
+		modifier = { # DTM
+			factor = 0.25
+			has_trait = trait_sessile
 		}
 		modifier = { # Silfae's Portraits
 			factor = 3

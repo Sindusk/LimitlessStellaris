@@ -7,7 +7,7 @@
 ##################################################
 
 ## Colonist
-# Merge between OSA, Bug Branch, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, DTM, Ariphaos, Scripted Trigger Undercoat
 colonist = {
 	category = specialist
 	exempt_from_ai_amenity_prioritization = yes
@@ -29,7 +29,7 @@ colonist = {
 		pop_growth_speed = 0.05 # OSA
 	}
 
-	pop_modifier = { # Bug Branch
+	pop_modifier = {
 		pop_defense_armies_add = 1
 	}
 
@@ -68,6 +68,7 @@ colonist = {
 	weight = {
 		weight = @specialist_job_weight # Ariphaos colonist -> specialist - These aren't as important as they used to be.
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.1
 			can_take_servant_job = yes
@@ -97,7 +98,7 @@ colonist = {
 }
 
 ## Researcher
-# Merge between OSA, Bug Branch
+# Merge between OSA, Bug Branch, DTM
 researcher = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -189,6 +190,7 @@ researcher = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_research_modifier|JOB|researcher|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -215,7 +217,7 @@ researcher = {
 }
 
 ## Xeno Zoo Keeper
-# Vanilla
+# DTM version
 xeno_zoo_keeper = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -266,6 +268,7 @@ xeno_zoo_keeper = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_research_modifier|JOB|xeno_zoo_keeper|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -292,7 +295,7 @@ xeno_zoo_keeper = {
 }
 
 ## Priest
-# Merge between OSA, Bug Branch, Planetary Diversity, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, Planetary Diversity, DTM, Ariphaos, Scripted Trigger Undercoat
 priest = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -377,6 +380,7 @@ priest = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|priest|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -404,7 +408,7 @@ priest = {
 }
 
 ## Death Priest
-# Merge between OSA, Bug Branch, Planetary Diversity, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, Planetary Diversity, DTM, Ariphaos, Scripted Trigger Undercoat
 death_priest = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -495,6 +499,7 @@ death_priest = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_multiple_resources_modifier|JOB|death_priest|RESOURCE1|unity|WEIGHT1|0.75|RESOURCE2|society_research|WEIGHT2|0.25|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -522,7 +527,7 @@ death_priest = {
 }
 
 ## Enforcer
-# Merge between OSA, Bug Branch, Silfae's Portraits, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, DTM, Silfae's Portraits, Ariphaos, Scripted Trigger Undercoat
 enforcer = {
 	category = specialist
 	condition_string = BATTLE_THRALL_JOB_TRIGGER
@@ -576,7 +581,7 @@ enforcer = {
 	}
 
 	planet_modifier = {
-		planet_crime_add = -15 # LS -25 -> -15 [Balance]
+		#planet_crime_add = -25 # DTM moves to a triggered modifier
 		planet_stability_add = 1
 	}
 
@@ -609,6 +614,15 @@ enforcer = {
 		pop_ethic_authoritarian_attraction_mult = 0.05
 		planet_stability_add = 1
 	}
+	triggered_planet_modifier = { # DTM converts to triggered
+		potential = {
+			always = yes
+		}
+		modifier = {
+			planet_crime_add = -15 # LS -25 -> -15 [Balance]
+		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
+	}
 
 	triggered_planet_modifier = { # Bug Branch
 		potential = {
@@ -629,10 +643,13 @@ enforcer = {
 		modifier = {
 			planet_crime_add = -10
 		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
 	}
 
 	weight = {
 		weight = @specialist_job_weight
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 
 		modifier = {
 			mult = value:job_weights_modifier|JOB|enforcer|RESOURCE|unity|FACTOR|0.25|
@@ -730,7 +747,7 @@ enforcer = {
 }
 
 ## Telepath
-# Merge between OSA, Bug Branch, Ariphaos
+# Merge between OSA, Bug Branch, DTM, Ariphaos
 telepath = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -821,9 +838,19 @@ telepath = {
 	}
 
 	planet_modifier = {
-		planet_crime_add = -10
+		#planet_crime_add = -10 # DTM converts to triggered
 		planet_psionic_jobs_produces_mult = 0.05
 		planet_stability_add = 2.5 # OSA
+	}
+
+	triggered_planet_modifier = { # DTM converts to triggered
+		potential = {
+			always = yes
+		}
+		modifier = {
+			planet_crime_add = -10
+		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
 	}
 
 	triggered_planet_modifier = {
@@ -884,6 +911,7 @@ telepath = {
 		modifier = {
 			planet_crime_add = -10
 		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
 	}
 
 	triggered_planet_modifier = {
@@ -894,6 +922,7 @@ telepath = {
 		modifier = {
 			planet_crime_add = -30
 		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
 	}
 
 	triggered_planet_modifier = {
@@ -944,6 +973,8 @@ telepath = {
 		weight = @specialist_job_weight
 		mult = 2
 		mult = value:job_weights_modifier|JOB|telepath|RESOURCE|unity|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_crime_suppression_mult| # DTM
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -969,7 +1000,7 @@ telepath = {
 }
 
 ## Entertainer
-# Merge between OSA, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, DTM, Ariphaos, Scripted Trigger Undercoat
 entertainer = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1045,6 +1076,7 @@ entertainer = {
 		weight = @high_prio_specialist_job_weight
 		mult = value:job_weights_modifier|JOB|entertainer|RESOURCE|unity|FACTOR|0.25|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1094,7 +1126,7 @@ entertainer = {
 }
 
 ## Duelist
-# OSA version
+# Merge between OSA, DTM
 duelist = {
 	category = specialist
 	condition_string = BATTLE_THRALL_JOB_TRIGGER
@@ -1152,14 +1184,24 @@ duelist = {
 		mult = value:councilor_level|TYPE|councilor_warrior_culture|
 	}
 
-	country_modifier = {
+	#country_modifier = {
+	#	country_naval_cap_add = 2 # DTM converts to triggered
+	#}
+
+	triggered_country_modifier = { # DTM converts to triggered
+		potential = {
+			always = yes
+		}
 		country_naval_cap_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
 	}
 
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|duelist|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1186,7 +1228,7 @@ duelist = {
 }
 
 ## Culture Worker
-# OSA version
+# Merge between OSA, DTM
 culture_worker = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1225,6 +1267,7 @@ culture_worker = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|culture_worker|RESOURCE|unity|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		# We deliberately don't weight the ethics-based modifiers
 		modifier = {
 			factor = 0.2
@@ -1243,7 +1286,7 @@ culture_worker = {
 }
 
 ## Bureaucrat
-# Merge between OSA, Bug Branch, Planetary Diversity: Shroud Worlds, Subtle Polish, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Bug Branch, Planetary Diversity: Shroud Worlds, DTM, Subtle Polish, Ariphaos, Scripted Trigger Undercoat
 bureaucrat = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1326,6 +1369,7 @@ bureaucrat = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|bureaucrat|RESOURCE|unity|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = { # Subtle Polish
 			mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
 			OR = {
@@ -1356,7 +1400,7 @@ bureaucrat = {
 }
 
 ## Unifier
-# OSA version
+# Merge between OSA, DTM
 unifier = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1439,6 +1483,7 @@ unifier = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|unifier|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1465,7 +1510,7 @@ unifier = {
 }
 
 ## Chemist
-# Venture Politics version
+# Merge between OSA, Venture Politics, DTM
 chemist = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1501,6 +1546,7 @@ chemist = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|chemist|RESOURCE|volatile_motes|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1518,7 +1564,7 @@ chemist = {
 }
 
 ## Translucer
-# Venture Politics version
+# Merge between OSA, Venture Politics, DTM
 translucer = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1554,6 +1600,7 @@ translucer = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|translucer|RESOURCE|rare_crystals|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1576,7 +1623,7 @@ translucer = {
 }
 
 ## Gas Refiner
-# Venture Politics version
+# Merge between OSA, Venture Politics, DTM
 gas_refiner = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1612,6 +1659,7 @@ gas_refiner = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|gas_refiner|RESOURCE|exotic_gases|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1634,7 +1682,7 @@ gas_refiner = {
 }
 
 ## Roboticist
-# Vanilla
+# DTM version
 roboticist = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1721,10 +1769,22 @@ roboticist = {
 		upkeep = {
 			alloys = 2
 		}
+		produces = { # DTM
+			trigger = {
+				exists = planet.assembling_species
+				planet.assembling_species = { has_trait = trait_experimental }
+				exists = owner
+				owner = { has_policy_flag = roboticist_output_build_cyborgs }
+				can_assemble_cyborg_pop = yes
+			}
+			society_research = 11.25
+			mult = value:experimental_assembly_factor
+		}
 	}
 
 	weight = {
 		weight = 500
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 10
 			owner = { is_synthetic_empire = yes }
@@ -1733,7 +1793,7 @@ roboticist = {
 }
 
 ## Healthcare
-# Merge between OSA, Ariphaos
+# Merge between OSA, DTM, Ariphaos
 healthcare = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1811,6 +1871,7 @@ healthcare = {
 	weight = {
 		weight = @high_prio_specialist_job_weight
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1854,7 +1915,7 @@ healthcare = {
 }
 
 ## Manager
-# Merge between OSA, Venture Politics, Bug Branch, Planetary Diversity: Shroud Worlds, Ariphaos, Scripted Trigger Undercoat
+# Merge between OSA, Venture Politics, Bug Branch, Planetary Diversity: Shroud Worlds, DTM, Ariphaos, Scripted Trigger Undercoat
 manager = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -1946,6 +2007,7 @@ manager = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|manager|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -1968,15 +2030,20 @@ manager = {
 }
 
 ## Necromancer
-# Vanilla
+# DTM version
 necromancer = {
 	category = specialist
 	condition_string = BATTLE_THRALL_JOB_TRIGGER
 	building_icon = building_dread_encampment
 	clothes_texture_index = 3
 
-	country_modifier = {
+	#country_modifier = { # DTM converts to triggered
+	#	country_naval_cap_add = 2
+	#}
+	triggered_country_modifier = { # DTM converts to triggered
+		potential = { always = yes }
 		country_naval_cap_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
 	}
 
 	triggered_country_modifier = { #intentionally left in
@@ -1990,6 +2057,7 @@ necromancer = {
 		modifier = {
 			country_naval_cap_add = 2
 		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
 	}
 
 	pop_modifier = {
@@ -2057,6 +2125,8 @@ necromancer = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_multiple_resources_modifier|JOB|necromancer|RESOURCE1|physics_research|WEIGHT1|0.5|RESOURCE2|society_research|WEIGHT2|0.5|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 10
 			exists = planet
@@ -2192,7 +2262,7 @@ bluelotus_technician = {
 }
 
 ## Death Chronicler
-# Vanilla
+# DTM version
 death_chronicler = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -2238,6 +2308,7 @@ death_chronicler = {
 		weight = @specialist_job_weight
 		mult = 2
 		mult = value:job_weights_modifier|JOB|death_chronicler|RESOURCE|unity|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		# We deliberately don't weight the ethics-based modifiers
 		modifier = {
 			factor = 0.2
@@ -2433,7 +2504,7 @@ necro_apprentice = {
 }
 
 ## Foundry
-# Merge between OSA, Bug Branch, Ariphaos
+# Merge between OSA, Bug Branch, DTM, Ariphaos
 foundry = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -2538,6 +2609,7 @@ foundry = {
 			is_enslaved = yes
 			can_take_servant_job = no
 		}
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 5
 			has_job = foundry
@@ -2546,7 +2618,7 @@ foundry = {
 }
 
 ## Catalytic Technician
-# Merge between OSA, Bug Branch, Ariphaos
+# Merge between OSA, Bug Branch, DTM, Ariphaos
 catalytic_technician = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -2649,6 +2721,7 @@ catalytic_technician = {
 	weight = {
 		weight = @specialist_job_weight # Fairly important job
 		mult = value:job_weights_modifier|JOB|catalytic_technician|RESOURCE|alloys|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 2
 			is_enslaved = yes
@@ -2662,7 +2735,7 @@ catalytic_technician = {
 }
 
 ## Artisan
-# Bug Branch version
+# Merge between OSA, Bug Branch, DTM
 artisan = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -2738,6 +2811,7 @@ artisan = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|artisan|RESOURCE|consumer_goods|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 2
 			is_enslaved = yes
@@ -2768,7 +2842,7 @@ artisan = {
 }
 
 ## Artificer
-# Merge between OSA, Bug Branch, Ariphaos
+# Merge between OSA, Bug Branch, DTM, Ariphaos
 artificer = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -2866,6 +2940,7 @@ artificer = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_multiple_resources_modifier|JOB|artificer|RESOURCE1|consumer_goods|WEIGHT1|0.8|RESOURCE2|engineering_research|WEIGHT2|0.2|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 2
 			is_enslaved = yes
@@ -2879,7 +2954,7 @@ artificer = {
 }
 
 ## Pearl Diver
-# Merge between OSA, Bug Branch, Ariphaos
+# Merge between OSA, Bug Branch, DTM, Ariphaos
 pearl_diver = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -3051,7 +3126,7 @@ pearl_diver = {
 }
 
 ## Reassigner
-# Vanilla
+# DTM version
 reassigner = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -3101,11 +3176,12 @@ reassigner = {
 
 	weight = {
 		weight = 500
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 	}
 }
 
 ## Bath Attendant
-# OSA version
+# Merge between OSA, DTM, Ariphaos
 bath_attendant = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -3158,6 +3234,7 @@ bath_attendant = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_multiple_resources_modifier|JOB|artificer|RESOURCE1|consumer_goods|WEIGHT1|0.8|RESOURCE2|engineering_research|WEIGHT2|0.2|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 2
 			is_enslaved = yes
@@ -3171,7 +3248,7 @@ bath_attendant = {
 }
 
 ## Knight
-# Vanilla
+# DTM version
 knight = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -3191,6 +3268,7 @@ knight = {
 		owner = {
 			is_gestalt = no
 		}
+		NOT = { has_trait = trait_robot_simplistic_morality } # DTM
 	}
 
 	resources = {
@@ -3231,6 +3309,7 @@ knight = {
 	triggered_country_modifier = {
 		country_naval_cap_add = 4
 		mult = value:scripted_modifier_mult|MODIFIER|knights_independent_category_produces_mult|
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
 	}
 
 	triggered_country_modifier = {
@@ -3242,6 +3321,7 @@ knight = {
 
 	weight = {
 		weight = @high_prio_specialist_job_weight
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		factor = 1.2
 		add = 5 #Somehow pops preferred to work as squires than as knights. No more.
 		modifier = {
@@ -3254,7 +3334,7 @@ knight = {
 }
 
 ## Archaeo-Engineers
-# Merge between OSA, GPM, Scripted Trigger Undercoat
+# Merge between OSA, DTM, GPM, Scripted Trigger Undercoat
 archaeoengineers = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -3332,6 +3412,7 @@ archaeoengineers = {
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_research_modifier|JOB|archaeoengineers|
+		mult = value:dtraits_specialist_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no

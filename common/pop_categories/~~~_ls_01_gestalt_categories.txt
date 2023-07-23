@@ -7,7 +7,7 @@
 ##################################################
 
 ## Complex Drone
-# Merge between OSA, Lithoid Supremacy, Plentiful Perks, Scripted Trigger Undercoat
+# Merge between OSA, Lithoid Supremacy, DTM, Plentiful Perks, Scripted Trigger Undercoat
 complex_drone = {
 	rank = 0
 	clothes_texture_index = 2
@@ -17,8 +17,21 @@ complex_drone = {
 	# Undercoat - Blank by default
 	inline_script = "pop_categories/standard_pop_modifiers"
 
+	assign_to_pop = { # DTM
+		has_trait = trait_multihive_drone
+		is_unemployed = no
+		OR = {
+			has_job_category = specialist
+			has_job_category = ruler
+		}
+	}
+
 	weight = {
 		weight = 2
+		modifier = { # DTM - outweight Specialist
+			factor = 2
+			has_trait = trait_multihive_drone
+		}
 	}
 
 	pop_modifier = {
@@ -97,13 +110,7 @@ complex_drone = {
 		inline_script = "pop_categories/cyborg_upkeep"
 
 		# Exotic Metabolism Upkeep
-		upkeep = {
-			trigger = {
-				is_organic_species = yes
-				has_trait = trait_exotic_metabolism
-			}
-			exotic_gases = @exotic_metabolism
-		}
+		inline_script = "pop_categories/strategic_resource_upkeep" # DTM
 
 		# Resource Production
 
@@ -268,7 +275,7 @@ complex_drone = {
 }
 
 ## Simple Drone
-# Merge between OSA, Lithoid Supremacy, Plentiful Perks, Scripted Trigger Undercoat
+# Merge between OSA, Lithoid Supremacy, DTM, Plentiful Perks, Scripted Trigger Undercoat
 simple_drone = {
 	rank = 0
 	clothes_texture_index = 2
@@ -280,11 +287,26 @@ simple_drone = {
 
 	# This is called whenever a Pop is created, moved to a different planet, or gets a new owner
 	assign_to_pop = {
-		exists = owner
-		owner = { is_gestalt = yes }
+		OR = { # DTM
+			AND = {
+				exists = owner
+				owner = { is_gestalt = yes }		
+			}
+			AND = { # DTM
+				has_trait = trait_multihive_drone
+				NOR = {
+					has_job_category = specialist
+					has_job_category = ruler
+				}
+			}
+		}
 	}
 	weight = {
 		weight = 1
+		modifier = { # DTM
+			factor = 3
+			has_trait = trait_multihive_drone
+		}
 	}
 
 	pop_modifier = {
@@ -384,13 +406,7 @@ simple_drone = {
 		inline_script = "pop_categories/cyborg_upkeep"
 
 		# Exotic Metabolism Upkeep
-		upkeep = {
-			trigger = {
-				is_organic_species = yes
-				has_trait = trait_exotic_metabolism
-			}
-			exotic_gases = @exotic_metabolism
-		}
+		inline_script = "pop_categories/strategic_resource_upkeep" # DTM
 
 		# Resource Production
 

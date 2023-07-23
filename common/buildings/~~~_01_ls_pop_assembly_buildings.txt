@@ -1329,7 +1329,7 @@ building_necrophage_house_of_apotheosis = {
 ##################################################
 
 ## Clone Vats (Tier 1) [Vanilla]
-# Merge between Sort Buildings, OSA, EUTAB, Bug Branch, Real Space: Planetary Stations, Expanded Megastructures and Technology, StarTech
+# Merge between Sort Buildings, OSA, EUTAB, Bug Branch, Real Space: Planetary Stations, DTM, Expanded Megastructures and Technology, StarTech
 building_clone_vats = {
 	base_buildtime = @db1_time
 	position_priority = 2012000 # Sort Buildings
@@ -1578,6 +1578,29 @@ building_clone_vats = {
 				owner = { has_modifier = genesis_cloning_vats }
 			}
 			minerals = 10
+		}
+
+		produces = { # Diagrapher's Trait Mod
+			trigger = {
+				exists = assembling_species
+				assembling_species = {
+					has_trait = trait_experimental
+				}
+			}
+			society_research = 15
+			mult = value:experimental_assembly_factor
+		}
+		produces = { # Diagrapher's Trait Mod
+			trigger = {
+				exists = assembling_species
+				assembling_species = {
+					has_trait = trait_experimental
+				}
+				exists = owner
+				owner = { has_tradition = tr_genetics_efficient_cloning }
+			}
+			society_research = 7.5
+			mult = value:experimental_assembly_factor
 		}
 	}
 	
@@ -1868,6 +1891,29 @@ building_clone_birth_labs = {
 				owner = { has_modifier = genesis_cloning_vats }
 			}
 			minerals = 20
+		}
+
+		produces = { # Diagrapher's Trait Mod
+			trigger = {
+				exists = assembling_species
+				assembling_species = {
+					has_trait = trait_experimental
+				}
+			}
+			society_research = 15
+			mult = value:experimental_assembly_factor
+		}
+		produces = { # Diagrapher's Trait Mod
+			trigger = {
+				exists = assembling_species
+				assembling_species = {
+					has_trait = trait_experimental
+				}
+				exists = owner
+				owner = { has_tradition = tr_genetics_efficient_cloning }
+			}
+			society_research = 7.5
+			mult = value:experimental_assembly_factor
 		}
 	}
 

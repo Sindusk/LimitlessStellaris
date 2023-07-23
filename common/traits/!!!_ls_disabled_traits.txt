@@ -6,7 +6,7 @@
 ## Leader Traits
 ##################################################
 
-## Archaeologist Trait (Expanded Stellaris Traditions)
+## Archaeologist Trait [Expanded Stellaris Traditions]
 # Disabled. Bugged trait with bad localisation and way more powerful than the vanilla trait which does the same thing.
 leader_trait_archaeologist_ancrel_est_2 = {
 	cost = 1

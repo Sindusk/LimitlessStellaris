@@ -7,7 +7,7 @@
 ##################################################
 
 ## Head Researcher
-# Merge between OSA, Silfae's Portraits
+# Merge between OSA, DTM, Silfae's Portraits
 head_researcher = {
 	category = ruler
 	condition_string = RULER_JOB_TRIGGER
@@ -37,9 +37,9 @@ head_researcher = {
 		category = planet_researchers
 		produces = {
 			unity = 2
-			physics_research = 5 # OSA 6 -> 5
-			engineering_research = 5 # OSA 6 -> 5
-			society_research = 5 # OSA 6 -> 5
+			physics_research = 6 # OSA 6 -> 5 # LS 5 -> 6 [Balance]
+			engineering_research = 6 # OSA 6 -> 5 # LS 5 -> 6 [Balance]
+			society_research = 6 # OSA 6 -> 5 # LS 5 -> 6 [Balance]
 		}
 		upkeep = {
 			consumer_goods = 2
@@ -92,6 +92,7 @@ head_researcher = {
 		mult = value:job_weights_research_modifier|JOB|head_researcher|
 		mult = value:job_weights_modifier|JOB|head_researcher|RESOURCE|unity|FACTOR|0.25|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_ruler_job_weight_factor # DTM
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -127,7 +128,7 @@ head_researcher = {
 }
 
 ## High Priest
-# Merge between OSA, Bug Branch, Planetary Diversity: Shroud Worlds
+# Merge between OSA, Bug Branch, Planetary Diversity: Shroud Worlds, DTM
 high_priest = {
 	category = ruler
 	condition_string = RULER_JOB_TRIGGER
@@ -231,6 +232,7 @@ high_priest = {
 		weight = @ruler_job_weight
 		mult = value:job_weights_modifier|JOB|high_priest|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_ruler_job_weight_factor # DTM
 		modifier = {
 			factor = 0.1
 			has_citizenship_rights = no
@@ -256,7 +258,7 @@ high_priest = {
 }
 
 ## Politician
-# Merge between OSA, Bug Branch
+# Merge between OSA, Bug Branch, DTM
 politician = {
 	category = ruler
 	condition_string = RULER_JOB_TRIGGER
@@ -312,6 +314,7 @@ politician = {
 		weight = @ruler_job_weight
 		mult = value:job_weights_modifier|JOB|politician|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_ruler_job_weight_factor # DTM
 		modifier = {
 			factor = 0.1
 			has_citizenship_rights = no
@@ -337,7 +340,7 @@ politician = {
 }
 
 ## Noble
-# Merge between OSA, Bug Branch
+# Merge between OSA, Bug Branch, DTM
 noble = {
 	category = ruler
 	condition_string = RULER_JOB_TRIGGER
@@ -391,6 +394,7 @@ noble = {
 		weight = @ruler_job_weight
 		mult = value:job_weights_modifier|JOB|noble|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:dtraits_ruler_job_weight_factor # DTM
 		modifier = {
 			factor = 0.1
 			has_citizenship_rights = no
@@ -423,7 +427,7 @@ noble = {
 }
 
 ## Merchant
-# Merge between OSA, Venture Politics, Bug Branch
+# Merge between OSA, Venture Politics, Bug Branch, DTM
 merchant = {
 	category = ruler
 	condition_string = RULER_JOB_TRIGGER
@@ -493,6 +497,7 @@ merchant = {
 		weight = @ruler_job_weight
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:dtraits_ruler_job_weight_factor # DTM
 		modifier = {
 			factor = 5
 			has_job = merchant
@@ -520,7 +525,7 @@ merchant = {
 }
 
 ## Executive
-# Merge between OSA, Bug Branch
+# Merge between OSA, Bug Branch, DTM
 executive = {
 	category = ruler
 	condition_string = RULER_JOB_TRIGGER
@@ -606,6 +611,7 @@ executive = {
 		mult = value:job_weights_modifier|JOB|executive|RESOURCE|unity|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
 		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:dtraits_ruler_job_weight_factor # DTM
 		modifier = {
 			factor = 5
 			has_job = executive
@@ -633,7 +639,7 @@ executive = {
 }
 
 ## Knight Commander
-# Vanilla
+# DTM version
 knight_commander = {
 	category = ruler
 	condition_string = RULER_JOB_TRIGGER
@@ -685,11 +691,13 @@ knight_commander = {
 
 	triggered_country_modifier = {
 		country_naval_cap_add = 6
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_naval_cap_mult| # DTM
 		mult = value:scripted_modifier_mult|MODIFIER|knights_independent_category_produces_mult|
 	}
 
 	weight = {
 		weight = @high_prio_specialist_job_weight
+		mult = value:dtraits_ruler_job_weight_factor # DTM
 		modifier = {
 			mult = value:job_weights_modifier|JOB|bureaucrat|RESOURCE|unity|
 			owner = { has_country_flag = toxoids_7011_a }
