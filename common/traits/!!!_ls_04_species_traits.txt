@@ -1,0 +1,1245 @@
+##########################################################################
+# Limitless Stellaris - Traits
+##########################################################################
+
+# Vanilla Variables
+@non_job_trait_prio_1 = 1.25
+@non_job_trait_prio_2 = 1.5
+@non_job_trait_prio_3 = 2
+@non_job_trait_prio_4 = 3
+
+##################################################
+## Species Traits - Energy
+##################################################
+
+## <2> Ingenious [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_ingenious = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_worker_specialization_trigger = {
+			type = energy
+			designation = generator
+			designation_2 = rural
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_inept" } # OSA
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.3 # OSA 0.15 -> 0.25 # DTM 0.25 -> 0.3
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:specialist_specialization_weight
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_generator_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
+##################################################
+## Species Traits - Minerals
+##################################################
+
+## <2> Industrious [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_industrious = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_worker_specialization_trigger = {
+			type = minerals
+			designation = mining
+			designation_2 = rural
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_lackadaisical" } # OSA
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.3 # OSA 0.15 -> 0.25 # DTM 0.25 -> 0.3
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			has_valid_civic = civic_mining_guilds
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_mining_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
+##################################################
+## Species Traits - Food
+##################################################
+
+## <2> Agrarian [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_agrarian = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_worker_specialization_trigger = {
+			type = food
+			designation = farming
+			designation_2 = rural
+		}
+	}
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	opposites = { "trait_witherer" } # OSA
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_food_produces_mult = 0.3 # OSA 0.15 -> 0.25 # DTM 0.25 -> 0.3
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_agrarian_empire = yes
+		}
+		mult = value:specialist_specialization_weight
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_farming_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
+##################################################
+## Species Traits - Unity
+##################################################
+
+## <1> Traditional [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_traditional = {
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		OR = {
+			dtraits_ai_specialist_specialization_trigger = {
+				type = unity
+				designation = unity
+				designation_2 = trade
+				clerk_type = yes
+			}
+			has_citizenship_type = {
+				type = citizenship_organic_trophy
+				country = from
+			}
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_quarrelsome" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.2 # DTM 0.1 -> 0.2
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_3
+			is_spiritualist = yes
+		}
+		modifier = {
+			mult = 0.5
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			mult = 0.25
+			has_ethic = ethic_fanatic_materialist
+		}
+		modifier = {
+			mult = 0.5
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			mult = 0.25
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = {
+			mult = 6
+			is_servitor_empire = yes
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_unity_designation = yes }
+		}
+		modifier = {
+			add = 1.5
+			from = { has_building = building_order_keep }
+		}
+	}
+}
+
+## <-1> Quarrelsome [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_quarrelsome = {
+	cost = -1
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 1
+			specialists = yes
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_traditional"
+		"trait_natural_philosophers" # OSA
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_unity_produces_mult = -0.2 # DTM -0.1 -> -0.2
+	}
+	ai_weight = {
+		weight = 10 # DTM 1 -> 10
+		mult = value:dtraits_negative_trait_specialist_weight # DTM
+		modifier = { # DTM
+			factor = 0.1
+			is_pacifist = yes
+		}
+		modifier = { # DTM
+			factor = 0.1
+			is_authoritarian = yes
+		}
+		modifier = { # DTM
+			factor = 0.1
+			has_tradition = tr_harmony_adopt
+		}
+		modifier = {
+			factor = 0
+			years_passed > 5
+		}
+	}
+	slave_cost = {
+		energy = -400 # DTM -200 -> -400
+	}
+}
+
+##################################################
+## Species Traits - Research
+##################################################
+
+### --- General Research --- ###
+
+## <2> Intelligent [Vanilla]
+# Merge between OSA, DTM, Trait Upgrader
+trait_intelligent = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_specialist_specialization_trigger = {
+			type = research
+			designation = research
+			designation_2 = trade
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nerve_stapled" "trait_erudite" "trait_enigmatic_intelligence_poor" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.20 # DTM 0.10 -> 0.20
+		planet_jobs_society_research_produces_mult = 0.20 # DTM 0.10 -> 0.20
+		planet_jobs_engineering_research_produces_mult = 0.20 # DTM 0.10 -> 0.20
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_materialist = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_research_designation = yes }
+		}
+		modifier = {
+			add = 1.5
+			from = { has_building = building_order_keep }
+		}
+	}
+}
+
+### --- Physics Research --- ###
+
+## <1> Natural Physicists [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_natural_physicists = {
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_specialist_specialization_trigger = {
+			type = research
+			designation = research
+			designation_2 = trade
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_natural_engineers"
+		"trait_natural_sociologists"
+		"trait_natural_mathematicians" # OSA
+		"trait_natural_philosophers" # OSA
+		"trait_nerve_stapled"
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.3 # DTM 0.15 -> 0.30
+	}
+	custom_tooltip_with_modifiers = TRAIT_NATURAL_SCIENTIST_ETHICS_EFFECTs # DTM
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_materialist = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1
+			from = { has_research_designation = yes }
+		}
+		modifier = {
+			add = 1
+			from = { has_building = building_order_keep }
+		}
+	}
+}
+
+### --- Society Research --- ###
+
+## <1> Natural Sociologists [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_natural_sociologists = {
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_specialist_specialization_trigger = {
+			type = research
+			designation = research
+			designation_2 = trade
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_natural_physicists"
+		"trait_natural_engineers"
+		"trait_natural_mathematicians" # OSA
+		"trait_natural_philosophers" # OSA
+		"trait_nerve_stapled"
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.3 # DTM 0.15 -> 0.30
+	}
+	custom_tooltip_with_modifiers = TRAIT_NATURAL_SCIENTIST_ETHICS_EFFECTs # DTM
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_materialist = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			OR = {
+				has_ascension_perk = ap_engineered_evolution
+				has_ascension_perk = ap_mind_over_matter
+			}
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1
+			from = { has_research_designation = yes }
+		}
+		modifier = {
+			add = 1
+			from = { has_building = building_order_keep }
+		}
+	}
+}
+
+### --- Engineering Research --- ###
+
+## <1> Natural Engineers [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_natural_engineers = {
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = {
+		dtraits_ai_specialist_specialization_trigger = {
+			type = research
+			designation = research
+			designation_2 = trade
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_natural_physicists"
+		"trait_natural_sociologists"
+		"trait_natural_mathematicians" # OSA
+		"trait_natural_philosophers" # OSA
+		"trait_nerve_stapled"
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_engineering_research_produces_mult = 0.3 # DTM 0.15 -> 0.30
+	}
+	custom_tooltip_with_modifiers = TRAIT_NATURAL_SCIENTIST_ETHICS_EFFECTs # DTM
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = {
+		weight = 1
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_materialist = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_crafter_empire = yes
+		}
+		modifier = {
+			mult = 1.25
+			OR = {
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_colossus
+				has_ascension_perk = ap_galactic_wonders_utopia
+				has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+			}
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1
+			from = { has_research_designation = yes }
+		}
+		modifier = {
+			add = 1
+			from = { has_building = building_order_keep }
+		}
+	}
+}
+
+##################################################
+## Species Traits - Trade
+##################################################
+
+## <2> Thrifty [Vanilla]
+# Merge between OSA, DTM, Trait Upgrader
+trait_thrifty = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_worker_specialization_trigger = {
+			type = trade
+			designation = trade
+			designation_2 = resort
+			clerk_type = yes
+		}
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	opposites = {
+		"trait_hive_mind"
+		"trait_spendthrifts" # DTM
+	}
+	modifier = {
+		pop_job_trade_mult = 0.50 # DTM 0.25 -> 0.50
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			OR = {
+				is_megacorp = yes
+				has_valid_civic = civic_merchant_guilds				
+			}
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_trade_designation = yes }
+		}
+	}
+}
+
+##################################################
+## Species Traits - Pop Growth
+##################################################
+
+## <2> Rapid Breeders [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_rapid_breeders = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_breeding_trigger = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_slow_breeders"
+		"trait_very_rapid_breeders" # DTM
+		"trait_very_slow_breeders" # DTM
+		"trait_plantoid_budding"
+		"trait_lithoid_budding"
+		"trait_fertile"
+		"trait_rapid_breeders_lithoid"
+		"trait_sterile" # DTM
+		"trait_vat_grown"
+		"trait_tiyanki"
+		"trait_dimorphic_male" # DTM
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_growth_speed = 0.10
+	}
+	slave_cost = {
+		energy = 1000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:dtraits_breeding_weight
+	}
+}
+
+## <2> Rapid Breeders (Lithoid) [Vanilla]
+# Merge between OSA, DTM, Trait Upgrader, Ariphaos
+trait_rapid_breeders_lithoid = {
+	cost = 2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_habitability_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	icon = "gfx/interface/icons/traits/trait_rapid_breeders.dds"
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	potential_crossbreeding_chance = 0.5
+	opposites = {
+		"trait_slow_breeders"
+		"trait_rapid_breeders"
+		"trait_fertile"
+		"trait_very_rapid_breeders" # DTM
+		"trait_very_rapid_breeders_lithoid" # DTM
+		"trait_very_slow_breeders" # DTM
+		"trait_sterile" # DTM
+		"trait_plantoid_budding"
+		"trait_lithoid_budding"
+		"trait_vat_grown" # DTM
+		"trait_tiyanki"
+		"trait_dimorphic_male" # DTM
+	}
+	allowed_archetypes = { LITHOID }
+	modifier = {
+		pop_growth_speed = 0.10
+	}
+	slave_cost = {
+		energy = 2000
+	}
+	ai_weight = { # DTM
+		weight = value:dtraits_breeding_weight
+	}
+}
+
+## <-2> Slow Breeders [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_slow_breeders = {
+	cost = -2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 2
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_rapid_breeders"
+		"trait_very_rapid_breeders" # DTM
+		"trait_very_slow_breeders" # DTM
+		"trait_fertile"
+		"trait_sterile" # DTM
+		"trait_rapid_breeders_lithoid"
+		"trait_plantoid_budding"
+		"trait_lithoid_budding"
+		"trait_vat_grown"
+		"trait_tiyanki"
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID } # OSA +LITHOID
+	modifier = {
+		pop_growth_speed = -0.10
+	}
+	slave_cost = {
+		energy = -1000
+	}
+	ai_weight = { # DTM
+		weight = 20
+		modifier = {
+			factor = 1.5
+			is_environmentalist_empire = yes
+		}
+		modifier = {
+			factor = 1.25
+			is_agrarian_empire = yes
+		}
+		modifier = {
+			factor = 0.5
+			has_tradition = tr_expansion_adopt
+		}
+	}
+}
+
+##################################################
+## Species Traits - Empire Size
+##################################################
+
+## <2> Docile [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_docile = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_unruly" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		pop_happiness = 0.1 # OSA
+		species_empire_size_mult = -0.10 # DTM -0.10 -> -0.20 # LS -0.20 -> -0.10 [Balance]
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_authoritarian = yes
+		}
+		modifier = {
+			mult = 0
+			is_egalitarian = yes
+		}
+	}
+}
+
+## <-2> Unruly [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_unruly = {
+	cost = -2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 2
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_docile" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		pop_happiness = -0.05 # OSA
+		species_empire_size_mult = 0.10 # DTM 0.10 -> 0.20 # LS 0.20 -> 0.10 [Balance]
+	}
+	slave_cost = {
+		energy = -400 # DTM -200 -> -400
+	}
+	ai_weight = { # DTM
+		weight = 20
+		modifier = {
+			factor = 0.1
+			is_authoritarian = yes
+		}
+	}
+}
+
+##################################################
+## Species Traits - Habitability
+##################################################
+
+## <4> Extremely Adaptive [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_extremely_adaptive = {
+	cost = 4
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_nonadaptive"
+		"trait_adaptive"
+		"trait_robust"
+		"trait_adaptive_lithoid"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	random_weight = { # DTM
+		MAM = 5
+		MOL = 0.5
+		NECROID = 2
+		TOX = 5
+	}
+	modifier = {
+		pop_environment_tolerance = 0.40 # DTM 0.20 -> 0.40
+	}
+	species_potential_add = { # DTM
+		OR = {
+			NOT = { has_global_flag = game_started }
+			NOT = { exists = from }
+			NOT = { has_trait = trait_adaptive }
+			from = { can_remove_beneficial_genetic_traits = yes }
+		}
+		dtraits_ai_habitability_trigger = yes
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:dtraits_adaptiveness_weight
+	}
+}
+
+## <2> Adaptive [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_adaptive = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_habitability_trigger = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_nonadaptive"
+		"trait_extremely_adaptive"
+		"trait_robust"
+		"trait_adaptive_lithoid"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	random_weight = { # DTM
+		HUM = 5
+		MAM = 5
+		MOL = 0.5
+		NECROID = 2
+		TOX = 5
+	}
+	modifier = {
+		pop_environment_tolerance = 0.20 # DTM 0.10 -> 0.20
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:dtraits_adaptiveness_weight
+	}
+}
+
+## <2> Adaptive (Lithoid) [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_adaptive_lithoid = {
+	cost = 2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_habitability_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	icon = "gfx/interface/icons/traits/trait_adaptive.dds"
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	potential_crossbreeding_chance = 0.5
+	opposites = { "trait_nonadaptive" "trait_extremely_adaptive" "trait_robust" "trait_adaptive" }
+	allowed_archetypes = { LITHOID }
+	modifier = {
+		pop_environment_tolerance = 0.20 # DTM 0.10 -> 0.20
+	}
+	ai_weight = { # DTM
+		weight = value:dtraits_adaptiveness_weight
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+}
+
+## <-2> Nonadaptive [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_nonadaptive = {
+	cost = -2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 2
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_adaptive"
+		"trait_extremely_adaptive"
+		"trait_robust"
+		"trait_adaptive_lithoid"
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID } # OSA +LITHOID
+	random_weight = { # DTM
+		MAM = 0.5
+		MOL = 5
+		NECROID = 5
+	}
+	modifier = {
+		pop_environment_tolerance = -0.20 # DTM -0.10 -> -0.20
+	}
+	slave_cost = {
+		energy = -400 # DTM -200 -> -400
+	}
+	ai_weight = { # DTM
+		weight = 20
+		modifier = {
+			mult = 2
+			OR = {
+				has_ascension_perk = ap_world_shaper
+				has_ascension_perk = ap_voidborn
+			}	
+		}
+		modifier = {
+			mult = 0.1
+			has_tradition = tr_adaptability_adopt
+		}
+	}
+}
+
+##################################################
+## Species Traits - Leaders
+##################################################
+
+### --- Leader Traits --- ###
+
+## <1> Talented [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader, Leader Traits: Merge-Add
+trait_talented = {
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_leaders_trigger = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	opposites = {
+		"trait_nerve_stapled"
+		"trait_unskilled" # OSA
+	}
+	modifier = {
+		negative_leader_traits_species = -1
+		leaders_upkeep_mult = -0.1
+		planet_jobs_specialist_produces_mult = 0.025 # OSA
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:dtraits_leaders_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			has_valid_civic = civic_meritocracy
+		}
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_memory_vault_empire = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_1
+			has_valid_civic = civic_heroic_tales
+		}
+	}
+}
+
+### --- Experience Gain --- ###
+
+## <1> Quick Learners [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_quick_learners = {
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_leaders_trigger = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_slow_learners" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		species_leader_exp_gain = 0.5 # DTM 0.1 -> 0.5
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:dtraits_leaders_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			has_valid_civic = civic_meritocracy
+		}
+	}
+}
+
+## <-1> Slow Learners [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_slow_learners = {
+	cost = -1
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 1
+			leaders = yes
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_quick_learners" "trait_enigmatic_intelligence" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		species_leader_exp_gain = -0.5 # DTM -0.25 -> -0.50
+	}
+	slave_cost = {
+		energy = -400 # DTM -200 -> -400
+	}
+	ai_weight = { # DTM
+		weight = 10
+		mult = value:dtraits_negative_trait_leaders_weight
+	}
+}
+
+##################################################
+## Species Traits - Army
+##################################################
+
+## <3> Very Strong [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_very_strong = {
+	cost = 3
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_weak" "trait_strong" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	random_weight = { # DTM - mtrt
+		ART = 0.5
+	}
+	modifier = {
+		army_damage_mult = 0.80 # DTM 0.40 -> 0.80
+		planet_jobs_worker_produces_mult = 0.10 # DTM 0.05 -> 0.10
+	}
+	custom_tooltip_with_modifiers = TRAIT_VERY_STRONG_ETHICS_EFFECT # DTM
+	slave_cost = {
+		energy = 4000 # DTM 2,000 -> 4,000
+	}
+	species_potential_add = { # DTM
+		OR = {
+			NOT = { has_global_flag = game_started }
+			NOT = { exists = from }
+			NOT = { has_trait = trait_strong }
+			from = { can_remove_beneficial_genetic_traits = yes }
+		}
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_militarist = yes
+		}
+		modifier = {
+			mult = 0.5
+			is_pacifist = yes
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 0.5
+			from = {
+				OR = {
+					has_farming_designation = yes
+					has_generator_designation = yes
+					has_mining_designation = yes
+					has_rural_designation = yes
+				}
+			}
+		}
+		modifier = {
+			add = 1.5
+			from = {
+				has_fortress_designation = yes
+			}
+		}
+	}
+}
+
+## <1> Strong [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_strong = {
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_weak" "trait_very_strong" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	random_weight = { # DTM
+		ART = 0.5
+	}
+	modifier = {
+		army_damage_mult = 0.40 # DTM 0.20 -> 0.40
+		planet_jobs_worker_produces_mult = 0.05 # DTM 0.025 -> 0.05
+	}
+	custom_tooltip_with_modifiers = TRAIT_STRONG_ETHICS_EFFECT # DTM
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_militarist = yes
+		}
+		modifier = {
+			mult = 0.5
+			is_pacifist = yes
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 0.25
+			from = {
+				OR = {
+					has_farming_designation = yes
+					has_generator_designation = yes
+					has_mining_designation = yes
+					has_rural_designation = yes
+				}
+			}
+		}
+		modifier = {
+			add = 0.75
+			from = {
+				has_fortress_designation = yes
+			}
+		}
+	}
+}
+
+## <-1> Weak [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
+trait_weak = {
+	cost = -1
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 1
+			workers = yes
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_strong" "trait_very_strong" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	random_weight = { # DTM
+		ART = 5
+	}
+	modifier = {
+		army_damage_mult = -0.40 # DTM -0.20 -> -0.40
+		planet_jobs_worker_produces_mult = -0.05 # DTM -0.025 -> -0.05
+	}
+	custom_tooltip_with_modifiers = TRAIT_WEAK_ETHICS_EFFECT # DTM
+	slave_cost = {
+		energy = -2000 # DTM -1,000 -> -2,000
+	}
+	ai_weight = { # DTM
+		weight = 10
+		mult = value:dtraits_negative_trait_worker_weight
+		modifier = {
+			mult = 0.5
+			is_militarist = yes
+		}
+		modifier = {
+			mult = 10
+			is_servitor_empire = yes
+		}
+	}
+	assembly_score = {
+		modifier = {
+			subtract = 0.25
+			from = {
+				OR = {
+					has_farming_designation = yes
+					has_generator_designation = yes
+					has_mining_designation = yes
+					has_rural_designation = yes
+				}
+			}
+		}
+		modifier = {
+			subtract = 0.75
+			from = {
+				has_fortress_designation = yes
+			}
+		}
+	}
+}
