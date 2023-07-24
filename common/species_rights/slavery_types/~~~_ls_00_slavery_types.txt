@@ -67,7 +67,7 @@ slavery_domestic = {
 }
 
 ## Indentured
-# Merge between OSA, StarTech, Ariphaos
+# Merge between OSA, DTM, StarTech, Ariphaos
 slavery_indentured = {
 	pop_modifier = {
 		planet_jobs_produces_mult = 0.10 # OSA
@@ -141,6 +141,7 @@ slavery_indentured = {
 		modifier = { # Ariphaos
 			factor = 0.1
 			OR = {
+				has_trait = trait_subsapient_form # DTM
 				has_trait = trait_quarrelsome
 				has_trait = trait_repugnant
 			}
@@ -164,7 +165,7 @@ slavery_indentured = {
 }
 
 ## Livestock
-# Merge between OSA, Bug Branch, StarTech, Ariphaos
+# Merge between OSA, Bug Branch, DTM, StarTech, Ariphaos
 slavery_livestock = {
 	pop_modifier = {
 		planet_farmers_food_produces_mult = 2.0 # OSA
@@ -221,9 +222,30 @@ slavery_livestock = {
 		factor = 3
 		modifier = {
 			factor = 0
-			NOR = {
-				has_trait = trait_delicious
-				from = { is_hive_empire = yes } # Merged
+			NOR = { # DTM reworks entire block
+				has_trait = trait_felsic
+				AND = {
+					OR = {
+						has_trait = trait_delicious
+						from = { has_trait = trait_carnivore }
+						AND = {
+							from = { has_trait = trait_carnivore }
+							NOT = { is_species_class = PLANT }
+						}
+					}
+					NOR = {
+						has_trait = trait_poisonous
+						from = { has_trait = trait_grazer }
+					}
+				}
+				from = {
+					is_hive_empire = yes
+					is_xenophile = no
+					OR = {
+						is_pacifist = no
+						is_xenophobe = yes
+					}
+				}
 			}
 		}
 		modifier = {

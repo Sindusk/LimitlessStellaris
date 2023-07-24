@@ -1,0 +1,243 @@
+##########################################################################
+# Limitless Stellaris - Species Rights
+##########################################################################
+
+##################################################
+## Military Service
+##################################################
+
+## Full
+# Merge between DTM, Subtle Polish, Ariphaos, STU
+military_service_full = {
+	potential = {
+		if = {
+			limit = {
+				from = { is_machine_empire = yes } # STU
+			}
+			OR = {
+				is_robotic = yes # Subtle Polish improvement
+				has_trait = trait_cybernetic
+				from = { has_valid_civic = civic_machine_servitor } # Subtle Polish
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = MACHINE_NO_PURE_ORGANIC_SOLDIERS
+			if = {
+				limit = {
+					from = { is_machine_empire = yes } # STU
+				}
+				OR = {
+					is_robotic = yes # Subtle Polish improvement
+					AND = {
+						has_trait = trait_cybernetic
+						from = {
+							is_machine_assimilator = yes # STU
+						}
+					}
+					AND = { # Subtle Polish
+						has_species_flag = allow_leaders_organic_advisors@from
+						has_citizenship_type = {
+							country = from
+							type = citizenship_organic_trophy
+						}
+						from = { has_valid_civic = civic_machine_servitor }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = is_undesirables_tooltip
+			NOR = {
+				has_citizenship_type = {
+					country = from
+					type = citizenship_purge_machine
+				}
+				has_citizenship_type = {
+					country = from
+					type = citizenship_purge
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = is_slaves_tooltip
+			OR = { # Subtle Polish improved block
+				NOT = {
+					has_citizenship_type = {
+						country = from
+						type = citizenship_slavery
+					}
+				}
+				has_slavery_type = { # Subtle Polish
+					country = from
+					type = slavery_military
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = is_serviles_tooltip
+			NOT = { has_trait = trait_syncretic_proles }
+		}
+		custom_tooltip = {
+			fail_text = is_servitude_tooltip
+			NOT = {
+				has_citizenship_type = {
+					country = from
+					type = citizenship_robot_servitude
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = too_alien
+			OR = {
+				is_same_species = from
+				has_species_flag = allow_military_leaders_honored_protectors@from # surprise flag that will help us later # Subtle Polish
+				from = { is_xenophobe = no } # Subtle Polish improvement
+			}
+		}
+		custom_tooltip = { # Subtle Polish
+			fail_text = necrophage_only_allows_necrophage_leaders
+			OR = {
+				has_trait = trait_necrophage
+				has_species_flag = allow_military_leaders_honored_protectors@from # surprise flag that will help us later
+				from = { btml_is_necrophage_empire = no }
+			}
+		}
+		custom_tooltip = {
+			fail_text = "HIVE_MIND_SPECIES_CITIZENS_ONLY"
+			OR = {
+				from = { is_hive_empire = no } # Subtle Polish improvement
+				has_trait = trait_hive_mind
+			}
+		}
+		custom_tooltip = {
+			fail_text = NON_MACHINE_SPECIES_NEED_PREREQ_TECH
+			if = {
+				limit = { is_robotic = yes } # Subtle Polish improvement
+				from = {
+					OR = {
+						is_machine_empire = yes # STU
+						has_technology = tech_synthetic_leaders # Subtle Polish droid_workers -> synthetic_leaders
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = nerve_stapled_cannot_lead_armies
+			btml_is_species_smart_enough_for_leadership = yes # Subtle Polish improvement
+			#can_think = yes # Ariphaos nerve_stapled -> can_think
+		}
+		custom_tooltip = { # DTM
+			fail_text = SIMPLISTIC_ROBOTS_CANT_FIGHT
+			NOT = { has_trait = trait_robot_simplistic_morality }
+		}
+		if = { # Subtle Polish
+			limit = { has_deassimilate_machines_active = yes }
+			custom_tooltip = {
+				fail_text = SPECIES_MUST_NOT_BE_ASSIMILATING
+				NAND = {
+					is_robotic = yes
+					has_living_standard = {
+						country = from
+						type = living_standard_deassimilation_machine
+					}
+				}
+			}
+		}
+	}
+	triggered_pop_modifier = { # Subtle Polish
+		potential = {
+			exists = owner
+			has_slavery_type = {
+				country = owner
+				type = slavery_military
+			}
+		}
+		modifier = {
+			pop_cat_slave_happiness = 0.1
+		}
+	}
+	ai_will_do = {
+		factor = 5
+		modifier = { # Subtle Polish
+			factor = 0
+			from = { has_valid_civic = civic_machine_servitor }
+			is_robotic = no
+			OR = {
+				btml_is_species_smart_enough_for_leadership = no
+				btml_has_species_trait_with_military_leader_trait = no
+			}
+		}
+		modifier = {
+			factor = 0
+			from = { has_valid_ai_personality = no }
+		}
+		modifier = {
+			factor = 0
+			NOT = { has_species_flag = allow_military_leaders_honored_protectors@from } # Subtle Polish
+			from = {
+				has_valid_ai_personality = yes
+				NOT = {
+					has_ai_personality_behaviour = multispecies
+				}
+			}
+		}
+	}
+}
+
+## Limited
+# Merge between DTM, Subtle Polish, Ariphaos
+military_service_limited = {
+	potential = {
+		OR = { # Subtle Polish
+			from = { is_gestalt = no } # Merged
+			btml_is_species_smart_enough_for_leadership = no # Subtle Polish
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = same_species_disallowed
+			NAND = { # Subtle Polish
+				is_same_species = from
+				btml_is_species_smart_enough_for_leadership = yes # Subtle Polish
+			}
+		}
+		custom_tooltip = {
+			fail_text = species_is_being_purged
+			NOR = {
+				has_citizenship_type = {
+					country = from
+					type = citizenship_purge_machine
+				}
+				has_citizenship_type = {
+					country = from
+					type = citizenship_purge
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = NON_MACHINE_SPECIES_NEED_PREREQ_TECH
+			if = {
+				limit = { is_robotic = yes } # Subtle Polish Improvement
+				from = {
+					OR = {
+						is_machine_empire = yes # Merged
+						has_technology = tech_droid_workers
+					}
+				}
+			}
+		}
+		custom_tooltip = { # DTM
+			fail_text = SIMPLISTIC_ROBOTS_CANT_FIGHT
+			NOT = { has_trait = trait_robot_simplistic_morality }
+		}
+	}
+	ai_will_do = {
+		factor = 1
+	}
+}

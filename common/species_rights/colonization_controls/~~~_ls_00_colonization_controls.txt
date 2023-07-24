@@ -7,7 +7,7 @@
 ##################################################
 
 ## Controlled
-# Merge between Expanded Gestalts, Subtle Polish, Ariphaos, STU
+# Merge between DTM, Expanded Gestalts, Subtle Polish, Ariphaos, STU
 colonization_control_yes = {
 	can_colonize = no
 	potential = {

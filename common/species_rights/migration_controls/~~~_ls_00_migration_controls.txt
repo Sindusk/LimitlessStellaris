@@ -1,0 +1,33 @@
+##########################################################################
+# Limitless Stellaris - Species Rights
+##########################################################################
+
+##################################################
+## Migration Controls
+##################################################
+
+## Controlled
+# Merge between DTM, Ariphaos, STU
+migration_control_yes = {
+	can_migrate = no
+	ai_will_do = {
+		factor = 2
+		modifier = {
+			factor = 0.1
+			from = {
+				OR = {
+					is_machine_empire = no
+					is_servitor_empire = yes
+				}
+			}
+		}
+		modifier = { # Ariphaos
+			factor = 100
+			has_citizenship_type = { country = from type = citizenship_slavery }
+			OR = {
+				ariphaos_patch_slaves_rare_trait = no
+				ariphaos_patch_slaves_poor_merit = yes
+			}
+		}
+	}
+}

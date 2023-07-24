@@ -1,0 +1,16 @@
+## LS - Renamed the file to actually apply its overwrites properly.
+
+# Add global variables here that will be available in all script files.
+# @something = 42
+# They can be overridden in each normal script file.
+
+@lithoid_trait_resource_production = 0.02
+@drake_scaled_trait_resource_production = 0.05
+
+# Toxoids
+@exotic_metabolism = 0.25
+@inorganic_breath = 0.04
+@overtuned_consequences = 0.4
+@overtuned_consequences_hive = 1.0
+@noxious_happiness_penalty = -0.02
+@noxious_happiness_bonus = 0.04

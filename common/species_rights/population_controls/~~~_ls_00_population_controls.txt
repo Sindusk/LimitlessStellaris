@@ -7,7 +7,7 @@
 ##################################################
 
 ## Yes
-# Merge between Expanded Gestalts, StarTech, Subtle Polish, Ariphaos, STU
+# Merge between DTM, Expanded Gestalts, StarTech, Subtle Polish, Ariphaos, STU
 population_control_yes = {
 	can_reproduce = no
 	pop_modifier = {

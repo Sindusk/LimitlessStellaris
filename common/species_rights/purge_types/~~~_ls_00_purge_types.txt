@@ -6,8 +6,74 @@
 ## Purge Types
 ##################################################
 
+## Necrophage
+# Merge between DTM, Expanded Gestalts, Ariphaos, STU
+purge_necrophage = {
+	pop_escape_chance = 0.1 # Expanded Gestals 0.25 -> 0.1
+	pop_decline_rate = 20 # 1 pop per 5 months, overrides BASE_POP_DECLINE, will only work on purge types
+
+	pop_modifier = {
+		pop_happiness = -0.5
+	}
+
+	triggered_pop_modifier = { # DMT
+		potential = {
+			exists = planet
+			planet = { is_variable_set = necrophage_growth_speed_mod }
+		}
+		pop_purge_speed = 1
+		mult = planet.necrophage_growth_speed_mod
+	}
+	triggered_pop_modifier = { # DMT
+		potential = {
+			NAND = {
+				exists = planet
+				planet = { is_variable_set = necrophage_growth_speed_mod }
+			}
+		}
+		pop_purge_speed = 1
+		mult = owner.species.value:necrophage_growth_speed_mod
+	}
+
+	potential = {
+		exists = from
+		from = {
+			OR = { 
+				has_valid_civic = civic_machine_replicators # Expanded Gestalts
+				has_valid_civic = civic_hive_parasitic # Expanded Gestalts
+				is_necrophage_empire = yes # STU
+			}
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+		custom_tooltip = {
+			fail_text = CANNOT_NECROPHAGE_MACHINES
+			is_robotic = no
+		}
+		if = {
+			limit = { is_lonely_hive_mind_pop = no }
+			custom_tooltip = {
+				fail_text = PURGES_ALLOWED
+				from = {
+					OR = {
+						has_valid_civic = civic_machine_replicators # Expanded Gestalts
+						has_valid_civic = civic_hive_parasitic # Expanded Gestalts
+						has_valid_civic = civic_fanatic_purifiers
+						has_policy_flag = purge_allowed
+					}
+				}
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100 # Expanded Gestalts 200 -> 100
+	}
+}
+
 ## Processing
-# Merge between Organic Zealots, Bug Branch, Expanded Gestalts, Ariphaos
+# Merge between Organic Zealots, Bug Branch, DTM, Expanded Gestalts, Ariphaos
 purge_processing = {
 	pop_escape_chance = 0.20
 	pop_decline_rate = 50 # 1 pop per 2 months, overrides BASE_POP_DECLINE, will only work on purge types
@@ -93,6 +159,19 @@ purge_processing = {
 					is_sapient = no
 					from = {
 						has_policy_flag = pre_sapients_eat
+					}
+				}
+				AND = { # DMT
+					OR = {
+						has_trait = trait_delicious
+						AND = {
+							from = { has_trait = trait_carnivore }
+							NOT = { is_species_class = PLANT }
+						}
+					}
+					NOR = {
+						has_trait = trait_poisonous
+						from = { has_trait = trait_grazer }
 					}
 				}
 			}
