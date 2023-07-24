@@ -1787,6 +1787,67 @@ resolution_galactic_empire_imperial_crusade = {
 	}
 }
 
+## Galactic Threats Committee
+# Merge between EED, MECR
+resolution_galactic_threats_committee = {
+	icon = "GFX_resolution_galactic_threats_committee"
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = @resolution_cost_t4
+		}
+	}
+
+	target = no
+
+	modifier = {
+		description = resolution_galactic_threats_committee_modifier_desc
+		planet_researchers_upkeep_mult = 0.1
+		damage_vs_crisis_mult = 0.2 # STU
+		#Also makes the crisis come sooner in crisis_trigger.1
+	}
+
+	effect = {
+		hidden_effect = {
+			set_global_flag = galactic_community_resolution_passed
+			set_timed_country_flag = { flag = galactic_community_resolution_passed_galactic_threats_commitee days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_passed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	fail_effects = {
+		hidden_effect = {
+			set_timed_country_flag = { flag = galactic_community_resolution_failed_galactic_threats_commitee days = @resolution_flag_timer }
+			add_modifier = {
+				modifier = resolution_failed_diplomatic_weight
+				days = 2200
+			}
+		}
+	}
+
+	potential = {
+		has_tradition = tr_politics_finish
+	}
+
+	allow = {
+		custom_tooltip = {
+			text = "resolution_already_active"
+		}
+		NOT = {
+			is_active_resolution = resolution_galactic_threats_committee
+		}
+		is_galactic_council_established = yes
+	}
+
+	ai_weight = {
+		base = @resolution_weight_unpopular
+	}
+}
+
 
 ##################################################
 ## Copied Resolutions
