@@ -1,6 +1,8 @@
 ##########################################################################
 # Limitless Stellaris - Real Space: Ships in Scaling Events
 ##########################################################################
+## No longer in use. Main mod is now updated with the changes made here.
+## Leaving this here in case further changes are wanted in the future.
 
 namespace = shipsinscaling
 
