@@ -8,6 +8,8 @@
 @non_job_trait_prio_3 = 2
 @non_job_trait_prio_4 = 3
 
+@tox_trait_weight = 1.25
+
 ##################################################
 ## Species Traits - Unique - Characteristics
 ##################################################
@@ -2306,6 +2308,175 @@ trait_felsic = {
 }
 
 ##################################################
+## Species Traits - Resources - All Resources
+##################################################
+
+## <3> Excessive Endurance (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_excessive_endurance = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 3
+	potential_crossbreeding_chance = 1.0 #1.0 100% of being considered for new traits when forming half-species. doe snot guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_habitability_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_excessive_endurance_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			planet_jobs_produces_mult = 0.10 # DTM 0.05 -> 0.10
+		}
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = fromfrom #we use fromfrom so it displays for uncolonised planets
+			fromfrom = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			pop_environment_tolerance = 0.60 # DTM 0.30 -> 0.60
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			planet_jobs_produces_mult = 0.2 # DTM 0.1 -> 0.2
+		}
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = fromfrom
+			fromfrom = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			pop_environment_tolerance = 1.20 # DTM 0.60 -> 1.20
+		}
+	}
+	modifier = {
+		leader_age = -45 # DTM -30 -> -45
+	}
+	assembly_score = {
+		base = 0.5 #always good
+	}
+	slave_cost = {
+		energy = 4000 # DTM 2,000 -> 4,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		mult = value:dtraits_adaptiveness_weight
+	}
+}
+
+##################################################
+## Species Traits - Resources - All (Worker)
+##################################################
+
+## <1> Juiced Power (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_juiced_power = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_juiced_power_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		planet_jobs_worker_produces_mult = 0.10 # DTM 0.05 -> 0.10
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		planet_jobs_worker_produces_mult = 0.2 # DTM 0.1 -> 0.2
+	}
+	modifier = {
+		army_damage_mult = 0.80 # DTM 0.40 -> 0.80
+		leader_age = -15 # DTM -10 -> -15
+	}
+	assembly_score = {
+		modifier = {
+			add = 0.5 #always good
+		}
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_militarist = yes
+		}
+		modifier = {
+			mult = 0.5
+			is_pacifist = yes
+		}
+	}
+}
+
+##################################################
 ## Species Traits - Resources - Energy
 ##################################################
 
@@ -2338,6 +2509,86 @@ trait_ingenious = {
 	ai_weight = { # DTM
 		weight = 1
 		mult = value:specialist_specialization_weight
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_generator_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
+## <1> Technical Skill (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_technical_skill = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_worker_specialization_trigger = { # DTM
+			type = energy
+			designation = generator
+			designation_2 = rural
+		}
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_technical_skill_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			planet_jobs_energy_produces_mult = 0.30 # DTM 0.15 -> 0.30
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			planet_jobs_energy_produces_mult = 0.6 # DTM 0.30 -> 0.60
+		}
+	}
+	modifier = {
+		leader_age = -15 # DTM -10 -> -15
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		mult = value:worker_specialization_weight
 	}
 	assembly_score = {
 		modifier = {
@@ -2401,6 +2652,87 @@ trait_industrious = {
 	}
 }
 
+## <1> Crack Miner (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_crack_miner = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_worker_specialization_trigger = {
+			type = minerals
+			designation = mining
+			designation_2 = rural
+		}
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_crack_miner_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		planet_jobs_minerals_produces_mult = 0.30 # DTM 0.15 -> 0.30
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		planet_jobs_minerals_produces_mult = 0.60 # DTM 0.30 -> 0.60
+	}
+	modifier = {
+		leader_age = -15 # DTM -10 -> -15
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		mult = value:worker_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			has_valid_civic = civic_mining_guilds
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_mining_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+
+}
+
 ##################################################
 ## Species Traits - Resources - Food
 ##################################################
@@ -2448,6 +2780,86 @@ trait_agrarian = {
 			add = 0.5
 			from = { has_rural_designation = yes }
 		}
+	}
+}
+
+## <1> Farm Hands (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_farm_hands = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_worker_specialization_trigger = {
+			type = food
+			designation = farming
+			designation_2 = rural
+		}
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_farm_hands_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		planet_jobs_food_produces_mult = 0.30 # DTM 0.15 -> 0.30
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		planet_jobs_food_produces_mult = 0.60 # DTM 0.30 -> 0.60
+	}
+	modifier = {
+		leader_age = -15 # DTM -10 -> -15
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_agrarian_empire = yes
+		}
+		mult = value:worker_specialization_weight
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_farming_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
 	}
 }
 
@@ -2580,6 +2992,107 @@ trait_traditional = {
 			add = 1.5
 			from = { has_building = building_order_keep }
 		}
+	}
+}
+
+## <1> Expressed Tradition (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_expressed_tradition = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0 #1.0 100% of being considered for new traits when forming half-species. doe snot guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_specialist_specialization_trigger = { # DTM
+			type = unity
+			designation = unity
+			designation_2 = trade
+			clerk_type = yes
+		}
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_expressed_tradition_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.2 # DTM 0.1 -> 0.2
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.4 # DTM 0.2 -> 0.4
+		}
+	}
+	modifier = {
+		leader_age = -15 # DTM -10 -> -15
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_3
+			is_spiritualist = yes
+		}
+		modifier = {
+			mult = 0.5
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			mult = 0.25
+			has_ethic = ethic_fanatic_materialist
+		}
+		modifier = {
+			mult = 0.5
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			mult = 0.25
+			has_ethic = ethic_fanatic_egalitarian
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_unity_designation = yes }
+		}
+		modifier = {
+			add = 1.5
+			from = { has_building = building_order_keep }
+		}
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
 	}
 }
 
@@ -2730,6 +3243,98 @@ trait_intelligent = {
 	}
 	ai_weight = { # DTM
 		weight = 1
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_materialist = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_research_designation = yes }
+		}
+		modifier = {
+			add = 1.5
+			from = { has_building = building_order_keep }
+		}
+	}
+}
+
+## <1> Artificial Intelligence (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_artificial_intelligence = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_specialist_specialization_trigger = { # DTM
+			type = research
+			designation = research
+			designation_2 = trade
+		}
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_artificial_intelligence_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			planet_jobs_physics_research_produces_mult = 0.2 # DTM 0.1 -> 0.2
+			planet_jobs_society_research_produces_mult = 0.2 # DTM 0.1 -> 0.2
+			planet_jobs_engineering_research_produces_mult = 0.2 # DTM 0.1 -> 0.2
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			planet_jobs_physics_research_produces_mult = 0.4 # DTM 0.2 -> 0.4
+			planet_jobs_society_research_produces_mult = 0.4 # DTM 0.2 -> 0.4
+			planet_jobs_engineering_research_produces_mult = 0.4 # DTM 0.2 -> 0.4
+		}
+	}
+	modifier = {
+		leader_age = -15 # DTM -10 -> -15
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
 		mult = value:specialist_specialization_weight
 		modifier = {
 			mult = @non_job_trait_prio_1
@@ -3061,6 +3666,89 @@ trait_charismatic = {
 	}
 }
 
+## <1> Crafted Smiles (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_crafted_smiles = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_worker_specialization_trigger = { # DTM
+			type = amenities
+			designation = resort
+			designation_2 = trade
+			clerk_type = yes
+		}
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	modifier = {
+		leader_age = -15 # DTM -10 -> -15
+	}
+	custom_tooltip_with_modifiers = dtraits_crafted_smiles_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			pop_job_amenities_mult = 0.30 # DTM 0.15 -> 0.30
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			pop_job_amenities_mult = 0.60 # DTM 0.30 -> 0.60
+		}
+	}
+	slave_cost = {
+		energy = 1000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		mult = value:worker_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_3
+			has_valid_civic = civic_media_conglomerate
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			has_ascension_perk = ap_xeno_compatibility
+		}
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_xenophile = yes
+		}
+	}
+}
+
 ## <-2> Repugnant [Vanilla]
 # Merge between OSA, DTM, Trait Upgrader
 trait_repugnant = {
@@ -3100,6 +3788,72 @@ trait_repugnant = {
 	}
 	slave_cost = {
 		energy = -400 # DTM -200 -> -400
+	}
+}
+
+##################################################
+## Species Traits - Pop Upkeep - All Resources
+##################################################
+
+## <3> Inorganic Breath [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Galactic Imperium Origin
+trait_inorganic_breath = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 3
+	opposites = {
+		trait_exotic_gas_dependency # DTM
+		trait_exotic_metabolism
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		if = {
+			limit = {
+				from = { is_ai = yes }
+				is_archetype = BIOLOGICAL
+			}
+			from = {
+				check_variable_arithmetic = {
+					which = value:resources_per_pop|resource|food|
+					value > 1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				from = { is_ai = yes }
+				is_archetype = BIOLOGICAL
+			}
+			from = {
+				check_variable_arithmetic = {
+					which = value:resources_per_pop|resource|minerals|
+					value > 1
+				}
+			}
+		}
+	}
+	potential_crossbreeding_chance = 1.0 #1.0 100% of being considered for new traits when forming half-species. doe snot guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	randomized = no
+	custom_tooltip_with_modifiers = dtraits_inorganic_breath_tooltip # DTM +dtraits
+
+	modifier = {
+		planet_pops_upkeep_mult = 1.0 # DTM 0.5 -> 1.0
+	}
+
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = @non_job_trait_prio_3
+			has_monthly_income = { resource = exotic_gases value < 4 }
+		}
 	}
 }
 
@@ -3148,6 +3902,87 @@ trait_conservational = {
 	}
 	slave_cost = {
 		energy = 1000 # DTM 500 -> 1,000
+	}
+}
+
+## <1> Low Maintenance (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_low_maintenance = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_low_maintenance_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			planet_pops_consumer_goods_upkeep_mult = -0.10
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			planet_pops_consumer_goods_upkeep_mult = -0.2
+		}
+	}
+	modifier = {
+		leader_age = -15 # DTM -10 -> -15
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_environmentalist_empire = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_spiritualist = yes
+		}
+		modifier = {
+			mult = 0.6
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			mult = 0.2
+			has_ethic = ethic_fanatic_egalitarian
+			NOT = { is_shared_burden_empire = yes }
+		}
 	}
 }
 
@@ -3366,6 +4201,187 @@ trait_rapid_breeders_lithoid = {
 	}
 	ai_weight = { # DTM
 		weight = value:dtraits_breeding_weight
+	}
+}
+
+## <2> Incubator [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Galactic Imperium Origin
+trait_incubator = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = { # DTM
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_breeding_trigger = yes
+	}
+	potential_crossbreeding_chance = 1.0 #1.0 100% of being considered for new traits when forming half-species. doe snot guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	randomized = no
+	opposites = {
+		"trait_slow_breeders"
+		"trait_rapid_breeders"
+		"trait_fertile"
+		"trait_plantoid_budding"
+		"trait_lithoid_budding"
+		"trait_rapid_breeders_lithoid" # DTM
+		"trait_advanced_budding" # DTM
+		"trait_rapid_breeders_lithoid"
+	}
+	custom_tooltip_with_modifiers = incubator_tooltip
+
+	triggered_planet_growth_habitability_modifier = {
+		pop_growth_speed = 0.02 # DTM 0.01 -> 0.02
+		mult = planet.value:incubator_growth
+	}
+
+	slave_cost = {
+		energy = 4000 # DTM 2,000 -> 4,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:dtraits_breeding_weight
+	}
+}
+
+## <2> Pre-Planned Growth (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_preplanned_growth = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 2
+	potential_crossbreeding_chance = 1.0 #1.0 100% of being considered for new traits when forming half-species. doe snot guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_breeding_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = preplanned_growth_tooltip
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			pop_growth_speed = 0.30
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			pop_housing_usage_mult = -0.1 # DTM -0.1 -> -0.2 # LS -0.2 -> -0.1
+		}
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			pop_growth_speed = 0.60
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			pop_housing_usage_mult = -0.2 # DTM -0.2 -> -0.4 # LS -0.4 -> -0.2
+		}
+	}
+	modifier = {
+		leader_age = -45 # DTM -30 -> -45
+	}
+	slave_cost = {
+		energy = 4000 # DTM 2,000 -> 4,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		mult = value:dtraits_breeding_weight
+	}
+}
+
+## <1> Exotic Metabolism [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Galactic Imperium Origin
+trait_exotic_metabolism = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	opposites = {
+		trait_lithoid_gaseous_byproducts # DTM
+		trait_inorganic_breath # DTM
+		trait_exotic_gas_dependency # DTM
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0 #1.0 100% of being considered for new traits when forming half-species. doe snot guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	custom_tooltip_with_modifiers = dtraits_exotic_metabolism_tooltip # DTM +dtraits
+
+	triggered_planet_growth_habitability_modifier = {
+		pop_growth_speed = 0.25
+		pop_environment_tolerance = 0.50 # DTM 0.25 -> 0.50
+	}
+
+	modifier = {
+		leader_age = 100 # DTM 50 -> 100
+	}
+
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+	ai_weight = { # DTM
+		base = 6
+		modifier = {
+			mult = 0
+			check_variable_arithmetic = {
+				which = value:resources_per_pop|resource|exotic_gases|
+				value < 0.25
+			}
+		}
+		modifier = {
+			mult = 2
+			resource_revenue_compare = {
+				resource = exotic_gases
+				value >= 20
+			}
+		}
 	}
 }
 
@@ -3882,6 +4898,68 @@ trait_adaptive_lithoid = {
 	}
 }
 
+## <1> Spliced Adaptability (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_spliced_adaptability = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL }
+	#allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_habitability_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_spliced_adaptability_tooltip # DTM +dtraits
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = fromfrom
+			fromfrom = { NOT = { has_edict = damn_the_consequences } }
+		}
+		pop_environment_tolerance = 0.40 # DTM 0.20 -> 0.40
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = fromfrom
+			fromfrom = { has_edict = damn_the_consequences }
+		}
+		pop_environment_tolerance = 0.80 # DTM 0.40 -> 0.80
+	}
+	modifier = {
+		leader_age = -15 # DTM -10 -> -15
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		mult = value:dtraits_adaptiveness_weight
+	}
+}
+
 ## <-2> Nonadaptive [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_nonadaptive = {
@@ -4024,6 +5102,102 @@ trait_sedentary = {
 ## Species Traits - Leaders - Traits
 ##################################################
 
+## <2> Elevated Synapses (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_elevated_synapses = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 2
+	potential_crossbreeding_chance = 1.0 #1.0 100% of being considered for new traits when forming half-species. doe snot guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_specialist_specialization_trigger = { # DTM
+			type = research
+			designation = research
+			designation_2 = trade
+		}
+		dtraits_ai_leaders_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Remove-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_elevated_synapses_tooltip # DTM +dtraits
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			planet_jobs_physics_research_produces_mult = 0.4 # DTM 0.2 -> 0.4
+			planet_jobs_society_research_produces_mult = 0.4 # DTM 0.2 -> 0.4
+			planet_jobs_engineering_research_produces_mult = 0.4 # DTM 0.2 -> 0.4
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			planet_jobs_physics_research_produces_mult = 0.8 # DTM 0.4 -> 0.8
+			planet_jobs_society_research_produces_mult = 0.8 # DTM 0.4 -> 0.8
+			planet_jobs_engineering_research_produces_mult = 0.8 # DTM 0.4 -> 0.8
+		}
+	}
+	modifier = {
+		leader_age = -45 # DTM -30 -> -45
+		negative_leader_traits_species = -1
+		leaders_upkeep_mult = -0.25
+	}
+	assembly_score = {
+		modifier = {
+			add = 2.5
+			from = { has_research_designation = yes }
+		}
+		modifier = {
+			add = 2.5
+			from = { has_building = building_order_keep }
+		}
+	}
+	slave_cost = {
+		energy = 4000 # DTM 2,000 -> 4,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
+		mult = value:specialist_specialization_weight
+		mult = value:dtraits_leaders_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_materialist = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+		}
+	}
+}
+
 ## <1> Talented [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader, Leader Traits: Merge-Add
 trait_talented = {
@@ -4097,6 +5271,76 @@ trait_quick_learners = {
 	}
 	ai_weight = { # DTM
 		weight = 1
+		mult = value:dtraits_leaders_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			has_valid_civic = civic_meritocracy
+		}
+	}
+}
+
+## <1> Gene Mentorship (Overtuned) [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
+trait_gene_mentorship = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	potential_crossbreeding_chance = 1.0	# 1.0 = 100% chance of being considered for new traits when forming half-species. does not guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	# allowed_origins = { origin_overtuned } # Daemonic Incursion removes this
+	valid_for_all_origins = no
+	randomized = no
+	species_potential_add = {
+		exists = from
+		OR = {
+			from = { is_overtuned_empire = yes } # STU
+			from = { has_country_flag = decision_overtuned } # Daemonic Incursion
+			AND = { # Galactic Imperium Origin
+				from = { has_ascension_perk = ap_master_of_own_life }
+				OR = {
+					has_trait = trait_clone_soldier_fertile
+					has_trait = trait_clone_soldier_infertile_full_potential
+					has_trait = trait_clone_soldier_fertile_perfect
+				}
+			}
+		}
+		dtraits_ai_leaders_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_overtuned_traits = yes
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	custom_tooltip_with_modifiers = dtraits_gene_mentorship_tooltip # DTM +dtraits
+	triggered_leader_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_edict = damn_the_consequences } }
+		}
+		modifier = {
+			species_leader_exp_gain = 0.50 # DTM 0.25 -> 0.50
+		}
+	}
+	triggered_leader_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = damn_the_consequences }
+		}
+		modifier = {
+			species_leader_exp_gain = 1.0 # DTM 0.5 -> 1.0
+		}
+	}
+	modifier = {
+		leader_age = -15 # DTM -10 -> -15
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = @tox_trait_weight
 		mult = value:dtraits_leaders_weight
 		modifier = {
 			mult = @non_job_trait_prio_1
@@ -4453,6 +5697,82 @@ trait_resilient = {
 				has_fortress_designation = yes
 			}
 		}
+	}
+}
+
+## <1> Noxious [Vanilla]
+# Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Galactic Imperium Origin
+trait_noxious = {
+	host_has_dlc = "Toxoids Species Pack"
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0 #1.0 100% of being considered for new traits when forming half-species. doe snot guarantee the trait will be added if it costs points.
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	randomized = no
+	custom_tooltip_with_modifiers = noxious_tooltip
+	triggered_pop_modifier = {
+		pop_happiness = @noxious_happiness_bonus
+		mult = planet.value:counter_noxious
+	}
+
+	triggered_planet_growth_habitability_modifier = { # Planetary Diversity: Exotic Worlds converts to triggered
+		potential = { 
+			exists = planet
+			planet = { 
+				is_pd_bad_exotic = yes
+				exists = owner
+				from = { 
+					OR = {
+					   has_trait = trait_pc_ammonia_preference
+					   has_trait = trait_pc_pd_hycean_preference
+					   has_trait = trait_pc_methane_preference
+					   has_trait = trait_pc_sulfur_preference
+					   has_trait = trait_pc_rogue_preference
+					}
+				} 
+			} 
+		}
+		habitability_floor_add = 0.3
+	}
+
+	triggered_planet_growth_habitability_modifier = { # Planetary Diversity: Exotic Worlds converts to triggered
+		potential = { 
+			exists = planet
+			planet = { 
+				is_pd_bad_exotic = no
+				exists = owner
+				from = { 
+					NOR = {
+					   has_trait = trait_pc_ammonia_preference
+					   has_trait = trait_pc_pd_hycean_preference
+					   has_trait = trait_pc_methane_preference
+					   has_trait = trait_pc_sulfur_preference
+					   has_trait = trait_pc_rogue_preference
+					}
+				} 
+			} 
+		}
+		habitability_floor_add = 0.3
+	}
+
+	modifier = {
+		#habitability_floor_add = 0.3 # Planetary Diversity: Exotic Worlds converts to triggered
+		habitability_ceil_add = -0.3
+		army_damage_mult = 1.00 # DTM 0.50 -> 1.00
+		pop_housing_usage_mult = 0.2 # DTM 0.1 -> 0.2
+	}
+
+	slave_cost = {
+		energy = -1000 # DTM -500 -> -1,000
+	}
+
+	ai_weight = { # DTM
+		base = 0
 	}
 }
 
