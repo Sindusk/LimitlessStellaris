@@ -838,18 +838,20 @@ hyper_relay = {
 	construction_blocks_and_blocked_by = self_type
 
 	potential = {
+		# LS - Disabling Hyper Relays to reduce lagg.
+		always = no
 		#is_active_resolution = resolution_starbuild_railways # Resolutions Expanded # LS - What is happening here...
-		has_technology = tech_hyper_relays
-		custom_tooltip = { # AI Performance Optimization
-			fail_text = "requires_some_ai_fixes_on_players_disabled"
-			if = {
-				limit = {
-					has_global_flag = ai_hyper_relay_construction_flag
-					has_global_flag = ai_and_player_flag
-				}
-				always = no
-			}
-		}
+		#has_technology = tech_hyper_relays
+		#custom_tooltip = { # AI Performance Optimization
+		#	fail_text = "requires_some_ai_fixes_on_players_disabled"
+		#	if = {
+		#		limit = {
+		#			has_global_flag = ai_hyper_relay_construction_flag
+		#			has_global_flag = ai_and_player_flag
+		#		}
+		#		always = no
+		#	}
+		#}
 	}
 
 	possible = {
