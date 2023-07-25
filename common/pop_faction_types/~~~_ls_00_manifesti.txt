@@ -14,7 +14,7 @@ manifesti = {
 		category = pop_factions
 		produces = {
 			unity = 0.5 # OSA base_unity -> 0.5
-			influence = 0.003 # OSA
+			influence = 0.001 # OSA
 		}
 		produces = { # OSA
 			trigger = {
