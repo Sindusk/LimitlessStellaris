@@ -1840,6 +1840,71 @@ trait_nerve_stapled = {
 	}
 }
 
+## <0> Brainslug [Vanilla]
+# Merge between Planetary Decision Build Speed, Leader Traits: Merge-Add, A Deadly Tempest
+trait_brainslug = {
+	cost = 0
+	inline_script = {
+		script = trait/icon
+		icon = "gfx/interface/icons/traits/trait_brainslugged.dds"
+		RARITY = common
+		COUNCIL = no
+		TIER = none
+	}
+	initial = no
+	randomized = no
+	improves_leaders = yes # Leader Traits: Merge-Add
+	species_potential_add = { # Leader Traits: Merge-Add reworks this block
+		exists = from
+		from = {
+			OR = {
+				AND = {
+					has_country_flag = finished_brainslug_chain
+					is_xenophobe = no
+				}
+				any_owned_pop_species = {
+					is_same_species = prevprev
+					has_trait = trait_brainslug
+				}
+			}
+		}
+	}
+	species_possible_add = { # Leader Traits: Merge-Add
+		hidden_trigger = { exists = from }
+		from = {
+			OR = {
+				custom_tooltip = {
+					fail_text = civic_tooltip_not_xenophobe
+					is_xenophobe = no
+				}
+				any_owned_pop_species = {
+					is_same_species = prevprev
+					has_trait = trait_brainslug
+				}
+			}
+		}
+	}
+	species_possible_merge_add = {
+		always = yes # Leader Traits: Merge-Add
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes # Leader Traits: Merge-Add
+	}
+
+	allowed_archetypes = { BIOLOGICAL LITHOID } # Leader Traits: Merge-Add +LITHOID
+
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.10
+		planet_jobs_society_research_produces_mult = 0.10
+		planet_jobs_engineering_research_produces_mult = 0.10
+		planet_jobs_unity_produces_mult = 0.10
+		pop_growth_speed = -0.25
+	}
+	slave_cost = { # Leader Traits: Merge-Add
+		energy = 2000
+	}
+}
+
 ## <0> Self-Modified [Vanilla]
 # OSA version
 trait_self_modified = {
