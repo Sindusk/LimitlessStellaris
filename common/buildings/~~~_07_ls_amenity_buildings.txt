@@ -1364,6 +1364,22 @@ building_hyper_entertainment_forum = {
 		}
 		text = job_duelist_effect_desc
 	}
+
+	ai_resource_production = { # OSA
+		unity = 4
+		trigger = {
+			always = yes
+		}
+	}
+
+	ai_resource_production = { # OSA
+		alloys = 12
+		energy = 12
+		minerals = 12
+		trigger = {
+			free_amenities < 1
+		}
+	}
 }
 
 ##################################################
@@ -1618,6 +1634,24 @@ building_clinic = {
 			}
 		}
 	}
+
+	ai_resource_production = { # OSA
+		energy = 6
+		unity = 6
+		society_research = 6
+		trigger = {
+			always = yes
+		}
+	}
+
+	ai_resource_production = { # OSA
+		alloys = 12
+		energy = 12
+		minerals = 12
+		trigger = {
+			free_amenities < 1
+		}
+	}
 }
 
 ## Cyto-Revitalization Centers (Tier 2)
@@ -1785,6 +1819,24 @@ building_hospital = {
 
 	triggered_desc = {
 		text = job_healthcare_effect_desc
+	}
+
+	ai_resource_production = { # OSA
+		energy = 12
+		unity = 12
+		society_research = 12
+		trigger = {
+			always = yes
+		}
+	}
+
+	ai_resource_production = { # OSA
+		alloys = 24
+		energy = 24
+		minerals = 24
+		trigger = {
+			free_amenities < 1
+		}
 	}
 }
 

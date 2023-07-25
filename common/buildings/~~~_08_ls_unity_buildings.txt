@@ -64,8 +64,11 @@ building_autochthon_monument = {
 			minerals = @db1_minerals
 		}
 		upkeep = { # OSA
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep
+			minerals = @ost_b1_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -99,6 +102,15 @@ building_autochthon_monument = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
+	}
+
 	triggered_desc = {
 		text = job_culture_worker_effect_desc
 	}
@@ -122,6 +134,13 @@ building_autochthon_monument = {
 		is_gestalt = no
 		is_megacorp = no
 		is_memorialist_empire = no
+	}
+
+	ai_resource_production = { # OSA
+		unity = 5
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -192,9 +211,12 @@ building_heritage_site = {
 			rare_crystals = @b2_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
-			rare_crystals = 1
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
+			rare_crystals = @db2_rare_upkeep # OSA 1 -> b2 # LS b2 -> db2
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -228,6 +250,15 @@ building_heritage_site = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
+	}
+
 	triggered_desc = {
 		text = job_culture_worker_effect_desc
 	}
@@ -244,6 +275,13 @@ building_heritage_site = {
 
 	upgrades = {
 		building_hypercomms_forum
+	}
+
+	ai_resource_production = { # OSA
+		unity = 10
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -314,9 +352,12 @@ building_hypercomms_forum = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
-			rare_crystals = 3
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
+			rare_crystals = @db3_rare_upkeep # OSA 3 -> b3 # LS b3 -> db3
+		}
+		produces = { # OSA
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -350,6 +391,15 @@ building_hypercomms_forum = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	triggered_desc = {
 		text = job_culture_worker_effect_desc
 	}
@@ -362,6 +412,13 @@ building_hypercomms_forum = {
 		is_gestalt = no
 		is_megacorp = no
 		is_memorialist_empire = no
+	}
+
+	ai_resource_production = { # OSA
+		unity = 15
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -433,8 +490,12 @@ building_bureaucratic_1 = {
 		cost = {
 			minerals = @db1_minerals
 		}
-		upkeep = {
-			energy = @db1_upkeep
+		upkeep = { # OSA
+			energy = @ost_b1_upkeep
+			minerals = @ost_b1_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -512,6 +573,15 @@ building_bureaucratic_1 = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
+	}
+
 	upgrades = {
 		"building_bureaucratic_2"
 	}
@@ -524,6 +594,13 @@ building_bureaucratic_1 = {
 		is_gestalt = no
 		is_spiritualist = no
 		has_make_spiritualist_perk = no
+	}
+
+	ai_resource_production = { # OSA
+		unity = 2
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -583,8 +660,12 @@ building_bureaucratic_2 = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = @ost_b2_upkeep #OSA b2 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA
 			rare_crystals = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -662,6 +743,15 @@ building_bureaucratic_2 = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
+	}
+
 	upgrades = {
 		"building_bureaucratic_3"
 	}
@@ -674,6 +764,13 @@ building_bureaucratic_2 = {
 		is_gestalt = no
 		is_spiritualist = no
 		has_make_spiritualist_perk = no
+	}
+
+	ai_resource_production = { # OSA
+		unity = 4
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -733,8 +830,12 @@ building_bureaucratic_3 = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db3_upkeep
+			energy = @ost_b3_upkeep # OSA b3 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA
 			rare_crystals = @db3_rare_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -834,6 +935,15 @@ building_bureaucratic_3 = {
 		text = job_high_priest_effect_desc
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	prerequisites = {
 		"tech_galactic_bureaucracy"
 	}
@@ -843,13 +953,20 @@ building_bureaucratic_3 = {
 		is_spiritualist = no
 		has_make_spiritualist_perk = no
 	}
+
+	ai_resource_production = { # OSA
+		unity = 6
+		trigger = {
+			always = yes
+		}
+	}
 }
 
 ##################################################
 ## Unity - Standard Spiritual
 ##################################################
 
-## Temple (Tier 1)
+## Temple (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_temple = {
 	base_buildtime = @db1_time
@@ -923,8 +1040,11 @@ building_temple = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -976,6 +1096,27 @@ building_temple = {
 		}
 		modifier = {
 			job_manager_add = 1
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
 		}
 	}
 	
@@ -1034,9 +1175,16 @@ building_temple = {
 		script = "buildings/bugged_temple_effects"
 		BUGGED_TEMPLARS = 1
 	}
+
+	ai_resource_production = { # OSA
+		unity = 2
+		trigger = {
+			always = yes
+		}
+	}
 }
 
-## Holotemple (Tier 2)
+## Holotemple (Tier 2) [Vanilla]
 # Merge between OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_holotemple = {
 	base_buildtime = @db2_time
@@ -1102,9 +1250,12 @@ building_holotemple = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
-			rare_crystals = 1
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
+			rare_crystals = @db2_rare_upkeep # OSA 1 -> b2 # LS b2 -> db2
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -1157,6 +1308,27 @@ building_holotemple = {
 		}
 		modifier = {
 			job_manager_add = 2
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_5
+			}
+		}
+		modifier = {
+			pop_government_ethic_attraction = 0.5
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
 		}
 	}
 	
@@ -1215,9 +1387,16 @@ building_holotemple = {
 		script = "buildings/bugged_temple_effects"
 		BUGGED_TEMPLARS = 2
 	}
+
+	ai_resource_production = { # OSA
+		unity = 4
+		trigger = {
+			always = yes
+		}
+	}
 }
 
-## Sacred Nexus (Tier 3)
+## Sacred Nexus (Tier 3) [Vanilla]
 # Merge between OSA, Bug Branch, Real Space: Planetary Stations, Plentiful Traditions, StarTech
 building_sacred_nexus = {
 	base_buildtime = @db3_time
@@ -1283,9 +1462,12 @@ building_sacred_nexus = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
-			rare_crystals = 3
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
+			rare_crystals = @db3_rare_upkeep # OSA 3 -> b3 # LS b3 -> db3
+		}
+		produces = { # OSA
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -1404,6 +1586,15 @@ building_sacred_nexus = {
 		text = job_high_priest_effect_desc
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	prerequisites = {
 		"tech_consecration_fields"
 	}
@@ -1422,6 +1613,13 @@ building_sacred_nexus = {
 		script = "buildings/bugged_temple_effects"
 		BUGGED_TEMPLARS = 3
 		HIGH_PRIEST = 1
+	}
+
+	ai_resource_production = { # OSA
+		unity = 6
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -1494,8 +1692,11 @@ building_uplink_node = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -1542,6 +1743,13 @@ building_uplink_node = {
 		is_machine_empire = yes
 		NOT = {
 			is_servitor_empire = yes
+		}
+	}
+
+	ai_resource_production = { # OSA
+		unity = 2
+		trigger = {
+			always = yes
 		}
 	}
 }
@@ -1605,9 +1813,12 @@ building_network_junction = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
 			rare_crystals = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -1623,6 +1834,15 @@ building_network_junction = {
 	planet_modifier = {
 		planet_administrators_unity_produces_add = @db2_basic_output # LS - Basic Resource Production
 		job_coordinator_add = @b2_jobs
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
 	}
 
 	triggered_planet_modifier = { # Plentiful Traditions
@@ -1654,6 +1874,13 @@ building_network_junction = {
 		is_machine_empire = yes
 		NOT = {
 			is_servitor_empire = yes
+		}
+	}
+
+	ai_resource_production = { # OSA
+		unity = 4
+		trigger = {
+			always = yes
 		}
 	}
 }
@@ -1717,9 +1944,12 @@ building_system_conflux = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
 			rare_crystals = @db3_rare_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -1735,6 +1965,15 @@ building_system_conflux = {
 	planet_modifier = {
 		planet_administrators_unity_produces_add = @db3_basic_output # LS - Basic Resource Production
 		job_coordinator_add = @b3_jobs
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
 	}
 
 	triggered_planet_modifier = { # Plentiful Traditions
@@ -1762,6 +2001,13 @@ building_system_conflux = {
 		is_machine_empire = yes
 		NOT = {
 			is_servitor_empire = yes
+		}
+	}
+
+	ai_resource_production = { # OSA
+		unity = 6
+		trigger = {
+			always = yes
 		}
 	}
 }
@@ -1816,7 +2062,8 @@ building_hive_node = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = @db1_upkeep
+			energy = @ost_b1_upkeep # OSA b1 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA
 		}
 		upkeep = {
 			trigger = {
@@ -1826,6 +2073,9 @@ building_hive_node = {
 				}
 			}
 			energy = 2
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -1889,6 +2139,15 @@ building_hive_node = {
 		job_maintenance_drone_add = 1
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
+	}
+
 	triggered_desc = {
 		text = job_synapse_drone_effect_desc
 	}
@@ -1909,6 +2168,13 @@ building_hive_node = {
 
 	upgrades = {
 		building_hive_cluster
+	}
+
+	ai_resource_production = { # OSA
+		unity = 2
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -1962,7 +2228,8 @@ building_hive_cluster = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			energy = @db2_upkeep
+			energy = @ost_b2_upkeep # OSA b2 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA
 			exotic_gases = @db2_rare_upkeep
 		}
 		upkeep = {
@@ -1973,6 +2240,9 @@ building_hive_cluster = {
 				}
 			}
 			energy = 2
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -2035,6 +2305,15 @@ building_hive_cluster = {
 		job_maintenance_drone_add = 1
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
+	}
+
 	triggered_desc = {
 		text = job_synapse_drone_effect_desc
 	}
@@ -2055,6 +2334,13 @@ building_hive_cluster = {
 
 	upgrades = {
 		building_hive_confluence
+	}
+
+	ai_resource_production = { # OSA
+		unity = 4
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -2108,7 +2394,8 @@ building_hive_confluence = {
 			exotic_gases = @db3_rare_cost
 		}
 		upkeep = {
-			energy = @db3_upkeep
+			energy = @ost_b3_upkeep # OSA b3 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA b3 -> ost_b3
 			exotic_gases = @db3_rare_upkeep
 		}
 		upkeep = {
@@ -2119,6 +2406,9 @@ building_hive_confluence = {
 				}
 			}
 			energy = 2
+		}
+		produces = { # OSA
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -2195,6 +2485,15 @@ building_hive_confluence = {
 		job_maintenance_drone_add = 1
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	prerequisites = {
 		"tech_hive_confluence"
 	}
@@ -2211,6 +2510,13 @@ building_hive_confluence = {
 			}
 		}
 		text = job_maintenance_drone_effect_desc
+	}
+
+	ai_resource_production = { # OSA
+		unity = 6
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -2264,8 +2570,11 @@ building_sacrificial_temple_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -2293,6 +2602,15 @@ building_sacrificial_temple_1 = {
 		}
 		modifier = {
 			pop_government_ethic_attraction = 0.5
+		}
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
 		}
 	}
 	
@@ -2328,6 +2646,13 @@ building_sacrificial_temple_1 = {
 	inline_script = { # Bug Branch
 		script = "buildings/bugged_temple_effects"
 		BUGGED_TEMPLARS = 1
+	}
+
+	ai_resource_production = { # OSA
+		unity = 5
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -2388,9 +2713,12 @@ building_sacrificial_temple_2 = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
-			exotic_gases = 1
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
+			exotic_gases = @db2_rare_upkeep # OSA 1 -> b2 # LS b2 -> db2
+		}
+		produces = {
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -2459,6 +2787,15 @@ building_sacrificial_temple_2 = {
 			pop_government_ethic_attraction = 0.5
 		}
 	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
+	}
 	
 	triggered_planet_modifier = { # Plentiful Traditions
 		potential = {
@@ -2496,6 +2833,13 @@ building_sacrificial_temple_2 = {
 	inline_script = { # Bug Branch
 		script = "buildings/bugged_temple_effects"
 		BUGGED_TEMPLARS = 2
+	}
+
+	ai_resource_production = { # OSA
+		unity = 10
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -2552,10 +2896,13 @@ building_sacrificial_temple_3 = {
 			exotic_gases = @db3_rare_cost
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
-			exotic_gases = 2
-			volatile_motes = 2
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
+			exotic_gases = @db3_rare_upkeep
+			volatile_motes = @db3_rare_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -2650,6 +2997,15 @@ building_sacrificial_temple_3 = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	triggered_desc = {
 		trigger = {
 			exists = owner
@@ -2696,6 +3052,13 @@ building_sacrificial_temple_3 = {
 		script = "buildings/bugged_temple_effects"
 		BUGGED_TEMPLARS = 3
 		HIGH_PRIEST = 1
+	}
+
+	ai_resource_production = {
+		unity = 15
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -2760,8 +3123,11 @@ building_galactic_memorial_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -2852,12 +3218,28 @@ building_galactic_memorial_1 = {
 		planet_crime_no_happiness_add = -20
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
+	}
+
 	upgrades = {
 		building_galactic_memorial_2
 	}
 
 	show_tech_unlock_if = {
 		is_memorialist_empire = yes
+	}
+
+	ai_resource_production = { # OSA
+		unity = 5
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -2921,9 +3303,12 @@ building_galactic_memorial_2 = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
-			exotic_gases = 1
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
+			exotic_gases = @db2_rare_upkeep # OSA 1 -> b2 # LS b2 -> db2
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -3015,6 +3400,15 @@ building_galactic_memorial_2 = {
 		planet_crime_no_happiness_add = -20
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
+	}
+
 	upgrades = {
 		building_galactic_memorial_3
 	}
@@ -3022,6 +3416,13 @@ building_galactic_memorial_2 = {
 	show_tech_unlock_if = {
 		is_memorialist_empire = yes
 	 }
+
+	ai_resource_production = { # OSA
+		unity = 10
+		trigger = {
+			always = yes
+		}
+	}
 }
 
 ## Galactic Memorial (Tier 3)
@@ -3081,9 +3482,12 @@ building_galactic_memorial_3 = {
 			exotic_gases = @db3_rare_cost
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
-			exotic_gases = 3
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
+			exotic_gases = @db3_rare_upkeep # OSA 3 -> b3 # LS b3 -> db3
+		}
+		produces = { # OSA
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -3174,8 +3578,24 @@ building_galactic_memorial_3 = {
 		planet_crime_no_happiness_add = -20
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	show_tech_unlock_if = {
 		is_memorialist_empire = yes
+	}
+
+	ai_resource_production = { # OSA
+		unity = 15
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -3239,8 +3659,11 @@ building_simulation_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -3278,6 +3701,15 @@ building_simulation_1 = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
+	}
+
 	prerequisites = {
 		"tech_cultural_heritage"
 	}
@@ -3296,6 +3728,13 @@ building_simulation_1 = {
 
 	upgrades = {
 		building_simulation_2
+	}
+
+	ai_resource_production = { # OSA
+		unity = 5
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -3362,9 +3801,12 @@ building_simulation_2 = {
 			minerals = @db2_minerals
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
-			rare_crystals = 1
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
+			rare_crystals = @db2_rare_upkeep # OSA 1 -> b2 # LS b2 -> db2
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -3402,6 +3844,15 @@ building_simulation_2 = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
+	}
+
 	prerequisites = {
 		"tech_heritage_site"
 	}
@@ -3413,6 +3864,13 @@ building_simulation_2 = {
 
 	upgrades = {
 		building_simulation_3
+	}
+
+	ai_resource_production = { # OSA
+		unity = 10
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -3479,9 +3937,12 @@ building_simulation_3 = {
 			minerals = @db3_minerals
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
-			rare_crystals = 2
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
+			rare_crystals = @db3_rare_upkeep # OSA 2 -> b3 # LS b3 -> db3
+		}
+		produces = {
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -3519,6 +3980,15 @@ building_simulation_3 = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	prerequisites = {
 		"tech_hypercomms_forum"
 	}
@@ -3526,6 +3996,13 @@ building_simulation_3 = {
 	show_tech_unlock_if = {
 		is_machine_empire = yes
 		is_memorialist_empire = no
+	}
+
+	ai_resource_production = { # OSA
+		unity = 15
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -3593,9 +4070,12 @@ building_corporate_monument = {
 		cost = {
 			minerals = @db1_minerals
 		}
-		upkeep = { # OSA
-			energy = 2.5
-			minerals = 2.5
+		upkeep = {
+			energy = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -3633,6 +4113,15 @@ building_corporate_monument = {
 		text = job_culture_worker_effect_desc
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
+	}
+
 	prerequisites = {
 		"tech_cultural_heritage"
 	}
@@ -3644,6 +4133,13 @@ building_corporate_monument = {
 
 	upgrades = {
 		building_corporate_site
+	}
+
+	ai_resource_production = { # OSA
+		unity = 5
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -3710,9 +4206,12 @@ building_corporate_site = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
-			rare_crystals = 1
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
+			rare_crystals = @db2_rare_upkeep # OSA 1 -> b2 # LS b2 -> db2
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -3750,6 +4249,15 @@ building_corporate_site = {
 		text = job_culture_worker_effect_desc
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
+	}
+
 	prerequisites = {
 		"tech_heritage_site"
 	}
@@ -3760,6 +4268,13 @@ building_corporate_site = {
 
 	upgrades = {
 		building_corporate_forum
+	}
+
+	ai_resource_production = { # OSA
+		unity = 10
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -3826,9 +4341,12 @@ building_corporate_forum = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
-			rare_crystals = 3
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
+			rare_crystals = @db3_rare_upkeep # OSA 3 -> b3 # LS b3 -> db3
+		}
+		produces = { # OSA
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -3866,12 +4384,28 @@ building_corporate_forum = {
 		text = job_culture_worker_effect_desc
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	prerequisites = {
 		"tech_hypercomms_forum"
 	}
 
 	show_tech_unlock_if = {
 		is_megacorp = yes
+	}
+
+	ai_resource_production = { # OSA
+		unity = 15
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -3935,8 +4469,11 @@ building_sensorium_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -3952,6 +4489,15 @@ building_sensorium_1 = {
 	planet_modifier = {
 		planet_jobs_unity_produces_mult = 0.05
 		job_evaluator_add = @b1_jobs
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
 	}
 
 	triggered_desc = {
@@ -3980,6 +4526,13 @@ building_sensorium_1 = {
 
 	upgrades = {
 		building_sensorium_2
+	}
+
+	ai_resource_production = { # OSA
+		unity = 5
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -4048,9 +4601,12 @@ building_sensorium_2 = {
 			minerals = @db2_minerals
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
 			exotic_gases = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -4066,6 +4622,15 @@ building_sensorium_2 = {
 	planet_modifier = {
 		planet_jobs_unity_produces_mult = 0.10
 		job_evaluator_add = @b2_jobs
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
 	}
 
 	triggered_desc = {
@@ -4087,6 +4652,13 @@ building_sensorium_2 = {
 
 	upgrades = {
 		building_sensorium_3
+	}
+
+	ai_resource_production = { # OSA
+		unity = 10
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -4153,9 +4725,12 @@ building_sensorium_3 = {
 			minerals = @db3_minerals
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
 			exotic_gases = @db3_rare_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -4173,6 +4748,15 @@ building_sensorium_3 = {
 		job_evaluator_add = @b3_jobs
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	triggered_desc = {
 		text = building_hypercomms_forum_effect
 	}
@@ -4188,6 +4772,13 @@ building_sensorium_3 = {
 	show_tech_unlock_if = {
 		is_hive_empire = yes
 		is_memorialist_empire = no
+	}
+
+	ai_resource_production = { # OSA
+		unity = 15
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -4274,14 +4865,16 @@ building_autocurating_vault = {
 				has_ringworld_output_boost = no
 			}
 			energy = @db2_upkeep
+			minerals = @db2_upkeep # LS
 			rare_crystals = @db2_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 8
-			rare_crystals = 3
+			energy = @ost_b4_upkeep # OSA 8 -> ost_b4
+			minerals = @ost_b4_upkeep # OSA
+			rare_crystals = @db3_rare_upkeep # OSA 3 -> b3 # LS b3 -> db3
 		}
 		produces = {
 			unity = 25 # OSA increases from 10 to 25
@@ -4316,6 +4909,15 @@ building_autocurating_vault = {
 		planet_telepaths_unity_produces_add = 1
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	prerequisites = {
 		"tech_autocurating_vault"
 	}
@@ -4342,6 +4944,13 @@ building_autocurating_vault = {
 		OR = {
 			is_hive_empire = yes
 			has_make_spiritualist_perk = no
+		}
+	}
+
+	ai_resource_production = { # OSA
+		unity = 15
+		trigger = {
+			always = yes
 		}
 	}
 }
@@ -4432,17 +5041,17 @@ building_citadel_of_faith = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = 7.5
-			minerals = 7.5
+			energy = @ost_b3_upkeep # OSA 7.5 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 7.5 -> ost_b3
 			rare_crystals = @db2_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 15
-			minerals = 15
-			rare_crystals = 3
+			energy = @ost_b4_upkeep # OSA 15 -> ost_b4
+			minerals = @ost_b4_upkeep # OSA 15 -> ost_b4
+			rare_crystals = @db3_rare_upkeep
 		}
 		produces = {
 			unity = 10
@@ -4459,12 +5068,28 @@ building_citadel_of_faith = {
 		planet_telepaths_unity_produces_add = 1
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	prerequisites = {
 		"tech_transcendent_faith"
 	}
 
 	triggered_desc = {
 		text = job_high_priest_effect_desc
+	}
+
+	ai_resource_production = { # OSA
+		unity = 15
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -4543,16 +5168,16 @@ building_corporate_vault = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = 10
-			minerals = 10
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
 			rare_crystals = @db2_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 8
-			rare_crystals = 3
+			energy = @ost_b4_upkeep # OSA 8 -> ost_b4
+			rare_crystals = @db3_rare_upkeep # OSA 3 -> b3 # LS b3 -> db3
 		}
 		produces = {
 			unity = 20 # OSA 10 -> 20
@@ -4575,7 +5200,17 @@ building_corporate_vault = {
 		planet_telepaths_unity_produces_add = 1
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	prerequisites = {
+		"tech_autocurating_vault" # OSA
 	}
 
 	triggered_desc = { # OSA
@@ -4586,6 +5221,13 @@ building_corporate_vault = {
 		is_megacorp = yes
 		is_spiritualist = no
 		has_make_spiritualist_perk = no
+	}
+
+	ai_resource_production = { # OSA
+		unity = 15
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -4664,7 +5306,7 @@ building_alpha_hub = {
 			rare_crystals = 4 # MECR changes from 3 to 4
 		}
 		produces = {
-			unity = 20 # OSA changes from 10 to 20
+			unity = 20 # OSA 10 -> 20
 		}
 	}
 
@@ -4687,6 +5329,15 @@ building_alpha_hub = {
 		custom_tooltip = "sm_ring_maintenance_hub_effect"
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	prerequisites = {
 		"tech_autocurating_vault"
 	}
@@ -4697,6 +5348,13 @@ building_alpha_hub = {
 
 	show_tech_unlock_if = {
 		is_machine_empire = yes
+	}
+
+	ai_resource_production = { # OSA
+		unity = 15
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -4723,7 +5381,13 @@ building_organic_sanctuary = {
 
 		OR = {
 			owner = { is_ai = no }
-			has_upgraded_capital = yes
+			AND = { # OSA
+				has_upgraded_capital = yes
+				OR = { # OSA
+					NOT = { has_building = building_organic_sanctuary }
+					has_unemployed_pop_of_category = bio_trophy
+				}
+			}
 		}
 		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
 	}
@@ -4763,8 +5427,11 @@ building_organic_sanctuary = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+		}
+		produces = { # OSA
+			unity = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -4894,9 +5561,12 @@ building_organic_paradise = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			energy = 7.5
-			minerals = 7.5
+			energy = @ost_b3_upkeep # OSA 7.5 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 7.5 -> ost_b3
 			exotic_gases = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			unity = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {

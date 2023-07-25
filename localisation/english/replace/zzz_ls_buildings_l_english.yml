@@ -465,6 +465,9 @@ l_english:
   building_commercial_megaplex: "§V£trade_value£ Commerce Megaplexes§!" # Vanilla
   building_commercial_megaplex_tt: "§MTrade§! - §BTier 2§! - §EBasic§!"
   building_commercial_megaplex_desc: "Great commercial spires and towers rising up towards the sky, blotting out the light."
+  building_commercial_trading_terminal: "§V£trade_value£ Commercial Trading Terminal§!" # Omega's Stellaris Additions
+  building_commercial_trading_terminal_tt: "§MTrade§! - §BTier 3§! - §EBasic§!"
+  building_commercial_trading_terminal_desc: "A planetary terminal network communicating at superluminal speeds with the other installations."
 
   ### Unique
   ## Stock Exchange

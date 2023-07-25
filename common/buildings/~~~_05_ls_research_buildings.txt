@@ -60,14 +60,28 @@ building_research_lab_1 = {
 		dm = @db1_dm_jobs
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+			minerals = @ost_b1_upkeep # OSA 2.5 -> ost_b1
+		}
+		produces = { # OSA
+			physics_research = @ost_b1_produces
+			society_research = @ost_b1_produces
+			engineering_research = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -90,9 +104,9 @@ building_research_lab_1 = {
 	# StarTech AI Resource Production
 	ai_resource_production = {
 		trigger = { always = yes }
-		physics_research = 1
-		society_research = 1
-		engineering_research = 1
+		physics_research = 4 # OSA 1 -> 4
+		society_research = 4 # OSA 1 -> 4
+		engineering_research = 4 # OSA 1 -> 4
 	}
 }
 
@@ -158,6 +172,15 @@ building_research_lab_2 = {
 		dm = @db2_dm_jobs
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -165,9 +188,14 @@ building_research_lab_2 = {
 			exotic_gases = @db2_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
 			exotic_gases = @db2_rare_upkeep
+		}
+		produces = { # OSA
+			physics_research = @ost_b2_produces
+			society_research = @ost_b2_produces
+			engineering_research = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -185,6 +213,15 @@ building_research_lab_2 = {
 
 	prerequisites = {
 		"tech_basic_science_lab_2"
+	}
+
+	ai_resource_production = { # OSA
+		physics_research = 8
+		society_research = 8
+		engineering_research = 8
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -286,6 +323,15 @@ building_research_lab_3 = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -293,8 +339,8 @@ building_research_lab_3 = {
 			exotic_gases = @db3_rare_cost
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
+			energy = @ost_b3_upkeep # OSA 10 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 10 -> ost_b3
 			exotic_gases = @db3_rare_upkeep
 		}
 		upkeep = {
@@ -313,6 +359,11 @@ building_research_lab_3 = {
 			sr_zro = 1
 		}
 		produces = { # OSA
+			physics_research = @ost_b3_produces
+			society_research = @ost_b3_produces
+			engineering_research = @ost_b3_produces
+		}
+		produces = { # OSA
 			trigger = {
 				owner = {
 					has_active_tradition = tr_insight_3
@@ -324,6 +375,15 @@ building_research_lab_3 = {
 
 	prerequisites = {
 		"tech_basic_science_lab_3"
+	}
+
+	ai_resource_production = { # OSA
+		physics_research = 12
+		society_research = 12
+		engineering_research = 12
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -378,6 +438,15 @@ building_AP_education_school = {
 		script = buildings/research/unique_triggered_modifiers
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = { # LS
@@ -400,7 +469,12 @@ building_AP_education_school = {
 		    energy = @db1_upkeep
 			minerals = @db1_upkeep
 		}
-		produces = { # OSA
+		produces = { # LS - OSA
+			physics_research = @ost_b1_produces
+			society_research = @ost_b1_produces
+			engineering_research = @ost_b1_produces
+		}
+		produces = { # LS - OSA
 			trigger = {
 				owner = {
 					has_active_tradition = tr_insight_3
@@ -522,6 +596,11 @@ building_institute = {
 		    exotic_gases = @db2_rare_upkeep # LS 8 -> db2
 		}
 		produces = { # OSA
+			physics_research = @ost_b3_produces
+			society_research = @ost_b3_produces
+			engineering_research = @ost_b3_produces
+		}
+		produces = { # OSA
 			trigger = {
 				owner = {
 					has_active_tradition = tr_insight_3
@@ -550,6 +629,15 @@ building_institute = {
 
 	inline_script = { # Grants bonuses to unique research buildings
 		script = buildings/research/unique_triggered_modifiers
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
 	}
 
 	prerequisites = {
@@ -663,6 +751,15 @@ building_AP_mind_controler = {
 		script = buildings/research/unique_triggered_modifiers
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
+	}
+
 	triggered_planet_modifier = { # Bug Branch
 		potential = {
 			exists = owner
@@ -703,6 +800,11 @@ building_AP_mind_controler = {
 		    }
 		    energy = @db1_upkeep
 			minerals = @db1_upkeep
+		}
+		produces = { # LS - OSA
+			physics_research = @ost_b1_produces
+			society_research = @ost_b1_produces
+			engineering_research = @ost_b1_produces
 		}
 		produces = { # LS - OSA integration
 			trigger = {
@@ -810,7 +912,12 @@ building_supercomputer = {
 			minerals = @db2_upkeep
 		    exotic_gases = @db2_rare_upkeep
 		}
-		produces = { # OSA
+		produces = { # LS - OSA
+			physics_research = @ost_b3_produces
+			society_research = @ost_b3_produces
+			engineering_research = @ost_b3_produces
+		}
+		produces = { # LS - OSA
 			trigger = {
 				owner = {
 					has_active_tradition = tr_insight_3
@@ -836,6 +943,15 @@ building_supercomputer = {
 
 	inline_script = { # Grants bonuses to unique research buildings
 		script = buildings/research/unique_triggered_modifiers
+	}
+
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
 	}
 	
 	triggered_planet_modifier = { # Bug Branch
@@ -1531,11 +1647,10 @@ osom_building_speleology_facility_2 = {
 
 	ai_resource_production = {
 		trigger = {
-			planet_resource_compare = {
-				resource = physics_research
-				value >= 30
-			}
+			always = yes
 		}
+		physics_research = 4
+		society_research = 4
 		engineering_research = 12
 	}
 }
@@ -1680,14 +1795,11 @@ osom_building_speleology_facility_3 = {
 
 	ai_resource_production = {
 		trigger = {
-			planet_resource_compare = {
-				resource = physics_research
-				value >= 30
-			}
+			always = yes
 		}
-		physics_research = 10
-		society_research = 10
-		engineering_research = 10
+		physics_research = 8
+		society_research = 8
+		engineering_research = 36
 	}
 }
 
@@ -2351,7 +2463,12 @@ building_archaeostudies_faculty = {
 			minor_artifacts = 50
 		}
 		upkeep = {
-			energy = 20
+			energy = @ost_b4_upkeep # OSA 20 -> ost_b4
+		}
+		produces = { # OSA
+			physics_research = @ost_b3_produces
+			society_research = @ost_b3_produces
+			engineering_research = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -2509,6 +2626,15 @@ building_archaeostudies_faculty = {
 	triggered_desc = {
 		text = building_archaeostudies_faculty_relic_effect
 	}
+
+	ai_resource_production = { # OSA
+		physics_research = 30
+		society_research = 30
+		engineering_research = 30
+		trigger = {
+			always = yes
+		}
+	}
 }
 
 ## Vultaum Reality Computer (Tier 1) [Vanilla]
@@ -2556,6 +2682,12 @@ building_vultaum_reality_computer = {
 		}
 		upkeep = {
 			energy = @db2_upkeep
+			minerals = @db2_upkeep # LS - OSA
+		}
+		produces = { # OSA
+			physics_research = 150
+			society_research = 150
+			engineering_research = 150
 		}
 		produces = { # OSA
 			trigger = {
@@ -2635,5 +2767,14 @@ building_vultaum_reality_computer = {
 			owner = { is_machine_empire = yes }
 		}
 		text = job_calculator_effect_desc
+	}
+
+	ai_resource_production = { # OSA
+		physics_research = 50
+		society_research = 50
+		engineering_research = 50
+		trigger = {
+			always = yes
+		}
 	}
 }

@@ -1,0 +1,157 @@
+
+# Mining Guilds Civic
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_mining_guilds
+					has_civic = civic_corporate_mining_guilds					
+				}
+			}
+		}
+		text = job_osa_mining_director_effect_desc
+	}
+
+# Agriculture Councils Civic
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_agriculture_councils
+					has_civic = civic_corporate_agriculture_councils
+				}
+			}
+		}
+		text = job_osa_agri_director_effect_desc
+	}
+
+# Energy Consortiums Civic
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_energy_consortiums
+					has_civic = civic_corporate_energy_consortiums
+				}
+			}
+		}
+		text = job_osa_energy_director_effect_desc
+	}
+	
+# Speleology Societies Civic
+	triggered_desc = {
+		trigger = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_speleology_societies
+					has_civic = civic_corporate_speleology_societies
+				}
+			}
+		}
+		text = job_osom_speleologist_effect_desc
+	}
+
+# Solidarity Tradition
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		text = job_healthcare_effect_desc
+	}
+
+# Police State Civic
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_police_state			
+			}
+		}
+		text = job_osa_commander_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_police_state			
+			}
+		}
+		text = job_osa_commando_effect_desc
+	}
+
+# Conservation Commissions Civic
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_conservation_commissions			
+			}
+		}
+		text = job_osa_head_ecologist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_conservation_commissions			
+			}
+		}
+		text = job_ranger_effect_desc
+	}
+
+# Eminent Engineers Civic
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_eminent_engineers			
+			}
+		}
+		text = job_osa_chief_engineer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_eminent_engineers			
+			}
+		}
+		text = job_artificer_effect_desc
+	}
+
+# Hive
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_civic = civic_hive_aggregate_catharsis
+			}
+		}
+		text = job_osa_omni_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		text = job_osom_mapping_drone_effect_desc
+	}

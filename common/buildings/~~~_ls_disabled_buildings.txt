@@ -1367,6 +1367,13 @@ building_eac_pdf_base = {
 		text = job_eac_pdf_shipbuilder_effect_desc
 	}
 
+	ai_resource_production = {
+		alloys = 10
+		trigger = {
+			always = yes
+		}
+	}
+
 	is_essential = yes
 	
 }

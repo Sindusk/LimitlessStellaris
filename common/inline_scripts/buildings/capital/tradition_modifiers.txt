@@ -3,18 +3,6 @@
 ####################################################################################################
 
 ### Triggered Planet Modifiers
-# Omega's Stellaris Additions - Add healthcare job with solidarity node taken.
-triggered_planet_modifier = {
-	potential = {
-		exists = owner
-		owner = {
-			has_active_tradition = tr_solidarity_3
-		}
-	}
-	modifier = {
-		job_healthcare_add = 1
-	}
-}
 # Vanilla - Add an additional housing if the owner has Imperious Architecture active in their Domination tradition tree.
 triggered_planet_modifier = {
 	potential = {
@@ -45,16 +33,6 @@ triggered_planet_modifier = {
 }
 
 ### Triggered Descriptions
-# Omega's Stellaris Addition - Healthcare Job Description
-triggered_desc = {
-	trigger = {
-		exists = owner
-		owner = {
-			has_active_tradition = tr_solidarity_3
-		}
-	}
-	text = job_healthcare_effect_desc
-}
 # Vanilla - Display roboticist description if one is being provided.
 triggered_desc = {
 	trigger = {

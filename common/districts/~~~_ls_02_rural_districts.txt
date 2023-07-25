@@ -59,6 +59,7 @@ district_generator = {
 	conversion_ratio = 1
 	convert_to = {
 		district_generator_uncapped
+		district_osa_military # OSA
 	}
 
 	resources = {
@@ -372,6 +373,7 @@ district_mining = {
 	conversion_ratio = 1
 	convert_to = {
 		district_mining_uncapped
+		district_osa_mining # OSA
 	}
 
 	resources = {
@@ -754,6 +756,7 @@ district_farming = {
 	conversion_ratio = 1
 	convert_to = {
 		district_farming_uncapped
+		district_osa_farming # OSA
 	}
 
 	resources = {
@@ -1147,6 +1150,7 @@ district_generator_uncapped = {
 		district_generator
 		district_rw_generator
 		district_srw_commercial
+		district_osa_military # OSA
 	}
 
 	resources = {
@@ -1450,6 +1454,7 @@ district_mining_uncapped = {
 	conversion_ratio = 1
 	convert_to = {
 		district_mining
+		district_osa_mining # OSA
 	}
 
 	resources = {
@@ -1587,7 +1592,8 @@ district_mining_uncapped = {
 		}
 		modifier = {
 			planet_housing_add = 2
-			planet_max_buildings_add = 0.34 # LS - Vanilla modifier
+			planet_max_buildings_add = 0.5 # OSA 0.34 -> 0.5
+			planet_max_districts_add = 0.25 # OSA
 		}
 	}
 
@@ -1961,6 +1967,7 @@ district_farming_uncapped = {
 	convert_to = {
 		district_farming
 		district_rw_farming
+		district_osa_farming # OSA
 	}
 
 	resources = {

@@ -1,5 +1,4 @@
 civic_AP_advanced_administration = {
-	description = "civic_AP_advanced_administration_effects"
 	potential = {
 		ethics = {
 			NOT = {
@@ -16,13 +15,9 @@ civic_AP_advanced_administration = {
 	}
 	possible = {
 		civics = {
-			NOT = {
+			NOR = { # LS - Optimized NOR
 				value = civic_barbaric_despoilers
-			}
-			NOT = {
 				value = civic_fanatic_purifiers
-			}
-			NOT = {
 				value = civic_death_cult
 			}
 		}
@@ -31,10 +26,9 @@ civic_AP_advanced_administration = {
 		base = 4
 	}
 	modifier = {
-		edict_length_mult = 0.2
-		edicts_cost_mult = -0.2
 		leader_skill_levels = 1
 		edicts_upkeep_mult = -0.2
+		empire_size_mult = -0.1
 	}
 }
 

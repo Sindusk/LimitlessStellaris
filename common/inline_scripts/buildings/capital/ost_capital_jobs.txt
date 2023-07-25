@@ -1,0 +1,177 @@
+# Solidarity Tradition
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3
+			}
+		}
+		modifier = {
+			job_healthcare_add = 1
+		}
+	}
+
+# Police State Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_police_state			
+			}
+		}
+		modifier = {
+			job_osa_commander_add = $OST_JOB_1$
+			job_osa_commando_add = $OST_JOB_1$
+		}
+	}
+
+# Conservation Commissions Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_conservation_commissions			
+			}
+		}
+		modifier = {
+			job_osa_head_ecologist_add = $OST_JOB_1$
+			job_ranger_add = $OST_JOB_1$
+		}
+	}
+
+# Eminent Engineers Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_eminent_engineers			
+			}
+		}
+		modifier = {
+			job_osa_chief_engineer_add = $OST_JOB_1$
+			job_artificer_add = $OST_JOB_1$
+		}
+	}
+
+# Mining Guilds Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_mining_guilds
+					has_civic = civic_corporate_mining_guilds					
+				}
+			}
+		}
+		modifier = {
+			job_osa_mining_director_add = $OST_JOB_2$
+		}
+	}
+
+# Agriculture Councils Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_agriculture_councils
+					has_civic = civic_corporate_agriculture_councils
+				}
+			}
+		}
+		modifier = {
+			job_osa_agri_director_add = $OST_JOB_2$
+		}
+	}
+
+# Energy Consortiums Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_energy_consortiums
+					has_civic = civic_corporate_energy_consortiums
+				}
+			}
+		}
+		modifier = {
+			job_osa_energy_director_add = $OST_JOB_2$
+		}
+	}
+
+# Speleology Societies Civic
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_speleology_societies
+					has_civic = civic_corporate_speleology_societies
+				}
+			}
+		}
+		modifier = {
+			job_osom_speleologist_add = $OST_JOB_2$
+		}
+	}
+
+# Machine
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				AND = {
+					has_active_tradition = tr_solidarity_3_machine
+					is_machine_empire = yes
+				}
+			}
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
+
+# Hive
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { 
+				is_planet_class = pc_habitat
+			}
+			exists = owner
+			owner = {
+				has_civic = civic_hive_sonar_senses
+			}
+		}
+		modifier = {
+			job_osom_mapping_drone_add = $OST_JOB_2$
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_hive_aggregate_catharsis }
+		}
+		modifier = {
+			job_osa_omni_drone_add = $OST_JOB_2$
+			job_maintenance_drone_add = -$OST_JOB_2$
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_solidarity_3_hive
+			}
+		}
+		modifier = {
+			job_spawning_drone_add = 1
+		}
+	}

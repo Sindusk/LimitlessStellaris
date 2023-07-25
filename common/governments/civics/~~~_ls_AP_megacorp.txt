@@ -1,5 +1,4 @@
 civic_AP_advanced_administration_corporate = {
-	description = "civic_AP_advanced_administration_corporate_effects"
 	potential = {
 		ethics = {
 			NOT = {

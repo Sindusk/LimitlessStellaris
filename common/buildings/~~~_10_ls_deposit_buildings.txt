@@ -92,6 +92,13 @@ building_mote_harvesters = {
 	prerequisites = {
 		"tech_mine_volatile_motes"
 	}
+
+	ai_resource_production = { # OSA
+		volatile_motes = 4
+		trigger = {
+			always = yes
+		}
+	}
 }
 
 ## Gas Extraction Wells (Tier 1)
@@ -180,6 +187,13 @@ building_gas_extractors = {
 	prerequisites = {
 		"tech_mine_exotic_gases"
 	}
+
+	ai_resource_production = { # OSA
+		exotic_gases = 4
+		trigger = {
+			always = yes
+		}
+	}
 }
 
 ## Crystal Mines (Tier 1)
@@ -266,6 +280,13 @@ building_crystal_mines = {
 
 	prerequisites = {
 		"tech_mine_rare_crystals"
+	}
+
+	ai_resource_production = { # OSA
+		rare_crystals = 4
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -411,6 +432,13 @@ building_betharian_power_plant = {
 
 	prerequisites = {
 		"tech_mine_betharian"
+	}
+
+	ai_resource_production = { # OSA
+		energy = 50
+		trigger = {
+			always = yes
+		}
 	}
 }
 
@@ -629,5 +657,13 @@ building_xeno_zoo = {
 			owner = { has_valid_civic = civic_warrior_culture }
 		}
 		text = job_livestock_zoo_beast_effect_desc
+	}
+
+	ai_resource_production = { # OSA
+		society_research = 4
+		unity = 4
+		trigger = {
+			always = yes
+		}
 	}
 }

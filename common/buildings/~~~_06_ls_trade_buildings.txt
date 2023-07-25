@@ -6,7 +6,7 @@
 ## Trade - Basic
 ##################################################
 
-## Commercial Zones (Tier 1)
+## Commercial Zones (Tier 1) [Vanilla]
 # Merge between Sort Buildings, OSA, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
 building_commercial_zone = {
 	base_buildtime = @db1_time
@@ -72,8 +72,8 @@ building_commercial_zone = {
 			minerals = @db1_minerals
 		}
 		upkeep = { # OSA
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b1_upkeep
+			minerals = @ost_b1_upkeep
 		}
 		produces = { # OSA
 			trigger = {
@@ -104,14 +104,13 @@ building_commercial_zone = {
 		}
 	}
 
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_mercantile_commercial_enterprise
-			}
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
 		}
-		text = job_merchant_effect_desc
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t1
+		}
 	}
 
 	prerequisites = {
@@ -124,6 +123,10 @@ building_commercial_zone = {
 
 	upgrades = {
 		"building_commercial_megaplex"
+	}
+
+	triggered_desc = {
+		text = job_merchant_effect_desc
 	}
 
 	triggered_desc = {
@@ -142,7 +145,7 @@ building_commercial_zone = {
 		}
 	}
 	ai_resource_production = {
-		energy = 0
+		energy = 2
 		trigger = {
 			OR = {
 				num_unemployed >= 10
@@ -155,7 +158,7 @@ building_commercial_zone = {
 	}
 }
 
-## Commercial Megaplexes (Tier 2)
+## Commercial Megaplexes (Tier 2) [Vanilla]
 # Merge between OSA, Bug Branch, Real Space: Planetary Stations, StarTech, Ariphaos
 building_commercial_megaplex = {
 	base_buildtime = @db2_time
@@ -172,7 +175,7 @@ building_commercial_megaplex = {
 		exists = owner
 		owner = {
 			is_gestalt = no
-			is_ai = no # StarTech AI prevents AI from upgrading
+			#is_ai = no # StarTech AI prevents AI from upgrading # LS - Trade is fine now
 		}
 		NOT = { has_modifier = slave_colony }
 		has_building = building_commercial_zone
@@ -180,9 +183,10 @@ building_commercial_megaplex = {
 	}
 
 	allow = {
-		hidden_trigger = { # StarTech AI prevents AI from upgrading
-			owner = { is_ai = no }
-		}
+		# LS - Trade is fine now
+		#hidden_trigger = { # StarTech AI prevents AI from upgrading
+		#	owner = { is_ai = no }
+		#}
 	}
 	
 	destroy_trigger = {
@@ -205,8 +209,8 @@ building_commercial_megaplex = {
 			rare_crystals = @db2_rare_cost
 		}
 		upkeep = { # OSA
-			energy = 5
-			minerals = 5
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
 			rare_crystals = @db2_rare_upkeep
 		}
 		produces = { # OSA
@@ -238,6 +242,15 @@ building_commercial_megaplex = {
 		}
 	}
 
+	triggered_planet_modifier = { # OSA
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t2
+		}
+	}
+
 	triggered_desc = {
 		text = job_clerk_effect_desc
 	}
@@ -261,7 +274,7 @@ building_commercial_megaplex = {
 	upgrades = {
 		"building_commercial_trading_terminal" # OSA
 	}
-
+	
 	# StarTech AI Resource Production
 	ai_resource_production = {
 		energy = 4
@@ -271,6 +284,125 @@ building_commercial_megaplex = {
 	}
 	ai_resource_production = {
 		energy = 6
+		trigger = {
+			OR = {
+				num_unemployed >= 10
+				num_assigned_jobs = {
+				job = servant
+					value >= 10
+				}
+			}
+		}
+	}
+}
+
+## Commercial Trading Terminal (Tier 3) [Omega's Stellaris Additions]
+# Base version
+building_commercial_trading_terminal = {
+	base_buildtime = @db2_time
+	position_priority = 32
+	can_build = no
+
+	category = trade
+	
+    # Building Tooltip
+    triggered_desc = {
+        text = building_commercial_trading_terminal_tt
+    }
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_planet_flag = planetary_station } # Real Space: Planetary Stations
+	}
+
+	allow = {
+		exists = owner
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			has_modifier = slave_colony
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @db2_minerals
+			rare_crystals = @db2_rare_cost
+		}
+		upkeep = {
+			energy = @ost_b3_upkeep
+			minerals = @ost_b3_upkeep
+			rare_crystals = @db2_rare_upkeep
+		}
+		produces = {
+			trigger = {
+				owner = {
+					has_active_tradition = tr_commerce_3
+				}
+			}
+			unity = 20
+		}
+	}
+
+	planet_modifier = {
+		job_merchant_add = 3
+		job_bugged_trader_add = 3 # LS - Bug Branch
+		job_clerk_add = 4
+		trade_value_mult = 0.15
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+		modifier = {
+			job_merchant_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet_has_ecocontinuity = yes
+		}
+		modifier = {
+			planet_districts_cities_ecocontinuity_upkeep_add = @ecocontinuity_upkeep_t3
+		}
+	}
+
+	prerequisites = {
+		"tech_galactic_markets"
+	}
+
+	triggered_desc = {
+		text = job_clerk_effect_desc
+	}
+
+	triggered_desc = { # LS - Bug Branch
+        text = job_bugged_trader_effect_desc
+    }
+
+	triggered_desc = {
+		text = job_merchant_effect_desc
+	}
+	
+	# StarTech AI Resource Production
+	ai_resource_production = {
+		energy = 6
+		trigger = {
+			always = yes
+		}
+	}
+	ai_resource_production = {
+		energy = 10
 		trigger = {
 			OR = {
 				num_unemployed >= 10

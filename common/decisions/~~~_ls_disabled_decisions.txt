@@ -273,8 +273,8 @@ AP_uplink_strenghtend = {
 	}
 	allow = {
 		owner = {
-			any_owned_planet = {
-				NOT = {
+			NOT = {
+				any_owned_planet = {
 					has_modifier = planet_uplink_strengthend
 				}
 			}
@@ -321,8 +321,8 @@ AP_as_one = {
 	}
 	allow = {
 		owner = {
-			any_owned_planet = {
-				NOT = {
+			NOT = {
+				any_owned_planet = {
 					has_modifier = planet_as_one
 				}
 			}

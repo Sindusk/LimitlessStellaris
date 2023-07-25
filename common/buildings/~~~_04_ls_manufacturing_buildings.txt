@@ -76,8 +76,8 @@ building_foundry_1 = {
 	inline_script = { # Omega's Stellaris Additions
 		script = "buildings/foundry/ost_foundry_jobs"
 		OST_PRODUCTION = 1
-		OECL_MINERAL_ECO = 1
-		OECL_FOOD_ECO = 0.5
+		OECL_MINERAL_ECO = 2
+		OECL_FOOD_ECO = 1
 		OST_MINERAL = 2
 		OST_FOOD = 3
 		OST_JOB = 2
@@ -90,8 +90,8 @@ building_foundry_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = { # OSA
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b2_upkeep # OSA 2.5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 2.5 -> ost_b2
 		}
 		upkeep = { # OSA
 			trigger = {
@@ -101,6 +101,9 @@ building_foundry_1 = {
 				}
 			}
 			minerals = 10
+		}
+		produces = { # OSA
+			alloys = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -211,6 +214,29 @@ building_foundry_2 = {
 		}
 	}
 
+	inline_script = { # Adds the alloy jobs based on proper conditions.
+		script = buildings/foundry/alloy_jobs
+		basic = @db2_jobs
+		adv = @db2_adv_jobs
+		dm = @db2_dm_jobs
+	}
+
+	inline_script = { # Adds ascension perk jobs.
+		script = buildings/foundry/ascension_jobs
+		industrialist = 1
+	}
+
+	inline_script = {
+		script = "buildings/foundry/ost_foundry_jobs"
+		OST_PRODUCTION = 2
+		OECL_MINERAL_ECO = 4
+		OECL_FOOD_ECO = 2
+		OST_MINERAL = 3
+		OST_FOOD = 6
+		OST_JOB = 3
+		OST_JOB_2 = 1
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -218,8 +244,8 @@ building_foundry_2 = {
 			volatile_motes = @db3_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
+			energy = @ost_b3_upkeep # OSA 5 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 5 -> ost_b3
 			volatile_motes = @db3_rare_upkeep
 		}
 		upkeep = { # OSA
@@ -232,6 +258,9 @@ building_foundry_2 = {
 			minerals = 20
 		}
 		produces = { # OSA
+			alloys = @ost_b2_produces
+		}
+		produces = {
 			trigger = {
 				exists = owner
 				owner = {
@@ -248,29 +277,6 @@ building_foundry_2 = {
 
 	prerequisites = {
 		tech_alloys_1
-	}
-
-	inline_script = { # Adds the alloy jobs based on proper conditions.
-		script = buildings/foundry/alloy_jobs
-		basic = @db2_jobs
-		adv = @db2_adv_jobs
-		dm = @db2_dm_jobs
-	}
-
-	inline_script = { # Adds ascension perk jobs.
-		script = buildings/foundry/ascension_jobs
-		industrialist = 1
-	}
-
-	inline_script = {
-		script = "buildings/foundry/ost_foundry_jobs"
-		OST_PRODUCTION = 2
-		OECL_MINERAL_ECO = 2
-		OECL_FOOD_ECO = 1
-		OST_MINERAL = 3
-		OST_FOOD = 6
-		OST_JOB = 3
-		OST_JOB_2 = 1
 	}
 
 	triggered_planet_modifier = {
@@ -407,6 +413,29 @@ building_foundry_3 = {
 		}
 	}
 
+	inline_script = { # Adds the alloy jobs based on proper conditions.
+		script = buildings/foundry/alloy_jobs
+		basic = @db3_jobs
+		adv = @db3_adv_jobs
+		dm = @db3_dm_jobs
+	}
+	
+	inline_script = { # Adds ascension perk jobs.
+		script = buildings/foundry/ascension_jobs
+		industrialist = 2
+	}
+
+	inline_script = {
+		script = "buildings/foundry/ost_foundry_jobs"
+		OST_PRODUCTION = 3
+		OECL_MINERAL_ECO = 6
+		OECL_FOOD_ECO = 3
+		OST_MINERAL = 6
+		OST_FOOD = 9
+		OST_JOB = 4
+		OST_JOB_2 = 2
+	}
+
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -427,16 +456,16 @@ building_foundry_3 = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = @db3_upkeep
-			minerals = @db3_upkeep
+			energy = @ost_b4_upkeep # OSA b3 -> ost_b4
+			minerals = @ost_b4_upkeep # OSA b3 -> ost_b4
 			volatile_motes = @db4_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = @db3_upkeep
-			minerals = @db3_upkeep
+			energy = @ost_b5_upkeep # OSA b3 -> ost_b5
+			minerals = @ost_b5_upkeep # OSA b3 -> ost_b5
 			volatile_motes = @db4_rare_upkeep
 		}
 		upkeep = { # OSA
@@ -447,6 +476,9 @@ building_foundry_3 = {
 				}
 			}
 			minerals = 40
+		}
+		produces = { # OSA
+			alloys = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -465,29 +497,6 @@ building_foundry_3 = {
 	
 	upgrades = {
 		#building_roci_nano_forge_mod # Rise of Cosmic Industry
-	}
-
-	inline_script = { # Adds the alloy jobs based on proper conditions.
-		script = buildings/foundry/alloy_jobs
-		basic = @db3_jobs
-		adv = @db3_adv_jobs
-		dm = @db3_dm_jobs
-	}
-	
-	inline_script = { # Adds ascension perk jobs.
-		script = buildings/foundry/ascension_jobs
-		industrialist = 2
-	}
-
-	inline_script = {
-		script = "buildings/foundry/ost_foundry_jobs"
-		OST_PRODUCTION = 3
-		OECL_MINERAL_ECO = 3
-		OECL_FOOD_ECO = 1.5
-		OST_MINERAL = 6
-		OST_FOOD = 9
-		OST_JOB = 4
-		OST_JOB_2 = 2
 	}
 
 	triggered_planet_modifier = {
@@ -907,7 +916,7 @@ building_factory_1 = {
 	inline_script = { # Omega's Stellaris Additions
 		script = "buildings/factory/ost_factory_jobs"
 		OST_PRODUCTION = 1
-		OECL_MINERAL_ECO = 1
+		OECL_MINERAL_ECO = 2
 		OST_MINERAL = 2
 		OST_JOB = 2
 		OST_JOB_2 = 1
@@ -919,8 +928,8 @@ building_factory_1 = {
 			minerals = @db1_minerals
 		}
 		upkeep = {
-			energy = 2.5
-			minerals = 2.5
+			energy = @ost_b2_upkeep # OSA 2.5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 2.5 -> ost_b2
 		}
 		upkeep = { # OSA
 			trigger = {
@@ -930,6 +939,9 @@ building_factory_1 = {
 				}
 			}
 			minerals = 10
+		}
+		produces = { # OSA
+			consumer_goods = @ost_b1_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -1065,7 +1077,7 @@ building_factory_2 = {
 	inline_script = { # Omega's Stellaris Additions
 		script = "buildings/factory/ost_factory_jobs"
 		OST_PRODUCTION = 2
-		OECL_MINERAL_ECO = 2
+		OECL_MINERAL_ECO = 4
 		OST_MINERAL = 4
 		OST_JOB = 3
 		OST_JOB_2 = 1
@@ -1078,8 +1090,8 @@ building_factory_2 = {
 			rare_crystals = @db3_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
+			energy = @ost_b3_upkeep # OSA 5 -> ost_b3
+			minerals = @ost_b3_upkeep # OSA 5 -> ost_b3
 			rare_crystals = @db3_rare_upkeep
 		}
 		upkeep = { # OSA
@@ -1090,6 +1102,9 @@ building_factory_2 = {
 				}
 			}
 			minerals = 20
+		}
+		produces = { # OSA
+			consumer_goods = @ost_b2_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -1228,7 +1243,7 @@ building_factory_3 = {
 	inline_script = { # Omega's Stellaris Additions
 		script = "buildings/factory/ost_factory_jobs"
 		OST_PRODUCTION = 3
-		OECL_MINERAL_ECO = 3
+		OECL_MINERAL_ECO = 6
 		OST_MINERAL = 6
 		OST_JOB = 4
 		OST_JOB_2 = 2
@@ -1264,16 +1279,16 @@ building_factory_3 = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = @db3_upkeep
-			minerals = @db3_upkeep
+			energy = @ost_b4_upkeep # OSA b3 -> ost_b4
+			minerals = @ost_b4_upkeep # OSA b3 -> ost_b4
 			rare_crystals = @db4_rare_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = @db3_upkeep
-			minerals = @db3_upkeep
+			energy = @ost_b5_upkeep # OSA b3 -> ost_b5
+			minerals = @ost_b5_upkeep # OSA b3 -> ost_b5
 			rare_crystals = @db4_rare_upkeep
 		}
 		upkeep = { # OSA
@@ -1284,6 +1299,9 @@ building_factory_3 = {
 				}
 			}
 			minerals = 40
+		}
+		produces = { # OSA
+			consumer_goods = @ost_b3_produces
 		}
 		produces = { # OSA
 			trigger = {
@@ -1953,7 +1971,7 @@ building_nanite_transmuter = {
 		}
 		upkeep = {
 			nanites = 1
-			energy = 5
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
 		}
 	}
 
@@ -2060,8 +2078,8 @@ building_ministry_production = {
 			volatile_motes = @db2_rare_cost
 		}
 		upkeep = {
-			energy = 5
-			minerals = 5
+			energy = @ost_b2_upkeep # OSA 5 -> ost_b2
+			minerals = @ost_b2_upkeep # OSA 5 -> ost_b2
 			volatile_motes = @db2_rare_upkeep
 		}
 	}
@@ -2458,8 +2476,8 @@ building_coordinated_fulfillment_center_1 = {
 	}
 
 	planet_modifier = {
-		planet_metallurgists_produces_mult = 0.2
-		planet_artisans_produces_mult = 0.2
+		planet_metallurgists_produces_mult = 0.25 # OSA 0.20 -> 0.25
+		planet_artisans_produces_mult = 0.25 # OSA 0.20 -> 0.25
 	}
 
 	triggered_planet_modifier = {
@@ -2467,8 +2485,8 @@ building_coordinated_fulfillment_center_1 = {
 			owner = { has_policy_flag = relentless_industrialists_full_steam_ahead }
 		}
 		modifier = {
-			planet_metallurgists_produces_mult = 0.1
-			planet_artisans_produces_mult = 0.1
+			planet_metallurgists_produces_mult = 0.15 # OSA 0.10 -> 0.15
+			planet_artisans_produces_mult = 0.15 # OSA 0.10 -> 0.15
 		}
 	}
 
@@ -2608,8 +2626,8 @@ building_coordinated_fulfillment_center_2 = {
 	}
 
 	planet_modifier = {
-		planet_metallurgists_produces_mult = 0.4
-		planet_artisans_produces_mult = 0.4
+		planet_metallurgists_produces_mult = 0.45 # OSA 0.40 -> 0.45
+		planet_artisans_produces_mult = 0.45 # OSA 0.40 -> 0.45
 	}
 
 	triggered_planet_modifier = {
@@ -2617,8 +2635,8 @@ building_coordinated_fulfillment_center_2 = {
 			owner = { has_policy_flag = relentless_industrialists_full_steam_ahead }
 		}
 		modifier = {
-			planet_metallurgists_produces_mult = 0.2
-			planet_artisans_produces_mult = 0.2
+			planet_metallurgists_produces_mult = 0.25 # OSA 0.20 -> 0.25
+			planet_artisans_produces_mult = 0.25 # OSA 0.20 -> 0.25
 		}
 	}
 
@@ -2627,7 +2645,8 @@ building_coordinated_fulfillment_center_2 = {
 			owner = { is_synthetic_empire = no }
 		}
 		modifier = {
-			pop_growth_speed_reduction = 0.25
+			#pop_growth_speed_reduction = 0.25 # OSA removes
+			pop_environment_tolerance = -0.125 # OSA
 		}
 	}
 
@@ -2642,7 +2661,8 @@ building_coordinated_fulfillment_center_2 = {
 			}
 		}
 		modifier = {
-			pop_growth_speed_reduction = 0.15
+			#pop_growth_speed_reduction = 0.15 # OSA removes
+			pop_environment_tolerance = -0.125 # OSA
 		}
 	}
 
@@ -2651,7 +2671,7 @@ building_coordinated_fulfillment_center_2 = {
 			owner = { is_synthetic_empire = yes }
 		}
 		modifier = {
-			habitability_ceil_add = -0.1
+			habitability_ceil_add = -0.125 # OSA -0.1 -> -0.125
 		}
 	}
 
@@ -2666,7 +2686,7 @@ building_coordinated_fulfillment_center_2 = {
 			}
 		}
 		modifier = {
-			habitability_ceil_add = -0.05
+			habitability_ceil_add = -0.125 # OSA -0.05 -> -0.125
 		}
 	}
 
@@ -2840,5 +2860,14 @@ building_archaeo_refinery = {
 			owner = { is_gestalt = yes }
 		}
 		text = job_gas_refiner_drone_effect_desc
+	}
+	
+	ai_resource_production = { # LS combined version of OSA resource production
+		trigger = {
+			always = yes
+		}
+		volatile_motes = 2
+		exotic_gases = 2
+		rare_crystals = 2
 	}
 }

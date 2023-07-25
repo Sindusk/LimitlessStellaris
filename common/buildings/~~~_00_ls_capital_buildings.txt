@@ -75,28 +75,8 @@ building_colony_shelter = {
 		script = buildings/on_all_capital_buildings
 	}
 	
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3
-			}
-		}
-		modifier = {
-			job_healthcare_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_police_state			
-			}
-		}
-		modifier = {
-			job_osa_commando_add = 1
-		}
+	inline_script = {
+		script = "buildings/capital/ost_capital_colony_jobs"
 	}
 
 	triggered_planet_modifier = {
@@ -413,7 +393,7 @@ building_capital = {
 		planet_max_branch_office_buildings_add = 1
 		defense_armies_add = @tier_2_capital_defense_armies
 	}
-	
+
     # Building Tooltip
     triggered_desc = {
         text = building_capital_tt
@@ -433,6 +413,16 @@ building_capital = {
 	inline_script = { # Swaps admin jobs based on civics.
 		script = buildings/capital/civic_jobs
 		count = 1
+	}
+
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 1
+		OST_JOB_2 = 2
+	}
+
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs_desc"
 	}
 
 	triggered_planet_modifier = {
@@ -680,6 +670,16 @@ building_major_capital = {
 	inline_script = { # Swaps admin jobs based on civics.
 		script = buildings/capital/civic_jobs
 		count = 1
+	}
+
+	inline_script = {
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 1
+		OST_JOB_2 = 2
+	}
+	
+	inline_script = {
+		script = "buildings/capital/ost_capital_jobs_desc"
 	}
 
 	triggered_planet_modifier = {
@@ -942,6 +942,16 @@ building_system_capital = {
 		count = 2
 	}
 
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 2
+		OST_JOB_2 = 3
+	}
+	
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs_desc"
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -1202,6 +1212,16 @@ building_imperial_capital = {
 	inline_script = { # Swaps admin jobs based on civics.
 		script = buildings/capital/civic_jobs
 		count = 3
+	}
+
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 4
+		OST_JOB_2 = 4
+	}
+	
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs_desc"
 	}
 
 	triggered_planet_modifier = {
@@ -1821,17 +1841,15 @@ building_machine_capital = {
 	inline_script = {
 		script = buildings/on_all_capital_buildings
 	}
+
+	inline_script = {
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 1
+		OST_JOB_2 = 1
+	}
 	
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3_machine
-			}
-		}
-		modifier = {
-			job_replicator_add = 1
-		}
+	inline_script = {
+		script = "buildings/capital/ost_capital_jobs_desc"
 	}
 
 	triggered_planet_modifier = {
@@ -1997,19 +2015,17 @@ building_machine_major_capital = {
 	inline_script = {
 		script = buildings/on_all_capital_buildings
 	}
-	
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3_machine
-			}
-		}
-		modifier = {
-			job_replicator_add = 1
-		}
-	}
 
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 1
+		OST_JOB_2 = 2
+	}
+	
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs_desc"
+	}
+	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -2186,16 +2202,14 @@ building_machine_system_capital = {
 		script = buildings/on_all_capital_buildings
 	}
 
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3_machine
-			}
-		}
-		modifier = {
-			job_replicator_add = 1
-		}
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 2
+		OST_JOB_2 = 3
+	}
+	
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs_desc"
 	}
 
 	triggered_planet_modifier = {
@@ -2396,16 +2410,14 @@ building_imperial_machine_capital = {
 		script = buildings/on_all_capital_buildings
 	}
 
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3_machine
-			}
-		}
-		modifier = {
-			job_replicator_add = 1
-		}
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 3
+		OST_JOB_2 = 4
+	}
+	
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs_desc"
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -2910,40 +2922,15 @@ building_hive_capital = {
 	inline_script = {
 		script = buildings/on_all_capital_buildings
 	}
+
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 1
+		OST_JOB_2 = 2
+	}
 	
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_hive_sonar_senses
-			}
-		}
-		modifier = {
-			job_osom_mapping_drone_add = 2
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = { has_civic = civic_hive_aggregate_catharsis }
-		}
-		modifier = {
-			job_osa_omni_drone_add = 2
-			job_maintenance_drone_add = -2
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3_hive
-			}
-		}
-		modifier = {
-			job_spawning_drone_add = 1
-		}
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs_desc"
 	}
 
 	triggered_planet_modifier = {
@@ -3136,39 +3123,14 @@ building_hive_major_capital = {
 		script = buildings/on_all_capital_buildings
 	}
 
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_hive_sonar_senses
-			}
-		}
-		modifier = {
-			job_osom_mapping_drone_add = 4
-		}
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 1
+		OST_JOB_2 = 4
 	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = { has_civic = civic_hive_aggregate_catharsis }
-		}
-		modifier = {
-			job_osa_omni_drone_add = 4
-			job_maintenance_drone_add = -4
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3_hive
-			}
-		}
-		modifier = {
-			job_spawning_drone_add = 1
-		}
+	
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs_desc"
 	}
 
 	triggered_planet_modifier = {
@@ -3378,6 +3340,16 @@ building_imperial_hive_capital = {
 		script = buildings/on_all_capital_buildings
 	}
 
+	inline_script = {
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 3
+		OST_JOB_2 = 4
+	}
+	
+	inline_script = {
+		script = "buildings/capital/ost_capital_jobs_desc"
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			owner = { is_progenitor_hive_empire = yes }
@@ -3390,29 +3362,7 @@ building_imperial_hive_capital = {
 		job_spawning_drone_add = -1
 		job_offspring_drone_add = 1
 	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = { has_civic = civic_hive_aggregate_catharsis }
-		}
-		modifier = {
-			job_osa_omni_drone_add = 4
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3_hive
-			}
-		}
-		modifier = {
-			job_spawning_drone_add = 1
-		}
-	}
-
+	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -3829,114 +3779,6 @@ building_hab_capital = {
 		mult = modifier:habitat_stability_add
 	}
 
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_mining_guilds
-					has_civic = civic_corporate_mining_guilds					
-				}
-			}
-		}
-		modifier = {
-			job_osa_mining_director_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_agriculture_councils
-					has_civic = civic_corporate_agriculture_councils
-				}
-			}
-		}
-		modifier = {
-			job_osa_agri_director_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_energy_consortiums
-					has_civic = civic_corporate_energy_consortiums
-				}
-			}
-		}
-		modifier = {
-			job_osa_energy_director_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			NOT = { 
-				is_planet_class = pc_habitat
-			}
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_speleology_societies
-					has_civic = civic_corporate_speleology_societies
-				}
-			}
-		}
-		modifier = {
-			job_osom_speleologist_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			NOT = { 
-				is_planet_class = pc_habitat
-			}
-			exists = owner
-			owner = {
-				has_civic = civic_hive_sonar_senses
-			}
-		}
-		modifier = {
-			job_osom_mapping_drone_add = 2
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				AND = {
-					has_active_tradition = tr_solidarity_3_machine
-					is_machine_empire = yes
-				}
-			}
-		}
-		modifier = {
-			job_replicator_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				AND = {
-					has_active_tradition = tr_solidarity_3_hive
-					is_hive_empire = yes
-				}
-			}
-		}
-		modifier = {
-			job_spawning_drone_add = 1
-		}
-	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -4184,74 +4026,6 @@ building_hab_capital = {
 		text = job_synapse_drone_effect_desc
 	}
 
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_mining_guilds
-					has_civic = civic_corporate_mining_guilds					
-				}
-			}
-		}
-		text = job_osa_mining_director_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_agriculture_councils
-					has_civic = civic_corporate_agriculture_councils
-				}
-			}
-		}
-		text = job_osa_agri_director_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_energy_consortiums
-					has_civic = civic_corporate_energy_consortiums
-				}
-			}
-		}
-		text = job_osa_energy_director_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			NOT = { 
-				is_planet_class = pc_habitat
-			}
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_speleology_societies
-					has_civic = civic_corporate_speleology_societies
-				}
-			}
-		}
-		text = job_osom_speleologist_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			NOT = { 
-				is_planet_class = pc_habitat
-			}
-			exists = owner
-			owner = {
-				has_civic = civic_hive_sonar_senses
-			}
-		}
-		text = job_osom_mapping_drone_effect_desc
-	}
-
 	upgrades = {
 		"building_hab_major_capital"
 	}
@@ -4295,6 +4069,7 @@ building_hab_major_capital = {
 		upkeep = {
 			energy = 3
 			alloys = 5
+			influence = @building_influence_t2 # OSA
 		}
 		upkeep = {
 			trigger = { owner = { has_active_tradition = tr_domination_adopt_void } }
@@ -4331,143 +4106,15 @@ building_hab_major_capital = {
 		script = buildings/capital/civic_jobs
 		count = 1
 	}
+
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs"
+		OST_JOB_1 = 1
+		OST_JOB_2 = 2
+	}
 	
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				has_civic = civic_police_state			
-			}
-		}
-		modifier = {
-			job_osa_commander_add = 1
-			job_osa_commando_add = 1
-			job_politician_add = -1
-			job_enforcer_add = -1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				AND = {
-					has_active_tradition = tr_solidarity_3
-					is_gestalt = no
-				}
-			}
-		}
-		modifier = {
-			job_healthcare_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				AND = {
-					has_active_tradition = tr_solidarity_3_machine
-					is_machine_empire = yes
-				}
-			}
-		}
-		modifier = {
-			job_replicator_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				AND = {
-					has_active_tradition = tr_solidarity_3_hive
-					is_hive_empire = yes
-				}
-			}
-		}
-		modifier = {
-			job_spawning_drone_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_mining_guilds
-					has_civic = civic_corporate_mining_guilds					
-				}
-			}
-		}
-		modifier = {
-			job_osa_mining_director_add = 2
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_agriculture_councils
-					has_civic = civic_corporate_agriculture_councils
-				}
-			}
-		}
-		modifier = {
-			job_osa_agri_director_add = 2
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_energy_consortiums
-					has_civic = civic_corporate_energy_consortiums
-				}
-			}
-		}
-		modifier = {
-			job_osa_energy_director_add = 2
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			NOT = { 
-				is_planet_class = pc_habitat
-			}
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_speleology_societies
-					has_civic = civic_corporate_speleology_societies
-				}
-			}
-		}
-		modifier = {
-			job_osom_speleologist_add = 2
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			NOT = { 
-				is_planet_class = pc_habitat
-			}
-			exists = owner
-			owner = {
-				has_civic = civic_hive_sonar_senses
-			}
-		}
-		modifier = {
-			job_osom_mapping_drone_add = 1
-		}
+	inline_script = { # OSA
+		script = "buildings/capital/ost_capital_jobs_desc"
 	}
 
 	triggered_planet_modifier = {
@@ -4538,29 +4185,6 @@ building_hab_major_capital = {
 		job_roboticist_add = 1
 	}
 
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-				NOR = {
-					has_authority = auth_corporate
-					has_civic = civic_exalted_priesthood
-					has_civic = civic_aristocratic_elite
-					has_civic = civic_merchant_guilds
-					has_civic = civic_technocracy
-				}
-			}
-			OR = {
-				NOT = { has_planet_flag = toxic_knights_habitat }
-				NOT = { owner = { has_origin = origin_toxic_knights } }
-			}
-		}
-		modifier = {
-			job_politician_add = 2
-		}
-	}
-
 	triggered_planet_modifier = {
 		potential = {
 			has_planet_flag = toxic_knights_habitat
@@ -4573,95 +4197,6 @@ building_hab_major_capital = {
 			job_knight_commander_add = 1
 			job_knight_add = 1
 		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			NOT = { has_planet_flag = toxic_knights_habitat }
-			exists = owner
-			owner = { has_authority = auth_corporate }
-		}
-		modifier = {
-			job_executive_add = 2
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = { has_civic = civic_exalted_priesthood }
-			OR = {
-				NOT = { has_planet_flag = toxic_knights_habitat }
-				NOT = { owner = { has_origin = origin_toxic_knights } }
-			}
-		}
-		modifier = {
-			job_politician_add = 1
-			job_high_priest_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = { has_civic = civic_aristocratic_elite }
-			OR = {
-				NOT = { has_planet_flag = toxic_knights_habitat }
-				NOT = { owner = { has_origin = origin_toxic_knights } }
-			}
-		}
-		modifier = {
-			job_politician_add = 1
-			job_noble_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # OSA
-		potential = {
-			exists = owner
-			owner = { has_civic = civic_technocracy }
-			OR = {
-				NOT = { has_planet_flag = toxic_knights_habitat }
-				NOT = { owner = { has_origin = origin_toxic_knights } }
-			}
-		}
-		modifier = {
-			job_head_researcher_add = 1
-			job_politician_add = 1
-		}
-	}
-
-	triggered_planet_modifier = { # Bug Branch
-		potential = {
-			exists = owner
-			owner = { has_civic = civic_bugged_machine_researcher }
-		}
-		modifier = {
-			job_bugged_examinatron_add = 2
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_civic = civic_merchant_guilds }
-			OR = {
-				NOT = { has_planet_flag = toxic_knights_habitat }
-				NOT = { owner = { has_origin = origin_toxic_knights } }
-			}
-		}
-		modifier = {
-			job_politician_add = 1
-			job_merchant_add = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		job_enforcer_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -4879,112 +4414,6 @@ building_hab_major_capital = {
 			}
 		}
 		text = job_culture_worker_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_solidarity_3
-			}
-		}
-		text = job_healthcare_effect_desc
-	}
-
-	triggered_desc = { # Bug Branch
-		trigger = {
-			exists = owner
-			owner = { has_civic = civic_bugged_machine_researcher }
-		}
-		text = job_bugged_examinatron_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_mining_guilds
-					has_civic = civic_corporate_mining_guilds					
-				}
-			}
-		}
-		text = job_osa_mining_director_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_agriculture_councils
-					has_civic = civic_corporate_agriculture_councils
-				}
-			}
-		}
-		text = job_osa_agri_director_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_energy_consortiums
-					has_civic = civic_corporate_energy_consortiums
-				}
-			}
-		}
-		text = job_osa_energy_director_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			NOT = { 
-				is_planet_class = pc_habitat
-			}
-			exists = owner
-			owner = {
-				OR = {
-					has_civic = civic_speleology_societies
-					has_civic = civic_corporate_speleology_societies
-				}
-			}
-		}
-		text = job_osom_speleologist_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			NOT = { 
-				is_planet_class = pc_habitat
-			}
-			exists = owner
-			owner = {
-				has_civic = civic_hive_sonar_senses
-			}
-		}
-		text = job_osom_mapping_drone_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				has_civic = civic_police_state			
-			}
-		}
-		text = job_osa_commander_effect_desc
-	}
-
-	triggered_desc = { # OSA
-		trigger = {
-			exists = owner
-			owner = {
-				has_civic = civic_police_state			
-			}
-		}
-		text = job_osa_commando_effect_desc
 	}
 }
 
