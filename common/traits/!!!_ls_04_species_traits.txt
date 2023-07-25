@@ -170,8 +170,987 @@ trait_psionic = {
 }
 
 ##################################################
+## Species Traits - Unique - Biological Species
+##################################################
+
+## <3> Tiyanki [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_tiyanki = {
+	cost = 3
+		species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		exists = from
+		from = {
+			has_technology = tech_leviathan_transgenesis
+			has_country_flag = harvested_tiyanki_dna
+		}
+		dtraits_ai_breeding_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_slow_breeders"
+		"trait_rapid_breeders"
+		"trait_rapid_breeders_lithoid"
+		"trait_very_rapid_breeders" # DTM
+		"trait_very_rapid_breeders_lithoid" # DTM
+		"trait_fertile"
+		"trait_plantoid_budding"
+		"trait_lithoid_budding"
+		"trait_advanced_budding"
+		"trait_necrophage"
+		"trait_clone_soldier_infertile"
+		"trait_clone_soldier_infertile_full_potential"
+		"trait_clone_soldier_fertile"
+		"trait_sterile" # DTM
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+
+	custom_tooltip = TRAIT_TIYANKI_BUDDING_EFFECT
+	# Organic Pop Assembly set by tiyanki_budding_rate in \pop_categories\ and 00_scripted_variables
+
+	slave_cost = {
+		energy = 1500
+	}
+	ai_weight = { # DTM
+		weight = value:dtraits_breeding_weight
+		mult = 2.2
+		modifier = {
+			# robot assembly is better
+			mult = 0
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+				is_materialist = yes
+			}
+		}
+		modifier = {
+			mult = 7.5
+			NOT = {
+				any_owned_species = { has_trait = trait_tiyanki }
+			}
+		}
+	}
+}
+
+## <2> Advanced Budding (Biological) [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_advanced_budding = {
+	host_has_dlc = "Plantoids Species Pack"
+	cost = 2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		exists = from
+		from = {
+			has_technology = tech_plantoid_transgenesis
+		}
+		dtraits_ai_breeding_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_slow_breeders"
+		"trait_very_slow_breeders" # DTM
+		"trait_rapid_breeders"
+		"trait_very_rapid_breeders" # DTM
+		"trait_rapid_breeders_lithoid" # DTM
+		"trait_very_rapid_breeders_lithoid" # DTM
+		"trait_necrophage"
+		"trait_clone_soldier_infertile"
+		"trait_clone_soldier_infertile_full_potential"
+		"trait_plantoid_budding"
+		"trait_lithoid_budding"
+		"trait_incubator" # DTM
+		"trait_tiyanki"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	species_class = { HUM MAM REP AVI ART MOL NECROID AQUATIC TOX } # PLANT and FUN are deliberately
+
+	custom_tooltip = TRAIT_PLANTOID_BUDDING_EFFECT
+	# Organic Pop Assembly set by plantoid_budding_rate in \pop_categories\ and 00_scripted_variables
+
+	slave_cost = {
+		energy = 2500
+	}
+	ai_weight = { # DTM
+		weight = value:dtraits_breeding_weight
+		mult = 1.1
+		modifier = {
+			# robot assembly is better
+			mult = 0
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+				is_materialist = yes
+			}
+		}
+	}
+}
+
+## <1> Radiotrophic (Biological) [Vanilla]
+# Merge between OSA, DTM, Trait Upgrader
+trait_harvested_radiotrophic = {
+	icon = "gfx/interface/icons/traits/trait_plantoid_radiotrophic.dds"
+	host_has_dlc = "Plantoids Species Pack"
+	initial = no
+	randomized = no
+	cost = 1 # DTM 2 -> 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_plantoid_phototrophic"
+		"trait_plantoid_radiotrophic"
+		"trait_lithoid_radiotrophic"
+		"trait_advanced_phototrophic"
+		"trait_advanced_radiotrophic"
+		"trait_voidling"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	species_class = { HUM MAM REP AVI ART MOL NECROID AQUATIC TOX }
+	
+	species_potential_add = {
+		exists = from
+		from = {
+			has_country_flag = harvested_radiotrophic_dna
+			NOT = { has_technology = tech_plantoid_transgenesis }
+		}
+	}
+	
+	custom_tooltip = TRAIT_PLANTOID_RADIOTROPHIC_EFFECT
+	inline_script = "traits/radiotrophic_effects" 
+	slave_cost = { # DTM
+		energy = 1500
+	}
+
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:dtraits_food_weight
+		modifier = {
+			mult = 0
+			has_monthly_income = { resource = energy value < 100 }
+		}
+		modifier = {
+			mult = 0.75
+			has_monthly_income = { resource = energy value < 200 }
+		}
+		modifier = {
+			mult = 0
+			NOT = {
+				any_owned_planet = {
+					is_nuked_world = yes
+				}
+			}
+		}
+	}
+	assembly_score = { # DTM
+		modifier = {
+			add = 1
+			from = {
+				OR = {
+					is_nuked_world = yes
+					has_modifier = wasteland_radiation
+				}
+			}
+		}
+	}
+}
+
+## <1> Advanced Phototrophic (Biological) [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_advanced_phototrophic = {
+	host_has_dlc = "Plantoids Species Pack"
+	cost = 1
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		exists = from
+		from = {
+			has_technology = tech_plantoid_transgenesis
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_plantoid_phototrophic"
+		"trait_plantoid_radiotrophic"
+		"trait_lithoid_radiotrophic" # DTM
+		"trait_advanced_radiotrophic"
+		"trait_harvested_radiotrophic"
+		"trait_voidling"
+		"trait_cave_dweller"
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_class = { HUM MAM REP AVI ART MOL NECROID AQUATIC LITHOID TOX } # PLANT and FUN are deliberately excluded.
+	sorting_priority = 30
+	custom_tooltip = TRAIT_ADVANCED_PHOTOTROPHIC_EFFECT
+
+	ai_weight = { # DTM
+		weight = value:dtraits_food_weight
+		modifier = { # Trait Upgrader
+			mult = 0
+			has_monthly_income = { resource = energy value < 100 }
+		}
+		modifier = { # Trait Upgrader
+			mult = 0.75
+			has_monthly_income = { resource = energy value < 200 }
+		}
+	}
+
+	slave_cost = {
+		energy = 1000
+	}
+}
+
+## <1> Advanced Radiotrophic (Biological) [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_advanced_radiotrophic = {
+	host_has_dlc = "Plantoids Species Pack"
+	cost = 1 # DTM 2 -> 1
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		exists = from
+		from = {
+			OR = {
+				has_technology = tech_plantoid_transgenesis
+				has_technology = tech_lithoid_transgenesis
+			}
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_plantoid_phototrophic"
+		"trait_plantoid_radiotrophic"
+		"trait_lithoid_radiotrophic" # DTM
+		"trait_advanced_phototrophic"
+		"trait_harvested_radiotrophic"
+		"trait_voidling"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	species_class = { HUM MAM REP AVI ART MOL NECROID AQUATIC TOX } # PLANT and FUN are deliberately excluded.
+	custom_tooltip_with_modifiers = TRAIT_ADVANCED_RADIOTROPHIC_EFFECT
+
+	inline_script = "traits/radiotrophic_effects"
+	slave_cost = { # DTM
+		energy = 1500
+	}
+
+	ai_weight = { # DTM
+		weight = value:dtraits_food_weight
+		modifier = {
+			mult = 0
+			has_monthly_income = { resource = energy value < 100 }
+		}
+		modifier = {
+			mult = 0.75
+			has_monthly_income = { resource = energy value < 200 }
+		}
+		modifier = {
+			mult = 0
+			NOT = {
+				any_owned_planet = {
+					is_nuked_world = yes
+				}
+			}
+		}
+	}
+	assembly_score = { # DTM
+		modifier = {
+			add = 1
+			from = {
+				OR = {
+					is_nuked_world = yes
+					has_modifier = wasteland_radiation
+				}
+			}
+		}
+	}
+}
+
+##################################################
+## Species Traits - Unique - Lithoid Species
+##################################################
+
+## <2> Advanced Scintillating (Lithoid) [Vanilla]
+# Merge between DTM, Ariphaos
+trait_advanced_scintillating = {
+	host_has_dlc = "Lithoids Species Pack"
+	cost = 2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		exists = from
+		from = {
+			has_technology = tech_lithoid_transgenesis
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_lithoid_gaseous_byproducts"
+		"trait_lithoid_scintillating"
+		"trait_lithoid_volatile_excretions"
+		"trait_advanced_volatile_excretions"
+		"trait_advanced_gaseous_byproducts"
+		"trait_drake_scaled"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	custom_tooltip = TRAIT_LITHOID_SCINTILLATING_EFFECT
+
+	slave_cost = {
+		energy = 1000
+	}
+	ai_weight = { # DTM
+		weight = 1
+	}
+}
+
+## <2> Scintillating (Lithoid) [Vanilla]
+# DTM version
+trait_lithoid_scintillating = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+
+	opposites = {
+		"trait_lithoid_volatile_excretions"
+		"trait_lithoid_gaseous_byproducts"
+		"trait_advanced_gaseous_byproducts"
+		"trait_advanced_scintillating"
+		"trait_advanced_volatile_excretions"
+		"trait_drake_scaled"
+	}
+	allowed_archetypes = { LITHOID }
+	custom_tooltip = TRAIT_LITHOID_SCINTILLATING_EFFECT
+
+	slave_cost = {
+		energy = 1000
+	}
+	ai_weight = { # DTM
+		weight = 1
+	}
+}
+
+## <2> Advanced Gaseous Byproducts (Lithoid) [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_advanced_gaseous_byproducts = {
+	host_has_dlc = "Lithoids Species Pack"
+	cost = 2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		exists = from
+		from = {
+			has_technology = tech_lithoid_transgenesis
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_lithoid_gaseous_byproducts"
+		"trait_lithoid_scintillating"
+		"trait_lithoid_volatile_excretions"
+		"trait_advanced_scintillating"
+		"trait_advanced_volatile_excretions"
+		"trait_drake_scaled"
+		"trait_exotic_gas_dependency" # DTM
+		"trait_exotic_metabolism" # DTM
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	custom_tooltip = TRAIT_LITHOID_GASEOUS_BYPRODUCTS_EFFECT
+
+	slave_cost = {
+		energy = 1000
+	}
+	ai_weight = { # DTM
+		weight = 1
+	}
+}
+
+## <2> Gaseous Byproducts (Lithoid) [Vanilla]
+# DTM version
+trait_lithoid_gaseous_byproducts = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+
+	opposites = {
+		"trait_lithoid_volatile_excretions"
+		"trait_lithoid_scintillating"
+		"trait_advanced_gaseous_byproducts"
+		"trait_advanced_scintillating"
+		"trait_advanced_volatile_excretions"
+		"trait_drake_scaled"
+		"trait_exotic_gas_dependency" # DTM
+		"trait_exotic_metabolism"
+	}
+	allowed_archetypes = { LITHOID }
+	custom_tooltip = TRAIT_LITHOID_GASEOUS_BYPRODUCTS_EFFECT
+
+	slave_cost = {
+		energy = 1000
+	}
+	ai_weight = { # DTM
+		weight = 1
+	}
+}
+
+## <2> Advanced Volatile Excretions (Lithoid) [Vanilla]
+# Merge between DTM, Ariphaos
+trait_advanced_volatile_excretions = {
+	host_has_dlc = "Lithoids Species Pack"
+	cost = 2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		exists = from
+		from = {
+			has_technology = tech_lithoid_transgenesis
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_lithoid_gaseous_byproducts"
+		"trait_lithoid_scintillating"
+		"trait_lithoid_volatile_excretions"
+		"trait_advanced_gaseous_byproducts"
+		"trait_advanced_scintillating"
+		"trait_drake_scaled"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	custom_tooltip = TRAIT_LITHOID_VOLATILE_EXCRETIONS_EFFECT
+
+	slave_cost = {
+		energy = 1000
+	}
+	ai_weight = { # DTM
+		weight = 1
+	}
+}
+
+## <2> Volatile Excretions (Lithoid) [Vanilla]
+# DTM version
+trait_lithoid_volatile_excretions = {
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+
+	opposites = {
+		"trait_lithoid_gaseous_byproducts"
+		"trait_lithoid_scintillating"
+		"trait_advanced_gaseous_byproducts"
+		"trait_advanced_scintillating"
+		"trait_advanced_volatile_excretions"
+		"trait_drake_scaled"
+	}
+	allowed_archetypes = { LITHOID }
+	custom_tooltip = TRAIT_LITHOID_VOLATILE_EXCRETIONS_EFFECT
+
+	slave_cost = {
+		energy = 1000
+	}
+	ai_weight = { # DTM
+		weight = 1
+	}
+}
+
+## <2> Budding (Lithoid) [Vanilla]
+# Merge between OSA, DTM, Trait Upgrader
+trait_lithoid_budding = {
+	host_has_dlc = "Plantoids Species Pack"
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_breeding_trigger = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	opposites = {
+		"trait_slow_breeders"
+		"trait_very_slow_breeders" # DTM
+		"trait_rapid_breeders"
+		"trait_very_rapid_breeders" # DTM
+		"trait_rapid_breeders_lithoid"
+		"trait_very_rapid_breeders_lithoid" # DTM
+		"trait_necrophage"
+		"trait_clone_soldier_infertile"
+		"trait_clone_soldier_infertile_full_potential"
+		"trait_incubator"
+		"trait_plantoid_budding"
+		"trait_advanced_budding"
+		"trait_tiyanki"
+	}
+	allowed_archetypes = { LITHOID }
+	species_class = { LITHOID }
+	custom_tooltip = TRAIT_LITHOID_BUDDING_EFFECT
+	# Organic Pop Assembly set by plantoid_budding_rate in \pop_categories\ and 00_scripted_variables
+	slave_cost = {
+		energy = 2000
+	}
+
+	ai_weight = { # DTM
+		weight = 1.1
+		mult = value:dtraits_breeding_weight
+		modifier = {
+			# robot assembly is better
+			mult = 0
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+				is_materialist = yes
+			}
+		}
+	}
+}
+
+## <1> Radiotrophic (Lithoid) [Vanilla]
+trait_lithoid_radiotrophic = {
+	icon = "gfx/interface/icons/traits/trait_plantoid_radiotrophic.dds"
+	host_has_dlc = "Plantoids Species Pack"
+	cost = 1 # DTM 2 -> 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_plantoid_phototrophic"
+		"trait_plantoid_radiotrophic"
+		"trait_harvested_radiotrophic"
+		"trait_advanced_phototrophic"
+		"trait_advanced_radiotrophic"
+		"trait_voidling"
+	}
+	allowed_archetypes = { LITHOID }
+	species_class = { LITHOID }
+	custom_tooltip = TRAIT_LITHOID_RADIOTROPHIC_EFFECT
+	inline_script = "traits/radiotrophic_effects" 
+	slave_cost = { # DTM
+		energy = 1500
+	}
+
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:dtraits_minerals_weight
+		modifier = {
+			mult = 0
+			has_monthly_income = { resource = energy value < 100 }
+		}
+		modifier = {
+			mult = 0.75
+			has_monthly_income = { resource = energy value < 200 }
+		}
+		modifier = {
+			mult = 0
+			NOT = {
+				any_owned_planet = {
+					is_nuked_world = yes
+				}
+			}
+		}
+	}
+	assembly_score = { # DTM
+		modifier = {
+			add = 1
+			from = {
+				OR = {
+					is_nuked_world = yes
+					has_modifier = wasteland_radiation
+				}
+			}
+		}
+	}
+}
+
+##################################################
+## Species Traits - Unique - Plantoid Species
+##################################################
+
+## <2> Budding (Plantoid) [Vanilla]
+# Merge between OSA, DTM, Trait Upgrader
+trait_plantoid_budding = {
+	host_has_dlc = "Plantoids Species Pack"
+	cost = 2
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_breeding_trigger = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	opposites = {
+		"trait_slow_breeders"
+		"trait_very_slow_breeders" # DTM
+		"trait_rapid_breeders"
+		"trait_very_rapid_breeders" # DTM
+		"trait_rapid_breeders_lithoid"
+		"trait_very_rapid_breeders_lithoid" # DTM
+		"trait_necrophage"
+		"trait_clone_soldier_infertile"
+		"trait_clone_soldier_infertile_full_potential"
+		"trait_lithoid_budding"
+		"trait_incubator"
+		"trait_advanced_budding"
+		"trait_tiyanki"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	species_class = { PLANT FUN }
+	custom_tooltip = TRAIT_PLANTOID_BUDDING_EFFECT
+	# Organic Pop Assembly set by plantoid_budding_rate in \pop_categories\ and 00_scripted_variables
+	slave_cost = {
+		energy = 2000
+	}
+
+	ai_weight = { # DTM
+		weight = 1.1
+		mult = value:dtraits_breeding_weight
+		modifier = {
+			# robot assembly is better
+			mult = 0
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+				is_materialist = yes
+			}
+		}
+	}
+}
+
+## <1> Phototrophic (Plantoid) [Vanilla]
+# Merge between OSA, DTM, Trait Upgrader
+trait_plantoid_phototrophic = {
+	host_has_dlc = "Plantoids Species Pack"
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_plantoid_radiotrophic"
+		"trait_lithoid_radiotrophic"
+		"trait_advanced_phototrophic"
+		"trait_advanced_radiotrophic"
+		"trait_harvested_radiotrophic"
+		"trait_voidling"
+		"trait_cave_dweller"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	species_class = { PLANT FUN }
+	sorting_priority = 30
+	custom_tooltip = TRAIT_PLANTOID_EFFECT # DTM PHOTOTROPHIC -> PLANTOID
+
+	random_weight = { # DTM
+		PLANT = 80
+	}
+
+	modifier = { # DTM
+		pc_ocean_habitability = -0.1
+		pc_tropical_habitability = -0.05
+		pc_continental_habitability = -0.1
+		pc_arctic_habitability = -0.25
+		pc_tundra_habitability = -0.25
+		pc_alpine_habitability = -0.25
+		pc_desert_habitability = -0.25
+		pc_arid_habitability = -0.25
+		pc_savannah_habitability = -0.25
+		planet_pops_food_upkeep_mult = -0.6
+	}
+
+	ai_weight = { # Trait Upgrader
+		weight = 1
+		mult = value:dtraits_food_weight
+		modifier = {
+			mult = 0
+			has_monthly_income = { resource = energy value < 100 }
+		}
+		modifier = {
+			mult = 0.75
+			has_monthly_income = { resource = energy value < 200 }
+		}
+	}
+
+	slave_cost = {
+		energy = 1000
+	}
+}
+
+## <1> Radiotrophic (Plantoid) [Vanilla]
+# Merge between OSA, Venture Politics, DTM, Trait Upgrader
+trait_plantoid_radiotrophic = {
+	host_has_dlc = "Plantoids Species Pack"
+	cost = 1 # DTM 2 -> 1
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	random_weight = { # DTM
+		PLANT = 0.5
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_plantoid_phototrophic"
+		"trait_lithoid_radiotrophic"
+		"trait_advanced_phototrophic"
+		"trait_advanced_radiotrophic"
+		"trait_harvested_radiotrophic"
+		"trait_voidling"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	species_class = { PLANT FUN TOX } # DTM +TOX
+
+	species_potential_add = { # Trait Upgrader
+		OR = {
+			NOT = { has_global_flag = game_started }
+			NOT = { exists = from }
+			NOT = { has_trait = trait_plantoid_phototrophic }
+			from = { can_remove_beneficial_genetic_traits = yes }
+		}
+	}
+
+	custom_tooltip = TRAIT_PLANTOID_RADIOTROPHIC_EFFECT
+	inline_script = "traits/radiotrophic_effects" 
+	slave_cost = {
+		energy = 1500
+	}
+
+	ai_weight = {
+		weight = 1
+		mult = value:dtraits_food_weight
+		modifier = {
+			mult = 0
+			has_monthly_income = { resource = energy value < 100 }
+		}
+		modifier = {
+			mult = 0.75
+			has_monthly_income = { resource = energy value < 200 }
+		}
+		modifier = {
+			mult = 0
+			NOT = {
+				any_owned_planet = {
+					is_nuked_world = yes
+				}
+			}
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1
+			from = {
+				OR = {
+					is_nuked_world = yes
+					has_modifier = wasteland_radiation
+				}
+			}
+		}
+	}
+}
+
+##################################################
 ## Species Traits - Unique - Other
 ##################################################
+
+## <2> Voidling [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_voidling = {
+	cost = 2 # DTM 3 -> 2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		exists = from
+		from = {
+			has_technology = tech_leviathan_transgenesis
+			has_country_flag = harvested_voidspawn_dna
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = { "trait_plantoid_phototrophic" "trait_lithoid_radiotrophic" "trait_advanced_phototrophic" "trait_advanced_radiotrophic" "trait_harvested_radiotrophic" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+
+	custom_tooltip_with_modifiers = TRAIT_VOIDLING_EFFECT
+	modifier = {
+		habitability_floor_add = 0.30 # DTM 0.20 -> 0.30
+	}
+	slave_cost = {
+		energy = 1500
+	}
+	ai_weight = { # DTM
+		weight = value:dtraits_food_weight
+		modifier = {
+			mult = 0
+			has_monthly_income = { resource = energy value < 300 }
+		}
+		modifier = {
+			mult = 0.75
+			has_monthly_income = { resource = energy value > 600 }
+		}
+		mult = 2
+		modifier = {
+			mult = 7.5
+			NOT = {
+				any_owned_species = { has_trait = trait_voidling }
+			}
+		}
+	}
+}
+
+## <1> Nerve-Stapled [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos, STU
+trait_nerve_stapled = {
+	cost = 1 # DTM 3 -> 1
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		if = { # DTM
+			limit = {
+				from = { is_ai = yes }
+			}
+			OR = {
+				has_citizenship_type = { country = prev type = citizenship_slavery }
+				AND = { # Trait Upgrader
+					has_citizenship_type = { country = prev type = citizenship_limited }
+					prev = { has_valid_civic = civic_dystopian_society }
+				}
+			}
+			NOR = {
+				has_slavery_type = { country = prev type = slavery_livestock }
+				has_slavery_type = { country = prev type = slavery_indentured }
+				has_slavery_type = { country = prev type = slavery_matrix }
+			}
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	opposites = {
+		"trait_intelligent"
+		"trait_erudite"
+		"trait_natural_engineers"
+		"trait_natural_physicists"
+		"trait_natural_sociologists"
+		"trait_communal"
+		"trait_solitary"
+		"trait_talented"
+		"trait_has_subsapient_form" # DTM
+		"trait_subsapient_form" # DTM
+		"trait_sapient_form" # DTM
+		"trait_political" # DTM
+		"trait_complacent" # DTM
+		"trait_zombie"
+	}
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	forced_happiness = yes
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_produces_mult = 0.05
+		species_leader_exp_gain = -0.2
+	}
+	custom_tooltip = TRAIT_NERVE_STAPLED_EFFECT
+	slave_cost = {
+		energy = 1500
+	}
+	triggered_pop_modifier = { # Ariphaos
+		potential = {
+			OR = {
+				is_pop_category = ruler
+				is_pop_category = specialist
+			}
+		}
+		pop_demotion_time_mult = -10.0
+	}
+	ai_weight = { # DTM
+		weight = 20
+	}
+	assembly_score = {
+		modifier = {
+			add = 1
+			from = {
+				OR = {
+					has_farming_designation = yes
+					has_generator_designation = yes
+					has_mining_designation = yes
+					has_rural_designation = yes
+				}
+			}
+		}
+	}
+}
 
 ## <0> Self-Modified [Vanilla]
 # OSA version
@@ -367,6 +1346,279 @@ trait_enigmatic_intelligence_failed = {
 	}
 }
 
+## <0> Bioadaptability [Vanilla]
+# Merge between OSA, DTM, Leader Traits: Merge-Add
+trait_bioadaptability = { #green
+	cost = 0
+	potential_crossbreeding_chance = 0.33
+	initial = no
+	species_potential_add = { # Leader Traits: Merge-Add
+		exists = from
+		from = {
+			has_country_flag = modification_adaptive
+			any_owned_pop_species = {
+				is_same_species = prevprev
+				has_trait = trait_bioadaptability
+			}
+		}
+	}
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		pop_environment_tolerance = 0.10 # DTM 0.05 -> 0.10
+	}
+	slave_cost = {
+		energy = 1000 # DTM 25 -> 1,000
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## <0> Social Pheromones [Vanilla]
+# Merge between OSA, DTM, Leader Traits: Merge-Add
+trait_social_pheromones = { #red
+	cost = 0
+	potential_crossbreeding_chance = 0.33
+	initial = no
+	species_potential_add = { # Leader Traits: Merge-Add
+		exists = from
+		from = {
+			has_country_flag = modification_stronger
+			any_owned_pop_species = {
+				is_same_species = prevprev
+				has_trait = trait_social_pheromones
+			}
+		}
+	}
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		pop_housing_usage_mult = -0.05 # DTM -0.05 -> -0.10 # LS -0.10 -> -0.05 [Balance]
+	}
+	slave_cost = {
+		energy = 500 # DTM 250 -> 500
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## <0> Limited Regeneration [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Leader Traits: Merge-Add
+trait_limited_regeneration = { #blue
+	cost = 0
+	potential_crossbreeding_chance = 0.33
+	initial = no
+	species_potential_add = { # Leader Traits: Merge-Add
+		exists = from
+		from = {
+			has_country_flag = modification_longlived
+			any_owned_pop_species = {
+				is_same_species = prevprev
+				has_trait = trait_limited_regeneration
+			}
+		}
+	}
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		army_damage_mult = 0.2 # DTM 0.1 -> 0.2
+		army_health = 0.2 # OSA # LS 0.1 -> 0.2 [Balance]
+		leader_age = 20 # DTM 10 -> 20
+	}
+	slave_cost = {
+		energy = 500 # DTM 250 -> 500
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+## <0> Void Dweller [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM
+trait_void_dweller_1 = {
+	icon = "gfx/interface/icons/traits/trait_void_dweller_positive.dds"
+	initial = no
+	species_potential_add = {
+		exists = from
+		from = {
+			AND = {
+				is_void_dwellers_empire = yes # STU
+				has_tradition = tr_genetics_resequencing
+			}
+		}
+	}
+	species_possible_add = {
+		has_trait = trait_pc_habitat_preference
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	sorting_priority = 30
+	potential_crossbreeding_chance = 0.33
+	custom_tooltip_with_modifiers = void_dweller_trait_tooltip #unlike custom_tooltip, this shows in addition to the modifiers
+	triggered_pop_modifier = { #won't show in trait tooltips, use custom_tooltip/custom_tooltip_with_modifiers
+		potential = {
+			exists = planet
+			planet = { is_artificial = no }
+			planet = { is_pd_habitat = no } # Planetary Diversity
+		}
+		pop_happiness = -0.3
+	}
+
+	modifier = {
+		habitat_jobs_produces_mult = 0.15
+		non_artificial_planet_jobs_produces_mult = -0.15
+		pop_growth_speed = -0.1
+	}
+	ai_weight = {
+		weight = 0
+	}
+	slave_cost = {
+		energy = 500
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { uses_district_set = habitat }
+		}
+		modifier = {
+			subtract = 1.5
+			from = {
+				NOT = { uses_district_set = habitat }
+			}
+		}
+	}
+}
+
+## <0> Zombie [Vanilla]
+# Merge between OSA, Planetary Diversity, DTM, Ariphaos
+trait_zombie = {
+	cost = 0
+	potential_crossbreeding_chance = 0
+	opposites = { "trait_nerve_stapled" }
+	initial = no
+	randomized = no
+	advanced_trait = no
+	forced_happiness = yes
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes # OSA # LS improvement with trigger
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	species_possible_merge_remove = { # DTM
+		always = no
+	}
+	infertile = yes
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_produces_mult = -0.25
+		planet_pops_upkeep_mult = -1
+	}
+	icon = "gfx/interface/icons/traits/trait_zombie.dds"
+	custom_tooltip = TRAIT_ZOMBIE_EFFECT
+
+	triggered_pop_modifier = { # Ariphaos
+		potential = {
+			OR = {
+				is_pop_category = ruler
+				is_pop_category = specialist
+			}
+		}
+		pop_demotion_time_mult = -10.0
+	}
+	
+	slave_cost = {
+		energy = 500
+	}
+}
+
+##################################################
+## Species Traits - Unique - Livestock
+##################################################
+
+## <2> Delicious [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_delicious = {
+	cost = 2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		if = { # DTM
+			limit = {
+				from = { is_ai = yes }
+			}
+			AND = {
+				has_citizenship_type = { country = from type = citizenship_slavery }
+				has_slavery_type = { country = from type = slavery_livestock }
+			}	
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_livestock_food_produces_add = 4 # DTM 2 -> 4
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = 20
+	}
+}
+
+## <2> Felsic (Lithoid) [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_felsic = {
+	cost = 2
+		species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		if = { # DTM
+			limit = {
+				from = { is_ai = yes }
+			}
+			AND = {
+				has_citizenship_type = { country = from type = citizenship_slavery }
+				has_slavery_type = { country = from type = slavery_livestock }
+			}	
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	allowed_archetypes = { LITHOID }
+
+	modifier = {
+		planet_livestock_minerals_produces_add = 2
+	}
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = 20
+	}
+}
+
 ##################################################
 ## Species Traits - Resources - Energy
 ##################################################
@@ -514,6 +1766,61 @@ trait_agrarian = {
 }
 
 ##################################################
+## Species Traits - Resources - Alloys
+##################################################
+
+## <2> Natural Machinist [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_natural_machinist = {
+	cost = 2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		OR = { # DTM
+			dtraits_ai_specialist_specialization_trigger = {
+				type = consumer_goods
+				designation = factory
+				designation_2 = industrial
+			}
+			dtraits_ai_specialist_specialization_trigger = {
+				type = alloys
+				designation = foundry
+				designation_2 = industrial
+			}
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+
+	modifier = {
+		planet_jobs_alloys_produces_mult = 0.20 # DTM 0.10 -> 0.20
+		planet_jobs_consumer_goods_produces_mult = 0.20 # DTM 0.10 -> 0.20
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_crafter_empire = yes
+		}
+	}
+	slave_cost = {
+		energy = 4000 # DTM 2,000 -> 4,000
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_industrial_designation = yes }
+		}
+	}
+}
+
+##################################################
 ## Species Traits - Resources - Unity
 ##################################################
 
@@ -636,10 +1943,76 @@ trait_quarrelsome = {
 }
 
 ##################################################
-## Species Traits - Resources - Research
+## Species Traits - Resources - Research (All)
 ##################################################
 
-### --- General Research --- ###
+## <4> Erudite [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_erudite = {
+	cost = 4
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_leaders_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	initial = no
+	randomized = no
+	improves_leaders = yes
+	advanced_trait = yes
+	opposites = { "trait_nerve_stapled" "trait_intelligent" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.4 # DTM 0.2 -> 0.4
+		planet_jobs_society_research_produces_mult = 0.4 # DTM 0.2 -> 0.4
+		planet_jobs_engineering_research_produces_mult = 0.4 # DTM 0.2 -> 0.4
+		negative_leader_traits_species = -2 # LS -1 -> -2 [Balance]
+		#leaders_upkeep_mult = -0.1 # LS - Removed
+		species_leader_exp_gain = 0.1 # DTM
+	}
+	ai_weight = { # DTM
+		weight = 10
+		mult = value:dtraits_leaders_weight
+		modifier = {
+			mult = 1.1
+			is_materialist = yes
+		}
+		modifier = {
+			mult = 1.25
+			is_technocracy = yes
+		}
+		modifier = {
+			mult = 1.1
+			has_civic = civic_meritocracy
+		}
+		modifier = {
+			mult = 1.1
+			is_memory_vault_empire = yes
+		}
+		modifier = {
+			mult = 1.1
+			has_valid_civic = civic_heroic_tales
+		}
+	}
+	slave_cost = {
+		energy = 4000 # DTM 2,000 -> 4,000
+	}
+	assembly_score = {
+		modifier = {
+			add = 2.5
+			from = { has_research_designation = yes }
+		}
+		modifier = {
+			add = 2.5
+			from = { has_building = building_order_keep }
+		}
+	}
+}
 
 ## <2> Intelligent [Vanilla]
 # Merge between OSA, DTM, Trait Upgrader
@@ -693,7 +2066,9 @@ trait_intelligent = {
 	}
 }
 
-### --- Physics Research --- ###
+##################################################
+## Species Traits - Resources - Research (Physics)
+##################################################
 
 ## <1> Natural Physicists [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
@@ -752,7 +2127,9 @@ trait_natural_physicists = {
 	}
 }
 
-### --- Society Research --- ###
+##################################################
+## Species Traits - Resources - Research (Society)
+##################################################
 
 ## <1> Natural Sociologists [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
@@ -818,7 +2195,9 @@ trait_natural_sociologists = {
 	}
 }
 
-### --- Engineering Research --- ###
+##################################################
+## Species Traits - Resources - Research (Engineering)
+##################################################
 
 ## <1> Natural Engineers [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
@@ -1122,6 +2501,102 @@ trait_wasteful = {
 ##################################################
 ## Species Traits - Pop - Growth
 ##################################################
+
+## <4> Fertile [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_fertile = {
+	cost = 4
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_breeding_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_slow_breeders"
+		"trait_very_slow_breeders" # DTM
+		"trait_rapid_breeders" # DTM
+		"trait_very_rapid_breeders" # DTM
+		"trait_sterile" # DTM
+		"trait_plantoid_budding" # DTM
+		"trait_lithoid_budding" # DTM
+		"trait_rapid_breeders_lithoid" # DTM
+
+		"trait_dimorphic_male" # DTM
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_growth_speed = 0.3
+		pop_housing_usage_mult = -0.1 # DTM -0.1 -> -0.2 # LS -0.2 -> -0.1 [Balance]
+	}
+	slave_cost = {
+		energy = 4000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		weight = 16
+		weight = value:dtraits_breeding_weight
+	}
+}
+
+## <3> Vat-Grown [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_vat_grown = {
+	cost = 3
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_breeding_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 0
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_slow_breeders"
+		"trait_rapid_breeders"
+		"trait_rapid_breeders_lithoid"
+		"trait_very_slow_breeders" # DTM
+		"trait_very_rapid_breeders" # DTM
+		"trait_very_rapid_breeders_lithoid" # DTM
+		"trait_fertile"
+		"trait_sterile" # DTM
+		"trait_necrophage"
+		"trait_clone_soldier_infertile"
+		"trait_clone_soldier_infertile_full_potential"
+		"trait_clone_soldier_fertile"
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		planet_pop_assembly_organic_mult = 0.25
+		pop_housing_usage_mult = -0.1
+		pop_growth_speed = -0.25
+	}
+	slave_cost = {
+		energy = 2000
+	}
+	ai_weight = { # DTM
+		weight = value:dtraits_breeding_weight
+		modifier = {
+			# robot assembly is better
+			mult = 0
+			OR = {
+				has_ai_personality_behaviour = robot_exploiter
+				has_ai_personality_behaviour = robot_liberator
+				is_materialist = yes
+			}
+		}
+	}
+}
 
 ## <2> Rapid Breeders [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
@@ -1554,6 +3029,55 @@ trait_unruly = {
 ##################################################
 ## Species Traits - Pop - Habitability
 ##################################################
+
+## <4> Robust [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_robust = {
+	cost = 4
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		OR = { # DTM
+			dtraits_ai_leaders_trigger = yes
+			dtraits_ai_habitability_trigger = yes
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 0.5
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = {
+		"trait_nonadaptive"
+		"trait_adaptive"
+		"trait_extremely_adaptive"
+		"trait_adaptive_lithoid"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_environment_tolerance = 0.60 # DTM 0.30 -> 0.60
+		planet_jobs_produces_mult = 0.10 # DTM 0.05 -> 0.10
+		leader_age = 100 # DTM 50 -> 100
+	}
+	slave_cost = {
+		energy = 4000 # DTM 2,000 -> 4,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		add = value:dtraits_lifespan_weight
+		add = value:dtraits_adaptiveness_weight
+		mult = 5
+	}
+	assembly_score = {
+		modifier = {
+			add = 0.5 #always good
+		}
+	}
+}
 
 ## <4> Extremely Adaptive [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
@@ -2299,6 +3823,56 @@ trait_weak = {
 			subtract = 0.75
 			from = {
 				has_fortress_designation = yes
+			}
+		}
+	}
+}
+
+##################################################
+## Species Traits - Army - Health
+##################################################
+
+## <3> Drake-Scaled [Vanilla]
+# Merge between DTM, Trait Upgrader, Ariphaos
+trait_drake_scaled = {
+	cost = 3
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		exists = from
+		from = {
+			has_technology = tech_leviathan_transgenesis
+			has_country_flag = harvested_dragon_dna
+		}
+	}
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	opposites = { "trait_lithoid_gaseous_byproducts" "trait_lithoid_scintillating" "trait_lithoid_volatile_excretions" "trait_advanced_gaseous_byproducts" "trait_advanced_scintillating" "trait_advanced_volatile_excretions" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+
+	custom_tooltip_with_modifiers = TRAIT_DRAKE_SCALED_EFFECT
+
+	modifier = {
+		army_health = 1.0 # DTM 0.5 -> 1.0
+	}
+
+	slave_cost = {
+		energy = 2000 # DTM 1,000 -> 2,000
+	}
+	ai_weight = { # DTM
+		base = 2
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_militarist = yes
+		}
+		modifier = {
+			mult = 7.5
+			NOT = {
+				any_owned_species = { has_trait = trait_drake_scaled }
 			}
 		}
 	}
