@@ -374,6 +374,8 @@
 		MAX_EXPANSION_DISTANCE_SUBJECT = 1		# Max number of jumps away AI subjects will build starbases; Default: 2
 	}
 	NInterface = {
+		TOOLTIP_TIME					= 0.05	# Time before the tooltip appears on hover; Default: 0.05
+		TOOLTIP_DELAYED_TIME			= 0.05	# Time before the description shows on the tooltip; Default: 0.80
 		### Vanilla Hotkeys & Topbar Buttons ###
 		#TOPBAR_BUTTONS_SHORTCUTS				= {
 		#	"contacts" "F1"
