@@ -1,0 +1,26 @@
+##########################################################################
+# Limitless Stellaris - Script Values
+##########################################################################
+
+##################################################
+## Scripts
+##################################################
+
+## Trade Modifier Multiplier
+# Custom modifier that applies both the resources from jobs and output from job class to multiply trade value.
+scripted_trade_modifier_mult = {
+	base = 1
+	add = modifier:pop_job_trade_mult # +% trade value from jobs
+	add = modifier:planet_jobs_produces_mult # +% resources from jobs
+	add = modifier:planet_jobs_$CLASS$_produces_mult # +% output from (class)
+	min = 0
+}
+
+## Trade Modifier With Councilor Level Multiplier
+# Custom modifier that applies both the resources from jobs and output from job class to multiply trade value.
+# Includes the original trade value from jobs and councilor level multipliers.
+scripted_trade_modifier_councilor_level_mult = {
+	base = 1
+	mult = value:councilor_level|TYPE|$TYPE$|
+	mult = value:scripted_trade_modifier_mult|CLASS|$CLASS$|
+}

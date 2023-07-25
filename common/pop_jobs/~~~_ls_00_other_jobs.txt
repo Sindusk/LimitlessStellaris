@@ -293,7 +293,7 @@ livestock = {
 			owner = { has_valid_civic = civic_bugged_organs_corpo }
 		}
 		trade_value_add = 2
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|worker| # LS - Custom script
 	}
 
 	triggered_planet_modifier = { # Bug Branch

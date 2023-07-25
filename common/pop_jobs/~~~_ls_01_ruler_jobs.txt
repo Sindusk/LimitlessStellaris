@@ -465,7 +465,7 @@ merchant = {
 			always = yes
 		}
 		trade_value_add = 12
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|ruler| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = {
@@ -482,7 +482,7 @@ merchant = {
 		}
 
 		trade_value_add = 0.8
-		mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_trade_mult|TYPE|councilor_bancorp|
+		mult = value:scripted_trade_modifier_councilor_level_mult|TYPE|councilor_bancorp|CLASS|ruler| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = { # Bug Branch
@@ -587,7 +587,7 @@ executive = {
 			always = yes
 		}
 		trade_value_add = 6 # OSA 4 -> 6
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|ruler| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = {

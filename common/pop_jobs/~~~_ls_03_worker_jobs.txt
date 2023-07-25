@@ -54,7 +54,7 @@ clerk = {
 			}
 		}
 		trade_value_add = 2
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|worker| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = { # Venture Politics
@@ -63,7 +63,7 @@ clerk = {
 		}
 
 		trade_value_add = 0.4
-		mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_trade_mult|TYPE|councilor_consumer_culture|
+		mult = value:scripted_trade_modifier_councilor_level_mult|TYPE|councilor_consumer_culture|CLASS|worker| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = {
@@ -73,7 +73,7 @@ clerk = {
 			}
 		}
 		trade_value_add = 4
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|worker| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = {
@@ -82,7 +82,7 @@ clerk = {
 		}
 
 		trade_value_add = 0.4
-		mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_trade_mult|TYPE|councilor_merchant_guilds|
+		mult = value:scripted_trade_modifier_councilor_level_mult|TYPE|councilor_merchant_guilds|CLASS|worker| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = {
@@ -92,7 +92,7 @@ clerk = {
 			}
 		}
 		trade_value_add = 3
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|worker| # LS - Custom Script
 	}
 
 	overlord_resources = {
@@ -135,7 +135,7 @@ clerk = {
 			owner = { has_tradition = tr_mercantile_trickle_up_economics }
 		}
 		trade_value_add = 1
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|worker| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = { # Bug Branch
@@ -1119,7 +1119,7 @@ soldier = {
 			owner = { has_civic = civic_private_military_companies }
 		}
 		trade_value_add = 2
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|worker| # LS - Custom Script
 	}
 
 	possible_pre_triggers = {
@@ -1300,7 +1300,7 @@ preacher = {
 			always = yes
 		}
 		trade_value_add = 4
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|worker| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = {
@@ -1608,7 +1608,7 @@ angler = {
 			always = yes
 		}
 		trade_value_add = 2
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|worker| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = { # Bug Branch
@@ -1619,7 +1619,7 @@ angler = {
 			}
 		}
 		trade_value_add = 1
-		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+		mult = value:scripted_trade_modifier_mult|CLASS|worker| # LS - Custom Script
 	}
 
 	triggered_planet_modifier = { # Bug Branch
@@ -1652,7 +1652,6 @@ angler = {
 		}
 
 		trade_value_add = @councilor_corporate_anglers_angler_trade_value_bonus
-		#mult = value:scripted_modifier_councilor_level_mult|MODIFIER|pop_job_trade_mult|TYPE|councilor_corporate_anglers| # Vanilla
 		mult = value:trade_value_corporate_angler_councilor_mult # Bug Branch
 	}
 
