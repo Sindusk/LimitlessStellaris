@@ -1700,6 +1700,48 @@ trait_plantoid_radiotrophic = {
 	}
 }
 
+## <1> Radiotrophic Upgrade (Plantoid) [Trait Upgrader]
+# Trait Upgrader version
+trait_plantoid_radiotrophic_upgrade = {
+	cost = 1
+	initial = no
+	randomized = no
+	icon = "gfx/interface/icons/traits/trait_plantoid_radiotrophic.dds"
+	allowed_archetypes = { BIOLOGICAL }
+	species_class = { PLANT FUN }
+	species_potential_add = {
+		has_trait = trait_plantoid_phototrophic
+		exists = from
+		OR = {
+			from = { is_ai = yes }
+			can_remove_beneficial_genetic_traits = no
+		}
+	}
+	custom_tooltip = TRAIT_PLANTOID_RADIOTROPHIC_EFFECT
+	modifier = {
+		pc_nuked_habitability = 0.1
+	}
+	ai_weight = {
+		weight = value:dtraits_food_weight
+		modifier = {
+			mult = 0
+			has_monthly_income = { resource = energy value < 100 }
+		}
+		modifier = {
+			mult = 0.75
+			has_monthly_income = { resource = energy value > 200 }
+		}
+		modifier = {
+			mult = 0
+			NOT = {
+				any_owned_planet = {
+					is_nuked_world = yes
+				}
+			}
+		}
+	}
+}
+
 ##################################################
 ## Species Traits - Unique - Other
 ##################################################
@@ -4478,6 +4520,53 @@ trait_cyborg_high_maintenance = {
 ## Species Traits - Pop - Growth
 ##################################################
 
+## <4> Very Rapid Breeders [DTM]
+# DTM version
+trait_very_rapid_breeders = {
+	cost = 4
+	species_possible_remove = {
+		can_remove_beneficial_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_slow_breeders"
+		"trait_very_slow_breeders"
+		"trait_rapid_breeders"
+		"trait_sterile"
+		"trait_plantoid_budding"
+		"trait_lithoid_budding"
+		"trait_fertile"
+		"trait_rapid_breeders_lithoid"
+		"trait_vat_grown"
+		"trait_tiyanki"
+
+		"trait_dimorphic_male"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	species_potential_add = {
+		OR = {
+			NOT = { has_global_flag = game_started }
+			NOT = { exists = from }
+			NOT = { has_trait = trait_rapid_breeders }
+			can_remove_beneficial_genetic_traits = yes
+			dtraits_ai_breeding_trigger = yes
+		}
+	}
+	modifier = {
+		pop_growth_speed = 0.2
+	}
+	slave_cost = {
+		energy = 2000
+	}
+	ai_weight = {
+		weight = 1
+		mult = value:dtraits_breeding_weight
+	}
+}
+
 ## <4> Fertile [Vanilla]
 # Merge between DTM, Trait Upgrader, Ariphaos
 trait_fertile = {
@@ -4571,6 +4660,28 @@ trait_vat_grown = {
 				is_materialist = yes
 			}
 		}
+	}
+}
+
+## <2> Fertile Upgrade [Trait Upgrader]
+# Trait Upgrader version
+trait_fertile_upgrade = {
+	cost = 2
+	initial = no
+	randomized = no
+	advanced_trait = yes
+	icon = "gfx/interface/icons/traits/trait_fertile.dds"
+	allowed_archetypes = { BIOLOGICAL }
+	species_potential_add = {
+		has_trait = trait_rapid_breeders
+		exists = from
+		from = { is_ai = yes }
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_breeding_trigger = yes
+	}
+	ai_weight = {
+		weight = 16
+		weight = value:dtraits_breeding_weight
 	}
 }
 
@@ -4872,6 +4983,55 @@ trait_slow_breeders = {
 	}
 	ai_weight = { # DTM
 		weight = 20
+		modifier = {
+			factor = 1.5
+			is_environmentalist_empire = yes
+		}
+		modifier = {
+			factor = 1.25
+			is_agrarian_empire = yes
+		}
+		modifier = {
+			factor = 0.5
+			has_tradition = tr_expansion_adopt
+		}
+	}
+}
+
+## <-4> Very Slow Breeders [DTM]
+# DTM version
+trait_very_slow_breeders = {
+	cost = -4
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_add_negative_biological_trait_trigger = {
+			cost = 4
+		}
+	}
+	potential_crossbreeding_chance = 1.0
+	opposites = {
+		"trait_rapid_breeders"
+		"trait_very_rapid_breeders"
+		"trait_slow_breeders"
+		"trait_sterile"
+		"trait_rapid_breeders_lithoid"
+		"trait_plantoid_budding"
+		"trait_lithoid_budding"
+		"trait_fertile"
+		"trait_vat_grown"
+		"trait_tiyanki"
+
+		"trait_dimorphic_male"
+	}
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_growth_speed = -0.2
+	}
+	slave_cost = {
+		energy = -2000
+	}
+	ai_weight = {
+		weight = 40
 		modifier = {
 			factor = 1.5
 			is_environmentalist_empire = yes
@@ -5487,6 +5647,32 @@ trait_extremely_adaptive = {
 	ai_weight = { # DTM
 		weight = 1
 		mult = value:dtraits_adaptiveness_weight
+	}
+}
+
+## <2> Extremely Adaptive Upgrade [Trait Upgrader]
+# DTM version
+trait_extremely_adaptive_upgrade = {
+	cost = 2
+	initial = no
+	randomized = no
+	icon = "gfx/interface/icons/traits/trait_extremely_adaptive.dds"
+	allowed_archetypes = { BIOLOGICAL }
+	opposites = { trait_robust_upgrade_1 trait_robust_upgrade_2 }
+	species_potential_add = {
+		has_trait = trait_adaptive
+		exists = from
+		OR = {
+			from = { is_ai = yes }
+			can_remove_beneficial_genetic_traits = no
+		}
+		dtraits_ai_habitability_trigger = yes
+	}
+	modifier = {
+		pop_environment_tolerance = 0.4 # DTM 0.2 -> 0.4
+	}
+	ai_weight = {
+		weight = value:dtraits_adaptiveness_weight
 	}
 }
 
@@ -6225,6 +6411,29 @@ trait_venerable = {
 	}
 }
 
+## <2> Venerable Upgrade [Trait Upgrader]
+# DTM version
+trait_venerable_upgrade = {
+	cost = 2
+	initial = no
+	randomized = no
+	modifier = { leader_age = 160 } # DTM 80 -> 160
+	icon = "gfx/interface/icons/traits/trait_venerable.dds"
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_potential_add = {
+		has_trait = trait_enduring
+		exists = from
+		OR = {
+			from = { is_ai = yes }
+			can_remove_beneficial_genetic_traits = no
+		}
+		dtraits_ai_leaders_trigger = yes
+	}
+	ai_weight = {
+		weight = value:dtraits_lifespan_weight
+	}
+}
+
 ## <1> Enduring [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_enduring = {
@@ -6398,6 +6607,39 @@ trait_very_strong = {
 			from = {
 				has_fortress_designation = yes
 			}
+		}
+	}
+}
+
+## <2> Very Strong Upgrade [Trait Upgrader]
+# DTM version
+trait_very_strong_upgrade = {
+	cost = 2
+	initial = no
+	randomized = no
+	icon = "gfx/interface/icons/traits/trait_very_strong.dds"
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_potential_add = {
+		has_trait = trait_strong
+		exists = from
+		OR = {
+			from = { is_ai = yes }
+			can_remove_beneficial_genetic_traits = no
+		}
+	}
+	modifier = {
+		army_damage_mult = 0.8 # DTM 0.4 -> 0.8
+		planet_jobs_worker_produces_mult = 0.10 # DTM 0.05 -> 0.10
+	}
+	ai_weight = {
+		weight = 6
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_militarist = yes
+		}
+		modifier = {
+			mult = 0.5
+			is_pacifist = yes
 		}
 	}
 }
