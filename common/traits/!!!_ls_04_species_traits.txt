@@ -2679,6 +2679,53 @@ trait_felsic = {
 ## Species Traits - Resources - All Resources
 ##################################################
 
+## <5> Neutronium Telemetry (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_neutronium_telemetry = {
+	cost = 5
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_worker_drones
+		trait_robot_cooperative_drones
+		trait_robot_hierarchical_drones
+	}
+	prerequisites = {
+		tech_enhancedrobomodding_tier3
+		tech_enhancedrobomodding_neutronium_applications
+	}
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.40
+		planet_jobs_energy_produces_mult = 0.40
+		planet_jobs_food_produces_mult = 0.40
+	}
+}
+
+## <4> Hierarchical Drones (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_hierarchical_drones = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_worker_drones
+		trait_robot_cooperative_drones
+		trait_robot_neutronium_telemetry
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.30
+		planet_jobs_energy_produces_mult = 0.30
+		planet_jobs_food_produces_mult = 0.30
+	}
+}
+
 ## <3> Excessive Endurance (Overtuned) [Vanilla]
 # Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
 trait_excessive_endurance = {
@@ -2766,6 +2813,55 @@ trait_excessive_endurance = {
 	}
 }
 
+## <3> Efficient Processors (Robot) [Vanilla]
+# Merge between OSA, DTM, Trait Upgrader
+trait_robot_efficient_processors = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+
+	modifier = {
+		planet_jobs_produces_mult = 0.1 # DTM 0.05 -> 0.10
+	}
+	ai_weight = { # DTM
+		weight = 2
+		modifier = {
+			mult = 0.1
+			has_country_flag = make_robots_specialized
+		}
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	assembly_score = {
+		modifier = {
+			add = 0.5 #always good
+		}
+	}
+}
+
+## <3> Cooperative Drones (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_cooperative_drones = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_worker_drones
+		trait_robot_hierarchical_drones
+		trait_robot_neutronium_telemetry
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.20
+		planet_jobs_energy_produces_mult = 0.20
+		planet_jobs_food_produces_mult = 0.20
+	}
+}
+
 ## <2> Efficient Processors (Cyborg) [Vanilla]
 # Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
 trait_cyborg_efficient_processors = {
@@ -2798,6 +2894,25 @@ trait_cyborg_efficient_processors = {
 		modifier = {
 			add = 0.5 #always good
 		}
+	}
+}
+
+## <2> Worker Drones (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_worker_drones = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_cooperative_drones
+		trait_robot_hierarchical_drones
+		trait_robot_neutronium_telemetry
+	}
+
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.10
+		planet_jobs_energy_produces_mult = 0.10
+		planet_jobs_food_produces_mult = 0.10
 	}
 }
 
@@ -2883,6 +2998,66 @@ trait_juiced_power = {
 ## Species Traits - Resources - Energy
 ##################################################
 
+## <4> Robot Linkage (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_reactor_linkage = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	opposites = {
+		trait_robot_superconductive_terminals
+		trait_robot_reactor_linkage
+	}
+	initial = no
+	randomized = no
+
+	# Droids and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_droid_workers
+			}			
+		}
+	}
+
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.35
+	}
+}
+
+## <3> Superconductive Terminals (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_superconductive_terminals = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	opposites = {
+		trait_robot_superconductive
+		trait_robot_reactor_linkage
+	}
+	initial = no
+	randomized = no
+
+	# Droids and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_droid_workers
+			}			
+		}
+	}
+
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.25
+	}
+}
+
 ## <2> Ingenious [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_ingenious = {
@@ -2912,6 +3087,54 @@ trait_ingenious = {
 	ai_weight = { # DTM
 		weight = 1
 		mult = value:specialist_specialization_weight
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_generator_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
+## <2> Superconductive (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_superconductive = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_flimsy # DTM
+		trait_robot_superconductive_terminals # Enhanced Robomodding
+		trait_robot_reactor_linkage # Enhanced Robomodding
+	}
+
+	species_potential_add = { # DTM
+		exists = from
+		from = { # Enhanced Robomodding
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_droid_workers
+			}			
+		}
+		dtraits_ai_worker_specialization_trigger = {
+			type = energy
+			designation = generator
+			designation_2 = rural
+		}
+	}
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.3 # DTM 0.15 -> 0.30
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:worker_specialization_weight
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
 	}
 	assembly_score = {
 		modifier = {
@@ -3053,6 +3276,66 @@ trait_cyborg_superconductive = {
 ## Species Traits - Resources - Minerals
 ##################################################
 
+## <5> Neutronium Detectors (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_neutronium_detectors = {
+	cost = 5
+
+	allowed_archetypes = { ROBOT MACHINE }
+	prerequisites = { tech_enhancedrobomodding_neutronium_applications }
+	opposites = {
+		trait_robot_power_drills
+		trait_robot_improved_power_drills
+		trait_robot_ore_detectors
+	}
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.50
+	}
+}
+
+## <4> Ore Detectors (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_ore_detectors = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	opposites = {
+		trait_robot_power_drills
+		trait_robot_improved_power_drills
+		trait_robot_neutronium_detectors
+	}
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.35
+	}
+}
+
+## <3> Improved Drills (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_improved_drills = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	opposites = {
+		trait_robot_power_drills
+		trait_robot_ore_detectors
+		trait_robot_neutronium_detectors
+	}
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.25
+	}
+}
+
 ## <2> Industrious [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_industrious = {
@@ -3086,6 +3369,52 @@ trait_industrious = {
 			mult = @non_job_trait_prio_2
 			has_valid_civic = civic_mining_guilds
 		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_mining_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
+## <2> Power Drills (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_power_drills = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_flimsy # DTM
+		trait_robot_improved_drills # Enhanced Robomodding
+		trait_robot_ore_detectors # Enhanced Robomodding
+		trait_robot_neutronium_detectors # Enhanced Robomodding
+	}
+
+	species_potential_add = { # DTM
+		dtraits_ai_worker_specialization_trigger = {
+			type = minerals
+			designation = mining
+			designation_2 = rural
+		}
+	}
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.3 # DTM 0.15 -> 0.30
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:worker_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			has_valid_civic = civic_mining_guilds
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
 	}
 	assembly_score = {
 		modifier = {
@@ -3232,6 +3561,44 @@ trait_cyborg_power_drills = {
 ## Species Traits - Resources - Food
 ##################################################
 
+## <4> Season Calibration (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_season_calibration = {
+	cost = 4 # LS 3 -> 4 how it's supposed to be?
+
+	allowed_archetypes = { ROBOT }
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	opposites = {
+		trait_robot_harvesters
+		trait_robot_improved_harvesters
+	}
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_jobs_food_produces_mult = 0.35
+	}
+}
+
+## <3> Improved Harvesters (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_improved_harvesters = {
+	cost = 3 # LS 2 -> 3 how it's supposed to be?
+
+	allowed_archetypes = { ROBOT }
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	opposites = {
+		trait_robot_harvesters
+		trait_robot_season_calibration
+	}
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_jobs_food_produces_mult = 0.25
+	}
+}
+
 ## <2> Agrarian [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_agrarian = {
@@ -3265,6 +3632,52 @@ trait_agrarian = {
 			is_agrarian_empire = yes
 		}
 		mult = value:specialist_specialization_weight
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_farming_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
+## <2> Harvesters (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_harvesters = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT }
+	opposites = {
+		trait_robot_flimsy # DTM
+		trait_robot_improved_harvesters # Enhanced Robomodding
+		trait_robot_season_calibration # Enhanced Robomodding
+	}
+
+	species_potential_add = { # DTM
+		dtraits_ai_worker_specialization_trigger = {
+			type = food
+			designation = farming
+			designation_2 = rural
+		}
+	}
+	modifier = {
+		planet_jobs_food_produces_mult = 0.3 # DTM 0.15 -> 0.30
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:worker_specialization_weight
+		modifier = {
+			mult = 0.75
+			has_ai_personality_behaviour = robot_exploiter
+			is_agrarian_empire = yes
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
 	}
 	assembly_score = {
 		modifier = {
@@ -3465,6 +3878,62 @@ trait_natural_machinist = {
 ## Species Traits - Resources - Unity
 ##################################################
 
+## <3> Historical Revisionist (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_historical_revisionist = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_propaganda_machines
+		trait_robot_historical_curator
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+	
+	# Synth and Droid only
+	species_potential_add = {
+		exists = from
+		from = {
+			has_technology = tech_droid_workers
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.4
+	}
+}
+
+## <2> Historical Curator (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_historical_curator = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_propaganda_machines
+		trait_robot_historical_revisionist
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+	
+	# Synth and Droid only
+	species_potential_add = {
+		exists = from
+		from = {
+			has_technology = tech_droid_workers
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.30
+	}
+}
+
 ## <1> Traditional [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_traditional = {
@@ -3639,6 +4108,67 @@ trait_expressed_tradition = {
 	}
 }
 
+## <1> Propaganda Machines (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_propaganda_machines = {
+	cost = 1
+
+	allowed_archetypes = { ROBOT MACHINE } # Enhanced Robomodding +MACHINE
+	opposites = {
+		trait_robot_historical_curator # Enhanced Robomodding
+		trait_robot_historical_revisionist # Enhanced Robomodding
+	}
+	
+	# Synth and Droid only
+	species_potential_add = {
+		exists = from
+		from = {
+			has_technology = tech_droid_workers
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+		dtraits_ai_specialist_specialization_trigger = { # DTM
+			type = unity
+			designation = unity
+			designation_2 = trade
+			clerk_type = yes
+		}
+	}
+
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.3 # DTM 0.15 -> 0.30
+		planet_jobs_unity_upkeep_mult = -0.1 # DTM
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = specialist_specialization_priority
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_authoritarian = yes
+		}
+		modifier = {
+			mult = 0.8
+			has_ethic = ethic_egalitarian
+		}
+		modifier = {
+			mult = 0.25
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = {
+			mult = @non_job_trait_prio_3
+			has_valid_civic = civic_media_conglomerate
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_unity_designation = yes }
+		}
+	}
+}
+
 ## <-1> Quarrelsome [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_quarrelsome = {
@@ -3687,6 +4217,47 @@ trait_quarrelsome = {
 ##################################################
 ## Species Traits - Resources - Research (All)
 ##################################################
+
+## <5> Matrioshka Brain Link (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_matrioshka_brain_link = {
+	cost = 5
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting
+		trait_robot_logic_engines
+		trait_robot_improved_logic
+		trait_robot_organic_logic
+		trait_robot_physicist
+		trait_robot_sociologist
+		trait_robot_engineer
+		trait_robot_omniscient_physicist
+		trait_robot_omniscient_sociologist
+		trait_robot_omniscient_engineer
+	}
+	prerequisites = { tech_enhancedrobomodding_matrioshka_brain_uplink }
+	initial = no
+	randomized = no
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_synthetic_workers
+			}			
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.30
+		planet_jobs_physics_research_produces_mult = 0.30
+		planet_jobs_engineering_research_produces_mult = 0.30
+	}
+}
 
 ## <4> Erudite [Vanilla]
 # Merge between DTM, Trait Upgrader, Ariphaos
@@ -3756,6 +4327,88 @@ trait_erudite = {
 	}
 }
 
+## <4> Organic Logic (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_organic_logic = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting
+		trait_robot_logic_engines
+		trait_robot_improved_logic
+		trait_robot_matrioshka_brain_link
+		trait_robot_physicist
+		trait_robot_sociologist
+		trait_robot_engineer
+		trait_robot_omniscient_physicist
+		trait_robot_omniscient_sociologist
+		trait_robot_omniscient_engineer
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_synthetic_workers
+			}			
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.20
+		planet_jobs_physics_research_produces_mult = 0.20
+		planet_jobs_engineering_research_produces_mult = 0.20
+	}
+}
+
+## <3> Improved Logic (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_improved_logic = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting
+		trait_robot_logic_engines
+		trait_robot_organic_logic
+		trait_robot_matrioshka_brain_link
+		trait_robot_physicist
+		trait_robot_sociologist
+		trait_robot_engineer
+		trait_robot_omniscient_physicist
+		trait_robot_omniscient_sociologist
+		trait_robot_omniscient_engineer
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_synthetic_workers
+			}			
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.15
+		planet_jobs_physics_research_produces_mult = 0.15
+		planet_jobs_engineering_research_produces_mult = 0.15
+	}
+}
+
 ## <2> Intelligent [Vanilla]
 # Merge between OSA, DTM, Trait Upgrader
 trait_intelligent = {
@@ -3804,6 +4457,74 @@ trait_intelligent = {
 		modifier = {
 			add = 1.5
 			from = { has_building = building_order_keep }
+		}
+	}
+}
+
+## <2> Logic Engines (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_logic_engines = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting # Enhanced Robomodding
+		trait_robot_improved_logic # Enhanced Robomodding
+		trait_robot_organic_logic # Enhanced Robomodding
+		trait_robot_matrioshka_brain_link # Enhanced Robomodding
+		trait_robot_physicist # Enhanced Robomodding
+		trait_robot_sociologist # Enhanced Robomodding
+		trait_robot_engineer # Enhanced Robomodding
+		trait_robot_omniscient_physicist # Enhanced Robomodding
+		trait_robot_omniscient_sociologist # Enhanced Robomodding
+		trait_robot_omniscient_engineer # Enhanced Robomodding
+	}
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				is_machine_empire = yes # Ariphaos
+				has_technology = tech_synthetic_workers
+			}
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+		dtraits_ai_specialist_specialization_trigger = { # DTM
+			type = research
+			designation = research
+			designation_2 = trade
+		}
+	}
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.20 # DTM 0.10 -> 0.20
+		planet_jobs_society_research_produces_mult = 0.20 # DTM 0.10 -> 0.20
+		planet_jobs_engineering_research_produces_mult = 0.20 # DTM 0.10 -> 0.20
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = specialist_specialization_priority
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_materialist = yes
+			NAND = {
+				is_technocracy = yes
+				has_ai_personality_behaviour = robot_exploiter
+			}
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+			has_ai_personality_behaviour = robot_liberator
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_research_designation = yes }
 		}
 	}
 }
@@ -3955,6 +4676,91 @@ trait_cyborg_logic_engines = {
 ## Species Traits - Resources - Research (Physics)
 ##################################################
 
+## <5> Omniscient Physicist (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_omniscient_physicist = {
+	cost = 5
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting
+		trait_robot_logic_engines
+		trait_robot_improved_logic
+		trait_robot_organic_logic
+		trait_robot_matrioshka_brain_link
+		trait_robot_physicist
+		trait_robot_sociologist
+		trait_robot_engineer
+		trait_robot_omniscient_sociologist
+		trait_robot_omniscient_engineer
+	}
+	prerequisites = {
+		tech_enhancedrobomodding_matrioshka_brain_uplink
+		tech_enhancedrobomodding_physics
+	}
+	initial = no
+	randomized = no
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_synthetic_workers
+			}			
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.30
+		planet_jobs_physics_research_produces_mult = 0.50
+		planet_jobs_engineering_research_produces_mult = 0.30
+	}
+}
+
+## Physicist (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_physicist = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting
+		trait_robot_logic_engines
+		trait_robot_improved_logic
+		trait_robot_organic_logic
+		trait_robot_matrioshka_brain_link
+		trait_robot_sociologist
+		trait_robot_engineer
+		trait_robot_omniscient_physicist
+		trait_robot_omniscient_sociologist
+		trait_robot_omniscient_engineer
+	}
+	prerequisites = { tech_enhancedrobomodding_physics }
+	initial = no
+	randomized = no
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_synthetic_workers
+			}			
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.15
+		planet_jobs_physics_research_produces_mult = 0.30
+		planet_jobs_engineering_research_produces_mult = 0.15
+	}
+}
+
 ## <1> Natural Physicists [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_natural_physicists = {
@@ -4015,6 +4821,91 @@ trait_natural_physicists = {
 ##################################################
 ## Species Traits - Resources - Research (Society)
 ##################################################
+
+## <5> Omniscient Sociologist (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_omniscient_sociologist = {
+	cost = 5
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting
+		trait_robot_logic_engines
+		trait_robot_improved_logic
+		trait_robot_organic_logic
+		trait_robot_matrioshka_brain_link
+		trait_robot_physicist
+		trait_robot_sociologist
+		trait_robot_engineer
+		trait_robot_omniscient_physicist
+		trait_robot_omniscient_engineer
+	}
+	prerequisites = {
+		tech_enhancedrobomodding_matrioshka_brain_uplink
+		tech_enhancedrobomodding_society
+	}
+	initial = no
+	randomized = no
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_synthetic_workers
+			}			
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.50
+		planet_jobs_physics_research_produces_mult = 0.30
+		planet_jobs_engineering_research_produces_mult = 0.30
+	}
+}
+
+## <4> Sociologist (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_sociologist = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting
+		trait_robot_logic_engines
+		trait_robot_improved_logic
+		trait_robot_organic_logic
+		trait_robot_matrioshka_brain_link
+		trait_robot_physicist
+		trait_robot_engineer
+		trait_robot_omniscient_physicist
+		trait_robot_omniscient_sociologist
+		trait_robot_omniscient_engineer
+	}
+	prerequisites = { tech_enhancedrobomodding_society }
+	initial = no
+	randomized = no
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_synthetic_workers
+			}			
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.30
+		planet_jobs_physics_research_produces_mult = 0.15
+		planet_jobs_engineering_research_produces_mult = 0.15
+	}
+}
 
 ## <1> Natural Sociologists [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
@@ -4083,6 +4974,91 @@ trait_natural_sociologists = {
 ##################################################
 ## Species Traits - Resources - Research (Engineering)
 ##################################################
+
+## <5> Omniscient Engineer (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_omniscient_engineer = {
+	cost = 5
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting
+		trait_robot_logic_engines
+		trait_robot_improved_logic
+		trait_robot_organic_logic
+		trait_robot_matrioshka_brain_link
+		trait_robot_physicist
+		trait_robot_sociologist
+		trait_robot_engineer
+		trait_robot_omniscient_physicist
+		trait_robot_omniscient_sociologist
+	}
+	prerequisites = {
+		tech_enhancedrobomodding_matrioshka_brain_uplink
+		tech_enhancedrobomodding_engineering
+	}
+	initial = no
+	randomized = no
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_synthetic_workers
+			}			
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.30
+		planet_jobs_physics_research_produces_mult = 0.30
+		planet_jobs_engineering_research_produces_mult = 0.50
+	}
+}
+
+## <4> Engineer (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_engineer = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_rapidrouting
+		trait_robot_logic_engines
+		trait_robot_improved_logic
+		trait_robot_organic_logic
+		trait_robot_matrioshka_brain_link
+		trait_robot_physicist
+		trait_robot_sociologist
+		trait_robot_omniscient_physicist
+		trait_robot_omniscient_sociologist
+		trait_robot_omniscient_engineer
+	}
+	prerequisites = { tech_enhancedrobomodding_engineering }
+	initial = no
+	randomized = no
+
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_technology = tech_synthetic_workers
+			}			
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.15
+		planet_jobs_physics_research_produces_mult = 0.15
+		planet_jobs_engineering_research_produces_mult = 0.30
+	}
+}
 
 ## <1> Natural Engineers [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
@@ -4206,6 +5182,52 @@ trait_thrifty = {
 	}
 }
 
+## <2> Trading Algorithms (Robot) [Vanilla]
+# Merge between OSA, DTM, Trait Upgrader
+trait_robot_trading_algorithms = {
+	cost = 2
+	allowed_archetypes = { ROBOT }
+	opposites = {  }
+
+	# Synth or Droid only
+	species_potential_add = {
+		exists = from
+		from = {
+			has_technology = tech_droid_workers
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+		dtraits_ai_worker_specialization_trigger = { # DTM
+			type = trade
+			designation = trade
+			designation_2 = resort
+			clerk_type = yes
+		}
+	}
+	modifier = {
+		pop_job_trade_mult = 0.50 # DTM 0.25 -> 0.50
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:worker_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			OR = {
+				is_megacorp = yes
+				has_valid_civic = civic_merchant_guilds				
+			}
+		}
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_trade_designation = yes }
+		}
+	}
+}
+
 ## <1> Trading Algorithms (Cyborg) [Vanilla]
 # Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
 trait_cyborg_trading_algorithms = {
@@ -4249,6 +5271,46 @@ trait_cyborg_trading_algorithms = {
 	assembly_score = { # DTM
 		modifier = {
 			add = 1.5
+			from = { has_trade_designation = yes }
+		}
+	}
+}
+
+## <-2> Spendthrifts [DTM]
+# Base version
+trait_spendthrifts = {
+	cost = -2
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+		dtraits_ai_add_negative_biological_trait_trigger = {
+			cost = 2
+			specialists = yes
+		}
+	}
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	opposites = { "trait_hive_mind" "trait_thrifty" }
+	modifier = {
+		pop_job_trade_mult = -0.5
+	}
+	ai_weight = {
+		weight = 20
+		modifier = {
+			factor = 10
+			is_servitor_empire = yes
+		}
+		modifier = {
+			factor = 0.1
+			has_ai_personality = peaceful_traders
+		}
+		modifier = {
+			factor = 0.1
+			has_ai_personality = ruthless_capitalists
+			has_policy_flag = slavery_not_allowed
+		}
+	}
+	assembly_score = {
+		modifier = {
+			subtract = 1.5
 			from = { has_trade_designation = yes }
 		}
 	}
@@ -4306,6 +5368,45 @@ trait_charismatic = {
 			is_xenophile = yes
 		}
 	}
+}
+
+## <2> Domestic Protocols (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_domestic_protocols = {
+	cost = 2
+
+	initial = no
+	randomized = no
+
+	allowed_archetypes = { ROBOT }
+
+	# Synth or Droid only
+	species_potential_add = {
+		exists = from
+		from = {
+			has_technology = tech_droid_workers
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+		dtraits_ai_worker_specialization_trigger = { # DTM
+			type = amenities
+			designation = resort
+			designation_2 = trade
+			clerk_type = yes
+		}
+	}
+
+	modifier = {
+		pop_job_amenities_mult = 0.40 # DTM 0.20 -> 0.40
+	}
+	ai_weight = { # DTM
+		weight = 1
+		mult = value:worker_specialization_weight
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+
+	custom_tooltip_with_modifiers = TRAIT_DOMESTIC_PROTOCOLS_EFFECT
 }
 
 ## <1> Crafted Smiles (Overtuned) [Vanilla]
@@ -4391,6 +5492,67 @@ trait_crafted_smiles = {
 	}
 }
 
+## <1> Emotion Emulators (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_emotion_emulators = {
+	cost = 1
+	opposites = { "trait_robot_uncanny" }
+	allowed_archetypes = { MACHINE }
+	modifier = {
+		pop_job_amenities_mult = 0.20
+	}
+	species_potential_add = {
+		dtraits_ai_worker_specialization_trigger = {
+			type = amenities
+			designation = resort
+			designation_2 = trade
+		}
+	}
+	ai_weight = {
+		weight = 1
+		mult = value:worker_specialization_weight
+		modifier = {
+			mult = 1.5
+			is_servitor_empire = yes
+		}
+		modifier = {
+			mult = 1.5
+			has_federation_origin = yes
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+}
+
+## <-1> Uncanny (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_uncanny = {
+	cost = -1
+	opposites = { "trait_robot_emotion_emulators" }
+	allowed_archetypes = { MACHINE }
+	species_potential_add = {
+		dtraits_ai_add_negative_robotic_trait_trigger = { # DTM
+			cost = 1
+		}
+	}
+	modifier = {
+		pop_job_amenities_mult = -0.20
+	}
+	ai_weight = { # DTM
+		weight = 3
+		modifier = {
+			mult = 0
+			NOT = {
+				has_country_flag = make_robots_uncanny
+			}
+		}
+	}
+	slave_cost = {
+		energy = -300 # DTM -150 -> -300
+	}
+}
+
 ## <-2> Repugnant [Vanilla]
 # Merge between OSA, DTM, Trait Upgrader
 trait_repugnant = {
@@ -4436,6 +5598,31 @@ trait_repugnant = {
 ##################################################
 ## Species Traits - Pop Upkeep - All Resources
 ##################################################
+
+## <4> Neutronium Shielding (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_neutronium_shielding = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_opulentdesign
+		trait_robot_high_maintenance
+		trait_robot_durable
+		trait_robot_self_servicing
+		trait_robot_self_sufficiency
+	}
+	prerequisites = {
+		tech_enhancedrobomodding_tier3
+		tech_enhancedrobomodding_neutronium_applications
+	}
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_pops_robotics_upkeep_mult = -0.30
+	}
+}
 
 ## <3> Inorganic Breath [Vanilla]
 # Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Galactic Imperium Origin
@@ -4496,6 +5683,126 @@ trait_inorganic_breath = {
 			mult = @non_job_trait_prio_3
 			has_monthly_income = { resource = exotic_gases value < 4 }
 		}
+	}
+}
+
+## <3> Self-Sufficiency (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_self_sufficiency = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_opulentdesign
+		trait_robot_high_maintenance
+		trait_robot_durable
+		trait_robot_self_servicing
+		trait_robot_neutronium_shielding
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_pops_robotics_upkeep_mult = -0.20
+	}
+}
+
+## <2> Self-Servicing (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_self_servicing = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_opulentdesign
+		trait_robot_high_maintenance
+		trait_robot_durable
+		trait_robot_self_sufficiency
+		trait_robot_neutronium_shielding
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_pops_robotics_upkeep_mult = -0.15
+	}
+}
+
+## <1> Durable (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_durable = {
+	cost = 1
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_opulentdesign # Enhanced Robomodding
+		trait_robot_high_maintenance
+		trait_robot_self_servicing # Enhanced Robomodding
+		trait_robot_self_sufficiency # Enhanced Robomodding
+		trait_robot_neutronium_shielding # Enhanced Robomodding
+	}
+
+	modifier = {
+		planet_pops_robotics_upkeep_mult = -0.10 # DTM -0.10 -> -0.20 # LS -0.20 -> -0.10 [Balance]
+	}
+	ai_weight = { # DTM
+		weight = 2
+		modifier = {
+			mult = @non_job_trait_prio_3
+			is_environmentalist_empire = yes	# environmentalists want to minimize energy usage
+		}
+		modifier = {
+			mult = 0.1
+			has_country_flag = make_robots_specialized
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+}
+
+## <-1> High Maintenance (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_high_maintenance = {
+	cost = -1
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_opulentdesign # Enhanced Robomodding
+		trait_robot_durable
+		trait_robot_self_servicing # Enhanced Robomodding
+		trait_robot_self_sufficiency # Enhanced Robomodding
+		trait_robot_neutronium_shielding # Enhanced Robomodding
+	}
+	species_potential_add = {
+		dtraits_ai_add_negative_robotic_trait_trigger = { # DTM
+			cost = 1
+		}
+	}
+
+	modifier = {
+		planet_pops_robotics_upkeep_mult = 0.10 # DTM 0.10 -> 0.20 # LS 0.20 -> 0.10 [Balance]
+	}
+	ai_weight = { # DTM
+		weight = 3
+		modifier = {
+			mult = 0
+			NOT = {
+				has_country_flag = make_robots_high_maintenance
+			}
+		}
+		modifier = {
+			mult = 0
+			check_variable_arithmetic = {
+				which = value:resources_per_pop|resource|energy|
+				value < 0.2
+			}
+		}
+	}
+	slave_cost = {
+		energy = -300 # DTM -150 -> -300
 	}
 }
 
@@ -4729,7 +6036,7 @@ trait_cyborg_high_maintenance = {
 }
 
 ##################################################
-## Species Traits - Pop - Growth
+## Species Traits - Pop - Growth Speed
 ##################################################
 
 ## <4> Very Rapid Breeders [DTM]
@@ -5260,8 +6567,326 @@ trait_very_slow_breeders = {
 }
 
 ##################################################
+## Species Traits - Pop - Assembly Speed
+##################################################
+
+## <3> Self-Assembly (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_self_assembly = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_bespokecircuitry
+		trait_robot_custom_made
+		trait_robot_mass_produced
+		trait_robot_standardization
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_pop_assembly_mult = 0.5
+	}
+}
+
+## <2> Standardization (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_standardization = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_bespokecircuitry
+		trait_robot_custom_made
+		trait_robot_mass_produced
+		trait_robot_self_assembly
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_pop_assembly_mult = 0.30
+	}
+}
+
+## <1> Mass-Produced (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_mass_produced = {
+	cost = 1
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_bespokecircuitry # Enhanced Robomodding
+		trait_robot_custom_made
+		trait_robot_standardization # Enhanced Robomodding
+		trait_robot_self_assembly # Enhanced Robomodding
+	}
+
+	modifier = {
+		planet_pop_assembly_mult = 0.15
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = 0.5
+			is_environmentalist_empire = yes	# environmentalists would rather have fewer, more efficient robots to save on energy and housing
+		}
+		modifier = {
+			mult = @non_job_trait_prio_3
+			has_ethic = ethic_egalitarian	# a robot for every household!
+		}
+		modifier = {
+			mult = @non_job_trait_prio_4
+			has_ethic = ethic_fanatic_egalitarian
+		}
+		modifier = {
+			mult = 0.5
+			has_ethic = ethic_authoritarian	# high-quality robots for the elites
+		}
+		modifier = {
+			mult = 0.25
+			has_ethic = ethic_fanatic_authoritarian
+		}
+		modifier = {
+			mult = 0.1
+			has_country_flag = make_robots_specialized
+		}
+	}
+	slave_cost = {
+		energy = 3000 # DTM 1,500 -> 3,000
+	}
+}
+
+## <-1> Custom Made (Robot) [Vanilla]
+# Merge between 
+trait_robot_custom_made = {
+	cost = -1
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_bespokecircuitry # Enhanced Robomodding
+		trait_robot_mass_produced
+		trait_robot_standardization # Enhanced Robomodding
+		trait_robot_self_assembly # Enhanced Robomodding
+	}
+	species_potential_add = {
+		dtraits_ai_add_negative_robotic_trait_trigger = { # DTM
+			cost = 1
+		}
+	}
+
+	modifier = {
+		planet_pop_assembly_mult = -0.15
+	}
+	ai_weight = { # DTM
+		weight = 3
+		modifier = {
+			mult = 0
+			NOT = {
+				has_country_flag = make_robots_custom_made
+			}
+		}
+	}
+	slave_cost = {
+		energy = -400 # DTM -200 -> -400
+	}
+}
+
+##################################################
+## Species Traits - Pop - Assembly Cost
+##################################################
+
+## <4> Scrapbots (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_scrapbots = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_luxurious
+		trait_just-more-traits_robot_premiumcomponents
+		trait_just-more-traits_robot_templatedparts
+		trait_robot_recycled
+		trait_robot_flexible_designs
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+	
+	#assembling_modifier, declining_modifier, growing_modifier are applied to planet when pop is the one assembling/declining/growing	
+	assembling_modifier = {
+		planet_pop_assemblers_upkeep_mult = -0.60
+	}
+}
+
+## <3> Flexible Designs (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_flexible_designs = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_luxurious
+		trait_just-more-traits_robot_premiumcomponents
+		trait_just-more-traits_robot_templatedparts
+		trait_robot_recycled
+		trait_robot_scrapbots
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+	
+	#assembling_modifier, declining_modifier, growing_modifier are applied to planet when pop is the one assembling/declining/growing	
+	assembling_modifier = {
+		planet_pop_assemblers_upkeep_mult = -0.40
+	}
+}
+
+## <2> Recycled (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_recycled = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_robot_luxurious
+		trait_just-more-traits_robot_premiumcomponents # Enhanced Robomodding
+		trait_just-more-traits_robot_templatedparts # Enhanced Robomodding
+		trait_robot_flexible_designs # Enhanced Robomodding
+		trait_robot_scrapbots # Enhanced Robomodding
+	}
+
+	modifier = {
+		planet_jobs_alloys_produces_mult = 0.05 # OSA
+	}
+	
+	#assembling_modifier, declining_modifier, growing_modifier are applied to planet when pop is the one assembling/declining/growing	
+	assembling_modifier = {
+		planet_pop_assemblers_upkeep_mult = -0.4 # DTM -0.2 -> -0.4
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = @non_job_trait_prio_4
+			is_environmentalist_empire = yes	# environmentalists want to minimize alloy usage
+		}
+		modifier = {
+			mult = @non_job_trait_prio_4
+			is_scavenger = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			OR = {
+				is_remnants_empire = yes
+				is_shattered_ring_empire = yes
+				is_post_apocalyptic_empire = yes
+				is_void_dwellers_empire = yes
+				is_broken_shackles_empire = yes
+			}
+		}
+		modifier = {
+			mult = 0.1
+			has_country_flag = make_robots_specialized
+		}
+	}
+	slave_cost = {
+		energy = 3000 # DTM 1,500 -> 3,000
+	}
+}
+
+## <-2> Luxurious (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_luxurious = {
+	cost = -2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_premiumcomponents # Enhanced Robomodding
+		trait_just-more-traits_robot_templatedparts # Enhanced Robomodding
+		trait_robot_recycled
+		trait_robot_flexible_designs # Enhanced Robomodding
+		trait_robot_scrapbots # Enhanced Robomodding
+	}
+	species_potential_add = {
+		dtraits_ai_add_negative_robotic_trait_trigger = { # DTM
+			cost = 2
+		}
+	}
+
+	modifier = {
+		planet_jobs_alloys_produces_mult = -0.025 # OSA
+	}
+
+	#assembling_modifier, declining_modifier, growing_modifier are applied to planet when pop is the one assembling/declining/growing
+	assembling_modifier = {
+		planet_pop_assemblers_upkeep_mult = 0.4 # DTM 0.2 -> 0.4
+	}
+	ai_weight = {
+		weight = 3 # DTM
+		modifier = {
+			factor = 0
+			years_passed > 5
+		}
+		modifier = { # DTM
+			mult = 0
+			NOT = {
+				has_country_flag = make_robots_luxurious
+			}
+		}
+	}
+	slave_cost = {
+		energy = -400 # DTM -200 -> -400
+	}
+}
+
+##################################################
 ## Species Traits - Pop - Housing Usage
 ##################################################
+
+## <3> Transformers (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_transformers = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_massive
+		trait_robot_bulky
+		trait_robot_double_jointed
+		trait_robot_compartmentalization
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+
+	modifier = {
+		pop_housing_usage_mult = -0.2
+	}
+}
+
+## <2> Compartmentalization (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_compartmentalization = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_massive
+		trait_robot_bulky
+		trait_robot_double_jointed
+		trait_robot_transformers
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+
+	modifier = {
+		pop_housing_usage_mult = -0.15
+	}
+}
 
 ## <1> Communal [Vanilla]
 # Merge between OSA, DTM, Trait Upgrader
@@ -5287,6 +6912,46 @@ trait_communal = {
 	ai_weight = { # DTM
 		weight = 1
 		mult = value:dtraits_housing_weight
+	}
+}
+
+## <1> Double-Jointed (Robot) [Vanilla]
+trait_robot_double_jointed = {
+	cost = 1
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_massive # Enhanced Robomodding
+		trait_robot_bulky
+		trait_robot_compartmentalization # Enhanced Robomodding
+		trait_robot_transformers # Enhanced Robomodding
+	}
+
+	modifier = {
+		pop_housing_usage_mult = -0.1 # DTM -0.1 -> -0.2 # LS -0.2 -> -0.1 [Balance]
+		pop_resettlement_cost_mult = -0.35 # DTM
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = @non_job_trait_prio_3
+			is_environmentalist_empire = yes	# environmentalists want to minimize land usage
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_megacorp = yes	# convenience!
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_void_dwellers_empire = yes
+		}
+		modifier = {
+			mult = 0.1
+			has_country_flag = make_robots_specialized
+		}
+	}
+	slave_cost = {
+		energy = 750
 	}
 }
 
@@ -5372,6 +7037,42 @@ trait_solitary = {
 	}
 }
 
+## <-1> Bulky (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_bulky = {
+	cost = -1
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_massive # Enhanced Robomodding
+		trait_robot_double_jointed
+		trait_robot_compartmentalization # Enhanced Robomodding
+		trait_robot_transformers # Enhanced Robomodding
+	}
+	species_potential_add = { # DTM
+		dtraits_ai_add_negative_robotic_trait_trigger = {
+			cost = 1
+		}
+	}
+
+	modifier = {
+		pop_housing_usage_mult = 0.1 # DTM 0.1 -> 0.2 # LS 0.2 -> 0.1 [Balance]
+		pop_resettlement_cost_mult = 0.5 # DTM
+	}
+	ai_weight = { # DTM
+		weight = 3
+		modifier = {
+			mult = 0
+			NOT = {
+				has_country_flag = make_robots_bulky
+			}
+		}
+	}
+	slave_cost = {
+		energy = -300 # DTM -150 -> -300
+	}
+}
+
 ## <-2> Bulky (Cyborg) [Vanilla]
 # Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
 trait_cyborg_bulky = {
@@ -5434,6 +7135,109 @@ trait_cyborg_bulky = {
 ##################################################
 ## Species Traits - Pop - Happiness
 ##################################################
+
+## <4> Governmental Circuitry (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_governmental_circuitry = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT }
+	opposites = {
+		trait_just-more-traits_robot_broadcastdirective
+		trait_robot_loyalty_circuits
+		trait_robot_compliant_circuitry
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+	
+	# Synth only
+	species_potential_add = {
+		exists = from
+		from = {
+			has_technology = tech_synthetic_workers
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		pop_happiness = 0.2
+	}
+}
+
+## <3> Compliant Circuitry (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_compliant_circuitry = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT }
+	opposites = {
+		trait_just-more-traits_robot_broadcastdirective
+		trait_robot_loyalty_circuits
+		trait_robot_governmental_circuitry
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+	
+	# Synth only
+	species_potential_add = {
+		exists = from
+		from = {
+			has_technology = tech_synthetic_workers
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		pop_happiness = 0.15
+	}
+}
+
+## <2> Loyalty Circuits (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_loyalty_circuits = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT }
+	opposites = {
+		trait_just-more-traits_robot_broadcastdirective # Enhanced Robomodding
+		trait_robot_compliant_circuitry # Enhanced Robomodding
+		trait_robot_governmental_circuitry # Enhanced Robomodding
+	}
+	
+	# Synth only
+	species_potential_add = {
+		exists = from
+		from = {
+			has_technology = tech_synthetic_workers
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		pop_happiness = 0.2 # DTM 0.1 -> 0.2
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = @non_job_trait_prio_3
+			is_authoritarian = yes
+		}
+		modifier = {
+			mult = 0.1
+			has_country_flag = make_robots_specialized
+		}
+		modifier = {
+			mult = 0
+			is_egalitarian = yes
+			has_ascension_perk = ap_synthetic_evolution
+		}
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+}
 
 ## <1> Loyalty Circuits (Cyborg) [Vanilla]
 # Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
@@ -5634,6 +7438,75 @@ trait_deviants = {
 ## Species Traits - Pop - Empire Size
 ##################################################
 
+## <5> Streamlined Protocols 4 (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_streamlined_protocols_4 = {
+	cost = 5
+	
+	allowed_archetypes = { ROBOT MACHINE }
+	
+	opposites = {
+		trait_robot_streamlined_protocols
+		trait_robot_streamlined_protocols_2
+		trait_robot_streamlined_protocols_3
+		trait_robot_high_bandwidth
+	}
+	prerequisites = { 
+		tech_enhancedrobomodding_tier3
+		tech_enhancedrobomodding_matrioshka_brain_uplink 
+	}
+	initial = no
+	randomized = no
+	
+	modifier = {
+		species_empire_size_mult = -0.25
+	}
+}
+
+## <4> Streamlined Protocols 3 (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_streamlined_protocols_3 = {
+	cost = 4
+	
+	allowed_archetypes = { ROBOT MACHINE }
+	
+	opposites = {
+		trait_robot_streamlined_protocols
+		trait_robot_streamlined_protocols_2
+		trait_robot_streamlined_protocols_4
+		trait_robot_high_bandwidth
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+	
+	modifier = {
+		species_empire_size_mult = -0.20
+	}
+}
+
+## <3> Streamlined Protocols 2 (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_streamlined_protocols_2 = {
+	cost = 3
+	
+	allowed_archetypes = { ROBOT MACHINE }
+	
+	opposites = {
+		trait_robot_streamlined_protocols
+		trait_robot_streamlined_protocols_3
+		trait_robot_streamlined_protocols_4
+		trait_robot_high_bandwidth
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+	
+	modifier = {
+		species_empire_size_mult = -0.15
+	}
+}
+
 ## <2> Docile [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_docile = {
@@ -5664,6 +7537,40 @@ trait_docile = {
 			mult = 0
 			is_egalitarian = yes
 		}
+	}
+}
+
+## <2> Streamlined Protocols (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader
+trait_robot_streamlined_protocols = {
+	cost = 2
+	opposites = {
+		trait_robot_streamlined_protocols_2 # Enhanced Robomodding
+		trait_robot_streamlined_protocols_3 # Enhanced Robomodding
+		trait_robot_streamlined_protocols_4 # Enhanced Robomodding
+		trait_robot_high_bandwidth
+	}
+	allowed_archetypes = { ROBOT MACHINE }
+	modifier = {
+		species_empire_size_mult = -0.10 # DTM -0.10 -> -0.20 # LS -0.20 -> -0.10 [Balance]
+	}
+	ai_weight = { # DTM
+		weight = 1
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_megacorp = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+		}
+		modifier = {
+			mult = 0.1
+			has_country_flag = make_robots_specialized
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
 	}
 }
 
@@ -5758,6 +7665,40 @@ trait_cyborg_high_bandwidth = {
 	ai_weight = { # DTM
 		weight = value:cyborg_trait_weight
 		mult = 20
+	}
+	slave_cost = {
+		energy = -300 # DTM -150 -> -300
+	}
+}
+
+## <-2> High Bandwidth (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_high_bandwidth = {
+	cost = -2
+	opposites = {
+		trait_robot_streamlined_protocols
+		trait_robot_streamlined_protocols_2 # Enhanced Robomodding
+		trait_robot_streamlined_protocols_3 # Enhanced Robomodding
+		trait_robot_streamlined_protocols_4 # Enhanced Robomodding
+	}
+	allowed_archetypes = { ROBOT MACHINE }
+	species_potential_add = {
+		dtraits_ai_add_negative_robotic_trait_trigger = { # DTM
+			cost = 2
+		}
+	}
+	modifier = {
+		species_empire_size_mult = 0.10 # DTM 0.10 -> 0.20 # LS 0.20 -> 0.10 [Balance]
+		pop_resettlement_cost_mult = 0.10 # OSA
+	}
+	ai_weight = { # DTM
+		weight = 3
+		modifier = {
+			mult = 0
+			NOT = {
+				has_country_flag = make_robots_high_bandwidth
+			}
+		}
 	}
 	slave_cost = {
 		energy = -300 # DTM -150 -> -300
@@ -6164,6 +8105,74 @@ trait_sedentary = {
 ## Species Traits - Leaders - Traits
 ##################################################
 
+## <4> Quantum Memory (Robot) [Enhanced Robomodding]
+# Base version with adjusted modifiers for Paragons
+trait_robot_quantum_memory = {
+	cost = 4
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_reflexivelearning
+		trait_robot_enhanced_memory
+		trait_robot_logical_storage
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+	
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence		
+				has_technology = tech_synthetic_leaders
+			}
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		negative_leader_traits_species = -1 # LS
+		leaders_upkeep_mult = -0.25 # LS
+		planet_jobs_engineering_research_produces_mult = 0.25 # LS - OSA
+	}
+}
+
+## <3> Logical Storage (Robot) [Enhanced Robomodding]
+# Base version with adjusted modifiers for Paragons
+trait_robot_logical_storage = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_reflexivelearning
+		trait_robot_enhanced_memory
+		trait_robot_quantum_memory
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+	
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence		
+				has_technology = tech_synthetic_leaders
+			}
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		negative_leader_traits_species = -1 # LS
+		leaders_upkeep_mult = -0.20 # LS
+		planet_jobs_engineering_research_produces_mult = 0.15 # LS - OSA
+	}
+}
+
 ## <2> Elevated Synapses (Overtuned) [Vanilla]
 # Merge between Planetary Diversity: Exotic Worlds, DTM, Trait Upgrader, Leader Traits: Merge-Add, Daemonic Incursion, Galactic Imperium Origin, STU
 trait_elevated_synapses = {
@@ -6257,6 +8266,57 @@ trait_elevated_synapses = {
 			mult = @non_job_trait_prio_2
 			is_technocracy = yes
 		}
+	}
+}
+
+## <2> Enhanced Memory (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_enhanced_memory = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_reflexivelearning # Enhanced Robomodding
+		#trait_robot_enhanced_memory # Enhanced Robomodding # LS - remove because it is opposite itself
+		trait_robot_logical_storage # Enhanced Robomodding
+		trait_robot_quantum_memory # Enhanced Robomodding
+	}
+
+	# Synth or Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				is_machine_empire = yes
+				has_technology = tech_synthetic_leaders
+			}
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+		dtraits_ai_leaders_trigger = yes # DTM
+	}
+	modifier = {
+		negative_leader_traits_species = -1
+		leaders_upkeep_mult = -0.15 # OSA -0.25 -> -0.15
+		planet_jobs_engineering_research_produces_mult = 0.10 # OSA
+	}
+	ai_weight = { # DTM
+		weight = 0
+		add = value:dtraits_leaders_weight
+		modifier = {
+			mult = 1.1
+			has_valid_civic = civic_meritocracy
+		}
+		modifier = {
+			mult = 1.1
+			is_memory_vault_empire = yes
+		}
+		modifier = {
+			mult = 1.1
+			has_valid_civic = civic_heroic_tales
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
 	}
 }
 
@@ -6445,6 +8505,72 @@ trait_cyborg_neural_limiters = {
 ## Species Traits - Leaders - Experience Gain
 ##################################################
 
+## <3> Organic Learning (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_organic_learning = {
+	cost = 3
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_volatilememory
+		trait_robot_repurposed_hardware
+		trait_robot_learning_algorithms
+		trait_robot_improved_algorithms
+	}
+	prerequisites = { tech_enhancedrobomodding_tier3 }
+	initial = no
+	randomized = no
+	
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence		
+				has_technology = tech_synthetic_leaders
+			}
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		species_leader_exp_gain = 0.75
+	}
+}
+
+## <2> Improved Algorithms (Robot) [Enhanced Robomodding]
+# Base version
+trait_robot_improved_algorithms = {
+	cost = 2
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_volatilememory
+		trait_robot_repurposed_hardware
+		trait_robot_learning_algorithms
+		trait_robot_organic_learning
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no
+	randomized = no
+	
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				has_authority = auth_machine_intelligence		
+				has_technology = tech_synthetic_leaders
+			}
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+	}
+
+	modifier = {
+		species_leader_exp_gain = 0.50
+	}
+}
+
 ## <1> Quick Learners [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_quick_learners = {
@@ -6547,6 +8673,50 @@ trait_gene_mentorship = {
 	}
 }
 
+## <1> Learning Algorithms (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_learning_algorithms = {
+	cost = 1
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_volatilememory # Enhanced Robomodding
+		trait_robot_repurposed_hardware
+		trait_robot_improved_algorithms # Enhanced Robomodding
+		trait_robot_organic_learning # Enhanced Robomodding
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 } # Enhanced Robomodding
+	initial = no # Enhanced Robomodding
+	randomized = no # Enhanced Robomodding
+	
+	# Synth and Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				is_machine_empire = yes
+				has_technology = tech_synthetic_leaders
+			}
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+		dtraits_ai_leaders_trigger = yes # DTM
+	}
+	modifier = {
+		species_leader_exp_gain = 0.5 # DTM 0.25 -> 0.50
+	}
+	ai_weight = { # DTM
+		weight = 0
+		add = value:dtraits_leaders_weight
+		modifier = {
+			mult = 1.1
+			has_valid_civic = civic_meritocracy
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+}
+
 ## <-1> Slow Learners [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_slow_learners = {
@@ -6570,6 +8740,57 @@ trait_slow_learners = {
 	ai_weight = { # DTM
 		weight = 10
 		mult = value:dtraits_negative_trait_leaders_weight
+	}
+}
+
+## <-1> Repurposed Hardware (Robot) [Vanilla]
+# Merge between OSA, DTM, Enhanced Robomodding, Trait Upgrader, Ariphaos
+trait_robot_repurposed_hardware = {
+	cost = -1
+
+	allowed_archetypes = { ROBOT MACHINE }
+	opposites = {
+		trait_just-more-traits_robot_volatilememory # Enhanced Robomodding
+		trait_robot_learning_algorithms
+		trait_robot_improved_algorithms # Enhanced Robomodding
+		trait_robot_organic_learning # Enhanced Robomodding
+	}
+	prerequisites = { tech_enhancedrobomodding_tier2 }
+	initial = no # Enhanced Robomodding
+	randomized = no # Enhanced Robomodding
+
+	# Synth or Machine only
+	species_potential_add = {
+		exists = from
+		from = {
+			OR = {
+				is_machine_empire = yes
+				has_technology = tech_synthetic_leaders
+			}
+			NOT = { has_policy_flag = ai_outlawed }
+		}
+		dtraits_ai_add_negative_robotic_trait_trigger = { # DTM
+			cost = 1
+		}
+	}
+	modifier = {
+		species_leader_exp_gain = -0.5 # DTM -0.25 -> -0.50
+	}
+	ai_weight = {
+		weight = 3 # DTM 1 -> 3
+		modifier = { # Ariphaos
+			factor = 0
+			years_passed > 5
+		}
+		modifier = { # DTM
+			mult = 0
+			NOT = {
+				has_country_flag = make_robots_repurposed_hardware
+			}
+		}
+	}
+	slave_cost = {
+		energy = -300 # DTM -150 -> -300
 	}
 }
 
