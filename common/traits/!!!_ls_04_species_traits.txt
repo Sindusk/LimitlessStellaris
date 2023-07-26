@@ -2294,6 +2294,55 @@ trait_zombie = {
 	}
 }
 
+## <-1> Power Intensive (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_power_intensive = {
+	cost = -1
+	opposites = { }
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 1
+			type = cybernetic
+		}
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip = TRAIT_POWER_INTENSIVE_EFFECT
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = 10
+		modifier = {
+			factor = 0.05
+			is_environmentalist_empire = yes
+		}
+		modifier = {
+			factor = 0
+			root = {
+				has_monthly_income = { resource = energy value < 300 }
+			}
+		}
+		modifier = {
+			mult = 0
+			check_variable_arithmetic = {
+				which = value:resources_per_pop|resource|energy|
+				value < 1
+			}
+		}
+	}
+	slave_cost = {
+		energy = -250
+	}
+}
+
 ##################################################
 ## Species Traits - Unique - Livestock
 ##################################################
@@ -2460,6 +2509,41 @@ trait_excessive_endurance = {
 	ai_weight = { # DTM
 		weight = @tox_trait_weight
 		mult = value:dtraits_adaptiveness_weight
+	}
+}
+
+## <2> Efficient Processors (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_efficient_processors = {
+	cost = 2
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip_with_modifiers = CYBORG_ENERGY_UPKEEP_EFFECT
+	modifier = {
+		planet_jobs_produces_mult = 0.08 # DTM 0.05 -> 0.08
+	}
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = 1.5
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	assembly_score = {
+		modifier = {
+			add = 0.5 #always good
+		}
 	}
 }
 
@@ -2667,6 +2751,50 @@ trait_technical_skill = {
 	}
 }
 
+## <1> Superconductive (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_superconductive = {
+	cost = 1
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+		dtraits_ai_worker_specialization_trigger = { # DTM
+			type = energy
+			designation = generator
+			designation_2 = rural
+		}
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.2 # DTM 0.1 -> 0.2
+	}
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = value:worker_specialization_weight
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_generator_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
 ##################################################
 ## Species Traits - Resources - Minerals
 ##################################################
@@ -2798,6 +2926,54 @@ trait_crack_miner = {
 
 }
 
+## <1> Power Drills (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_power_drills = {
+	cost = 1
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		dtraits_ai_worker_specialization_trigger = { # DTM
+			type = minerals
+			designation = mining
+			designation_2 = rural
+		}
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.2 # DTM 0.1 -> 0.2
+	}
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = value:worker_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			has_valid_civic = civic_mining_guilds
+		}
+	}
+
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_mining_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+
 ##################################################
 ## Species Traits - Resources - Food
 ##################################################
@@ -2925,6 +3101,54 @@ trait_farm_hands = {
 	}
 	slave_cost = {
 		energy = 2000 # DTM 1,000 -> 2,000
+	}
+}
+
+## <1> Harvesters (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_harvesters = {
+	cost = 1
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		dtraits_ai_worker_specialization_trigger = { # DTM
+			type = food
+			designation = farming
+			designation_2 = rural
+		}
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	modifier = {
+		planet_jobs_food_produces_mult = 0.2 # DTM 0.1 -> 0.2
+	}
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_agrarian_empire = yes
+		}
+		mult = value:worker_specialization_weight
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_farming_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
 	}
 }
 
@@ -3422,6 +3646,57 @@ trait_artificial_intelligence = {
 	}
 }
 
+## <1> Logic Engines (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_logic_engines = {
+	cost = 1
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		dtraits_ai_specialist_specialization_trigger = { # DTM
+			type = research
+			designation = research
+			designation_2 = trade
+		}
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip_with_modifiers = CYBORG_ENERGY_UPKEEP_EFFECT
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.15 # DTM 0.10 -> 0.15
+		planet_jobs_society_research_produces_mult = 0.15 # DTM 0.10 -> 0.15
+		planet_jobs_engineering_research_produces_mult = 0.15 # DTM 0.10 -> 0.15
+	}
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = value:specialist_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_materialist = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_research_designation = yes }
+		}
+	}
+}
+
 ##################################################
 ## Species Traits - Resources - Research (Physics)
 ##################################################
@@ -3670,6 +3945,54 @@ trait_thrifty = {
 		}
 	}
 	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_trade_designation = yes }
+		}
+	}
+}
+
+## <1> Trading Algorithms (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_trading_algorithms = {
+	cost = 1
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		NOT = { has_trait = trait_hive_mind }
+		dtraits_ai_worker_specialization_trigger = { # DTM
+			type = trade
+			designation = trade
+			designation_2 = resort
+			clerk_type = yes
+		}
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip_with_modifiers = CYBORG_ENERGY_UPKEEP_EFFECT
+	modifier = {
+		pop_job_trade_mult = 0.35 # DTM 0.25 -> 0.35
+	}
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = value:worker_specialization_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			OR = {
+				is_megacorp = yes
+				has_valid_civic = civic_merchant_guilds				
+			}
+		}
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+	assembly_score = { # DTM
 		modifier = {
 			add = 1.5
 			from = { has_trade_designation = yes }
@@ -4081,6 +4404,73 @@ trait_wasteful = {
 	}
 	slave_cost = {
 		energy = -400 # DTM -200 -> -400
+	}
+}
+
+##################################################
+## Species Traits - Pop Upkeep - Amenities
+##################################################
+
+## <1> Durable (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_durable = {
+	cost = 1
+	opposites = { "trait_cyborg_high_maintenance" }
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip_with_modifiers = CYBORG_ENERGY_UPKEEP_EFFECT
+	modifier = {
+		pop_amenities_usage_add = -0.5
+	}
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+}
+
+## <-2> High Maintenance (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_high_maintenance = {
+	cost = -2
+	opposites = { "trait_cyborg_durable" }
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 2
+			type = cybernetic
+		}
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+
+	modifier = {
+		pop_amenities_usage_add = 1.0 # DTM 0.5 -> 1.0
+	}
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = 20
+	}
+	slave_cost = {
+		energy = -300 # DTM -150 -> -300
 	}
 }
 
@@ -4528,6 +4918,46 @@ trait_communal = {
 	}
 }
 
+## <1> Double-Jointed (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_double_jointed = {
+	cost = 1
+	opposites = { "trait_cyborg_bulky" }
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip_with_modifiers = CYBORG_ENERGY_UPKEEP_EFFECT
+	modifier = {
+		pop_housing_usage_mult = -0.10 # DTM -0.10 -> -0.15 # LS -0.15 -> -0.10 [Balance]
+		pop_growth_from_immigration = 0.15
+		pop_resettlement_cost_mult = -0.35 # DTM -0.25 -> -0.35
+	}
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_environmentalist_empire = yes	# environmentalists want to minimize land usage
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_void_dwellers_empire = yes
+		}
+	}
+	slave_cost = {
+		energy = 3000 # DTM 1,500 -> 3,000
+	}
+}
+
 ## <-1> Solitary [Vanilla]
 # Merge between OSA, DTM, Trait Upgrader
 trait_solitary = {
@@ -4570,9 +5000,110 @@ trait_solitary = {
 	}
 }
 
+## <-2> Bulky (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_bulky = {
+	cost = -2
+	opposites = { "trait_cyborg_double_jointed" }
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 2
+			type = cybernetic
+		}
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	modifier = {
+		pop_housing_usage_mult = 0.1 # DTM 0.1 -> 0.2 # LS 0.2 -> 0.1 [Balance]
+		pop_growth_from_immigration = -0.15
+		pop_resettlement_cost_mult = 0.5 # DTM 0.25 -> 0.5
+	}
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = 20
+		modifier = {
+			factor = 0.5
+			is_pacifist = yes
+		}
+		modifier = {
+			factor = 0.1
+			is_environmentalist_empire = yes
+		}
+		modifier = {
+			mult = 0.1
+		}
+		modifier = {
+			mult = 0.05
+			OR = {
+				has_ai_personality = migrating_flock
+				AND = {
+					is_doomsday_empire = yes
+					any_owned_planet = {
+						is_doomsday_planet = yes
+					}
+				}
+			}
+		}
+	}
+	slave_cost = {
+		energy = -1000 # DTM -500 -> -1,000
+	}
+}
+
 ##################################################
 ## Species Traits - Pop - Happiness
 ##################################################
+
+## <1> Loyalty Circuits (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_loyalty_circuits = {
+	cost = 1
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		NOT = { has_trait = trait_hive_mind }
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip_with_modifiers = CYBORG_ENERGY_UPKEEP_EFFECT
+	modifier = {
+		pop_happiness = 0.15 # DTM 0.10 -> 0.15
+	}
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_authoritarian = yes
+		}
+		modifier = {
+			mult = 0
+			is_egalitarian = yes
+		}
+		modifier = {
+			mult = 0
+			is_gestalt = yes
+		}
+	}
+	slave_cost = {
+		energy = 1000 # DTM 500 -> 1,000
+	}
+}
 
 ## <-1> Decadent [Vanilla]
 # Merge between OSA, DTM, Trait Upgrader
@@ -4764,6 +5295,42 @@ trait_docile = {
 	}
 }
 
+## <1> Streamlined Protocols (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_streamlined_protocols = {
+	cost = 1
+	opposites = { "trait_cyborg_high_bandwidth" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip_with_modifiers = CYBORG_ENERGY_UPKEEP_EFFECT
+	modifier = {
+		species_empire_size_mult = -0.10 # DTM -0.10 -> -0.15 # LS -0.15 -> -0.10 [Balance]
+	}
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_megacorp = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_2
+			is_technocracy = yes
+		}
+	}
+	slave_cost = {
+		energy = 1500 # DTM 750 -> 1,500
+	}
+}
+
 ## <-2> Unruly [Vanilla]
 # Merge between OSA, Planetary Diversity, DTM, Trait Upgrader
 trait_unruly = {
@@ -4790,6 +5357,38 @@ trait_unruly = {
 			factor = 0.1
 			is_authoritarian = yes
 		}
+	}
+}
+
+## <-2> High Bandwidth (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_high_bandwidth = {
+	cost = -2
+	opposites = { "trait_cyborg_streamlined_protocols" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 2
+			type = cybernetic
+		}
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	modifier = {
+		species_empire_size_mult = 0.10 # DTM 0.10 -> 0.20 # LS 0.20 -> 0.10 [Balance]
+	}
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = 20
+	}
+	slave_cost = {
+		energy = -300 # DTM -150 -> -300
 	}
 }
 
@@ -5305,6 +5904,142 @@ trait_talented = {
 			mult = @non_job_trait_prio_1
 			has_valid_civic = civic_heroic_tales
 		}
+	}
+}
+
+## <1> Enhanced Memory (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_enhanced_memory = {
+	cost = 1
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		dtraits_ai_leaders_trigger = yes # DTM
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip_with_modifiers = CYBORG_ENERGY_UPKEEP_EFFECT
+	modifier = {
+		negative_leader_traits_species = -1
+		leaders_upkeep_mult = -0.25
+	}
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = value:dtraits_leaders_weight
+		modifier = {
+			mult = @non_trait_job_prio_1
+			has_valid_civic = civic_meritocracy
+		}
+		modifier = {
+			mult = @non_job_trait_prio_1
+			is_memory_vault_empire = yes
+		}
+		modifier = {
+			mult = @non_job_trait_prio_1
+			has_valid_civic = civic_heroic_tales
+		}
+	}
+	slave_cost = {
+		energy = 750
+	}
+}
+
+## <1> Learning Algorithms (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_learning_algorithms = {
+	cost = 1
+	opposites = { "trait_cyborg_neural_limiters" }
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+		dtraits_ai_leaders_trigger = yes # DTM
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	custom_tooltip_with_modifiers = CYBORG_ENERGY_UPKEEP_EFFECT
+	modifier = {
+		species_leader_exp_gain = 0.25
+		negative_leader_traits_species = -1
+		leaders_upkeep_mult = -0.1
+	}
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = value:dtraits_leaders_weight
+		modifier = {
+			mult = @non_job_trait_prio_1
+			has_valid_civic = civic_meritocracy
+		}
+	}
+
+	slave_cost = {
+		energy = 1500
+	}
+}
+
+## <-2> Neural Limiters (Cyborg) [Vanilla]
+# Merge between DTM, Trait Upgrader, Leader Traits: Merge-Add, STU
+trait_cyborg_neural_limiters = {
+	cost = -2
+
+	opposites = { "trait_cyborg_learning_algorithms" }
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	initial = no
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+		dtraits_ai_add_negative_biological_trait_trigger = { # DTM
+			cost = 2
+			type = cybernetic
+			leaders = yes
+		}
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	species_possible_merge_add = { always = yes } # Leader Traits: Merge-Add
+	species_possible_merge_remove = { always = yes } # Leader Traits: Merge-Add
+	randomized = no
+	modifier = {
+		species_leader_exp_gain = -0.25
+		negative_leader_traits_species = 1
+		leaders_upkeep_mult = 0.1
+	}
+
+	ai_weight = { # DTM
+		weight = value:cyborg_trait_weight
+		mult = 20
+		mult = value:dtraits_negative_trait_leaders_weight
+		modifier = {
+			mult = 0
+			NOR = {
+				is_authoritarian = yes
+				AND = {
+					is_xenophobe = yes
+					NOR = {
+						has_ai_personality_behaviour = multispecies
+						has_ai_personality_behaviour = purger
+						has_ai_personality_behaviour = displacer
+						is_necrophage_empire = yes
+					}
+				}
+			}
+		}
+	}
+	slave_cost = {
+		energy = -500 # DTM -250 -> -500
 	}
 }
 
