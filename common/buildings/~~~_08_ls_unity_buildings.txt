@@ -5302,11 +5302,11 @@ building_alpha_hub = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 12 # MECR changes from 8 to 12
-			rare_crystals = 4 # MECR changes from 3 to 4
+			energy = @ost_b4_upkeep # OSA 8 -> ost_b4
+			rare_crystals = @db3_rare_upkeep # OSA 3 -> b3 # LS b3 -> db3
 		}
 		produces = {
-			unity = 20 # OSA 10 -> 20
+			unity = @ost_b3_produces # OSA 10 -> ost_b3
 		}
 	}
 
