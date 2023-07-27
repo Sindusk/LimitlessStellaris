@@ -1,0 +1,393 @@
+####################################################################################################
+# Limitless Stellaris - First Contact Events
+####################################################################################################
+namespace = first_contact_critters
+
+## First Contact 25 - Amoebae Special Project
+# Merge between Bug Branch, Spaceborne Civs Expanded, Ariphaos, STU
+first_contact_event = {
+	id = first_contact_critters.25
+	title = first_contact_critters.25.name
+	desc = {
+		trigger = {
+			hidden:owner = {
+				switch = {
+					trigger = has_ethic
+					ethic_fanatic_xenophile = { text = story.101.desc.phile }
+					ethic_fanatic_xenophobe = { text = story.101.desc.phobe }
+					ethic_fanatic_militarist = { text = story.101.desc.milit }
+					ethic_fanatic_pacifist = { text = story.101.desc.pacif }
+					ethic_fanatic_materialist = { text = story.101.desc.mater }
+					ethic_xenophile = { text = story.101.desc.phile }
+					ethic_xenophobe = { text = story.101.desc.phobe}
+					ethic_militarist = { text = story.101.desc.milit }
+					ethic_pacifist = { text = story.101.desc.pacif }
+					ethic_materialist = { text = story.101.desc.mater }
+					ethic_gestalt_consciousness = { text = story.101.desc.gesta }
+					default = { text = first_contact_critters.25.desc }
+				}
+			}
+		}
+	}
+	picture = GFX_evt_friendly_amoeba
+	show_sound = event_space_amoeba
+
+	is_triggered_only = yes
+	first_contact = yes
+
+	immediate = {
+		set_site_progress_locked = yes
+	}
+
+	after = {
+		set_site_progress_locked = no
+	}
+
+	option = {
+		name = story.101.aa
+		trigger = {
+			owner = {
+				OR = {
+					is_xenophobe = yes
+					is_militarist = yes
+					is_homicidal = yes
+					is_cordyceptic_empire = { allow_invalid = yes } # Spaceborne Civs Expanded
+					has_valid_civic = civic_living_hosts # Spaceborne Civs Expanded
+					has_valid_civic = civic_hive_subspace_ephapse # Spaceborne Civs Expanded
+					has_valid_civic = civic_hive_strength_of_legions # Spaceborne Civs Expanded
+					has_valid_civic = civic_machine_warbots # Spaceborne Civs Expanded
+					has_valid_civic = civic_machine_deepspace_networking # Spaceborne Civs Expanded
+				}
+			}
+		}
+		owner = {
+			add_modifier = {
+				modifier = amoeba_hunting_buff
+				days = -1
+			}
+		}
+		custom_tooltip = story.101.aa.amoebahunt
+		finish_first_contact_effect = yes
+	}
+
+	option = {
+		name = story.101.bb
+		trigger = {
+			owner = {
+				NOT = { has_civic = civic_machine_terminator }
+			}
+		}
+		owner = {
+			if = { # Spaceborne Civs Expanded
+				limit = { NOT = { has_special_project = AMOEBAS_PROJECT } }
+				# Ariphaos - planet/owner project, best start in country scope, instead of location scope
+				enable_special_project = {
+					name = "AMOEBAS_PROJECT"
+					location = capital_scope
+					owner = root.owner
+				}
+			}
+		}
+		finish_first_contact_effect = yes
+	}
+
+	option = {
+		name = story.101.bb.exter
+		trigger = {
+			owner = {
+				has_civic = civic_machine_terminator
+			}
+		}
+		owner = {
+			if = { # Spaceborne Civs Expanded
+				limit = { NOT = { has_special_project = AMOEBAS_PROJECT } }
+				# Ariphaos - planet/owner project, best start in country scope, instead of location scope
+				enable_special_project = {
+					name = "AMOEBAS_PROJECT"
+					location = capital_scope
+					owner = root.owner
+				}
+			}
+		}
+		finish_first_contact_effect = yes
+	}
+
+	option = {
+		name = story.101.cc
+		trigger = {
+			owner = {
+				OR = {
+					is_xenophile = yes
+					is_pacifist = yes
+					is_servitor_empire = yes # STU
+					has_valid_civic = civic_hive_empath
+					has_ethic = ethic_form_affective # Bug Branch
+					has_ethic = ethic_form_extrospective # Bug Branch
+				}
+			}
+		}
+		owner = {
+			if = { # Spaceborne Civs Expanded
+				limit = { NOT = { has_special_project = AMOEBAS_PROJECT } }
+				# Ariphaos - planet/owner project, best start in country scope, instead of location scope
+				enable_special_project = {
+					name = "AMOEBAS_PACIFICATION_PROJECT"
+					location = capital_scope
+					owner = root.owner
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		finish_first_contact_effect = yes
+	}
+}
+
+## First Contact 35 - Crystal Special Project
+# Merge between Bug Branch, Spaceborne Civs Expanded, Ariphaos, STU
+first_contact_event = {
+	id = first_contact_critters.35
+	title = story.201.name
+	# Phile
+	desc = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+		}
+		text = story.201.desc.phile
+	}
+	# Phobe
+	desc = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+		text = story.201.desc.phobe
+	}
+	# Pacif
+	desc = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+				}
+			}
+		}
+		text = story.201.desc.pacif
+	}
+	# Spiri
+	desc = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+		}
+		text = story.201.desc.spiri
+	}
+	# Milit
+	desc = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+		}
+		text = story.201.desc.milit
+	}
+	# Generic / Gestalt
+	desc = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_militarist
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+		}
+		text = story.201.desc
+	}
+	picture = GFX_evt_fleet_evil
+	show_sound = event_space_crystals
+
+	is_triggered_only = yes
+	first_contact = yes
+
+	immediate = {
+		set_site_progress_locked = yes
+	}
+
+	option = { # Hunting Buff
+		name = story.201.aa
+		trigger = {
+			owner = {
+				OR = {
+					is_xenophobe = yes
+					is_militarist = yes
+					is_homicidal = yes
+					is_cordyceptic_empire = { allow_invalid = yes } # Spaceborne Civs Expanded
+					has_valid_civic = civic_living_hosts # Spaceborne Civs Expanded
+					has_valid_civic = civic_hive_subspace_ephapse # Spaceborne Civs Expanded
+					has_valid_civic = civic_hive_strength_of_legions # Spaceborne Civs Expanded
+					has_valid_civic = civic_machine_warbots # Spaceborne Civs Expanded
+					has_valid_civic = civic_machine_deepspace_networking # Spaceborne Civs Expanded
+				}
+			}
+		}
+		owner = {
+			add_modifier = {
+				modifier = crystal_hunting_buff
+				days = -1
+			}
+		}
+		custom_tooltip = story.201.aa.crystalhunt
+	}
+
+	option = { # Special Project
+		name = story.201.bb
+		owner = {
+			if = { # Spaceborne Civs Expanded
+				limit = { NOT = { has_special_project = CRYSTALS_PROJECT } }
+				# Ariphaos - planet/owner project, best start in country scope, instead of location scope
+				enable_special_project = {
+					name = "CRYSTALS_PROJECT"
+					location = capital_scope
+					owner = root.owner
+				}
+			}
+		}
+	}
+
+	option = {
+		name = story.201.cc
+		trigger = {
+			owner = {
+				OR = {
+					is_xenophile = yes
+					is_pacifist = yes
+					has_ethic = ethic_form_affective # Bug Branch
+					has_ethic = ethic_form_extrospective # Bug Branch
+				}
+			}
+		}
+		owner = {
+			if = { # Spaceborne Civs Expanded
+				limit = { NOT = { has_special_project = CRYSTALS_PROJECT } }
+				# Ariphaos - planet/owner project, best start in country scope, instead of location scope
+				enable_special_project = {
+					name = "CRYSTALS_PACIFICATION_PROJECT"
+					location = capital_scope
+					owner = root.owner
+				}
+			}
+		}
+	}
+
+	after = {
+		finish_first_contact_effect = yes
+		set_site_progress_locked = no
+	}
+}
+
+## First Contact 45 - Drone Special Project
+# Merge between Organic Zealots, Spaceborne Civs Expanded, Ariphaos, STU
+first_contact_event = {
+	id = first_contact_critters.45
+	title = first_contact_critters.45.name
+	picture = GFX_evt_mining_station
+
+	desc = {
+		trigger = { owner = { is_gestalt = yes } } # Merged
+		text = story.301.desc.gesta
+	}
+	# Materialist
+	desc = {
+		trigger = {
+			owner = {
+				is_organic_zealots = no # Organic Zealots
+				is_materialist = yes
+			}
+		}
+		text = story.301.desc.mater
+	}
+	# Pacifist
+	desc = {
+		trigger = {
+			owner = {
+				is_organic_zealots = no # Organic Zealots
+				is_pacifist = yes
+			}
+		}
+		text = story.301.desc.pacif
+	}
+	# Generic
+	desc = {
+		trigger = {
+			owner = { # Organic Zealots improvement
+				is_gestalt = no
+				is_organic_zealots = no # Organic Zealots
+				is_materialist = no
+				is_pacifist = no
+			}
+		}
+		text = first_contact_critters.45.desc
+	}
+	desc = { # Organic Zealots
+		trigger = { owner = { is_organic_zealots = yes } }
+		text = "first_contact_critters.45.desc.organic_zealots"
+	}
+	show_sound = event_ancient_drone
+
+	is_triggered_only = yes
+	first_contact = yes
+
+	immediate = {
+		set_site_progress_locked = yes
+	}
+
+	after = { # Organic Zealots moves most of the content from an option to after
+		owner = {
+			if = { # Spaceborne Civs Expanded
+				limit = { NOT = { has_special_project = DRONES_PROJECT } }
+				# Ariphaos - planet/owner project, best start in country scope, instead of location scope
+				enable_special_project = {
+					name = "DRONES_PROJECT"
+					location = capital_scope
+					owner = root.owner
+				}
+			}
+		}
+		finish_first_contact_effect = yes
+		set_site_progress_locked = no
+	}
+	option = { # Organic Zealots
+		trigger = { owner = { is_organic_zealots = no } }
+		name = UNDERSTOOD
+	}
+	option = { # Organic Zealots
+		trigger = { owner = { is_organic_zealots = yes } }
+		name = DISTURBING
+	}
+}
