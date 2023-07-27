@@ -1,0 +1,104 @@
+##########################################################################
+# Limitless Stellaris - Galactic Features Events
+##########################################################################
+namespace = galactic_features
+
+## Galactic Features 303 - Isolated Hut
+# Merge between ACOT, MEM, STU
+ship_event = {
+	id = galactic_features.303
+	title = "galactic_features.303"
+	desc = "galactic_features.303.desc"
+	picture = GFX_evt_alien_planet
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	immediate = {
+		FROMFROM = {
+			save_event_target_as = shield_planet
+			change_pc = pc_gaia # ACOT random_list -> always gaia
+			reroll_planet = yes
+		}
+		set_global_flag = met_tuborek
+		#MEM Planetary Shield Override
+		IF = { # More Events Mod
+			limit = {
+				NOT = {
+					has_global_flag = mem_planetary_shield_worlds_OFF
+				}
+			}
+			random_country = {
+				country_event = { id = mem_planetary_shields.11 }
+			}
+		}
+	}
+
+	option = {
+		name = "galactic_features.303.a"
+		hidden_effect = {
+			create_country = {
+				name = "NAME_Tuborek"
+				type = faction
+				auto_delete = yes
+				flag = {
+					icon = {
+						category = "special"
+						file = "unknown.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"red"
+						"red"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					save_event_target_as = tuborek_country
+				}
+			}
+			event_target:tuborek_country = {
+				create_leader = {
+					class = admiral
+					species = event_target:fallen_4_species
+					name = "Rethalox" # ACOT
+					skill = 10
+					immortal = yes # ACOT
+					background_ethic = ethic_xenophobe
+					skip_background_generation = yes
+					custom_description = acot_tuborek_clone_desc # ACOT
+					custom_catch_phrase = acot_diplo.1200.e.response # ACOT
+					hide_age = no
+					randomize_traits = no
+					event_leader = yes	# prevents this leader from leading factions and winning elections
+						
+					effect = {
+						set_age = 12965 # ACOT 65 -> 12965
+						save_event_target_as = tuborek_leader
+						set_leader_flag = renowned_leader
+						set_leader_flag = is_in_recruit_window
+						add_trait = subclass_admiral_aggressor
+						add_trait = leader_trait_erudite # ACOT
+						add_trait = leader_trait_fanatic
+						add_trait = leader_trait_aggressive_2
+						add_trait = leader_trait_wrecker_3
+						add_trait = leader_trait_commanding_presence_3
+						add_trait = leader_trait_resilient_2
+					}
+				}
+			}
+			last_created_leader = {
+				set_owner = root
+				add_skill = 5 # ACOT
+				exile_leader_as = tuborek_exiled
+			}
+			owner = {
+				country_event = { id = galactic_features.304 }
+			}
+		}
+	}
+}
