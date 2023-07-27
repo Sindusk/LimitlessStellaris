@@ -1,0 +1,193 @@
+##########################################################################
+# Limitless Stellaris - Ecology Events
+##########################################################################
+namespace = pollute
+
+## LS - This event fires every month and is extremely expensive.
+# An attempt is being made to optimize it and improve performance, while also removing some unwanted effects.
+event = {
+	id = pollute.1
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_playable_country = {
+		
+			if = {
+				limit = { has_resource = { type = waste amount < 15000 } }
+				add_resource = { waste = 15000 }
+			}
+		
+			every_owned_planet = {
+			
+				if = {																	# Unstable Climate
+					limit = { has_deposit = d_eco_unstable_climate }
+					add_planet_devastation = 1
+					}
+				if = {																	# Displaced Titans
+					limit = { has_modifier = eco_displaced_wildlife_3 }
+					add_planet_devastation = 1
+				}
+			
+				if = {																	# Pollution Modifier
+					limit = {
+						is_artificial = no
+						NOT = { is_gas_giant = yes}
+						NOT = { is_rocky_asteroid = yes }
+						NOT = { is_ice_asteroid = yes }
+						NOT = { is_rare_crystal_asteroid = yes }
+						NOT = { is_molten_world = yes }
+						NOT = { is_barren = yes }
+						NOT = { is_toxic_world = yes }
+						NOT = { is_frozen_world = yes }
+						NOT = { is_machine_world = yes }
+						NOT = { has_planet_flag = eco_no_pollution }
+					}
+					if = { 																	# Clear Pollution
+						limit = { has_modifier = "eco_catastrophic" }
+						remove_modifier = "eco_catastrophic"
+					} else_if = { 
+						limit = { has_modifier = "eco_extreme" }
+						remove_modifier = "eco_extreme"
+					} else_if = {
+						limit = { has_modifier = "eco_heavy" }
+						remove_modifier = "eco_heavy"
+					} else_if = {
+						limit = { has_modifier = "eco_moderate" }
+						remove_modifier = "eco_moderate"
+					} else_if = {
+						limit = { has_modifier = "eco_minimal" }
+						remove_modifier = "eco_minimal"
+					} else_if = {
+						limit = { has_modifier = "eco_clean" }
+						remove_modifier = "eco_clean"
+					} else_if = {
+						limit = { has_modifier = "eco_pristine" }
+						remove_modifier = "eco_pristine"
+					}
+					### LS - This section is rewritten below
+					#if = {																	# Add Pollution
+					#	limit = { planet_resource_compare = { resource = waste value > 1000 } }
+					#	add_modifier = { modifier = "eco_catastrophic" }
+					#} else_if = {
+					#	limit = { planet_resource_compare = { resource = waste value > 800 } }
+					#	add_modifier = { modifier = "eco_extreme" }
+					#} else_if = {
+					#	limit = { planet_resource_compare = { resource = waste value > 600 } }		
+					#	add_modifier = { modifier = "eco_heavy" }
+					#} else_if = {
+					#	limit = { planet_resource_compare = { resource = waste value > 400 } }			
+					#	add_modifier = { modifier = "eco_moderate" }
+					#} else_if = {
+					#	limit = { planet_resource_compare = { resource = waste value > 200 } }			
+					#	add_modifier = { modifier = "eco_minimal" }
+					#} else_if = {
+					#	limit = { planet_resource_compare = { resource = waste value > 0 } }			
+					#	add_modifier = { modifier = "eco_clean" }
+					#} else_if = {
+					#	limit = { planet_resource_compare = { resource = waste value <= 0 } }			
+					#	add_modifier = { modifier = "eco_pristine" }
+					#}
+					### LS - Rewrite of the resource comparisons for binary search instead of switch, increasing optimization.
+					## Optimized through a binary search instead, starting from the 400 mark. This is the midpoint of the 7 tiers:
+					## < 0, 0-200, 200-400, 400-600, 600-800, 800-1000, > 1000
+					if = { # Planet is over 400 waste.
+						limit = { planet_resource_compare = { resource = waste value > 400 } }
+						# Planet has over 400 waste.
+						if = { # Next, determine if it's over 800 waste.
+							limit = { planet_resource_compare = { resource = waste value > 800 } }
+							# Planet has over 800 waste.
+							if = { # Next, see if it's over 1000 or in the 800-1000 bracket.
+								limit = { planet_resource_compare = { resource = waste value > 1000 } }
+								# Planet has over 1000 waste. Catastrophic tier.
+								add_modifier = { modifier = "eco_catastrophic" }
+							}
+							else = { # Planet has between 800 and 1000 waste. Extreme tier.
+								add_modifier = { modifier = "eco_extreme" }
+							}
+						}
+						else = { # Planet has between 400 and 800 waste.
+							if = { # Next, determine if it's over 600 waste.
+								limit = { planet_resource_compare = { resource = waste value > 600 } }
+								# Planet has between 600 and 800 waste. Heavy tier.
+								add_modifier = { modifier = "eco_heavy" }
+							}
+							else = { # Planet has between 400 and 600 waste. Moderate tier.
+								add_modifier = { modifier = "eco_moderate" }
+							}
+						}
+					}
+					else_if = { # Planet is at or under 400 waste
+						if = { # Next, let's see if it has more than zero
+							limit = { planet_resource_compare = { resource = waste value > 0 } }
+							# Planet has between 0 and 400 waste.
+							if = { # Next, determine if it's between 0-200 or 200-400.
+								limit = { planet_resource_compare = { resource = waste value > 200 } }
+								# Planet has 200-400 waste. Minimal tier.
+								add_modifier = { modifier = "eco_minimal" }
+							}
+							else = { # Planet has 0-200 waste. Clean tier.
+								add_modifier = { modifier = "eco_clean" }
+							}
+						}
+						else = { # Planet has less than 0 waste. Pristine tier.
+							add_modifier = { modifier = "eco_pristine" }
+						}
+					}
+				} else_if = {															# Habitat Pollution Modifier
+					limit = {
+						OR = {
+							is_artificial = yes
+							has_planet_flag = eco_no_pollution
+						}
+					}
+					if = { 																	# Clear Waste
+						limit = { has_modifier = "eco_waste_clean" }
+						remove_modifier = "eco_waste_clean"
+					} else_if = { 
+						limit = { has_modifier = "eco_waste_low" }
+						remove_modifier = "eco_waste_low"
+					} else_if = {
+						limit = { has_modifier = "eco_waste_mod" }
+						remove_modifier = "eco_waste_mod"
+					} else_if = {
+						limit = { has_modifier = "eco_waste_high" }
+						remove_modifier = "eco_waste_high"
+					}
+					if = {																	# Add Habitat Pollution
+						limit = { planet_resource_compare = { resource = waste value > 400 } }
+						add_modifier = { modifier = "eco_waste_high" }
+					} else_if = {
+						limit = { planet_resource_compare = { resource = waste value > 200 } }
+						add_modifier = { modifier = "eco_waste_mod" }
+					} else_if = {
+						limit = { planet_resource_compare = { resource = waste value > 0 } }
+						add_modifier = { modifier = "eco_waste_low" }
+					} else_if = {
+						limit = { planet_resource_compare = { resource = waste value <= 0 } }
+						add_modifier = { modifier = "eco_waste_clean" }
+					}
+				}
+				
+				# LS - These events are generally annoying and being removed for the collection.
+				#if = {																	# Run Pollution Events
+				#	limit = { 
+				#		years_passed > 0
+				#		NOT = { has_planet_flag = eco_pollution_event }
+				#	}
+				#	planet_event = { id = pollute.2 days = 10 }
+				#} else_if = {
+				#	limit = { NOT = { has_planet_flag = eco_pollution_event } }
+				#	planet_event = { id = pollute.2 }
+				#}
+				#if = {
+				#	limit = { 
+				#		years_passed > 9
+				#		NOT = { has_planet_flag = eco_pollution_event }
+				#	}
+				#	planet_event = { id = pollute.4 days = 30 }
+				#}
+			}
+		}
+	}
+}
