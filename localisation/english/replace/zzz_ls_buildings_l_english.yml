@@ -277,7 +277,7 @@ l_english:
   building_bio_reactor_desc: "A facility where organic matter is converted into energy at a highly efficient rate."
 
   ### Storage
-  building_resource_silo: "§N£treasures£ Resource Silos§!"
+  building_resource_silo: "§N£job_maintenance_drone£ Resource Silos§!"
   building_resource_silo_tt: "§MStorage§! - §BTier 1§! - §EUnique§!"
   building_resource_silo_desc: "Massive resource silos and storage facilities where large quantities of resources can be safely kept."
 
@@ -553,7 +553,7 @@ l_english:
   building_hospital_desc: "Cyto-Revitalization Centers can offer advanced medical treatments to a large population. Treatments on a cellular level lead to a significantly healthier and longer-living population."
 
   ### Amenities - Gestalt
-  building_maintenance_depot: "§VMaintenance Depots§!" # Vanilla
+  building_maintenance_depot: "§V£job_maintenance_drone£ Maintenance Depots§!" # Vanilla
   building_maintenance_depot_tt: "§MMaintenance§! - §BTier 1§! - §EGestalt§!"
   building_maintenance_depot_desc: "Workshops where maintenance of machinery and structures is planned, managed, and executed."
  

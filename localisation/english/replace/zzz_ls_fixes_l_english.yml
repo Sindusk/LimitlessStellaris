@@ -2,12 +2,10 @@
 # Limitless Stellaris - English Localisation (Replacements)
 ##########################################################################
 l_english:
-  ### Rise of Cosmic Industry
-  # Warn players to disable this because it can cause crashes.
-  #roci_exploit: "(Leave Disabled) Space Exploitation"
-  #roci_exploit_desc: "(Limitless Stellaris: This module can cause rare crashes. Leave it disabled.) The Space Exploitation module provides ['concept_minor_colony'], a mechanic you can use to build more resource production on uninhabitable planets for collection by Mining or Research stations. It has a Country level UI, accessible from an edict."
+##################
+# Vanilla
+##################
 
-  ### --- Vanilla --- ###
   # Resource Silo starbase module copies the building, which now has different formatting. Reverting the changes on the starbase module.
   sm_resource_silo: "Resource Silos"
 
@@ -144,11 +142,10 @@ l_english:
   trade_policy_adv_conversion_trade_league_name: "£trade_value£ Economical Ascension"
   trade_policy_adv_conversion_trade_league_name_desc: "The combination of our economical mastery and the advancement of our trade league will allow us to extract resources from all our trades in ways none thought possible. No opportunities missed, no potential resources lost and maximum efficiency achieved, yet no unfair deal struck and none unethically exploited. Our mastery over all economical interactions will be unrivaled and we can be sure that our empire is as prosperous as it can be. Many say that we have §BEconomically Ascended§!, and we see no reason to disagree.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§!, £minerals£ §Y0.25§!, £food£ §Y0.25§!, £consumer_goods£ §Y0.25§!, £unity£ §Y0.25§! and £physics£ £society£ £engineering£ §Y0.05§!§!"
 
-  # Advanced Policies
-  AP_trial_by_fire: "Begin the Trial by Fire" # Fix capitalization
-  planet_trial_by_fire: "Trial by Fire" # Fix capitalization
+##################
+# Ancient Cache of Technologies
+##################
 
-  ### --- Ancient Cache of Technologies --- ###
   ## Dark Matter Technology
   # No longer requires certain traits to unlock.
   acot_dm_tech_physics_desc: "We will need to understand how to generate Dark Matters without relying on natural black holes.\n\n§YYour research leader must be level 6 or higher to acquire these technologies.§!\nAlternatively, we can seek out aid from the others who may possess the knowledge."
@@ -181,6 +178,12 @@ l_english:
   mod_country_resource_max_minerals_add: "Maximum £minerals£ §Y$minerals$§! Capacity"
   mod_country_resource_max_food_add: "Maximum £food£ §Y$food$§! Capacity"
   mod_country_resource_max_alloys_add: "Max £alloys£ §Y$alloy$§! Capacity"
+
+  dtraits_juiced_power_tooltip:0 "Worker Pop Resource Output: §G+10%§!" # LS - remove the period
+
+##################
+# Planetary Wonders
+##################
 
   # Planetary Wonders - Building Name Colors Update
   pw_building_space_elevator: "$pw_space_elevator$"
@@ -223,6 +226,28 @@ l_english:
   pw_building_department_of_xenoeconomics: "$pw_department_of_xenoeconomics$"
   pw_building_enigma_engine: "$pw_enigma_engine$"
   pw_building_solipsist_debate_hall: "$pw_solipsist_debate_hall$"
+
+##################
+# Resolutions Expanded
+##################
+
+  ### Healthcare Focus Policies
+  # New descriptions applied which more accurately represent the modifiers instead of being custom.
+  LS_GENE_CLINIC_PROVIDES: "§EGene Clinics and their upgrades will provide:§!" # LS - Easier method to change the title of the policies.
+  MEDICARE_FOR_ALL: "$resolution_healthcarep_obama$"
+  MEDICARE_FOR_ALL_desc: "Medical treatment will be provided to every citizens of our empire free of charge. This greatly boost their health and happiness at the cost of losing revenue.\n\n$LS_GENE_CLINIC_PROVIDES$\n$mod_planet_amenities_add$ §G+10§!\n$mod_pop_growth_speed$ §G+10%§!\n$mod_planet_jobs_consumer_goods_upkeep_mult$ §R+4%§!\n$mod_trade_value_mult$ §R-4%§!\n§EThis effect applies to the planet and the values are doubled when the building is upgraded§!!"
+  PUBLIC_HEALTHCARE: "Public Healthcare"
+  PUBLIC_HEALTHCARE_desc: "Medical treatment will be provided by the government to all in need. Some private clinics and institutions still exist, so not much profits are lost, albeit hospitals are more expensive to upkeep.\n\n$LS_GENE_CLINIC_PROVIDES$\n§G+5§! £amenities£ amenities\n§G+5%§! £pops£ pop growth speed\n§R-2%§! £trade_value£ trade value\n§R-2%§! £consumer_goods£ consumer goods\n§EThis effect applies to the planet and the values are doubled when the building is upgraded§!!"
+  NO_FOCUS: "No Focus"
+  NO_FOCUS_desc: "There is no need to set a dedicated focus for healthcare, the institutions will sort it out themselves!\n\n§YNo additional bonuses to Gene Clinics will be added.§!"
+  PRIVATE_HEALTHCARE: "Private Healthcare"
+  PRIVATE_HEALTHCARE_desc: "Medical treatment will be provided only if a contract has been made. In other words, a recepient needs life insurance to get the treatment they need, otherwise that individual risks putting themselves into debt. Cruel, but very good for economy.\n\n$LS_GENE_CLINIC_PROVIDES$\n§G+2%§! £trade_value£ trade value\n§G+2%§! £energy£ energy credits\n§R-1§! £amenities£ amenities\n§R-2%§! £pops£ pop growth speed\n§EThis effect applies to the planet and the values are doubled when the building is upgraded§!!"
+  PAY_TO_HEAL: "$resolution_cockblock_ea$"
+  PAY_TO_HEAL_desc: "Complete domination of private healthcare has allowed us to milk money out of patients, basically turning them into customers. What is the point in hospitals if you can't pay? While this really affects the happiness of our population, the profits are too good to complain.\n\n$LS_GENE_CLINIC_PROVIDES$\n§G+4%§! £trade_value£ trade value\n§G+4%§! £energy£ energy credits\n§R-2§! £amenities£ amenities\n§R-4%§! £pops£ pop growth speed\n§EThis effect applies to the planet and the values are doubled when the building is upgraded§!!"
+
+##################
+# Simple Traditions
+##################
 
   # Simple Traditions - Industry
   tr_industry_finish_desc: "§HUnlocks Planetary Decision:§! Designate as Mining World\n§HUnlocks Planetary Decision:§! Designate as Energy World\n§HUnlocks Planetary Decision:§! Designate as Food World\n§HUnlocks Planetary Decision:§! Designate as Production World\n§HUnlocks Planetary Decision:§! Designate as Foundry World\n§HUnlocks Planetary Decision:§! Designate as Unity World\n§HUnlocks Planetary Decision:§! Designate as Trade World\nAscension Perks Unlocked: §G+1§!"

@@ -3539,13 +3539,16 @@ border_policy = {
 			border_policy_open
 		}
 
-		valid = {
+		potential = { # LS - Moved to potential for clarity.
 			OR = { # ACOT:SBTG
 				is_playable = yes # STU
 				is_country_type = eternal_empire
 				is_country_type = ascended_empire
 				is_country_type = sbtg_stellarborne_empire_active
 			}
+		}
+
+		valid = {
 			is_homicidal = no # STU
 			NOT = { has_valid_civic = civic_inwards_perfection } # Bug Branch
 		}

@@ -2,7 +2,11 @@
 # Limitless Stellaris - Policies
 ##########################################################################
 
-## Surveying Policy (Guilli's Planet Modifiers)
+##################################################
+## Guilli's Planet Modifiers
+##################################################
+
+## Surveying Policy [Guilli's Planet Modifiers]
 # Force AI to use the middle option always so they don't inhibit their growth and expansion.
 gpm_exploration_policy = {
 	potential = {
@@ -187,4 +191,186 @@ gpm_exploration_policy = {
 			#}
 		}
 	}
+}
+
+##################################################
+## Resolutions Expanded
+##################################################
+
+## Healthcare Focus [Resolutions Expanded]
+# Modified to prevent gestalts from being able to use it. It works with trade value.
+healthcarep = {
+    potential = {
+		is_gestalt = no # LS - Prevent gestalts from using it.
+		OR = {
+			is_country_type = default
+			is_country_type = fallen_empire
+			is_country_type = awakened_fallen_empire
+		}
+	}
+    allow = { always = yes }
+
+	option = {
+        name = "MEDICARE_FOR_ALL"
+        policy_flags = { medicare_for_all }
+		#modifier = { # LS - Reflection of actual modifiers being applied
+		#	planet_amenities_add = 10
+		#	pop_growth_speed = 0.1
+		#	planet_jobs_consumer_goods_upkeep_mult = 0.04
+		#	trade_value_mult = -0.04
+		#}
+		valid = {
+			is_active_resolution = "resolution_healthcarep_obama"
+		}
+		in_breach_of = {
+			{
+				key = resolution_cockblock_ban_public
+			}
+		}
+		AI_weight = {
+			factor = 5.0
+			modifier = {
+				factor = -10
+				NOR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+					has_valid_civic = civic_machine_servitor
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+					AND = {
+						is_megacorp = yes
+					}
+				}
+			}
+			modifier = {
+				factor = 10
+				has_civic = civic_shared_burden
+			}
+		}
+    }
+	
+	option = {
+        name = "PUBLIC_HEALTHCARE"
+        policy_flags = { public_healthcarep }
+		#modifier = { # LS - Reflection of actual modifiers being applied
+		#	planet_amenities_add = 5
+		#	pop_growth_speed = 0.05
+		#	planet_jobs_consumer_goods_upkeep_mult = 0.02
+		#	trade_value_mult = -0.02
+		#}
+		in_breach_of = {
+			{
+				key = resolution_cockblock_ban_public
+			}
+		}
+		AI_weight = {
+			factor = 1.0
+			modifier = {
+				factor = -4
+				NOR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+					has_valid_civic = civic_machine_servitor
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+					AND = {
+						is_megacorp = yes
+					}
+				}
+			}
+		}
+    }
+
+	option  = {
+        name = "NO_FOCUS"
+		valid = {
+			always = yes
+		}
+        policy_flags = { health_no_focus }
+    }
+
+    option = {
+        name = "PRIVATE_HEALTHCARE"
+        policy_flags = { private_healthcarep }
+        # modifier = {
+        #     gene_clinic_trade_value_add_mult = 0.25
+        #     gene_clinic_energy_produces_add_mult = 0.25
+        #     gene_clinic_pop_growth_speed_mult = -0.1
+        #     gene_clinic_amenities_produces_mult = -0.1
+        # }
+		# valid = {
+		# 	custom_tooltip = {
+		# 		fail_text = private_banned
+		# 		NOR = {
+		# 			is_active_resolution = "resolution_healthcare_ban_private"
+		# 			is_active_resolution = "resolution_healthcare_hospitals"
+		# 			is_active_resolution = "resolution_healthcare_obama"
+		# 		}
+		# 	}
+		# }
+		in_breach_of = {
+			{
+				key = resolution_healthcarep_ban_private
+			}
+		}
+		AI_weight = {
+			factor = 1.0
+			modifier = {
+				factor = 4
+				NOR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+					has_valid_civic = civic_machine_servitor
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+					AND = {
+						is_megacorp = yes
+					}
+				}
+			}
+		}
+    }
+
+    option = {
+        name = "PAY_TO_HEAL"
+        policy_flags = { pay_to_heal }
+        # modifier = {
+        #     gene_clinic_trade_value_add_mult = 0.5
+        #     gene_clinic_energy_produces_add_mult = 0.5
+        #     gene_clinic_pop_growth_speed_mult = -0.2
+        #     gene_clinic_amenities_produces_mult = -0.2
+        # }
+        valid = {
+			# custom_tooltip = {
+			# 	fail_text = private_banned
+			# 	NOR = {
+			# 		is_active_resolution = "resolution_healthcare_ban_private"
+			# 		is_active_resolution = "resolution_healthcare_hospitals"
+			# 		is_active_resolution = "resolution_healthcare_obama"
+			# 	}
+			# }
+            is_active_resolution = "resolution_cockblock_ea"
+        }
+		in_breach_of = {
+			{
+				key = resolution_healthcarep_ban_private
+			}
+		}
+		AI_weight = {
+			factor = 2.0
+			modifier = {
+				factor = 10
+				NOR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+					has_valid_civic = civic_machine_servitor
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+					AND = {
+						is_megacorp = yes
+					}
+				}
+			}
+		}
+    }
 }

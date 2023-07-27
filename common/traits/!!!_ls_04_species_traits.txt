@@ -2967,7 +2967,7 @@ trait_juiced_power = {
 			exists = owner
 			owner = { has_edict = damn_the_consequences }
 		}
-		planet_jobs_worker_produces_mult = 0.2 # DTM 0.1 -> 0.2
+		planet_jobs_worker_produces_mult = 0.20 # DTM 0.1 -> 0.2
 	}
 	modifier = {
 		army_damage_mult = 0.80 # DTM 0.40 -> 0.80
@@ -4047,7 +4047,7 @@ trait_expressed_tradition = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	custom_tooltip_with_modifiers = dtraits_expressed_tradition_tooltip # DTM +dtraits
+	#custom_tooltip_with_modifiers = dtraits_expressed_tradition_tooltip # DTM +dtraits # LS - Removed (not working)
 	triggered_pop_modifier = {
 		potential = {
 			exists = owner
@@ -9000,7 +9000,7 @@ trait_very_strong = {
 		army_damage_mult = 0.80 # DTM 0.40 -> 0.80
 		planet_jobs_worker_produces_mult = 0.10 # DTM 0.05 -> 0.10
 	}
-	custom_tooltip_with_modifiers = TRAIT_VERY_STRONG_ETHICS_EFFECT # DTM
+	#custom_tooltip_with_modifiers = TRAIT_VERY_STRONG_ETHICS_EFFECT # DTM # LS - Removed (not working)
 	slave_cost = {
 		energy = 4000 # DTM 2,000 -> 4,000
 	}
@@ -9097,7 +9097,7 @@ trait_strong = {
 		army_damage_mult = 0.40 # DTM 0.20 -> 0.40
 		planet_jobs_worker_produces_mult = 0.05 # DTM 0.025 -> 0.05
 	}
-	custom_tooltip_with_modifiers = TRAIT_STRONG_ETHICS_EFFECT # DTM
+	#custom_tooltip_with_modifiers = TRAIT_STRONG_ETHICS_EFFECT # DTM # LS - Removed (not working)
 	slave_cost = {
 		energy = 2000 # DTM 1,000 -> 2,000
 	}
