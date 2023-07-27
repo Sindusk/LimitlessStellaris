@@ -844,31 +844,33 @@ ethic_egalitarian = {
 				count = 0
 			}
 		}
-		modifier = { # Bug Branch
-			factor = 1.5
-			any_relation = {
-				OR = {
-					is_in_federation_with = root
-					has_defensive_pact = root
-					has_commercial_pact = root
-				}
-				OR = {
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_egalitarian
-				}
-			}
-		}
-		modifier = { # Bug Branch
-			factor = 2.0
-			any_relation = {
-				is_subject = no
-				has_migration_access = root
-				OR = {
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_egalitarian
-				}
-			}
-		}
+		# LS - Removed for performance
+		#modifier = { # Bug Branch
+		#	factor = 1.5
+		#	any_relation = {
+		#		OR = {
+		#			is_in_federation_with = root
+		#			has_defensive_pact = root
+		#			has_commercial_pact = root
+		#		}
+		#		OR = {
+		#			has_ethic = ethic_egalitarian
+		#			has_ethic = ethic_fanatic_egalitarian
+		#		}
+		#	}
+		#}
+		# LS - Removed for performance
+		#modifier = { # Bug Branch
+		#	factor = 2.0
+		#	any_relation = {
+		#		is_subject = no
+		#		has_migration_access = root
+		#		OR = {
+		#			has_ethic = ethic_egalitarian
+		#			has_ethic = ethic_fanatic_egalitarian
+		#		}
+		#	}
+		#}
 		# Check for any leader on the Council with Faction's Ethic.
 		modifier = {
 			factor = value:count_councilors_with_ethic|ETHIC|egalitarian|
@@ -1289,13 +1291,14 @@ ethic_xenophobe = {
 			factor = 1.5
 			has_valid_civic = civic_fanatic_purifiers
 		}
-		modifier = {
-			factor = 0.75
-			any_relation = {
-				is_subject = no
-				has_migration_access = root
-			}
-		}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 0.75
+		#	any_relation = {
+		#		is_subject = no
+		#		has_migration_access = root
+		#	}
+		#}
 		mult = value:xenophobe_ethics_from_relations # DFEM
 		modifier = {
 			factor = 0.75
@@ -1312,40 +1315,43 @@ ethic_xenophobe = {
 				}
 			}
 		}
-		modifier = {
-			factor = 2.0
-			species = { is_robotic = no } # DFEM
-			#is_country_type = default # DFEM removes
-			#is_same_species = root # DFEM removes
-			any_relation = {
-				NOT = { is_same_species = root }
-				any_enslaved_species = {
-					#is_robotic = no # DFEM removes
-					is_same_species = root
-				}
-			}
-		}
-		modifier = { # DFEM
-			factor = 2.5
-			any_relation = {
-				has_opinion_modifier = {
-					who = root
-					modifier = opinion_genocidal
-				}
-			}
-		}
-		modifier = {
-			factor = 4.0
-			#is_country_type = default # DFEM removes
-			#is_same_species = root # DFEM removes
-			any_relation = {
-				has_opinion_modifier = {
-					who = root
-					is_reverse = yes
-					modifier = opinion_genocidal_our_species
-				}
-			}
-		}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 2.0
+		#	species = { is_robotic = no } # DFEM
+		#	#is_country_type = default # DFEM removes
+		#	#is_same_species = root # DFEM removes
+		#	any_relation = {
+		#		NOT = { is_same_species = root }
+		#		any_enslaved_species = {
+		#			#is_robotic = no # DFEM removes
+		#			is_same_species = root
+		#		}
+		#	}
+		#}
+		# LS - Removed for performance
+		#modifier = { # DFEM
+		#	factor = 2.5
+		#	any_relation = {
+		#		has_opinion_modifier = {
+		#			who = root
+		#			modifier = opinion_genocidal
+		#		}
+		#	}
+		#}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 4.0
+		#	#is_country_type = default # DFEM removes
+		#	#is_same_species = root # DFEM removes
+		#	any_relation = {
+		#		has_opinion_modifier = {
+		#			who = root
+		#			is_reverse = yes
+		#			modifier = opinion_genocidal_our_species
+		#		}
+		#	}
+		#}
 		# Effects of indoctrination mission
 		modifier = {
 			factor = 20
@@ -1787,56 +1793,61 @@ ethic_xenophile = {
 			allows_alien_leaders = yes
 		}
 		mult = value:xenophile_ethics_from_relations # DFEM
-		modifier = {
-			factor = 1.5
-			any_relation = {
-				NOT = { is_same_species = root }
-				is_subject = no
-				has_migration_access = root
-			}
-		}
-		modifier = {
-			factor = 1.33
-			any_relation = {
-				NOT = { is_same_species = root }
-				OR = {
-					is_in_federation_with = root
-					has_defensive_pact = root
-					has_commercial_pact = root
-				}
-			}
-		}
-		modifier = {
-			factor = 0.25
-			#is_same_species = root # DFEM removes
-			any_relation = {
-				has_opinion_modifier = {
-					who = root
-					is_reverse = yes # DFEM
-					modifier = opinion_genocidal_our_species
-				}
-			}
-		}
-		modifier = { # DFEM
-			factor = 0.4
-			any_relation = {
-				has_opinion_modifier = {
-					who = root
-					modifier = opinion_genocidal
-				}
-			}
-		}
-		modifier = {
-			factor = 0.5
-			is_same_species = root
-			any_relation = {
-				NOT = { is_same_species = root }
-				any_enslaved_species = {
-					is_robotic = no
-					is_same_species = root
-				}
-			}
-		}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 1.5
+		#	any_relation = {
+		#		NOT = { is_same_species = root }
+		#		is_subject = no
+		#		has_migration_access = root
+		#	}
+		#}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 1.33
+		#	any_relation = {
+		#		NOT = { is_same_species = root }
+		#		OR = {
+		#			is_in_federation_with = root
+		#			has_defensive_pact = root
+		#			has_commercial_pact = root
+		#		}
+		#	}
+		#}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 0.25
+		#	#is_same_species = root # DFEM removes
+		#	any_relation = {
+		#		has_opinion_modifier = {
+		#			who = root
+		#			is_reverse = yes # DFEM
+		#			modifier = opinion_genocidal_our_species
+		#		}
+		#	}
+		#}
+		# LS - Removed for performance
+		#modifier = { # DFEM
+		#	factor = 0.4
+		#	any_relation = {
+		#		has_opinion_modifier = {
+		#			who = root
+		#			modifier = opinion_genocidal
+		#		}
+		#	}
+		#}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 0.5
+		#	is_same_species = root
+		#	any_relation = {
+		#		NOT = { is_same_species = root }
+		#		any_enslaved_species = {
+		#			is_robotic = no
+		#			is_same_species = root
+		#		}
+		#	}
+		#}
 		# Effects of indoctrination mission
 		modifier = {
 			factor = 20
@@ -2388,14 +2399,15 @@ ethic_militarist = {
 				observation_outpost_owner = { has_ethic = ethic_militarist }
 			}
 		}
-		modifier = {
-			factor = 2 # DFEM 1.25 -> 2 - If the empire is losing planets, militarism should increase
-			any_relation = {
-				any_owned_planet = {
-					is_original_owner = root
-				}
-			}
-		}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 2 # DFEM 1.25 -> 2 - If the empire is losing planets, militarism should increase
+		#	any_relation = {
+		#		any_owned_planet = {
+		#			is_original_owner = root
+		#		}
+		#	}
+		#}
 		modifier = { # DFEM
 			factor = 0.75
 			has_policy_flag = no_wars
@@ -3312,31 +3324,33 @@ ethic_spiritualist = {
 				}
 			}
 		}
-		modifier = {
-			factor = 1.5
-			any_relation = {
-				OR = {
-					is_in_federation_with = root
-					has_defensive_pact = root
-					has_commercial_pact = root
-				}
-				OR = {
-					has_ethic = ethic_spiritualist
-					has_ethic = ethic_fanatic_spiritualist
-				}
-			}
-		}
-		modifier = {
-			factor = 2.0
-			any_relation = {
-				is_subject = no
-				has_migration_access = root
-				OR = {
-					has_ethic = ethic_spiritualist
-					has_ethic = ethic_fanatic_spiritualist
-				}
-			}
-		}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 1.5
+		#	any_relation = {
+		#		OR = {
+		#			is_in_federation_with = root
+		#			has_defensive_pact = root
+		#			has_commercial_pact = root
+		#		}
+		#		OR = {
+		#			has_ethic = ethic_spiritualist
+		#			has_ethic = ethic_fanatic_spiritualist
+		#		}
+		#	}
+		#}
+		# LS - Removed for performance
+		#modifier = {
+		#	factor = 2.0
+		#	any_relation = {
+		#		is_subject = no
+		#		has_migration_access = root
+		#		OR = {
+		#			has_ethic = ethic_spiritualist
+		#			has_ethic = ethic_fanatic_spiritualist
+		#		}
+		#	}
+		#}
 		# DFEM - Check for any leader on the Council with Faction's Ethic.
 		modifier = {
 			factor = value:count_councilors_with_ethic|ETHIC|spiritualist|
