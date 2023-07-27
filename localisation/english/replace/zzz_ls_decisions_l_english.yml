@@ -41,10 +41,10 @@ l_english:
   ### - Resource Focuses (Dark Green) --- ###
   decision_orbital_mirrors: "§VBuild Orbital Mirrors§!" # Planetary Diversity
   decision_seismic_resonators: "§VBuild Seismic Resonator Stations§!" # Planetary Diversity
-  decision_bionanite_soil: "§VBuild Nanite-Enhanced Soil§!" # Planetary Diversity # LS - Edited to make "build" consistent
+  decision_bionanite_soil: "§VBuild Nanite-Enhanced Soil§!" # Planetary Diversity # LS - Edited to make build consistent
   decision_snowball_wasteland_1: "§VBuild Orbital Mirrors§!" # Planetary Diversity
   decision_snowball_wasteland_2: "§VBuild Seismic Resonator Stations§!" # Planetary Diversity
-  decision_snowball_wasteland_3: "§VBuild Nanite-Enhanced Soil§!" # Planetary Diversity # LS - Edited to make "build" consistent
+  decision_snowball_wasteland_3: "§VBuild Nanite-Enhanced Soil§!" # Planetary Diversity # LS - Edited to make build consistent
   osa_decision_energy_subsidies: "§VLocal Energy Subsidies§!" # Omega's Stellaris Traditions
   osa_decision_minerals_subsidies: "§VLocal Mining Subsidies§!" # Omega's Stellaris Traditions
   osa_decision_food_subsidies: "§VLocal Agriculture Subsidies§!" # Omega's Stellaris Traditions

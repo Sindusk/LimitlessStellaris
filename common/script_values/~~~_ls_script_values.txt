@@ -3,7 +3,7 @@
 ##########################################################################
 
 ##################################################
-## Scripts
+## Limitless Stellaris
 ##################################################
 
 ## Trade Modifier Multiplier
@@ -23,4 +23,33 @@ scripted_trade_modifier_councilor_level_mult = {
 	base = 1
 	mult = value:councilor_level|TYPE|$TYPE$|
 	mult = value:scripted_trade_modifier_mult|CLASS|$CLASS$|
+}
+
+##################################################
+## Solar Storm
+##################################################
+
+## Ascension of Flesh Bonus Multiplier [Solar Storm]
+# This is multiplied by the static modifier to create organic pop assembly.
+SS_ap_hive_flesh_ascension_bonus = {
+	base = 0
+	complex_trigger_modifier = {
+   		trigger = resource_income_compare
+   		parameters = {
+   		   	resource = $RESOURCE$
+   		}
+   		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_pops
+		trigger_scope = this
+		mode = divide
+	}
+	#complex_trigger_modifier = {
+	#	trigger = count_owned_planet
+	#	trigger_scope = this
+	#	mode = divide
+	#}
+	max = 20 # LS 10 -> 20 [Balance]
+	min = 0
 }

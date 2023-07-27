@@ -13,6 +13,19 @@ speed_change_x6 = {
 }
 
 ##################################################
+## Solar Storm
+##################################################
+
+## Ascension of Flesh Organic Pop Assembly [Solar Storm]
+# Reduced from 4 to 0.5.
+ss_ap_hive_flesh_growth = {
+	planet_pop_assembly_organic_add = 0.5 # LS 4 -> 0.5 [Balance]
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_ap_hive_flesh_ascension.dds"
+	icon_frame = 1
+}
+
+##################################################
 ## Storage Districts and Solutions
 ##################################################
 
