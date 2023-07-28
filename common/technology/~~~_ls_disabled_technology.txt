@@ -818,6 +818,382 @@ tech_repeatable_station_damage = {
 }
 
 ##################################################
+## NSC2 Season 8
+##################################################
+
+### Strike Cruiser Upgrades
+## Strike Cruiser Build Speed [NSC2]
+# Disabled. Bloat.
+tech_strikecruiser_build_speed = {
+	cost = @tier3cost2
+	area = engineering
+	tier = 3
+	category = { voidcraft }
+	prerequisites = { "tech_StrikeCruiser_1" }
+	weight = 0 #@tier3weight2
+	
+	modifier = {
+		shipsize_StrikeCruiser_build_speed_mult = 0.25
+		ship_StrikeCruiser_cost_mult = -0.05
+	}
+	
+	weight_modifier = {}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+## Strike Cruiser Hull 1 [NSC2]
+# Disabled. Bloat.
+tech_strikecruiser_hull_1 = {
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { voidcraft }
+	prerequisites = { "tech_StrikeCruiser_1" }
+	weight = 0 #@tier3weight3
+	
+	modifier = { shipsize_StrikeCruiser_hull_mult = 0.1 }
+	
+	weight_modifier = {}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+## Strike Cruiser Hull 2 [NSC2]
+# Disabled. Bloat.
+tech_strikecruiser_hull_2 = {
+	cost = @tier4cost1
+	area = engineering
+	tier = 4
+	is_rare = yes
+	category = { voidcraft }
+	prerequisites = { "tech_strikecruiser_hull_1" }
+	weight = 0 #@tier4weight1
+	
+	modifier = { shipsize_StrikeCruiser_hull_mult = 0.1 }
+	
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_strikecruiser_hull_2 }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+### Battlecruiser Upgrades
+## Battlecruiser Build Speed [NSC2]
+# Disabled. Bloat.
+tech_battlecruiser_build_speed = {
+	cost = @tier4cost1
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "tech_Battlecruiser_1" }
+	weight = 0 #@tier4weight2
+	
+	modifier = {
+		shipsize_Battlecruiser_build_speed_mult = 0.25
+		ship_Battlecruiser_cost_mult = -0.05
+	}
+	
+	weight_modifier = {}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+## Battlecruiser Hull 1 [NSC2]
+# Disabled. Bloat.
+tech_battlecruiser_hull_1 = {
+	cost = @tier4cost3
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "tech_Battlecruiser_1" }
+	weight = 0 #@tier4weight3
+	
+	modifier = { shipsize_Battlecruiser_hull_mult = 0.1 }
+	
+	weight_modifier = {}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+## Battlecruiser Hull 2 [NSC2]
+# Disabled. Bloat.
+tech_battlecruiser_hull_2 = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 4
+	is_rare = yes
+	category = { voidcraft }
+	prerequisites = { "tech_battlecruiser_hull_1" }
+	weight = 0 #@tier4weight3
+	
+	modifier = { shipsize_Battlecruiser_hull_mult = 0.1 }
+	
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_battlecruiser_hull_2 }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+### Carrier Upgrades
+## Carrier Build Speed [NSC2]
+# Disabled. Bloat.
+tech_carrier_build_speed = {
+	cost = @tier4cost2
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "tech_Carrier_1" }
+	weight = 0 #@tier4weight2
+	
+	modifier = {
+		shipsize_Carrier_build_speed_mult = 0.25
+		ship_Carrier_cost_mult = -0.05
+	}
+	
+	weight_modifier = {}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+## Carrier Hull 1 [NSC2]
+# Disabled. Bloat.
+tech_carrier_hull_1 = {
+	cost = @tier4cost3
+	area = engineering
+	tier = 4
+	category = { voidcraft }
+	prerequisites = { "tech_Carrier_1" }
+	weight = 0 #@tier4weight3
+	
+	modifier = { 
+		shipsize_Carrier_hull_mult = 0.1
+	}
+	
+	weight_modifier = {}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+## Carrier Hull 2 [NSC2]
+# Disabled. Bloat.
+tech_carrier_hull_2 = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	is_rare = yes
+	category = { voidcraft }
+	prerequisites = { "tech_carrier_hull_1" }
+	weight = 0 #@tier5weight1
+	
+	modifier = { 
+		shipsize_Carrier_hull_mult = 0.1
+	}
+	
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_carrier_hull_2 }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+### Dreadnought Upgrades
+## Dreadnought Build Speed [NSC2]
+# Disabled. Bloat.
+tech_dreadnought_build_speed = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	category = { voidcraft }
+	prerequisites = { "tech_Dreadnought_1" }
+	weight = 0 #@tier5weight1
+	
+	modifier = {
+		shipsize_Dreadnought_build_speed_mult = 0.25
+		ship_Dreadnought_cost_mult = -0.05
+	}
+	
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+## Dreadnought Hull 1 [NSC2]
+# Disabled. Bloat.
+tech_dreadnought_hull_1 = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	category = { voidcraft }
+	prerequisites = { "tech_Dreadnought_1" }
+	weight = 0 #@tier5weight1
+	
+	modifier = { shipsize_Dreadnought_hull_mult = 0.1 }
+	
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+## Dreadnought Hull 2 [NSC2]
+# Disabled. Bloat.
+tech_dreadnought_hull_2 = {
+	cost = @tier5cost2
+	area = engineering
+	tier = 5
+	is_rare = yes
+	category = { voidcraft }
+	prerequisites = { "tech_dreadnought_hull_1" }
+	weight = 0 #@tier5weight2
+	
+	modifier = { shipsize_Dreadnought_hull_mult = 0.1 }
+	
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_dreadnought_hull_2 }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+### Flagship Upgrades
+## Flagship Hull 1 [NSC2]
+# Disabled. Bloat.
+tech_flagship_hull_1 = {
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	category = { voidcraft }
+	prerequisites = { "tech_Flagship_1" }
+	weight = 0 #@tier5weight3
+	
+	modifier = { shipsize_Flagship_hull_mult = 0.1 }
+	
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+## Flagship Hull 2 [NSC2]
+# Disabled. Bloat.
+tech_flagship_hull_2 = {
+	cost = @tier5cost4
+	area = engineering
+	tier = 5
+	is_rare = yes
+	category = { voidcraft }
+	prerequisites = { "tech_flagship_hull_1" }
+	weight = 0 #@tier5weight3
+	
+	modifier = { shipsize_Flagship_hull_mult = 0.1 }
+	
+	weight_modifier = {
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_flagship_hull_2 }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = @ai_ship_types_factor
+	}
+}
+
+##################################################
 ## Plentiful Traditions - Extra Perks
 ##################################################
 # Disable all the ascension perk technologies since they are redundant with UI Overhaul Dynamic version.
