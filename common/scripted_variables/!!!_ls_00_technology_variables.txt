@@ -1,0 +1,127 @@
+####################################################################################################
+# Limitless Stellaris - Scripted Variables
+####################################################################################################
+
+##################################################
+## Tech Costs
+##################################################
+
+## Tier 0 [Vanilla]
+@tier0cost1 = 500 # LS 1,000 -> 500 (x0.50)
+@tier0cost2 = 750 # LS 1,250 -> 750 (x0.60)
+@tier0cost3 = 1000 # LS 1,500 -> 1,000 (x0.66)
+@tier0cost4 = 1250 # LS - NSC
+
+## Tier 1 [Vanilla]
+@tier1cost1 = 1500 # LS 2,000 -> 1,500 (x0.75)
+@tier1cost2 = 1750 # LS 2,500 -> 1,750 (x0.70)
+@tier1cost3 = 2000 # LS 3,000 -> 2,000 (x0.66)
+@tier1cost4 = 2250 # LS - NSC
+
+## Tier 2 [Vanilla]
+@tier2cost1 = 4000
+@tier2cost2 = 5000
+@tier2cost3 = 6000
+@tier2cost4 = 7000 # LS - NSC
+
+## Tier 3 [Vanilla]
+@tier3cost1 = 9000 # LS 8,000 -> 9,000 (x1.125)
+@tier3cost2 = 12000 # LS 10,000 -> 12,000 (x1.20)
+@tier3cost3 = 15000 # LS 12,000 -> 15,000 (x1.25)
+@tier3cost4 = 18000 # LS - NSC
+
+## Tier 4 [Vanilla]
+@tier4cost1 = 24000 # LS 16,000 -> 24,000 (x1.5)
+@tier4cost2 = 30000 # LS 20,000 -> 30,000 (x1.5)
+@tier4cost3 = 36000 # LS 24,000 -> 36,000 (x1.5)
+@tier4cost4 = 42000 # LS - NSC
+
+## Tier 5 [Vanilla]
+@tier5cost1 = 64000 # LS 32,000 -> 64,000 (x2)
+@tier5cost2 = 80000 # LS 40,000 -> 80,000 (x2)
+@tier5cost3 = 96000 # LS 48,000 -> 96,000 (x2)
+@tier5cost4 = 112000 # LS - NSC
+
+## Tier 6 [ACOT]
+@tier6cost1 = 128000 # LS
+@acot_tier6cost1 = 128000 # LS 64,000 -> 128,000 (x2)
+@tier6cost2 = 160000 # LS
+@acot_tier6cost2 = 160000 # LS 80,000 -> 160,000 (x2)
+@tier6cost3 = 192000 # LS
+@acot_tier6cost3 = 192000 # LS 96,000 -> 192,000 (x2)
+@tier6cost4 = 224000 # LS - NSC
+
+## Tier 7 [ACOT]
+@tier7cost1 = 320000 # LS
+@acot_tier7cost1 = 320000 # LS 128,000 -> 320,000 (x2.5)
+@tier7cost2 = 400000 # LS
+@acot_tier7cost2 = 400000 # LS 160,000 -> 400,000 (x2.5)
+@tier7cost3 = 480000 # LS
+@acot_tier7cost3 = 480000 # LS 192,000 -> 480,000 (x2.5)
+@tier7cost4 = 560000 # LS
+
+@tier8cost1 = 640000 # LS
+@acot_tier8cost1 = 640000 # LS 256,000 -> 640,000 (x2.5)
+@tier8cost2 = 800000 # LS
+@acot_tier8cost2 = 800000 # LS 320,000 -> 800,000 (x2.5)
+@tier8cost3 = 960000 # LS
+@acot_tier8cost3 = 960000 # LS 384,000 -> 960,000 (x2.5)
+
+@tier9cost1 = 1280000 # LS
+@acot_tier9cost1 = 1280000 # LS 512,000 -> 1,280,000 (x2.5)
+@tier9cost2 = 1600000 # LS
+@acot_tier9cost2 = 1600000 # LS 640,000 -> 1,600,000 (x2.5)
+@tier9cost3 = 1920000 # LS
+@acot_tier9cost3 = 1920000 # LS 768,000 -> 1,920,000 (x2.5)
+
+@tier10cost1 = 2560000 # LS
+@acot_tier10cost1 = 2560000 # LS 1,024,000 -> 2,560,000 (x2.5)
+@tier10cost2 = 3200000 # LS
+@acot_tier10cost2 = 3200000 # LS 1,280,000 -> 3,200,000 (x2.5)
+@tier10cost3 = 3840000 # LS
+@acot_tier10cost3 = 3840000 # LS 1,536,000 -> 3,840,000 (x2.5)
+
+##################################################
+## Tech Weights
+##################################################
+
+## Tier 1 [Vanilla]
+@tier1weight1 = 100
+@tier1weight2 = 95
+@tier1weight3 = 90
+
+## Tier 2 [Vanilla]
+@tier2weight1 = 85
+@tier2weight2 = 75
+@tier2weight3 = 70
+
+## Tier 3 [Vanilla]
+@tier3weight1 = 65
+@tier3weight2 = 60
+@tier3weight3 = 50
+
+## Tier 4 [Vanilla]
+@tier4weight1 = 45
+@tier4weight2 = 40
+@tier4weight3 = 35
+
+## Tier 5 [Vanilla]
+@tier5weight1 = 30
+@tier5weight2 = 25
+@tier5weight3 = 20
+
+## Tier 6 [Gigastructural Engineering]
+@tier6weight1 = 22 # LS
+@gigatier6weight1	= 22
+@tier6weight2 = 20 # LS
+@gigatier6weight2	= 20
+@tier6weight3 = 17 # LS
+@gigatier6weight3	= 17
+
+## Tier 7 [Gigastructural Engineering]
+@tier7weight1 = 15 # LS
+@gigatier7weight1	= 15
+@tier7weight2 = 12 # LS
+@gigatier7weight2	= 12
+@tier7weight3 = 10 # LS
+@gigatier7weight3	= 10
