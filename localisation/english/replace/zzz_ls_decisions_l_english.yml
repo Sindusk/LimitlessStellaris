@@ -11,6 +11,12 @@ l_english:
   decision_transform_into_awesome: "§BSuperior Constructs§!" # Ancient Cache of Technology
   decision_transform_into_awesome_machine: "§BSuperior Designs§!" # Ancient Cache of Technology
   decision_transform_into_awesome_hive: "§BSuperior Evolutions§!" # Ancient Cache of Technology
+  decision_subterranean_construction: "§BSubterranean Cities§!" # Masters of Nature
+  decision_sky_construction: "§BSky Islands§!" # Masters of Nature
+  decision_subterranean_expansion: "§BSubterranean Expansion§!" # Masters of Nature
+  decision_subterranean_expansion_2: "§BFinal Subterranean City Expansion§!" # Masters of Nature
+  decision_sky_expansion: "§BSky Island Expansion§!" # Masters of Nature
+  decision_sky_expansion_2: "§BFinal Sky Island Expansion§!" # Masters of Nature
   osom_decision_subterranean_1: "§BSubterranean Geological Analysis§!" # Omega's Stellaris Additions
   osom_decision_subterranean_2: "§BSubterranean Mapping§!" # Omega's Stellaris Additions
   osom_decision_subterranean_3: "§BSubterranean Infrastructure§!" # Omega's Stellaris Additions
@@ -24,19 +30,30 @@ l_english:
   decision_acot_upgrade_garrison_1: "§CDefense Force Expansion§!" # Ancient Cache of Technologies
   decision_acot_upgrade_garrison_2: "§CMaximum Defense Force§!" # Ancient Cache of Technologies
   decision_acot_upgrade_fortification: "§CDefensive Wall§!" # Ancient Cache of Technologies
+  eco_decision_civil_engineering: "§CCivil Engineering§!" # Ecology
   osa_decision_titan_garrison: "§CDeploy Titan Garrison§!" # Omega's Stellaris Additions
 
   ### - Duration-Based Decisions (Teal) --- ###
   ## Eventually I would like to rework these all into toggles. But they'll be organized as such until that time arrives.
+  decision_museum_exhibits: "§ESend Artifacts to Museum Exhibits§!" # Vanilla
+  decision_manager_awards: "§EInitiate Performance Competition§!" # Vanilla
+  decision_sanctuary_exhibits: "§ESend Artifacts to Organic Sanctuaries§!" # Vanilla
+  decision_artifact_relays_hivemind: "§EIncorporate Artifact Relays§!" # Vanilla
+  decision_artifact_relays_machine: "§EIncorporate Artifact Relays§!" # Vanilla
   decision_planet_food_boost: "§EEncourage Planetary Growth§!" # Vanilla
   decision_planet_luxuries_boost: "§EDistribute Luxury Goods§!" # Vanilla
   decision_art_monument: "§EExhibit Art Monument§!" # Vanilla
 
   ### - Toggle On Decisions (Green) --- ###
+  decision_eac_apm_on: "§GTurn on Automatic Pop Migration§!" # Automatic Pop Migration
   decision_mem_crystal_fields_seeding: "§GCrystal Field Seeding§!" # More Events Mod
-  decision_discourage_growth: "§GDiscourage Planetary Growth§!" # Vanilla
-  decision_martial_law: "§GDeclare Martial Law§!" # Vanilla
   osa_decision_designate_forgeworld: "§GDesignate Forge World§!" # Omega's Stellaris Additions
+  decision_discourage_growth: "§GDiscourage Planetary Growth§!" # Vanilla
+  decision_enact_population_control: "§GDeclare Population Controls§!" # Vanilla
+  decision_enact_population_control_gestalt: "§GCease Drone Production§!" # Vanilla
+  decision_martial_law: "§GDeclare Martial Law§!" # Vanilla
+  decision_martial_law_hive: "§GDeploy Hunter-Killer Drones§!" # Vanilla
+  decision_martial_law_machine: "§GActivate Compliance Protocols§!" # Vanilla
 
   ### - Resource Focuses (Dark Green) --- ###
   decision_orbital_mirrors: "§VBuild Orbital Mirrors§!" # Planetary Diversity
@@ -46,19 +63,29 @@ l_english:
   decision_snowball_wasteland_2: "§VBuild Seismic Resonator Stations§!" # Planetary Diversity
   decision_snowball_wasteland_3: "§VBuild Nanite-Enhanced Soil§!" # Planetary Diversity # LS - Edited to make build consistent
   osa_decision_energy_subsidies: "§VLocal Energy Subsidies§!" # Omega's Stellaris Traditions
+  osa_decision_energy_subsidies_gestalt: "§VDirective: Enhanced Energy Assimilation§!" # Omega's Stellaris Traditions
   osa_decision_minerals_subsidies: "§VLocal Mining Subsidies§!" # Omega's Stellaris Traditions
+  osa_decision_minerals_subsidies_gestalt: "§VDirective: Geological Resource Consolidation§!" # Omega's Stellaris Additions
   osa_decision_food_subsidies: "§VLocal Agriculture Subsidies§!" # Omega's Stellaris Traditions
+  osa_decision_food_subsidies_gestalt: "§VDirective: Biomatter Proliferation Protocols§!" # Omega's Stellaris Traditions
   osa_decision_alloy_subsidies: "§VLocal Metallurgy Subsidies§!" # Omega's Stellaris Traditions
+  osa_decision_alloy_subsidies_gestalt: "§VDirective: Enhanced Refinement Applications§!" # Omega's Stellaris Traditions
   osa_decision_unity_subsidies: "§VLocal Uniformity Subsidies§!" # Omega's Stellaris Traditions
+  osa_decision_unity_subsidies_gestalt: "§VDirective: Unanimity Protocols§!" # Omega's Stellaris Traditions
 
   ### --- Toggle Off Decisions (Brown) --- ###
   # Subsidies
   osa_decision_revoke_subsidies: "§pRevoke All Planetary Subsidies§!" # Omega's Stellaris Additions
   # Other Decisions
+  decision_eac_apm_off: "§pTurn off Automatic Pop Migration§!"
   decision_mem_crystal_fields_clearing: "§pCrystal Field Clearance§!" # More Events Mod
-  decision_end_discourage_growth: "§pEnd Growth Discouragement§!" # Vanilla
-  decision_end_martial_law: "§pEnd Martial Law§!" # Vanilla
   osa_decision_designate_forgeworld_remove: "§pRevoke Forge World Designation§!" # Omega's Stellaris Additions
+  decision_end_discourage_growth: "§pEnd Growth Discouragement§!" # Vanilla
+  decision_end_population_control: "§pEnd Population Controls§!" # Vanilla
+  decision_end_population_control_gestalt: "§pContinue Drone Production§!" # Vanilla
+  decision_end_martial_law: "§pEnd Martial Law§!" # Vanilla
+  decision_end_martial_law_hive: "§pRecall Hunter-Killer Drones§!" # Vanilla
+  decision_end_martial_law_machine: "§pEnd Compliance Protocols§!" # Vanilla
 
   ### --- Colony Destruction --- ###
   xvcv_abandon_colony_decision: "§xAbandon Colony§!" # Abandon Colony

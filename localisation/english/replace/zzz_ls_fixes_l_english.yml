@@ -146,6 +146,7 @@ l_english:
 # Ancient Cache of Technologies
 ##################
 
+  acot_requires_fort_building: "$TRIGGER_FAIL$Has a fortress or stronghold constructed on the planet."
   ## Dark Matter Technology
   # No longer requires certain traits to unlock.
   acot_dm_tech_physics_desc: "We will need to understand how to generate Dark Matters without relying on natural black holes.\n\n§YYour research leader must be level 6 or higher to acquire these technologies.§!\nAlternatively, we can seek out aid from the others who may possess the knowledge."
