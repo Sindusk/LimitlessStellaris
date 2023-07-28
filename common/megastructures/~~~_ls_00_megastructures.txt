@@ -247,15 +247,15 @@ gateway_final = {
 				}
 			}
 		}
-		custom_tooltip = { # Gigastructural Engineering
-			fail_text = "requires_no_existing_gateway"
-			NOR = {
-				has_megastructure = gateway_0
-				has_megastructure = gateway_ruined
-				has_megastructure = gateway_restored
-				has_megastructure = gateway_final
-			}
-		}
+		#custom_tooltip = { # Gigastructural Engineering # LS - Removed to allow proper upgrade
+		#	fail_text = "requires_no_existing_gateway"
+		#	NOR = {
+		#		has_megastructure = gateway_0
+		#		has_megastructure = gateway_ruined
+		#		has_megastructure = gateway_restored
+		#		has_megastructure = gateway_final
+		#	}
+		#}
 	}
 	upgrade_from = {
 		gateway_0
