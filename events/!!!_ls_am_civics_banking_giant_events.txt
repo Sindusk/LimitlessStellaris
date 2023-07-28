@@ -1,0 +1,61 @@
+##########################################################################
+# Limitless Stellaris - Amazing Civics: Megacorp - Banking Giant Events
+##########################################################################
+namespace = events_am_civics_banking_giant
+
+# Updates Banking Giant Building Trade Value
+# Triggered by on_monthly_pulse_country
+country_event = {
+	id = events_am_civics_banking_giant.10
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = { }
+	
+	immediate = {
+		every_owned_planet = {
+			remove_modifier = static_modifier_am_civics_civic_am_civics_banking_giant
+		}
+		if = {
+			limit = {				
+				has_valid_civic = civic_am_civics_banking_giant
+				capital_scope = { has_building = building_am_civics_stellar_banking_institute }
+			}
+			export_resource_stockpile_to_variable  = { resource = energy variable = energy_stockpile }
+			export_resource_stockpile_to_variable = { resource = energy variable = energy_stockpile2 }
+
+			set_variable = { # LS - New calculation for banking giant.
+				which = ryika_am_banking_giant_energy_stockpile_interest
+				value = value:banking_giant_trade_value|VALUE|owner.energy_stockpile|VALUE2|owner.energy_stockpile2|
+			}
+			
+			## LS - No longer needed, calculated in script
+			# 6% Interest Rate...
+			#multiply_variable = { which = ryika_am_banking_giant_energy_stockpile_interest value = 0.06 }
+			
+			## LS - No longer needed, calculated in script
+			# ...over 12 Months
+			#divide_variable = { which = ryika_am_banking_giant_energy_stockpile_interest value = 12 }
+
+			# Councilor of active (+2% per level)
+			if = {
+				limit = { has_councilor = { COUNCILOR = "councilor_ryika_am_civics_banking_giant" } }
+				# Get Councilor Level
+				set_variable = { which = ryika_am_civics_banking_giant_councilor_level value = value:councilor_level|TYPE|councilor_ryika_am_civics_banking_giant| }
+				# 2% per level
+				divide_variable = { which = ryika_am_civics_banking_giant_councilor_level value = 50 }
+				# +100% baseline
+				change_variable = { which = ryika_am_civics_banking_giant_councilor_level value = 1 }
+				# Apply...
+				multiply_variable = { which = ryika_am_banking_giant_energy_stockpile_interest value = ryika_am_civics_banking_giant_councilor_level }
+			}
+
+			capital_scope = {
+				add_modifier = {
+					modifier = static_modifier_am_civics_civic_am_civics_banking_giant
+					multiplier = owner.ryika_am_banking_giant_energy_stockpile_interest
+				}
+			}
+		}
+	}
+}

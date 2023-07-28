@@ -5,12 +5,12 @@
 # https://steamuserimages-a.akamaihd.net/ugc/2040737956562736069/C206B1AB94B34EE00F7FF04EF75A594B6D3D3E4A/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=#000000&letterbox=false
 l_english:
   ### --- High Priority Single-Use Decisions (Blue) --- ###
-  decision_giga_build_orbital_arcology: "§BConstruct Orbital Arcology§!" # Gigastructural Engineering
-  decision_giga_upgrade_orbital_arcology: "§BEnhance Orbital Arcology§!" # Gigastructural Engineering
-  decision_giga_maximize_orbital_arcology: "§BMaximize Orbital Arcology§!" # Gigastructural Engineering
   decision_transform_into_awesome: "§BSuperior Constructs§!" # Ancient Cache of Technology
   decision_transform_into_awesome_machine: "§BSuperior Designs§!" # Ancient Cache of Technology
   decision_transform_into_awesome_hive: "§BSuperior Evolutions§!" # Ancient Cache of Technology
+  decision_giga_build_orbital_arcology: "§BConstruct Orbital Arcology§!" # Gigastructural Engineering
+  decision_giga_upgrade_orbital_arcology: "§BEnhance Orbital Arcology§!" # Gigastructural Engineering
+  decision_giga_maximize_orbital_arcology: "§BMaximize Orbital Arcology§!" # Gigastructural Engineering
   decision_subterranean_construction: "§BSubterranean Cities§!" # Masters of Nature
   decision_sky_construction: "§BSky Islands§!" # Masters of Nature
   decision_subterranean_expansion: "§BSubterranean Expansion§!" # Masters of Nature

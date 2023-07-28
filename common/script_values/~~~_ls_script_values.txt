@@ -25,6 +25,29 @@ scripted_trade_modifier_councilor_level_mult = {
 	mult = value:scripted_trade_modifier_mult|CLASS|$CLASS$|
 }
 
+## Banking Giant Trade Value
+banking_giant_trade_value = {
+	base = 0 # To prevent errors
+	add = $VALUE$ # Energy Credits
+	mult = 0.06 # Multiply by 0.06 for the interest rate
+	divide = 12 # Divide by 12 since it's per month
+	divide = value:banking_giant_divisor|VALUE|$VALUE2$| # Pass in energy credits
+}
+
+## Banking Giant Divisor Calculation
+banking_giant_divisor = {
+	base = 0 # To prevent errors
+	add = $VALUE$ # Energy Credits
+	square_root = yes # Square Root of the energy credits above
+	divide = value:banking_giant_square_root # sqrt(1000000)
+	add = 1
+}
+
+banking_giant_square_root = {
+	base = 1000000
+	square_root = yes
+}
+
 ##################################################
 ## Solar Storm
 ##################################################

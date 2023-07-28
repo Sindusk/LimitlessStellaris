@@ -143,6 +143,15 @@ l_english:
   trade_policy_adv_conversion_trade_league_name_desc: "The combination of our economical mastery and the advancement of our trade league will allow us to extract resources from all our trades in ways none thought possible. No opportunities missed, no potential resources lost and maximum efficiency achieved, yet no unfair deal struck and none unethically exploited. Our mastery over all economical interactions will be unrivaled and we can be sure that our empire is as prosperous as it can be. Many say that we have §BEconomically Ascended§!, and we see no reason to disagree.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§!, £minerals£ §Y0.25§!, £food£ §Y0.25§!, £consumer_goods£ §Y0.25§!, £unity£ §Y0.25§! and £physics£ £society£ £engineering£ §Y0.05§!§!"
 
 ##################
+# Amazing Civics: Megacorp
+##################
+
+  # New localisation for clarity on the Banking Giant value
+  tooltip_civic_am_civics_banking_giant_effects: "§HUnlocks Building:§! Stellar Banking Institute\nEmpire Unique. Allows the Empire to generate £trade_value£ §Y$TRADE_VALUE$§! based on the amount of £energy£ §YEnergy§! in our stockpile, at an annual interest rate of up to §Y6%§!\n\nThe £trade_value£ §Y$TRADE_VALUE$§! is applied as a §YPlanet Modifier§!."
+  building_am_civics_stellar_banking_institute_summary: "Generates §Y$TRADE_VALUE$§! based on the amount of £energy£ §YEnergy§! in our stockpile, at an annual interest rate of up to §Y6%§!. The interest rate is decreased the more £energy£ §YEnergy§! is in our stockpile.\n\nThe £trade_value£ §Y$TRADE_VALUE$§! is applied as a §YPlanet Modifier§!.\n\n§YCan only be constructed in the Capital.§!\n"
+ 
+
+##################
 # Ancient Cache of Technologies
 ##################
 
