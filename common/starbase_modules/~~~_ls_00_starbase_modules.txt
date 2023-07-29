@@ -66,6 +66,14 @@ shipyard = {
 			has_starbase_module = anchorage
 			not = { has_starbase_module = shipyard }
 		}
+
+		modifier = { # LS - 10 shipyards maximum per starbase
+			factor = 0
+			count_starbase_modules = {
+				type = shipyard
+				count > 9
+			}
+		}
 	}
 }
 
@@ -514,7 +522,16 @@ trading_hub = {
 
 	ai_build_at_chokepoint = no # StarTech AI
 	ai_weight = {
-		weight = 0 # StarTech disables construction
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 5
+			NOT = { has_starbase_module = trading_hub }
+			solar_system = {
+				any_neighbor_system = {
+					has_system_trade_value > 50
+				}
+			}
+		}
 	}
 }
 
