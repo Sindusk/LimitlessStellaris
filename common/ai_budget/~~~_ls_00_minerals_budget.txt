@@ -1,0 +1,23 @@
+####################################################################################################
+# Limitless Stellaris - AI Budget
+####################################################################################################
+
+##################################################
+## Minerals Upkeep
+##################################################
+
+## Minerals Upkeep - Starbases
+# LS version, added to allow AI to budget for starbase modules and buildings with mineral upkeep.
+minerals_upkeep_starbases = {
+	resource = minerals
+	type = upkeep
+	category = starbases
+
+	potential = {
+		always = yes
+	}
+	
+	weight = {
+		weight = 0.1
+	}
+}
