@@ -899,25 +899,7 @@ tech_strikecruiser_hull_2 = {
 ### Battlecruiser Upgrades
 ## Battlecruiser Build Speed [NSC2]
 # Disabled. Bloat.
-tech_battlecruiser_build_speed = {
-	cost = @tier4cost1
-	area = engineering
-	tier = 4
-	category = { voidcraft }
-	prerequisites = { "tech_Battlecruiser_1" }
-	weight = 0 #@tier4weight2
-	
-	modifier = {
-		shipsize_Battlecruiser_build_speed_mult = 0.25
-		ship_Battlecruiser_cost_mult = -0.05
-	}
-	
-	weight_modifier = {}
-	
-	ai_weight = {
-		factor = @ai_ship_types_factor
-	}
-}
+#tech_battlecruiser_build_speed # Has a DoA overwrite in technology
 
 ## Battlecruiser Hull 1 [NSC2]
 # Disabled. Bloat.

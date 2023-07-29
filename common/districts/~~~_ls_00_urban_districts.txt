@@ -102,6 +102,7 @@ district_city = {
 		district_rw_city
 		district_nexus
 		district_hive
+		district_osa_housing # OSA
 	}
 
 	resources = {
@@ -522,6 +523,7 @@ district_hive = {
 		district_rw_hive
 		district_nexus
 		district_city
+		district_osa_housing # OSA
 		district_hollow_housing # Expanded Gestalts
 	}
 
@@ -724,6 +726,7 @@ district_nexus = {
 		district_rw_nexus
 		district_city
 		district_hive
+		district_osa_housing # OSA
 		district_matryoshka_housing # Expanded Gestalts
 	}
 
@@ -831,6 +834,21 @@ district_nexus = {
 			planet_housing_add = 1
 		}
 	}
+
+	ai_resource_production = { # OSA
+		alloys = 20
+		physics_research = 20
+		society_research = 20
+		engineering_research = 20
+		trigger = {
+			AND = {
+				free_building_slots <= 1
+				free_housing <= 0
+			}
+		}
+	}
+
+	ai_estimate_without_unemployment = yes # OSA
 }
 
 ## Industrial District

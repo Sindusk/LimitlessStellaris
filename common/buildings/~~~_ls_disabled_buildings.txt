@@ -1282,6 +1282,10 @@ building_eac_pdf_base = {
 	
 	allow = {
 		has_upgraded_capital = yes
+		OR = {
+			is_ai = no
+			num_pops >= 50
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -1368,7 +1372,7 @@ building_eac_pdf_base = {
 	}
 
 	ai_resource_production = {
-		alloys = 10
+		alloys = 20
 		trigger = {
 			always = yes
 		}

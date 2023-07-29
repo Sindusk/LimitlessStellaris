@@ -217,7 +217,7 @@ councilor_defense = {
 }
 
 ##################################################
-## Normal Permanent Council Positions
+## Gestalt Council Positions
 ##################################################
 
 councilor_gestalt_governor = {
@@ -288,3 +288,39 @@ councilor_gestalt_general = {
 	icon = "GFX_icon_councilor_ruler"
 	required = yes
 }
+
+##################################################
+## Normal Civics
+##################################################
+
+councilor_agrarian_idyll = {
+	possible = { # Subtle Polish
+		OR = {
+			AND = {
+				is_scope_valid = yes
+				OR = {
+					NOT = { exists = owner_species }
+					is_lithoid_empire = no
+				}
+			}
+			AND = {
+				is_scope_valid = no
+				NOT = { local_human_species_class = LITHOID }
+			}
+		}
+	}
+	leader_class = { general governor }
+	is_leader_possible = {
+		OR = {
+			leader_class = general
+			leader_class = governor
+		}
+	}
+	civic = civic_agrarian_idyll
+	modifier = {
+		planet_farmers_produces_mult = 0.05
+		planet_farmers_society_research_produces_add = 0.2 # OSA
+	}
+}
+
+

@@ -28,7 +28,7 @@ prosperity = {
 		category = pop_factions
 		produces = { # OSA
 			unity = 0.5
-			influence = 0.001
+			influence = @ost_faction_influence
 		}
 		produces = { # OSA
 			trigger = {
