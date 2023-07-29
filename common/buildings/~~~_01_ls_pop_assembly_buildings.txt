@@ -489,15 +489,16 @@ building_machine_assembly_complex = {
 	}
 
 	allow = { # StarTech AI
-		hidden_trigger = {
-			OR = {
-				owner = { is_ai = no }
-				AND = {
-					num_buildings = { type = any value <= 10 }
-					merg_is_habitat = no # Merged
-				}
-			}
-		}
+		# LS - Just always upgrade man, it's worth it
+		#hidden_trigger = {
+		#	OR = {
+		#		owner = { is_ai = no }
+		#		AND = {
+		#			num_buildings = { type = any value <= 10 }
+		#			merg_is_habitat = no # Merged
+		#		}
+		#	}
+		#}
 	}
 
 	destroy_trigger = {
