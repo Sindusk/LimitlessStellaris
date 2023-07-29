@@ -3041,6 +3041,55 @@ eco_building_industrial_symbiosis = {
 	on_destroy = {
 		remove_planet_flag = eco_built_waste_building
 	}
+	
+	ai_resource_production = {
+		food = 2
+		minerals = 2
+		energy = 2
+		alloys = 2
+		trigger = {
+			exists = owner
+			owner = { is_civic_environmentalist = yes }
+		}
+	}
+
+	# LS AI Resource Production
+	ai_resource_production = {
+		food = 2
+		minerals = 2
+		energy = 2
+		alloys = 2
+		trigger = {
+			has_modifier = eco_moderate
+		}
+	}
+	ai_resource_production = {
+		food = 4
+		minerals = 4
+		energy = 4
+		alloys = 4
+		trigger = {
+			has_modifier = eco_heavy
+		}
+	}
+	ai_resource_production = {
+		food = 6
+		minerals = 6
+		energy = 6
+		alloys = 6
+		trigger = {
+			has_modifier = eco_extreme
+		}
+	}
+	ai_resource_production = {
+		food = 10
+		minerals = 10
+		energy = 10
+		alloys = 10
+		trigger = {
+			has_modifier = eco_catastrophic
+		}
+	}
 }
 
 ## Industrial Metabolism Center (Tier 3) [Ecology]
@@ -3102,6 +3151,54 @@ eco_building_industrial_metabolism = {
 	on_destroy = {
 		remove_planet_flag = eco_built_waste_building
 	}
+	
+	# LS AI Resource Production
+	ai_resource_production = {
+		food = 3
+		minerals = 3
+		energy = 3
+		alloys = 3
+		trigger = {
+			exists = owner
+			owner = { is_civic_environmentalist = yes }
+		}
+	}
+	ai_resource_production = {
+		food = 3
+		minerals = 3
+		energy = 3
+		alloys = 3
+		trigger = {
+			has_modifier = eco_moderate
+		}
+	}
+	ai_resource_production = {
+		food = 6
+		minerals = 6
+		energy = 6
+		alloys = 6
+		trigger = {
+			has_modifier = eco_heavy
+		}
+	}
+	ai_resource_production = {
+		food = 9
+		minerals = 9
+		energy = 9
+		alloys = 9
+		trigger = {
+			has_modifier = eco_extreme
+		}
+	}
+	ai_resource_production = {
+		food = 15
+		minerals = 15
+		energy = 15
+		alloys = 15
+		trigger = {
+			has_modifier = eco_catastrophic
+		}
+	}
 }
 
 ## Zero Waste Facility (Tier 4) [Ecology]
@@ -3160,6 +3257,54 @@ eco_building_zero_waste = {
 
 	on_destroy = {
 		remove_planet_flag = eco_built_waste_building
+	}
+	
+	# LS AI Resource Production
+	ai_resource_production = {
+		food = 4
+		minerals = 4
+		energy = 4
+		alloys = 4
+		trigger = {
+			exists = owner
+			owner = { is_civic_environmentalist = yes }
+		}
+	}
+	ai_resource_production = {
+		food = 4
+		minerals = 4
+		energy = 4
+		alloys = 4
+		trigger = {
+			has_modifier = eco_moderate
+		}
+	}
+	ai_resource_production = {
+		food = 8
+		minerals = 8
+		energy = 8
+		alloys = 8
+		trigger = {
+			has_modifier = eco_heavy
+		}
+	}
+	ai_resource_production = {
+		food = 12
+		minerals = 12
+		energy = 12
+		alloys = 12
+		trigger = {
+			has_modifier = eco_extreme
+		}
+	}
+	ai_resource_production = {
+		food = 20
+		minerals = 20
+		energy = 20
+		alloys = 20
+		trigger = {
+			has_modifier = eco_catastrophic
+		}
 	}
 }
 
