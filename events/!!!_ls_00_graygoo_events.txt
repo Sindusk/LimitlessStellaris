@@ -1,0 +1,291 @@
+##########################################################################
+# Limitless Stellaris - Gray Goo Events
+##########################################################################
+
+namespace = graygoo
+
+# Gray Goo 10 - Gray Tempest: Introduction (instigator)
+# Merge between NMDSO, Organic Zealots, Ariphaos
+country_event = {
+	id = graygoo.10
+	title = "graygoo.10.name"
+	desc = {
+		trigger = { NOT = { has_country_flag = only_one_lgate } }
+		text = "graygoo.10.desc"
+	}
+	desc = {
+		trigger = { has_country_flag = only_one_lgate }
+		text = "graygoo.10.b.desc"
+	}
+
+	picture = GFX_evt_gray_goo_ships
+	show_sound = event_radio_chatter
+
+	is_triggered_only = yes
+
+	immediate = { # NMDSO
+		set_country_flag = gray_goo_instigator # Organic Zealots
+		every_country = { # NMDSO
+			limit = { is_country_type = gray_goo }
+			every_playable_country = { establish_communications_no_message = prev }
+		}
+		if = { # NMDSO
+			limit = {
+				ROOT = {
+					OR = {
+						has_origin = civic_harvester_nanites
+						has_origin = civic_gateway_pursuer
+					}
+				}
+			}
+			every_country = {
+				limit = { is_country_type = gray_goo }
+				every_playable_country = { establish_communications_no_message = prev }
+				set_faction_hostility = {
+					target = root
+					set_hostile = no
+					set_neutral = yes
+					set_friendly = no
+				}
+			}
+		}
+	}
+
+	option = {
+		name = graygoo.10.a
+		hidden_effect = {
+			country_event = { id = graygoo.12 }
+		}
+	}
+}
+
+## Gray Goo 11 - Gray Tempest: Introduction (other, has project/chain)
+# Merge between NMDSO, Organic Zealots, Ariphaos
+country_event = {
+	id = graygoo.11
+	title = "graygoo.10.name"
+	desc = "graygoo.11.desc"
+	picture = GFX_evt_gray_goo_ships
+	show_sound = event_radio_chatter
+
+	is_triggered_only = yes
+
+	immediate = { # NMDSO
+		set_country_flag = gray_goo_aspirant # Organic Zealots
+		hidden_effect = { # NMDSO
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							has_origin = civic_harvester_nanites
+							has_origin = civic_gateway_pursuer
+						}
+					}
+				}
+				every_country = {
+					limit = { is_country_type = gray_goo }
+					every_playable_country = { establish_communications_no_message = prev }
+					set_faction_hostility = {
+						target = root
+						set_hostile = no
+						set_neutral = yes
+						set_friendly = no
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = graygoo.10.a
+		hidden_effect = {
+			country_event = { id = graygoo.12 }
+		}
+	}
+}
+
+## Gray Goo 13 - Gray Tempest: Introduction (other, has nothing)
+# Merge between NMDSO, Organic Zealots, Ariphaos
+country_event = {
+	id = graygoo.13
+	title = "graygoo.10.name"
+	desc = "graygoo.13.desc"
+	picture = GFX_evt_gray_goo_ships
+	show_sound = event_radio_chatter
+
+	is_triggered_only = yes
+
+	immediate = { # NDMSO
+		set_country_flag = gray_goo_bystander # Organic Zealots
+		hidden_effect = { # NDMSO
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							has_origin = civic_harvester_nanites
+							has_origin = civic_gateway_pursuer
+						}
+					}
+				}
+				every_country = {
+					limit = { is_country_type = gray_goo }
+					every_playable_country = { establish_communications_no_message = prev }
+					set_faction_hostility = {
+						target = root
+						set_hostile = no
+						set_neutral = yes
+						set_friendly = no
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = graygoo.10.a
+		hidden_effect = {
+			country_event = { id = graygoo.12 }
+		}
+	}
+}
+
+## Gray Goo 403 - Dialog 3
+# Merge between Organic Zealots, ADT, Ariphaos
+country_event = {
+	id = graygoo.403
+	title = "TRANSMISSION"
+	desc = "graygoo.403.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = root.species
+		planet_background = event_target:gray_homeworld # ADT
+		room = ship_room # ADT root -> ship_room
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		trigger = { is_organic_zealots = no } # Organic Zealots
+		name = graygoo.403.a
+		hidden_effect = {
+			country_event = { id = graygoo.404 }
+		}
+	}
+	option = { # Organic Zealots
+		trigger = { is_organic_zealots = yes }
+		name = "graygoo.403.a.organic_zealots"
+		hidden_effect = {
+			country_event = {
+				id = civic_organic_zealots.404
+			}
+		}
+	}
+}
+
+## Gray Goo 501 - Main Menu (Governor)
+# Merge between Merged Leader Levels, ADT, Ariphaos
+country_event = {
+	id = graygoo.501
+	title = "graygoo.500.title"
+	desc = "graygoo.501.a.desc"
+	desc = "graygoo.501.b.desc"
+	desc = "graygoo.501.c.desc"
+	desc = "graygoo.501.d.desc"
+
+	diplomatic = yes
+
+	picture = GFX_evt_busy_spaceport
+	picture_event_data = {
+		portrait = event_target:gray_governor
+		planet_background = event_target:gray_governor_planet # ADT
+		room = root
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = { is_country_type = gray }
+		is_same_empire = event_target:gray_owner # ADT value -> empire
+		has_country_flag = gray_governor_active
+		exists = event_target:gray_governor
+		NOR = { # ADT
+			has_country_flag = gray_reforming
+			has_country_flag = gray_diplomacy_engaged
+			has_country_flag = ban_commu_with_gray # ADT
+		}
+	}
+
+	immediate = {
+		set_country_flag = gray_diplomacy_engaged
+		if = {
+			limit = {
+				any_owned_planet = {
+					exists = leader
+					leader = { is_same_value = event_target:gray_governor }
+				}
+			}
+			random_owned_planet = {
+				limit = {
+					exists = leader
+					leader = { is_same_value = event_target:gray_governor }
+				}
+				save_event_target_as = gray_governor_planet
+			}
+		} else_if = { # ADT
+			limit = { exists = capital_scope } # ADT
+			capital_scope = { save_event_target_as = gray_governor_planet }
+		} else_if = { # ADT
+			limit = { num_sectors > 0 }
+			ordered_owned_sector = {
+				position = 0
+				order_by = trigger:num_owned_planets
+				random_owned_planet = {
+					limit = { is_sector_capital = yes }
+					save_event_target_as = gray_governor_planet
+				}
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = { remove_country_flag = gray_diplomacy_engaged }
+	}
+	
+	option = { # Merged Leader Levels
+		name = gle.1000.enter
+		allow = {
+			hidden_trigger = { exists = event_target:gray_governor } # To prevent exploit
+		}
+		hidden_effect = {
+			country_event = { id = gle.1000 }
+		}
+        custom_tooltip = gle.1000.tooltip2
+	}
+	
+	option = { # Warship
+		name = graygoo.500.b
+		response_text = graygoo.501.b.response
+		allow = {
+			hidden_trigger = { exists = event_target:gray_governor } # To prevent exploit
+		}
+		hidden_effect = {
+			create_gray_warship = yes
+		}
+	}
+	option = { # Army
+		name = graygoo.500.c
+		response_text = graygoo.501.c.response
+		allow = {
+			hidden_trigger = { exists = event_target:gray_governor }
+		}
+		hidden_effect = {
+			create_gray_army = yes
+		}
+	}
+	option = {
+		name = graygoo.500.d
+		default_hide_option = yes
+	}
+}

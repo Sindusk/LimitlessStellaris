@@ -100,7 +100,7 @@ lgate = {
 }
 
 ## Wormhole
-# Merge between Gigastructural Engineering, STU
+# Merge between L-Cluster Access, Gigastructural Engineering, Ariphaos, STU
 wormhole = {
 	name = NATURAL_WORMHOLE_GALACTIC
 	is_pathfind = yes
