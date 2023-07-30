@@ -356,6 +356,36 @@
 		TECH_COST_DEFAULT = 1.5			# Default: 1.0
 		TECH_COST_SLIDER_INTERVAL = 0.1 # Default: 0.25
 	}
+	NShip = {
+		#SHIELD_RECHARGE_TICKS                = 20    # Combat ticks before a shield that is fully depleted will start to recharge
+	
+		MILITARY_POWER_HEALTH_WEIGHT        = 0.00075 # Health power weight; Default: 0.5; ACOT: 0.000075
+		#MILITARY_POWER_ARMOR_WEIGHT         = 1    # compared to health
+		#MILITARY_POWER_SHIELD_WEIGHT        = 1    # compared to health
+		#MILITARY_POWER_DAMAGE_WEIGHT        = 0.00075
+		MILITARY_POWER_SCALE                = 800 # Multiplier for the formula; Default: 0.25; ACOT: 1600
+		#MILITARY_POWER_EXPONENT             = 0.50      # math: power = ( ( effective_health * damage_per_day ) ^ exponent ) * scale
+	
+		# below values determine how large an effect special values such as shield penetration have on the military power of a weapon
+		#MILITARY_POWER_ARMOR_PENETRATION_WEIGHT = 0.1    # larger value = adds more military power
+		#MILITARY_POWER_SHIELD_PENETRATION_WEIGHT = 0.1
+		#MILITARY_POWER_HULL_DAMAGE_WEIGHT = 0.2
+		#MILITARY_POWER_ARMOR_DAMAGE_WEIGHT = 0.2
+		#MILITARY_POWER_SHIELD_DAMAGE_WEIGHT = 0.2
+		#MILITARY_POWER_TRACKING_WEIGHT = -0.5    # at 0% tracking
+		#MILITARY_POWER_RANGE_DIV = 100    # smaller value = adds more military power
+		#MILITARY_POWER_MISSILE_MULT = 0.60        # overall military power of missiles is lowered due to being vulnerable to PD
+		#MILITARY_POWER_PD_MULT = 1.20        # overall military power of PD is increased to compensate for relatively bad DPS/range
+	
+		#DEFAULT_ARMOR_RATIO = 0.5
+		#DEFAULT_SHIELD_RATIO = 0.5
+		#MIN_SPEED_FOR_UTILITIES = 1.25 # Minimum value for ship utilities with speed to be considered viable when creating designs
+	
+		#EXCESS_POWER_BONUS_THRESHOLD_MAX    = 1.0     # 0.5 means 0-50% excess power linearly scales ship_excess_power modifier between 0-1.
+		#EXCESS_POWER_BONUS_THRESHOLD_MIN    = 0.05 # min value for excess power to be used.
+	
+	
+	}
 
 	NAI = {
 		### MVG War Exhaustion ###
