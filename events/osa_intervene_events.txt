@@ -1,0 +1,558 @@
+
+namespace = intervene
+
+country_event = {
+  id = intervene.1
+  title = intervene.1.name
+  desc = intervene.1.desc
+  picture = GFX_evt_arguing_senate
+
+  is_triggered_only = yes
+
+  immediate = {
+    set_variable = { which = intervene_friendly_nations value = 0 }
+    every_country = {
+		limit = {
+			or = {
+				is_country_type = default
+				is_country_type = ascended_empire
+				is_country_type = lost_empire
+			}
+			is_war_leader = yes
+			opinion = { who = root value > 0 }
+			NOT = { is_at_war_with = root }
+			NOT = { is_same_value = root }
+		}
+      set_country_flag = intervene_friendly_nation
+      root = { change_variable = { which = intervene_friendly_nations value = 1 } }
+    }
+
+    if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 1 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_1
+        remove_country_flag = intervene_friendly_nation
+		}
+	}
+    if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 2 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_2
+        remove_country_flag = intervene_friendly_nation
+      }
+    }
+    if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 3 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_3
+        remove_country_flag = intervene_friendly_nation
+      }
+    }
+    if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 4 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_4
+        remove_country_flag = intervene_friendly_nation
+      }
+    }
+    if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 5 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_5
+        remove_country_flag = intervene_friendly_nation
+      }
+    }
+    if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 6 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_6
+        remove_country_flag = intervene_friendly_nation
+      }
+    }
+    if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 7 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_7
+        remove_country_flag = intervene_friendly_nation
+      }
+    }
+    if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 8 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_8
+        remove_country_flag = intervene_friendly_nation
+      }
+    }
+    if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 9 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_9
+        remove_country_flag = intervene_friendly_nation
+      }
+    }
+	if = {
+      limit = { check_variable = { which = intervene_friendly_nations value >= 10 } }
+      random_country = {
+        limit = { has_country_flag = intervene_friendly_nation }
+        save_event_target_as = intervene_friendly_nation_10
+        remove_country_flag = intervene_friendly_nation
+		}
+	}
+}
+
+	option = {
+		name = intervene.1.intervene_1
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 1 } }
+		join_war = event_target:intervene_friendly_nation_1
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_1 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_1 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_1 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_1 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_1 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = intervene.1.intervene_2
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 2 } }
+		join_war = event_target:intervene_friendly_nation_2
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_2 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_2 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_2 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_2 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_2 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = intervene.1.intervene_3
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 3 } }
+		join_war = event_target:intervene_friendly_nation_3
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_3 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_3 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_3 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_3 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_3 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+  
+	option = {
+		name = intervene.1.intervene_4
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 4 } }
+		join_war = event_target:intervene_friendly_nation_4
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_4 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_4 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_4 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_4 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_4 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+  
+	option = {
+		name = intervene.1.intervene_5
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 5 } }
+		join_war = event_target:intervene_friendly_nation_5
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_5 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_5 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_5 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_5 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_5 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+  
+	option = {
+		name = intervene.1.intervene_6
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 6 } }
+		join_war = event_target:intervene_friendly_nation_6
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_6 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_6 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_6 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_6 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_6 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+  
+	option = {
+		name = intervene.1.intervene_7
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 7 } }
+		join_war = event_target:intervene_friendly_nation_7
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_7 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_7 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_7 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_7 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_7 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+  
+	option = {
+		name = intervene.1.intervene_8
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 8 } }
+		join_war = event_target:intervene_friendly_nation_8
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_8 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_8 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_8 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_8 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_8 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+  
+	option = {
+		name = intervene.1.intervene_9
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 9 } }
+		join_war = event_target:intervene_friendly_nation_9
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_9 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_9 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_9 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_9 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_9 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+  
+	option = {
+		name = intervene.1.intervene_10
+		allow = {
+			custom_tooltip = {
+				fail_text = influencefail_text
+				has_resource = { type = influence amount > 150 }
+			}
+		}
+		trigger = { check_variable = { which = intervene_friendly_nations value >= 10 } }
+		join_war = event_target:intervene_friendly_nation_10
+		add_resource = { influence = -150 }
+		hidden_effect = {
+			set_timed_country_flag = { flag = intervene_recent_intervention_timed days = 360 }
+			set_variable = { which = intervene_friendly_nations value = 0 }
+		}
+		event_target:intervene_friendly_nation_10 = { add_opinion_modifier = { modifier = intervene_opinion_military_help who = root } }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 80
+				opinion = { who = event_target:intervene_friendly_nation_10 value > 10 }
+			}
+			modifier = {
+				factor = 90
+				opinion = { who = event_target:intervene_friendly_nation_10 value > 300 }
+			}
+			modifier = {
+				factor = 100
+				opinion = { who = event_target:intervene_friendly_nation_10 value > 750 }
+			}
+			modifier = {
+				factor = 100
+				event_target:intervene_friendly_nation_10 = {
+					any_system_within_border = {
+						distance = {
+							source = root.capital_scope.solar_system
+							min_jumps <= 8
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = intervene.1.desist
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
