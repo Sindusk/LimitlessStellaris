@@ -191,7 +191,7 @@ anchorage = {
 			factor = 0
 			not = { has_starbase_module = anchorage }
 			owner = { needs_shipyard = yes }
-		}	
+		}
 		modifier = { # StarTech AI
 			factor = 0
 			has_starbase_module = shipyard
