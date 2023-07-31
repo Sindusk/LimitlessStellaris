@@ -3,6 +3,91 @@
 ##########################################################################
 
 ##################################################
+## Advanced Policies
+##################################################
+
+## Eye For Administration 1 [Advanced Policies]
+# Disabled. Bugged.
+trait_ruler_eye_for_admin_1 = {
+	starting_ruler_trait = yes
+	councilor_trait = yes
+	#initial = yes # LS - Disabled
+	cost = 1
+	leader_potential_add = {
+		always = no # Disabled through potential
+	}
+	icon = {
+		# icon background
+		layer = {
+			icon = "GFX_trait_bg"
+			color = "trait_bg_default"
+		}
+		# icon black overlay
+		layer = {
+			icon = "GFX_leader_trait_eye_for_admin"
+			color = "trait_icon_default"
+		}
+		# Councilor icon bit
+		layer = {
+			icon = "GFX_trait_councilor"
+		}
+		# Tier icon
+		layer = {
+			icon = "GFX_trait_tier_1"
+		}
+	}
+	modifier = {
+		empire_size_mult = -0.05
+	}
+	leader_class = {
+		scientist
+		governor
+		admiral
+		general
+	}
+}
+
+## Eye For Administration 2 [Advanced Policies]
+# Disabled. Bugged.
+trait_ruler_eye_for_admin_2 = {
+	councilor_trait = yes
+	initial = no
+	cost = 1
+	leader_potential_add = {
+		always = no # Disabled through potential
+	}
+	icon = {
+		# icon background
+		layer = {
+			icon = "GFX_trait_bg"
+			color = "trait_bg_default"
+		}
+		# icon black overlay
+		layer = {
+			icon = "GFX_leader_trait_eye_for_admin"
+			color = "trait_icon_default"
+		}
+		# Councilor icon bit
+		layer = {
+			icon = "GFX_trait_councilor"
+		}
+		# Tier icon
+		layer = {
+			icon = "GFX_trait_tier_2"
+		}
+	}
+	modifier = {
+		empire_size_mult = -0.1
+	}
+	leader_class = {
+		scientist
+		governor
+		admiral
+		general
+	}
+}
+
+##################################################
 ## Leader Traits
 ##################################################
 
