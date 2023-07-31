@@ -1,0 +1,16 @@
+namespace = mmgfhp
+
+event = {
+	id = mmgfhp.1
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		every_galaxy_planet = {
+			limit = { mmgfhp_can_convert_planet = yes }
+			random = {
+				chance = 95 # LS 75 -> 95
+				mmgfhp_convert_planet = yes
+			}
+		}
+	}
+}
