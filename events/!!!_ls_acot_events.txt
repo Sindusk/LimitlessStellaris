@@ -12,3 +12,118 @@ country_event = {
 
 	immediate = { }
 }
+
+namespace = acot_pmc
+
+## ACOT PMC 1 - CONTACTORUS
+# Fix scope error
+country_event = {
+	id = acot_pmc.1
+	title = "acot_pmc.diplo_title"
+	desc = {
+		text = acot_pmc.1.desc
+	}
+
+	trigger = {
+		#from = { # LS - Country event, scope change not necessary
+			is_country_type = acot_phanon_base
+		#}
+	}
+	
+	is_triggered_only = yes
+	diplomatic = yes
+    show_sound = event_yellow_alert
+    
+	picture_event_data = {
+		room = sofe_smuggler_room
+	}
+	
+	immediate = {
+		set_country_flag = acot_phanon_diplomacy_engaged
+		event_target:phanon_base_country = {
+			set_closed_borders = {
+				who = root
+				status = no
+			}
+		}	
+	}
+    
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = acot_pmc.100
+			}
+			remove_country_flag = acot_phanon_diplomacy_engaged
+		}
+    }
+
+	option = {
+		name = acot_pmc.1.a
+		trigger = { is_xenophobe = no }
+		default_hide_option = yes
+	}
+
+	option = {
+		name = acot_pmc.1.b
+		trigger = { is_xenophobe = yes }
+		default_hide_option = yes
+	}
+
+	option = {
+		name = acot_pmc.1.swarm.a
+		response_text = acot_pmc.1.swarm.a.response
+		trigger = { 
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = acot_pmc.1.exterminator.a
+		response_text = acot_pmc.1.exterminator.a.response
+		trigger = { 
+			has_valid_civic = civic_machine_terminator
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = acot_pmc.1.purifier.a
+		response_text = acot_pmc.1.purifier.a.response
+		trigger = { 
+			has_valid_civic = civic_fanatic_purifiers
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = acot_pmc.1.insult
+		custom_tooltip = acot_pmc.1.insult.tooltip
+		response_text = acot_pmc.1.swarm.insult.response
+		trigger = { 
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = acot_pmc.1.insult
+		custom_tooltip = acot_pmc.1.insult.tooltip
+		response_text = acot_pmc.1.exterminator.insult.response
+		trigger = { 
+			has_valid_civic = civic_machine_terminator
+		}
+		default_hide_option = yes
+	}
+
+	option = {
+		name = acot_pmc.1.insult
+		custom_tooltip = acot_pmc.1.insult.tooltip
+		response_text = acot_pmc.1.purifier.insult.response
+		trigger = { 
+			has_valid_civic = civic_fanatic_purifiers
+		}
+		default_hide_option = yes
+	}
+
+}
