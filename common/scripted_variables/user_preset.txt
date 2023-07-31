@@ -221,7 +221,7 @@
 # 0 = VANILLA
 # 1 = LORE ACCURATE
 # 2 = LORE ACCURATE + CATTAIL KAISER
-@giga_preset_katzen_portraits = 0
+@giga_preset_katzen_portraits = 1
 
 # BLOKKATS SPAWN CHANCE
 # 0 = DISABLED
