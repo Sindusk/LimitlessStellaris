@@ -1,0 +1,23 @@
+##########################################################################
+# Limitless Stellaris - Expanded Gestalts Events
+##########################################################################
+
+namespace = hungry_buildings
+
+# refresh the buildings, called when building was demolished
+planet_event = {
+	id = hungry_buildings.0
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner # LS fix
+		owner = {
+			has_civic = civic_hive_organic
+		}
+	}
+
+	immediate = {
+		update_planet_living_buildings = yes
+	}
+}
