@@ -2,10 +2,19 @@
 # Limitless Stellaris - On Actions
 ##########################################################################
 
-# Forces the giga preset to load automatically on game start, instead of requiring user input.
+## Press Begin (Game Start)
+# Scope: None
 on_press_begin = {
 	events = {
 		giga_preset.1 # Load the Gigastructural Engineering custom preset immediately.
 		ls_mod.1 # Limitless Stellaris AI boost
+	}
+}
+
+## Monthly Pulse
+# Scope: None
+on_monthly_pulse = {
+	events = {
+		ls_DyDiff_controller.1 # Pulse the dynamic difficulty.
 	}
 }

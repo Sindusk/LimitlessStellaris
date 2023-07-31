@@ -1,0 +1,163 @@
+##########################################################################
+# Limitless Stellaris - Dynamic Difficulty Events
+##########################################################################
+# Based on Hemothep's Dynamic Difficulty, this iteration buffs individual AI's instead of all AI's.
+# This also uses a multiplier on the modifier instead of having several stages of the modifier.
+# This allows us to remove the limit completely.
+
+namespace = ls_DyDiff_controller
+
+## Dynamic Difficulty Controller 1 - Controls the entire Dynamic Difficulty system.
+# Monthly Pulse
+# Scope: None
+event = {
+	id = ls_DyDiff_controller.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = ls_DyDiff_disabled } # Global flag to turn this system off.
+	}
+
+	immediate = {
+		every_country = { # Iterate through all players, finding the strongest one.
+			limit = { is_ai = no }
+			every_country = { # Iterate through all other players for comparison to the previous one
+				limit = { is_ai = no }
+				if = {
+					limit = {
+						relative_power = { # If they're less than equivalent
+							who = PREV
+							category = all
+							value < equivalent
+						}
+					}
+					set_timed_country_flag = { flag = ls_DyDiff_weaker_player days = 6 } # Set a flag marking them as having someone stronger
+				}
+			}
+		}
+		random_country = { # Obtain the strongest player
+			limit = {
+				is_ai = no
+				NOT = { has_country_flag = ls_DyDiff_weaker_player } # Strongest player will not have this flag
+			}
+			every_country = { # Iterate through all default AI countries
+				limit = {
+					is_ai = yes
+					is_playable = yes
+					NOT = { has_country_flag = ls_DyDiff_cooldown } # If they're on cooldown, just skip them
+				}
+				# LS - Any of the next few conditions end up with worthy opponent, so it is converted to if/elseif.
+				if = { # Overwhelming - AI is overwhelming overall, and at least inferior in technology.
+					limit = {
+						relative_power = { who = PREV category = all value > superior }
+						relative_power = { who = PREV category = technology value > pathetic }
+					}
+					country_event = { id = ls_DyDiff_decrease.1 } # Decrease buff power.
+				}
+				else_if = { # Caught Up - AI is at least equivalent overall, and equivalent in tech.
+					limit = {
+						relative_power = { who = PREV category = all value > inferior }
+						relative_power = { who = PREV category = technology value > inferior }
+					}
+					country_event = { id = ls_DyDiff_decrease.1 } # Decrease buff power.
+				}
+				else_if = { # Challenger - AI is at least equivalent overall, and overwhelming in fleet.
+					limit = {
+						relative_power = { who = PREV category = all value > inferior }
+						relative_power = { who = PREV category = fleet value = overwhelming }
+					}
+					# Do nothing, they're fine.
+				}
+				else_if = { # Challenger - AI is at least equivalent in tech, and superior in fleet.
+					limit = {
+						relative_power = { who = PREV category = fleet value > equivalent }
+						relative_power = { who = PREV category = technology value > inferior }
+					}
+					# Do nothing, they're fine.
+				}
+				else_if = { # Challenger - AI is superior overall.
+					limit = {
+						relative_power = { who = PREV category = all value > equivalent }
+					}
+					# Do nothing, they're fine.
+				}
+				else = { # Weakling - AI does not meet any of the conditions above and is thus too weak.
+					country_event = { id = ls_DyDiff_increase.1 } # Increase buff power.
+				}
+			}
+		}
+	}
+}
+
+namespace = ls_DyDiff_decrease
+
+## Dynamic Difficulty Decrease 1 - When triggered this event decreases the difficulty by one stage
+# Directly Triggered
+# Scope: Country
+country_event = {
+	id = ls_DyDiff_decrease.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = yes # Just to make sure
+		NOT = { has_country_flag = ls_DyDiff_cooldown } # Cannot be on cooldown
+	}
+
+	immediate = {
+		create_variable_if_not_exists = { # Create a level value if it doesn't yet exist.
+			VARIABLE = ls_DyDiff_level
+			VALUE_IF_CREATED = 0
+		}
+		if = {
+			limit = { check_variable = { which = ls_DyDiff_level value > 0 } } # Ensure the variable doesn't go below 0.
+			change_variable = { # Subtract 1 from the variable.
+				which = ls_DyDiff_level
+				value = -1
+			}
+		}
+		remove_modifier = ls_DyDiff_buff # Remove the old variation.
+		if = {
+			limit = { check_variable = { which = ls_DyDiff_level value > 0 } } # Only apply a new buff if the value is over 0
+			add_modifier = {
+				modifier = ls_DyDiff_buff
+				mult = ls_DyDiff_level
+			}
+		}
+		set_timed_country_flag = { flag = ls_DyDiff_cooldown days = 150 } # Set a cooldown for 150 days (5 months) so it triggers again in 6 months.
+	}
+}
+
+namespace = ls_DyDiff_increase
+
+## Dynamic Difficulty Increase 1 - When triggered this event increases the difficulty by one stage
+# Directly Triggered
+# Scope: Country
+country_event = {
+	id = ls_DyDiff_increase.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = yes # Just to make sure
+		NOT = { has_country_flag = ls_DyDiff_cooldown } # Cannot be on cooldown
+	}
+
+	immediate = {
+		create_variable_if_not_exists = { # Create a level value if it doesn't yet exist.
+			VARIABLE = ls_DyDiff_level
+			VALUE_IF_CREATED = 0
+		}
+		change_variable = { # Add 1 to the variable.
+			which = ls_DyDiff_level
+			value = 1
+		}
+		remove_modifier = ls_DyDiff_buff # Remove the old variation.
+		add_modifier = {
+			modifier = ls_DyDiff_buff
+			mult = ls_DyDiff_level
+		}
+		set_timed_country_flag = { flag = ls_DyDiff_cooldown days = 150 } # Set a cooldown for 150 days (5 months) so it triggers again in 6 months.
+	}
+}
