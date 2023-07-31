@@ -3,4 +3,4 @@
 ##########################################################################
 l_english:
   ls_DyDiff_buff: "Limitless Stellaris AI Dynamic Difficulty"
-  ls_DyDiff_buff_desc: "§YCurrent Level:§! Unknown (Sindusk Bad Modder)"
+  #ls_DyDiff_buff_desc: "§YCurrent Level:§! [this.ls_DyDiff_level]"
