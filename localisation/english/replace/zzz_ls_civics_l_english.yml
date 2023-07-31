@@ -1,0 +1,180 @@
+﻿##########################################################################
+# Limitless Stellaris - English Localisation - Civics (Replacements)
+##########################################################################
+# Extra Localisation Colors:
+# https://steamuserimages-a.akamaihd.net/ugc/2040737956562736069/C206B1AB94B34EE00F7FF04EF75A594B6D3D3E4A/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=#000000&letterbox=false
+l_english:
+  ### --- Special Civics (Blue) --- ###
+  civic_galactic_beacon: "§BGalactic Beacon§!" # Galactic Imperium Origin
+  civic_imperial_rival: "§BImperial Rival§!" # Galactic Imperium Origin
+  civic_galactic_sovereign_megacorp: "§BCorporate Sovereign§!" # Vanilla
+  civic_psionic_sovereign: "§BDivine Sovereign§!" # Vanilla
+  civic_galactic_sovereign: "§BGalactic Sovereign§!" # Vanilla
+
+  ### --- Unmodifiable Civics (Brown) --- ###
+  ## Standard Civics
+  civic_AP_ancient_remnants: "§SAncient Remnants§!" # Advanced Policies
+  civic_AP_mobile_construction: "§SMobile Construction§!" # Advanced Policies
+  civic_bugged_bureaucratic_engineers: "§SBureaucratic Engineers§!" # Bug Branch
+  civic_bugged_chosen_people: "§SChosen People§!" # Bug Branch
+  civic_bugged_consecrated_constructs: "§SConsecrated Constructs§!" # Bug Branch
+  civic_bugged_evolutionary_architects: "§SEvolutionary Architects§!" # Bug Branch
+  civic_bugged_gravity_cult: "§SGravity Cult§!" # Bug Branch
+  civic_bugged_life_cult: "§SLife Cult§!" # Bug Branch
+  civic_bugged_luminosity_cult: "§SLuminosity Cult§!" # Bug Branch
+  civic_bugged_machine_cult: "§SMachine Cult§!" # Bug Branch
+  civic_bugged_slave_race: "§SSlave Race§!" # Bug Branch
+  civic_bugged_war_cult: "§SWar Cult§!" # Bug Branch
+  civic_anarcho_tyranny: "§SAnarcho-Tyranny§!" # EMEX
+  civic_crystalline_energy_grid_v2: "§SCrystalline Energy Grid§!" # EMEX
+  civic_blight_anarchism: "§SDestructive Anarchism§!" # EMEX
+  civic_blight_tension: "§SEthnic Tension§!" # EMEX
+  civic_gaseous_fracking_techniques: "§SGaseous Fracking Methods§!" # EMEX
+  civic_machinarchy: "§SMachinarchy§!" # EMEX
+  civic_blight_paranoia: "§SParanoid Leadership§!" # EMEX
+  civic_blight_elitism: "§SParasitic Elitism§!" # EMEX
+  civic_strategic_cache: "§SPlanetary Cache§!" # EMEX
+  civic_sovereign_nations: "§SSovereign Nations§!" # EMEX
+  civic_blight_vigilantes: "§SViolent Vigilantes§!" # EMEX
+  civic_volatile_farming_methods: "§SVolatile Farming Designs§!" # EMEX
+  civic_world_crackers: "§SWorld Crackers§!" # Forgotten History
+  civic_outside_the_border: "§SOutside The Border§!" # Galactic Imperium Origin
+  civic_barbaric_despoilers: "§SBarbaric Despoilers§!" # Vanilla
+  civic_eager_explorers: "§SEager Explorers§!" # Vanilla
+  civic_fanatic_purifiers: "§SFanatic Purifiers§!" # Vanilla
+  civic_idyllic_bloom: "§SIdyllic Bloom§!" # Vanilla - Plantoids
+  civic_inwards_perfection: "§SInward Perfection§!" # Vanilla
+  civic_dystopian_society: "§SOppressive Autocracy§!" # Vanilla - Galactic Paragons
+  ## Megacorp Civics
+  civic_am_civics_criminal_connections: "§SCriminal Connections§!" # Amazing Civics: Megacorp
+  civic_am_civics_military_industrial_complex: "§SMilitary-Industrial Complex§!" # Amazing Civics: Megacorp
+  civic_bugged_asset_appropriation: "§SAsset Appropriation§!" # Bug Branch
+  civic_bugged_gravity_cult_corpo: "§SCorporate Gravity Cult§!" # Bug Branch
+  civic_bugged_life_cult_corpo: "§SCorporate Life Cult§!" # Bug Branch
+  civic_bugged_luminosity_cult_corpo: "§SCorporate Luminosity Cult§!" # Bug Branch
+  civic_bugged_machine_cult_corpo: "§SCorporate Machine Cult§!" # Bug Branch
+  civic_bugged_war_cult_corpo: "§SCorporate War Cult§!" # Bug Branch
+  civic_bugged_evolutionary_architects_corpo: "§SEvolutionary Architects§!" # Bug Branch
+  civic_bugged_mega_merchandisers: "§SMega Merchandisers§!" # Bug Branch
+  civic_bugged_slave_race_corpo: "§SSlave Race§!" # Bug Branch
+  civic_corporate_world_crackers: "§SWorld Crackers§!" # Forgotten History
+  civic_criminal_heritage: "§SCriminal Heritage§!" # Vanilla
+  civic_privatized_exploration: "§SPrivatized Exploration§!" # Vanilla
+  ## Hive Civics
+  civic_bugged_hive_aggressive_proliferation: "§SAggressive Proliferation§!" # Bug Branch
+  civic_bugged_hive_megabiotic_aspirations: "§SMegabiotic Aspirations§!" # Bug Branch
+  civic_hive_assimilators: "§SAssimilating Culture§!" # EMEX
+  civic_hive_environmental_integration: "§SEnvironmental Symbiosis§!" # EMEX
+  civic_hive_manipulators_of_life: "§SGenetic Manipulators§!" # EMEX
+  civic_hive_cyborgs: "§SRudimentary Cybernetics§!" # EMEX
+  civic_hive_splintered: "§SSplintered Hives§!" # EMEX
+  civic_hive_devouring_swarm: "§SDevouring Swarm§!" # Vanilla
+  #civic_hive_idyllic_bloom:0 "$civic_idyllic_bloom$" # Vanilla
+  civic_hive_stargazers: "§SStargazers§!" # Vanilla
+  civic_hive_devouring_swarm_lithoid: "§STerravore§!" # Vanilla
+  ## Machine Civics
+  civic_acot_rogue_precursor_fleet: "§SAncient Databank Command Network§!" # ACOT
+  civic_acot_rogue_precursor_data: "§SAncient Databank Archive§!" # ACOT
+  civic_acot_rogue_precursor: "§SAncient Databank Intelligence§!" # ACOT
+  civic_bugged_machine_researcher: "§SInquisitive Catalog Index§!" # Bug Branch
+  civic_bugged_machine_emancipation_proclamation: "§SMandatory Maintenance§!" # Bug Branch
+  civic_bugged_machine_tock_executive: "§STock Executive§!" # Bug Branch
+  #civic_bugged_machine_tock_executive_servitor: "$civic_bugged_machine_tock_executive$" # Bug Branch
+  civic_bugged_machine_stripmine: "§SVon Neumann Machines§!" # Bug Branch
+  civic_machine_selfreplicating_machines: "§SNanomechanical Innards§!" # EMEX
+  civic_machine_terminator: "§SDetermined Exterminator§!" # Vanilla
+  civic_machine_assimilator: "§SDriven Assimilator§!" # Vanilla
+  civic_machine_exploration_protocol: "§SExploration Protocols§!" # Vanilla
+  civic_machine_servitor: "§SRogue Servitor§!" # Vanilla
+
+  ### --- Bug Branch Governmental Civics (Dark Blue) --- ###
+  ## Anthropocentric
+  civic_bugged_industrial_firm: "§sIndustrial Firm§!" # Bug Branch
+  civic_bugged_magistrates_of_automation: "§sMagistrates of Automation§!" # Bug Branch
+  civic_bugged_mutualistic_manufacturing: "§sMutualistic Manufacturing§!" # Bug Branch
+  civic_bugged_production_potentateship: "§sProduction Potentateship§!" # Bug Branch
+  ## Competitive
+  civic_bugged_banking_corporation: "§sBanking Corporation§!" # Bug Branch
+  civic_bugged_board_of_executives: "§sBoard of Executives§!" # Bug Branch
+  civic_bugged_state_monopoly: "§sState Monopoly§!" # Bug Branch
+  civic_bugged_stock_based_salary: "§sStock-Based Salary§!" # Bug Branch
+  ## Cooperative
+  civic_bugged_comprehensive_decision_making_structure: "§sComprehensive Decision Making Structure§!" # Bug Branch
+  civic_bugged_extended_family: "§sExtended Family§!" # Bug Branch
+  civic_bugged_department_of_prosperity: "§sProsperity Department§!" # Bug Branch
+  civic_bugged_worker_owned_corpo: "§sWorker-Owned Corporation§!" # Bug Branch
+  ## Ecocentric
+  civic_bugged_bioeconomics_group: "§sBioeconomics Group§!" # Bug Branch
+  civic_bugged_lifes_shield: "§sLife's Shield§!" # Bug Branch
+  civic_bugged_naturally_integrated_supply_chains: "§sNaturally Integrated Supply Chains§!" # Bug Branch
+  civic_bugged_villatic_collective: "§sVillatic Collective§!" # Bug Branch
+  ## Elitist
+  civic_bugged_highborn_sovereignty: "§sHighborn Sovereignty§!" # Bug Branch
+  civic_bugged_patrician_court: "§sPatrician Court§!" # Bug Branch
+  civic_bugged_peerage_assembly: "§sPeerage Assembly§!" # Bug Branch
+  ## Materialist
+  civic_bugged_cyber_democracy: "§sCyber Democracy§!" # Bug Branch
+  civic_bugged_cyber_dictatorship: "§sCyber Dictatorship§!" # Bug Branch
+  civic_bugged_science_directorate: "§sScience Directorate§!" # Bug Branch
+  ## Militarist
+  civic_bugged_ordered_stratocracy: "§sOrdered Stratocracy§!" # Bug Branch
+  civic_bugged_war_council: "§sWar Council§!" # Bug Branch
+  civic_bugged_warlord: "§sWarlord§!" # Bug Branch
+  ## Pacifist
+  civic_bugged_enlightened_bureaucracy: "§sEnlightened Bureaucracy§!" # Bug Branch
+  civic_bugged_philosophers_assembly: "§sPhilosophers Assembly§!" # Bug Branch
+  civic_bugged_utopian_democracy: "§sUtopian Democracy§!" # Bug Branch
+  ## Pluralist
+  civic_bugged_cabinet_system: "§sCabinet System§!" # Bug Branch
+  civic_bugged_humble_cortege: "§sHumble Cortège§!" # Bug Branch
+  civic_bugged_peoples_committee: "§sPeople's Committee§!" # Bug Branch
+  ## Spiritualist
+  civic_bugged_divine_council: "§sDivine Council§!" # Bug Branch
+  civic_bugged_theocratic_republic: "§sTheocratic Republic§!" # Bug Branch
+
+  ### --- Unique AI Civics (Orange) --- ###
+  ## Fallen Empires
+  civic_ancient_caches_of_technology: "§HAncient Caches of Technology§!" # Vanilla
+  civic_malfunctioning_custodian: "§HCorrupted Defense Directives§!" # Vanilla
+  civic_custodian_directives: "§HCustodian Matrix§!" # Vanilla
+  civic_empire_in_decline: "§HEmpire in Decline§!" # Vanilla
+  civic_lethargic_leadership: "§HLethargic Leadership§!" # Vanilla
+  civic_machine_remnants: "§HFallen Machine Intelligence§!" # Vanilla
+  civic_final_defense_protocols: "§HFinal Defense Directives§!" # Vanilla
+  civic_awakened_machine: "§HReactivated Custodian Matrix§!" # Vanilla
+  civic_revanchist_fervor: "§HRevanchist Fervor§!" # Vanilla
+  ## Primitives
+  civic_atmospheric_pollution: "§HAtmospheric Pollution§!" # Vanilla
+  civic_hive_burgeoning_nodes: "§HBurgeoning Nodes§!" # Vanilla
+  civic_hive_centralized_consciousness: "§HCentralized Consciousness§!" # Vanilla
+  civic_flat_world_theory: "§HFlat World Theory§!" # Vanilla
+  civic_increasing_urbanization: "§HIncreasing Urbanization§!" # Vanilla
+  civic_landed_nobility: "§HLanded Nobility§!" # Vanilla
+  civic_life_seeded: "§HLife-Seeded§!" # Vanilla
+  civic_secret_of_fire: "§HSecret of Fire§!" # Vanilla
+  civic_the_wheel: "§HThe Wheel§!" # Vanilla
+  ## Enclaves
+  civic_ancient_preservers: "§HAncient Preservers§!" # Vanilla
+  civic_artist_collective: "§HArtist Collective§!" # Vanilla
+  civic_mercenary_enclave: "§HMercenary Enclave§!" # Vanilla
+  civic_salvager_enclave: "§HSalvager Enclave§!" # Vanilla
+  civic_shroudwalker_enclave: "§HShroudwalker Enclave§!" # Vanilla
+  civic_trading_conglomerate: "§HTrading Conglomerate§!" # Vanilla
+  ## Caravaneers
+  civic_caravaneer_caravansary: "§H§!" # Vanilla (empty by default)
+  civic_caravaneer_fleet1: "§HOrlan Topless Pyramid§!" # Vanilla
+  civic_caravaneer_fleet2: "§HMercantile Priesthood§!" # Vanilla
+  civic_caravaneer_fleet3: "§HAbsolute Commodifiers§!" # Vanilla
+  ## Other
+  civic_acot_phanon_fleet: "§HIndomitable Fleet§!" # ACOT
+  civic_acot_phanon_corps: "§HPhanon Corps§!" # ACOT
+  civic_ag_ancient_iota_enclave: "§HAncient Archive§!" # Ancient Empire
+  #civic_ag_inwards_perfection:0 "$civic_inwards_perfection$" # Ancient Empire
+  civic_AAA_archivists: "§HAncient Archivists§!" # Forgotten History
+  civic_AAA_insurgency: "§HInsurgents§!" # Forgotten History
+  civic_anarcho_tribalism: "§HAnarcho-Tribalism§!" # Vanilla
+  civic_ancient_machine_intelligence: "§HAncient Machine Intelligence§!" # Vanilla
+  civic_diadochi: "§HDiadochus§!" # Vanilla
+  civic_great_khans_legacy: "§HGreat Khan's Legacy§!" # Vanilla
+  civic_great_khans_vision: "§HGreat Khan's Vision§!" # Vanilla
+  civic_military_order: "§HMilitary Order§!" # Vanilla
