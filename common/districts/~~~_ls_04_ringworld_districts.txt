@@ -20,7 +20,8 @@ district_rw_city = {
 	exempt_from_ai_planet_specialization = yes
 
 	show_on_uncolonized = {
-		tde_uses_district_set_ring_world = yes # Subtle Polish
+		uses_district_set = ring_world
+		#tde_uses_district_set_ring_world = yes # Subtle Polish # LS - Works on Penrose, not intended
 		exists = from
 		from = { is_gestalt = no } # Merged
 		NOT = { # Gigastructural Engineering
@@ -29,7 +30,8 @@ district_rw_city = {
 	}
 
 	potential = {
-		tde_uses_district_set_ring_world = yes # Subtle Polish
+		uses_district_set = ring_world
+		#tde_uses_district_set_ring_world = yes # Subtle Polish # LS - Works on Penrose, not intended
 		exists = owner
 		owner = { is_gestalt = no } # Merged
 		NOT = { # Gigastructural Engineering
@@ -695,7 +697,8 @@ district_rw_commercial = {
 	is_capped_by_modifier = no
 
 	show_on_uncolonized = {
-		tde_uses_district_set_ring_world = yes # Subtle Polish
+		uses_district_set = ring_world
+		#tde_uses_district_set_ring_world = yes # Subtle Polish # LS - Allows on Penrose, not intended
 		exists = from
 		from = {
 			is_gestalt = no
@@ -707,7 +710,8 @@ district_rw_commercial = {
 	}
 
 	potential = {
-		tde_uses_district_set_ring_world = yes # Subtle Polish
+		uses_district_set = ring_world
+		#tde_uses_district_set_ring_world = yes # Subtle Polish # LS - Allows on Penrose, not intended
 		exists = owner
 		owner = {
 			is_gestalt = no
