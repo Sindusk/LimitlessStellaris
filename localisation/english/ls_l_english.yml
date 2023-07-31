@@ -5,7 +5,33 @@
 l_english:
 
 ##################
-# Vanilla Stuff
+# Limitless Stellaris Menu
+##################
+
+  dmm_mod_limitless_stellaris: "Limitless Stellaris" # Dynamic Mod Menu button name
+
+  ls_config: "Limitless Stellaris - Main Page"
+  ls_config_desc: "Configuration options for Limitless Stellaris."
+  ls_config_mod_menus: "Access Mod Menus"
+  ls_config_mod_menus_desc: "Opens a submenu listing all the mod menus that are hidden on game start for convenience. They are already configured as intended by Limitless Stellaris."
+  ls_dynamic_difficulty_desc: "The Dynamic Difficulty system for Limitless Stellaris will apply buffs to AI when they start falling behind. AI who are inferior or worse will start getting bonuses to economy and technology gain to help them catch up. This is done for each AI empire individually. The buff is very small but has infinite stages, allowing it to slowly nudge an AI into being a competitor. Once the AI has become more competitive, the buff begins to remove itself slowly to allow the AI to adapt naturally.\nThe target for dynamic difficulty is roughly §Ginferior§! level."
+  ls_config_dydiff_enable: "§GEnable§! Dynamic AI Difficulty"
+  ls_config_dydiff_enable_desc: "Dynamic difficulty is currently §pdisabled§!. If you would like to turn it on, select this option.\n\n$ls_dynamic_difficulty_desc$"
+  ls_config_dydiff_disable: "§pDisable§! Dynamic AI Difficulty"
+  ls_config_dydiff_disable_desc: "Dynamic difficulty is currently §Genabled§!. If you would like to turn it off, select this option.\n\n$ls_dynamic_difficulty_desc$\n\n§pImportant Note:§! Disabling this during the game will immediately remove all buffs from AI. This can cripple them if they're relying on the buff to manage their current economy."
+  ls_config_ecology_events_enable: "§GEnable§! Ecology Events"
+  ls_config_ecology_events_enable_desc: "Ecology events are currently §pdisabled§!. If you would like to enable them, select this option."
+  ls_config_ecology_events_disable: "§pDisable§! Ecology Events"
+  ls_config_ecology_events_disable_desc: "Ecology events are currently §Genabled§!. If you would like to disable them, select this option."
+
+  ## Mods Submenu
+  ls_config_mod_submenu: "Limitless Stellaris - Mod Menus"
+  ls_config_mod_submenu_desc: "All of the buttons below will open up the mod menu for their respective mod."
+  ls_config_modmenus_ace: "Aggressive Crisis Manager"
+  ls_config_modmenus_ace_desc: "Open the mod menu for Aggressive Crisis Manager."
+
+##################
+# Vanilla
 ##################
 
   # This stuff doesn't work unless it's not put in the replace folder, so here it is.

@@ -7,7 +7,7 @@
 on_press_begin = {
 	events = {
 		giga_preset.1 # Load the Gigastructural Engineering custom preset immediately.
-		ls_mod.1 # Limitless Stellaris AI boost
+		ls_mod.1 # Limitless Stellaris Configuration Menu
 	}
 }
 
@@ -16,5 +16,22 @@ on_press_begin = {
 on_monthly_pulse = {
 	events = {
 		ls_DyDiff_controller.1 # Pulse the dynamic difficulty.
+	}
+}
+
+## Dynamic Mod Menu Events
+on_game_start = {
+	events = {
+		dmm_mod.1919
+	}
+}
+on_single_player_save_game_load = {
+	events = {
+		dmm_mod.1919
+	}
+}
+dmm_mod_selected = {
+	events = {
+		dmm_mod.191919
 	}
 }

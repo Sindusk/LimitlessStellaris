@@ -1,0 +1,116 @@
+##########################################################################
+# Limitless Stellaris - Configuration Events
+##########################################################################
+
+namespace = lsmod
+
+## LS Mod 1 - Configuration Menu
+# Triggered Directly or from DMM
+country_event = {
+	id = lsmod.1
+	title = "ls_config"
+	desc = "ls_config_desc"
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+	}
+
+	immediate = {
+	}
+
+	after = {
+	}
+	
+	option = { # Open Mod Submenu
+		name = ls_config_mod_menus
+		hidden_effect = {
+			country_event = { id = lsmod.2 }
+		}
+        custom_tooltip = ls_config_mod_menus_desc
+	}
+	
+	option = { # Enable Dynamic Difficulty
+		name = ls_config_dydiff_enable
+		trigger = {
+			has_global_flag = ls_DyDiff_disabled
+		}
+		hidden_effect = {
+			remove_global_flag = ls_DyDiff_disabled
+			country_event = { id = lsmod.1 } # Re-open the menu
+		}
+        custom_tooltip = ls_config_dydiff_enable_desc
+	}
+	option = { # Disable Dynamic Difficulty
+		name = ls_config_dydiff_disable
+		trigger = {
+			NOT = { has_global_flag = ls_DyDiff_disabled }
+		}
+		hidden_effect = {
+			set_global_flag = ls_DyDiff_disabled
+			country_event = { id = lsmod.1 } # Re-open the menu
+		}
+        custom_tooltip = ls_config_dydiff_disable_desc
+	}
+	option = { # Enable Ecology Events
+		name = ls_config_ecology_events_enable
+		trigger = {
+			NOT = { has_global_flag = ls_ecology_events_enabled }
+		}
+		hidden_effect = {
+			set_global_flag = ls_ecology_events_enabled
+			country_event = { id = lsmod.1 } # Re-open the menu
+		}
+        custom_tooltip = ls_config_ecology_events_enable_desc
+	}
+	option = { # Disable Ecology Events
+		name = ls_config_ecology_events_disable
+		trigger = {
+			has_global_flag = ls_ecology_events_enabled
+		}
+		hidden_effect = {
+			remove_global_flag = ls_ecology_events_enabled
+			country_event = { id = lsmod.1 } # Re-open the menu
+		}
+        custom_tooltip = ls_config_ecology_events_disable_desc
+	}
+	option = { # Option to close the menu
+		name = OK
+	}
+}
+
+## LS Mod 2 - Mod Options Submenu
+# Triggered Directly
+# Scope: Country
+country_event = {
+	id = lsmod.2
+	title = "ls_config_mod_submenu"
+	desc = "ls_config_mod_submenu_desc"
+
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	after = {
+	}
+	
+	option = { # Open Mod Submenu
+		name = ls_config_modmenus_ace
+		hidden_effect = {
+			country_event = { id = lsmod.2 } # Re-open this menu.
+			country_event = { id = acemod_menu.1 } # Open the ACEMOD menu over the LS config menu.
+		}
+        custom_tooltip = ls_config_modmenus_ace
+	}
+	option = { # Option to close the menu
+		name = BACK
+		hidden_effect = {
+			country_event = { id = lsmod.1 } # Open the main configuration menu again.
+		}
+	}
+}

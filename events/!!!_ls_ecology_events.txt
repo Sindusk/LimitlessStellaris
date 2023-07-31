@@ -178,23 +178,26 @@ event = {
 				}
 				
 				# LS - These events are generally annoying and being removed for the collection.
-				#if = {																	# Run Pollution Events
-				#	limit = { 
-				#		years_passed > 0
-				#		NOT = { has_planet_flag = eco_pollution_event }
-				#	}
-				#	planet_event = { id = pollute.2 days = 10 }
-				#} else_if = {
-				#	limit = { NOT = { has_planet_flag = eco_pollution_event } }
-				#	planet_event = { id = pollute.2 }
-				#}
-				#if = {
-				#	limit = { 
-				#		years_passed > 9
-				#		NOT = { has_planet_flag = eco_pollution_event }
-				#	}
-				#	planet_event = { id = pollute.4 days = 30 }
-				#}
+				if = {
+					limit = { has_global_flag = ls_ecology_events_enabled } # Only have these occur if Ecology events are enabled.
+					if = {																	# Run Pollution Events
+						limit = { 
+							years_passed > 0
+							NOT = { has_planet_flag = eco_pollution_event }
+						}
+						planet_event = { id = pollute.2 days = 10 }
+					} else_if = {
+						limit = { NOT = { has_planet_flag = eco_pollution_event } }
+						planet_event = { id = pollute.2 }
+					}
+					if = {
+						limit = { 
+							years_passed > 9
+							NOT = { has_planet_flag = eco_pollution_event }
+						}
+						planet_event = { id = pollute.4 days = 30 }
+					}
+				}
 			}
 		}
 	}

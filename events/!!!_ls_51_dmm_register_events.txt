@@ -1,0 +1,47 @@
+##########################################################################
+# Limitless Stellaris - Dynamic Mod Menu Registration Events
+##########################################################################
+
+namespace = dmm_mod
+
+## Dynamic Mod Menu 1919 - Registration for Dynamic Mod Menu
+# Triggered on Game Start
+# Scope: None
+event = {
+	id = dmm_mod.1919
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_flag = dmm_installed } }
+			set_global_flag = dmm_mod_limitless_stellaris
+		}
+		else = {
+			dmm_register_mod = {
+				DMM_NAME = dmm_mod_limitless_stellaris
+				DMM_FLAG = dmm_mod_limitless_stellaris
+			}
+			if = {
+				limit = { has_global_flag = dmm_mod_limitless_stellaris }
+				remove_global_flag = dmm_mod_limitless_stellaris
+			}
+		}
+	}
+}
+
+## Dynamic Mod Menu 191919 - Open Configuration Menu
+# Triggered Directly
+# Scope: Country
+country_event = {
+	id = dmm_mod.191919
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		from = {
+			has_leader_flag = dmm_mod_limitless_stellaris
+		}
+	}
+	immediate = {
+		country_event = { id = lsmod.1 } # Open settings menu
+	}
+}
