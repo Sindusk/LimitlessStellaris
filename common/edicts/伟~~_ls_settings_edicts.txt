@@ -101,6 +101,90 @@ MM_edict = {
 	effect = { hidden_effect = { FW_eft_cntr_SETTING = yes } }		#_[MM¿ò¼ÜÃæ°å]
 }
 
+### Daemonic Incursion
+# Remove Overtuned edict.
+overtuned_quest = {
+	length = 1
+	icon = "GFX_edict_type_time"
+	resources = { category = edicts }
+	potential = {
+		always = no # LS - Disabled through potential.
+		#NOR = {
+		#	is_ai = yes
+		#	years_passed > 1
+		#	has_country_flag = decision_overtuned
+		#	has_origin = origin_overtuned
+		#}
+		#has_toxoids = yes
+	}
+	allow = {
+		NOR = {
+			has_country_flag = decision_toxic_knights
+			has_active_event = { toxoids_decision.100 }
+		}
+	}
+	effect = {
+		hidden_effect = {
+			country_event = { id = toxoids_decision.100 }
+		}
+	}
+	ai_weight = { weight = 0 }
+}
+# Remove Toxic Knights Quest edict.
+toxic_knight_quest = {
+	length = 1
+	icon = "GFX_resource_menace"
+	resources = { category = edicts }
+	potential = {
+		always = no # LS - Disabled through potential.
+		#NOR = {
+		#	is_ai = yes
+		#	years_passed > 1
+		#	has_global_flag = toxic_god_spawned
+		#	has_country_flag = decision_toxic_knights
+		#	has_origin = origin_toxic_knights
+		#	has_origin = origin_doomsday
+		#	is_gestalt = yes			# TODO?
+		#	has_valid_civic = civic_fanatic_purifiers
+		#	has_valid_civic = civic_dystopian_society
+		#}
+		# NAND = {
+		# 	any_playable_country = { has_origin = origin_toxic_knights }
+		# 	years_passed > 1
+		# }
+		has_toxoids = yes
+	}
+	allow = {
+		NOR = {
+			has_country_flag = decision_overtuned
+			has_active_event = { toxoids_decision.0 }
+		}
+		# OR = {
+		# Only real homeworld
+		exists = home_planet
+		home_planet = {
+			is_colony = yes
+			is_owned_by = prev
+			is_controlled_by = prev
+		}
+		# 	AND = {
+		# 		exists = capital_scope
+		# 		capital_scope = {
+		# 			is_colony = yes
+		# 			is_owned_by = prev
+		# 			is_controlled_by = prev
+		# 		}
+		# 	}
+		# }
+	}
+	effect = {
+		hidden_effect = {
+			country_event = { id = toxoids_decision.0 }
+		}
+	}
+	ai_weight = { weight = 0 }
+}
+
 ### Extra Ship Components NEXT
 # Remove settings edict.
 esc_mod_control_edict = {
