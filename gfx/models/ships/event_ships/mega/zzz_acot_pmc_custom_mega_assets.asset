@@ -1,0 +1,306 @@
+# Phanon Star Traveler - scaled up 6x
+
+entity = {
+	name = "acot_pmc_master_reactor_entity"
+	pdxmesh = "mammalian_01_citadel_frame_mesh"
+	
+	scale = 10 #5
+
+	locator = { name = "center"	position = { 0 	0  0 } rotation = { 0 0 0 } }	
+	locator = { name = "center_2"	position = { 0 	0  0 } rotation = { 0 0 -90 } }	
+
+	locator = { name = "pylon"	position = { 0 25  0 } rotation = { 0 -90 0 } }	
+	locator = { name = "pylon_2"	position = { 0 -25  0 } rotation = { 0 90 0 } }	
+
+	locator = { name = "engine"	position = { 0 0  -85 } rotation = { 180 0 180 } }	
+	locator = { name = "front_ring"	position = { 0 0  65 } rotation = { 90 -0 0 } }	
+	locator = { name = "front"	position = { 0 0  120 } rotation = { 180 0 0 } }	
+	locator = { name = "back_ring"	position = { 0 0 -65 } rotation = { 90 0 0 } }	
+
+	locator = { name = "left"	position = { 80 0  -0 } rotation = { 90 0 0 } }	
+	locator = { name = "right"	position = { -80 0  -0 } rotation = { 90 -0 0 } }	
+
+	default_state = "idle"
+	state = { name = "idle" animation_speed = 0.2 
+		#event = { time = 0 node = "center" particle = "gateway_portal_effect" keep_particle = yes trigger_once = yes sound = { soundeffect = "megastructure_gate_way_portal_hum" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_hum" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_pulse" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "sfx_interstellar_assembly_beats" } }
+	}
+	
+	attach = { center = "acot_pmc_master_reactor_core_entity" }
+	attach = { center = "acot_pmc_master_reactor_dyson_panel_entity" }
+	attach = { pylon = "acot_pmc_master_reactor_dyson_pylon_entity" }
+	attach = { pylon_2 = "acot_pmc_master_reactor_dyson_pylon_entity" }
+
+	#attach = { front = "acot_pmc_master_reactor_front_entity" }
+	attach = { engine = "acot_pmc_master_reactor_back_entity" }
+
+	#attach = { front_ring = "acot_pmc_master_reactor_smaller_ring_entity" }
+	#attach = { back_ring = "acot_pmc_master_reactor_ring_entity" }
+
+}
+
+entity = {
+	name = "acot_pmc_master_reactor_ring_entity"
+	pdxmesh = "acot_pmc_colossus_rings_mesh"
+	
+	scale = 1.5 #0.75
+
+	get_state_from_parent = no
+	
+	locator = { name = "center"	position = { 0 	0  0 } rotation = { 0 0 90 } }	
+
+	attach = { center = "acot_pmc_portal_hole_entity" }
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" }
+}
+
+entity = {
+	name = "acot_pmc_master_reactor_smaller_ring_entity"
+	pdxmesh = "acot_pmc_colossus_rings_mesh"
+	
+	scale = 1.3 #0.65
+
+	get_state_from_parent = no
+	
+	locator = { name = "center"	position = { 0 	0  0 } rotation = { 0 0 90 } }	
+
+	attach = { center = "acot_pmc_portal_hole_entity" }
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" }
+}
+
+
+
+entity = {
+	name = "acot_pmc_master_reactor_front_entity"
+	pdxmesh = "acot_pmc_battleship_long_xl_mesh"
+
+	scale = 3.5 #1.75
+
+	default_state = "idle"
+	state = { name = idle	state_time = 5
+		event = { time = 0 node = "light_01" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_02" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+	}
+
+	state = { name = moving	state_time = 5
+		event = { time = 0 node = "light_01" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_02" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+	}
+
+	state = { name = "death" state_time = 5 }
+
+	# XL weapon windup locator names: xl_windup_1-10
+}
+
+entity = {
+	name = "acot_pmc_master_reactor_back_entity"
+	pdxmesh = "acot_pmc_juggernaut_mesh"
+	
+	scale = 2.1 #1.05
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		event = { time = 0 node = "engine_large_01" particle = "juggernaut_mam_exhaust_idle_l" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_large_02" particle = "juggernaut_mam_exhaust_idle_l" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_large_03" particle = "juggernaut_mam_exhaust_idle_l" trigger_once = yes keep_particle = yes }
+
+		event = { time = 0 node = "engine_medium_01" particle = "juggernaut_mam_exhaust_idle_m" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_medium_02" particle = "juggernaut_mam_exhaust_idle_m" trigger_once = yes keep_particle = yes }
+		
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_04" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_05" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_06" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		
+		event = { trigger_once = yes sound = { soundeffect = juggernaut_mammalian_idle } }
+	}
+	state = { name = "moving" animation = "idle"
+		event = { time = 0 node = "engine_large_01" particle = "juggernaut_mam_exhaust_moving_2_l" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_large_02" particle = "juggernaut_mam_exhaust_moving_l" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_large_03" particle = "juggernaut_mam_exhaust_moving_l" trigger_once = yes keep_particle = yes }
+
+		event = { time = 0 node = "engine_medium_01" particle = "juggernaut_mam_exhaust_moving_m" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_medium_02" particle = "juggernaut_mam_exhaust_moving_m" trigger_once = yes keep_particle = yes }
+	
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_04" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_05" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_06" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+
+		event = { sound = { soundeffect = juggernaut_mammalian_move } }
+	}
+	state = { name = "death" animation = "death" looping = no 
+		event = { time = 1.1 node = "explosion_locator_01" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 1.8 node = "explosion_locator_02" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 3.1 node = "explosion_locator_03" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 4.4 node = "explosion_locator_04" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 4.7 node = "explosion_locator_05" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 5.2 node = "explosion_locator_06" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 6.5 node = "explosion_locator_07" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 6.9 node = "explosion_locator_08" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+	
+		event = { time = 6.96 node = "big_explosion_locator" particle = "small_2_player_ship_explosion_particle" keep_particle = yes trigger_once = no }
+		event = { time = 6.96 node = "big_explosion_locator" particle = "juggernaut_burn_effect" keep_particle = yes trigger_once = no }
+	}
+	
+	#game_data = {
+	#	trail_locators = {
+	#		"engine_large_01" = 		{ width = @large_trail_W 	lenght = @large_trail_L   	}
+	#		"engine_large_02" = 		{ width = @large_trail_W 	lenght = @large_trail_L   	}
+	#		"engine_large_03" = 		{ width = @large_trail_W 	lenght = @large_trail_L   	}
+	#	}
+	#}
+}
+
+entity = {
+	name = "acot_pmc_master_reactor_core_entity"
+	pdxmesh = "mega_shipyard_01_stage_3_mesh"
+	locator = { name = "core" }
+	
+	scale = 3.3 #1.65
+
+	meshsettings = {
+		name = "Mega_Shipyard010Shape"
+		index = 0
+		texture_diffuse = "acot_pmc_mega_shipyard_diffuse.dds"
+		texture_normal = "mammalian_01_mega_shipyard_normal.dds"
+		texture_specular = "acot_pmc_mega_shipyard_specular.dds"
+		shader = "PdxMeshShip"
+	}
+	
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_speed = 0.7
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+
+		event = { time = 0 node = "station_main" particle = "acot_pe_mega_shipyard_core_effect" keep_particle = yes trigger_once = yes }
+
+		event = { time = 2.0 node = "station_main" particle = "acot_pe_mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+		event = { time = 6.05 node = "station_main" particle = "acot_pe_mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+		event = { time = 10.3 node = "station_main" particle = "acot_pe_mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+		event = { time = 14.5 node = "station_main" particle = "acot_pe_mega_shipyard_core_lightning_effect" keep_particle = yes trigger_once = no sound = { soundeffect = mega_shipyard_electricity_amb } }
+
+		event = { time = 0 node = "exhaust_1" particle = "acot_pe_mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "exhaust_2" particle = "acot_pe_mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "exhaust_3" particle = "acot_pe_mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "exhaust_4" particle = "acot_pe_mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "exhaust_5" particle = "acot_pe_mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "exhaust_6" particle = "acot_pe_mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "exhaust_7" particle = "acot_pe_mega_shipyard_core_lightning_exhaust_effect" keep_particle = yes trigger_once = yes }
+
+		event = { time = 7.0 node = "core" entity = "mega_shipyard_01_light_front_1_1_entity" trigger_once = no life = 0.8	}
+		event = { time = 7.2 node = "core" entity = "mega_shipyard_01_light_front_1_2_entity" trigger_once = no life = 0.7	}
+		event = { time = 7.4 node = "core" entity = "mega_shipyard_01_light_front_1_3_entity" trigger_once = no life = 0.6	}
+		event = { time = 7.6 node = "core" entity = "mega_shipyard_01_light_front_1_4_entity" trigger_once = no life = 0.5	}
+		event = { time = 7.8 node = "core" entity = "mega_shipyard_01_light_front_1_5_entity" trigger_once = no life = 0.4	}
+
+		event = { time = 8.2 node = "core" entity = "mega_shipyard_01_light_front_2_1_entity" trigger_once = no life = 0.8	}
+		event = { time = 8.4 node = "core" entity = "mega_shipyard_01_light_front_2_2_entity" trigger_once = no life = 0.7	}
+		event = { time = 8.6 node = "core" entity = "mega_shipyard_01_light_front_2_3_entity" trigger_once = no life = 0.6	}
+		event = { time = 8.8 node = "core" entity = "mega_shipyard_01_light_front_2_4_entity" trigger_once = no life = 0.5	}
+		event = { time = 9.0 node = "core" entity = "mega_shipyard_01_light_front_2_5_entity" trigger_once = no life = 0.4	}
+
+		event = { time = 9.4 node = "core" entity = "mega_shipyard_01_light_front_3_1_entity" trigger_once = no 	life = 0.8	}
+		event = { time = 9.6 node = "core" entity = "mega_shipyard_01_light_front_3_2_entity" trigger_once = no 	life = 0.7	}
+		event = { time = 9.8 node = "core" entity = "mega_shipyard_01_light_front_3_3_entity" trigger_once = no 	life = 0.6	}
+		event = { time = 10.0 node = "core" entity = "mega_shipyard_01_light_front_3_4_entity" trigger_once = no 	life = 0.5	}
+		event = { time = 10.2 node = "core" entity = "mega_shipyard_01_light_front_3_5_entity" trigger_once = no 	life = 0.4	}
+
+		event = { time = 10.5 node = "lightning_charge_1" particle = "mega_shipyard_lightning_charge_2_effect" keep_particle = yes trigger_once = no }
+
+		event = { time = 10.60 node = "lightning_charge_s_1" particle = "acot_pe_mega_shipyard_lightning_charge_2_s_effect" keep_particle = yes trigger_once = no }
+		event = { time = 10.60 node = "lightning_charge_s_2" particle = "acot_pe_mega_shipyard_lightning_charge_2_s_effect" keep_particle = yes trigger_once = no }
+		event = { time = 11.10 node = "lightning_charge_s_3" particle = "acot_pe_mega_shipyard_lightning_charge_2_s_effect" keep_particle = yes trigger_once = no }
+		event = { time = 11.10 node = "lightning_charge_s_4" particle = "acot_pe_mega_shipyard_lightning_charge_2_s_effect" keep_particle = yes trigger_once = no }
+
+		event = { time = 10.55 node = "core" entity = "mega_shipyard_01_light_circle_1_entity" trigger_once = no life = 1}
+		event = { time = 10.65 node = "core" entity = "mega_shipyard_01_light_circle_2_entity" trigger_once = no life = 1}
+		event = { time = 11.15 node = "core" entity = "mega_shipyard_01_light_circle_3_entity" trigger_once = no life = 1}
+		
+		event = { trigger_once = yes sound = { soundeffect = "mega_shipyard_idle" } }
+		event = { sound = { soundeffect = "mega_shipyard_metal_amb" } }
+
+	}
+	state = { name = "death" animation = "death" looping = no
+		event = { time = 2.1 node = "explosion_locator_01" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 2.6 node = "explosion_locator_02" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 3.1 node = "explosion_locator_03" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 3.4 node = "explosion_locator_04" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 4.2 node = "explosion_locator_05" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+		event = { time = 4.6 node = "explosion_locator_06" particle = "juggernaut_hull_explosion_effect" keep_particle = yes trigger_once = no }
+	}	
+
+	attach = { core = "acot_pmc_mega_shipyard_01_light_front_entity" }
+	attach = { core = "acot_pmc_mega_shipyard_01_hangarlights_3_entity" }
+	attach = { gimbal_machine_mid = "acot_pmc_mega_shipyard_01_core_effect_entity" }
+	attach = { gimbal_machine_innerY = "acot_pmc_mega_shipyard_01_core_effect_light_entity" }
+	attach = { gimbal_machine_mid = "acot_pmc_mega_shipyard_01_core_effect_light_2_entity" }
+}
+
+entity = {
+	name = "acot_pmc_master_reactor_dyson_panel_entity"
+	locator = { name = "root"	position = { 0 	0  0 } }	
+	
+	attach = { "root" = "acot_pmc_dyson_sphere_frame_entity" }
+	#attach = { "root" = "acot_pmc_dyson_sphere_part_2_entity" }
+	attach = { "root" = "acot_pmc_dyson_sphere_part_3_entity" }
+	attach = { "root" = "acot_pmc_dyson_sphere_part_4_entity" }
+
+	attach = { "root" = "penta_rays_short_entity" }
+	attach = { "root" = "hexa_rays_entity" }
+	
+	scale = 0.28 #0.14
+	cull_radius = 500
+}
+
+entity = {
+	name = "acot_pmc_master_reactor_dyson_pylon_entity"
+	pdxmesh = "matter_decompressor_01_stage_4_mesh"
+	
+	scale = 0.4 #0.20
+
+		meshsettings = {
+			name = "body4Shape"
+			index = 0
+			texture_diffuse = "acot_pmc_matter_decompressor_diffuse.dds"
+			texture_normal = "mammalian_01_matter_decompressor_normal.dds"
+			texture_specular = "acot_pmc_matter_decompressor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" 
+		start_event = { node = "effect_1" particle = "acot_pe_core_beam_effect" keep_particle = yes trigger_once = yes }
+	
+		start_event = { node = "platform_1" particle = "acot_pe_platform_beam_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "platform_2" particle = "acot_pe_platform_beam_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "platform_3" particle = "acot_pe_platform_beam_effect" keep_particle = yes trigger_once = yes }
+		
+		start_event = { node = "core" particle = "acot_pe_shock_hole_effect" keep_particle = yes trigger_once = yes }
+	
+		start_event = { node = "inner_beam_1" particle = "acot_pe_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "inner_beam_2" particle = "acot_pe_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "inner_beam_3" particle = "acot_pe_core_small_beam_effect" keep_particle = yes trigger_once = yes }
+	
+		start_event = { node = "platform_beam_1" particle = "acot_pe_platform_small_beam_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "platform_beam_2" particle = "acot_pe_platform_small_beam_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "platform_beam_3" particle = "acot_pe_platform_small_beam_effect" keep_particle = yes trigger_once = yes }
+	
+		start_event = { node = "light_locator_01" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "light_locator_02" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "light_locator_03" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "light_locator_04" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "light_locator_05" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+		start_event = { node = "light_locator_06" particle = "ship_light_red_effect" keep_particle = yes trigger_once = yes }
+
+	}
+}
