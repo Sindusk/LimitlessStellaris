@@ -25,6 +25,7 @@ l_english:
   civic_bugged_machine_cult: "§SMachine Cult§!" # Bug Branch
   civic_bugged_slave_race: "§SSlave Race§!" # Bug Branch
   civic_bugged_war_cult: "§SWar Cult§!" # Bug Branch
+  civic_drow_warriors: "§STekartas§!" # Elves of Stellaris
   civic_anarcho_tyranny: "§SAnarcho-Tyranny§!" # EMEX
   civic_crystalline_energy_grid_v2: "§SCrystalline Energy Grid§!" # EMEX
   civic_blight_anarchism: "§SDestructive Anarchism§!" # EMEX
@@ -37,8 +38,26 @@ l_english:
   civic_sovereign_nations: "§SSovereign Nations§!" # EMEX
   civic_blight_vigilantes: "§SViolent Vigilantes§!" # EMEX
   civic_volatile_farming_methods: "§SVolatile Farming Designs§!" # EMEX
+  civic_the_way: "§SBattle Forged§!" # Expanded Gestalts
   civic_world_crackers: "§SWorld Crackers§!" # Forgotten History
   civic_outside_the_border: "§SOutside The Border§!" # Galactic Imperium Origin
+  civic_giga_common_cause: "§HPangalactic Common Cause§!" # Gigastructural Engineering
+  civic_spirit_of_the_kaiser: "§HSpirit of the Kaiser§!" # Gigastructural Engineering
+  civic_against_hyperweapon: "§HThe Eternal Bastion§!" # Gigastructural Engineering
+  lrsk_adv_civ_civic_artificers: "§HArtificers§!" # Government Variety Pack
+  lrsk_adv_civ_civic_essentialists: "§HEssentialists§!" # Government Variety Pack
+  lrsk_adv_civ_civic_shapers: "§HShapers§!" # Government Variety Pack
+  civic_mechlords: "§HMech Lords§!" # Invasion!
+  civic_pyroviles: "§HPyroviles§!" # Lithoid Supremacy
+  civic_organic_zealots: "§SOrganic Zealots§!" # Organic Zealots
+  civic_champion_fleet: "§SArmada of the Champion§!" # Secrets Beyond the Gates
+  civic_champion_empire: "§SChampion of the Light§!" # Secrets Beyond the Gates
+  civic_champion_knowledge: "§SMaster of the Universe§!" # Secrets Beyond the Gates
+  civic_redeemed_purifiers: "§SRedeemed Purifiers§!" # Secrets Beyond the Gates
+  civic_shroud_relic: "§SRelic Treasure§!" # Shroud Expanded
+  civic_geneticists: "§SGeneticists§!" # Silfae's Portraits
+  civic_terraformers: "§STerraformers§!" # Silicoid Portraits
+  civic_anglers: "§SAnglers§!" # Vanilla - Aquatics
   civic_barbaric_despoilers: "§SBarbaric Despoilers§!" # Vanilla
   civic_eager_explorers: "§SEager Explorers§!" # Vanilla
   civic_fanatic_purifiers: "§SFanatic Purifiers§!" # Vanilla
@@ -58,8 +77,11 @@ l_english:
   civic_bugged_mega_merchandisers: "§SMega Merchandisers§!" # Bug Branch
   civic_bugged_slave_race_corpo: "§SSlave Race§!" # Bug Branch
   civic_corporate_world_crackers: "§SWorld Crackers§!" # Forgotten History
+  lrsk_gov_var_civic_mc_chartered_company: "§SChartered Company§!" # Government Variety Pack
+  lrsk_gov_var_civic_mc_chart_corp_board: "§SColonial Chartering§!" # Government Variety Pack
   civic_criminal_heritage: "§SCriminal Heritage§!" # Vanilla
   civic_privatized_exploration: "§SPrivatized Exploration§!" # Vanilla
+  civic_maniac_monopoly: "§SManiacal Monopolists§!" # Venture Politics
   ## Hive Civics
   civic_bugged_hive_aggressive_proliferation: "§SAggressive Proliferation§!" # Bug Branch
   civic_bugged_hive_megabiotic_aspirations: "§SMegabiotic Aspirations§!" # Bug Branch
@@ -68,11 +90,18 @@ l_english:
   civic_hive_manipulators_of_life: "§SGenetic Manipulators§!" # EMEX
   civic_hive_cyborgs: "§SRudimentary Cybernetics§!" # EMEX
   civic_hive_splintered: "§SSplintered Hives§!" # EMEX
+  civic_hive_the_way: "§SBattle Forged§!" # Expanded Gestalts
+  civic_hive_strong_connection: "§SBiointegrated Tech§!" # Expanded Gestalts
+  civic_mutualistic_behavior: "§SMutualistic Behavior§!" # Expanded Gestalts
+  civic_hive_parasitic: "§SParasitic Embryos§!" # Expanded Gestalts
+  civic_hive_for_the_swarm: "§SFor the Swarm§!" # Omega's Stellaris Additions
+  civic_redeemed_swarm: "§SRedeemed Swarm§!" # Secrets Beyond the Gates
   civic_hive_devouring_swarm: "§SDevouring Swarm§!" # Vanilla
   #civic_hive_idyllic_bloom:0 "$civic_idyllic_bloom$" # Vanilla
   civic_hive_stargazers: "§SStargazers§!" # Vanilla
   civic_hive_devouring_swarm_lithoid: "§STerravore§!" # Vanilla
   ## Machine Civics
+  civic_machine_nanites_culture: "§SNanite Culture§!" # A Deadly Tempest
   civic_acot_rogue_precursor_fleet: "§SAncient Databank Command Network§!" # ACOT
   civic_acot_rogue_precursor_data: "§SAncient Databank Archive§!" # ACOT
   civic_acot_rogue_precursor: "§SAncient Databank Intelligence§!" # ACOT
@@ -82,6 +111,12 @@ l_english:
   #civic_bugged_machine_tock_executive_servitor: "$civic_bugged_machine_tock_executive$" # Bug Branch
   civic_bugged_machine_stripmine: "§SVon Neumann Machines§!" # Bug Branch
   civic_machine_selfreplicating_machines: "§SNanomechanical Innards§!" # EMEX
+  civic_machine_replicators: "§SReplicators§!" # Expanded Gestalts
+  xvcv_mdlc_civic_emotion_emulator: "§SGoods Distributor§!" # Machine & Robot Expansion
+  xvcv_mdlc_civic_machine_learning: "§SMachine Learning Algorithms§!" # Machine & Robot Expansion
+  xvcv_mdlc_civic_relic_unknown_core: "§SMysterious Find§!" # Machine & Robot Expansion
+  xvcv_mdlc_civic_planet_cracker: "§SPlanet Cracker§!" # Machine & Robot Expansion
+  civic_redeemed_terminator: "§SRedeemed Exterminators§!" # Secrets Beyond the Gates
   civic_machine_terminator: "§SDetermined Exterminator§!" # Vanilla
   civic_machine_assimilator: "§SDriven Assimilator§!" # Vanilla
   civic_machine_exploration_protocol: "§SExploration Protocols§!" # Vanilla
@@ -134,6 +169,11 @@ l_english:
 
   ### --- Unique AI Civics (Orange) --- ###
   ## Fallen Empires
+  #civic_bogged_down_researchers:0 "$personality_fallen_empire_pouchkinn$" # Gigastructural Engineering
+  #civic_deranged_researchers:0 "$personality_fallen_empire_awoken_pouchkinn$" # Gigastructural Engineering
+  civic_experienced_gamers: "§HBaleful Attackers§!" # Gigastructural Engineering
+  civic_disinterested_gamers: "§HDisinterested Gamers§!" # Gigastructural Engineering
+  civic_lethargic_gamers: "§HSlothful Defenders§!" # Gigastructural Engineering
   civic_ancient_caches_of_technology: "§HAncient Caches of Technology§!" # Vanilla
   civic_malfunctioning_custodian: "§HCorrupted Defense Directives§!" # Vanilla
   civic_custodian_directives: "§HCustodian Matrix§!" # Vanilla
@@ -144,6 +184,15 @@ l_english:
   civic_awakened_machine: "§HReactivated Custodian Matrix§!" # Vanilla
   civic_revanchist_fervor: "§HRevanchist Fervor§!" # Vanilla
   ## Primitives
+  mem_colony_ship_civic_one: "§HIdeological Factionalism§!" # More Events Mod
+  mem_colony_ship_civic_two: "§HFrontier Disorganization§!" # More Events Mod
+  civic_mem_colonial_greed: "§HColonial Greed§!" # More Events Mod
+  civic_mem_colonial_administration: "§HColonial Administration§!" # More Events Mod
+  civic_mem_land_of_opportunity: "§HLand of Opportunity§!" # More Events Mod
+  civic_mem_declaration_of_independence: "§HDeclaration of Independence§!" # More Events Mod
+  civic_mem_rebellion_quelled: "§HRebellion Quelled§!" # More Events Mod
+  civic_mem_never_again: "§HNever Again§!" # More Events Mod
+  civic_mem_memories_of_homeworld: "§HMemories of Homeworld§!" # More Events Mod
   civic_atmospheric_pollution: "§HAtmospheric Pollution§!" # Vanilla
   civic_hive_burgeoning_nodes: "§HBurgeoning Nodes§!" # Vanilla
   civic_hive_centralized_consciousness: "§HCentralized Consciousness§!" # Vanilla
@@ -170,11 +219,61 @@ l_english:
   civic_acot_phanon_corps: "§HPhanon Corps§!" # ACOT
   civic_ag_ancient_iota_enclave: "§HAncient Archive§!" # Ancient Empire
   #civic_ag_inwards_perfection:0 "$civic_inwards_perfection$" # Ancient Empire
+  civic_projcrim_throng: "§HDivergent Multitude§!" # Crimson Throng
+  civic_ascended_empire: "§HAscended Empire§!" # Dawn of Ascension
+  civic_banished_empire: "§HBanished Empire§!" # Dawn of Ascension
+  civic_demilitarized: "§HDemilitarized§!" # Dawn of Ascension
+  civic_isolationist_empire: "§HIsolationist Empire§!" # Dawn of Ascension
+  civic_isolationist_ideals: "§HIsolationist Ideals§!" # Dawn of Ascension
+  civic_national_humiliation: "§HNational Humiliation§!" # Dawn of Ascension
+  civic_secured_borders: "§HSecured Borders§!" # Dawn of Ascension
   civic_AAA_archivists: "§HAncient Archivists§!" # Forgotten History
   civic_AAA_insurgency: "§HInsurgents§!" # Forgotten History
+  civic_reunited_imperium_socialist: "§HReunited Imperium - Galactic Revolution§!" # Gigastructural Engineering
+  civic_reunited_imperium_republic: "§HReunited Imperium - Grand Republic§!" # Gigastructural Engineering
+  civic_reunited_imperium_junta: "§HReunited Imperium - New Order§!" # Gigastructural Engineering
+  civic_reunited_imperium_realm: "§HReunited Imperium - Peaceful Ways§!" # Gigastructural Engineering
+  civic_laurandar_aaron: "§HThe Laurnaise System§!" # Gigastructural Engineering
+  civic_mem_the_way: "§HThe Way§!" # More Events Mod
+  civic_mercenary_worshippers: "§HFanatic Servants§!" # Pirate Waves
+  civic_pspmod_possessive_consciousness_hive: "§HPossessive Consciousness§!" # Precursor Story Pack
+  civic_pspmod_possessive_consciousness_machine: "§HPossessive Consciousness§!" # Precursor Story Pack
+  civic_eternal_fleet: "§HCelestial Armada§!" # Secrets Beyond the Gates
+  civic_eternal_fleet_passive: "§HCelestial Armada§!" # Secrets Beyond the Gates
+  civic_eternal_fleet_ascended: "§HCelestial Armada§!" # Secrets Beyond the Gates
+  civic_solar_empire: "§HChampion of the Light§!" # Secrets Beyond the Gates
+  civic_know_everything: "§HMaster of the Universes§!" # Secrets Beyond the Gates
+  civic_know_everything_passive: "§HSilent Watcher§!" # Secrets Beyond the Gates
+  civic_know_everything_ascended: "§HMaster of the Universes§!" # Secrets Beyond the Gates
+  civic_know_everything_playable: "§HMaster of the Universes§!" # Secrets Beyond the Gates
+  civic_know_everything_playable_singular: "§HMaster of the Universes§!" # Secrets Beyond the Gates
+  civic_solar_empire_passive: "§HThe Stellarborne§!" # Secrets Beyond the Gates
+  civic_solar_empire_ascended: "§HThe Stellarborne§!" # Secrets Beyond the Gates
+  civic_solar_empire_playable: "§HThe Stellarborne§!" # Secrets Beyond the Gates
+  civic_solar_empire_playable_singular: "§HThe Stellarborne§!" # Secrets Beyond the Gates
+  civic_abyssal_children: "§HChildren of the Abyss§!" # Solar Storm
   civic_anarcho_tribalism: "§HAnarcho-Tribalism§!" # Vanilla
   civic_ancient_machine_intelligence: "§HAncient Machine Intelligence§!" # Vanilla
   civic_diadochi: "§HDiadochus§!" # Vanilla
   civic_great_khans_legacy: "§HGreat Khan's Legacy§!" # Vanilla
   civic_great_khans_vision: "§HGreat Khan's Vision§!" # Vanilla
   civic_military_order: "§HMilitary Order§!" # Vanilla
+  civic_all_seeing_eye: "§HAll-Seeing Eye§!" # ZOFE
+  civic_all_seeing_machine: "§HAll-Seeing Machine§!" # ZOFE
+  civic_beacon_of_prosperity: "§HBeacon of Prosperity§!" # ZOFE
+  civic_lost_empire_empire_in_decline: "§HEmpire in Decline§!" # ZOFE
+  civic_lost_empire_hive_remnants: "§HFallen Hive Mind§!" # ZOFE
+  civic_lost_empire_machine_remnants: "§HFallen Machine Intelligence§!" # ZOFE
+  civic_fallen_power: "§HFallen Power§!" # ZOFE
+  civic_galactic_superpower: "§HGalactic Superpower§!" # ZOFE
+  civic_industrial_juggernaut: "§HIndustrial Juggernaut§!" # ZOFE
+  civic_lost_empire_custodian_directives: "§HInfected Matrix§!" # ZOFE
+  civic_lost_empire_hive_sickness: "§HInfected Mind§!" # ZOFE
+  civic_lost_empire_lethargic_leadership: "§HLethargic Leadership§!" # ZOFE
+  civic_lost_fervor: "§HLost Fervor§!" # ZOFE
+  civic_national_humiliation: "§HNational Humiliation§!" # ZOFE
+  civic_societal_stagnation: "§HSocietal Stagnation§!" # ZOFE
+  civic_societal_turmoil: "§HSocietal Turmoil§!" # ZOFE
+  civic_spymaster: "§HSpymaster§!" # ZOFE
+  civic_treaty_bound: "§HTreaty Bound§!" # ZOFE
+  civic_world_architect: "§HWorld Architect§!" # ZOFE
