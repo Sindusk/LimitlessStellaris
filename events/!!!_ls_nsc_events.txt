@@ -1,0 +1,20 @@
+##########################################################################
+# Limitless Stellaris - NSC Events
+##########################################################################
+namespace = nsc_modmenu
+
+country_event = {
+	id = nsc_modmenu_etc.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = nsc_on_press_begin }
+		is_ai = no
+	}
+
+	immediate = {
+		set_global_flag = nsc_on_press_begin
+		#nsc_modmenu_open_effect = yes # LS - Suppress the mod menu.
+	}
+}
