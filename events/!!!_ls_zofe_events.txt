@@ -1,0 +1,548 @@
+##########################################################################
+# Limitless Stellaris - ZOFE Events
+##########################################################################
+namespace = zofe_menu
+
+country_event = {
+	id = zofe_menu.0
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_ai = no
+		NOT = { has_global_flag = zofe_menu_fired }
+	}
+	
+	immediate = {
+		set_global_flag = zofe_menu_fired
+		set_country_flag = zofe_host_country
+		#country_event = { id = zofe_menu.1 } # LS - Suppress the main menu
+
+		## LS - Everything below is copied from zofe_menu.1 event.
+		if = {
+			limit = {
+				NOT = { has_global_flag = zofe_settings_generated }
+			}
+	
+			#Generate Game Modes First
+			
+			#If sandbox overrides submod (or other sandbox mode submods) not installed, it is automatically assumed one would play on vanilla mode.
+			if = {
+				limit = {
+					has_zofe = yes
+					NOT = { has_zofe_sandbox = yes }
+					
+					#Add any mod flags here that simply need sandbox mode to enjoy.
+	#				NOR = {
+	#				
+	#				}
+				}
+				set_global_flag = zofe_vanilla_mode
+			}
+			#If sandbox overrides submod (or other sandbox mode submods) are installed, it is automatically assumed one would play on sandbox mode.
+			if = {
+				limit = {
+					has_zofe = yes
+					has_zofe_sandbox = yes
+					
+					#Add any mod flags here that is incompatible or not recommended with sandbox mode.
+	#				NOR = {
+	#				
+	#				}
+				}
+				set_global_flag = zofe_sandbox_mode
+			}
+			
+			#People are automatically assumed to enable all ZoFE base mod content.
+			
+			set_global_flag = zofe_automated_industries_enabled
+			set_global_flag = zofe_societal_ascendance_enabled
+			set_global_flag = zofe_question_of_style_enabled
+			set_global_flag = zofe_masters_of_warfare_enabled
+			set_global_flag = zofe_ambitions_of_power_enabled
+			set_global_flag = zofe_engineering_perfection_enabled
+			
+			#Generate recommended game settings based on modes, vanilla game settings, difficulty, origins.
+
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+				}
+				set_global_flag = ai_ascension_enabled_3
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+				}
+				set_global_flag = ai_ascension_enabled
+			}
+			
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+				}
+				set_global_flag = galactic_ascendancy_ap_enabled_4
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+				}
+				set_global_flag = galactic_ascendancy_ap_enabled_5
+			}
+
+			set_global_flag = subject_ascension_disabled	#Default is not allowed.
+			
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+				}
+				set_global_flag = ascended_empire_decadence_disabled
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+				}
+				set_global_flag = ascended_empire_decadence_enabled_2
+			}
+
+			set_global_flag = zofe_return_of_the_original_empire_enabled	#Default is Enabled.
+			
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+				}
+				set_global_flag = ascended_empire_min_navy_disabled
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+				}
+				set_global_flag = ascended_empire_min_navy_enabled_2
+			}
+			
+			#Generate difficulty settings based on game modes, grand admiral difficulty, origins, and other mods.
+			
+			#Leviathans
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+					#Add other conditions to make vanilla difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = leviathans_vanilla_difficulty
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+					#Add other conditions to make normal difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = leviathans_normal_difficulty
+			}
+			if = {
+				limit = {
+					is_difficulty = 6
+					#Add other conditions to make hard difficulty undesirable
+					NOR = {
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = leviathans_hard_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_ringworld_empire
+					}
+					#Add other conditions to make veteran difficulty undesirable
+	#				NOR = {
+	#					has_origin = origin_original_people
+	#				}
+				}
+				set_global_flag = leviathans_veteran_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_original_people
+					}
+					#Add other conditions to make nightmare difficulty undesirable
+	#				NOR = {
+	#					
+	#				}
+				}
+				set_global_flag = leviathans_nightmare_difficulty
+			}
+		
+			
+			#Marauders
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+					#Add other conditions to make vanilla difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = marauders_vanilla_difficulty
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+					#Add other conditions to make normal difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = marauders_normal_difficulty
+			}
+			if = {
+				limit = {
+					is_difficulty = 6
+					#Add other conditions to make hard difficulty undesirable
+					NOR = {
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = marauders_hard_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_ringworld_empire
+					}
+					#Add other conditions to make veteran difficulty undesirable
+					NOR = {
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = marauders_veteran_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_original_people
+					}
+					#Add other conditions to make nightmare difficulty undesirable
+	#				NOR = {
+	#					
+	#				}
+				}
+				set_global_flag = marauders_nightmare_difficulty
+			}
+			
+			#Crises
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+					#Add other conditions to make vanilla difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = crises_vanilla_difficulty
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+					#Add other conditions to make normal difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = crises_normal_difficulty
+			}
+			
+			if = {
+				limit = {
+					is_difficulty = 6
+					#Add other conditions to make hard difficulty undesirable
+					NOR = {
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = crises_hard_difficulty
+			}
+			
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_ringworld_empire
+					}
+					#Add other conditions to make veteran difficulty undesirable
+	#				NOR = {
+	#					has_origin = origin_original_people
+	#				}
+				}
+				set_global_flag = crises_veteran_difficulty
+			}
+			
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_original_people
+					}
+					#Add other conditions to make nightmare difficulty undesirable
+	#				NOR = {
+	#					
+	#				}
+				}
+				set_global_flag = crises_nightmare_difficulty
+			}
+			
+			#AI Ascended Empire
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+					#Add other conditions to make vanilla difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = ai_ascended_empire_vanilla_difficulty
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+					#Add other conditions to make normal difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = ai_ascended_empire_normal_difficulty
+			}
+			if = {
+				limit = {
+					is_difficulty = 6
+					#Add other conditions to make hard difficulty undesirable
+					NOR = {
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = ai_ascended_empire_hard_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_ringworld_empire
+					}
+					#Add other conditions to make veteran difficulty undesirable
+					NOR = {
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = ai_ascended_empire_veteran_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_original_people
+					}
+					#Add other conditions to make nightmare difficulty undesirable
+	#				NOR = {
+	#					
+	#				}
+				}
+				set_global_flag = ai_ascended_empire_nightmare_difficulty
+			}
+
+			
+			#Fallen Empire
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+					#Add other conditions to make vanilla difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = fallen_empire_vanilla_difficulty
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+					#Add other conditions to make normal difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = fallen_empire_normal_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+					}
+					#Add other conditions to make hard difficulty undesirable
+					NOR = {
+						has_origin = origin_original_people
+					}
+				}
+				set_global_flag = fallen_empire_hard_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_original_people
+					}
+					#Add other conditions to make veteran difficulty undesirable
+	#				NOR = {
+	#					
+	#				}
+				}
+				set_global_flag = fallen_empire_veteran_difficulty
+			}
+		
+			
+			#Original Empire
+			
+			if = {
+				limit = {
+					has_global_flag = zofe_vanilla_mode
+					#Add other conditions to make vanilla difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						is_crises_allowed = no
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+						has_global_flag = acot_full_activated
+						has_global_flag = has_aot_mod
+						has_global_flag = has_sots_mod
+					}
+				}
+				set_global_flag = original_empire_vanilla_difficulty
+			}
+			if = {
+				limit = {
+					has_global_flag = zofe_sandbox_mode
+					#Add other conditions to make normal difficulty undesirable
+					NOR = {
+						is_difficulty = 6
+						is_crises_allowed = no
+						has_origin = origin_ringworld_empire
+						has_origin = origin_original_people
+						has_global_flag = acot_full_activated
+						has_global_flag = has_aot_mod
+						has_global_flag = has_sots_mod
+					}
+				}
+				set_global_flag = original_empire_normal_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						is_difficulty = 6
+						has_origin = origin_ringworld_empire
+					}
+					#Add other conditions to make hard difficulty undesirable
+					NOR = {
+						is_crises_allowed = no
+						has_origin = origin_original_people
+						has_global_flag = acot_full_activated
+						has_global_flag = has_aot_mod
+						has_global_flag = has_sots_mod
+					}
+				}
+				set_global_flag = original_empire_hard_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						has_origin = origin_original_people
+					}
+					#Add other conditions to make veteran difficulty undesirable
+					NOR = {
+						is_crises_allowed = no
+						has_global_flag = acot_full_activated
+						has_global_flag = has_aot_mod
+						has_global_flag = has_sots_mod
+					}
+				}
+				set_global_flag = original_empire_veteran_difficulty
+			}
+			if = {
+				limit = {
+					OR = {
+						has_global_flag = acot_full_activated
+						has_global_flag = has_aot_mod
+						has_global_flag = has_sots_mod
+					}
+					#Add other conditions to make nightmare difficulty undesirable
+					NOR = {
+						is_crises_allowed = no
+					}
+				}
+				set_global_flag = original_empire_nightmare_difficulty
+			}
+
+			if = {
+				limit = {
+					is_crises_allowed = no
+					#Add other conditions to make hard difficulty undesirable
+	#				NOR = {
+	#					
+	#				}
+				}
+				set_global_flag = zofe_return_of_the_original_empire_disabled
+			}
+			set_global_flag = zofe_settings_generated
+		}
+		
+		
+		#Generate Event Chains
+		
+		if = {
+			limit = { has_origin = origin_ringworld_empire }
+			begin_event_chain = {
+				event_chain = "ringworld_empire_chain"
+				target = ROOT
+			}
+		}
+		if = {
+			limit = { has_origin = origin_original_people }
+			begin_event_chain = {
+				event_chain = "original_people_chain"
+				target = this
+			}
+		}
+
+		hidden_effect = { # When the ZOFE menu is closed, this effect is used.
+			if = {
+				limit = {
+					NOT = { has_global_flag = zofe_settings_confirmed }
+				}
+				set_global_flag = zofe_settings_confirmed
+			}
+		}
+	}
+}
