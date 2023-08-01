@@ -1,6 +1,8 @@
 ﻿##########################################################################
 # Limitless Stellaris - English Localisation (Replacements)
 ##########################################################################
+# Extra Localisation Colors:
+# https://steamuserimages-a.akamaihd.net/ugc/2040737956562736069/C206B1AB94B34EE00F7FF04EF75A594B6D3D3E4A/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=#000000&letterbox=false
 l_english:
 ##################
 # Vanilla
@@ -190,6 +192,12 @@ l_english:
   mod_country_resource_max_alloys_add: "Max £alloys£ §Y$alloy$§! Capacity"
 
   dtraits_juiced_power_tooltip:0 "Worker Pop Resource Output: §G+10%§!" # LS - remove the period
+
+##################
+# Ecology
+##################
+
+  origin_ecology_effects: "Homeworld gains §YResilient Ecosystem§!, §YUrban Park§!, extra §YDeposits§!, Natural £blocker£ §YBlockers§!, and £planet£ §YPlanet Size§! is §G20§!.\n\nStart with the extra £pop£ §YPops§! from replaced starting deposits.\n\n§RLimitless Stellaris:§! §rCurrently incompatible with Planetary Diversity custom planet types. Use a vanilla planet type homeworld when using this origin.§!"
 
 ##################
 # Planetary Wonders
