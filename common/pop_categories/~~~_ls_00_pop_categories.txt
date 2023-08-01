@@ -930,7 +930,7 @@ worker = {
 
 	triggered_pop_modifier = { # Plentiful Perks
 		potential = {
-			is_robotic = yes # LS is_robotic_species -> is_robotic (Pop Scope)
+			is_robotic_species = yes
 			owner = { has_ascension_perk = ap_plentiful_traditions_mechanical_alternative }
 		}
 		pop_housing_usage_mult = -0.25
