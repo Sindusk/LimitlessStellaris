@@ -298,7 +298,7 @@
 		SYSTEM_LOST_CLAIM_STRENGTH				= 10	# Strength of a claim given to an empire when their system is annexed
 
 		### Faster Galactic Community ###
-		#RESOLUTION_VOTE_TIMER = 720					# number of days a resolution will be on the senate floor before being passed/failed
+		RESOLUTION_VOTE_TIMER = 360					# number of days a resolution will be on the senate floor before being passed/failed; Default: 720
 		#RESOLUTION_VOTE_PREMATURE_TIMER = 180			# number of days until the custodian/emperor can prematurely end the senate session
 		#SENATE_RECESS_TIMER = 540						# number of days until the next proposed resolution will be put on the floor after the current vote			COUNCIL_DIPLOMACY_WEIGHT_MODIFIER = 1.5			# how much a countries diplomatic weight will be increased when voting if on the council
 		#CHANGE_VOTE_COOLDOWN = 30						# number of days after voting in a resolution before you can change your vote
