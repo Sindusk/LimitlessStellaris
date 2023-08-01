@@ -215,12 +215,6 @@ l_english:
   dtraits_juiced_power_tooltip:0 "Worker Pop Resource Output: §G+10%§!" # LS - remove the period
 
 ##################
-# Ecology
-##################
-
-  origin_ecology_effects: "Homeworld gains §YResilient Ecosystem§!, §YUrban Park§!, extra §YDeposits§!, Natural £blocker£ §YBlockers§!, and £planet£ §YPlanet Size§! is §G20§!.\n\nStart with the extra £pop£ §YPops§! from replaced starting deposits.\n\n§RLimitless Stellaris:§! §rCurrently incompatible with Planetary Diversity custom planet types. Use a vanilla planet type homeworld when using this origin.§!"
-
-##################
 # Planetary Wonders
 ##################
 
