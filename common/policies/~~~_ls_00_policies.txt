@@ -3946,6 +3946,16 @@ trade_policy = {
 		}
 	}
 
+	option = { # OSA
+		name = "trade_policy_default_improved"
+		potential = {
+			has_active_tradition = tr_commerce_finish
+		}
+		AI_weight = {
+			factor = 1
+		}
+	}
+
 	option = {
 		name = "trade_policy_consumer_goods"
 		potential = {
@@ -3991,6 +4001,32 @@ trade_policy = {
 					}
 				}
 			}
+		}
+	}
+
+	option = { # OSA
+		name = "trade_policy_consumer_goods_improved"
+		potential = {
+			AND = {
+				has_active_tradition = tr_commerce_finish
+				OR = {
+					has_federation = no
+					AND = {
+						has_federation = yes
+						federation = { NOT = { has_federation_perk = trade_federation_passive } }
+					}
+				}
+			}
+		}
+
+		policy_flags = {
+			trade_conversion_consumer_goods
+		}
+
+		modifier = {}
+
+		AI_weight = {
+			factor = 0
 		}
 	}
 
@@ -4040,6 +4076,33 @@ trade_policy = {
 					has_tradition = tr_prosperity_administrative_operations
 				}
 			}
+		}
+	}
+
+	option = { # OSA
+		name = "trade_policy_unity_improved"
+		potential = {
+			AND = {
+				has_active_tradition = tr_commerce_finish
+				OR = {
+					has_federation = no
+					AND = {
+						has_federation = yes
+						federation = { NOT = { has_federation_perk = trade_federation_passive } }
+					}
+				}
+			}
+		}
+
+		policy_flags = {
+			trade_conversion_unity
+		}
+
+		modifier = {
+		}
+
+		AI_weight = {
+			factor = 0
 		}
 	}
 
@@ -4897,69 +4960,6 @@ trade_policy = {
 		policy_flags = { trade_policy_adv_conversion_trade_league }
 		modifier = {}
 		AI_weight = { factor = 220 }
-	}
-
-	option = { # OSA
-		name = "trade_policy_default_improved"
-		potential = {
-			has_active_tradition = tr_commerce_finish
-		}
-		AI_weight = {
-			factor = 1
-		}
-	}
-
-	option = { # OSA
-		name = "trade_policy_consumer_goods_improved"
-		potential = {
-			AND = {
-				has_active_tradition = tr_commerce_finish
-				OR = {
-					has_federation = no
-					AND = {
-						has_federation = yes
-						federation = { NOT = { has_federation_perk = trade_federation_passive } }
-					}
-				}
-			}
-		}
-
-		policy_flags = {
-			trade_conversion_consumer_goods
-		}
-
-		modifier = {}
-
-		AI_weight = {
-			factor = 0
-		}
-	}
-
-	option = { # OSA
-		name = "trade_policy_unity_improved"
-		potential = {
-			AND = {
-				has_active_tradition = tr_commerce_finish
-				OR = {
-					has_federation = no
-					AND = {
-						has_federation = yes
-						federation = { NOT = { has_federation_perk = trade_federation_passive } }
-					}
-				}
-			}
-		}
-
-		policy_flags = {
-			trade_conversion_unity
-		}
-
-		modifier = {
-		}
-
-		AI_weight = {
-			factor = 0
-		}
 	}
 
 	option = { # OSA

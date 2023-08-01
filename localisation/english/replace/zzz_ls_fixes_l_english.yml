@@ -144,6 +144,27 @@ l_english:
   trade_policy_adv_conversion_trade_league_name: "£trade_value£ Economical Ascension"
   trade_policy_adv_conversion_trade_league_name_desc: "The combination of our economical mastery and the advancement of our trade league will allow us to extract resources from all our trades in ways none thought possible. No opportunities missed, no potential resources lost and maximum efficiency achieved, yet no unfair deal struck and none unethically exploited. Our mastery over all economical interactions will be unrivaled and we can be sure that our empire is as prosperous as it can be. Many say that we have §BEconomically Ascended§!, and we see no reason to disagree.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§!, £minerals£ §Y0.25§!, £food£ §Y0.25§!, £consumer_goods£ §Y0.25§!, £unity£ §Y0.25§! and £physics£ £society£ £engineering£ §Y0.05§!§!"
 
+  ## Wealth Creation [OSA]
+  trade_policy_default_improved: "£energy£ Commercial Wealth Creation" # OSA
+  trade_policy_default_improved_name: "$trade_policy_default_improved$"
+  trade_policy_default_improved_desc: "The purpose of trade is to generate profits for individuals and revenue for the state. We should focus our trade efforts fully on this creation of wealth.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y1.25§!§!"
+  ## Consumer Benefits [OSA]
+  trade_policy_consumer_goods_improved: "£consumer_goods£ Commercial Consumer Benefits" # OSA
+  trade_conversion_consumer_goods_improved_name: "$trade_policy_consumer_goods_improved$"
+  trade_policy_consumer_goods_improved_desc: "Profits and taxes must take second place to improving the lives of our citizens. We should focus our trade efforts towards the manufacture and distribution of everyday necessities.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§! and £consumer_goods£ §Y0.5§!§!"
+  ## Marketplace of Ideas [OSA]
+  trade_policy_unity_improved: "£unity£ Commercial Marketplace of Ideas" # OSA
+  trade_conversion_unity_improved_name: "$trade_policy_unity_improved$"
+  trade_policy_unity_improved_desc: "Trade can be used not only to move goods around, but also to facilitate the spread of ideas. We should focus our trade efforts towards ensuring that the message of our government is heard on all planets where we do business.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§! and £unity£ §Y0.5§!§!"
+  ## Trade League [OSA]
+  trade_policy_trade_league_improved: "£trade_value£ Commercial Trade League" # OSA
+  trade_conversion_trade_league_improved_name: "$trade_policy_trade_league_improved$"
+  trade_policy_trade_league_improved_desc: "By banding together in a trade league, we are able to prosper and secure profits on a whole new level.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.5§!, £unity£ §Y0.5§! and £consumer_goods£ §Y0.5§!§!"
+  ## Holy Covenant [OSA]
+  trade_policy_holy_covenant_improved: "£unity£ Commercial Holy Covenant" # OSA
+  trade_conversion_holy_covenant_improved_name: "$trade_policy_holy_covenant_improved$"
+  trade_policy_holy_covenant_improved_desc: "By banding together in a holy covenant, we may bask in the collective glory of our divine purpose.\n\n§EEach collected £trade_value£ §YTrade Value§! earns us £energy£ §Y0.75§! and £unity£ §Y0.75§!§!"
+
 ##################
 # Amazing Civics: Megacorp
 ##################
