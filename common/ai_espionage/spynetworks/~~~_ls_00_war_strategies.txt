@@ -302,25 +302,25 @@ war_federation_empire = {
 		# but ignore the envoy that is already "here" in the check
 		modifier = {
 			owner = {
-				any_spynetwork = {
-					is_running_espionage_operation = no
-					owner = {
-						any_envoy = {
-							exists = prevprev.target
-							has_envoy_task = {
-								task = spy_network
-								target = prevprev.target
-							}
-							has_envoy_cooldown = no
-							not = {
-								has_envoy_task = {
-									task = spy_network
-									target = root.target
-								}
-							}
-						}
-					}
-				}
+				#any_spynetwork = {
+				#	is_running_espionage_operation = no
+				#	owner = {
+				#		any_envoy = {
+				#			exists = prevprev.target
+				#			has_envoy_task = {
+				#				task = spy_network
+				#				target = prevprev.target
+				#			}
+				#			has_envoy_cooldown = no
+				#			not = {
+				#				has_envoy_task = {
+				#					task = spy_network
+				#					target = root.target
+				#				}
+				#			}
+				#		}
+				#	}
+				#}
 				any_envoy = {
 					has_envoy_task = {
 						task = spy_network
