@@ -359,12 +359,12 @@
 	NShip = {
 		#SHIELD_RECHARGE_TICKS                = 20    # Combat ticks before a shield that is fully depleted will start to recharge
 	
-		#MILITARY_POWER_HEALTH_WEIGHT        = 0.00075 # Health power weight; Default: 0.5; ACOT: 0.000075
+		MILITARY_POWER_HEALTH_WEIGHT		= 0.0005 # Health power weight; Default: 0.5; ACOT: 0.000075
 		#MILITARY_POWER_ARMOR_WEIGHT         = 1    # compared to health
 		#MILITARY_POWER_SHIELD_WEIGHT        = 1    # compared to health
-		#MILITARY_POWER_DAMAGE_WEIGHT        = 0.00075
-		#MILITARY_POWER_SCALE                = 800 # Multiplier for the formula; Default: 0.25; ACOT: 1600
-		#MILITARY_POWER_EXPONENT             = 0.50      # math: power = ( ( effective_health * damage_per_day ) ^ exponent ) * scale
+		MILITARY_POWER_DAMAGE_WEIGHT		= 0.5
+		MILITARY_POWER_SCALE				= 25 # Multiplier for the formula; Default: 0.25; ACOT: 1600
+		MILITARY_POWER_EXPONENT				= 0.65 # math: power = ( ( effective_health * damage_per_day ) ^ exponent ) * scale
 	
 		# below values determine how large an effect special values such as shield penetration have on the military power of a weapon
 		#MILITARY_POWER_ARMOR_PENETRATION_WEIGHT = 0.1    # larger value = adds more military power
