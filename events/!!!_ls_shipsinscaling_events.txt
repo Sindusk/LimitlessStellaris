@@ -31,6 +31,28 @@ event = {
 	}
 }
 
+## Ships in Scaling 97 - Ship Update Check
+# Called on a loop after ships enter combat. This updates speed if they're not in combat.
+# Scope: Fleet
+fleet_event = {
+	id = shipsinscaling.97
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		if = { # They're still in combat, try again later
+			limit = { is_in_combat = yes }
+			fleet_event = { # Call the event again in 10 days time.
+				id = shipsinscaling.97
+				days = 10
+			}
+		}
+		else = { # They're no longer in combat
+			fleet_event = { id = shipsinscaling.98 } # Update speed
+		}
+	}
+}
+
 ## Called when a fleet enters a new system
 # Scope: Fleet
 # LS - Rewrite event to optimize performance.
@@ -169,6 +191,47 @@ ship_event = {
 		if = { # LS - Cleanup, just in case they had it from a previous battle and it wasn't removed properly.
 			limit = { has_modifier = speed_reduction }
 			remove_modifier = speed_reduction # LS - Remove speed modifier if they have it.
+		}
+	}
+}
+
+## Ships in Scaling 5 - Combat slowdown - Entering Battle
+# Scope: Country
+country_event = {
+	id = shipsinscaling.5
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		FROMFROM = {
+			every_owned_ship = {
+				if = {
+					limit = { has_modifier = speed_change_x1 }
+					remove_modifier = speed_change_x1
+				}
+				if = {
+					limit = { has_modifier = speed_change_x2 }
+					remove_modifier = speed_change_x2
+				}
+				if = {
+					limit = { has_modifier = speed_change_x3 }
+					remove_modifier = speed_change_x3
+				}
+				if = {
+					limit = { has_modifier = speed_change_x4 }
+					remove_modifier = speed_change_x4
+				}
+				if = {
+					limit = { has_modifier = speed_change_x6 }
+					remove_modifier = speed_change_x6
+				}
+				
+				add_modifier = { modifier = speed_reduction }
+			}
+			fleet_event = { # Looping check to see if the fleet needs to be updated on speed again.
+				id = shipsinscaling.97
+				days = 10
+			}
 		}
 	}
 }
