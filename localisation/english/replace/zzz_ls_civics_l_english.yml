@@ -124,48 +124,48 @@ l_english:
 
   ### --- Bug Branch Governmental Civics (Dark Blue) --- ###
   ## Anthropocentric
-  civic_bugged_industrial_firm: "§sIndustrial Firm§!" # Bug Branch
-  civic_bugged_magistrates_of_automation: "§sMagistrates of Automation§!" # Bug Branch
-  civic_bugged_mutualistic_manufacturing: "§sMutualistic Manufacturing§!" # Bug Branch
-  civic_bugged_production_potentateship: "§sProduction Potentateship§!" # Bug Branch
+  civic_bugged_industrial_firm: "§tIndustrial Firm§!" # Bug Branch
+  civic_bugged_magistrates_of_automation: "§tMagistrates of Automation§!" # Bug Branch
+  civic_bugged_mutualistic_manufacturing: "§tMutualistic Manufacturing§!" # Bug Branch
+  civic_bugged_production_potentateship: "§tProduction Potentateship§!" # Bug Branch
   ## Competitive
-  civic_bugged_banking_corporation: "§sBanking Corporation§!" # Bug Branch
-  civic_bugged_board_of_executives: "§sBoard of Executives§!" # Bug Branch
-  civic_bugged_state_monopoly: "§sState Monopoly§!" # Bug Branch
-  civic_bugged_stock_based_salary: "§sStock-Based Salary§!" # Bug Branch
+  civic_bugged_banking_corporation: "§tBanking Corporation§!" # Bug Branch
+  civic_bugged_board_of_executives: "§tBoard of Executives§!" # Bug Branch
+  civic_bugged_state_monopoly: "§tState Monopoly§!" # Bug Branch
+  civic_bugged_stock_based_salary: "§tStock-Based Salary§!" # Bug Branch
   ## Cooperative
-  civic_bugged_comprehensive_decision_making_structure: "§sComprehensive Decision Making Structure§!" # Bug Branch
-  civic_bugged_extended_family: "§sExtended Family§!" # Bug Branch
-  civic_bugged_department_of_prosperity: "§sProsperity Department§!" # Bug Branch
-  civic_bugged_worker_owned_corpo: "§sWorker-Owned Corporation§!" # Bug Branch
+  civic_bugged_comprehensive_decision_making_structure: "§tComprehensive Decision Making Structure§!" # Bug Branch
+  civic_bugged_extended_family: "§tExtended Family§!" # Bug Branch
+  civic_bugged_department_of_prosperity: "§tProsperity Department§!" # Bug Branch
+  civic_bugged_worker_owned_corpo: "§tWorker-Owned Corporation§!" # Bug Branch
   ## Ecocentric
-  civic_bugged_bioeconomics_group: "§sBioeconomics Group§!" # Bug Branch
-  civic_bugged_lifes_shield: "§sLife's Shield§!" # Bug Branch
-  civic_bugged_naturally_integrated_supply_chains: "§sNaturally Integrated Supply Chains§!" # Bug Branch
-  civic_bugged_villatic_collective: "§sVillatic Collective§!" # Bug Branch
+  civic_bugged_bioeconomics_group: "§tBioeconomics Group§!" # Bug Branch
+  civic_bugged_lifes_shield: "§tLife's Shield§!" # Bug Branch
+  civic_bugged_naturally_integrated_supply_chains: "§tNaturally Integrated Supply Chains§!" # Bug Branch
+  civic_bugged_villatic_collective: "§tVillatic Collective§!" # Bug Branch
   ## Elitist
-  civic_bugged_highborn_sovereignty: "§sHighborn Sovereignty§!" # Bug Branch
-  civic_bugged_patrician_court: "§sPatrician Court§!" # Bug Branch
-  civic_bugged_peerage_assembly: "§sPeerage Assembly§!" # Bug Branch
+  civic_bugged_highborn_sovereignty: "§tHighborn Sovereignty§!" # Bug Branch
+  civic_bugged_patrician_court: "§tPatrician Court§!" # Bug Branch
+  civic_bugged_peerage_assembly: "§tPeerage Assembly§!" # Bug Branch
   ## Materialist
-  civic_bugged_cyber_democracy: "§sCyber Democracy§!" # Bug Branch
-  civic_bugged_cyber_dictatorship: "§sCyber Dictatorship§!" # Bug Branch
-  civic_bugged_science_directorate: "§sScience Directorate§!" # Bug Branch
+  civic_bugged_cyber_democracy: "§tCyber Democracy§!" # Bug Branch
+  civic_bugged_cyber_dictatorship: "§tCyber Dictatorship§!" # Bug Branch
+  civic_bugged_science_directorate: "§tScience Directorate§!" # Bug Branch
   ## Militarist
-  civic_bugged_ordered_stratocracy: "§sOrdered Stratocracy§!" # Bug Branch
-  civic_bugged_war_council: "§sWar Council§!" # Bug Branch
-  civic_bugged_warlord: "§sWarlord§!" # Bug Branch
+  civic_bugged_ordered_stratocracy: "§tOrdered Stratocracy§!" # Bug Branch
+  civic_bugged_war_council: "§tWar Council§!" # Bug Branch
+  civic_bugged_warlord: "§tWarlord§!" # Bug Branch
   ## Pacifist
-  civic_bugged_enlightened_bureaucracy: "§sEnlightened Bureaucracy§!" # Bug Branch
-  civic_bugged_philosophers_assembly: "§sPhilosophers Assembly§!" # Bug Branch
-  civic_bugged_utopian_democracy: "§sUtopian Democracy§!" # Bug Branch
+  civic_bugged_enlightened_bureaucracy: "§tEnlightened Bureaucracy§!" # Bug Branch
+  civic_bugged_philosophers_assembly: "§tPhilosophers Assembly§!" # Bug Branch
+  civic_bugged_utopian_democracy: "§tUtopian Democracy§!" # Bug Branch
   ## Pluralist
-  civic_bugged_cabinet_system: "§sCabinet System§!" # Bug Branch
-  civic_bugged_humble_cortege: "§sHumble Cortège§!" # Bug Branch
-  civic_bugged_peoples_committee: "§sPeople's Committee§!" # Bug Branch
+  civic_bugged_cabinet_system: "§tCabinet System§!" # Bug Branch
+  civic_bugged_humble_cortege: "§tHumble Cortège§!" # Bug Branch
+  civic_bugged_peoples_committee: "§tPeople's Committee§!" # Bug Branch
   ## Spiritualist
-  civic_bugged_divine_council: "§sDivine Council§!" # Bug Branch
-  civic_bugged_theocratic_republic: "§sTheocratic Republic§!" # Bug Branch
+  civic_bugged_divine_council: "§tDivine Council§!" # Bug Branch
+  civic_bugged_theocratic_republic: "§tTheocratic Republic§!" # Bug Branch
 
   ### --- Unique AI Civics (Orange) --- ###
   ## Fallen Empires
