@@ -12,19 +12,9 @@ event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
-		if = {
-			limit = { NOT = { has_global_flag = dmm_installed } }
-			set_global_flag = dmm_mod_limitless_stellaris
-		}
-		else = {
-			dmm_register_mod = {
-				DMM_NAME = dmm_mod_limitless_stellaris
-				DMM_FLAG = dmm_mod_limitless_stellaris
-			}
-			if = {
-				limit = { has_global_flag = dmm_mod_limitless_stellaris }
-				remove_global_flag = dmm_mod_limitless_stellaris
-			}
+		dmm_register_mod = {
+			DMM_NAME = dmm_mod_limitless_stellaris
+			DMM_FLAG = dmm_mod_limitless_stellaris
 		}
 	}
 }
@@ -37,11 +27,17 @@ country_event = {
 	is_triggered_only = yes
 	hide_window = yes
 	trigger = {
-		from = {
-			has_leader_flag = dmm_mod_limitless_stellaris
-		}
+		is_ai = no
+		exists = from
+		has_global_flag = dmm_installed # 3.0 version
+		from = { has_leader_flag = dmm_mod_limitless_stellaris }
 	}
 	immediate = {
 		country_event = { id = lsmod.1 } # Open settings menu
+	}
+	after = {
+		if = { limit = { has_global_flag = dmm_mod_limitless_stellaris_opened }
+			remove_global_flag = dmm_mod_limitless_stellaris_opened
+		}
 	}
 }

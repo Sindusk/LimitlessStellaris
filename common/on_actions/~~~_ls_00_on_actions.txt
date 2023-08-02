@@ -7,7 +7,7 @@
 on_press_begin = {
 	events = {
 		giga_preset.1 # Load the Gigastructural Engineering custom preset immediately.
-		ls_mod.1 # Limitless Stellaris Configuration Menu
+		lsmod.1 # Limitless Stellaris Configuration Menu
 	}
 }
 

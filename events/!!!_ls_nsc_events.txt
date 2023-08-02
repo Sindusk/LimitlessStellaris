@@ -1,7 +1,7 @@
 ##########################################################################
 # Limitless Stellaris - NSC Events
 ##########################################################################
-namespace = nsc_modmenu
+namespace = nsc_modmenu_etc
 
 country_event = {
 	id = nsc_modmenu_etc.20
