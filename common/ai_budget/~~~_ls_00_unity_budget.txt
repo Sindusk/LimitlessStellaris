@@ -71,6 +71,22 @@ unity_expenditure_leaders = {
 ## Unity Upkeep
 ##################################################
 
+## Unity Upkeep - Edicts
+# StarTech AI version
+unity_upkeep_edicts = {
+	resource = unity
+	type = upkeep
+	category = edicts
+
+	potential = {
+		str_ai_budget_potential_unity_upkeep_edicts = yes
+	}
+
+	weight = {
+		weight = 0.2
+	}
+}
+
 ## Unity Upkeep - Leaders
 # StarTech AI version
 unity_upkeep_leaders = {

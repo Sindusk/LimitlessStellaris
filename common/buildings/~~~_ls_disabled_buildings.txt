@@ -1283,7 +1283,10 @@ building_eac_pdf_base = {
 	allow = {
 		has_upgraded_capital = yes
 		OR = {
-			is_ai = no
+			exists = owner
+			owner = {
+				is_ai = no
+			}
 			num_pops >= 50
 		}
 	}

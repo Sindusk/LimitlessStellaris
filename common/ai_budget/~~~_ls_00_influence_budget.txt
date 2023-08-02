@@ -3,21 +3,72 @@
 ####################################################################################################
 
 ##################################################
-## Influence Upkeep
+## Influence Expenditure
 ##################################################
 
-## Influence Upkeep - Planets
-# LS version, added to allow AI to budget for starbase modules and buildings with mineral upkeep.
-influence_upkeep_planets = {
+## Influence Expenditure - Edicts
+# StarTech AI version with minor OSA change
+influence_expenditure_edicts = {
 	resource = influence
-	type = upkeep
-	category = planets
+	type = expenditure
+	category = edicts
 
 	potential = {
-		always = yes
+		str_ai_budget_potential_influence_expenditure_edicts = yes
+		is_death_cult_empire = yes
+		has_sacrificial_edict = no
 	}
-	
+
 	weight = {
-		weight = 0.5
+		weight = 0.25
+	}
+
+	desired_min = {
+		base = 100
+	}
+
+	desired_max = {
+		base = 400 # OSA
+	}
+}
+
+## Influence Expenditure - Megastructures
+# StarTech AI version
+influence_expenditure_megastructures = {
+	resource = influence
+	type = expenditure
+	category = megastructures
+
+	potential = {
+		str_ai_budget_potential_influence_expenditure_megastructures = yes
+		#is_at_war = no # LS - Removed
+		has_resource = {
+			type = influence
+			amount > 500
+		}
+		can_build_megastructures = yes
+	}
+
+	weight = {
+		weight = 0.1
+	}
+
+	# only used by construction sites, base cost is 300
+	desired_min = {
+		base = 75
+		modifier = {
+			add = 225
+			has_technology = tech_ring_world
+			NOT = {
+				any_owned_planet = { is_planet_class = pc_ringworld_habitable }
+			}
+		}
+	}
+	desired_max = {
+		base = 75
+		modifier = {
+			add = 225
+			has_technology = tech_ring_world
+		}
 	}
 }
