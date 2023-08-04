@@ -586,7 +586,6 @@ resolution_ecology_integrated_gardens = {
 
 	effect = {
 		#custom_tooltip = resolution_ecology_integrated_gardens_tooltip # MECR disables
-		hidden_effect = { add_modifier = { modifier = resolution_passed_diplomatic_weight days = 2200 } } # EED
 		hidden_effect = {
 			set_timed_country_flag = { flag = galactic_community_resolution_passed_ecology days = @resolution_flag_timer }
 			add_modifier = {
